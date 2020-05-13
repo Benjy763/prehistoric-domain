@@ -1,17 +1,39 @@
 <a-assets timeout="5000">
   <!-- Audio -->
   <audio
-  src="https://cdn.aframe.io/basic-guide/audio/backgroundnoise.wav"
-  autoplay
-  preload
-></audio>
-<!-- Images -->
-<img id="boxTexture" src="https://i.imgur.com/mYmmbrp.jpg" />
-<img id="skyTexture" src="./build/images/background.jpg" />
-<img id="groundTexture" src="./build/images/floor.jpg" />
-<!-- 3D -->
-<a-asset-item
-  id="trex"
-  src="./build/models/dinosaurs/trex/scene.gltf"
-></a-asset-item>
+    src="https://cdn.aframe.io/basic-guide/audio/backgroundnoise.wav"
+    preload
+  ></audio>
+
+  <!-- Images -->
+  <img id="boxTexture" src="https://i.imgur.com/mYmmbrp.jpg" />
+  <img id="skyTexture" src="./build/images/background.jpg" />
+  <img id="groundTexture" src="./build/images/floor.jpg" />
+
+  <!-- 3D -->
+  <!-- Objects -->
+  <a-asset-item
+    id="car"
+    src="./build/models/objects/car/scene.gltf"
+  ></a-asset-item>
+  <a-asset-item
+    id="human"
+    src="./build/models/objects/human/scene.gltf"
+  ></a-asset-item>
+
+  <!-- Environment -->
+  <a-asset-item
+    id="europ-trees"
+    src="./build/models/environment/europ-trees/scene.gltf"
+  ></a-asset-item>
+  <a-asset-item
+    id="electric-fence"
+    src="./build/models/environment/electric-fence/electric-fence.glb"
+  ></a-asset-item>
+
+  <!-- Dinosaurs -->
+  <a-asset-item
+    id="trex"
+    src="./build/models/dinosaurs/trex/scene.gltf"
+  ></a-asset-item>
 </a-assets>
