@@ -4,32 +4,14 @@
   <a-entity id="rig" movement-controls position="0 1.6 0">
     <a-entity camera position="0 1.6 0" look-controls></a-entity>
   </a-entity>
-  <a-sky src="#skyTexture"></a-sky>
-  <a-plane
-    src="#groundTexture"
-    rotation="-90 0 0"
-    width="200"
-    height="200"
-    repeat="10 10"
-    material=""
-    geometry=""
-    position="0 0.1 0"
-  ></a-plane>
-  <a-light id="ambiant-light" type="ambient" color="#445451"></a-light>
-  <a-light
-    rotation="-28 -80 0"
-    position="-239 206 -31"
-    id="sun-light"
-    type="ambient"
-    color="#445451"
-    light="type: spot"
-    intensity="2"
-    visible=""
-  ></a-light>
-  <a-sound
-    src="https://cdn.aframe.io/basic-guide/audio/backgroundnoise.wav"
-    autoplay="true"
-    position="-3 1 -4"
-  ></a-sound>
-  <require path="templates/scene.html"></require>
+  <!-- Sky environement -->
+  <require path="templates/sky.html"></require>
+  <!-- Sky environement -->
+  <require path="templates/ground.html"></require>
+  <!-- Lightning -->
+  <require path="templates/lightning.html"></require>
+  <!-- Sound -->
+  <require path="templates/global-sound.html"></require>
+  <!-- Dinosaurs -->
+  <require path="templates/dinosaurs.html"></require>
 </a-scene>
