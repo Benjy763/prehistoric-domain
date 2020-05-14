@@ -1,11 +1,49 @@
 <a-entity
   car-tour
   id="car"
-  gltf-model="#car"
+  gltf-model="#car-asset"
   position="18.6 0 85"
   rotation="0 -75 0"
-  scale="1.4 1.4 1.4"
 >
+  <a-box
+    button-control
+    hoverable
+    color="blue"
+    position="-0.88824 0.96107 0.09701"
+    material=""
+    geometry=""
+    scale="0.02 0.02 0.02"
+  ></a-box>
+  <a-entity
+    id="rig"
+    movement-controls
+    position="-0.5 0.9 0.6"
+    rotation="0 90 0"
+  >
+    <a-entity id="hands">
+      <a-entity
+        id="leftHand"
+        sphere-collider="objects: a-box"
+        super-hands
+        hand-controls="hand: left; handModelStyle: highPoly; color: #ffcccc"
+      ></a-entity>
+      <a-entity
+        fps-counter="for90fps: false"
+        id="rightHand"
+        rotation="10 0 0"
+        sphere-collider="objects: a-box"
+        super-hands
+        hand-controls="hand: right; handModelStyle: highPoly; color: #ffcccc"
+      ></a-entity>
+    </a-entity>
+    <a-entity camera position="0 1.6 0" look-controls>
+      <a-entity
+        id="log"
+        text="value: HELLO; color: red; width: 0.5"
+        position="0.8 0.3 -0.40"
+      ></a-entity>
+    </a-entity>
+  </a-entity>
 </a-entity>
 <a-entity
   id="human"
