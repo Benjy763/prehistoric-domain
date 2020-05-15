@@ -38,15 +38,17 @@ AFRAME.registerComponent('car-tour', {
     this.el.addEventListener(
       'start',
       () => {
-        // Can't restart many times
-        if (self.tourStarted) {
-          return;
-        }
-        self.data.carSpeed = self.data.speedValue;
-        self.carDriveAudio.play();
-        self.carDriveSoundPlaying = true;
-        document.getElementById('jungle-asset').play();
-        this.tourStarted = true;
+        setTimeout(() => {
+          // Can't restart many times
+          if (self.tourStarted) {
+            return;
+          }
+          self.data.carSpeed = self.data.speedValue;
+          self.carDriveAudio.play();
+          self.carDriveSoundPlaying = true;
+          document.getElementById('jungle-asset').play();
+          this.tourStarted = true;
+        }, 4000);
       },
       false
     );
