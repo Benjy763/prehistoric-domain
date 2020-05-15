@@ -1,12 +1,21 @@
 AFRAME.registerSystem('game', {
   schema: {},
   init: function () {
+    this.loader();
     this.startListener();
   },
   log: function (text) {
     document
       .querySelector('#log')
       .setAttribute('text', { value: text, color: 'white', width: 0.5 });
+  },
+  loader: function (text) {
+    setTimeout(() => {
+      document
+        .getElementById('static-loading')
+        .setAttribute('visible', 'false');
+      document.getElementById('main-scene').setAttribute('visible', 'true');
+    }, 12000);
   },
   startListener: function () {
     document.addEventListener('keyup', function (e) {

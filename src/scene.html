@@ -1,24 +1,31 @@
-<!-- <div id="splash">
-  <div class="loading"></div>
-</div> -->
-<a-scene stats antialias="true">
+<div id="static-loading">
+  <img src="./build/images/loader.png" />
+</div>
+<a-scene id="main-scene" stats antialias="true" visible="false">
   <!-- All assets -->
   <require path="templates/assets.html"></require>
-  <!-- Camera -->
-  <require path="templates/camera.html"></require>
-  <!-- Sky environement -->
-  <require path="templates/sky.html"></require>
-  <!-- Ground environement -->
-  <require path="templates/ground.html"></require>
-  <!-- Lightning -->
-  <require path="templates/lightning.html"></require>
-  <!-- Sound -->
-  <require path="templates/global-sound.html"></require>
-  <!-- Dinosaurs -->
-  <require path="templates/dinosaurs.html"></require>
-  <!-- Environment -->
-  <require path="templates/environment.html"></require>
-  <!-- Objects -->
-  <require path="templates/objects.html"></require>
+  <!-- <a-entity id="loading">
+    <a-image
+      src="#loading-asset"
+      scale="1.2 1 1"
+      position="17.2 2.6 83"
+      rotation="0 20 0"
+    ></a-image>
+  </a-entity> -->
+  <a-entity id="trex-scene">
+    <!-- Sky environement -->
+    <require path="templates/sky.html"></require>
+    <!-- Ground environement -->
+    <require path="templates/ground.html"></require>
+    <!-- Lightning -->
+    <require path="templates/lightning.html"></require>
+    <!-- Sound -->
+    <require path="templates/global-sound.html"></require>
+    <!-- Dinosaurs -->
+    <require path="templates/dinosaurs.html"></require>
+    <!-- Environment -->
+    <require path="templates/environment.html"></require>
+    <!-- Objects -->
+    <require path="templates/objects.html"></require>
+  </a-entity>
 </a-scene>
-z

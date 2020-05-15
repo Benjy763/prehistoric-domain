@@ -104,8 +104,18 @@ AFRAME.registerComponent('car-tour', {
     if (this.carState === 'started' && !this.carDriveSoundPlaying) {
       document
         .querySelector('[sound__cardrive]')
+        .components['sound__cardrive'].stopSound();
+      document
+        .querySelector('[sound__cardrive]')
         .components['sound__cardrive'].playSound();
       this.carDriveSoundPlaying = true;
+    }
+
+    if (this.carState === 'stopped' && this.carDriveSoundPlaying) {
+      document
+        .querySelector('[sound__cardrive]')
+        .components['sound__cardrive'].stopSound();
+      this.carDriveSoundPlaying = false;
     }
   },
 });
