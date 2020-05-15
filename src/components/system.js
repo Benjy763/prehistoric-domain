@@ -11,15 +11,27 @@ AFRAME.registerSystem('game', {
       .querySelector('#log')
       .setAttribute('text', { value: text, color: 'white', width: 0.5 });
   },
+  displayScene: function () {
+    document.querySelector('.a-enter-vr').style.display = 'none';
+    document
+      .getElementById('loading-camera')
+      .setAttribute('camera', 'active', false);
+    document.getElementById('static-loading').style.display = 'none';
+    document.getElementById('loading').setAttribute('visible', 'false');
+    document.getElementById('trex-scene').setAttribute('visible', 'true');
+  },
   loader: function (text) {
+    const self = this;
     // Load asset
     document.querySelector('a-assets').addEventListener('loaded', function () {
-      // Rendering time timeout
+      // Rendering timeout
       setTimeout(() => {
-        // Remove loader
-        document.getElementById('static-loading').style.display = 'none';
-        document.getElementById('loading').setAttribute('visible', 'false');
-        document.getElementById('trex-scene').setAttribute('visible', 'true');
+        // Press start
+        document.querySelector('.a-enter-vr').style.display = 'flex';
+        document.getElementById('put-headset').style.color = 'white';
+
+        //Init Game
+        self.initGame();
       }, 8000);
     });
 
@@ -27,8 +39,19 @@ AFRAME.registerSystem('game', {
     this.initGame();
   },
   startListener: function () {
+    const self = this;
+
     document.addEventListener('keyup', function (e) {
       const car = document.querySelector('#car');
+      // Start tour
+      if (e.keyCode == 32) {
+        // Display scene
+        self.displayScene();
+        const event = new Event('start');
+        this.querySelector('#car').dispatchEvent(event);
+      }
+
+      // Commands for testing
       // Play/pause game
       if (e.keyCode == 80) {
         car.setAttribute('car-tour', {
@@ -41,7 +64,7 @@ AFRAME.registerSystem('game', {
         });
       }
       // Go to position
-      if (e.keyCode == 32) {
+      if (e.keyCode == 13) {
         car.setAttribute('car-tour', {
           carMarker: 0.48, // Specific position
           carSpeed: car.getAttribute('car-tour').carSpeed,

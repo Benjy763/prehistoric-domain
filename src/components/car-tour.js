@@ -5,6 +5,23 @@ AFRAME.registerComponent('car-tour', {
     speedValue: { default: 0.0002 },
   },
   init: function () {
+    let self = this;
+    this.tourStarted = false;
+    // Start tour listener
+    this.el.addEventListener(
+      'start',
+      () => {
+        // Can't restart many times
+        if (self.tourStarted) {
+          return;
+        }
+        self.data.carSpeed = self.data.speedValue;
+        document.getElementById('jungle-asset').play();
+        this.tourStarted = true;
+      },
+      false
+    );
+
     // Object shortcut
     this.object = this.el.object3D;
     this.system = document.querySelector('a-scene').systems['game'];
@@ -22,11 +39,13 @@ AFRAME.registerComponent('car-tour', {
     this.carState = 'started'; //stopped / started / stopping / starting
 
     // Sound
-    document.getElementById('jungle-asset').play();
     this.carDriveSoundPlaying = false;
     this.carDriveAudio = document.getElementById('car-drive-asset');
 
     this.updateRotation();
+  },
+  startTour: function () {
+    this.rotation = this.el.getAttribute('rotation').y;
   },
   convertPosition: function (position2D) {
     return {
@@ -112,6 +131,7 @@ AFRAME.registerComponent('car-tour', {
     }
 
     if (this.carState === 'stopped' && this.carDriveSoundPlaying) {
+      this.carDriveAudio.volume = 1;
       this.carDriveAudio.pause();
       this.carDriveSoundPlaying = false;
     }

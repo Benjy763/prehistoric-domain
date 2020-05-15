@@ -8,9 +8,57 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   background-color: black;
 }
 
 #static-loading img {
   width: 600px;
+}
+
+#put-headset {
+  font-family: 'Tribeca', Verdana, Tahoma;
+  font-size: 40px;
+  color: black;
+}
+
+#main-scene .a-enter-ar,
+#main-scene .a-enter-vr {
+  font-size: 13px;
+  width: 100%;
+  font-weight: 200;
+  line-height: 16px;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  display: none;
+  justify-content: center;
+  align-items: flex-end;
+  height: 100%;
+}
+
+#main-scene .a-enter-ar-button,
+#main-scene .a-enter-vr-button {
+  position: relative;
+  background-size: 90% 90%;
+  border: 0;
+  bottom: inherit;
+  cursor: pointer;
+  min-width: 145px;
+  min-height: 85px;
+  padding-right: 0;
+  padding-top: 0;
+  right: 0;
+  transition: background-color 0.05s ease;
+  -webkit-transition: background-color 0.05s ease;
+  z-index: 9999;
+  border-radius: 8px;
+  touch-action: manipulation;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+#main-scene .a-enter-vr-button:hover {
+  background-color: #eb0b0b;
 }
