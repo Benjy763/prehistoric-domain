@@ -22,7 +22,8 @@
   color: black;
 }
 
-#main-scene .a-enter-ar,
+/* VR logo replacement */
+/* #main-scene .a-enter-ar,
 #main-scene .a-enter-vr {
   font-size: 13px;
   width: 100%;
@@ -61,4 +62,4 @@
 
 #main-scene .a-enter-vr-button:hover {
   background-color: #eb0b0b;
-}
+} */
