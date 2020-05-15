@@ -66,7 +66,7 @@ AFRAME.registerSystem('game', {
       // Go to position
       if (e.keyCode == 13) {
         car.setAttribute('car-tour', {
-          carMarker: 0.48, // Specific position
+          carMarker: 0.52, // Specific position
           carSpeed: car.getAttribute('car-tour').carSpeed,
         });
       }

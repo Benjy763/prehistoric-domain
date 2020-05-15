@@ -119,6 +119,7 @@ AFRAME.registerComponent('car-tour', {
         this.stopCar();
         if (this.carDriveSoundPlaying) {
           //this.carDriveAudio.volume = 1;
+          this.carStopAudio.play();
           this.carDriveAudio.pause();
           this.carDriveSoundPlaying = false;
         }
