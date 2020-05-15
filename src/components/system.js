@@ -2,6 +2,8 @@ AFRAME.registerSystem('game', {
   schema: {},
   init: function () {
     this.loader();
+  },
+  initGame: function (text) {
     this.startListener();
   },
   log: function (text) {
@@ -10,12 +12,19 @@ AFRAME.registerSystem('game', {
       .setAttribute('text', { value: text, color: 'white', width: 0.5 });
   },
   loader: function (text) {
-    setTimeout(() => {
-      document
-        .getElementById('static-loading')
-        .setAttribute('visible', 'false');
-      document.getElementById('main-scene').setAttribute('visible', 'true');
-    }, 12000);
+    // Load asset
+    document.querySelector('a-assets').addEventListener('loaded', function () {
+      // Rendering time timeout
+      setTimeout(() => {
+        // Remove loader
+        document.getElementById('static-loading').style.display = 'none';
+        document.getElementById('loading').setAttribute('visible', 'false');
+        document.getElementById('trex-scene').setAttribute('visible', 'true');
+      }, 8000);
+    });
+
+    //Init Game
+    this.initGame();
   },
   startListener: function () {
     document.addEventListener('keyup', function (e) {

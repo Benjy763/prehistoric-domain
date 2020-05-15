@@ -1,18 +1,18 @@
 <div id="static-loading">
   <img src="./build/images/loader.png" />
 </div>
-<a-scene id="main-scene" stats antialias="true" visible="false">
+<a-scene id="main-scene" stats antialias="true">
   <!-- All assets -->
   <require path="templates/assets.html"></require>
-  <!-- <a-entity id="loading">
+  <a-entity id="loading">
     <a-image
       src="#loading-asset"
       scale="1.2 1 1"
       position="17.2 2.6 83"
       rotation="0 20 0"
     ></a-image>
-  </a-entity> -->
-  <a-entity id="trex-scene">
+  </a-entity>
+  <a-entity id="trex-scene" visible="false">
     <!-- Sky environement -->
     <require path="templates/sky.html"></require>
     <!-- Ground environement -->

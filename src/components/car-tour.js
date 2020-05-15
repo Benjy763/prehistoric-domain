@@ -8,6 +8,7 @@ AFRAME.registerComponent('car-tour', {
     // Object shortcut
     this.object = this.el.object3D;
     this.system = document.querySelector('a-scene').systems['game'];
+
     // Tour Path
     this.curve = new THREE.SplineCurve([
       new THREE.Vector2(18.6, 85),
@@ -19,7 +20,11 @@ AFRAME.registerComponent('car-tour', {
     ]);
     this.rotation = this.el.getAttribute('rotation').y;
     this.carState = 'started'; //stopped / started / stopping / starting
+
+    // Sound
+    document.getElementById('jungle-asset').play();
     this.carDriveSoundPlaying = false;
+    this.carDriveAudio = document.getElementById('car-drive-asset');
 
     this.updateRotation();
   },
@@ -102,19 +107,12 @@ AFRAME.registerComponent('car-tour', {
 
     // Sound control
     if (this.carState === 'started' && !this.carDriveSoundPlaying) {
-      document
-        .querySelector('[sound__cardrive]')
-        .components['sound__cardrive'].stopSound();
-      document
-        .querySelector('[sound__cardrive]')
-        .components['sound__cardrive'].playSound();
+      this.carDriveAudio.play();
       this.carDriveSoundPlaying = true;
     }
 
     if (this.carState === 'stopped' && this.carDriveSoundPlaying) {
-      document
-        .querySelector('[sound__cardrive]')
-        .components['sound__cardrive'].stopSound();
+      this.carDriveAudio.pause();
       this.carDriveSoundPlaying = false;
     }
   },
