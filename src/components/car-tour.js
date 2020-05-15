@@ -6,21 +6,6 @@ AFRAME.registerComponent('car-tour', {
   },
   init: function () {
     let self = this;
-    this.tourStarted = false;
-    // Start tour listener
-    this.el.addEventListener(
-      'start',
-      () => {
-        // Can't restart many times
-        if (self.tourStarted) {
-          return;
-        }
-        self.data.carSpeed = self.data.speedValue;
-        document.getElementById('jungle-asset').play();
-        this.tourStarted = true;
-      },
-      false
-    );
 
     // Object shortcut
     this.object = this.el.object3D;
@@ -36,13 +21,34 @@ AFRAME.registerComponent('car-tour', {
       new THREE.Vector2(30, -94),
     ]);
     this.rotation = this.el.getAttribute('rotation').y;
-    this.carState = 'started'; //stopped / started / stopping / starting
+
+    // Animation phase
+    this.phase = 'start';
 
     // Sound
     this.carDriveSoundPlaying = false;
     this.carDriveAudio = document.getElementById('car-drive-asset');
+    this.carStopAudio = document.getElementById('car-stop-asset');
 
     this.updateRotation();
+
+    // Start tour listener
+    this.tourStarted = false;
+    this.el.addEventListener(
+      'start',
+      () => {
+        // Can't restart many times
+        if (self.tourStarted) {
+          return;
+        }
+        self.data.carSpeed = self.data.speedValue;
+        self.carDriveAudio.play();
+        self.carDriveSoundPlaying = true;
+        document.getElementById('jungle-asset').play();
+        this.tourStarted = true;
+      },
+      false
+    );
   },
   startTour: function () {
     this.rotation = this.el.getAttribute('rotation').y;
@@ -71,19 +77,18 @@ AFRAME.registerComponent('car-tour', {
     const newSpeed = this.data.carSpeed - 0.000005;
     if (newSpeed <= 0) {
       this.data.carSpeed = 0;
-      // this.data.carSpeed = 0;
-      this.carState = 'stopped';
+      this.phase = 'stay';
       return;
     }
-    this.carState = 'stopping';
+    this.phase = 'stop';
     this.data.carSpeed = newSpeed;
   },
   startCar: function () {
     if (this.data.carSpeed >= this.data.speedValue) {
-      this.carState = 'started';
+      this.phase = 'finish';
       return;
     }
-    this.carState = 'starting';
+    this.phase = 'restart';
     this.data.carSpeed += 0.00001;
   },
   truncMarker: function (carMarker) {
@@ -103,37 +108,27 @@ AFRAME.registerComponent('car-tour', {
       this.updateRotation();
     }
 
-    // 0.56 marker is a stop point
-    if (
-      (this.truncMarker(this.data.carMarker) === 56 &&
-        this.carState === 'started') ||
-      this.carState === 'stopping'
-    ) {
-      this.stopCar();
+    // Change animation phases
+    if (this.truncMarker(this.data.carMarker) === 56) {
+      this.phase = 'stop';
     }
 
-    // Update state
-    if (
-      this.data.carSpeed > 0 &&
-      this.carState !== 'stopping' &&
-      this.carState !== 'starting'
-    ) {
-      this.carState = 'started';
-    }
-    if (this.data.carSpeed === 0) {
-      this.carState = 'stopped';
-    }
-
-    // Sound control
-    if (this.carState === 'started' && !this.carDriveSoundPlaying) {
-      this.carDriveAudio.play();
-      this.carDriveSoundPlaying = true;
-    }
-
-    if (this.carState === 'stopped' && this.carDriveSoundPlaying) {
-      this.carDriveAudio.volume = 1;
-      this.carDriveAudio.pause();
-      this.carDriveSoundPlaying = false;
+    // Animation phases
+    switch (this.phase) {
+      case 'stop':
+        this.stopCar();
+        if (this.carDriveSoundPlaying) {
+          //this.carDriveAudio.volume = 1;
+          this.carDriveAudio.pause();
+          this.carDriveSoundPlaying = false;
+        }
+        break;
+      case 'stay':
+        break;
+      case 'restart':
+        break;
+      case 'finish':
+        break;
     }
   },
 });
