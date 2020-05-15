@@ -15,13 +15,17 @@ AFRAME.registerSystem('game', {
       if (e.keyCode == 80) {
         car.setAttribute('car-tour', {
           carMarker: car.getAttribute('car-tour').carMarker,
-          carSpeed: !car.getAttribute('car-tour').carSpeed ? 0.0002 : 0,
+          carSpeed:
+            !car.getAttribute('car-tour').carSpeed ||
+            car.getAttribute('car-tour').carSpeed == 0
+              ? car.getAttribute('car-tour').speedValue
+              : 0,
         });
       }
       // Go to position
       if (e.keyCode == 32) {
         car.setAttribute('car-tour', {
-          carMarker: 0.2, // Specific position
+          carMarker: 0.48, // Specific position
           carSpeed: car.getAttribute('car-tour').carSpeed,
         });
       }

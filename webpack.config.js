@@ -11,6 +11,7 @@ PLUGINS = [
   new CopyPlugin([
     { from: './src/models', to: 'build/models' },
     { from: './src/images', to: 'build/images' },
+    { from: './src/sounds', to: 'build/sounds' },
   ]),
 ];
 

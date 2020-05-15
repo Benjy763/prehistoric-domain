@@ -2,6 +2,7 @@ AFRAME.registerComponent('car-tour', {
   schema: {
     carMarker: { default: 0 },
     carSpeed: { default: 0.0 },
+    speedValue: { default: 0.0002 },
   },
   init: function () {
     // Object shortcut
@@ -17,6 +18,8 @@ AFRAME.registerComponent('car-tour', {
       new THREE.Vector2(30, -94),
     ]);
     this.rotation = this.el.getAttribute('rotation').y;
+    this.carState = 'started'; //stopped / started / stopping / starting
+    this.carDriveSoundPlaying = false;
 
     this.updateRotation();
   },
@@ -28,7 +31,9 @@ AFRAME.registerComponent('car-tour', {
     };
   },
   updateRotation: function () {
-    const nextMarkerForRotation = 0.0002;
+    const nextMarkerForRotation = !this.data.carSpeed
+      ? this.data.speedValue
+      : this.data.carSpeed;
     const newPosition = this.convertPosition(
       this.curve.getPointAt(this.data.carMarker + nextMarkerForRotation)
     );
@@ -38,18 +43,69 @@ AFRAME.registerComponent('car-tour', {
     rotation.y += 88;
     this.el.setAttribute('rotation', rotation);
   },
+  stopCar: function () {
+    const newSpeed = this.data.carSpeed - 0.000005;
+    if (newSpeed <= 0) {
+      this.data.carSpeed = 0;
+      // this.data.carSpeed = 0;
+      this.carState = 'stopped';
+      return;
+    }
+    this.carState = 'stopping';
+    this.data.carSpeed = newSpeed;
+  },
+  startCar: function () {
+    if (this.data.carSpeed >= this.data.speedValue) {
+      this.carState = 'started';
+      return;
+    }
+    this.carState = 'starting';
+    this.data.carSpeed += 0.00001;
+  },
+  truncMarker: function (carMarker) {
+    return Math.trunc(carMarker * 100);
+  },
   tock: function () {
-    this.system.log(this.el.getAttribute('rotation').y);
+    this.system.log(this.data.carSpeed);
 
     // Curve movement
     // 0.90 marker is animation ending
-    if (this.data.carMarker < 0.9) {
+    if (this.truncMarker(this.data.carMarker) < 90) {
       this.data.carMarker += this.data.carSpeed;
       this.object.position.copy(
         this.convertPosition(this.curve.getPointAt(this.data.carMarker))
       );
 
       this.updateRotation();
+    }
+
+    // 0.56 marker is a stop point
+    if (
+      (this.truncMarker(this.data.carMarker) === 56 &&
+        this.carState === 'started') ||
+      this.carState === 'stopping'
+    ) {
+      this.stopCar();
+    }
+
+    // Update state
+    if (
+      this.data.carSpeed > 0 &&
+      this.carState !== 'stopping' &&
+      this.carState !== 'starting'
+    ) {
+      this.carState = 'started';
+    }
+    if (this.data.carSpeed === 0) {
+      this.carState = 'stopped';
+    }
+
+    // Sound control
+    if (this.carState === 'started' && !this.carDriveSoundPlaying) {
+      document
+        .querySelector('[sound__cardrive]')
+        .components['sound__cardrive'].playSound();
+      this.carDriveSoundPlaying = true;
     }
   },
 });
