@@ -29,6 +29,7 @@ AFRAME.registerComponent('car-tour', {
     this.carDriveSoundPlaying = false;
     this.carDriveAudio = document.getElementById('car-drive-asset');
     this.carStopAudio = document.getElementById('car-stop-asset');
+    this.soundMixing1Audio = document.getElementById('sound-mixing-1');
 
     this.updateRotation();
 
@@ -92,14 +93,16 @@ AFRAME.registerComponent('car-tour', {
     this.data.carSpeed += 0.00001;
   },
   truncMarker: function (carMarker) {
-    return Math.trunc(carMarker * 100);
+    return Math.trunc(carMarker * 1000);
   },
   tock: function () {
-    this.system.log(this.data.carSpeed);
+    const self = this;
+
+    this.system.log(this.truncMarker(this.data.carMarker));
 
     // Curve movement
     // 0.90 marker is animation ending
-    if (this.truncMarker(this.data.carMarker) < 90) {
+    if (this.truncMarker(this.data.carMarker) < 900) {
       this.data.carMarker += this.data.carSpeed;
       this.object.position.copy(
         this.convertPosition(this.curve.getPointAt(this.data.carMarker))
@@ -109,7 +112,7 @@ AFRAME.registerComponent('car-tour', {
     }
 
     // Change animation phases
-    if (this.truncMarker(this.data.carMarker) === 56) {
+    if (this.truncMarker(this.data.carMarker) === 560) {
       this.phase = 'stop';
     }
 
@@ -125,6 +128,12 @@ AFRAME.registerComponent('car-tour', {
         }
         break;
       case 'stay':
+        setTimeout(() => {
+          self.soundMixing1Audio.play();
+          self.soundMixing1Audio.onended = function () {
+            self.soundMixing1Audio.pause();
+          };
+        }, 3000);
         break;
       case 'restart':
         break;
