@@ -34,13 +34,9 @@ AFRAME.registerSystem('game', {
         self.initGame();
       }, 8000);
     });
-
-    //Init Game
-    this.initGame();
   },
   startListener: function () {
     const self = this;
-
     document.addEventListener('keyup', function (e) {
       const car = document.querySelector('#car');
       // Start tour
@@ -48,7 +44,7 @@ AFRAME.registerSystem('game', {
         // Display scene
         self.displayScene();
         const event = new Event('start');
-        this.querySelector('#car').dispatchEvent(event);
+        car.dispatchEvent(event);
       }
 
       // Commands for testing

@@ -47,7 +47,7 @@ AFRAME.registerComponent('car-tour', {
           self.carDriveAudio.play();
           self.carDriveSoundPlaying = true;
           document.getElementById('jungle-asset').play();
-          this.tourStarted = true;
+          self.tourStarted = true;
         }, 4000);
       },
       false
