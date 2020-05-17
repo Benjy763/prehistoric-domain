@@ -8,21 +8,23 @@ AFRAME.registerComponent('trex-animation', {
     this.system = document.querySelector('a-scene').systems['game'];
     this.rotationDirection = 0.2;
     this.rotationoffset = 10;
-    this.animationStarted = false;
+    this.animationStep = '';
+    this.maxPosition = -25;
 
     // Sound
-    this.roarSoundPlaying = false;
     this.footStep1Playing = false;
+    this.bendDownSoundPlaying = false;
+    this.roarSoundPlaying = false;
     this.footStep1Audio;
     this.footStep2Audio;
-
+    this.bendDownAudo = document.getElementById('benddown');
     this.roarAudio = document.getElementById('roar');
 
     // Start tour listener
     this.el.addEventListener(
       'enter',
       () => {
-        this.animationStarted = true;
+        this.animationStep = 'enter';
       },
       false
     );
@@ -36,7 +38,7 @@ AFRAME.registerComponent('trex-animation', {
     ];
 
     // foot movements
-    if (this.object.position.x < -24) {
+    if (this.object.position.x < this.maxPosition) {
       this.object.position.x += 0.03;
     }
 
@@ -45,7 +47,7 @@ AFRAME.registerComponent('trex-animation', {
       this.rotationoffset -= 0.8;
     }
 
-    if (this.object.position.x < -24 && this.rotationoffset <= 0) {
+    if (this.object.position.x < this.maxPosition && this.rotationoffset <= 0) {
       const rotation = this.el.getAttribute('rotation');
       this.system.log(rotation.x);
 
@@ -66,10 +68,33 @@ AFRAME.registerComponent('trex-animation', {
       rotation.x += this.rotationDirection;
       this.el.setAttribute('rotation', rotation);
     }
+
+    // Next Animation
+    if (this.object.position.x >= this.maxPosition) {
+      this.animationStep = 'bendDown';
+    }
+  },
+  bendDown: function () {
+    if (!this.bendDownSoundPlaying) {
+      this.bendDownAudo.play();
+      this.bendDownSoundPlaying = true;
+    }
+    const rotation = this.el.getAttribute('rotation');
+    if (rotation.x < 17) {
+      rotation.x -= this.rotationDirection;
+      this.el.setAttribute('rotation', rotation);
+    } else {
+      // Next Animation
+    }
   },
   tock: function () {
-    if (this.animationStarted === true) {
+    // Animation steps
+    if (this.animationStep === 'enter') {
       this.enter();
+    }
+
+    if (this.animationStep === 'bendDown') {
+      this.bendDown();
     }
   },
 });
