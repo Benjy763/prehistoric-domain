@@ -6,10 +6,12 @@ AFRAME.registerComponent('trex-animation', {
     // Objects shortcut
     this.object = this.el.object3D;
     this.system = document.querySelector('a-scene').systems['game'];
+    this.car = document.querySelector('#car');
     this.rotationDirection = 0.2;
     this.rotationoffset = 10;
-    this.animationStep = '';
+    this.phase = '';
     this.maxPosition = -25;
+    this.carRestarted = false;
 
     // Sound
     this.footStep1Playing = false;
@@ -28,7 +30,7 @@ AFRAME.registerComponent('trex-animation', {
     this.el.addEventListener(
       'enter',
       () => {
-        this.animationStep = 'enter';
+        this.phase = 'enter';
       },
       false
     );
@@ -74,7 +76,7 @@ AFRAME.registerComponent('trex-animation', {
 
     // Next Animation
     if (this.object.position.x >= this.maxPosition) {
-      this.animationStep = 'bendDown';
+      this.phase = 'bendDown';
     }
   },
   bendDown: function () {
@@ -88,7 +90,7 @@ AFRAME.registerComponent('trex-animation', {
       this.el.setAttribute('rotation', rotation);
     } else {
       // Next Animation
-      this.animationStep = 'snoring';
+      this.phase = 'snoring';
     }
   },
   snoring: function () {
@@ -98,7 +100,7 @@ AFRAME.registerComponent('trex-animation', {
       this.snoringSoundPlaying = true;
     }
     this.snoringAudio.onended = function () {
-      self.animationStep = 'bendUp';
+      self.phase = 'bendUp';
     };
   },
   bendUp: function () {
@@ -112,7 +114,7 @@ AFRAME.registerComponent('trex-animation', {
       this.el.setAttribute('rotation', rotation);
     } else {
       // Next Animation
-      this.animationStep = 'roar';
+      this.phase = 'roar';
     }
   },
   roar: function () {
@@ -126,13 +128,12 @@ AFRAME.registerComponent('trex-animation', {
       console.log('test');
 
       self.el.setAttribute('animation-mixer', 'clip: idle');
-      self.animationStep = 'leave';
+      self.phase = 'leave';
     };
   },
   tock: function () {
-    this.system.log(this.animationStep);
     // Animation steps
-    switch (this.animationStep) {
+    switch (this.phase) {
       case 'enter':
         this.enter();
         break;
@@ -149,6 +150,11 @@ AFRAME.registerComponent('trex-animation', {
         this.roar();
         break;
       case 'leave':
+        if (!this.carRestarted) {
+          const event = new Event('restart');
+          self.car.dispatchEvent(event);
+          this.carRestarted = true;
+        }
         break;
     }
   },

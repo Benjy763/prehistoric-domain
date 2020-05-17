@@ -55,7 +55,7 @@ AFRAME.registerSystem('game', {
           carSpeed:
             !car.getAttribute('car-tour').carSpeed ||
             car.getAttribute('car-tour').carSpeed == 0
-              ? car.getAttribute('car-tour').speedValue
+              ? car.getAttribute('car-tour').normalSpeed
               : 0,
         });
       }
