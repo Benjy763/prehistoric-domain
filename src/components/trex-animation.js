@@ -13,8 +13,9 @@ AFRAME.registerComponent('trex-animation', {
     // Sound
     this.roarSoundPlaying = false;
     this.footStep1Playing = false;
-    this.footStep1Audio = document.getElementById('foot-step-1');
-    this.footStep2Audio = document.getElementById('foot-step-2');
+    this.footStep1Audio;
+    this.footStep2Audio;
+
     this.roarAudio = document.getElementById('roar');
 
     // Start tour listener
@@ -25,13 +26,21 @@ AFRAME.registerComponent('trex-animation', {
       },
       false
     );
-    console.log(this.object);
   },
   enter: function () {
+    this.footStep1Audio = document.getElementById('trex').components[
+      'sound__foot1'
+    ];
+    this.footStep2Audio = document.getElementById('trex').components[
+      'sound__foot2'
+    ];
+
+    // foot movements
     if (this.object.position.x < -24) {
       this.object.position.x += 0.03;
     }
 
+    // Head movements
     if (this.rotationoffset > 0) {
       this.rotationoffset -= 0.8;
     }
@@ -45,10 +54,10 @@ AFRAME.registerComponent('trex-animation', {
       }
       if (rotation.x < 0) {
         if (!this.footStep1Playing) {
-          this.footStep1Audio.play();
+          this.footStep1Audio.playSound();
           this.footStep1Playing = true;
         } else {
-          this.footStep2Audio.play();
+          this.footStep2Audio.playSound();
           this.footStep1Playing = false;
         }
         this.rotationDirection = 0.15;
