@@ -55,9 +55,6 @@ AFRAME.registerComponent('car-tour', {
       false
     );
   },
-  startTour: function () {
-    this.rotation = this.el.getAttribute('rotation').y;
-  },
   convertPosition: function (position2D) {
     return {
       x: position2D.x,
@@ -102,7 +99,7 @@ AFRAME.registerComponent('car-tour', {
   tock: function () {
     const self = this;
 
-    this.system.log(this.truncMarker(this.data.carMarker));
+    //this.system.log(this.truncMarker(this.data.carMarker));
 
     // Curve movement
     // 0.90 marker is animation ending
@@ -132,16 +129,22 @@ AFRAME.registerComponent('car-tour', {
         }
         break;
       case 'stay':
-        setTimeout(() => {
-          if (!this.soundMixing1SoundPlaying) {
-            self.soundMixing1Audio.play();
-            this.soundMixing1SoundPlaying = true;
-          }
-          self.soundMixing1Audio.onended = function () {
-            const event = new Event('enter');
-            self.trex.dispatchEvent(event);
-          };
-        }, 3000);
+        if (!this.soundMixing1SoundPlaying) {
+          const event = new Event('enter');
+          self.trex.dispatchEvent(event);
+          this.soundMixing1SoundPlaying = true;
+        }
+
+        // setTimeout(() => {
+        //   if (!this.soundMixing1SoundPlaying) {
+        //     self.soundMixing1Audio.play();
+        //     this.soundMixing1SoundPlaying = true;
+        //   }
+        //   self.soundMixing1Audio.onended = function () {
+        //     const event = new Event('enter');
+        //     self.trex.dispatchEvent(event);
+        //   };
+        // }, 3000);
         break;
       case 'restart':
         break;
