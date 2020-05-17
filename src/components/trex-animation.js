@@ -45,7 +45,7 @@ AFRAME.registerComponent('trex-animation', {
 
     // foot movements
     if (this.object.position.x < this.maxPosition) {
-      this.object.position.x += 0.03;
+      this.object.position.x += 0.06;
     }
 
     // Head movements
@@ -85,8 +85,9 @@ AFRAME.registerComponent('trex-animation', {
       this.bendDownSoundPlaying = true;
     }
     const rotation = this.el.getAttribute('rotation');
+    this.rotationDirection = 0.15;
     if (rotation.x < 17) {
-      rotation.x -= this.rotationDirection;
+      rotation.x += this.rotationDirection;
       this.el.setAttribute('rotation', rotation);
     } else {
       // Next Animation
@@ -110,7 +111,7 @@ AFRAME.registerComponent('trex-animation', {
     }
     const rotation = this.el.getAttribute('rotation');
     if (rotation.x > 0) {
-      rotation.x += this.rotationDirection;
+      rotation.x -= this.rotationDirection;
       this.el.setAttribute('rotation', rotation);
     } else {
       // Next Animation

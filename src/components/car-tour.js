@@ -52,7 +52,7 @@ AFRAME.registerComponent('car-tour', {
           self.carDriveSoundPlaying = true;
           document.getElementById('jungle-asset').play();
           self.tourStarted = true;
-        }, 4000);
+        }, 20000);
       },
       false
     );
