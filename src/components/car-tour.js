@@ -7,9 +7,10 @@ AFRAME.registerComponent('car-tour', {
   init: function () {
     let self = this;
 
-    // Object shortcut
+    // Objects shortcut
     this.object = this.el.object3D;
     this.system = document.querySelector('a-scene').systems['game'];
+    this.trex = document.querySelector('#trex');
 
     // Tour Path
     this.curve = new THREE.SplineCurve([
@@ -27,6 +28,7 @@ AFRAME.registerComponent('car-tour', {
 
     // Sound
     this.carDriveSoundPlaying = false;
+    this.soundMixing1SoundPlaying = false;
     this.carDriveAudio = document.getElementById('car-drive-asset');
     this.carStopAudio = document.getElementById('car-stop-asset');
     this.soundMixing1Audio = document.getElementById('sound-mixing-1');
@@ -131,9 +133,13 @@ AFRAME.registerComponent('car-tour', {
         break;
       case 'stay':
         setTimeout(() => {
-          self.soundMixing1Audio.play();
+          if (!this.soundMixing1SoundPlaying) {
+            self.soundMixing1Audio.play();
+            this.soundMixing1SoundPlaying = true;
+          }
           self.soundMixing1Audio.onended = function () {
-            self.soundMixing1Audio.pause();
+            const event = new Event('enter');
+            self.trex.dispatchEvent(event);
           };
         }, 3000);
         break;
