@@ -132,7 +132,7 @@ AFRAME.registerComponent('trex-car-tour', {
   stop: function () {
     this.stopCar();
     if (this.data.carSpeed <= 0) {
-      this.phase = 'stay';
+      this.phase = 'changeScene';
     }
   },
   stay: function () {
@@ -171,7 +171,7 @@ AFRAME.registerComponent('trex-car-tour', {
     if (this.truncMarker(this.data.carMarker) > 900) {
       this.stopCar();
       if (this.data.carSpeed <= 0) {
-        this.phase = 'changeScene';
+        this.phase = 'stay';
       }
     }
   },
@@ -200,7 +200,7 @@ AFRAME.registerComponent('trex-car-tour', {
         if (!this.sceneChanged) {
           // Destroy and detach all unecessary objets
           // Change scene
-          this.system.changeScene('gate-scene');
+          this.system.changeScene('gate');
           this.sceneChanged = true;
         }
         break;

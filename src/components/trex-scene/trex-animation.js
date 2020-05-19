@@ -4,7 +4,7 @@ AFRAME.registerComponent('trex-animation', {
     // Objects shortcut
     this.object = this.el.object3D;
     this.system = document.querySelector('a-scene').systems['game'];
-    this.car = document.querySelector('#car');
+    this.car = document.querySelector('#trex-car');
     this.rotationDirection = 0.2;
     this.rotationoffset = 10;
     this.phase = '';
