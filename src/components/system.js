@@ -14,7 +14,7 @@ AFRAME.registerSystem('game', {
       .getElementById('loading-camera')
       .setAttribute('camera', 'active', false);
     document.getElementById('static-loading').style.display = 'none';
-    document.getElementById('loading').setAttribute('visible', 'false');
+    document.getElementById('loading-scene').setAttribute('visible', 'false');
     document.getElementById('trex-scene').setAttribute('visible', 'true');
   },
   loader: function (text) {
