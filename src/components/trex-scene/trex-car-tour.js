@@ -132,7 +132,7 @@ AFRAME.registerComponent('trex-car-tour', {
   stop: function () {
     this.stopCar();
     if (this.data.carSpeed <= 0) {
-      this.phase = 'changeScene'; // stay
+      this.phase = 'stay';
     }
   },
   stay: function () {
