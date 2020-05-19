@@ -9,7 +9,7 @@ AFRAME.registerSystem('game', {
       .setAttribute('text', { value: text, color: 'white', width: 0.5 });
   },
   displayScene: function () {
-    //document.querySelector('.a-enter-vr').style.display = 'none';
+    document.querySelector('.a-enter-vr').style.display = 'none';
     document
       .getElementById('loading-camera')
       .setAttribute('camera', 'active', false);
@@ -23,7 +23,7 @@ AFRAME.registerSystem('game', {
       // Preloading
       setTimeout(() => {
         // Press start
-        //document.querySelector('.a-enter-vr').style.display = 'flex';
+        document.querySelector('.a-enter-vr').style.display = 'flex';
         document.getElementById('put-headset').style.color = 'white';
 
         //Init Game
@@ -41,6 +41,7 @@ AFRAME.registerSystem('game', {
 
         // Lauch the scene after the rendering time
         setTimeout(() => {
+          document.getElementById('rendering').setAttribute('visible', 'false');
           const event = new Event('start');
           car.dispatchEvent(event);
         }, 20000);

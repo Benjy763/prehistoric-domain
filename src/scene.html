@@ -1,6 +1,6 @@
 <div id="static-loading">
   <img src="./build/images/loader.png" />
-  <div id="put-headset">Click VR and put your headset</div>
+  <div id="put-headset">Click VR, put your headset and press spacebar</div>
 </div>
 <a-scene
   id="main-scene"
@@ -11,21 +11,8 @@
   <!-- All assets -->
   <require path="templates/assets.html"></require>
   <a-entity id="loading">
-    <a-image
-      src="#loading-asset"
-      scale="2 2 2"
-      position="0 1.67177 -3.76991"
-      rotation="0 0 0"
-    ></a-image>
-    <a-text value="Press spacebar" position="-0.72529 0.33279 -3.77"></a-text>
-
-    <a-entity
-      id="loading-camera"
-      position="0 2 0"
-      camera=""
-      look-controls="pointerLockEnabled:true"
-    >
-    </a-entity>
+    <!-- Loading screnn -->
+    <require path="templates/loading.html"></require>
   </a-entity>
   <a-entity id="trex-scene" visible="false">
     <!-- Sky environement -->
