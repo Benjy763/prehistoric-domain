@@ -21,6 +21,7 @@ AFRAME.registerComponent('trex-car-tour', {
     this.rotation = this.el.getAttribute('rotation').y;
     // Animation phase
     this.phase = 'start';
+    this.sceneChanged = false;
 
     // Sound
     this.carDriveSoundPlaying = false;
@@ -131,7 +132,7 @@ AFRAME.registerComponent('trex-car-tour', {
   stop: function () {
     this.stopCar();
     if (this.data.carSpeed <= 0) {
-      this.phase = 'stay';
+      this.phase = 'changeScene'; // stay
     }
   },
   stay: function () {
@@ -169,6 +170,9 @@ AFRAME.registerComponent('trex-car-tour', {
 
     if (this.truncMarker(this.data.carMarker) > 900) {
       this.stopCar();
+      if (this.data.carSpeed <= 0) {
+        this.phase = 'changeScene';
+      }
     }
   },
   tock: function () {
@@ -191,6 +195,14 @@ AFRAME.registerComponent('trex-car-tour', {
         break;
       case 'finish':
         this.finish();
+        break;
+      case 'changeScene':
+        if (!this.sceneChanged) {
+          // Destroy and detach all unecessary objets
+          // Change scene
+          this.system.changeScene('gate-scene');
+          this.sceneChanged = true;
+        }
         break;
     }
   },

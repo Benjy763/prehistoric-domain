@@ -32,4 +32,22 @@
     <!-- Objects -->
     <require path="templates/trex-scene/objects.html"></require>
   </a-entity>
+
+  <a-entity id="gate-scene" visible="false">
+    <!-- Sky environement -->
+    <require path="templates/trex-scene/sky.html"></require>
+    <!-- Ground environement -->
+    <require path="templates/trex-scene/ground.html"></require>
+    <!-- Lightning -->
+    <require path="templates/trex-scene/lightning.html"></require>
+    <!-- Sound -->
+    <require path="templates/trex-scene/global-sound.html"></require>
+    <a-entity
+      id="gate-scene-camera"
+      position="0 2 0"
+      camera="active: false"
+      look-controls
+    >
+    </a-entity>
+  </a-entity>
 </a-scene>
