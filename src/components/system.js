@@ -3,16 +3,13 @@ AFRAME.registerSystem('game', {
   init: function () {
     this.loader();
   },
-  initGame: function (text) {
-    this.startListener();
-  },
   log: function (text) {
     document
       .querySelector('#log')
       .setAttribute('text', { value: text, color: 'white', width: 0.5 });
   },
   displayScene: function () {
-    document.querySelector('.a-enter-vr').style.display = 'none';
+    //document.querySelector('.a-enter-vr').style.display = 'none';
     document
       .getElementById('loading-camera')
       .setAttribute('camera', 'active', false);
@@ -21,49 +18,51 @@ AFRAME.registerSystem('game', {
     document.getElementById('trex-scene').setAttribute('visible', 'true');
   },
   loader: function (text) {
-    const self = this;
     // Load asset
-    document.querySelector('a-assets').addEventListener('loaded', function () {
-      // Rendering timeout
+    document.querySelector('a-assets').addEventListener('loaded', () => {
+      // Preloading
       setTimeout(() => {
         // Press start
-        document.querySelector('.a-enter-vr').style.display = 'flex';
+        //document.querySelector('.a-enter-vr').style.display = 'flex';
         document.getElementById('put-headset').style.color = 'white';
 
         //Init Game
-        self.initGame();
-      }, 8000);
+        this.startListener();
+      }, 4000);
     });
   },
   startListener: function () {
-    const self = this;
-    document.addEventListener('keyup', function (e) {
+    document.addEventListener('keyup', (e) => {
       const car = document.querySelector('#car');
       // Start tour
       if (e.keyCode == 32) {
         // Display scene
-        self.displayScene();
-        const event = new Event('start');
-        car.dispatchEvent(event);
+        this.displayScene();
+
+        // Lauch the scene after the rendering time
+        setTimeout(() => {
+          const event = new Event('start');
+          car.dispatchEvent(event);
+        }, 20000);
       }
 
       // Commands for testing
       // Play/pause game
       if (e.keyCode == 80) {
-        car.setAttribute('car-tour', {
-          carMarker: car.getAttribute('car-tour').carMarker,
+        car.setAttribute('trex-car-tour', {
+          carMarker: car.getAttribute('trex-car-tour').carMarker,
           carSpeed:
-            !car.getAttribute('car-tour').carSpeed ||
-            car.getAttribute('car-tour').carSpeed == 0
-              ? car.getAttribute('car-tour').normalSpeed
+            !car.getAttribute('trex-car-tour').carSpeed ||
+            car.getAttribute('trex-car-tour').carSpeed == 0
+              ? car.getAttribute('trex-car-tour').normalSpeed
               : 0,
         });
       }
       // Go to position
       if (e.keyCode == 13) {
-        car.setAttribute('car-tour', {
+        car.setAttribute('trex-car-tour', {
           carMarker: 0.52, // Specific position
-          carSpeed: car.getAttribute('car-tour').carSpeed,
+          carSpeed: car.getAttribute('trex-car-tour').carSpeed,
         });
       }
     });

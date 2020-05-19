@@ -1,17 +1,14 @@
-AFRAME.registerComponent('car-tour', {
+AFRAME.registerComponent('trex-car-tour', {
   schema: {
     carMarker: { default: 0 },
     carSpeed: { default: 0.0 },
     normalSpeed: { default: 0.0002 },
   },
   init: function () {
-    let self = this;
-
     // Objects shortcut
     this.object = this.el.object3D;
     this.system = document.querySelector('a-scene').systems['game'];
     this.trex = document.querySelector('#trex');
-
     // Tour Path
     this.curve = new THREE.SplineCurve([
       new THREE.Vector2(18.6, 85),
@@ -22,7 +19,6 @@ AFRAME.registerComponent('car-tour', {
       new THREE.Vector2(30, -94),
     ]);
     this.rotation = this.el.getAttribute('rotation').y;
-
     // Animation phase
     this.phase = 'start';
 
@@ -42,17 +38,15 @@ AFRAME.registerComponent('car-tour', {
     this.el.addEventListener(
       'start',
       () => {
-        setTimeout(() => {
-          // Can't restart many times
-          if (self.tourStarted) {
-            return;
-          }
-          self.data.carSpeed = self.data.normalSpeed;
-          self.carDriveAudio.play();
-          self.carDriveSoundPlaying = true;
-          document.getElementById('jungle-asset').play();
-          self.tourStarted = true;
-        }, 20000);
+        // Can't restart many times
+        if (this.tourStarted) {
+          return;
+        }
+        this.data.carSpeed = this.data.normalSpeed;
+        this.carDriveAudio.play();
+        this.carDriveSoundPlaying = true;
+        document.getElementById('jungle-asset').play();
+        this.tourStarted = true;
       },
       false
     );
@@ -61,7 +55,7 @@ AFRAME.registerComponent('car-tour', {
     this.el.addEventListener(
       'restart',
       () => {
-        self.phase = 'restart';
+        this.phase = 'restart';
       },
       false
     );
@@ -96,13 +90,10 @@ AFRAME.registerComponent('car-tour', {
     }
 
     // Animation
+    this.data.carSpeed -= 0.000005;
     if (this.data.carSpeed <= 0) {
       this.data.carSpeed = 0;
-      this.phase = 'stay';
-      return;
     }
-    this.phase = 'stop';
-    this.data.carSpeed -= 0.000005;
   },
   startCar: function () {
     // Sound
@@ -112,21 +103,18 @@ AFRAME.registerComponent('car-tour', {
     }
 
     // Animation
-    if (this.data.carSpeed >= this.data.normalSpeed) {
-      console.log('coucou');
-
-      this.data.carSpeed = this.data.normalSpeed;
-      this.phase = 'finish';
-      return;
-    }
-
-    this.phase = 'restart';
     this.data.carSpeed += 0.000005;
+    if (this.data.carSpeed >= this.data.normalSpeed) {
+      this.data.carSpeed = this.data.normalSpeed;
+    }
   },
   truncMarker: function (carMarker) {
     return Math.trunc(carMarker * 1000);
   },
-  driveCar: function (carMarker) {
+  driveCar: function () {
+    if (this.data.carSpeed === 0) {
+      return;
+    }
     this.data.carMarker += this.data.carSpeed;
     this.object.position.copy(
       this.convertPosition(this.curve.getPointAt(this.data.carMarker))
@@ -134,54 +122,75 @@ AFRAME.registerComponent('car-tour', {
 
     this.updateRotation();
   },
+  // --- Phase functions ---
+  start: function () {
+    if (this.truncMarker(this.data.carMarker) === 560) {
+      this.phase = 'stop';
+    }
+  },
+  stop: function () {
+    this.stopCar();
+    if (this.data.carSpeed <= 0) {
+      this.phase = 'stay';
+    }
+  },
+  stay: function () {
+    // if (!this.soundMixing1SoundPlaying) {
+    //   const event = new Event('enter');
+    //   self.trex.dispatchEvent(event);
+    //   this.soundMixing1SoundPlaying = true;
+    // }
+
+    setTimeout(() => {
+      if (!this.soundMixing1SoundPlaying) {
+        this.soundMixing1Audio.play();
+        this.soundMixing1SoundPlaying = true;
+      }
+      this.soundMixing1Audio.onended = () => {
+        const event = new Event('enter');
+        this.trex.dispatchEvent(event);
+      };
+    }, 8000);
+  },
+  restart: function () {
+    this.startCar();
+    if (this.data.carSpeed >= this.data.normalSpeed) {
+      this.phase = 'finish';
+    }
+  },
+  finish: function () {
+    if (
+      this.truncMarker(this.data.carMarker) === 800 &&
+      !this.leaveSoundPlaying
+    ) {
+      this.leaveAudio.play();
+      this.leaveSoundPlaying = true;
+    }
+
+    if (this.truncMarker(this.data.carMarker) > 900) {
+      this.stopCar();
+    }
+  },
   tock: function () {
-    const self = this;
     this.system.log(this.data.carSpeed);
     this.driveCar();
 
     // Animation phases
     switch (this.phase) {
       case 'start':
-        if (this.truncMarker(this.data.carMarker) === 560) {
-          this.phase = 'stop';
-        }
+        this.start();
         break;
       case 'stop':
-        this.stopCar();
+        this.stop();
         break;
       case 'stay':
-        // if (!this.soundMixing1SoundPlaying) {
-        //   const event = new Event('enter');
-        //   self.trex.dispatchEvent(event);
-        //   this.soundMixing1SoundPlaying = true;
-        // }
-
-        setTimeout(() => {
-          if (!this.soundMixing1SoundPlaying) {
-            self.soundMixing1Audio.play();
-            this.soundMixing1SoundPlaying = true;
-          }
-          self.soundMixing1Audio.onended = function () {
-            const event = new Event('enter');
-            self.trex.dispatchEvent(event);
-          };
-        }, 3000);
+        this.stay();
         break;
       case 'restart':
-        this.startCar();
+        this.restart();
         break;
       case 'finish':
-        if (
-          this.truncMarker(this.data.carMarker) === 700 &&
-          !this.leaveSoundPlaying
-        ) {
-          this.leaveAudio.play();
-          this.leaveSoundPlaying = true;
-        }
-
-        if (this.truncMarker(this.data.carMarker) === 900) {
-          this.stopCar();
-        }
+        this.finish();
         break;
     }
   },

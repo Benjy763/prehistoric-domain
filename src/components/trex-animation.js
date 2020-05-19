@@ -1,8 +1,6 @@
 AFRAME.registerComponent('trex-animation', {
   schema: {},
   init: function () {
-    let self = this;
-
     // Objects shortcut
     this.object = this.el.object3D;
     this.system = document.querySelector('a-scene').systems['game'];
@@ -35,6 +33,7 @@ AFRAME.registerComponent('trex-animation', {
       false
     );
   },
+  // --- Phase functions ---
   enter: function () {
     this.footStep1Audio = document.getElementById('trex').components[
       'sound__foot1'
@@ -52,7 +51,6 @@ AFRAME.registerComponent('trex-animation', {
     if (this.rotationoffset > 0) {
       this.rotationoffset -= 0.8;
     }
-
     if (this.object.position.x < this.maxPosition && this.rotationoffset <= 0) {
       const rotation = this.el.getAttribute('rotation');
 
@@ -95,13 +93,12 @@ AFRAME.registerComponent('trex-animation', {
     }
   },
   snoring: function () {
-    const self = this;
     if (!this.snoringSoundPlaying) {
       this.snoringAudio.play();
       this.snoringSoundPlaying = true;
     }
-    this.snoringAudio.onended = function () {
-      self.phase = 'bendUp';
+    this.snoringAudio.onended = () => {
+      this.phase = 'bendUp';
     };
   },
   bendUp: function () {
@@ -119,18 +116,22 @@ AFRAME.registerComponent('trex-animation', {
     }
   },
   roar: function () {
-    const self = this;
     this.el.setAttribute('animation-mixer', 'clip: roar');
     if (!this.roarSoundPlaying) {
       this.roarAudio.play();
       this.snoringSoundPlaying = true;
     }
-    this.roarAudio.onended = function () {
-      console.log('test');
-
-      self.el.setAttribute('animation-mixer', 'clip: idle');
-      self.phase = 'leave';
+    this.roarAudio.onended = () => {
+      this.el.setAttribute('animation-mixer', 'clip: idle');
+      this.phase = 'leave';
     };
+  },
+  leave: function () {
+    if (!this.carRestarted) {
+      const event = new Event('restart');
+      this.car.dispatchEvent(event);
+      this.carRestarted = true;
+    }
   },
   tock: function () {
     // Animation steps
@@ -151,11 +152,7 @@ AFRAME.registerComponent('trex-animation', {
         this.roar();
         break;
       case 'leave':
-        if (!this.carRestarted) {
-          const event = new Event('restart');
-          self.car.dispatchEvent(event);
-          this.carRestarted = true;
-        }
+        this.leave();
         break;
     }
   },
