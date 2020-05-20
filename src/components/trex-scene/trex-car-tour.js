@@ -2,7 +2,7 @@ AFRAME.registerComponent('trex-car-tour', {
   schema: {
     carMarker: { default: 0 },
     carSpeed: { default: 0.0 },
-    normalSpeed: { default: 0.0002 },
+    normalSpeed: { default: 0.00015 },
   },
   init: function () {
     // Objects shortcut
