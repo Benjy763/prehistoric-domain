@@ -97,7 +97,7 @@ AFRAME.registerSystem('game', {
       if (car) {
         car.dispatchEvent(event);
       }
-    }, 30000);
+    }, 20000);
     // document.querySelector('a-scene').addEventListener('loaded', () => {
     //   document.getElementById('rendering').setAttribute('visible', 'false');
     //   const event = new Event('start');
