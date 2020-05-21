@@ -138,4 +138,15 @@ AFRAME.registerSystem('game', {
       }
     });
   },
+  // ----- Curve functions --------
+  convertPosition: function (position2D, ypos) {
+    return {
+      x: position2D.x,
+      y: ypos, // Must not move
+      z: position2D.y,
+    };
+  },
+  truncMarker: function (carMarker) {
+    return Math.trunc(carMarker * 1000);
+  },
 });

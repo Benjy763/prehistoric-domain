@@ -10,6 +10,16 @@ AFRAME.registerComponent('trex-animation', {
     this.phase = '';
     this.maxPosition = -25;
     this.carRestarted = false;
+    // trex run Path
+    this.trexMarker = 0; // Position on the curve
+    this.trexSpeed = 0.0018; // Speed on the curve
+    this.curve = new THREE.SplineCurve([
+      new THREE.Vector2(-25.0, -25.0),
+      new THREE.Vector2(-20.701, -37.468),
+      new THREE.Vector2(-11.955, -60.332),
+      new THREE.Vector2(-5.629, -83.393),
+      new THREE.Vector2(22.302, -161.748),
+    ]);
 
     // Car shaking
     this.isShaking = false;
@@ -24,6 +34,9 @@ AFRAME.registerComponent('trex-animation', {
     this.bendUpSoundPlaying = false;
     this.snoringSoundPlaying = false;
     this.roarSoundPlaying = false;
+    this.longSnoringPlaying = false;
+    this.turnPlaying = false;
+    this.runPlaying = false;
     this.footStep1Audio;
     this.footStep2Audio;
     this.bendDownAudio;
@@ -31,6 +44,8 @@ AFRAME.registerComponent('trex-animation', {
     this.bendUpAudio;
     this.roarAudio;
     this.longSnoringAudio;
+    this.turnAudio;
+    this.runAudio;
 
     // Start tour listener
     this.el.addEventListener(
@@ -43,7 +58,6 @@ AFRAME.registerComponent('trex-animation', {
   },
   shaking: function () {
     const rotation = this.car.getAttribute('rotation');
-    this.system.log(rotation.x);
     if (rotation.z < -0.1 || rotation.z > 0.1) {
       this.carRotation = -this.carRotation;
       this.carWaves++;
@@ -82,7 +96,42 @@ AFRAME.registerComponent('trex-animation', {
       if (e.detail.id === 'long-snoring') {
         this.longSnoringAudio.stopSound();
       }
+      if (e.detail.id === 'turn') {
+        this.turnAudio.stopSound();
+      }
+      if (e.detail.id === 'run') {
+        this.runAudio.stopSound();
+      }
     });
+  },
+  run: function () {
+    if (this.system.truncMarker(this.trexMarker) > 950) {
+      return;
+    }
+    this.system.log(this.trexMarker);
+    if (!this.runPlaying) {
+      this.runAudio.playSound();
+      this.runPlaying = true;
+    }
+    this.trexMarker += this.trexSpeed;
+    this.object.position.copy(
+      this.system.convertPosition(
+        this.curve.getPointAt(this.trexMarker),
+        this.object.position.y
+      )
+    );
+
+    this.updateRotation();
+  },
+  updateRotation: function () {
+    const newPosition = this.system.convertPosition(
+      this.curve.getPointAt(this.trexMarker + this.trexSpeed),
+      this.object.position.y
+    );
+    this.object.lookAt(newPosition.x, newPosition.y, newPosition.z);
+    // Correct rotation with offset
+    const rotation = this.el.getAttribute('rotation');
+    this.el.setAttribute('rotation', rotation);
   },
   // --- Phase functions ---
   enter: function () {
@@ -93,6 +142,8 @@ AFRAME.registerComponent('trex-animation', {
     this.bendUpAudio = this.el.components['sound__bendup'];
     this.roarAudio = this.el.components['sound__roar'];
     this.longSnoringAudio = this.el.components['sound__longsnoring'];
+    this.turnAudio = this.el.components['sound__turn'];
+    this.runAudio = this.el.components['sound__run'];
     // Stop sounds when end playing
     this.stopSounds();
 
@@ -193,10 +244,34 @@ AFRAME.registerComponent('trex-animation', {
   },
   leave: function () {
     if (!this.carRestarted) {
-      this.longSnoringAudio.playSound();
+      if (!this.longSnoringPlaying) {
+        this.longSnoringAudio.playSound();
+        this.longSnoringPlaying = true;
+      }
       const event = new Event('restart');
       this.car.dispatchEvent(event);
       this.carRestarted = true;
+      setTimeout(() => {
+        this.phase = 'turnAround';
+      }, 25000);
+    }
+  },
+  turnAround: function () {
+    if (!this.turnPlaying) {
+      this.turnAudio.playSound();
+      this.turnPlaying = true;
+    }
+    const rotation = this.el.getAttribute('rotation');
+    rotation.y += 0.4;
+    this.el.setAttribute('rotation', rotation);
+    if (rotation.y > 160) {
+      rotation.y = 160;
+      this.el.setAttribute('rotation', rotation);
+      this.object.position.y = -0.8;
+      // Start run animation
+      this.el.setAttribute('animation-mixer', 'clip: run');
+      // Start run sound
+      this.phase = 'run';
     }
   },
   tock: function () {
@@ -223,6 +298,12 @@ AFRAME.registerComponent('trex-animation', {
         break;
       case 'leave':
         this.leave();
+        break;
+      case 'turnAround':
+        this.turnAround();
+        break;
+      case 'run':
+        this.run();
         break;
     }
   },

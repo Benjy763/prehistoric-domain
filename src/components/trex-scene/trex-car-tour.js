@@ -62,19 +62,13 @@ AFRAME.registerComponent('trex-car-tour', {
       false
     );
   },
-  convertPosition: function (position2D) {
-    return {
-      x: position2D.x,
-      y: this.object.position.y,
-      z: position2D.y,
-    };
-  },
   updateRotation: function () {
     const nextMarkerForRotation = !this.data.carSpeed
       ? this.data.normalSpeed
       : this.data.carSpeed;
-    const newPosition = this.convertPosition(
-      this.curve.getPointAt(this.data.carMarker + nextMarkerForRotation)
+    const newPosition = this.system.convertPosition(
+      this.curve.getPointAt(this.data.carMarker + nextMarkerForRotation),
+      this.object.position.y
     );
     this.object.lookAt(newPosition.x, newPosition.y, newPosition.z);
     // Correct rotation with offset
@@ -110,23 +104,23 @@ AFRAME.registerComponent('trex-car-tour', {
       this.data.carSpeed = this.data.normalSpeed;
     }
   },
-  truncMarker: function (carMarker) {
-    return Math.trunc(carMarker * 1000);
-  },
   driveCar: function () {
     if (this.data.carSpeed === 0) {
       return;
     }
     this.data.carMarker += this.data.carSpeed;
     this.object.position.copy(
-      this.convertPosition(this.curve.getPointAt(this.data.carMarker))
+      this.system.convertPosition(
+        this.curve.getPointAt(this.data.carMarker),
+        this.object.position.y
+      )
     );
 
     this.updateRotation();
   },
   // --- Phase functions ---
   start: function () {
-    if (this.truncMarker(this.data.carMarker) === 560) {
+    if (this.system.truncMarker(this.data.carMarker) === 560) {
       this.phase = 'stop';
     }
   },
@@ -137,22 +131,22 @@ AFRAME.registerComponent('trex-car-tour', {
     }
   },
   stay: function () {
-    if (!this.soundMixing1SoundPlaying) {
-      const event = new Event('enter');
-      self.trex.dispatchEvent(event);
-      this.soundMixing1SoundPlaying = true;
-    }
+    // if (!this.soundMixing1SoundPlaying) {
+    //   const event = new Event('enter');
+    //   self.trex.dispatchEvent(event);
+    //   this.soundMixing1SoundPlaying = true;
+    // }
 
-    // setTimeout(() => {
-    //   if (!this.soundMixing1SoundPlaying) {
-    //     this.soundMixing1Audio.play();
-    //     this.soundMixing1SoundPlaying = true;
-    //   }
-    //   this.soundMixing1Audio.onended = () => {
-    //     const event = new Event('enter');
-    //     this.trex.dispatchEvent(event);
-    //   };
-    // }, 8000);
+    setTimeout(() => {
+      if (!this.soundMixing1SoundPlaying) {
+        this.soundMixing1Audio.play();
+        this.soundMixing1SoundPlaying = true;
+      }
+      this.soundMixing1Audio.onended = () => {
+        const event = new Event('enter');
+        this.trex.dispatchEvent(event);
+      };
+    }, 8000);
   },
   restart: function () {
     this.startCar();
@@ -162,14 +156,14 @@ AFRAME.registerComponent('trex-car-tour', {
   },
   finish: function () {
     if (
-      this.truncMarker(this.data.carMarker) === 800 &&
+      this.system.truncMarker(this.data.carMarker) === 800 &&
       !this.leaveSoundPlaying
     ) {
       this.leaveAudio.play();
       this.leaveSoundPlaying = true;
     }
 
-    if (this.truncMarker(this.data.carMarker) > 900) {
+    if (this.system.truncMarker(this.data.carMarker) > 900) {
       this.stopCar();
       if (this.data.carSpeed <= 0) {
         this.phase = 'changeScene';
