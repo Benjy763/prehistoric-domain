@@ -35,7 +35,7 @@ AFRAME.registerSystem('game', {
     this.disableAllCameras();
     document
       .getElementById(this.scenes[this.firstScene].camera)
-      .setAttribute('camera', { far: 80, active: true });
+      .setAttribute('camera', { far: 50, active: true });
 
     // Display scene
     document.getElementById('loading-scene').setAttribute('visible', 'false');
@@ -56,7 +56,7 @@ AFRAME.registerSystem('game', {
     this.disableAllCameras();
     document
       .getElementById(this.scenes[sceneId].camera)
-      .setAttribute('camera', { far: 80, active: true });
+      .setAttribute('camera', { far: 50, active: true });
 
     // Register new scene
     this.actuelScene = sceneId;

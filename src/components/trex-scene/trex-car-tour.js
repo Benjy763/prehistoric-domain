@@ -5,6 +5,7 @@ AFRAME.registerComponent('trex-car-tour', {
     normalSpeed: { default: 0.00015 },
   },
   init: function () {
+    this.tick = AFRAME.utils.throttleTick(this.tick, 20, this);
     // Objects shortcut
     this.object = this.el.object3D;
     this.system = document.querySelector('a-scene').systems['game'];
@@ -175,8 +176,8 @@ AFRAME.registerComponent('trex-car-tour', {
       }
     }
   },
-  tock: function () {
-    this.system.log(this.data.carSpeed);
+  tick: function () {
+    //this.system.log(this.data.carSpeed);
     this.driveCar();
 
     // Animation phases
