@@ -35,7 +35,7 @@ AFRAME.registerSystem('game', {
     this.disableAllCameras();
     document
       .getElementById(this.scenes[this.firstScene].camera)
-      .setAttribute('camera', { far: 50, active: true });
+      .setAttribute('camera', { far: 300, active: true });
 
     // Display scene
     document.getElementById('loading-scene').setAttribute('visible', 'false');
@@ -56,7 +56,7 @@ AFRAME.registerSystem('game', {
     this.disableAllCameras();
     document
       .getElementById(this.scenes[sceneId].camera)
-      .setAttribute('camera', { far: 50, active: true });
+      .setAttribute('camera', { far: 300, active: true });
 
     // Register new scene
     this.actuelScene = sceneId;
@@ -97,7 +97,7 @@ AFRAME.registerSystem('game', {
       if (car) {
         car.dispatchEvent(event);
       }
-    }, 20000);
+    }, 30000);
     // document.querySelector('a-scene').addEventListener('loaded', () => {
     //   document.getElementById('rendering').setAttribute('visible', 'false');
     //   const event = new Event('start');

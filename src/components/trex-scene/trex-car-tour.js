@@ -2,7 +2,7 @@ AFRAME.registerComponent('trex-car-tour', {
   schema: {
     carMarker: { default: 0 },
     carSpeed: { default: 0.0 },
-    normalSpeed: { default: 0.00015 },
+    normalSpeed: { default: 0.00018 },
   },
   init: function () {
     this.tick = AFRAME.utils.throttleTick(this.tick, 20, this);
@@ -137,22 +137,22 @@ AFRAME.registerComponent('trex-car-tour', {
     }
   },
   stay: function () {
-    // if (!this.soundMixing1SoundPlaying) {
-    //   const event = new Event('enter');
-    //   self.trex.dispatchEvent(event);
-    //   this.soundMixing1SoundPlaying = true;
-    // }
+    if (!this.soundMixing1SoundPlaying) {
+      const event = new Event('enter');
+      self.trex.dispatchEvent(event);
+      this.soundMixing1SoundPlaying = true;
+    }
 
-    setTimeout(() => {
-      if (!this.soundMixing1SoundPlaying) {
-        this.soundMixing1Audio.play();
-        this.soundMixing1SoundPlaying = true;
-      }
-      this.soundMixing1Audio.onended = () => {
-        const event = new Event('enter');
-        this.trex.dispatchEvent(event);
-      };
-    }, 8000);
+    // setTimeout(() => {
+    //   if (!this.soundMixing1SoundPlaying) {
+    //     this.soundMixing1Audio.play();
+    //     this.soundMixing1SoundPlaying = true;
+    //   }
+    //   this.soundMixing1Audio.onended = () => {
+    //     const event = new Event('enter');
+    //     this.trex.dispatchEvent(event);
+    //   };
+    // }, 8000);
   },
   restart: function () {
     this.startCar();

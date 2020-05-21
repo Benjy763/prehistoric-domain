@@ -19,10 +19,11 @@ AFRAME.registerComponent('trex-animation', {
     this.roarSoundPlaying = false;
     this.footStep1Audio;
     this.footStep2Audio;
-    this.bendDownAudio = document.getElementById('benddown');
-    this.snoringAudio = document.getElementById('snoring');
-    this.bendUpAudio = document.getElementById('bendup');
-    this.roarAudio = document.getElementById('roar');
+    this.bendDownAudio;
+    this.snoringAudio;
+    this.bendUpAudio;
+    this.roarAudio;
+    this.longSnoringAudio;
 
     // Start tour listener
     this.el.addEventListener(
@@ -35,12 +36,13 @@ AFRAME.registerComponent('trex-animation', {
   },
   // --- Phase functions ---
   enter: function () {
-    this.footStep1Audio = document.getElementById('trex').components[
-      'sound__foot1'
-    ];
-    this.footStep2Audio = document.getElementById('trex').components[
-      'sound__foot2'
-    ];
+    this.footStep1Audio = this.el.components['sound__foot1'];
+    this.footStep2Audio = this.el.components['sound__foot2'];
+    this.bendDownAudio = this.el.components['sound__benddown'];
+    this.snoringAudio = this.el.components['sound__snoring'];
+    this.bendUpAudio = this.el.components['sound__bendup'];
+    this.roarAudio = this.el.components['sound__roar'];
+    this.longSnoringAudio = this.el.components['sound__longsnoring'];
 
     // foot movements
     if (this.object.position.x < this.maxPosition) {
@@ -79,7 +81,7 @@ AFRAME.registerComponent('trex-animation', {
   },
   bendDown: function () {
     if (!this.bendDownSoundPlaying) {
-      this.bendDownAudio.play();
+      this.bendDownAudio.playSound();
       this.bendDownSoundPlaying = true;
     }
     const rotation = this.el.getAttribute('rotation');
@@ -94,16 +96,18 @@ AFRAME.registerComponent('trex-animation', {
   },
   snoring: function () {
     if (!this.snoringSoundPlaying) {
-      this.snoringAudio.play();
+      this.snoringAudio.playSound();
       this.snoringSoundPlaying = true;
     }
-    this.snoringAudio.onended = () => {
-      this.phase = 'bendUp';
-    };
+    this.el.addEventListener('sound-ended', (e) => {
+      if (e.detail.id === 'snoring') {
+        this.phase = 'bendUp';
+      }
+    });
   },
   bendUp: function () {
     if (!this.bendUpSoundPlaying) {
-      this.bendUpAudio.play();
+      this.bendUpAudio.playSound();
       this.bendUpSoundPlaying = true;
     }
     const rotation = this.el.getAttribute('rotation');
@@ -118,17 +122,19 @@ AFRAME.registerComponent('trex-animation', {
   roar: function () {
     this.el.setAttribute('animation-mixer', 'clip: roar');
     if (!this.roarSoundPlaying) {
-      this.roarAudio.play();
+      this.roarAudio.playSound();
       this.snoringSoundPlaying = true;
     }
-    this.roarAudio.onended = () => {
-      this.el.setAttribute('animation-mixer', 'clip: idle');
-      this.phase = 'leave';
-    };
+    this.el.addEventListener('sound-ended', (e) => {
+      if (e.detail.id === 'roar') {
+        this.el.setAttribute('animation-mixer', 'clip: idle');
+        this.phase = 'leave';
+      }
+    });
   },
   leave: function () {
     if (!this.carRestarted) {
-      this.bendUpAudio.play();
+      this.longSnoringAudio.playSound();
       const event = new Event('restart');
       this.car.dispatchEvent(event);
       this.carRestarted = true;
