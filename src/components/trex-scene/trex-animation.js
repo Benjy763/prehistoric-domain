@@ -128,6 +128,7 @@ AFRAME.registerComponent('trex-animation', {
   },
   leave: function () {
     if (!this.carRestarted) {
+      this.bendUpAudio.play();
       const event = new Event('restart');
       this.car.dispatchEvent(event);
       this.carRestarted = true;

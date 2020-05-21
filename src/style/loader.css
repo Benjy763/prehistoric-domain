@@ -13,12 +13,12 @@
 }
 
 #static-loading img {
-  width: 600px;
+  width: 400px;
 }
 
 #put-headset {
   font-family: 'Tribeca', Verdana, Tahoma;
-  font-size: 30px;
+  font-size: 22px;
   color: black;
 }
 
@@ -45,8 +45,8 @@
   border: 0;
   bottom: inherit;
   cursor: pointer;
-  min-width: 145px;
-  min-height: 85px;
+  min-width: 100px;
+  min-height: 60px;
   padding-right: 0;
   padding-top: 0;
   right: 0;
