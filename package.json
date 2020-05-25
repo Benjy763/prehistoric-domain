@@ -9,6 +9,27 @@
     "start": "webpack-dev-server --host 0.0.0.0 --progress --colors --hot-only --inline --port 8080"
   },
   "dependencies": {
+    "aframe": "^1.0.4",
+    "aframe-curve-component": "^0.1.3",
+    "aframe-extras": "^6.1.0",
+    "aframe-fps-counter-component": "^1.0.1",
+    "aframe-geometry-merger-component": "^2.0.0",
+    "aframe-particle-system-component": "^1.1.3",
+    "aframe-physics-system": "^4.0.1",
+    "aframe-super-hot-html-loader": "*",
+    "aframe-super-hot-loader": "*",
+    "super-hands": "^3.0.0"
+  },
+  "semistandard": {
+    "globals": [
+      "AFRAME",
+      "THREE"
+    ],
+    "ignore": [
+      "build/**"
+    ]
+  },
+  "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.3",
     "@babel/plugin-proposal-class-properties": "^7.0.0",
@@ -28,9 +49,7 @@
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/plugin-syntax-import-meta": "^7.0.0",
     "@babel/preset-env": "^7.3.1",
-    "aframe-particle-system-component": "^1.1.3",
-    "aframe-super-hot-html-loader": "*",
-    "aframe-super-hot-loader": "*",
+    "copy-webpack-plugin": "^5.1.1",
     "ansi-html": "0.0.7",
     "autoprefixer": "^7.2.3",
     "babel-loader": "^8.0.5",
@@ -57,17 +76,5 @@
     "webpack-dev-server": "^3.2.0",
     "webpack-glsl-loader": "^1.0.1",
     "webpack-sources": "1.0.1"
-  },
-  "semistandard": {
-    "globals": [
-      "AFRAME",
-      "THREE"
-    ],
-    "ignore": [
-      "build/**"
-    ]
-  },
-  "devDependencies": {
-    "copy-webpack-plugin": "^5.1.1"
   }
 }
