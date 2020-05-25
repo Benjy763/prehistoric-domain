@@ -20,7 +20,9 @@ AFRAME.registerSystem('game', {
     this.firstScene = 'trex';
     this.actuelScene = 'trex';
     this.loadingAssets();
-    this.initClickEvents();
+
+    // Debug events
+    this.startListener();
   },
   log: function (text) {
     document
@@ -89,8 +91,7 @@ AFRAME.registerSystem('game', {
         document.getElementById('put-headset').style.display = 'block';
         document.getElementById('enter-vr').style.display = 'block';
 
-        //Init Game
-        this.startListener();
+        this.initClickEvents();
       }, 2000);
     });
   },

@@ -12,6 +12,7 @@ require('aframe-geometry-merger-component');
 
 // Require all components.
 require('./style/loader.css');
+require('./style/console.css');
 requireAll(require.context('./components/', true, /\.js$/));
 
 require('aframe-particle-system-component');
