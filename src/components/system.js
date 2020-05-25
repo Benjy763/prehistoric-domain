@@ -20,16 +20,31 @@ AFRAME.registerSystem('game', {
     this.firstScene = 'trex';
     this.actuelScene = 'trex';
     this.loadingAssets();
+    this.initClickEvents();
   },
   log: function (text) {
     document
       .querySelector('#log')
       .setAttribute('text', { value: text, color: 'white', width: 0.5 });
   },
+  initClickEvents: function () {
+    document.getElementById('enter-vr').onclick = () => {
+      // Remove loading interface
+      document.getElementById('static-loading').style.display = 'none';
+      // Show console interface
+      document.getElementById('console').style.display = 'block';
+    };
+
+    document.getElementById('start-tour').onclick = () => {
+      // Display scene
+      this.displayScene();
+      // Rendering scene
+      this.renderingScene(this.firstScene);
+    };
+  },
   displayScene: function () {
-    // Hide vr button and laoding static screen
-    document.querySelector('.a-enter-vr').style.display = 'none';
-    document.getElementById('static-loading').style.display = 'none';
+    // Hide vr button and loading static screen
+    document.querySelector('#enter-vr').style.display = 'none';
 
     // Display camera
     this.disableAllCameras();
@@ -70,8 +85,9 @@ AFRAME.registerSystem('game', {
       // Preloading
       setTimeout(() => {
         // Press start
-        document.querySelector('.a-enter-vr').style.display = 'flex';
-        document.getElementById('put-headset').style.color = 'white';
+        document.getElementById('loading-logo').style.display = 'none';
+        document.getElementById('put-headset').style.display = 'block';
+        document.getElementById('enter-vr').style.display = 'block';
 
         //Init Game
         this.startListener();
@@ -107,15 +123,19 @@ AFRAME.registerSystem('game', {
     // });
   },
   startListener: function () {
+    // ----- Section for debug events -----
     document.addEventListener('keyup', (e) => {
-      // Start tour
-      if (e.keyCode == 32) {
+      // Start tour in debug mode with key D (display in navigator)
+      if (e.keyCode == 68) {
+        // Remove interface to see vr display
+        document.getElementById('static-loading').style.display = 'none';
         // Display scene
         this.displayScene();
         // Rendering scene
         this.renderingScene(this.firstScene);
       }
 
+      // ----- Old debug section -----
       const car = document.querySelector('#trex-car');
       // Commands for testing
       // Play/pause game

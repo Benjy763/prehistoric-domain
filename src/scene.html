@@ -1,8 +1,14 @@
 <div id="static-loading">
-  <img src="./build/images/loader.png" />
-  <div id="put-headset">Click VR, put your headset and press spacebar</div>
+  <img class="loader-logo" src="./build/images/loader.png" />
+  <img id="loading-logo" src="./build/images/loading.gif" />
+  <div id="put-headset">Put your headset and click</div>
+  <a id="enter-vr" href="#">vr</a>
+</div>
+<div id="console">
+  <button id="start-tour">start tour</button>
 </div>
 <a-scene
+  vr-mode-ui="enterVRButton: #enter-vr"
   id="main-scene"
   fog="type: exponential; color:  #000;  density:  0.030"
   stats="false"
