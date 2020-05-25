@@ -29,7 +29,7 @@
 .right-wrapper {
   flex: 1;
   height: 100%;
-  background-color: #203085;
+  background-color: black;
 }
 
 @media screen and (max-width: 1550px) {
@@ -91,6 +91,11 @@
   height: 99.5%;
   overflow: hidden;
 }
+
+#cmd-border-inner {
+  background-color: #54545a;
+}
+
 .bordered {
   box-shadow: 2px 3px 5px #ddd;
   border-radius: 6px;
@@ -98,6 +103,12 @@
 #inner-window {
   margin: 12px 8px 0px 8px;
   height: 770px;
+}
+#cmd-inner-window {
+  margin: 8px;
+  background-color: #203085;
+  width: 100%;
+  height: calc(100% - 16px);
 }
 #col-left {
   float: left;
