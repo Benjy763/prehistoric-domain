@@ -126,13 +126,20 @@ AFRAME.registerSystem('game', {
     // ----- Section for debug events -----
     document.addEventListener('keyup', (e) => {
       // Start tour in debug mode with key D (display in navigator)
-      if (e.keyCode == 68) {
+      if (e.keyCode == 100) {
         // Remove interface to see vr display
         document.getElementById('static-loading').style.display = 'none';
         // Display scene
         this.displayScene();
         // Rendering scene
         this.renderingScene(this.firstScene);
+      }
+      // Display console screen in debug mode
+      if (e.keyCode == 101) {
+        // Remove loading interface
+        document.getElementById('static-loading').style.display = 'none';
+        // Show console interface
+        document.getElementById('console').style.display = 'block';
       }
 
       // ----- Old debug section -----
