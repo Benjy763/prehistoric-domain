@@ -126,16 +126,16 @@ AFRAME.registerSystem('game', {
   startListener: function () {
     // ----- Section for debug events -----
     document.addEventListener('keyup', (e) => {
-      // Start tour in debug mode with key D (display in navigator)
-      if (e.keyCode == 100) {
-        // Remove interface to see vr display
-        document.getElementById('static-loading').style.display = 'none';
-        // Display scene
-        this.displayScene();
-        // Rendering scene
-        this.renderingScene(this.firstScene);
-      }
-      // Display console screen in debug mode
+      // Start tour in debug mode with key 4 (display in navigator)
+      // if (e.keyCode == 100) {
+      //   // Remove interface to see vr display
+      //   document.getElementById('static-loading').style.display = 'none';
+      //   // Display scene
+      //   this.displayScene();
+      //   // Rendering scene
+      //   this.renderingScene(this.firstScene);
+      // }
+      // Display console screen in debug mode with key 5
       if (e.keyCode == 101) {
         // Remove loading interface
         document.getElementById('static-loading').style.display = 'none';
@@ -144,26 +144,26 @@ AFRAME.registerSystem('game', {
       }
 
       // ----- Old debug section -----
-      const car = document.querySelector('#trex-car');
-      // Commands for testing
-      // Play/pause game
-      if (e.keyCode == 80) {
-        car.setAttribute('trex-car-tour', {
-          carMarker: car.getAttribute('trex-car-tour').carMarker,
-          carSpeed:
-            !car.getAttribute('trex-car-tour').carSpeed ||
-            car.getAttribute('trex-car-tour').carSpeed == 0
-              ? car.getAttribute('trex-car-tour').normalSpeed
-              : 0,
-        });
-      }
-      // Go to position
-      if (e.keyCode == 13) {
-        car.setAttribute('trex-car-tour', {
-          carMarker: 0.52, // Specific position
-          carSpeed: car.getAttribute('trex-car-tour').carSpeed,
-        });
-      }
+      // const car = document.querySelector('#trex-car');
+      // // Commands for testing
+      // // Play/pause game
+      // if (e.keyCode == 80) {
+      //   car.setAttribute('trex-car-tour', {
+      //     carMarker: car.getAttribute('trex-car-tour').carMarker,
+      //     carSpeed:
+      //       !car.getAttribute('trex-car-tour').carSpeed ||
+      //       car.getAttribute('trex-car-tour').carSpeed == 0
+      //         ? car.getAttribute('trex-car-tour').normalSpeed
+      //         : 0,
+      //   });
+      // }
+      // // Go to position
+      // if (e.keyCode == 13) {
+      //   car.setAttribute('trex-car-tour', {
+      //     carMarker: 0.52, // Specific position
+      //     carSpeed: car.getAttribute('trex-car-tour').carSpeed,
+      //   });
+      // }
     });
   },
   // ----- Curve functions --------

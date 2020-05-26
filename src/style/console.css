@@ -45,8 +45,22 @@
 
 #main-terminal .inner-wrap {
   height: 100%;
-  width: 350px;
+  width: 450px;
   overflow: hidden;
+}
+
+#main-terminal #system-output {
+  color: #ccc;
+}
+
+#system-output td {
+  width: 185px;
+}
+
+@media screen and (max-width: 1550px) {
+  #main-terminal .inner-wrap {
+    width: 360px;
+  }
 }
 
 #cmd-border-inner {
@@ -116,7 +130,7 @@
   }
 }
 
-@media screen and (max-width: 1350px) {
+@media screen and (max-width: 1390px) {
   #window {
     -moz-transform: scale(0.7);
     -webkit-transform: scale(0.7);
