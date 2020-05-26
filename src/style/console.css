@@ -21,7 +21,21 @@
 
 /* ----- Right Part ----- */
 
-#cmd-inner-window {
+.buffer {
+  position: absolute;
+  left: -10000px;
+  top: -10000px;
+}
+
+.command-history,
+.command-input,
+.entered-command {
+  white-space: pre;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+}
+
+#main-terminal {
   padding: 5px;
   margin: 8px;
   background-color: #203085;
@@ -29,8 +43,15 @@
   height: calc(100% - 16px);
 }
 
+#main-terminal .inner-wrap {
+  height: 100%;
+  width: 350px;
+  overflow: hidden;
+}
+
 #cmd-border-inner {
   background-color: #54545a;
+  word-wrap: break-word;
 }
 
 .cmd-view {
