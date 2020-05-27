@@ -23,9 +23,7 @@ AFRAME.registerSystem('console', {
             'SYNOPSIS\n' +
             '\thelp\n\n' +
             'DESCRIPTION\n' +
-            '\tDisplay a command summary for Jurassic Systems.\n\n' +
-            'AUTHOR\n' +
-            '\tWritten by <a href="https://tully.io">Tully Robinson</a>.\n',
+            '\tDisplay a command summary for Jurassic Systems.\n\n',
           command: function (env, inputLine) {
             for (var command in env.commands) {
               self.env.active
@@ -33,8 +31,9 @@ AFRAME.registerSystem('console', {
                 .append(
                   $('<div>').text(
                     self.env.commands[command].name +
-                      ' - ' +
-                      self.env.commands[command].summary
+                      ' (' +
+                      self.env.commands[command].summary +
+                      ')'
                   )
                 );
             }
@@ -72,12 +71,19 @@ AFRAME.registerSystem('console', {
             '\tList information about the FILEs ' +
             '(the current directory by default).\n\n',
           command: function (env, inputLine) {
-            $('#main-input').append($('<div>zebraGirl.jpg</div>'));
+            $('#main-input').append(
+              $(
+                '<div>jurassicpark.jpg</div>' +
+                  '<div>test.jpg</div>' +
+                  '<div>todolist.txt</div>' +
+                  '<div>fences.txt</div>'
+              )
+            );
           },
         },
         systems: {
           name: 'systems',
-          summary: 'list of systems ([name] - [desc])',
+          summary: 'list of all systems',
           manPage:
             'USAGE\n' +
             '\tlsystem\n\n' +
@@ -97,15 +103,13 @@ AFRAME.registerSystem('console', {
         },
         system: {
           name: 'system',
-          summary: "check a system's current status",
+          summary: "check a specific system's status",
           manPage:
             'SYNOPSIS\n' +
             '\tsystem [SYSTEM_NAME]\n\n' +
             'DESCRIPTION\n' +
             "\tCheck the input system and return each sector's " +
-            'current status.\n\n' +
-            'AUTHOR\n' +
-            '\tWritten by Dennis Nedry.\n',
+            'current status.\n\n',
           command: function (env, inputLine) {
             const arg = inputLine.split(/ +/)[1] || '';
             let output = '<span>system: must specify target system</span>';

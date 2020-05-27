@@ -244,8 +244,8 @@
 #vehicle-schema-inner > strong {
   color: #fff;
   position: absolute;
-  top: 195px;
-  left: 106px;
+  top: 193px;
+  left: 104px;
   font-size: 22px;
 }
 #car-speed {
@@ -359,11 +359,15 @@
   font-weight: bold;
   line-height: 22px;
   font-size: 18px;
-  cursor: pointer;
   text-shadow: -1px -1px 2px #000, 1px 1px 3px #fff;
   color: #a1a699;
+  cursor: default;
+}
+#buttons #start-tour {
+  cursor: pointer;
 }
 #buttons span.active {
+  cursor: pointer;
   background: #818679;
   text-shadow: none;
   color: #000;
@@ -371,7 +375,7 @@
 #buttons span.half {
   width: 66px;
 }
-#buttons span:hover {
+#buttons #start-tour:hover {
   background: #919689;
   text-shadow: none;
   color: #ccc;
