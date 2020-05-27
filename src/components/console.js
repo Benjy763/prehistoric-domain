@@ -6,16 +6,20 @@ AFRAME.registerSystem('console', {
     // Tour reference
     this.tour;
     // Vehicule position
+    this.trackpos = -216;
     this.car = {
       position: 0,
+      driving: false,
     };
 
     // Fence
     this.fences = {
       trex: {
         normalSituation: 'T-Rex Paddock',
-        x: [241, 260, 277, 294, 304, 308, 315, 315, 307, 295],
-        y: [-15, -6, 6, 20, 33, 50, 61, 76, 88, 91],
+        road: {
+          x: [241, 260, 277, 294, 304, 308, 315, 315, 307, 295],
+          y: [-15, -6, 6, 20, 33, 50, 61, 76, 88, 91],
+        },
       },
     };
 
@@ -181,12 +185,19 @@ AFRAME.registerSystem('console', {
     this.setActive('#main-terminal');
     this.initMainEvents();
     this.updateCarPosition('trex', 0);
+    this.shiftTrack();
+    this.updateSituation(true);
   },
+  //  ----- Main methods -----
   registerCurrentTour: function (tour) {
     this.tour = tour;
   },
-  updateScene: function (scene) {
-    $('#current-situation').text(this.fences[scene].normalSituation);
+  updateSituation: function (loading) {
+    if (loading) {
+      $('#current-situation').text('Loading...');
+      return;
+    }
+    $('#current-situation').text(this.fences[this.tour.scene].normalSituation);
   },
   initMainEvents: function () {
     this.cursorDisplay();
@@ -201,11 +212,7 @@ AFRAME.registerSystem('console', {
       $('#tour-initiated')[0].style.display = 'none';
     }, 5000);
   },
-  updateCarPosition: function (fence, position) {
-    this.car.position = position;
-    $('#marker').css('left', this.fences[fence].x[position] + 'px');
-    $('#marker').css('top', this.fences[fence].y[position] + 'px');
-  },
+  // ----- Console methods -----
   cursorDisplay: function () {
     const self = this;
     $('body').click(this.removeCursor);
@@ -289,5 +296,35 @@ AFRAME.registerSystem('console', {
   removeCursor: function () {
     $('.cursor', '.irix-window').removeClass('active-cursor');
     $('.buffer').blur();
+  },
+  // ----- car management -----
+  stopCar: function () {
+    this.car.driving = false;
+    $('#car-speed').text('0');
+  },
+  startCar: function () {
+    this.car.driving = true;
+    $('#car-speed').text('12');
+  },
+  updateCarPosition: function (fence, position) {
+    this.car.position = position;
+    $('#marker').css('left', this.fences[fence].road.x[position] + 'px');
+    $('#marker').css('top', this.fences[fence].road.y[position] + 'px');
+  },
+  shiftTrack: function () {
+    if (!this.car.driving) {
+      setTimeout(() => {
+        this.shiftTrack();
+      }, 50);
+      return;
+    }
+    $('.vehicle-track > div').css('left', this.trackpos + 'px');
+    this.trackpos = this.trackpos + 1;
+    if (this.trackpos > -25) {
+      this.trackpos = -216;
+    }
+    setTimeout(() => {
+      this.shiftTrack();
+    }, 50);
   },
 });

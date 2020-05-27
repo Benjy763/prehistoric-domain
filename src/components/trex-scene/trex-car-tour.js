@@ -47,7 +47,9 @@ AFRAME.registerComponent('trex-car-tour', {
     this.el.addEventListener(
       'start',
       () => {
-        this.console.updateScene(this.scene);
+        // Update console statuses
+        this.console.startCar();
+        this.console.updateSituation();
         // Can't restart many times
         if (this.tourStarted) {
           return;
@@ -85,6 +87,7 @@ AFRAME.registerComponent('trex-car-tour', {
     this.el.setAttribute('rotation', rotation);
   },
   stopCar: function () {
+    this.console.stopCar();
     // Sound
     if (this.carDriveSoundPlaying) {
       this.carStopAudio.play();
@@ -100,6 +103,7 @@ AFRAME.registerComponent('trex-car-tour', {
     }
   },
   startCar: function () {
+    this.console.startCar();
     // Sound
     if (!this.carDriveSoundPlaying) {
       this.carDriveAudio.play();
