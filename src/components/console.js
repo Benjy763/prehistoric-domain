@@ -3,10 +3,24 @@ AFRAME.registerSystem('console', {
   init: function () {
     const self = this;
 
+    // Tour reference
+    this.tour;
+    // Vehicule position
+    this.car = {
+      position: 0,
+    };
+
+    // Fence
+    this.fences = {
+      trex: {
+        x: [241, 260, 277, 294, 304, 308, 315, 315, 307, 295],
+        y: [-15, -6, 6, 20, 33, 50, 61, 76, 88, 91],
+      },
+    };
+
     // Sounds
     this.beep = $('#cmd-beep-asset')[0];
     // Statuses
-    this.tourStarted = false;
     this.systemStatuses = {
       trex: {
         status: true,
@@ -165,26 +179,29 @@ AFRAME.registerSystem('console', {
 
     this.setActive('#main-terminal');
     this.initMainEvents();
+    this.updateCarPosition('trex', 0);
+  },
+  registerCurrentTour: function (tour) {
+    this.tour = tour;
   },
   initMainEvents: function () {
-    this.initTour();
     this.cursorDisplay();
     this.keyboardManagement();
   },
   initTour: function () {
-    $('#start-tour').click(() => {
-      if (this.tourStarted) {
-        return;
-      }
-      $('#start-tour').addClass('active');
-      this.beep.play();
+    $('#start-tour').addClass('active');
+    this.beep.play();
 
-      $('#tour-initiated')[0].style.display = 'block';
-      setTimeout(() => {
-        $('#tour-initiated')[0].style.display = 'none';
-      }, 5000);
-      this.tourStarted = true;
-    });
+    $('#tour-initiated')[0].style.display = 'block';
+    setTimeout(() => {
+      $('#tour-initiated')[0].style.display = 'none';
+    }, 5000);
+    this.tourStarted = true;
+  },
+  updateCarPosition: function (fence, position) {
+    this.car.position = position;
+    $('#marker').css('left', this.fences[fence].x[position] + 'px');
+    $('#marker').css('top', this.fences[fence].y[position] + 'px');
   },
   cursorDisplay: function () {
     const self = this;

@@ -9,6 +9,7 @@ AFRAME.registerComponent('trex-car-tour', {
     // Objects shortcut
     this.object = this.el.object3D;
     this.system = document.querySelector('a-scene').systems['game'];
+    this.console = document.querySelector('a-scene').systems['console'];
     this.trex = document.querySelector('#trex');
     // Tour Path
     this.curve = new THREE.SplineCurve([
@@ -19,6 +20,7 @@ AFRAME.registerComponent('trex-car-tour', {
       new THREE.Vector2(2.8, -41),
       new THREE.Vector2(30, -94),
     ]);
+    this.maxDistance = 900;
     this.rotation = this.el.getAttribute('rotation').y;
     // Animation phase
     this.phase = 'start';
@@ -33,6 +35,10 @@ AFRAME.registerComponent('trex-car-tour', {
     this.soundMixing1Audio = document.getElementById('sound-mixing-1');
     this.leaveAudio = document.getElementById('leave');
 
+    // Register current tour in system
+    this.console.registerCurrentTour(this);
+
+    // Init ca rotation
     this.updateRotation();
 
     // Start tour listeners
@@ -115,6 +121,14 @@ AFRAME.registerComponent('trex-car-tour', {
         this.object.position.y
       )
     );
+    if (this.system.truncMarker(this.data.carMarker) !== 0) {
+      this.console.updateCarPosition(
+        'trex',
+        Math.round(
+          (this.system.truncMarker(this.data.carMarker) / this.maxDistance) * 10
+        )
+      );
+    }
 
     this.updateRotation();
   },
@@ -163,7 +177,7 @@ AFRAME.registerComponent('trex-car-tour', {
       this.leaveSoundPlaying = true;
     }
 
-    if (this.system.truncMarker(this.data.carMarker) > 900) {
+    if (this.system.truncMarker(this.data.carMarker) > this.maxDistance) {
       this.stopCar();
       if (this.data.carSpeed <= 0) {
         this.phase = 'changeScene';

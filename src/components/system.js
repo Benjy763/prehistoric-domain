@@ -20,6 +20,7 @@ AFRAME.registerSystem('game', {
     this.firstScene = 'trex';
     this.actuelScene = 'trex';
     this.tourStarted = false;
+    this.console = document.querySelector('a-scene').systems['console'];
     this.loadingAssets();
 
     // Debug events
@@ -42,10 +43,14 @@ AFRAME.registerSystem('game', {
       if (this.tourStarted) {
         return;
       }
-      // Display scene
-      this.displayScene();
-      // Rendering scene
-      this.renderingScene(this.firstScene);
+      // Init console
+      this.console.initTour();
+      setTimeout(() => {
+        // Display scene
+        this.displayScene();
+        // Rendering scene
+        this.renderingScene(this.firstScene);
+      }, 1000);
       this.tourStarted = true;
     };
   },
