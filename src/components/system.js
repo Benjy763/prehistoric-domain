@@ -19,6 +19,7 @@ AFRAME.registerSystem('game', {
     };
     this.firstScene = 'trex';
     this.actuelScene = 'trex';
+    this.tourStarted = false;
     this.loadingAssets();
 
     // Debug events
@@ -38,10 +39,14 @@ AFRAME.registerSystem('game', {
     };
 
     document.getElementById('start-tour').onclick = () => {
+      if (this.tourStarted) {
+        return;
+      }
       // Display scene
       this.displayScene();
       // Rendering scene
       this.renderingScene(this.firstScene);
+      this.tourStarted = true;
     };
   },
   displayScene: function () {
@@ -115,26 +120,19 @@ AFRAME.registerSystem('game', {
         car.dispatchEvent(event);
       }
     }, 30000);
-    // document.querySelector('a-scene').addEventListener('loaded', () => {
-    //   document.getElementById('rendering').setAttribute('visible', 'false');
-    //   const event = new Event('start');
-    //   if (car) {
-    //     car.dispatchEvent(event);
-    //   }
-    // });
   },
   startListener: function () {
     // ----- Section for debug events -----
     document.addEventListener('keyup', (e) => {
       // Start tour in debug mode with key 4 (display in navigator)
-      // if (e.keyCode == 100) {
-      //   // Remove interface to see vr display
-      //   document.getElementById('static-loading').style.display = 'none';
-      //   // Display scene
-      //   this.displayScene();
-      //   // Rendering scene
-      //   this.renderingScene(this.firstScene);
-      // }
+      if (e.keyCode == 100) {
+        // Remove interface to see vr display
+        document.getElementById('static-loading').style.display = 'none';
+        // Display scene
+        this.displayScene();
+        // Rendering scene
+        this.renderingScene(this.firstScene);
+      }
       // Display console screen in debug mode with key 5
       if (e.keyCode == 101) {
         // Remove loading interface

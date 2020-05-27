@@ -3,15 +3,17 @@ AFRAME.registerSystem('console', {
   init: function () {
     const self = this;
 
+    // Sounds
     this.beep = $('#cmd-beep-asset')[0];
-
+    // Statuses
+    this.tourStarted = false;
     this.systemStatuses = {
       trex: {
         status: true,
         description: 'TREX enclosure system',
       },
     };
-
+    // Config
     this.env = {
       accessAttempts: 0,
       active: null,
@@ -166,6 +168,21 @@ AFRAME.registerSystem('console', {
   },
   initEvents: function () {
     const self = this;
+
+    $('#start-tour').click(() => {
+      if (this.tourStarted) {
+        return;
+      }
+      $('#start-tour').addClass('active');
+      this.beep.play();
+
+      $('#tour-initiated')[0].style.display = 'block';
+      setTimeout(() => {
+        $('#tour-initiated')[0].style.display = 'none';
+      }, 5000);
+      this.tourStarted = true;
+    });
+
     $('body').click(this.removeCursor);
 
     $('.irix-window').click(function (e) {
