@@ -35,6 +35,8 @@ AFRAME.registerSystem('game', {
     document.getElementById('enter-vr').onclick = () => {
       // Remove loading interface
       document.getElementById('static-loading').style.display = 'none';
+      // Add scene screen
+      document.getElementById('scene-wrapper').style.zIndex = '9999';
       // Show console interface
       document.getElementById('console').style.display = 'block';
     };
@@ -133,6 +135,8 @@ AFRAME.registerSystem('game', {
       if (e.keyCode == 100) {
         // Remove interface to see vr display
         document.getElementById('static-loading').style.display = 'none';
+        // Add scene screen
+        document.getElementById('scene-wrapper').style.zIndex = '9999';
         // Display scene
         this.displayScene();
         // Rendering scene
@@ -142,6 +146,8 @@ AFRAME.registerSystem('game', {
       if (e.keyCode == 101) {
         // Remove loading interface
         document.getElementById('static-loading').style.display = 'none';
+        // Add scene screen
+        document.getElementById('scene-wrapper').style.zIndex = '9999';
         // Show console interface
         document.getElementById('console').style.display = 'block';
       }

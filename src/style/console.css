@@ -1,4 +1,52 @@
-/* close commented backslash hack */
+#scene-wrapper {
+  z-index: 1;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: calc(100% - 1200px);
+  height: 50%;
+  overflow: hidden;
+}
+
+html.a-fullscreen .a-canvas {
+  position: absolute !important;
+}
+
+@media screen and (max-width: 1670px) {
+  #scene-wrapper {
+    width: calc(100% - 1000px);
+  }
+}
+
+@media screen and (max-width: 1390px) {
+  #scene-wrapper {
+    width: calc(100% - 800px);
+  }
+}
+
+.scene-border-inner {
+  border: 2px solid #54545a;
+  box-shadow: 2px 2px 6px #ddd inset;
+  border-radius: 6px;
+  background-color: #54545a;
+  height: calc(100% - 5px);
+}
+
+.scene-content {
+  background-color: black;
+  padding: 5px;
+  margin: 8px;
+  width: calc(100% - 32px);
+  height: calc(100% - 26px);
+  border-radius: 6px;
+}
+
+a-scene {
+  padding: 5px;
+  width: 100%;
+  height: 100%;
+}
+
 #console {
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -40,7 +88,7 @@
   margin: 8px;
   background-color: #203085;
   width: 100%;
-  height: calc(100% - 16px);
+  height: calc(100% - 26px);
 }
 
 #main-terminal .inner-wrap {
@@ -57,7 +105,7 @@
   width: 185px;
 }
 
-@media screen and (max-width: 1550px) {
+@media screen and (max-width: 1670px) {
   #main-terminal .inner-wrap {
     width: 360px;
   }
@@ -112,7 +160,7 @@
 /* right wrapper */
 .right-wrapper {
   flex: 1;
-  height: 100%;
+  height: 50%;
   background-color: black;
 }
 
@@ -205,7 +253,7 @@
   background-color: #1a4d39;
 }
 
-@media screen and (max-width: 1550px) {
+@media screen and (max-width: 1670px) {
   #window {
     -moz-transform: scale(0.9);
     -webkit-transform: scale(0.9);

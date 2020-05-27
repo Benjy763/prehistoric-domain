@@ -7,51 +7,58 @@
 <div id="console">
   <require path="templates/console.html"></require>
 </div>
-<a-scene
-  vr-mode-ui="enterVRButton: #enter-vr"
-  id="main-scene"
-  fog="type: exponential; color:  #000;  density:  0.030"
->
-  <!-- All assets -->
-  <require path="templates/assets.html"></require>
+<div id="scene-wrapper">
+  <div class="scene-border-inner">
+    <div class="scene-content">
+      <a-scene
+        embedded
+        vr-mode-ui="enterVRButton: #enter-vr"
+        id="main-scene"
+        fog="type: exponential; color:  #000;  density:  0.030"
+      >
+        <!-- All assets -->
+        <require path="templates/assets.html"></require>
 
-  <a-entity id="loading-scene">
-    <!-- Loading screen -->
-    <require path="templates/loading.html"></require>
-  </a-entity>
+        <a-entity id="loading-scene">
+          <!-- Loading screen -->
+          <require path="templates/loading.html"></require>
+        </a-entity>
 
-  <a-entity id="trex-scene" visible="false">
-    <!-- Sky environement -->
-    <require path="templates/trex-scene/sky.html"></require>
-    <!-- Ground environement -->
-    <require path="templates/trex-scene/ground.html"></require>
-    <!-- Lightning -->
-    <require path="templates/trex-scene/lightning.html"></require>
-    <!-- Sound -->
-    <require path="templates/trex-scene/global-sound.html"></require>
-    <!-- Dinosaurs -->
-    <require path="templates/trex-scene/dinosaurs.html"></require>
-    <!-- Environment -->
-    <require path="templates/trex-scene/environment.html"></require>
-    <!-- Objects -->
-    <require path="templates/trex-scene/objects.html"></require>
-  </a-entity>
+        <a-entity id="trex-scene" visible="false">
+          <!-- Sky environement -->
+          <require path="templates/trex-scene/sky.html"></require>
+          <!-- Ground environement -->
+          <require path="templates/trex-scene/ground.html"></require>
+          <!-- Lightning -->
+          <require path="templates/trex-scene/lightning.html"></require>
+          <!-- Sound -->
+          <require path="templates/trex-scene/global-sound.html"></require>
+          <!-- Dinosaurs -->
+          <require path="templates/trex-scene/dinosaurs.html"></require>
+          <!-- Environment -->
+          <require path="templates/trex-scene/environment.html"></require>
+          <!-- Objects -->
+          <require path="templates/trex-scene/objects.html"></require>
+        </a-entity>
 
-  <a-entity id="gate-scene" visible="false">
-    <!-- Sky environement -->
-    <require path="templates/trex-scene/sky.html"></require>
-    <!-- Ground environement -->
-    <require path="templates/trex-scene/ground.html"></require>
-    <!-- Lightning -->
-    <require path="templates/trex-scene/lightning.html"></require>
-    <!-- Sound -->
-    <require path="templates/trex-scene/global-sound.html"></require>
-    <a-entity
-      id="gate-scene-camera"
-      position="0 2 0"
-      camera="active: false"
-      look-controls
-    >
-    </a-entity>
-  </a-entity>
-</a-scene>
+        <a-entity id="gate-scene" visible="false">
+          <!-- Sky environement -->
+          <require path="templates/trex-scene/sky.html"></require>
+          <!-- Ground environement -->
+          <require path="templates/trex-scene/ground.html"></require>
+          <!-- Lightning -->
+          <require path="templates/trex-scene/lightning.html"></require>
+          <!-- Sound -->
+          <require path="templates/trex-scene/global-sound.html"></require>
+          <a-entity
+            id="gate-scene-camera"
+            position="0 2 0"
+            camera="active: false"
+            look-controls
+          >
+          </a-entity>
+        </a-entity>
+      </a-scene>
+    </div>
+  </div>
+</div>
