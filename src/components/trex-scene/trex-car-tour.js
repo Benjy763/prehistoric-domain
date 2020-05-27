@@ -5,6 +5,7 @@ AFRAME.registerComponent('trex-car-tour', {
     normalSpeed: { default: 0.00018 },
   },
   init: function () {
+    this.scene = 'trex';
     this.tick = AFRAME.utils.throttleTick(this.tick, 20, this);
     // Objects shortcut
     this.object = this.el.object3D;
@@ -46,6 +47,7 @@ AFRAME.registerComponent('trex-car-tour', {
     this.el.addEventListener(
       'start',
       () => {
+        this.console.updateScene(this.scene);
         // Can't restart many times
         if (this.tourStarted) {
           return;

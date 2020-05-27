@@ -13,6 +13,7 @@ AFRAME.registerSystem('console', {
     // Fence
     this.fences = {
       trex: {
+        normalSituation: 'T-Rex Paddock',
         x: [241, 260, 277, 294, 304, 308, 315, 315, 307, 295],
         y: [-15, -6, 6, 20, 33, 50, 61, 76, 88, 91],
       },
@@ -184,6 +185,9 @@ AFRAME.registerSystem('console', {
   registerCurrentTour: function (tour) {
     this.tour = tour;
   },
+  updateScene: function (scene) {
+    $('#current-situation').text(this.fences[scene].normalSituation);
+  },
   initMainEvents: function () {
     this.cursorDisplay();
     this.keyboardManagement();
@@ -196,7 +200,6 @@ AFRAME.registerSystem('console', {
     setTimeout(() => {
       $('#tour-initiated')[0].style.display = 'none';
     }, 5000);
-    this.tourStarted = true;
   },
   updateCarPosition: function (fence, position) {
     this.car.position = position;
