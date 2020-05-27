@@ -164,11 +164,14 @@ AFRAME.registerSystem('console', {
     };
 
     this.setActive('#main-terminal');
-    this.initEvents();
+    this.initMainEvents();
   },
-  initEvents: function () {
-    const self = this;
-
+  initMainEvents: function () {
+    this.initTour();
+    this.cursorDisplay();
+    this.keyboardManagement();
+  },
+  initTour: function () {
     $('#start-tour').click(() => {
       if (this.tourStarted) {
         return;
@@ -182,7 +185,9 @@ AFRAME.registerSystem('console', {
       }, 5000);
       this.tourStarted = true;
     });
-
+  },
+  cursorDisplay: function () {
+    const self = this;
     $('body').click(this.removeCursor);
 
     $('.irix-window').click(function (e) {
@@ -193,11 +198,16 @@ AFRAME.registerSystem('console', {
       $(this).css('z-index', self.nextIndex());
       $(this).find('.cursor').addClass('active-cursor');
     });
-
+  },
+  keyboardManagement: function () {
+    const self = this;
     $(window).keydown(function (e) {
       if ([37, 38, 39, 40].indexOf(e.keyCode || e.which) > -1) {
         e.preventDefault();
       }
+    });
+    $('#main-terminal .buffer').bind('input propertychange', function () {
+      $('#curr-main-input').text($(this).val());
     });
 
     $('.irix-window').keydown(function (e) {
@@ -208,7 +218,7 @@ AFRAME.registerSystem('console', {
         return false;
       }
 
-      // if enter
+      // If press enter
       if (key === 13) {
         const line = activeTerminal.find('.buffer').val();
         activeTerminal.find('.buffer').val('');
@@ -219,10 +229,6 @@ AFRAME.registerSystem('console', {
 
       const wrap = activeTerminal.find('.inner-wrap');
       wrap.scrollTop(wrap[0].scrollHeight);
-    });
-
-    $('#main-terminal .buffer').bind('input propertychange', function () {
-      $('#curr-main-input').text($(this).val());
     });
   },
   buildCommandLine: function (line) {
