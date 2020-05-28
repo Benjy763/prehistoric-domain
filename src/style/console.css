@@ -36,7 +36,7 @@ html.a-fullscreen .a-canvas {
   background-color: black;
   padding: 5px;
   margin: 8px;
-  width: calc(100% - 32px);
+  width: calc(100% - 26px);
   height: calc(100% - 26px);
   border-radius: 6px;
 }
