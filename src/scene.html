@@ -7,11 +7,11 @@
 <div id="console">
   <require path="templates/console.html"></require>
 </div>
-<div id="scene-wrapper">
+<div id="main-scene-wrapper" class="scene-wrapper">
   <div class="scene-border-inner">
     <div class="scene-content">
       <a-scene
-        embedded
+        embedded="true"
         vr-mode-ui="enterVRButton: #enter-vr"
         id="main-scene"
         fog="type: exponential; color:  #000;  density:  0.030"
