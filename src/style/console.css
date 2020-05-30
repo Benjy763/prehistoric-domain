@@ -12,7 +12,7 @@ body {
   overflow: hidden;
 }
 
-.scene-wrapper html.a-fullscreen .a-canvas {
+html.a-fullscreen .a-canvas {
   position: absolute !important;
 }
 
@@ -53,6 +53,14 @@ body {
 
 #console {
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.console-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .apple-icon {
@@ -163,6 +171,7 @@ body {
 
 /* right wrapper */
 .right-wrapper {
+  z-index: 10;
   flex: 1;
   height: 50%;
   background-color: black;

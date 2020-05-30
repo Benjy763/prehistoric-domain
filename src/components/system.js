@@ -131,8 +131,8 @@ AFRAME.registerSystem('game', {
   startListener: function () {
     // ----- Section for debug events -----
     document.addEventListener('keyup', (e) => {
-      // Start tour in debug mode with key 4 (display in navigator)
-      if (e.keyCode == 100) {
+      // Start tour in debug mode with key 8 (display in navigator)
+      if (e.keyCode == 56) {
         // Remove interface to see vr display
         document.getElementById('static-loading').style.display = 'none';
         // Add scene screen
@@ -148,8 +148,8 @@ AFRAME.registerSystem('game', {
         // Rendering scene
         this.renderingScene(this.firstScene);
       }
-      // Display console screen in debug mode with key 5
-      if (e.keyCode == 101) {
+      // Display console screen in debug mode with key 9
+      if (e.keyCode == 57) {
         // Remove loading interface
         document.getElementById('static-loading').style.display = 'none';
         // Add scene screen
