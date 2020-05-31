@@ -184,7 +184,7 @@ AFRAME.registerSystem('console', {
 
     this.setActive('#main-terminal');
     this.initMainEvents();
-    this.updateCarPosition('trex', 0);
+    this.updateCarPosition(0, 'trex');
     this.shiftTrack();
     this.updateSituation(true);
   },
@@ -306,10 +306,11 @@ AFRAME.registerSystem('console', {
     this.car.driving = true;
     $('#car-speed').text('12');
   },
-  updateCarPosition: function (fence, position) {
+  updateCarPosition: function (position, scene) {
+    const currentScene = scene ? scene : this.tour.scene;
     this.car.position = position;
-    $('#marker').css('left', this.fences[fence].road.x[position] + 'px');
-    $('#marker').css('top', this.fences[fence].road.y[position] + 'px');
+    $('#marker').css('left', this.fences[currentScene].road.x[position] + 'px');
+    $('#marker').css('top', this.fences[currentScene].road.y[position] + 'px');
   },
   shiftTrack: function () {
     if (!this.car.driving) {

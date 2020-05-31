@@ -73,6 +73,7 @@ AFRAME.registerComponent('trex-animation', {
     rotation.z += this.carRotation;
     this.car.setAttribute('rotation', rotation);
   },
+  // Temp fix for firefox simultaneous warning
   stopSounds: function () {
     this.el.addEventListener('sound-ended', (e) => {
       if (e.detail.id === 'foot-step-1') {

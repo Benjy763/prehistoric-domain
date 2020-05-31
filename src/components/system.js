@@ -17,6 +17,7 @@ AFRAME.registerSystem('game', {
         car: 'gate-car',
       },
     };
+    this.carReference;
     this.firstScene = 'trex';
     this.actuelScene = 'trex';
     this.tourStarted = false;
@@ -25,6 +26,11 @@ AFRAME.registerSystem('game', {
 
     // Debug events
     this.startListener();
+  },
+  registerCar: function (car) {
+    this.carReference = car;
+    const event = new Event('carRegistered');
+    document.dispatchEvent(event);
   },
   log: function (text) {
     document
@@ -157,28 +163,6 @@ AFRAME.registerSystem('game', {
         // Show console interface
         document.getElementById('console').style.display = 'block';
       }
-
-      // ----- Old debug section -----
-      // const car = document.querySelector('#trex-car');
-      // // Commands for testing
-      // // Play/pause game
-      // if (e.keyCode == 80) {
-      //   car.setAttribute('trex-car-tour', {
-      //     carMarker: car.getAttribute('trex-car-tour').carMarker,
-      //     carSpeed:
-      //       !car.getAttribute('trex-car-tour').carSpeed ||
-      //       car.getAttribute('trex-car-tour').carSpeed == 0
-      //         ? car.getAttribute('trex-car-tour').normalSpeed
-      //         : 0,
-      //   });
-      // }
-      // // Go to position
-      // if (e.keyCode == 13) {
-      //   car.setAttribute('trex-car-tour', {
-      //     carMarker: 0.52, // Specific position
-      //     carSpeed: car.getAttribute('trex-car-tour').carSpeed,
-      //   });
-      // }
     });
   },
   // ----- Curve functions --------
