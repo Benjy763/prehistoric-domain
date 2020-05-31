@@ -60,7 +60,7 @@
   </a-entity>
 </a-entity>
 
-<a-curve id="parcours" type="Spline" curve="closed:false" visible="true" scale=>
+<a-curve id="trex-parcours" type="Spline" curve="closed:false" visible="true" scale=>
   <a-curve-point
     id="checkpoint1"
     position="18.6, 0.1, 85"
@@ -92,13 +92,9 @@
     visible="true"
   ></a-curve-point>
 </a-curve>
-<!-- <a-draw-curve
-  curveref="#parcours"
-  material="shader: line; color: white;"
-></a-draw-curve> -->
 <a-entity
   geometry-merger="preserveOriginal: false"
-  clone-along-curve="curve: #parcours; spacing: 8; scale: 0.08 0.08 0.08; rotation: 90 0 0;"
+  clone-along-curve="curve: #trex-parcours; spacing: 8; scale: 0.08 0.08 0.08; rotation: 90 0 0;"
   geometry="primitive:cylinder ; height:100"
   material="color: #95a5a6"
 ></a-entity>

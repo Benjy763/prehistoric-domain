@@ -15,7 +15,7 @@
         embedded="true"
         vr-mode-ui="enterVRButton: #enter-vr"
         id="main-scene"
-        fog="type: exponential; color:  #000;  density:  0.030"
+        fog="type: exponential; color:  #000;  density: 0"
       >
         <!-- All assets -->
         <require path="templates/assets.html"></require>
@@ -26,14 +26,10 @@
         </a-entity>
 
         <a-entity id="trex-scene" visible="false">
-          <!-- Sky environement -->
-          <require path="templates/trex-scene/sky.html"></require>
           <!-- Ground environement -->
           <require path="templates/trex-scene/ground.html"></require>
           <!-- Lightning -->
           <require path="templates/trex-scene/lightning.html"></require>
-          <!-- Sound -->
-          <require path="templates/trex-scene/global-sound.html"></require>
           <!-- Dinosaurs -->
           <require path="templates/trex-scene/dinosaurs.html"></require>
           <!-- Environment -->
@@ -43,14 +39,16 @@
         </a-entity>
 
         <a-entity id="gate-scene" visible="false">
-          <!-- Sky environement -->
-          <require path="templates/trex-scene/sky.html"></require>
           <!-- Ground environement -->
-          <require path="templates/trex-scene/ground.html"></require>
+          <require path="templates/gate-scene/ground.html"></require>
           <!-- Lightning -->
-          <require path="templates/trex-scene/lightning.html"></require>
-          <!-- Sound -->
-          <require path="templates/trex-scene/global-sound.html"></require>
+          <require path="templates/gate-scene/lightning.html"></require>
+          <!-- Dinosaurs -->
+          <require path="templates/gate-scene/dinosaurs.html"></require>
+          <!-- Environment -->
+          <require path="templates/gate-scene/environment.html"></require>
+          <!-- Objects -->
+          <require path="templates/gate-scene/objects.html"></require>
           <a-entity
             id="gate-scene-camera"
             position="0 2 0"

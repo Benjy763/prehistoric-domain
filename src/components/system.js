@@ -18,8 +18,8 @@ AFRAME.registerSystem('game', {
       },
     };
     this.carReference;
-    this.firstScene = 'trex';
-    this.actuelScene = 'trex';
+    this.firstScene = 'gate';
+    this.actuelScene = 'gate';
     this.tourStarted = false;
     this.console = document.querySelector('a-scene').systems['console'];
     this.loadingAssets();
