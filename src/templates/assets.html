@@ -1,6 +1,13 @@
 <a-assets timeout="10000">
   <!-- Audio -->
   <audio
+    id="gate-sound"
+    response-type="arraybuffer"
+    src="./build/sounds/gate.mp3"
+    preload="auto"
+    volume="0.8"
+  ></audio>
+  <audio
     id="cmd-beep-asset"
     response-type="arraybuffer"
     src="./build/sounds/beep.mp3"
@@ -138,7 +145,8 @@
   <img id="loading-asset" src="./build/images/loader.png" />
   <img id="rendering-asset" src="./build/images/rendering.png" />
   <img id="sky-texture-asset" src="./build/images/background.jpg" />
-  <img id="ground-texture-asset" src="./build/images/floor.jpg" />
+  <img id="ground-texture-rock-asset" src="./build/images/floor-rock.jpg" />
+  <img id="ground-texture-grass-asset" src="./build/images/floor-grass.jpg" />
   <img id="fake-panel-asset" src="./build/images/fake-panel.jpg" />
   <img id="toilet-asset" src="./build/images/toilet.png" />
   <img id="trex-pannel-asset" src="./build/images/trex.png" />
@@ -151,6 +159,10 @@
   ></a-asset-item>
 
   <!-- Environment -->
+  <a-asset-item
+    id="spot-asset"
+    src="./build/models/environment/spot/spot.gltf"
+  ></a-asset-item>
   <a-asset-item
     id="barrier-asset"
     src="./build/models/environment/barrier/barrier.glb"

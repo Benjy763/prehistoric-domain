@@ -132,7 +132,7 @@ AFRAME.registerSystem('game', {
       if (car) {
         car.dispatchEvent(event);
       }
-    }, 30000);
+    }, 50000);
   },
   startListener: function () {
     // ----- Section for debug events -----

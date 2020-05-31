@@ -21,6 +21,13 @@ AFRAME.registerSystem('console', {
           y: [-15, -6, 6, 20, 33, 50, 61, 76, 88, 91],
         },
       },
+      gate: {
+        normalSituation: 'Brachiosaurus Paddock',
+        road: {
+          x: [241, 260, 277, 294, 304, 308, 315, 315, 307, 295],
+          y: [-15, -6, 6, 20, 33, 50, 61, 76, 88, 91],
+        },
+      },
     };
 
     // Sounds
