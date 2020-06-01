@@ -1,6 +1,7 @@
 AFRAME.registerSystem('game', {
   schema: {},
   init: function () {
+    this.displayDistance = 80;
     this.scenes = {
       loading: {
         scene: 'loading-scene',
@@ -19,7 +20,7 @@ AFRAME.registerSystem('game', {
     };
     this.carReference;
     this.firstScene = 'gate';
-    this.actuelScene = 'gate';
+    this.actuelScene = this.firstScene;
     this.tourStarted = false;
     this.console = document.querySelector('a-scene').systems['console'];
     this.loadingAssets();
@@ -70,7 +71,7 @@ AFRAME.registerSystem('game', {
     this.disableAllCameras();
     document
       .getElementById(this.scenes[this.firstScene].camera)
-      .setAttribute('camera', { far: 200, active: true });
+      .setAttribute('camera', { far: this.displayDistance, active: true });
 
     // Display scene
     document.getElementById('loading-scene').setAttribute('visible', 'false');
@@ -91,7 +92,7 @@ AFRAME.registerSystem('game', {
     this.disableAllCameras();
     document
       .getElementById(this.scenes[sceneId].camera)
-      .setAttribute('camera', { far: 200, active: true });
+      .setAttribute('camera', { far: this.displayDistance, active: true });
 
     // Register new scene
     this.actuelScene = sceneId;
