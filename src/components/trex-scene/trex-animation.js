@@ -109,7 +109,6 @@ AFRAME.registerComponent('trex-animation', {
     if (this.system.truncMarker(this.trexMarker) > 950) {
       return;
     }
-    this.system.log(this.trexMarker);
     if (!this.runPlaying) {
       this.runAudio.playSound();
       this.runPlaying = true;

@@ -164,6 +164,11 @@ AFRAME.registerSystem('game', {
         // Show console interface
         document.getElementById('console').style.display = 'block';
       }
+
+      // Other debug
+      if (e.keyCode == 55) {
+        this.carReference.carMarker = 0.5;
+      }
     });
   },
   // ----- Curve functions --------

@@ -6,6 +6,7 @@ AFRAME.registerComponent('gate-car-tour', {
     this.system = document.querySelector('a-scene').systems['game'];
     this.console = document.querySelector('a-scene').systems['console'];
     this.gate = document.querySelector('#gate');
+    this.brachio = document.querySelector('#brachio');
     this.gateSound = document.getElementById('gate-sound');
     this.carControls;
     //this.brachio = document.querySelector('#brachio');
@@ -70,7 +71,7 @@ AFRAME.registerComponent('gate-car-tour', {
         timeScale: 0,
       });
     }
-    if (this.system.truncMarker(this.carControls.carMarker) === 540) {
+    if (this.system.truncMarker(this.carControls.carMarker) === 560) {
       this.phase = 'stop';
     }
   },
@@ -80,7 +81,11 @@ AFRAME.registerComponent('gate-car-tour', {
       this.phase = 'stay';
     }
   },
-  stay: function () {},
+  stay: function () {
+    const event = new Event('enter');
+    // Trigger Brachio animation
+    this.brachio.dispatchEvent(event);
+  },
   restart: function () {
     this.carControls.changeDrivingState('starting');
     this.phase = 'finish';
