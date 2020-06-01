@@ -31,7 +31,6 @@ AFRAME.registerComponent('trex-car-tour', {
 
     // Init car (when reference is registered in the system) with tour data
     document.addEventListener('carRegistered', () => {
-      this.phase = 'start';
       // Get car reference
       this.carControls = this.system.carReference;
       // Init tour path for the car
@@ -42,6 +41,7 @@ AFRAME.registerComponent('trex-car-tour', {
     this.el.addEventListener(
       'start2',
       () => {
+        this.phase = 'start';
         // Update console statuses
         this.carControls.changeDrivingState('starting');
         this.console.updateSituation();

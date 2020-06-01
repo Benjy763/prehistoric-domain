@@ -12,7 +12,7 @@ AFRAME.registerComponent('gate-car-tour', {
     // Tour Path
     const curve = new THREE.SplineCurve([
       new THREE.Vector2(7.988, 81.899),
-      new THREE.Vector2(9, -104.474),
+      new THREE.Vector2(9.7, -174.7),
     ]);
 
     // Animation phase
@@ -27,7 +27,6 @@ AFRAME.registerComponent('gate-car-tour', {
 
     // Init car (when reference is registered in the system) with tour data
     document.addEventListener('carRegistered', () => {
-      this.phase = 'start';
       // Get car reference
       this.carControls = this.system.carReference;
       // Init tour path for the car
@@ -38,6 +37,7 @@ AFRAME.registerComponent('gate-car-tour', {
     this.el.addEventListener(
       'start',
       () => {
+        this.phase = 'start';
         // Update console statuses
         this.carControls.changeDrivingState('starting');
         this.console.updateSituation();
@@ -57,20 +57,20 @@ AFRAME.registerComponent('gate-car-tour', {
   },
   // --- Phase functions ---
   start: function () {
-    if (this.system.truncMarker(this.carControls.carMarker) === 360) {
+    if (this.system.truncMarker(this.carControls.carMarker) === 270) {
       this.gateSound.play();
       this.gate.setAttribute('animation-mixer', {
         clip: 'gate-*',
         timeScale: 0.8,
       });
     }
-    if (this.system.truncMarker(this.carControls.carMarker) === 395) {
+    if (this.system.truncMarker(this.carControls.carMarker) === 305) {
       this.gate.setAttribute('animation-mixer', {
         clip: 'gate-*',
         timeScale: 0,
       });
     }
-    if (this.system.truncMarker(this.carControls.carMarker) === 560) {
+    if (this.system.truncMarker(this.carControls.carMarker) === 540) {
       this.phase = 'stop';
     }
   },
