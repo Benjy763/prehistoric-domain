@@ -1,7 +1,7 @@
 AFRAME.registerSystem('game', {
   schema: {},
   init: function () {
-    this.displayDistance = 80;
+    this.displayDistance = 150;
     this.scenes = {
       loading: {
         scene: 'loading-scene',
@@ -31,7 +31,7 @@ AFRAME.registerSystem('game', {
   registerCar: function (car) {
     this.carReference = car;
     const event = new Event('carRegistered');
-    document.dispatchEvent(event);
+    car.el.dispatchEvent(event);
   },
   log: function (text) {
     document
@@ -96,6 +96,9 @@ AFRAME.registerSystem('game', {
 
     // Register new scene
     this.actuelScene = sceneId;
+
+    // Notify car reference to the new scene
+    this.registerCar(this.carReference);
 
     // Rendering scene
     this.renderingScene(sceneId);

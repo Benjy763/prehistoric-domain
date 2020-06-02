@@ -26,11 +26,8 @@ AFRAME.registerComponent('trex-car-tour', {
     this.soundMixing1Audio = document.getElementById('sound-mixing-1');
     this.leaveAudio = document.getElementById('leave');
 
-    // Register current tour in system
-    this.console.registerCurrentTour(this);
-
     // Init car (when reference is registered in the system) with tour data
-    document.addEventListener('carRegistered', () => {
+    this.el.addEventListener('carRegistered', () => {
       // Get car reference
       this.carControls = this.system.carReference;
       // Init tour path for the car
@@ -39,9 +36,11 @@ AFRAME.registerComponent('trex-car-tour', {
 
     // Start tour listeners
     this.el.addEventListener(
-      'start2',
+      'start',
       () => {
         this.phase = 'start';
+        // Register current tour in system
+        this.console.registerCurrentTour(this);
         // Update console statuses
         this.carControls.changeDrivingState('starting');
         this.console.updateSituation();

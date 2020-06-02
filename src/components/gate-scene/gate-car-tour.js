@@ -23,11 +23,8 @@ AFRAME.registerComponent('gate-car-tour', {
     this.soundMixing1SoundPlaying = false;
     this.soundMixing1Audio = document.getElementById('sound-mixing-1');
 
-    // Register current tour in system
-    this.console.registerCurrentTour(this);
-
     // Init car (when reference is registered in the system) with tour data
-    document.addEventListener('carRegistered', () => {
+    this.el.addEventListener('carRegistered', () => {
       // Get car reference
       this.carControls = this.system.carReference;
       // Init tour path for the car
@@ -38,6 +35,8 @@ AFRAME.registerComponent('gate-car-tour', {
     this.el.addEventListener(
       'start',
       () => {
+        // Register current tour in system
+        this.console.registerCurrentTour(this);
         this.phase = 'start';
         // Update console statuses
         this.carControls.changeDrivingState('starting');
@@ -102,7 +101,6 @@ AFRAME.registerComponent('gate-car-tour', {
     }
   },
   tick: function () {
-    this.system.log(this.carControls.carMarker);
     // Animation phases
     switch (this.phase) {
       case 'start':
