@@ -14,14 +14,24 @@ AFRAME.registerComponent('brachio-animation', {
       new THREE.Vector2(86.72, -75.678),
     ]);
 
+    // Sound
+    this.footStepAudio;
+    this.footRoarAudio;
+
     // Start tour listener
     this.el.addEventListener(
       'enter',
       () => {
+        this.footStepAudio = this.el.components['sound__foot'];
+        this.footRoarAudio = this.el.components['sound__roar'];
         this.el.setAttribute(
           'animation-mixer',
           'clip: brachiosaurus_scetchfab'
         );
+        setTimeout(() => {
+          this.footStepAudio.playSound();
+          this.footRoarAudio.playSound();
+        }, 3200);
         this.phase = 'enter';
       },
       false

@@ -135,6 +135,7 @@ AFRAME.registerComponent('trex-animation', {
   },
   // --- Phase functions ---
   enter: function () {
+    // Todo move sounds here
     this.footStep1Audio = this.el.components['sound__foot1'];
     this.footStep2Audio = this.el.components['sound__foot2'];
     this.bendDownAudio = this.el.components['sound__benddown'];
