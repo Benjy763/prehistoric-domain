@@ -26,6 +26,7 @@
 }
 
 #put-headset {
+  margin: 10px 0;
   display: none;
   font-family: 'Tribeca', Verdana, Tahoma;
   font-size: 22px;

@@ -31,14 +31,14 @@
   <a-entity
     id="rig"
     movement-controls
-    position="-0.38 1.0 0.50"
+    position="-0.38 1 0.50"
     rotation="0 90 0"
   >
     <a-entity id="hands">
       <a-entity id="gate-scene-camera" camera position="0 1.6 0" look-controls>
         <a-entity
           id="log"
-          text="value: HELLO; color: red; width: 0.5"
+          text="value: ; color: red; width: 0.5"
           position="0.8 0.3 -0.40"
         ></a-entity>
       </a-entity>
@@ -49,7 +49,7 @@
         hand-controls="hand: left; handModelStyle: highPoly; color: #ffcccc"
       ></a-entity>
       <a-entity
-        fps-counter="enabled: true; for90fps: false"
+        fps-counter="enabled: false; for90fps: false"
         id="rightHand"
         rotation="10 0 0"
         sphere-collider="objects: a-box"

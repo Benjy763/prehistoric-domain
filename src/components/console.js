@@ -2,7 +2,6 @@ var $ = require('jquery');
 AFRAME.registerSystem('console', {
   init: function () {
     const self = this;
-
     // Tour reference
     this.tour;
     // Vehicule position
