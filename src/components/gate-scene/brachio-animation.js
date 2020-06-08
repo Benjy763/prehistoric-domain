@@ -4,7 +4,7 @@ AFRAME.registerComponent('brachio-animation', {
     // Objects shortcut
     this.object = this.el.object3D;
     this.system = document.querySelector('a-scene').systems['game'];
-    this.car = document.querySelector('#trex-car');
+    this.car = document.querySelector('#gate-car');
     this.phase = '';
     // trex run Path
     this.brachioMarker = 0; // Position on the curve
@@ -39,6 +39,14 @@ AFRAME.registerComponent('brachio-animation', {
   },
   // --- Phase functions ---
   enter: function () {
+    if (this.system.truncMarker(this.brachioMarker) > 700) {
+      this.footStepAudio.stopSound();
+      this.footRoarAudio.stopSound();
+      const event = new Event('restart');
+      this.car.dispatchEvent(event);
+      this.phase = 'exit';
+      return;
+    }
     this.brachioMarker += this.brachioSpeed;
     this.object.position.copy(
       this.system.convertPosition(

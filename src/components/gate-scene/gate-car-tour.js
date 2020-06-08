@@ -90,20 +90,20 @@ AFRAME.registerComponent('gate-car-tour', {
   },
   stop: function () {
     this.carControls.changeDrivingState('stopping');
-    if (this.carControls.carSpeed <= 0) {
-      this.phase = 'stay';
-    }
+    this.phase = 'stay';
   },
   stay: function () {
     const event = new Event('enter');
     // Trigger Brachio animation
     this.brachio.dispatchEvent(event);
+    this.phase = 'animation';
   },
   restart: function () {
     this.carControls.changeDrivingState('starting');
     this.phase = 'finish';
   },
   finish: function () {
+    this.system.log(this.carControls.maxDistance);
     if (
       this.system.truncMarker(this.carControls.carMarker) >
       this.carControls.maxDistance
@@ -134,9 +134,10 @@ AFRAME.registerComponent('gate-car-tour', {
         break;
       case 'changeScene':
         if (!this.sceneChanged) {
+          console.log('test');
           // Destroy and detach all unecessary objets
           // Change scene
-          this.system.changeScene('gate');
+          //this.system.changeScene('dilo');
           this.sceneChanged = true;
         }
         break;
