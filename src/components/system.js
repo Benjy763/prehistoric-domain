@@ -11,15 +11,23 @@ AFRAME.registerSystem('game', {
         scene: 'trex-scene',
         camera: 'trex-scene-camera',
         car: 'trex-car',
+        carReference: null,
       },
       gate: {
         scene: 'gate-scene',
         camera: 'gate-scene-camera',
         car: 'gate-car',
+        carReference: null,
+      },
+      dilo: {
+        scene: 'dilo-scene',
+        camera: 'dilo-scene-camera',
+        car: 'dilo-car',
+        carReference: null,
       },
     };
     this.carReference;
-    this.firstScene = 'gate';
+    this.firstScene = 'dilo';
     this.actuelScene = this.firstScene;
     this.tourStarted = false;
     this.console = document.querySelector('a-scene').systems['console'];
@@ -29,7 +37,21 @@ AFRAME.registerSystem('game', {
     this.startListener();
   },
   registerCar: function (car) {
+    // Save all car references at start
+    Object.keys(this.scenes).forEach((scene) => {
+      if (this.scenes[scene].car === car.el.id) {
+        this.scenes[scene].carReference = car;
+      }
+    });
+
+    // Send reference to the actual scene
+    if (car.el.id !== this.scenes[this.actuelScene].car) {
+      return;
+    }
     this.carReference = car;
+    this.sendCarReference(car);
+  },
+  sendCarReference(car) {
     const event = new Event('carRegistered');
     car.el.dispatchEvent(event);
   },
@@ -98,7 +120,8 @@ AFRAME.registerSystem('game', {
     this.actuelScene = sceneId;
 
     // Notify car reference to the new scene
-    this.registerCar(this.carReference);
+    this.carReference = this.scenes[this.actuelScene].carReference;
+    this.sendCarReference(this.carReference);
 
     // Rendering scene
     this.renderingScene(sceneId);
