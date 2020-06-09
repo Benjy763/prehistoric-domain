@@ -128,10 +128,10 @@ AFRAME.registerSystem('game', {
     // Select car to launch event
     const car = document.getElementById(this.scenes[sceneId].car);
 
-    // Lauch the scene after the rendering time
-    document.getElementById('rendering').setAttribute('visible', 'true');
+    // Launch the scene after the rendering time
+    car.querySelector('#rendering').setAttribute('visible', 'true');
     setTimeout(() => {
-      document.getElementById('rendering').setAttribute('visible', 'false');
+      car.querySelector('#rendering').setAttribute('visible', 'false');
       const event = new Event('start');
       if (car) {
         car.dispatchEvent(event);
@@ -170,7 +170,7 @@ AFRAME.registerSystem('game', {
 
       // Other debug
       if (e.keyCode == 55) {
-        this.carReference.carMarker = 0.5;
+        this.carReference.carMarker = 0.65;
       }
     });
   },
