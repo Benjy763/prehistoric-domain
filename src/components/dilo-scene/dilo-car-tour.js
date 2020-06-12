@@ -13,6 +13,10 @@ AFRAME.registerComponent('dilo-car-tour', {
       new THREE.Vector2(9.7, -174.7),
     ]);
 
+    // Sounds
+    this.diloRoarPlaying = false;
+    this.diloRoar = document.querySelector('#palms-10-sound');
+
     // Animation phase
     this.sceneChanged = false;
 
@@ -54,6 +58,13 @@ AFRAME.registerComponent('dilo-car-tour', {
   },
   // --- Phase functions ---
   start: function () {
+    if (
+      this.system.truncMarker(this.carControls.carMarker) === 250 &&
+      !this.diloRoarPlaying
+    ) {
+      this.diloRoarPlaying = true;
+      this.diloRoar.components['sound__diloroar'].playSound();
+    }
     if (this.system.truncMarker(this.carControls.carMarker) === 560) {
       this.phase = 'stop';
     }
