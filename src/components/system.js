@@ -27,7 +27,7 @@ AFRAME.registerSystem('game', {
       },
     };
     this.carReference;
-    this.firstScene = 'dilo';
+    this.firstScene = 'trex';
     this.actuelScene = this.firstScene;
     this.tourStarted = false;
     this.console = document.querySelector('a-scene').systems['console'];
