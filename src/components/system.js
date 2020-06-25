@@ -85,6 +85,7 @@ AFRAME.registerSystem('game', {
       this.tourStarted = true;
     };
   },
+  // Only for the first time
   displayScene: function () {
     // Hide vr button and loading static screen
     document.querySelector('#enter-vr').style.display = 'none';
@@ -101,6 +102,7 @@ AFRAME.registerSystem('game', {
       .getElementById(this.scenes[this.firstScene].scene)
       .setAttribute('visible', 'true');
   },
+  // Each time we change scene
   changeScene: function (sceneId) {
     // change scene
     document
@@ -193,7 +195,7 @@ AFRAME.registerSystem('game', {
 
       // Other debug
       if (e.keyCode == 55) {
-        this.carReference.carMarker = 0.65;
+        this.carReference.carMarker = 0.55;
       }
     });
   },

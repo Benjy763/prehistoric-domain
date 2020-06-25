@@ -5,20 +5,19 @@ AFRAME.registerComponent('trex-animation', {
     this.object = this.el.object3D;
     this.system = document.querySelector('a-scene').systems['game'];
     this.car = document.querySelector('#trex-car');
-    this.rotationDirection = 0.2;
-    this.rotationoffset = 10;
+    this.goat = document.querySelector('#goat');
+    this.goatPosition;
+    this.goatTimeScale = 1;
     this.phase = '';
-    this.maxPosition = -25;
     this.carRestarted = false;
     // trex run Path
     this.trexMarker = 0; // Position on the curve
-    this.trexSpeed = 0.0018; // Speed on the curve
+    this.trexSpeed = 0.00066; // Speed on the curve
     this.curve = new THREE.SplineCurve([
-      new THREE.Vector2(-25.0, -25.0),
-      new THREE.Vector2(-20.701, -37.468),
-      new THREE.Vector2(-11.955, -60.332),
-      new THREE.Vector2(-5.629, -83.393),
-      new THREE.Vector2(22.302, -161.748),
+      new THREE.Vector2(-21.597, 33.611),
+      new THREE.Vector2(-21.192, -4.914),
+      new THREE.Vector2(-26.191, -20.251),
+      new THREE.Vector2(-45.484, -55.992),
     ]);
 
     // Car shaking
@@ -29,32 +28,43 @@ AFRAME.registerComponent('trex-animation', {
     this.carRotation = this.carRotationValue;
 
     // Sound
-    this.footStep1Playing = false;
-    this.bendDownSoundPlaying = false;
-    this.bendUpSoundPlaying = false;
-    this.snoringSoundPlaying = false;
-    this.roarSoundPlaying = false;
-    this.longSnoringPlaying = false;
-    this.turnPlaying = false;
-    this.runPlaying = false;
-    this.footStep1Audio;
-    this.footStep2Audio;
-    this.bendDownAudio;
-    this.snoringAudio;
-    this.bendUpAudio;
-    this.roarAudio;
-    this.longSnoringAudio;
-    this.turnAudio;
-    this.runAudio;
+    this.soundMixing1SoundPlaying = false;
+    this.soundMixing1Audio = document.getElementById('sound-mixing-1');
+    this.goatRoarAudio;
+    this.goatElevatorAudio;
 
     // Start tour listener
     this.el.addEventListener(
       'enter',
       () => {
-        this.phase = 'enter';
+        // Load sounds
+        this.goatRoarAudio = this.goat.components['sound__goatroar'];
+        this.goatElevatorAudio = this.goat.components['sound__goatelevator'];
+
+        // Launch goat animation
+        setTimeout(() => {
+          this.goatAnimation();
+          this.phase = 'enter';
+        }, 5000);
       },
       false
     );
+  },
+  goatAnimation: function () {
+    this.goat.setAttribute('animation-mixer', {
+      clip: 'Take 001',
+    });
+    setInterval(() => {
+      this.goatTimeScale = -this.goatTimeScale;
+      this.goat.setAttribute('animation-mixer', {
+        clip: 'Take 001',
+        timeScale: this.goatTimeScale,
+      });
+    }, 6000);
+    this.goatElevatorAudio.playSound();
+    setInterval(() => {
+      this.goatRoarAudio.playSound();
+    }, 20000);
   },
   shaking: function () {
     const rotation = this.car.getAttribute('rotation');
@@ -73,46 +83,36 @@ AFRAME.registerComponent('trex-animation', {
     rotation.z += this.carRotation;
     this.car.setAttribute('rotation', rotation);
   },
-  // Temp fix for firefox simultaneous warning
-  stopSounds: function () {
-    this.el.addEventListener('sound-ended', (e) => {
-      if (e.detail.id === 'foot-step-1') {
-        this.footStep1Audio.stopSound();
-      }
-      if (e.detail.id === 'foot-step-2') {
-        this.footStep2Audio.stopSound();
-      }
-      if (e.detail.id === 'benddown') {
-        this.bendDownAudio.stopSound();
-      }
-      if (e.detail.id === 'snoring') {
-        this.snoringAudio.stopSound();
-      }
-      if (e.detail.id === 'bendup') {
-        this.bendUpAudio.stopSound();
-      }
-      if (e.detail.id === 'roar') {
-        this.roarAudio.stopSound();
-      }
-      if (e.detail.id === 'long-snoring') {
-        this.longSnoringAudio.stopSound();
-      }
-      if (e.detail.id === 'turn') {
-        this.turnAudio.stopSound();
-      }
-      if (e.detail.id === 'run') {
-        this.runAudio.stopSound();
-      }
-    });
+  enter: function () {
+    this.goatPosition = this.goat.getAttribute('position');
+    this.goatPosition.y += 0.02;
+    this.goat.setAttribute('position', this.goatPosition);
+    if (this.goat.getAttribute('position').y > 0.6) {
+      this.el.setAttribute('visible', 'true');
+      this.phase = 'goatWait';
+    }
   },
-  run: function () {
-    if (this.system.truncMarker(this.trexMarker) > 950) {
+  goatWait: function () {
+    this.phase = 'trexEnter';
+    setTimeout(() => {
+      if (!this.soundMixing1SoundPlaying) {
+        this.soundMixing1Audio.play();
+        this.soundMixing1SoundPlaying = true;
+      }
+      this.soundMixing1Audio.onended = () => {
+        this.phase = 'trexEnter';
+      };
+    }, 5000);
+  },
+  trexEnter: function () {
+    if (this.system.truncMarker(this.trexMarker) > 390) {
+      this.phase = 'trexRoar';
       return;
     }
-    if (!this.runPlaying) {
-      this.runAudio.playSound();
-      this.runPlaying = true;
-    }
+    // if (!this.walkPlaying) {
+    //   this.walkAudio.playSound();
+    //   this.walkPlaying = true;
+    // }
     this.trexMarker += this.trexSpeed;
     this.object.position.copy(
       this.system.convertPosition(
@@ -122,6 +122,12 @@ AFRAME.registerComponent('trex-animation', {
     );
 
     this.updateRotation();
+  },
+  trexRoar: function () {
+    this.el.setAttribute('animation-mixer', {
+      clip: 'Rex_Action',
+    });
+    this.phase = 'trexLeave';
   },
   updateRotation: function () {
     const newPosition = this.system.convertPosition(
@@ -133,148 +139,6 @@ AFRAME.registerComponent('trex-animation', {
     const rotation = this.el.getAttribute('rotation');
     this.el.setAttribute('rotation', rotation);
   },
-  // --- Phase functions ---
-  enter: function () {
-    // Todo move sounds here
-    this.footStep1Audio = this.el.components['sound__foot1'];
-    this.footStep2Audio = this.el.components['sound__foot2'];
-    this.bendDownAudio = this.el.components['sound__benddown'];
-    this.snoringAudio = this.el.components['sound__snoring'];
-    this.bendUpAudio = this.el.components['sound__bendup'];
-    this.roarAudio = this.el.components['sound__roar'];
-    this.longSnoringAudio = this.el.components['sound__longsnoring'];
-    this.turnAudio = this.el.components['sound__turn'];
-    this.runAudio = this.el.components['sound__run'];
-    // Stop sounds when end playing
-    this.stopSounds();
-
-    // foot movements
-    if (this.object.position.x < this.maxPosition) {
-      this.object.position.x += 0.06;
-    }
-
-    // ----- Head movements -----
-    if (this.rotationoffset > 0) {
-      this.rotationoffset -= 0.8;
-    }
-    if (this.object.position.x < this.maxPosition && this.rotationoffset <= 0) {
-      const rotation = this.el.getAttribute('rotation');
-
-      // Head up
-      if (rotation.x > 5) {
-        this.rotationDirection = -0.15;
-      }
-      // Head down
-      // Foot on the ground
-      if (rotation.x < 0) {
-        this.isShaking = true;
-        // Left foot step on ground
-        if (!this.footStep1Playing) {
-          this.footStep1Audio.playSound();
-          this.footStep1Playing = true;
-        } else {
-          // Right foot step on ground
-          this.footStep2Audio.playSound();
-          this.footStep1Playing = false;
-        }
-        this.rotationDirection = 0.15;
-        this.rotationoffset = 10;
-      }
-
-      rotation.x += this.rotationDirection;
-      this.el.setAttribute('rotation', rotation);
-    }
-
-    // Next Animation
-    if (this.object.position.x >= this.maxPosition) {
-      this.phase = 'bendDown';
-    }
-  },
-  bendDown: function () {
-    if (!this.bendDownSoundPlaying) {
-      this.bendDownAudio.playSound();
-      this.bendDownSoundPlaying = true;
-    }
-    const rotation = this.el.getAttribute('rotation');
-    this.rotationDirection = 0.15;
-    if (rotation.x < 17) {
-      rotation.x += this.rotationDirection;
-      this.el.setAttribute('rotation', rotation);
-    } else {
-      // Next Animation
-      this.phase = 'snoring';
-    }
-  },
-  snoring: function () {
-    if (!this.snoringSoundPlaying) {
-      this.snoringAudio.playSound();
-      this.snoringSoundPlaying = true;
-    }
-    this.el.addEventListener('sound-ended', (e) => {
-      if (e.detail.id === 'snoring') {
-        this.phase = 'bendUp';
-      }
-    });
-  },
-  bendUp: function () {
-    if (!this.bendUpSoundPlaying) {
-      this.bendUpAudio.playSound();
-      this.bendUpSoundPlaying = true;
-    }
-    const rotation = this.el.getAttribute('rotation');
-    if (rotation.x > 0) {
-      rotation.x -= this.rotationDirection;
-      this.el.setAttribute('rotation', rotation);
-    } else {
-      // Next Animation
-      this.phase = 'roar';
-    }
-  },
-  roar: function () {
-    this.el.setAttribute('animation-mixer', 'clip: roar');
-    if (!this.roarSoundPlaying) {
-      this.roarAudio.playSound();
-      this.snoringSoundPlaying = true;
-    }
-    this.el.addEventListener('sound-ended', (e) => {
-      if (e.detail.id === 'roar') {
-        this.el.setAttribute('animation-mixer', 'clip: idle');
-        this.phase = 'leave';
-      }
-    });
-  },
-  leave: function () {
-    if (!this.carRestarted) {
-      if (!this.longSnoringPlaying) {
-        this.longSnoringAudio.playSound();
-        this.longSnoringPlaying = true;
-      }
-      const event = new Event('restart');
-      this.car.dispatchEvent(event);
-      this.carRestarted = true;
-      setTimeout(() => {
-        this.phase = 'turnAround';
-      }, 25000);
-    }
-  },
-  turnAround: function () {
-    if (!this.turnPlaying) {
-      this.turnAudio.playSound();
-      this.turnPlaying = true;
-    }
-    const rotation = this.el.getAttribute('rotation');
-    rotation.y += 0.4;
-    this.el.setAttribute('rotation', rotation);
-    if (rotation.y > 160) {
-      rotation.y = 160;
-      this.el.setAttribute('rotation', rotation);
-      this.object.position.y = -0.8;
-      // Start run animation
-      this.el.setAttribute('animation-mixer', 'clip: run');
-      // Start run sound
-      this.phase = 'run';
-    }
-  },
   tock: function () {
     if (this.isShaking) {
       this.shaking();
@@ -285,26 +149,14 @@ AFRAME.registerComponent('trex-animation', {
       case 'enter':
         this.enter();
         break;
-      case 'bendDown':
-        this.bendDown();
+      case 'goatWait':
+        this.goatWait();
         break;
-      case 'snoring':
-        this.snoring();
+      case 'trexEnter':
+        this.trexEnter();
         break;
-      case 'bendUp':
-        this.bendUp();
-        break;
-      case 'roar':
-        this.roar();
-        break;
-      case 'leave':
-        this.leave();
-        break;
-      case 'turnAround':
-        this.turnAround();
-        break;
-      case 'run':
-        this.run();
+      case 'trexRoar':
+        this.trexRoar();
         break;
     }
   },

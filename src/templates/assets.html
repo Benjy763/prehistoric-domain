@@ -3,35 +3,35 @@
   <audio
     id="gate-sound"
     response-type="arraybuffer"
-    src="./build/sounds/gate.mp3"
+    src="./build/sounds/gate/gate.mp3"
     preload="auto"
     volume="0.8"
   ></audio>
   <audio
     id="gate-close-sound"
     response-type="arraybuffer"
-    src="./build/sounds/gate-close.mp3"
+    src="./build/sounds/gate/gate-close.mp3"
     preload="auto"
     volume="0.6"
   ></audio>
   <audio
     id="cmd-beep-asset"
     response-type="arraybuffer"
-    src="./build/sounds/beep.mp3"
+    src="./build/sounds/environement/beep.mp3"
     preload="auto"
     volume="1"
   ></audio>
   <audio
     id="cmd-error-asset"
     response-type="arraybuffer"
-    src="./build/sounds/error.mp3"
+    src="./build/sounds/environement/error.mp3"
     preload="auto"
     volume="1"
   ></audio>
   <audio
     id="jungle-asset"
     response-type="arraybuffer"
-    src="./build/sounds/jungle.mp3"
+    src="./build/sounds/environement/jungle.mp3"
     preload="auto"
     loop="true"
     volume="0.8"
@@ -40,7 +40,7 @@
     id="car-drive-asset"
     response-type="arraybuffer"
     crossorigin="anonymous"
-    src="./build/sounds/car-drive.mp3"
+    src="./build/sounds/car/car-drive.mp3"
     preload="auto"
     loop="true"
     volume="1"
@@ -49,7 +49,7 @@
     id="car-stop-asset"
     response-type="arraybuffer"
     crossorigin="anonymous"
-    src="./build/sounds/car-stop.mp3"
+    src="./build/sounds/car/car-stop.mp3"
     preload="auto"
     volume="1"
   ></audio>
@@ -57,116 +57,52 @@
     id="sound-mixing-1"
     response-type="arraybuffer"
     crossorigin="anonymous"
-    src="./build/sounds/sound-mixing-1.mp3"
+    src="./build/sounds/trex/sound-mixing-1.mp3"
     preload="auto"
     volume="0.7"
-  ></audio>
-  <audio
-    id="sound-mixing-2"
-    response-type="arraybuffer"
-    crossorigin="anonymous"
-    src="./build/sounds/sound-mixing-2.mp3"
-    preload="auto"
-    volume="1"
   ></audio>
   <audio
     id="leave"
     response-type="arraybuffer"
     crossorigin="anonymous"
-    src="./build/sounds/leave.mp3"
+    src="./build/sounds/trex/leave.mp3"
     preload="auto"
     volume="0.5"
   ></audio>
   <a-asset-item
     id="brachio-step"
-    src="./build/sounds/brachio-step.mp3"
+    src="./build/sounds/brachio/brachio-step.mp3"
     preload="auto"
     response-type="arraybuffer"
     crossorigin="anonymous"
   ></a-asset-item>
   <a-asset-item
     id="brachio-roar"
-    src="./build/sounds/brachio-roar.mp3"
+    src="./build/sounds/brachio/brachio-roar.mp3"
     preload="auto"
     response-type="arraybuffer"
     crossorigin="anonymous"
   ></a-asset-item>
   <a-asset-item
     id="dilo-roar"
-    src="./build/sounds/dilo-roar.mp3"
+    src="./build/sounds/dilo/dilo-roar.mp3"
     preload="auto"
     response-type="arraybuffer"
     crossorigin="anonymous"
   ></a-asset-item>
   <a-asset-item
-    id="foot-step-1"
-    src="./build/sounds/foot-step-1.mp3"
+    id="goat-roar"
+    src="./build/sounds/goat/goat.mp3"
     preload="auto"
     response-type="arraybuffer"
     crossorigin="anonymous"
   ></a-asset-item>
   <a-asset-item
-    id="roar"
-    response-type="arraybuffer"
-    crossorigin="anonymous"
-    src="./build/sounds/roar.mp3"
-    preload="auto"
-    volume="1"
-  ></a-asset-item>
-  <a-asset-item
-    id="foot-step-2"
-    src="./build/sounds/foot-step-2.mp3"
+    id="goat-elevator"
+    src="./build/sounds/goat/elevator.mp3"
     preload="auto"
     response-type="arraybuffer"
     crossorigin="anonymous"
-  ></a-asset-item>
-  <a-asset-item
-    id="benddown"
-    response-type="arraybuffer"
-    crossorigin="anonymous"
-    src="./build/sounds/benddown.mp3"
-    preload="auto"
-    volume="1"
-  ></a-asset-item>
-  <a-asset-item
-    id="bendup"
-    response-type="arraybuffer"
-    crossorigin="anonymous"
-    src="./build/sounds/bendup.mp3"
-    preload="auto"
-    volume="1"
-  ></a-asset-item>
-  <a-asset-item
-    id="snoring"
-    response-type="arraybuffer"
-    crossorigin="anonymous"
-    src="./build/sounds/snoring.mp3"
-    preload="auto"
-    volume="1"
-  ></a-asset-item>
-  <a-asset-item
-    id="long-snoring"
-    response-type="arraybuffer"
-    crossorigin="anonymous"
-    src="./build/sounds/long-snoring.mp3"
-    preload="auto"
-    volume="1"
-  ></a-asset-item>
-  <a-asset-item
-    id="turn"
-    response-type="arraybuffer"
-    crossorigin="anonymous"
-    src="./build/sounds/turn.mp3"
-    preload="auto"
-    volume="1"
-  ></a-asset-item>
-  <a-asset-item
-    id="run"
-    response-type="arraybuffer"
-    crossorigin="anonymous"
-    src="./build/sounds/run.mp3"
-    preload="auto"
-    volume="1"
   ></a-asset-item>
 
   <!-- Images -->
@@ -243,8 +179,12 @@
 
   <!-- Dinosaurs -->
   <a-asset-item
+    id="goat-asset"
+    src="./build/models/dinosaurs/goat/scene.gltf"
+  ></a-asset-item>
+  <a-asset-item
     id="trex-asset"
-    src="./build/models/dinosaurs/trex/trex.gltf"
+    src="./build/models/dinosaurs/trex/trex.glb"
   ></a-asset-item>
   <a-asset-item
     id="brachio-asset"

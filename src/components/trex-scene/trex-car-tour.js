@@ -71,23 +71,9 @@ AFRAME.registerComponent('trex-car-tour', {
     }
   },
   stay: function () {
-    // if (!this.soundMixing1SoundPlaying) {
-    //   const event = new Event('enter');
-    //   self.trex.dispatchEvent(event);
-    //   this.soundMixing1SoundPlaying = true;
-    // }
-
-    setTimeout(() => {
-      if (!this.soundMixing1SoundPlaying) {
-        this.soundMixing1Audio.play();
-        this.soundMixing1SoundPlaying = true;
-      }
-      this.soundMixing1Audio.onended = () => {
-        const event = new Event('enter');
-        // Trigger TRex animation
-        this.trex.dispatchEvent(event);
-      };
-    }, 8000);
+    const event = new Event('enter');
+    self.trex.dispatchEvent(event);
+    this.phase = 'trex';
   },
   restart: function () {
     this.carControls.changeDrivingState('starting');
