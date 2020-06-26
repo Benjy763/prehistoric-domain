@@ -8,8 +8,8 @@ AFRAME.registerComponent('raptor-car-tour', {
     this.carControls;
     // Tour Path
     const curve = new THREE.SplineCurve([
-      new THREE.Vector2(7.988, 81.899),
-      new THREE.Vector2(9.7, -174.7),
+      new THREE.Vector2(4.535, 81.899),
+      new THREE.Vector2(4.535, -174.7),
     ]);
 
     // Sounds
@@ -50,7 +50,7 @@ AFRAME.registerComponent('raptor-car-tour', {
   },
   // --- Phase functions ---
   start: function () {
-    if (this.system.truncMarker(this.carControls.carMarker) === 560) {
+    if (this.system.truncMarker(this.carControls.carMarker) === 340) {
       this.carControls.changeDrivingState('stopping');
       this.phase = 'stop';
     }

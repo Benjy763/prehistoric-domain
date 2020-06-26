@@ -201,7 +201,7 @@ AFRAME.registerSystem('game', {
 
       // Other debug
       if (e.keyCode == 55) {
-        this.carReference.carMarker = 0.52;
+        this.carReference.carMarker = 0.32;
       }
     });
   },
