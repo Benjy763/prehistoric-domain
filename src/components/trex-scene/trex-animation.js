@@ -12,12 +12,11 @@ AFRAME.registerComponent('trex-animation', {
     this.carRestarted = false;
     // trex run Path
     this.trexMarker = 0; // Position on the curve
-    this.trexSpeed = 0.00066; // Speed on the curve
+    this.trexSpeed = 0.00078; // Speed on the curve
     this.curve = new THREE.SplineCurve([
-      new THREE.Vector2(-21.597, 33.611),
-      new THREE.Vector2(-21.192, -4.914),
-      new THREE.Vector2(-26.191, -20.251),
-      new THREE.Vector2(-45.484, -55.992),
+      new THREE.Vector2(-22, 60.677),
+      new THREE.Vector2(-21.5, -4.914),
+      new THREE.Vector2(-29.702, -65.513),
     ]);
 
     // Car shaking
@@ -105,7 +104,7 @@ AFRAME.registerComponent('trex-animation', {
     }, 5000);
   },
   trexEnter: function () {
-    if (this.system.truncMarker(this.trexMarker) > 390) {
+    if (this.system.truncMarker(this.trexMarker) > 510) {
       this.phase = 'trexRoar';
       return;
     }
@@ -120,14 +119,38 @@ AFRAME.registerComponent('trex-animation', {
         this.object.position.y
       )
     );
-
     this.updateRotation();
   },
   trexRoar: function () {
     this.el.setAttribute('animation-mixer', {
-      clip: 'Rex_Action',
+      clip: 'Rex_Action_002',
     });
-    this.phase = 'trexLeave';
+    setTimeout(() => {
+      this.phase = 'trexLeave';
+    }, 6500);
+    this.phase = 'pause';
+  },
+  trexLeave: function () {
+    this.el.setAttribute('animation-mixer', {
+      clip: 'Rex_Walk',
+    });
+    if (this.system.truncMarker(this.trexMarker) > 950) {
+      this.el.setAttribute('visible', 'false');
+      this.phase = 'trexFinish';
+      return;
+    }
+    // if (!this.walkPlaying) {
+    //   this.walkAudio.playSound();
+    //   this.walkPlaying = true;
+    // }
+    this.trexMarker += this.trexSpeed;
+    this.object.position.copy(
+      this.system.convertPosition(
+        this.curve.getPointAt(this.trexMarker),
+        this.object.position.y
+      )
+    );
+    this.updateRotation();
   },
   updateRotation: function () {
     const newPosition = this.system.convertPosition(
@@ -157,6 +180,9 @@ AFRAME.registerComponent('trex-animation', {
         break;
       case 'trexRoar':
         this.trexRoar();
+        break;
+      case 'trexLeave':
+        this.trexLeave();
         break;
     }
   },

@@ -60,7 +60,7 @@ AFRAME.registerComponent('trex-car-tour', {
   },
   // --- Phase functions ---
   start: function () {
-    if (this.system.truncMarker(this.carControls.carMarker) === 560) {
+    if (this.system.truncMarker(this.carControls.carMarker) === 540) {
       this.phase = 'stop';
     }
   },
