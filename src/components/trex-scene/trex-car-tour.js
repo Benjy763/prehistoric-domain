@@ -72,7 +72,7 @@ AFRAME.registerComponent('trex-car-tour', {
   },
   stay: function () {
     const event = new Event('enter');
-    self.trex.dispatchEvent(event);
+    this.trex.dispatchEvent(event);
     this.phase = 'trex';
   },
   restart: function () {
