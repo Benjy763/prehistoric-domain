@@ -81,14 +81,6 @@ AFRAME.registerComponent('trex-car-tour', {
   },
   finish: function () {
     if (
-      this.system.truncMarker(this.carControls.carMarker) === 800 &&
-      !this.leaveSoundPlaying
-    ) {
-      this.leaveAudio.play();
-      this.leaveSoundPlaying = true;
-    }
-
-    if (
       this.system.truncMarker(this.carControls.carMarker) >
       this.carControls.maxDistance
     ) {

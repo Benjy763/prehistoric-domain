@@ -12,7 +12,7 @@ AFRAME.registerComponent('trex-animation', {
     this.carRestarted = false;
     // trex run Path
     this.trexMarker = 0; // Position on the curve
-    this.trexSpeed = 0.00078; // Speed on the curve
+    this.trexSpeed = 0.001; // Speed on the curve
     this.curve = new THREE.SplineCurve([
       new THREE.Vector2(-22, 60.677),
       new THREE.Vector2(-21.5, -4.914),
@@ -31,6 +31,11 @@ AFRAME.registerComponent('trex-animation', {
     this.soundMixing1Audio = document.getElementById('sound-mixing-1');
     this.goatRoarAudio;
     this.goatElevatorAudio;
+    this.trexRoarAudio;
+    this.trexFootStepAudioPlaying = false;
+    this.trexFootStepAudio;
+    this.trexLeaveAudioPlaying = false;
+    this.trexLeaveAudio;
 
     // Start tour listener
     this.el.addEventListener(
@@ -39,6 +44,9 @@ AFRAME.registerComponent('trex-animation', {
         // Load sounds
         this.goatRoarAudio = this.goat.components['sound__goatroar'];
         this.goatElevatorAudio = this.goat.components['sound__goatelevator'];
+        this.trexRoarAudio = this.el.components['sound__trexroar'];
+        this.trexFootStepAudio = this.el.components['sound__trexfootstep'];
+        this.trexLeaveAudio = this.el.components['sound__trexleave'];
 
         // Launch goat animation
         setTimeout(() => {
@@ -92,7 +100,6 @@ AFRAME.registerComponent('trex-animation', {
     }
   },
   goatWait: function () {
-    this.phase = 'trexEnter';
     setTimeout(() => {
       if (!this.soundMixing1SoundPlaying) {
         this.soundMixing1Audio.play();
@@ -105,13 +112,20 @@ AFRAME.registerComponent('trex-animation', {
   },
   trexEnter: function () {
     if (this.system.truncMarker(this.trexMarker) > 510) {
+      this.trexFootStepAudioPlaying = false;
+      this.trexFootStepAudio.stopSound();
       this.phase = 'trexRoar';
       return;
     }
-    // if (!this.walkPlaying) {
-    //   this.walkAudio.playSound();
-    //   this.walkPlaying = true;
-    // }
+    this.el.setAttribute('animation-mixer', {
+      clip: 'Rex_Walk',
+    });
+    if (!this.trexFootStepAudioPlaying) {
+      setTimeout(() => {
+        this.trexFootStepAudio.playSound();
+      }, 800);
+      this.trexFootStepAudioPlaying = true;
+    }
     this.trexMarker += this.trexSpeed;
     this.object.position.copy(
       this.system.convertPosition(
@@ -122,6 +136,7 @@ AFRAME.registerComponent('trex-animation', {
     this.updateRotation();
   },
   trexRoar: function () {
+    this.trexRoarAudio.playSound();
     this.el.setAttribute('animation-mixer', {
       clip: 'Rex_Action_002',
     });
@@ -131,18 +146,22 @@ AFRAME.registerComponent('trex-animation', {
     this.phase = 'pause';
   },
   trexLeave: function () {
-    this.el.setAttribute('animation-mixer', {
-      clip: 'Rex_Walk',
-    });
     if (this.system.truncMarker(this.trexMarker) > 950) {
       this.el.setAttribute('visible', 'false');
+      const event = new Event('restart');
+      this.car.dispatchEvent(event);
       this.phase = 'trexFinish';
       return;
     }
-    // if (!this.walkPlaying) {
-    //   this.walkAudio.playSound();
-    //   this.walkPlaying = true;
-    // }
+    this.el.setAttribute('animation-mixer', {
+      clip: 'Rex_Walk',
+    });
+    if (!this.trexLeaveAudioPlaying) {
+      setTimeout(() => {
+        this.trexLeaveAudio.playSound();
+      }, 500);
+      this.trexLeaveAudioPlaying = true;
+    }
     this.trexMarker += this.trexSpeed;
     this.object.position.copy(
       this.system.convertPosition(
