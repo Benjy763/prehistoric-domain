@@ -25,9 +25,15 @@ AFRAME.registerSystem('game', {
         car: 'dilo-car',
         carReference: null,
       },
+      raptor: {
+        scene: 'raptor-scene',
+        camera: 'raptor-scene-camera',
+        car: 'raptor-car',
+        carReference: null,
+      },
     };
     this.carReference;
-    this.firstScene = 'trex';
+    this.firstScene = 'raptor';
     this.actuelScene = this.firstScene;
     this.tourStarted = false;
     this.console = document.querySelector('a-scene').systems['console'];
