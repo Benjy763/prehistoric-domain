@@ -33,7 +33,7 @@ AFRAME.registerSystem('game', {
       },
     };
     this.carReference;
-    this.firstScene = 'raptor';
+    this.firstScene = 'gate';
     this.actuelScene = this.firstScene;
     this.tourStarted = false;
     this.console = document.querySelector('a-scene').systems['console'];

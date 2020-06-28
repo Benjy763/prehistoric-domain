@@ -13,6 +13,7 @@ PLUGINS = [
     { from: './src/images', to: 'build/images' },
     { from: './src/sounds', to: 'build/sounds' },
     { from: './src/font', to: 'build/font' },
+    { from: './src/vendors', to: 'build/vendors' },
   ]),
 ];
 
@@ -33,7 +34,7 @@ module.exports = {
     rules: [
       {
         test: /\.js/,
-        exclude: /(node_modules)/,
+        exclude: [/(node_modules)/, /vendors/],
         use: ['babel-loader', 'aframe-super-hot-loader'],
       },
       {

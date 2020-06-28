@@ -9,6 +9,7 @@ require('aframe-fps-counter-component');
 require('super-hands');
 require('aframe-curve-component');
 require('aframe-geometry-merger-component');
+require('../build/vendors/aframe-gif-shader/dist/aframe-gif-component.js');
 
 // Require all components.
 require('./style/loader.css');
