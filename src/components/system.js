@@ -33,7 +33,7 @@ AFRAME.registerSystem('game', {
       },
     };
     this.carReference;
-    this.firstScene = 'gate';
+    this.firstScene = 'raptor';
     this.actuelScene = this.firstScene;
     this.tourStarted = false;
     this.console = document.querySelector('a-scene').systems['console'];
@@ -201,7 +201,7 @@ AFRAME.registerSystem('game', {
 
       // Other debug
       if (e.keyCode == 55) {
-        this.carReference.carMarker = 0.32;
+        this.carReference.carMarker = 0.3;
       }
     });
   },

@@ -4,29 +4,32 @@ AFRAME.registerComponent('raptor-head-animation', {
     // Objects shortcut
     this.object = this.el.object3D;
     this.system = document.querySelector('a-scene').systems['game'];
-    this.raptorFull = document.querySelector('#raptor');
+    this.car = document.querySelector('#raptor-car');
     this.phase = '';
     this.rotation;
 
     // Sound
+    this.bendupAudio;
+    this.benddownAudio;
+    this.headAnimationAudio;
 
     // Start tour listener
     this.el.addEventListener(
       'enter',
       () => {
-        this.el.setAttribute('animation-mixer', {
-          clip: 'Take 01',
-          timeScale: 1,
-        });
+        this.bendupAudio = this.el.components['sound__bendup'];
+        this.benddownAudio = this.el.components['sound__benddown'];
+        this.headAnimationAudio = this.el.components['sound__headanimation'];
         setTimeout(() => {
-          this.phase = 'enter';
+          this.phase = 'bendup';
+          this.bendupAudio.playSound();
         }, 2000);
       },
       false
     );
   },
   // --- Phase functions ---
-  enter: function () {
+  bendup: function () {
     this.rotation = this.el.getAttribute('rotation');
     if (this.rotation.x < -2) {
       this.rotation.x += 0.5;
@@ -35,16 +38,48 @@ AFRAME.registerComponent('raptor-head-animation', {
       this.rotation.x += 0.2;
       this.el.setAttribute('rotation', this.rotation);
     } else {
-      const event = new Event('enter');
-      this.raptorFull.dispatchEvent(event);
-      this.phase = 'exit';
+      this.el.setAttribute('animation-mixer', {
+        clip: 'Take 01',
+        timeScale: 1,
+      });
+      this.headAnimationAudio.playSound();
+      this.phase = 'head';
+    }
+  },
+  head: function () {
+    this.el.addEventListener('sound-ended', (e) => {
+      console.log(e.detail.id);
+      if (e.detail.id === 'headanimation') {
+        this.benddownAudio.playSound();
+        this.phase = 'bendown';
+      }
+    });
+  },
+  bendown: function () {
+    this.rotation = this.el.getAttribute('rotation');
+    if (this.rotation.x > 0) {
+      this.rotation.x -= 0.2;
+      this.el.setAttribute('rotation', this.rotation);
+    } else if (this.rotation.x > -29) {
+      this.rotation.x -= 0.5;
+      this.el.setAttribute('rotation', this.rotation);
+    } else {
+      const event = new Event('restart');
+      this.car.dispatchEvent(event);
+      this.phase = 'leave';
     }
   },
   tock: function () {
     // Animation steps
     switch (this.phase) {
-      case 'enter':
-        this.enter();
+      case 'bendup':
+        this.bendup();
+        break;
+      case 'head':
+        this.head();
+        break;
+      case 'bendown':
+        this.bendown();
         break;
     }
   },

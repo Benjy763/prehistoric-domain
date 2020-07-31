@@ -5,7 +5,7 @@ AFRAME.registerComponent('raptor-car-tour', {
 
     this.system = document.querySelector('a-scene').systems['game'];
     this.console = document.querySelector('a-scene').systems['console'];
-    this.raptor = document.querySelector('#raptor-head');
+    this.raptor = document.querySelector('#raptor');
     this.carControls;
     // Tour Path
     const curve = new THREE.SplineCurve([
@@ -40,7 +40,7 @@ AFRAME.registerComponent('raptor-car-tour', {
       false
     );
 
-    // Restart tour listener, trigger by brachio controler
+    // Restart tour listener, trigger by raptor controler
     this.el.addEventListener(
       'restart',
       () => {
@@ -58,11 +58,32 @@ AFRAME.registerComponent('raptor-car-tour', {
       this.phase = 'stop';
     }
   },
+  restart: function () {
+    this.carControls.changeDrivingState('starting');
+    this.phase = 'finish';
+  },
+  finish: function () {
+    if (
+      this.system.truncMarker(this.carControls.carMarker) >
+      this.carControls.maxDistance
+    ) {
+      this.carControls.changeDrivingState('stopping');
+      if (this.carControls.carSpeed <= 0) {
+        this.phase = 'changeScene';
+      }
+    }
+  },
   tick: function () {
     // Animation phases
     switch (this.phase) {
       case 'start':
         this.start();
+        break;
+      case 'restart':
+        this.restart();
+        break;
+      case 'finish':
+        this.finish();
         break;
       case 'changeScene':
         if (!this.sceneChanged) {
