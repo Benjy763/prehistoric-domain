@@ -57,33 +57,7 @@ AFRAME.registerComponent('trice-car-tour', {
   },
   // --- Phase functions ---
   start: function () {
-    if (this.system.truncMarker(this.carControls.carMarker) === 250) {
-      this.gateSound.play();
-      this.gate.setAttribute('animation-mixer', {
-        clip: 'gate-*',
-        timeScale: 0.8,
-      });
-    }
-    if (this.system.truncMarker(this.carControls.carMarker) === 280) {
-      this.gate.setAttribute('animation-mixer', {
-        clip: 'gate-*',
-        timeScale: 0,
-      });
-    }
-    if (this.system.truncMarker(this.carControls.carMarker) === 360) {
-      this.gateCloseSound.play();
-      this.gate.setAttribute('animation-mixer', {
-        clip: 'gate-*',
-        timeScale: -0.8,
-      });
-    }
-    if (this.system.truncMarker(this.carControls.carMarker) === 385) {
-      this.gate.setAttribute('animation-mixer', {
-        clip: 'gate-*',
-        timeScale: 0,
-      });
-    }
-    if (this.system.truncMarker(this.carControls.carMarker) === 560) {
+    if (this.system.truncMarker(this.carControls.carMarker) === 155) {
       this.phase = 'stop';
     }
   },

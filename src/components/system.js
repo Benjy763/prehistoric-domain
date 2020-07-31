@@ -1,7 +1,7 @@
 AFRAME.registerSystem('game', {
   schema: {},
   init: function () {
-    this.displayDistance = 150;
+    this.displayDistance = 50; // 150
     this.scenes = {
       loading: {
         scene: 'loading-scene',
@@ -207,7 +207,7 @@ AFRAME.registerSystem('game', {
 
       // Other debug
       if (e.keyCode == 55) {
-        this.carReference.carMarker = 0.3;
+        this.carReference.carMarker = 0.1;
       }
     });
   },
