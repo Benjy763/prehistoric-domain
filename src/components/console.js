@@ -13,15 +13,8 @@ AFRAME.registerSystem('console', {
 
     // Fence
     this.fences = {
-      trex: {
-        normalSituation: 'T-Rex Paddock',
-        road: {
-          x: [241, 260, 277, 294, 304, 308, 315, 315, 307, 295],
-          y: [-15, -6, 6, 20, 33, 50, 61, 76, 88, 91],
-        },
-      },
       gate: {
-        normalSituation: 'Brachiosaurus Paddock',
+        normalSituation: 'Herbivores Paddock',
         road: {
           x: [241, 260, 277, 294, 304, 308, 315, 315, 307, 295],
           y: [-15, -6, 6, 20, 33, 50, 61, 76, 88, 91],
@@ -34,8 +27,22 @@ AFRAME.registerSystem('console', {
           y: [-15, -6, 6, 20, 33, 50, 61, 76, 88, 91],
         },
       },
+      trex: {
+        normalSituation: 'T-Rex Paddock',
+        road: {
+          x: [241, 260, 277, 294, 304, 308, 315, 315, 307, 295],
+          y: [-15, -6, 6, 20, 33, 50, 61, 76, 88, 91],
+        },
+      },
       raptor: {
         normalSituation: 'Velociraptor Paddock',
+        road: {
+          x: [241, 260, 277, 294, 304, 308, 315, 315, 307, 295],
+          y: [-15, -6, 6, 20, 33, 50, 61, 76, 88, 91],
+        },
+      },
+      trice: {
+        normalSituation: 'Herbivores Paddock',
         road: {
           x: [241, 260, 277, 294, 304, 308, 315, 315, 307, 295],
           y: [-15, -6, 6, 20, 33, 50, 61, 76, 88, 91],

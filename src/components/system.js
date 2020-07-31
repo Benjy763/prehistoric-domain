@@ -7,12 +7,6 @@ AFRAME.registerSystem('game', {
         scene: 'loading-scene',
         camera: 'loading-scene-camera',
       },
-      trex: {
-        scene: 'trex-scene',
-        camera: 'trex-scene-camera',
-        car: 'trex-car',
-        carReference: null,
-      },
       gate: {
         scene: 'gate-scene',
         camera: 'gate-scene-camera',
@@ -25,15 +19,27 @@ AFRAME.registerSystem('game', {
         car: 'dilo-car',
         carReference: null,
       },
+      trex: {
+        scene: 'trex-scene',
+        camera: 'trex-scene-camera',
+        car: 'trex-car',
+        carReference: null,
+      },
       raptor: {
         scene: 'raptor-scene',
         camera: 'raptor-scene-camera',
         car: 'raptor-car',
         carReference: null,
       },
+      trice: {
+        scene: 'trice-scene',
+        camera: 'trice-scene-camera',
+        car: 'trice-car',
+        carReference: null,
+      },
     };
     this.carReference;
-    this.firstScene = 'raptor';
+    this.firstScene = 'trice';
     this.actuelScene = this.firstScene;
     this.tourStarted = false;
     this.console = document.querySelector('a-scene').systems['console'];
