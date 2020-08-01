@@ -136,8 +136,8 @@ AFRAME.registerComponent('gate-car-tour', {
         if (!this.sceneChanged) {
           console.log('test');
           // Destroy and detach all unecessary objets
-          // Change scene
-          //this.system.changeScene('dilo');
+          //Change scene
+          this.system.changeScene('dilo');
           this.sceneChanged = true;
         }
         break;

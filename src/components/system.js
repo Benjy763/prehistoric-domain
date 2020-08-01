@@ -1,7 +1,8 @@
 AFRAME.registerSystem('game', {
   schema: {},
   init: function () {
-    this.displayDistance = 50; // 150
+    this.firstScene = 'gate';
+    this.displayDistance = 100; // 150
     this.scenes = {
       loading: {
         scene: 'loading-scene',
@@ -39,7 +40,6 @@ AFRAME.registerSystem('game', {
       },
     };
     this.carReference;
-    this.firstScene = 'trice';
     this.actuelScene = this.firstScene;
     this.tourStarted = false;
     this.console = document.querySelector('a-scene').systems['console'];
@@ -162,6 +162,7 @@ AFRAME.registerSystem('game', {
     });
   },
   renderingScene: function (sceneId) {
+    this.loading();
     // Select car to launch event
     const car = document.getElementById(this.scenes[sceneId].car);
 
@@ -172,8 +173,9 @@ AFRAME.registerSystem('game', {
       const event = new Event('start');
       if (car) {
         car.dispatchEvent(event);
+        this.loading(false);
       }
-    }, 30000);
+    }, 25000);
   },
   startListener: function () {
     // ----- Section for debug events -----
@@ -221,5 +223,24 @@ AFRAME.registerSystem('game', {
   },
   truncMarker: function (carMarker) {
     return Math.trunc(carMarker * 1000);
+  },
+  loading: function (loading = true) {
+    if (!loading) {
+      document
+        .querySelector(
+          '#' + this.scenes[this.actuelScene].car + ' #loading-logo'
+        )
+        .setAttribute('visible', false);
+      document
+        .querySelector('#' + this.scenes[this.actuelScene].car + ' #rig')
+        .setAttribute('position', { x: -0.38, y: 1.0, z: 0.5 });
+      return;
+    }
+    document
+      .querySelector('#' + this.scenes[this.actuelScene].car + ' #loading-logo')
+      .setAttribute('visible', true);
+    document
+      .querySelector('#' + this.scenes[this.actuelScene].car + ' #rig')
+      .setAttribute('position', { x: -0.38, y: -100, z: 0.5 });
   },
 });

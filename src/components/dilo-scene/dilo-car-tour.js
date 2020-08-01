@@ -87,7 +87,7 @@ AFRAME.registerComponent('dilo-car-tour', {
           console.log('test');
           // Destroy and detach all unecessary objets
           // Change scene
-          //this.system.changeScene('dilo');
+          this.system.changeScene('trex');
           this.sceneChanged = true;
         }
         break;
