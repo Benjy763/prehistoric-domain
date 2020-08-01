@@ -48,7 +48,6 @@ AFRAME.registerComponent('raptor-head-animation', {
   },
   head: function () {
     this.el.addEventListener('sound-ended', (e) => {
-      console.log(e.detail.id);
       if (e.detail.id === 'headanimation') {
         this.benddownAudio.playSound();
         this.phase = 'bendown';
