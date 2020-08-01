@@ -28,7 +28,7 @@ AFRAME.registerComponent('trice-car-tour', {
       // Get car reference
       this.carControls = this.system.carReference;
       // Init tour path for the car
-      this.carControls.initParams(curve, 700);
+      this.carControls.initParams(curve, 800);
     });
 
     // Start tour listeners
@@ -57,7 +57,7 @@ AFRAME.registerComponent('trice-car-tour', {
   },
   // --- Phase functions ---
   start: function () {
-    if (this.system.truncMarker(this.carControls.carMarker) === 155) {
+    if (this.system.truncMarker(this.carControls.carMarker) === 310) {
       this.phase = 'stop';
     }
   },
@@ -76,6 +76,33 @@ AFRAME.registerComponent('trice-car-tour', {
     this.phase = 'finish';
   },
   finish: function () {
+    this.system.log(this.carControls.carMarker);
+    if (this.system.truncMarker(this.carControls.carMarker) === 615) {
+      this.gateSound.play();
+      this.gate.setAttribute('animation-mixer', {
+        clip: 'gate-*',
+        timeScale: 0.8,
+      });
+      setTimeout(() => {
+        this.gate.setAttribute('animation-mixer', {
+          clip: 'gate-*',
+          timeScale: 0,
+        });
+      }, 4500);
+    }
+    if (this.system.truncMarker(this.carControls.carMarker) === 720) {
+      this.gateCloseSound.play();
+      this.gate.setAttribute('animation-mixer', {
+        clip: 'gate-*',
+        timeScale: -0.8,
+      });
+      setTimeout(() => {
+        this.gate.setAttribute('animation-mixer', {
+          clip: 'gate-*',
+          timeScale: 0,
+        });
+      }, 4500);
+    }
     if (
       this.system.truncMarker(this.carControls.carMarker) >
       this.carControls.maxDistance
@@ -106,7 +133,6 @@ AFRAME.registerComponent('trice-car-tour', {
         break;
       case 'changeScene':
         if (!this.sceneChanged) {
-          console.log('test');
           // Destroy and detach all unecessary objets
           // Change scene
           //this.system.changeScene('dilo');

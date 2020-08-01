@@ -10,9 +10,10 @@ AFRAME.registerComponent('trice-animation', {
     this.triceMarker = 0; // Position on the curve
     this.triceSpeed = 0.002; // Speed on the curve
     this.curve = new THREE.SplineCurve([
-      new THREE.Vector2(9.127, -110.902),
-      new THREE.Vector2(14.394, -133.172),
-      new THREE.Vector2(21.466, -171.98),
+      new THREE.Vector2(9.127, -75.855),
+      new THREE.Vector2(9.127, -80),
+      new THREE.Vector2(13.349, -91.944),
+      new THREE.Vector2(24.318, -124.74),
     ]);
 
     // Sound
@@ -104,6 +105,7 @@ AFRAME.registerComponent('trice-animation', {
   },
   run: function () {
     if (this.system.truncMarker(this.triceMarker) > 900) {
+      this.phase = 'waiting';
       setTimeout(() => {
         const event = new Event('restart');
         this.car.dispatchEvent(event);

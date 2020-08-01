@@ -64,12 +64,12 @@ AFRAME.registerComponent('gate-car-tour', {
         clip: 'gate-*',
         timeScale: 0.8,
       });
-    }
-    if (this.system.truncMarker(this.carControls.carMarker) === 280) {
-      this.gate.setAttribute('animation-mixer', {
-        clip: 'gate-*',
-        timeScale: 0,
-      });
+      setTimeout(() => {
+        this.gate.setAttribute('animation-mixer', {
+          clip: 'gate-*',
+          timeScale: 0,
+        });
+      }, 4500);
     }
     if (this.system.truncMarker(this.carControls.carMarker) === 360) {
       this.gateCloseSound.play();
@@ -77,12 +77,12 @@ AFRAME.registerComponent('gate-car-tour', {
         clip: 'gate-*',
         timeScale: -0.8,
       });
-    }
-    if (this.system.truncMarker(this.carControls.carMarker) === 385) {
-      this.gate.setAttribute('animation-mixer', {
-        clip: 'gate-*',
-        timeScale: 0,
-      });
+      setTimeout(() => {
+        this.gate.setAttribute('animation-mixer', {
+          clip: 'gate-*',
+          timeScale: 0,
+        });
+      }, 4500);
     }
     if (this.system.truncMarker(this.carControls.carMarker) === 560) {
       this.phase = 'stop';
