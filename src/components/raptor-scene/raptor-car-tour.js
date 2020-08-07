@@ -22,7 +22,7 @@ AFRAME.registerComponent('raptor-car-tour', {
       // Get car reference
       this.carControls = this.system.carReference;
       // Init tour path for the car
-      this.carControls.initParams(curve, 700);
+      this.carControls.initParams(curve, 620);
     });
 
     // Start tour listeners
