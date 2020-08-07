@@ -108,10 +108,7 @@ AFRAME.registerComponent('gate-car-tour', {
       this.system.truncMarker(this.carControls.carMarker) >
       this.carControls.maxDistance
     ) {
-      this.carControls.changeDrivingState('stopping');
-      if (this.carControls.carSpeed <= 0) {
-        this.phase = 'changeScene';
-      }
+      this.phase = 'changeScene';
     }
   },
   tick: function () {

@@ -70,7 +70,6 @@ AFRAME.registerComponent('dilo-car-tour', {
     }
   },
   stop: function () {
-    this.carControls.changeDrivingState('stopping');
     this.phase = 'changeScene';
   },
   tick: function () {
