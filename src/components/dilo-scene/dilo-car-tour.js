@@ -9,8 +9,8 @@ AFRAME.registerComponent('dilo-car-tour', {
     this.carControls;
     // Tour Path
     const curve = new THREE.SplineCurve([
-      new THREE.Vector2(7.988, 81.899),
-      new THREE.Vector2(9.7, -174.7),
+      new THREE.Vector2(5.861, 81.899),
+      new THREE.Vector2(5.861, -174.7),
     ]);
 
     // Sounds
