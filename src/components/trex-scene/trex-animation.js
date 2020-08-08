@@ -109,7 +109,6 @@ AFRAME.registerComponent('trex-animation', {
         this.phase = 'trexEnter';
       };
     }, 8000);
-    this.phase = 'trexEnter';
   },
   trexEnter: function () {
     if (this.system.truncMarker(this.trexMarker) > 510) {
