@@ -1,36 +1,12 @@
 AFRAME.registerSystem('game', {
   schema: {},
   init: function () {
-    this.firstScene = 'gate';
+    this.firstScene = 'trice';
     this.displayDistance = 100; // 150
     this.scenes = {
       loading: {
         scene: 'loading-scene',
         camera: 'loading-scene-camera',
-      },
-      gate: {
-        scene: 'gate-scene',
-        camera: 'gate-scene-camera',
-        car: 'gate-car',
-        carReference: null,
-      },
-      dilo: {
-        scene: 'dilo-scene',
-        camera: 'dilo-scene-camera',
-        car: 'dilo-car',
-        carReference: null,
-      },
-      trex: {
-        scene: 'trex-scene',
-        camera: 'trex-scene-camera',
-        car: 'trex-car',
-        carReference: null,
-      },
-      raptor: {
-        scene: 'raptor-scene',
-        camera: 'raptor-scene-camera',
-        car: 'raptor-car',
-        carReference: null,
       },
       trice: {
         scene: 'trice-scene',
@@ -80,6 +56,18 @@ AFRAME.registerSystem('game', {
       document.getElementById('main-scene-wrapper').style.zIndex = '9999';
       // Show console interface
       document.getElementById('console').style.display = 'block';
+      if (this.tourStarted) {
+        return;
+      }
+      // Init console
+      this.console.initTour();
+      setTimeout(() => {
+        // Display scene
+        this.displayScene();
+        // Rendering scene
+        this.renderingScene(this.firstScene);
+      }, 1000);
+      this.tourStarted = true;
     };
 
     document.getElementById('start-tour').onclick = () => {

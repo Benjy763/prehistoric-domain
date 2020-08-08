@@ -1,20 +1,6 @@
 <a-assets timeout="10000">
   <!-- Audio -->
   <audio
-    id="gate-sound"
-    response-type="arraybuffer"
-    src="./build/sounds/gate/gate.mp3"
-    preload="auto"
-    volume="0.8"
-  ></audio>
-  <audio
-    id="gate-close-sound"
-    response-type="arraybuffer"
-    src="./build/sounds/gate/gate-close.mp3"
-    preload="auto"
-    volume="0.6"
-  ></audio>
-  <audio
     id="cmd-beep-asset"
     response-type="arraybuffer"
     src="./build/sounds/environement/beep.mp3"
@@ -53,113 +39,6 @@
     preload="auto"
     volume="1"
   ></audio>
-  <audio
-    id="sound-mixing-1"
-    response-type="arraybuffer"
-    crossorigin="anonymous"
-    src="./build/sounds/trex/sound-mixing-1.mp3"
-    preload="auto"
-    volume="0.7"
-  ></audio>
-  <audio
-    id="leave"
-    response-type="arraybuffer"
-    crossorigin="anonymous"
-    src="./build/sounds/trex/leave.mp3"
-    preload="auto"
-    volume="0.5"
-  ></audio>
-  <a-asset-item
-    id="brachio-step"
-    src="./build/sounds/brachio/brachio-step.mp3"
-    preload="auto"
-    response-type="arraybuffer"
-    crossorigin="anonymous"
-  ></a-asset-item>
-  <a-asset-item
-    id="brachio-roar"
-    src="./build/sounds/brachio/brachio-roar.mp3"
-    preload="auto"
-    response-type="arraybuffer"
-    crossorigin="anonymous"
-  ></a-asset-item>
-  <a-asset-item
-    id="dilo-roar"
-    src="./build/sounds/dilo/dilo-roar.mp3"
-    preload="auto"
-    response-type="arraybuffer"
-    crossorigin="anonymous"
-  ></a-asset-item>
-  <a-asset-item
-    id="goat-roar"
-    src="./build/sounds/goat/goat.mp3"
-    preload="auto"
-    response-type="arraybuffer"
-    crossorigin="anonymous"
-  ></a-asset-item>
-  <a-asset-item
-    id="goat-elevator"
-    src="./build/sounds/goat/elevator.mp3"
-    preload="auto"
-    response-type="arraybuffer"
-    crossorigin="anonymous"
-  ></a-asset-item>
-  <a-asset-item
-    id="trex-roar"
-    src="./build/sounds/trex/roar-2.mp3"
-    preload="auto"
-    response-type="arraybuffer"
-    crossorigin="anonymous"
-  ></a-asset-item>
-  <a-asset-item
-    id="trex-foot-step"
-    src="./build/sounds/trex/foot-step-3.mp3"
-    preload="auto"
-    response-type="arraybuffer"
-    crossorigin="anonymous"
-  ></a-asset-item>
-  <a-asset-item
-    id="trex-leave"
-    src="./build/sounds/trex/leave-2.mp3"
-    preload="auto"
-    response-type="arraybuffer"
-    crossorigin="anonymous"
-  ></a-asset-item>
-  <a-asset-item
-    id="raptor-benddown"
-    src="./build/sounds/raptor/benddown.mp3"
-    preload="auto"
-    response-type="arraybuffer"
-    crossorigin="anonymous"
-  ></a-asset-item>
-  <a-asset-item
-    id="raptor-bendup"
-    src="./build/sounds/raptor/bendup.mp3"
-    preload="auto"
-    response-type="arraybuffer"
-    crossorigin="anonymous"
-  ></a-asset-item>
-  <a-asset-item
-    id="raptor-body-roar"
-    src="./build/sounds/raptor/body-roar.mp3"
-    preload="auto"
-    response-type="arraybuffer"
-    crossorigin="anonymous"
-  ></a-asset-item>
-  <a-asset-item
-    id="raptor-far-roar"
-    src="./build/sounds/raptor/far-roar.mp3"
-    preload="auto"
-    response-type="arraybuffer"
-    crossorigin="anonymous"
-  ></a-asset-item>
-  <a-asset-item
-    id="raptor-head-animation"
-    src="./build/sounds/raptor/head-animation.mp3"
-    preload="auto"
-    response-type="arraybuffer"
-    crossorigin="anonymous"
-  ></a-asset-item>
   <a-asset-item
     id="trice-agressive"
     src="./build/sounds/trice/agressive.mp3"
@@ -205,7 +84,6 @@
   <img id="ground-road-texture-asset" src="./build/images/ground-road.jpg" />
   <img id="fake-panel-asset" src="./build/images/fake-panel.jpg" />
   <img id="toilet-asset" src="./build/images/toilet.png" />
-  <img id="trex-pannel-asset" src="./build/images/trex.png" />
 
   <!-- 3D -->
   <!-- Objects -->
@@ -214,81 +92,7 @@
     src="./build/models/objects/car/car.glb"
   ></a-asset-item>
 
-  <!-- Environment -->
-  <!-- <a-asset-item
-    id="test-asset"
-    src="./build/models/environment/test/test.glb"
-  ></a-asset-item> -->
-  .<a-asset-item
-    id="small-fence-asset"
-    src="./build/models/environment/small-fence/small-fence.glb"
-  ></a-asset-item>
-  <a-asset-item
-    id="spot-asset"
-    src="./build/models/environment/spot/spot.gltf"
-  ></a-asset-item>
-  <!-- <a-asset-item
-    id="barrier-asset"
-    src="./build/models/environment/barrier/barrier.glb"
-  ></a-asset-item> -->
-  <a-asset-item
-    id="gate-asset"
-    src="./build/models/environment/gate/gate.glb"
-  ></a-asset-item>
-  <a-asset-item
-    id="sign-asset"
-    src="./build/models/environment/sign/sign.glb"
-  ></a-asset-item>
-  <a-asset-item
-    id="hut-asset"
-    src="./build/models/environment/hut/hut.glb"
-  ></a-asset-item>
-  <a-asset-item
-    id="tunnel-asset"
-    src="./build/models/environment/tunnel/tunnel.gltf"
-  ></a-asset-item>
-  <a-asset-item
-    id="electric-fence-asset"
-    src="./build/models/environment/electric-fence/electric-fence.glb"
-  ></a-asset-item>
-  <a-asset-item
-    id="double-rock-asset"
-    src="./build/models/environment/double-rock/double-rock.gltf"
-  ></a-asset-item>
-  <a-asset-item
-    id="palms-asset"
-    src="./build/models/environment/palms/palms.gltf"
-  ></a-asset-item>
-  <a-asset-item
-    id="simple-plant-asset"
-    src="./build/models/environment/simple-plant/simple-plant.gltf"
-  ></a-asset-item>
-  <a-asset-item
-    id="tropical-plant-asset"
-    src="./build/models/environment/tropical-plant/tropical-plant.gltf"
-  ></a-asset-item>
-
   <!-- Dinosaurs -->
-  <a-asset-item
-    id="goat-asset"
-    src="./build/models/dinosaurs/goat/scene.gltf"
-  ></a-asset-item>
-  <a-asset-item
-    id="trex-asset"
-    src="./build/models/dinosaurs/trex/trex.glb"
-  ></a-asset-item>
-  <a-asset-item
-    id="brachio-asset"
-    src="./build/models/dinosaurs/brachio/brachio.gltf"
-  ></a-asset-item>
-  <a-asset-item
-    id="raptor-head-asset"
-    src="./build/models/dinosaurs/raptor/head/scene.gltf"
-  ></a-asset-item>
-  <a-asset-item
-    id="raptor-asset"
-    src="./build/models/dinosaurs/raptor/full/scene.gltf"
-  ></a-asset-item>
   <a-asset-item
     id="trice-asset"
     src="./build/models/dinosaurs/trice/scene.gltf"
