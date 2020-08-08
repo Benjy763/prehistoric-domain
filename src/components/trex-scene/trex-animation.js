@@ -108,7 +108,8 @@ AFRAME.registerComponent('trex-animation', {
       this.soundMixing1Audio.onended = () => {
         this.phase = 'trexEnter';
       };
-    }, 5000);
+    }, 8000);
+    this.phase = 'trexEnter';
   },
   trexEnter: function () {
     if (this.system.truncMarker(this.trexMarker) > 510) {
@@ -139,10 +140,11 @@ AFRAME.registerComponent('trex-animation', {
     this.trexRoarAudio.playSound();
     this.el.setAttribute('animation-mixer', {
       clip: 'Rex_Action_002',
+      timeScale: 0.7,
     });
     setTimeout(() => {
       this.phase = 'trexLeave';
-    }, 6500);
+    }, 10000);
     this.phase = 'pause';
   },
   trexLeave: function () {
@@ -155,6 +157,7 @@ AFRAME.registerComponent('trex-animation', {
     }
     this.el.setAttribute('animation-mixer', {
       clip: 'Rex_Walk',
+      timeScale: 1,
     });
     if (!this.trexLeaveAudioPlaying) {
       setTimeout(() => {
