@@ -8,7 +8,7 @@ AFRAME.registerComponent('brachio-animation', {
     this.phase = '';
     // trex run Path
     this.brachioMarker = 0; // Position on the curve
-    this.brachioSpeed = 0.00012; // Speed on the curve
+    this.brachioSpeed = 0.00022; // Speed on the curve
     this.curve = new THREE.SplineCurve([
       new THREE.Vector2(-49.327, -75.678),
       new THREE.Vector2(86.72, -75.678),

@@ -58,32 +58,6 @@ AFRAME.registerComponent('gate-car-tour', {
   },
   // --- Phase functions ---
   start: function () {
-    if (this.system.truncMarker(this.carControls.carMarker) === 250) {
-      this.gateSound.play();
-      this.gate.setAttribute('animation-mixer', {
-        clip: 'gate-*',
-        timeScale: 0.8,
-      });
-      setTimeout(() => {
-        this.gate.setAttribute('animation-mixer', {
-          clip: 'gate-*',
-          timeScale: 0,
-        });
-      }, 4500);
-    }
-    if (this.system.truncMarker(this.carControls.carMarker) === 360) {
-      this.gateCloseSound.play();
-      this.gate.setAttribute('animation-mixer', {
-        clip: 'gate-*',
-        timeScale: -0.8,
-      });
-      setTimeout(() => {
-        this.gate.setAttribute('animation-mixer', {
-          clip: 'gate-*',
-          timeScale: 0,
-        });
-      }, 4500);
-    }
     if (this.system.truncMarker(this.carControls.carMarker) === 560) {
       this.phase = 'stop';
     }
@@ -131,10 +105,7 @@ AFRAME.registerComponent('gate-car-tour', {
         break;
       case 'changeScene':
         if (!this.sceneChanged) {
-          console.log('test');
-          // Destroy and detach all unecessary objets
-          //Change scene
-          this.system.changeScene('dilo');
+          this.carControls.changeDrivingState('stopping');
           this.sceneChanged = true;
         }
         break;

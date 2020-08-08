@@ -9,9 +9,9 @@ AFRAME.registerSystem('game', {
         camera: 'loading-scene-camera',
       },
       trice: {
-        scene: 'trice-scene',
-        camera: 'trice-scene-camera',
-        car: 'trice-car',
+        scene: 'gate-scene',
+        camera: 'gate-scene-camera',
+        car: 'gate-car',
         carReference: null,
       },
     };
