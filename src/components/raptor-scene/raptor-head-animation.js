@@ -21,6 +21,16 @@ AFRAME.registerComponent('raptor-head-animation', {
         this.benddownAudio = this.el.components['sound__benddown'];
         this.headAnimationAudio = this.el.components['sound__headanimation'];
         setTimeout(() => {
+          this.el.setAttribute('animation-mixer', {
+            clip: 'Take 01',
+            timeScale: 1,
+          });
+          setTimeout(() => {
+            this.el.setAttribute('animation-mixer', {
+              clip: 'Take 01',
+              timeScale: 0,
+            });
+          }, 500);
           this.phase = 'bendup';
           this.bendupAudio.playSound();
         }, 2000);
