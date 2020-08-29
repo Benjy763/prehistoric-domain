@@ -8,7 +8,7 @@ AFRAME.registerComponent('trice-animation', {
     this.phase = '';
     // trex run Path
     this.triceMarker = 0; // Position on the curve
-    this.triceSpeed = 0.002; // Speed on the curve
+    this.triceSpeed = 0.001; // Speed on the curve
     this.curve = new THREE.SplineCurve([
       new THREE.Vector2(9.127, -75.855),
       new THREE.Vector2(9.127, -80),
@@ -111,6 +111,9 @@ AFRAME.registerComponent('trice-animation', {
         this.car.dispatchEvent(event);
       }, 3000);
       return;
+    }
+    if (this.triceSpeed < 0.003) {
+      this.triceSpeed += 0.00008;
     }
     this.triceMarker += this.triceSpeed;
     this.object.position.copy(
