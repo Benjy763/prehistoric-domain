@@ -96,7 +96,11 @@ AFRAME.registerComponent('trex-animation', {
     this.goat.setAttribute('position', this.goatPosition);
     if (this.goat.getAttribute('position').y > 0.6) {
       this.el.setAttribute('visible', 'true');
-      this.phase = 'goatWait';
+      this.el.setAttribute('animation-mixer', {
+        clip: 'Rex_Walk',
+        timeScale: 1,
+      });
+      this.phase = 'trexEnter';
     }
   },
   goatWait: function () {
@@ -106,20 +110,25 @@ AFRAME.registerComponent('trex-animation', {
         this.soundMixing1SoundPlaying = true;
       }
       this.soundMixing1Audio.onended = () => {
+        this.el.setAttribute('animation-mixer', {
+          clip: 'Rex_Walk',
+          timeScale: 1,
+        });
         this.phase = 'trexEnter';
       };
     }, 8000);
   },
   trexEnter: function () {
+    if (this.system.truncMarker(this.trexMarker) === 490) {
+      this.trexSpeed = 0.0005;
+    }
     if (this.system.truncMarker(this.trexMarker) > 510) {
       this.trexFootStepAudioPlaying = false;
       this.trexFootStepAudio.stopSound();
+      this.trexSpeed = 0.0012;
       this.phase = 'trexRoar';
       return;
     }
-    this.el.setAttribute('animation-mixer', {
-      clip: 'Rex_Walk',
-    });
     if (!this.trexFootStepAudioPlaying) {
       setTimeout(() => {
         this.trexFootStepAudio.playSound();
