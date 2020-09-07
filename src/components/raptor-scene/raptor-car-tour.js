@@ -31,7 +31,7 @@ AFRAME.registerComponent('raptor-car-tour', {
       () => {
         // Register current tour in system
         this.console.registerCurrentTour(this);
-        this.phase = 'start';
+        this.phase = 'finish';
         // Update console statuses
         this.carControls.changeDrivingState('starting');
         this.console.updateSituation();

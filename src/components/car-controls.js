@@ -41,6 +41,9 @@ AFRAME.registerComponent('car-controls', {
     rotation.y += 88;
     this.el.setAttribute('rotation', rotation);
   },
+  stopTrackingCar: function () {
+    this.drivingState = 'stopped';
+  },
   stopCar: function () {
     // Animation
     this.carSpeed -= 0.000005;

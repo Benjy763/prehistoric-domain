@@ -22,6 +22,7 @@ AFRAME.registerComponent('trice-animation', {
     this.carRotationValue = 0.08;
     this.wavesNumber = 12;
     this.carRotation = this.carRotationValue;
+    this.shaked = false;
 
     // Sound
     this.impactAudio = document.getElementById('trice-impact');
@@ -130,12 +131,13 @@ AFRAME.registerComponent('trice-animation', {
   },
   run: function () {
     console.log(this.system.truncMarker(this.triceMarker));
-    if (this.system.truncMarker(this.triceMarker) === 279) {
+    if (this.system.truncMarker(this.triceMarker) > 270 && !this.shaked) {
       this.impactAudio.play();
       setTimeout(() => {
         this.impactAudio.pause();
       }, 2000);
       this.isShaking = true;
+      this.shaked = true;
     }
     if (this.system.truncMarker(this.triceMarker) > 900) {
       this.phase = 'waiting';

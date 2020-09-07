@@ -1,7 +1,7 @@
 AFRAME.registerSystem('game', {
   schema: {},
   init: function () {
-    this.firstScene = 'gate';
+    this.firstScene = 'raptor';
     this.displayDistance = 100; // 150
     this.scenes = {
       loading: {
@@ -134,6 +134,7 @@ AFRAME.registerSystem('game', {
     this.actuelScene = sceneId;
 
     // Notify car reference to the new scene
+    this.carReference.stopTrackingCar();
     this.carReference = this.scenes[this.actuelScene].carReference;
     this.sendCarReference(this.carReference);
 
@@ -175,7 +176,7 @@ AFRAME.registerSystem('game', {
         car.dispatchEvent(event);
         this.loading(false);
       }
-    }, 25000);
+    }, 15000);
   },
   startListener: function () {
     // ----- Section for debug events -----
@@ -209,7 +210,7 @@ AFRAME.registerSystem('game', {
 
       // Other debug
       if (e.keyCode == 55) {
-        this.carReference.carMarker = 0.25;
+        this.carReference.carMarker = 0.65;
       }
     });
   },

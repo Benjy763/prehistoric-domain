@@ -77,7 +77,7 @@ AFRAME.registerComponent('trice-car-tour', {
   },
   finish: function () {
     this.system.log(this.carControls.carMarker);
-    if (this.system.truncMarker(this.carControls.carMarker) === 615) {
+    if (this.system.truncMarker(this.carControls.carMarker) > 615) {
       this.gateSound.play();
       this.gate.setAttribute('animation-mixer', {
         clip: 'gate-*',
@@ -90,7 +90,7 @@ AFRAME.registerComponent('trice-car-tour', {
         });
       }, 4500);
     }
-    if (this.system.truncMarker(this.carControls.carMarker) === 720) {
+    if (this.system.truncMarker(this.carControls.carMarker) > 720) {
       this.gateCloseSound.play();
       this.gate.setAttribute('animation-mixer', {
         clip: 'gate-*',
