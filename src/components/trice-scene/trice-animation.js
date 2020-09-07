@@ -130,7 +130,6 @@ AFRAME.registerComponent('trice-animation', {
     this.el.setAttribute('rotation', rotation);
   },
   run: function () {
-    console.log(this.system.truncMarker(this.triceMarker));
     if (this.system.truncMarker(this.triceMarker) > 270 && !this.shaked) {
       this.impactAudio.play();
       setTimeout(() => {
