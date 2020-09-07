@@ -8,15 +8,23 @@ AFRAME.registerComponent('trice-animation', {
     this.phase = '';
     // trex run Path
     this.triceMarker = 0; // Position on the curve
-    this.triceSpeed = 0.001; // Speed on the curve
+    this.triceSpeed = 0.0012; // Speed on the curve
     this.curve = new THREE.SplineCurve([
       new THREE.Vector2(9.127, -75.855),
       new THREE.Vector2(9.127, -80),
       new THREE.Vector2(13.349, -91.944),
-      new THREE.Vector2(24.318, -124.74),
+      new THREE.Vector2(21, -124.74),
     ]);
 
+    // Car shaking
+    this.isShaking = false;
+    this.carWaves = 0;
+    this.carRotationValue = 0.08;
+    this.wavesNumber = 12;
+    this.carRotation = this.carRotationValue;
+
     // Sound
+    this.impactAudio = document.getElementById('trice-impact');
     this.snoringAudio;
     this.agressiveAudio;
     this.roar1Audio;
@@ -93,6 +101,23 @@ AFRAME.registerComponent('trice-animation', {
       this.roar2Audio.playSound();
     }, 1000);
   },
+  shaking: function () {
+    const rotation = this.car.getAttribute('rotation');
+    if (rotation.z < -0.1 || rotation.z > 0.1) {
+      this.carRotation = -this.carRotation;
+      this.carWaves++;
+    }
+    if (this.carWaves === this.wavesNumber) {
+      rotation.z = 0;
+      this.car.setAttribute('rotation', rotation);
+      // reset params
+      this.carRotation = this.carRotationValue;
+      this.carWaves = 0;
+      this.isShaking = false;
+    }
+    rotation.z += this.carRotation;
+    this.car.setAttribute('rotation', rotation);
+  },
   updateRotation: function () {
     const newPosition = this.system.convertPosition(
       this.curve.getPointAt(this.triceMarker + this.triceSpeed),
@@ -104,6 +129,14 @@ AFRAME.registerComponent('trice-animation', {
     this.el.setAttribute('rotation', rotation);
   },
   run: function () {
+    console.log(this.system.truncMarker(this.triceMarker));
+    if (this.system.truncMarker(this.triceMarker) === 279) {
+      this.impactAudio.play();
+      setTimeout(() => {
+        this.impactAudio.pause();
+      }, 2000);
+      this.isShaking = true;
+    }
     if (this.system.truncMarker(this.triceMarker) > 900) {
       this.phase = 'waiting';
       setTimeout(() => {
@@ -125,6 +158,10 @@ AFRAME.registerComponent('trice-animation', {
     this.updateRotation();
   },
   tock: function () {
+    if (this.isShaking) {
+      this.shaking();
+    }
+
     // Animation steps
     switch (this.phase) {
       case 'enter':

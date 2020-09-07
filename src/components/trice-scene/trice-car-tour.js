@@ -101,7 +101,7 @@ AFRAME.registerComponent('trice-car-tour', {
           clip: 'gate-*',
           timeScale: 0,
         });
-      }, 4500);
+      }, 4300);
     }
     if (
       this.system.truncMarker(this.carControls.carMarker) >
