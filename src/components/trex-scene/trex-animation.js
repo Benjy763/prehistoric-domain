@@ -100,7 +100,7 @@ AFRAME.registerComponent('trex-animation', {
         clip: 'Rex_Walk',
         timeScale: 1,
       });
-      this.phase = 'trexEnter';
+      this.phase = 'goatWait';
     }
   },
   goatWait: function () {
