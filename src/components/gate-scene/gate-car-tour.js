@@ -64,7 +64,7 @@ AFRAME.registerComponent('gate-car-tour', {
   start: function () {
     if (
       this.system.truncMarker(this.carControls.carMarker) > 250 &&
-      this.animationsStatuses.gateOpen
+      !this.animationsStatuses.gateOpen
     ) {
       this.animationsStatuses.gateOpen = true;
       this.gateSound.play();
@@ -81,7 +81,7 @@ AFRAME.registerComponent('gate-car-tour', {
     }
     if (
       this.system.truncMarker(this.carControls.carMarker) > 360 &&
-      this.animationsStatuses.gateClosed
+      !this.animationsStatuses.gateClosed
     ) {
       this.animationsStatuses.gateClosed = true;
       this.gateCloseSound.play();

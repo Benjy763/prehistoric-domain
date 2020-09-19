@@ -1,5 +1,5 @@
 <div id="static-loading">
-  <img class="loader-logo" src="./build/images/loader.png" />
+  <img class="loader-logo" src="./build/images/jurassictour.png" />
   <img id="loading-logo" src="./build/images/loading.gif" />
   <div id="put-headset">Put on your headset and click</div>
   <a id="enter-vr" href="#">vr</a>
@@ -23,6 +23,9 @@
         <!-- Loading scene -->
         <a-entity id="loading-scene">
           <require path="templates/loading.html"></require>
+        </a-entity>
+        <a-entity id="ending-scene" visible="false">
+          <require path="templates/ending.html"></require>
         </a-entity>
 
         <a-entity id="trex-scene" visible="false">

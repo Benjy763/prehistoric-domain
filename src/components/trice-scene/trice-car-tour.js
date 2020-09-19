@@ -147,7 +147,7 @@ AFRAME.registerComponent('trice-car-tour', {
         if (!this.sceneChanged) {
           // Destroy and detach all unecessary objets
           // Change scene
-          //this.system.changeScene('dilo');
+          this.system.changeScene('ending');
           this.sceneChanged = true;
         }
         break;
