@@ -139,7 +139,7 @@ AFRAME.registerComponent('trex-animation', {
     if (!this.trexFootStepAudioPlaying) {
       setTimeout(() => {
         this.trexFootStepAudio.playSound();
-      }, 800);
+      }, 0);
       this.trexFootStepAudioPlaying = true;
     }
     this.trexMarker += this.trexSpeed;

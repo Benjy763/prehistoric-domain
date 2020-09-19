@@ -13,7 +13,7 @@ AFRAME.registerComponent('trice-animation', {
       new THREE.Vector2(9.127, -75.855),
       new THREE.Vector2(9.127, -80),
       new THREE.Vector2(13.349, -91.944),
-      new THREE.Vector2(19, -124.74),
+      new THREE.Vector2(19, -160.74),
     ]);
 
     // Car shaking
