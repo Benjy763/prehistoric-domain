@@ -581,14 +581,16 @@ html.a-fullscreen .a-canvas {
 #fence-map > div {
   height: 100%;
   width: 100%;
+  overflow: hidden;
+  position: relative;
 }
 #marker {
   background: url(sprite.png) -425px -140px no-repeat transparent;
   width: 103px;
   height: 57px;
   position: absolute;
-  left: 352px;
-  top: 171px;
+  left: -81px;
+  top: 174px;
 }
 #yellow-table {
   background: #e2e206;

@@ -1,7 +1,7 @@
 AFRAME.registerSystem('game', {
   schema: {},
   init: function () {
-    this.firstScene = 'raptor';
+    this.firstScene = 'gate';
     this.displayDistance = 100; // 150
     this.scenes = {
       loading: {
@@ -35,6 +35,12 @@ AFRAME.registerSystem('game', {
       trice: {
         scene: 'trice-scene',
         camera: 'trice-scene-camera',
+        car: 'trice-car',
+        carReference: null,
+      },
+      ending: {
+        scene: 'ending-scene',
+        camera: 'ending-scene-camera',
         car: 'trice-car',
         carReference: null,
       },
@@ -210,7 +216,7 @@ AFRAME.registerSystem('game', {
 
       // Other debug
       if (e.keyCode == 55) {
-        this.carReference.carMarker = 0.65;
+        this.carReference.carMarker = 0.7;
       }
     });
   },
