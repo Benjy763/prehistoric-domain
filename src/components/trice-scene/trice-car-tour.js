@@ -9,6 +9,7 @@ AFRAME.registerComponent('trice-car-tour', {
     this.trice = document.querySelector('#trice');
     this.gateSound = document.getElementById('gate-sound');
     this.gateCloseSound = document.getElementById('gate-close-sound');
+    this.endingSound = document.getElementById('soundtrack-ending-sound');
     this.carControls;
     this.animationsStatuses = {
       gateOpen: false,
@@ -24,6 +25,7 @@ AFRAME.registerComponent('trice-car-tour', {
     this.sceneChanged = false;
 
     // Sound
+    this.endingSoundPlayed = false;
     this.soundMixing1SoundPlaying = false;
     this.soundMixing1Audio = document.getElementById('sound-mixing-1');
 
@@ -114,6 +116,13 @@ AFRAME.registerComponent('trice-car-tour', {
           timeScale: 0,
         });
       }, 4300);
+    }
+    if (
+      this.system.truncMarker(this.carControls.carMarker) > 750 &&
+      !this.endingSoundPlayed
+    ) {
+      this.endingSoundPlayed = true;
+      this.endingSound.play();
     }
     if (
       this.system.truncMarker(this.carControls.carMarker) >
