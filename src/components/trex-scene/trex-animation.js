@@ -12,7 +12,7 @@ AFRAME.registerComponent('trex-animation', {
     this.carRestarted = false;
     // trex run Path
     this.trexMarker = 0; // Position on the curve
-    this.trexSpeed = 0.001; // Speed on the curve
+    this.trexSpeed = 0.0008; // Speed on the curve
     this.curve = new THREE.SplineCurve([
       new THREE.Vector2(-22, 60.677),
       new THREE.Vector2(-21.5, -4.914),
@@ -98,7 +98,7 @@ AFRAME.registerComponent('trex-animation', {
       this.el.setAttribute('visible', 'true');
       this.el.setAttribute('animation-mixer', {
         clip: 'Rex_Walk',
-        timeScale: 1,
+        timeScale: 0.8,
       });
       this.phase = 'goatWait';
     }
@@ -112,7 +112,7 @@ AFRAME.registerComponent('trex-animation', {
       this.soundMixing1Audio.onended = () => {
         this.el.setAttribute('animation-mixer', {
           clip: 'Rex_Walk',
-          timeScale: 1,
+          timeScale: 0.8,
         });
         this.phase = 'trexEnter';
       };
@@ -123,7 +123,7 @@ AFRAME.registerComponent('trex-animation', {
       this.trexSpeed = 0.0005;
       this.el.setAttribute('animation-mixer', {
         clip: 'Rex_Walk',
-        timeScale: 0.5,
+        timeScale: 0.3,
       });
     }
     if (this.system.truncMarker(this.trexMarker) > 510) {
