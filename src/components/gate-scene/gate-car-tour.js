@@ -10,6 +10,10 @@ AFRAME.registerComponent('gate-car-tour', {
     this.gateSound = document.getElementById('gate-sound');
     this.gateCloseSound = document.getElementById('gate-close-sound');
     this.carControls;
+    this.animationsStatuses = {
+      gateOpen: false,
+      gateClosed: false,
+    };
     //this.brachio = document.querySelector('#brachio');
     // Tour Path
     const curve = new THREE.SplineCurve([
@@ -58,7 +62,11 @@ AFRAME.registerComponent('gate-car-tour', {
   },
   // --- Phase functions ---
   start: function () {
-    if (this.system.truncMarker(this.carControls.carMarker) === 250) {
+    if (
+      this.system.truncMarker(this.carControls.carMarker) > 250 &&
+      this.animationsStatuses.gateOpen
+    ) {
+      this.animationsStatuses.gateOpen = true;
       this.gateSound.play();
       this.gate.setAttribute('animation-mixer', {
         clip: 'gate-*',
@@ -71,7 +79,11 @@ AFRAME.registerComponent('gate-car-tour', {
         });
       }, 4500);
     }
-    if (this.system.truncMarker(this.carControls.carMarker) === 360) {
+    if (
+      this.system.truncMarker(this.carControls.carMarker) > 360 &&
+      this.animationsStatuses.gateClosed
+    ) {
+      this.animationsStatuses.gateClosed = true;
       this.gateCloseSound.play();
       this.gate.setAttribute('animation-mixer', {
         clip: 'gate-*',
