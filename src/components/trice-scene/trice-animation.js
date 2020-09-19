@@ -8,12 +8,12 @@ AFRAME.registerComponent('trice-animation', {
     this.phase = '';
     // trex run Path
     this.triceMarker = 0; // Position on the curve
-    this.triceSpeed = 0.0012; // Speed on the curve
+    this.triceSpeed = 0.0014; // Speed on the curve
     this.curve = new THREE.SplineCurve([
       new THREE.Vector2(9.127, -75.855),
       new THREE.Vector2(9.127, -80),
       new THREE.Vector2(13.349, -91.944),
-      new THREE.Vector2(21, -124.74),
+      new THREE.Vector2(19, -124.74),
     ]);
 
     // Car shaking
