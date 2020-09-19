@@ -14,7 +14,6 @@ AFRAME.registerComponent('dilo-car-tour', {
       new THREE.Vector2(21.55, 6.8),
       new THREE.Vector2(26.218, -14.871),
       new THREE.Vector2(21.415, -32.389),
-      new THREE.Vector2(11.112, -45.765),
       new THREE.Vector2(5.603, -53.948),
       new THREE.Vector2(5.603, -79.354),
     ]);
