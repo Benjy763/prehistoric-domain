@@ -9,8 +9,14 @@ AFRAME.registerComponent('dilo-car-tour', {
     this.carControls;
     // Tour Path
     const curve = new THREE.SplineCurve([
-      new THREE.Vector2(5.861, 81.899),
-      new THREE.Vector2(5.861, -174.7),
+      new THREE.Vector2(4.554, 44.617),
+      new THREE.Vector2(10.924, 29.122),
+      new THREE.Vector2(21.55, 6.8),
+      new THREE.Vector2(26.218, -14.871),
+      new THREE.Vector2(21.415, -32.389),
+      new THREE.Vector2(11.112, -45.765),
+      new THREE.Vector2(5.603, -53.948),
+      new THREE.Vector2(5.603, -79.354),
     ]);
 
     // Sounds
@@ -29,7 +35,7 @@ AFRAME.registerComponent('dilo-car-tour', {
       // Get car reference
       this.carControls = this.system.carReference;
       // Init tour path for the car
-      this.carControls.initParams(curve, 700);
+      this.carControls.initParams(curve, 950);
     });
 
     // Start tour listeners
@@ -59,13 +65,13 @@ AFRAME.registerComponent('dilo-car-tour', {
   // --- Phase functions ---
   start: function () {
     if (
-      this.system.truncMarker(this.carControls.carMarker) === 250 &&
+      this.system.truncMarker(this.carControls.carMarker) > 350 &&
       !this.diloRoarPlaying
     ) {
       this.diloRoarPlaying = true;
       this.diloRoar.components['sound__diloroar'].playSound();
     }
-    if (this.system.truncMarker(this.carControls.carMarker) === 560) {
+    if (this.system.truncMarker(this.carControls.carMarker) === 900) {
       this.phase = 'stop';
     }
   },

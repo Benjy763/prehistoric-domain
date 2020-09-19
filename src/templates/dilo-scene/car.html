@@ -3,7 +3,7 @@
   dilo-car-tour
   car-controls
   gltf-model="#car-asset"
-  position="5.861 -0.29 81.899"
+  position="4.554 -0.61408 44.617"
   rotation="0 -90 0"
   scale="1 1 1"
 >
@@ -81,19 +81,49 @@
 
 <a-curve id="dilo-parcours" type="Spline" curve="closed:false" visible="true">
   <a-curve-point
-    id="checkpoint1"
-    position="5.861, 0.1, 81.899"
+    id="checkpoint2"
+    position="4.554, 0.1, 44.617"
     visible="true"
   ></a-curve-point>
   <a-curve-point
-    id="checkpoint2"
-    position="5.861, 0.1, -174.7"
+    id="checkpoint3"
+    position="10.924, 0.1, 29.122"
+    visible="true"
+  ></a-curve-point>
+  <a-curve-point
+    id="checkpoint4"
+    position="21.550, 0.1, 6.800"
+    visible="true"
+  ></a-curve-point>
+  <a-curve-point
+    id="checkpoint5"
+    position="26.218, 0.1, -14.871"
+    visible="true"
+  ></a-curve-point>
+  <a-curve-point
+    id="checkpoint6"
+    position="21.415, 0.1, -32.389"
+    visible="true"
+  ></a-curve-point>
+  <a-curve-point
+    id="checkpoint7"
+    position="11.112, 0.1, -45.765"
+    visible="true"
+  ></a-curve-point>
+  <a-curve-point
+    id="checkpoint8"
+    position="5.603, 0.1, -53.948"
+    visible="true"
+  ></a-curve-point>
+  <a-curve-point
+    id="checkpoint9"
+    position="5.603, 0.1, -79.354"
     visible="true"
   ></a-curve-point>
 </a-curve>
 <a-entity
   geometry-merger="preserveOriginal: false"
-  clone-along-curve="curve: #dilo-parcours; spacing: 8; scale: 0.08 0.08 0.08; rotation: 90 0 0;"
+  clone-along-curve="curve: #dilo-parcours; spacing: 2; scale: 0.08 0.02 0.08; rotation: 90 0 0;"
   geometry="primitive:cylinder ; height:100"
   material="color: #616869"
 ></a-entity>
