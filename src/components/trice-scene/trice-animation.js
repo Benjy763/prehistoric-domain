@@ -13,8 +13,8 @@ AFRAME.registerComponent('trice-animation', {
     this.curve = new THREE.SplineCurve([
       new THREE.Vector2(9.127, -75.855),
       new THREE.Vector2(9.127, -80),
-      new THREE.Vector2(13.349, -91.944),
-      new THREE.Vector2(19, -160.74),
+      new THREE.Vector2(12.839, -91.944),
+      new THREE.Vector2(17, -160.74),
     ]);
 
     // Car shaking

@@ -21,8 +21,11 @@ AFRAME.registerComponent('trex-car-tour', {
     this.sceneChanged = false;
 
     // Sound
+    this.voicePhase = 'trex1';
     this.soundMixing1SoundPlaying = false;
     this.leaveSoundPlaying = false;
+    this.voiceTrex1Sound = document.getElementById('voice-trex1-sound');
+    this.voiceTrex2Sound = document.getElementById('voice-trex2-sound');
     this.soundMixing1Audio = document.getElementById('sound-mixing-1');
     this.leaveAudio = document.getElementById('leave');
 
@@ -88,7 +91,26 @@ AFRAME.registerComponent('trex-car-tour', {
     }
   },
   tick: function () {
-    //this.system.log(this.carControls.carSpeed);
+    if (!this.carControls) {
+      return;
+    }
+    // Voice phases
+    switch (this.voicePhase) {
+      case 'trex1':
+        if (this.system.truncMarker(this.carControls.carMarker) > 70) {
+          this.voiceTrex1Sound.play();
+          this.voicePhase = 'trex2';
+        }
+        break;
+      case 'trex2':
+        if (this.system.truncMarker(this.carControls.carMarker) > 530) {
+          setTimeout(() => {
+            this.voiceTrex2Sound.play();
+            this.voicePhase = 'end';
+          }, 4000);
+        }
+        break;
+    }
     // Animation phases
     switch (this.phase) {
       case 'start':

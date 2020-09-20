@@ -14,6 +14,8 @@ AFRAME.registerComponent('raptor-car-tour', {
     ]);
 
     // Sounds
+    this.voiceRaptorSoundPlaying = false;
+    this.voiceRaptorSound = document.getElementById('voice-raptor-sound');
     // Animation phase
     this.sceneChanged = false;
 
@@ -71,6 +73,17 @@ AFRAME.registerComponent('raptor-car-tour', {
     }
   },
   tick: function () {
+    if (!this.carControls) {
+      return;
+    }
+    // Voice
+    if (
+      this.system.truncMarker(this.carControls.carMarker) > 50 &&
+      !this.voiceRaptorSoundPlaying
+    ) {
+      this.voiceRaptorSound.play();
+      this.voiceRaptorSoundPlaying = true;
+    }
     // Animation phases
     switch (this.phase) {
       case 'start':

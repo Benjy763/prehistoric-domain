@@ -9,6 +9,11 @@ AFRAME.registerComponent('gate-car-tour', {
     this.brachio = document.querySelector('#brachio');
     this.gateSound = document.getElementById('gate-sound');
     this.gateCloseSound = document.getElementById('gate-close-sound');
+    this.voiceGate1Sound = document.getElementById('voice-gate1-sound');
+    this.voiceGate2Sound = document.getElementById('voice-gate2-sound');
+    this.voiceGate3Sound = document.getElementById('voice-gate3-sound');
+    this.voiceGate4Sound = document.getElementById('voice-gate4-sound');
+    this.voicePhase = 'gate1';
     this.carControls;
     this.animationsStatuses = {
       gateOpen: false,
@@ -124,6 +129,36 @@ AFRAME.registerComponent('gate-car-tour', {
     }
   },
   tick: function () {
+    if (!this.carControls) {
+      return;
+    }
+    // Voice phases
+    switch (this.voicePhase) {
+      case 'gate1':
+        if (this.system.truncMarker(this.carControls.carMarker) > 70) {
+          this.voiceGate1Sound.play();
+          this.voicePhase = 'gate2';
+        }
+        break;
+      case 'gate2':
+        if (this.system.truncMarker(this.carControls.carMarker) > 300) {
+          this.voiceGate2Sound.play();
+          this.voicePhase = 'gate3';
+        }
+        break;
+      case 'gate3':
+        if (this.system.truncMarker(this.carControls.carMarker) > 480) {
+          this.voiceGate3Sound.play();
+          this.voicePhase = 'gate4';
+        }
+        break;
+      case 'gate4':
+        if (this.system.truncMarker(this.carControls.carMarker) > 555) {
+          this.voiceGate4Sound.play();
+          this.voicePhase = 'end';
+        }
+        break;
+    }
     // Animation phases
     switch (this.phase) {
       case 'start':

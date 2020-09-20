@@ -41,8 +41,11 @@ AFRAME.registerComponent('brachio-animation', {
   // --- Phase functions ---
   enter: function () {
     if (this.system.truncMarker(this.brachioMarker) > 700) {
-      this.footStepAudio.stopSound();
-      this.footRoarAudio.stopSound();
+      this.object = this.el.setAttribute('visible', false);
+      setTimeout(() => {
+        this.footStepAudio.stopSound();
+        this.footRoarAudio.stopSound();
+      }, 6000);
       const event = new Event('restart');
       this.car.dispatchEvent(event);
       this.phase = 'exit';

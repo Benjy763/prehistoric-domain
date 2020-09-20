@@ -54,7 +54,7 @@ AFRAME.registerComponent('trex-animation', {
         setTimeout(() => {
           this.goatAnimation();
           this.phase = 'enter';
-        }, 5000);
+        }, 10000);
       },
       false
     );
@@ -69,7 +69,7 @@ AFRAME.registerComponent('trex-animation', {
         clip: 'Take 001',
         timeScale: this.goatTimeScale,
       });
-    }, 5000);
+    }, 10000);
     this.goatElevatorAudio.playSound();
     setInterval(() => {
       this.goatRoarAudio.playSound();

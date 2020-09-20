@@ -27,7 +27,9 @@ AFRAME.registerComponent('dilo-car-tour', {
 
     // Sound
     this.soundMixing1SoundPlaying = false;
+    this.voiceDiloSoundPlaying = false;
     this.soundMixing1Audio = document.getElementById('sound-mixing-1');
+    this.voiceDiloSound = document.getElementById('voice-dilo-sound');
 
     // Init car (when reference is registered in the system) with tour data
     this.el.addEventListener('carRegistered', () => {
@@ -78,6 +80,18 @@ AFRAME.registerComponent('dilo-car-tour', {
     this.phase = 'changeScene';
   },
   tick: function () {
+    if (!this.carControls) {
+      return;
+    }
+    // Voice
+    if (
+      this.system.truncMarker(this.carControls.carMarker) > 50 &&
+      !this.voiceDiloSoundPlaying
+    ) {
+      this.voiceDiloSound.play();
+      this.voiceDiloSoundPlaying = true;
+    }
+
     // Animation phases
     switch (this.phase) {
       case 'start':
