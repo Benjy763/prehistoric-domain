@@ -163,7 +163,7 @@ AFRAME.registerComponent('gate-car-tour', {
     // Voice phases
     switch (this.voicePhase) {
       case 'gate1':
-        if (this.system.truncMarker(this.carControls.carMarker) > 30) {
+        if (this.system.truncMarker(this.carControls.carMarker) > 40) {
           this.voiceGate1Sound.play();
           this.voicePhase = 'gate2';
         }
