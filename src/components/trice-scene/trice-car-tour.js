@@ -152,13 +152,6 @@ AFRAME.registerComponent('trice-car-tour', {
         if (this.system.truncMarker(this.carControls.carMarker) > 0) {
           this.screenDefault.setAttribute('visible', 'false');
           this.screenGalli.setAttribute('visible', 'true');
-          this.screenPhase = 'brachio';
-        }
-        break;
-      case 'brachio':
-        if (this.system.truncMarker(this.carControls.carMarker) > 100) {
-          this.screenGalli.setAttribute('visible', 'false');
-          this.screenBrachio.setAttribute('visible', 'true');
           this.screenPhase = 'trice';
         }
         break;
@@ -170,7 +163,7 @@ AFRAME.registerComponent('trice-car-tour', {
         }
         break;
       case 'default':
-        if (this.system.truncMarker(this.carControls.carMarker) > 615) {
+        if (this.system.truncMarker(this.carControls.carMarker) > 500) {
           this.screenTrice.setAttribute('visible', 'false');
           this.screenDefault.setAttribute('visible', 'true');
           this.screenPhase = 'end';
