@@ -14,6 +14,11 @@ AFRAME.registerComponent('gate-car-tour', {
     this.voiceGate3Sound = document.getElementById('voice-gate3-sound');
     this.voiceGate4Sound = document.getElementById('voice-gate4-sound');
     this.voicePhase = 'gate1';
+    this.screenDefault = document.getElementById('screen-default');
+    this.screenBrachio = document.getElementById('screen-brachio');
+    this.screenTrice = document.getElementById('screen-trice');
+    this.screenGalli = document.getElementById('screen-galli');
+    this.screenPhase = 'default';
     this.carControls;
     this.animationsStatuses = {
       gateOpen: false,
@@ -131,6 +136,36 @@ AFRAME.registerComponent('gate-car-tour', {
   tick: function () {
     if (!this.carControls) {
       return;
+    }
+    // Screen phases
+    switch (this.screenPhase) {
+      case 'default':
+        if (this.system.truncMarker(this.carControls.carMarker) > 0) {
+          this.screenDefault.setAttribute('visible', 'true');
+          this.screenPhase = 'galli';
+        }
+        break;
+      case 'galli':
+        if (this.system.truncMarker(this.carControls.carMarker) > 300) {
+          this.screenDefault.setAttribute('visible', 'false');
+          this.screenGalli.setAttribute('visible', 'true');
+          this.screenPhase = 'trice';
+        }
+        break;
+      case 'trice':
+        if (this.system.truncMarker(this.carControls.carMarker) > 380) {
+          this.screenGalli.setAttribute('visible', 'false');
+          this.screenTrice.setAttribute('visible', 'true');
+          this.screenPhase = 'brachio';
+        }
+        break;
+      case 'brachio':
+        if (this.system.truncMarker(this.carControls.carMarker) > 480) {
+          this.screenTrice.setAttribute('visible', 'false');
+          this.screenBrachio.setAttribute('visible', 'true');
+          this.screenPhase = 'end';
+        }
+        break;
     }
     // Voice phases
     switch (this.voicePhase) {
