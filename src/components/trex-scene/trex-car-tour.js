@@ -1,7 +1,7 @@
 AFRAME.registerComponent('trex-car-tour', {
   init: function () {
     this.scene = 'trex';
-    this.tick = AFRAME.utils.throttleTick(this.tick, 60, this);
+    this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
 
     this.system = document.querySelector('a-scene').systems['game'];
     this.console = document.querySelector('a-scene').systems['console'];

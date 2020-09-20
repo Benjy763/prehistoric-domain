@@ -1,6 +1,7 @@
 AFRAME.registerComponent('trex-animation', {
   schema: {},
   init: function () {
+    this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
     // Objects shortcut
     this.object = this.el.object3D;
     this.system = document.querySelector('a-scene').systems['game'];
@@ -10,9 +11,10 @@ AFRAME.registerComponent('trex-animation', {
     this.goatTimeScale = 1;
     this.phase = '';
     this.carRestarted = false;
+    this.trexSlowing = false;
     // trex run Path
     this.trexMarker = 0; // Position on the curve
-    this.trexSpeed = 0.0008; // Speed on the curve
+    this.trexSpeed = 0.0012; // Speed on the curve
     this.curve = new THREE.SplineCurve([
       new THREE.Vector2(-22, 60.677),
       new THREE.Vector2(-21.5, -4.914),
@@ -67,7 +69,7 @@ AFRAME.registerComponent('trex-animation', {
         clip: 'Take 001',
         timeScale: this.goatTimeScale,
       });
-    }, 6000);
+    }, 5000);
     this.goatElevatorAudio.playSound();
     setInterval(() => {
       this.goatRoarAudio.playSound();
@@ -119,8 +121,9 @@ AFRAME.registerComponent('trex-animation', {
     }, 10000);
   },
   trexEnter: function () {
-    if (this.system.truncMarker(this.trexMarker) === 500) {
-      this.trexSpeed = 0.0005;
+    if (this.system.truncMarker(this.trexMarker) > 500 && !this.trexSlowing) {
+      this.trexSlowing = true;
+      this.trexSpeed = 0.0007;
       this.el.setAttribute('animation-mixer', {
         clip: 'Rex_Walk',
         timeScale: 0.3,
@@ -129,7 +132,7 @@ AFRAME.registerComponent('trex-animation', {
     if (this.system.truncMarker(this.trexMarker) > 510) {
       this.trexFootStepAudioPlaying = false;
       this.trexFootStepAudio.stopSound();
-      this.trexSpeed = 0.001;
+      this.trexSpeed = 0.0012;
       this.el.setAttribute('animation-mixer', {
         timeScale: 1,
       });
@@ -199,7 +202,7 @@ AFRAME.registerComponent('trex-animation', {
     const rotation = this.el.getAttribute('rotation');
     this.el.setAttribute('rotation', rotation);
   },
-  tock: function () {
+  tick: function () {
     if (this.isShaking) {
       this.shaking();
     }

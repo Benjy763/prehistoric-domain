@@ -1,6 +1,7 @@
 AFRAME.registerComponent('trice-animation', {
   schema: {},
   init: function () {
+    this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
     // Objects shortcut
     this.object = this.el.object3D;
     this.system = document.querySelector('a-scene').systems['game'];
@@ -130,7 +131,7 @@ AFRAME.registerComponent('trice-animation', {
     this.el.setAttribute('rotation', rotation);
   },
   run: function () {
-    if (this.system.truncMarker(this.triceMarker) > 270 && !this.shaked) {
+    if (this.system.truncMarker(this.triceMarker) > 220 && !this.shaked) {
       this.impactAudio.play();
       setTimeout(() => {
         this.impactAudio.pause();
@@ -158,7 +159,7 @@ AFRAME.registerComponent('trice-animation', {
     );
     this.updateRotation();
   },
-  tock: function () {
+  tick: function () {
     if (this.isShaking) {
       this.shaking();
     }

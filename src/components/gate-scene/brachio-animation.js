@@ -1,6 +1,7 @@
 AFRAME.registerComponent('brachio-animation', {
   schema: {},
   init: function () {
+    this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
     // Objects shortcut
     this.object = this.el.object3D;
     this.system = document.querySelector('a-scene').systems['game'];
@@ -8,7 +9,7 @@ AFRAME.registerComponent('brachio-animation', {
     this.phase = '';
     // trex run Path
     this.brachioMarker = 0; // Position on the curve
-    this.brachioSpeed = 0.00012; // Speed on the curve
+    this.brachioSpeed = 0.0003; // Speed on the curve
     this.curve = new THREE.SplineCurve([
       new THREE.Vector2(-49.327, -75.678),
       new THREE.Vector2(86.72, -75.678),
@@ -55,7 +56,7 @@ AFRAME.registerComponent('brachio-animation', {
       )
     );
   },
-  tock: function () {
+  tick: function () {
     // Animation steps
     switch (this.phase) {
       case 'enter':

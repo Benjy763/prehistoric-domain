@@ -1,6 +1,7 @@
 AFRAME.registerComponent('raptor-head-animation', {
   schema: {},
   init: function () {
+    this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
     // Objects shortcut
     this.object = this.el.object3D;
     this.system = document.querySelector('a-scene').systems['game'];
@@ -78,7 +79,7 @@ AFRAME.registerComponent('raptor-head-animation', {
       this.phase = 'leave';
     }
   },
-  tock: function () {
+  tick: function () {
     // Animation steps
     switch (this.phase) {
       case 'bendup':
