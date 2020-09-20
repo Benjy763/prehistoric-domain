@@ -163,7 +163,7 @@ AFRAME.registerComponent('gate-car-tour', {
     // Voice phases
     switch (this.voicePhase) {
       case 'gate1':
-        if (this.system.truncMarker(this.carControls.carMarker) > 70) {
+        if (this.system.truncMarker(this.carControls.carMarker) > 30) {
           this.voiceGate1Sound.play();
           this.voicePhase = 'gate2';
         }
@@ -175,7 +175,7 @@ AFRAME.registerComponent('gate-car-tour', {
         }
         break;
       case 'gate3':
-        if (this.system.truncMarker(this.carControls.carMarker) > 480) {
+        if (this.system.truncMarker(this.carControls.carMarker) > 450) {
           this.voiceGate3Sound.play();
           this.voicePhase = 'gate4';
         }
