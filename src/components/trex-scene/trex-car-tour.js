@@ -14,7 +14,7 @@ AFRAME.registerComponent('trex-car-tour', {
       new THREE.Vector2(-4.7, 12.8),
       new THREE.Vector2(-4.7, -18),
       new THREE.Vector2(2.8, -41),
-      new THREE.Vector2(30, -94),
+      new THREE.Vector2(32, -94),
     ]);
 
     // Animation phase
@@ -34,7 +34,7 @@ AFRAME.registerComponent('trex-car-tour', {
       // Get car reference
       this.carControls = this.system.carReference;
       // Init tour path for the car
-      this.carControls.initParams(curve, 900);
+      this.carControls.initParams(curve, 800);
     });
 
     // Start tour listeners

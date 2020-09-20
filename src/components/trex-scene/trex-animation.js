@@ -167,6 +167,9 @@ AFRAME.registerComponent('trex-animation', {
   },
   trexLeave: function () {
     if (this.system.truncMarker(this.trexMarker) > 950) {
+      setTimeout(() => {
+        this.goatRoarAudio.stopSound();
+      }, 5000);
       this.el.setAttribute('visible', 'false');
       const event = new Event('restart');
       this.car.dispatchEvent(event);
