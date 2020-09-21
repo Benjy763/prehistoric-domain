@@ -1,7 +1,7 @@
 AFRAME.registerSystem('game', {
   schema: {},
   init: function () {
-    this.firstScene = 'trice';
+    this.firstScene = 'raptor';
     this.displayDistance = 100; // 150
     this.scenes = {
       loading: {

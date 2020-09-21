@@ -68,12 +68,14 @@ AFRAME.registerComponent('raptor-head-animation', {
     if (this.rotation.x > 0) {
       this.rotation.x -= 0.2;
       this.el.setAttribute('rotation', this.rotation);
-    } else if (this.rotation.x > -29) {
+    } else if (this.rotation.x > -35) {
       this.rotation.x -= 0.5;
       this.el.setAttribute('rotation', this.rotation);
     } else {
-      const event = new Event('restart');
-      this.car.dispatchEvent(event);
+      setTimeout(() => {
+        const event = new Event('restart');
+        this.car.dispatchEvent(event);
+      }, 8000);
       this.phase = 'leave';
     }
   },

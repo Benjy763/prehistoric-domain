@@ -31,7 +31,7 @@ AFRAME.registerComponent('raptor-animation', {
         setTimeout(() => {
           this.phase = 'enter';
           this.bodyRoarAudio.playSound();
-        }, 6000);
+        }, 30000);
       },
       false
     );
