@@ -7,6 +7,7 @@ AFRAME.registerComponent('trice-car-tour', {
     this.console = document.querySelector('a-scene').systems['console'];
     this.gate = document.querySelector('#gate-back');
     this.trice = document.querySelector('#trice');
+    this.carAlarmSound = document.getElementById('car-alarm-sound');
     this.gateSound = document.getElementById('gate-sound');
     this.gateCloseSound = document.getElementById('gate-close-sound');
     this.endingSound = document.getElementById('soundtrack-ending-sound');
@@ -17,6 +18,7 @@ AFRAME.registerComponent('trice-car-tour', {
     this.screenBrachio = document.getElementById('screen-brachio-2');
     this.screenTrice = document.getElementById('screen-trice-2');
     this.screenGalli = document.getElementById('screen-galli-2');
+    this.screenAlarm = document.getElementById('screen-alarm');
     this.screenPhase = 'galli';
     this.carControls;
     this.animationsStatuses = {
@@ -80,12 +82,16 @@ AFRAME.registerComponent('trice-car-tour', {
     this.phase = 'stay';
   },
   stay: function () {
+    this.screenPhase = 'alarm';
+    this.carAlarmSound.play();
     const event = new Event('enter');
     // Trigger trice animation
     this.trice.dispatchEvent(event);
     this.phase = 'animation';
   },
   restart: function () {
+    this.screenPhase = 'default';
+    this.carAlarmSound.pause();
     this.carControls.changeDrivingState('starting');
     this.phase = 'finish';
   },
@@ -157,17 +163,20 @@ AFRAME.registerComponent('trice-car-tour', {
         break;
       case 'trice':
         if (this.system.truncMarker(this.carControls.carMarker) > 200) {
-          this.screenBrachio.setAttribute('visible', 'false');
+          this.screenGalli.setAttribute('visible', 'false');
           this.screenTrice.setAttribute('visible', 'true');
-          this.screenPhase = 'default';
+          this.screenPhase = 'other';
         }
         break;
+      case 'alarm':
+        this.screenTrice.setAttribute('visible', 'false');
+        this.screenAlarm.setAttribute('visible', 'true');
+        this.screenPhase = 'other';
+        break;
       case 'default':
-        if (this.system.truncMarker(this.carControls.carMarker) > 500) {
-          this.screenTrice.setAttribute('visible', 'false');
-          this.screenDefault.setAttribute('visible', 'true');
-          this.screenPhase = 'end';
-        }
+        this.screenAlarm.setAttribute('visible', 'false');
+        this.screenDefault.setAttribute('visible', 'true');
+        this.screenPhase = 'end';
         break;
     }
     // Voice phases
@@ -206,7 +215,7 @@ AFRAME.registerComponent('trice-car-tour', {
         if (!this.sceneChanged) {
           // Destroy and detach all unecessary objets
           // Change scene
-          this.system.changeScene('ending');
+          this.system.changeScene('ending', false);
           this.sceneChanged = true;
         }
         break;

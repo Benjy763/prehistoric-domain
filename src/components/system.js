@@ -1,7 +1,7 @@
 AFRAME.registerSystem('game', {
   schema: {},
   init: function () {
-    this.firstScene = 'gate';
+    this.firstScene = 'trice';
     this.displayDistance = 100; // 150
     this.scenes = {
       loading: {
@@ -41,7 +41,7 @@ AFRAME.registerSystem('game', {
       ending: {
         scene: 'ending-scene',
         camera: 'ending-scene-camera',
-        car: 'trice-car',
+        car: null,
         carReference: null,
       },
     };
@@ -121,7 +121,7 @@ AFRAME.registerSystem('game', {
       .setAttribute('visible', 'true');
   },
   // Each time we change scene
-  changeScene: function (sceneId) {
+  changeScene: function (sceneId, render = true) {
     // change scene
     document
       .getElementById(this.scenes[this.actuelScene].scene)
@@ -142,9 +142,14 @@ AFRAME.registerSystem('game', {
     // Notify car reference to the new scene
     this.carReference.stopTrackingCar();
     this.carReference = this.scenes[this.actuelScene].carReference;
-    this.sendCarReference(this.carReference);
+    if (this.carReference) {
+      this.sendCarReference(this.carReference);
+    }
 
     // Rendering scene
+    if (!render) {
+      return;
+    }
     this.renderingScene(sceneId);
   },
   loadingAssets: function () {
@@ -172,16 +177,17 @@ AFRAME.registerSystem('game', {
     this.loading();
     // Select car to launch event
     const car = document.getElementById(this.scenes[sceneId].car);
+    if (!car) {
+      return;
+    }
 
     // Launch the scene after the rendering time
     car.querySelector('#rendering').setAttribute('visible', 'true');
     setTimeout(() => {
       car.querySelector('#rendering').setAttribute('visible', 'false');
       const event = new Event('start');
-      if (car) {
-        car.dispatchEvent(event);
-        this.loading(false);
-      }
+      car.dispatchEvent(event);
+      this.loading(false);
     }, 15000);
   },
   startListener: function () {

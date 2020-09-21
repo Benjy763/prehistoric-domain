@@ -9,7 +9,7 @@ AFRAME.registerComponent('trice-animation', {
     this.phase = '';
     // trex run Path
     this.triceMarker = 0; // Position on the curve
-    this.triceSpeed = 0.3; // Speed on the curve
+    this.triceSpeed = 0.28; // Speed on the curve
     this.curve = new THREE.SplineCurve([
       new THREE.Vector2(72.068, -94.573),
       new THREE.Vector2(7.785, -94.573),
@@ -50,7 +50,7 @@ AFRAME.registerComponent('trice-animation', {
     this.phase = 'waiting';
     setTimeout(() => {
       this.snoringAudio.playSound();
-    }, 3000);
+    }, 9000);
     this.el.addEventListener('sound-ended', (e) => {
       if (e.detail.id === 'snoring') {
         this.phase = 'roar1';
@@ -135,10 +135,8 @@ AFRAME.registerComponent('trice-animation', {
         timeScale: 1,
       });
       this.phase = 'run2';
-    }, 4000);
-    setTimeout(() => {
-      this.roar2Audio.playSound();
-    }, 1000);
+    }, 3500);
+    this.roar2Audio.playSound();
   },
   run2: function () {
     if (this.object.position.x < -70) {
