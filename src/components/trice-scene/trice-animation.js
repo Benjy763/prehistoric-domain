@@ -9,19 +9,17 @@ AFRAME.registerComponent('trice-animation', {
     this.phase = '';
     // trex run Path
     this.triceMarker = 0; // Position on the curve
-    this.triceSpeed = 0.0014; // Speed on the curve
+    this.triceSpeed = 0.3; // Speed on the curve
     this.curve = new THREE.SplineCurve([
-      new THREE.Vector2(9.127, -75.855),
-      new THREE.Vector2(9.127, -80),
-      new THREE.Vector2(12.839, -91.944),
-      new THREE.Vector2(17, -160.74),
+      new THREE.Vector2(72.068, -94.573),
+      new THREE.Vector2(7.785, -94.573),
     ]);
 
     // Car shaking
     this.isShaking = false;
     this.carWaves = 0;
-    this.carRotationValue = 0.08;
-    this.wavesNumber = 12;
+    this.carRotationValue = 1;
+    this.wavesNumber = 6;
     this.carRotation = this.carRotationValue;
     this.shaked = false;
 
@@ -49,41 +47,24 @@ AFRAME.registerComponent('trice-animation', {
   },
   // --- Phase functions ---
   enter: function () {
-    this.snoringAudio.playSound();
     this.phase = 'waiting';
+    setTimeout(() => {
+      this.snoringAudio.playSound();
+    }, 3000);
     this.el.addEventListener('sound-ended', (e) => {
       if (e.detail.id === 'snoring') {
         this.phase = 'roar1';
       }
     });
-    // this.el.setAttribute('animation-mixer', {
-    //   clip: 'gate-*',
-    //   timeScale: 0.8,
-    // });
   },
   roar1: function () {
     this.phase = 'waiting';
     setTimeout(() => {
-      this.phase = 'agressive';
+      this.phase = 'roar2';
     }, 4000);
-    this.el.setAttribute('animation-mixer', {
-      clip: 'Triceratops_Idle_Break',
-      timeScale: 1,
-    });
     setTimeout(() => {
       this.roar1Audio.playSound();
     }, 1000);
-  },
-  agressive: function () {
-    this.phase = 'waiting';
-    setTimeout(() => {
-      this.phase = 'roar2';
-    }, 2000);
-    this.agressiveAudio.playSound();
-    this.el.setAttribute('animation-mixer', {
-      clip: 'Triceratops_Aggressive_Idle_Break',
-      timeScale: 1,
-    });
   },
   roar2: function () {
     this.phase = 'waiting';
@@ -95,17 +76,80 @@ AFRAME.registerComponent('trice-animation', {
       });
       this.phase = 'run';
     }, 4000);
+    setTimeout(() => {
+      this.roar2Audio.playSound();
+    }, 1000);
+  },
+  run: function () {
+    if (this.object.position.x < 15) {
+      this.phase = 'impact';
+      this.impactAudio.play();
+      setTimeout(() => {
+        this.impactAudio.pause();
+      }, 2000);
+      this.isShaking = true;
+    }
+    this.object.position.x -= this.triceSpeed;
+  },
+  impact: function () {
+    if (this.object.position.x > 17) {
+      this.runAudio.stopSound();
+      this.el.setAttribute('animation-mixer', {
+        clip: 'Triceratops_Idle',
+        timeScale: 1,
+      });
+      setTimeout(() => {
+        const event = new Event('restart');
+        this.car.dispatchEvent(event);
+      }, 4000);
+      setTimeout(() => {
+        this.phase = 'roar3';
+      }, 2000);
+      this.phase = 'waiting';
+    }
+    this.object.position.x += this.triceSpeed;
+  },
+  roar3: function () {
+    this.phase = 'waiting';
+    setTimeout(() => {
+      this.phase = 'roar4';
+    }, 4000);
     this.el.setAttribute('animation-mixer', {
       clip: 'Triceratops_Idle_Break',
       timeScale: 1,
     });
     setTimeout(() => {
+      this.roar1Audio.playSound();
+    }, 1000);
+  },
+  roar4: function () {
+    this.phase = 'waiting';
+    this.el.setAttribute('animation-mixer', {
+      clip: 'Triceratops_Idle_Break',
+      timeScale: 1,
+    });
+    setTimeout(() => {
+      this.runAudio.playSound();
+      this.el.setAttribute('animation-mixer', {
+        clip: 'Triceratops_Aggressive_Run_InPlace',
+        timeScale: 1,
+      });
+      this.phase = 'run2';
+    }, 4000);
+    setTimeout(() => {
       this.roar2Audio.playSound();
     }, 1000);
   },
+  run2: function () {
+    if (this.object.position.x < -70) {
+      this.runAudio.stopSound();
+      this.phase = 'end';
+    }
+    this.object.position.x -= this.triceSpeed;
+  },
   shaking: function () {
     const rotation = this.car.getAttribute('rotation');
-    if (rotation.z < -0.1 || rotation.z > 0.1) {
+    if (rotation.x < -3 || rotation.x > 3) {
       this.carRotation = -this.carRotation;
       this.carWaves++;
     }
@@ -117,7 +161,7 @@ AFRAME.registerComponent('trice-animation', {
       this.carWaves = 0;
       this.isShaking = false;
     }
-    rotation.z += this.carRotation;
+    rotation.x += this.carRotation;
     this.car.setAttribute('rotation', rotation);
   },
   updateRotation: function () {
@@ -129,35 +173,6 @@ AFRAME.registerComponent('trice-animation', {
     // Correct rotation with offset
     const rotation = this.el.getAttribute('rotation');
     this.el.setAttribute('rotation', rotation);
-  },
-  run: function () {
-    if (this.system.truncMarker(this.triceMarker) > 220 && !this.shaked) {
-      this.impactAudio.play();
-      setTimeout(() => {
-        this.impactAudio.pause();
-      }, 2000);
-      this.isShaking = true;
-      this.shaked = true;
-    }
-    if (this.system.truncMarker(this.triceMarker) > 900) {
-      this.phase = 'waiting';
-      setTimeout(() => {
-        const event = new Event('restart');
-        this.car.dispatchEvent(event);
-      }, 3000);
-      return;
-    }
-    if (this.triceSpeed < 0.003) {
-      this.triceSpeed += 0.00008;
-    }
-    this.triceMarker += this.triceSpeed;
-    this.object.position.copy(
-      this.system.convertPosition(
-        this.curve.getPointAt(this.triceMarker),
-        this.object.position.y
-      )
-    );
-    this.updateRotation();
   },
   tick: function () {
     if (this.isShaking) {
@@ -172,14 +187,23 @@ AFRAME.registerComponent('trice-animation', {
       case 'roar1':
         this.roar1();
         break;
-      case 'agressive':
-        this.agressive();
-        break;
       case 'roar2':
         this.roar2();
         break;
+      case 'roar3':
+        this.roar3();
+        break;
+      case 'roar4':
+        this.roar4();
+        break;
       case 'run':
         this.run();
+        break;
+      case 'run2':
+        this.run2();
+        break;
+      case 'impact':
+        this.impact();
         break;
     }
   },

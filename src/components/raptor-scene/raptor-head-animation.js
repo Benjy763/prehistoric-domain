@@ -55,15 +55,13 @@ AFRAME.registerComponent('raptor-head-animation', {
       });
       this.headAnimationAudio.playSound();
       this.phase = 'head';
+      this.el.addEventListener('sound-ended', (e) => {
+        if (e.detail.id === 'headanimation') {
+          this.benddownAudio.playSound();
+          this.phase = 'bendown';
+        }
+      });
     }
-  },
-  head: function () {
-    this.el.addEventListener('sound-ended', (e) => {
-      if (e.detail.id === 'headanimation') {
-        this.benddownAudio.playSound();
-        this.phase = 'bendown';
-      }
-    });
   },
   bendown: function () {
     this.rotation = this.el.getAttribute('rotation');
@@ -84,9 +82,6 @@ AFRAME.registerComponent('raptor-head-animation', {
     switch (this.phase) {
       case 'bendup':
         this.bendup();
-        break;
-      case 'head':
-        this.head();
         break;
       case 'bendown':
         this.bendown();
