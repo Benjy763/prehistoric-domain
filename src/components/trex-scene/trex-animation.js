@@ -31,6 +31,7 @@ AFRAME.registerComponent('trex-animation', {
     // Sound
     this.soundMixing1SoundPlaying = false;
     this.soundMixing1Audio = document.getElementById('sound-mixing-1');
+    this.goatRoarAudioInterval;
     this.goatRoarAudio;
     this.goatElevatorAudio;
     this.trexRoarAudio;
@@ -71,7 +72,7 @@ AFRAME.registerComponent('trex-animation', {
       });
     }, 10000);
     this.goatElevatorAudio.playSound();
-    setInterval(() => {
+    this.goatRoarAudioInterval = setInterval(() => {
       this.goatRoarAudio.playSound();
     }, 20000);
   },
@@ -168,7 +169,7 @@ AFRAME.registerComponent('trex-animation', {
   trexLeave: function () {
     if (this.system.truncMarker(this.trexMarker) > 950) {
       setTimeout(() => {
-        this.goatRoarAudio.stopSound();
+        clearInterval(this.goatRoarAudioInterval);
       }, 5000);
       this.el.setAttribute('visible', 'false');
       const event = new Event('restart');
