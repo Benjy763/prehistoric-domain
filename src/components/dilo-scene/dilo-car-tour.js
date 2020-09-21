@@ -72,7 +72,7 @@ AFRAME.registerComponent('dilo-car-tour', {
       this.diloRoarPlaying = true;
       this.diloRoar.components['sound__diloroar'].playSound();
     }
-    if (this.system.truncMarker(this.carControls.carMarker) === 900) {
+    if (this.system.truncMarker(this.carControls.carMarker) > 900) {
       this.phase = 'stop';
     }
   },

@@ -53,7 +53,7 @@ AFRAME.registerComponent('raptor-car-tour', {
   },
   // --- Phase functions ---
   start: function () {
-    if (this.system.truncMarker(this.carControls.carMarker) === 340) {
+    if (this.system.truncMarker(this.carControls.carMarker) > 340) {
       this.carControls.changeDrivingState('stopping');
       const event = new Event('enter');
       this.raptor.dispatchEvent(event);

@@ -73,7 +73,7 @@ AFRAME.registerComponent('trice-car-tour', {
   },
   // --- Phase functions ---
   start: function () {
-    if (this.system.truncMarker(this.carControls.carMarker) === 310) {
+    if (this.system.truncMarker(this.carControls.carMarker) > 310) {
       this.phase = 'stop';
     }
   },

@@ -106,7 +106,7 @@ AFRAME.registerComponent('gate-car-tour', {
         });
       }, 4300);
     }
-    if (this.system.truncMarker(this.carControls.carMarker) === 560) {
+    if (this.system.truncMarker(this.carControls.carMarker) > 560) {
       this.phase = 'stop';
     }
   },
