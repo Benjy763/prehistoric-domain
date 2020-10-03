@@ -1,4 +1,4 @@
-var $ = require('jquery');
+let $ = require('jquery');
 AFRAME.registerSystem('console', {
   init: function () {
     const self = this;
