@@ -1,5 +1,21 @@
 <div class="main-page-wraper">
-  <div class="main-section">
+  <div class="fixed-menu">
+    <div class="subsection">
+      <a href="#main-section" class="icon-item">
+        <img class="icon-infos" src="./build/images/icon-main.png" />
+        <span>Main</span>
+      </a>
+      <a href="#jt-section" class="icon-item">
+        <img class="icon-infos" src="./build/images/icon-infos.png" />
+        <span>Informations</span>
+      </a>
+      <a href="#map-section" class="icon-item">
+        <img class="icon-map" src="./build/images/icon-map.png" />
+        <span>Map</span>
+      </a>
+    </div>
+  </div>
+  <div id="main-section">
     <div class="main-infos">
       <img class="jp-icon-large" src="./build/images/jp-icon-large.png" />
       <div class="main-park-open">The park will open soon</div>
@@ -8,19 +24,19 @@
         <div>Use your ticket</div>
       </div>
     </div>
-    <div class="main-bottom-menu">
-      <div class="icon-item">
+    <!-- <div class="main-bottom-menu">
+      <a href="#jt-section" class="icon-item">
         <img class="icon-infos" src="./build/images/icon-infos.png" />
         <span>Informations</span>
-      </div>
-      <div class="icon-item">
+      </a>
+      <a href="#map-section" class="icon-item">
         <img class="icon-map" src="./build/images/icon-map.png" />
         <span>Map</span>
-      </div>
-    </div>
+      </a>
+    </div> -->
     <div class="legal">- Alpha Release - Jurassic Tour is a fan game -</div>
   </div>
-  <div class="jt-section">
+  <div id="jt-section">
     <img class="jt-icon-large" src="./build/images/jurassictour.png" />
     <div class="jt-title">The first attraction of the park</div>
     <div class="jt-content">
@@ -40,7 +56,7 @@
       </div>
     </div>
   </div>
-  <div class="map-section">
+  <div id="map-section">
     <img class="map-icon-large" src="./build/images/jurassictour.png" />
     <div class="map-title">The map</div>
     <div class="map-content">
@@ -59,11 +75,6 @@
             <div id="main-terminal" class="bordered irix-window irix-window">
               <div class="inner-wrap" id="main-inner">
                 <div class="cmd-view">
-                  <div class="console-preabmle">
-                    Jurassic Park, System Security Interface<br />
-                    Version 4.0.5, Alpha E<br />
-                    Ready...<br />
-                  </div>
                   <div id="main-input" class="command-history"></div>
                   <span id="main-prompt">&gt; The tour lasts 20 min</span><br />
                   <span id="main-prompt">&gt; The visit is at night</span><br />
