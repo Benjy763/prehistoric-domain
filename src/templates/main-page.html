@@ -28,9 +28,14 @@
       <div class="jt-text">
         <ul>
           <li>Jurassic Tour is a VR game compatible with all PCVR headset</li>
-          <li>You need a VR Ready PC to enjoy the experience</li>
+          <li>
+            <strong>You need a VR Ready PC</strong> to enjoy the experience
+          </li>
           <li>You must run the game from a webvr compatible browser</li>
-          <li>Compatible browsers: Firefox, Oculus Browser</li>
+          <li>
+            Compatible browsers:
+            <strong>Firefox, Oculus Browser</strong>
+          </li>
         </ul>
       </div>
     </div>
@@ -39,10 +44,35 @@
     <img class="map-icon-large" src="./build/images/jurassictour.png" />
     <div class="map-title">The map</div>
     <div class="map-content">
+      <img class="map-window" src="./build/images/background-window.png" />
       <div class="map-wrapper">
         <img class="map" src="./build/images/map.jpg" />
       </div>
       <div class="map-text">
+        <div class="map-console right-wrapper">
+          <div id="cmd-border-inner" class="main-border-inner">
+            <div id="main-terminal" class="bordered irix-window irix-window">
+              <div class="inner-wrap" id="main-inner">
+                <div class="cmd-view">
+                  <div class="console-preabmle">
+                    Jurassic Park, System Security Interface<br />
+                    Version 4.0.5, Alpha E<br />
+                    Ready...<br />
+                  </div>
+                  <div id="main-input" class="command-history"></div>
+                  <span id="main-prompt">&gt; The tour lasts 20 min</span><br />
+                  <span id="main-prompt">&gt; The visit is at night</span><br />
+                  <span id="main-prompt"
+                    >&gt; There are loading times between enclosures</span
+                  ><br />
+                  <span id="main-prompt">&gt;</span>
+                  <span class="command-input" id="curr-main-input"></span
+                  ><span id="main-cursor" class="cursor">&nbsp;</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <ul>
           <li>The tour lasts 20 min</li>
           <li>The visit is at night</li>
