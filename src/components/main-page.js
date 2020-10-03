@@ -19,6 +19,9 @@ $(document).ready(function () {
   $('#use-ticket').on('click', () => {
     if (validValues.includes(Number($('#ticket-value').val()))) {
       $('#ticket-error').css('display', 'none');
+      $('#main-page').css('display', 'none');
+      $('#static-loading').css('display', 'flex');
+      $('#main-scene-wrapper').css('display', 'block');
     } else {
       $('#ticket-error').css('display', 'block');
     }
