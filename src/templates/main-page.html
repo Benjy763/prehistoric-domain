@@ -20,8 +20,14 @@
       <img class="jp-icon-large" src="./build/images/jp-icon-large.png" />
       <div class="main-park-open">The park will open soon</div>
       <div class="main-choices">
-        <div id="get-ticket">Get a free ticket</div>
-        <div id="use-ticket">Use your ticket</div>
+        <div class="ticket-wrapper">
+          <div class="button" id="get-ticket">Get a free ticket</div>
+        </div>
+        <div class="ticket-wrapper">
+          <div id="ticket-error">Invalid code</div>
+          <input id="ticket-value" type="text" pattern="[0-9]+" />
+          <div class="button" id="use-ticket">Use your code</div>
+        </div>
       </div>
     </div>
     <!-- <div class="main-bottom-menu">

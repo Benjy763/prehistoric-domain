@@ -82,14 +82,35 @@
   color: white;
 }
 
-.main-choices div {
+.main-choices .ticket-wrapper {
+  position: relative;
+}
+
+.main-choices .ticket-wrapper .button {
   border: 2px solid white;
   padding: 5px;
 }
 
-.main-choices div:hover {
+.main-choices .ticket-wrapper .button:hover {
   cursor: pointer;
   border: 2px solid #f7d23f;
+}
+
+.main-choices .ticket-wrapper input {
+  height: 38px;
+  font-size: 18px;
+  width: 140px;
+}
+
+.main-choices .ticket-wrapper #ticket-error {
+  display: none;
+  color: #f02828;
+  position: absolute;
+  top: -24px;
+}
+
+#use-ticket {
+  margin-top: 10px;
 }
 
 .legal {
