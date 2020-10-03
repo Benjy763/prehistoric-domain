@@ -122,6 +122,15 @@
   background-color: blue;
 }
 
+@media screen and (max-width: 1140px) {
+  .jt-section .jt-content {
+    justify-content: center;
+  }
+  .jt-content .jt-preview {
+    display: none;
+  }
+}
+
 .jt-icon-large {
   z-index: 10;
   display: inline-block;
@@ -252,9 +261,26 @@
 }
 
 .map-window {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 553px;
+  height: 338px;
+}
+
+.map-window-img {
   position: absolute;
   left: 0;
   top: 0;
   width: 553px;
   height: 338px;
+}
+
+@media screen and (max-width: 1140px) {
+  .map-content {
+    justify-content: center;
+  }
+  .map-content .map-text {
+    display: none;
+  }
 }
