@@ -72,9 +72,8 @@
 }
 
 .main-bottom-menu {
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
-    'Lucida Sans', Arial, sans-serif;
-  font-size: 15px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 18px;
   color: white;
   position: absolute;
   bottom: 30px;
@@ -140,8 +139,7 @@
 
 .jt-content {
   z-index: 10;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
-    'Lucida Sans', Arial, sans-serif;
+  font-family: 'Quicksand', sans-serif;
   font-size: 18px;
   color: white;
   width: 1100px;
@@ -157,7 +155,7 @@
 
 .jt-preview,
 .jt-text {
-  width: 520px;
+  width: 530px;
 }
 
 .jt-text ul {
@@ -169,11 +167,71 @@
   padding-bottom: 10px;
 }
 
-.jt-console-background {
+/*------------- MAP PART -------------*/
+.map-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: #2667c2;
+}
+
+.map-icon-large {
+  z-index: 10;
+  display: inline-block;
+  width: 400px;
+}
+
+.map-title {
+  z-index: 10;
+  margin-top: 10px;
+  color: white;
+  font-size: 20px;
+  padding-top: 10px;
+  border-top: 1px solid white;
+}
+
+.map-content {
+  z-index: 10;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 18px;
+  color: white;
+  width: 1100px;
+  min-height: 286px;
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.map-wrapper {
+  position: relative;
+  border: 2px solid white;
+  height: 300px;
+  overflow: hidden;
+}
+
+.map {
   position: absolute;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  min-width: 1980px;
-  min-height: 1000px;
+  top: -180px;
+  left: -110px;
+  z-index: 10;
+  display: inline-block;
+  width: 650px;
+}
+
+.map-wrapper,
+.map-text {
+  width: 520px;
+}
+
+.map-text ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.map-text li {
+  padding-bottom: 10px;
 }
