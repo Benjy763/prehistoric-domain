@@ -26,4 +26,27 @@ $(document).ready(function () {
       $('#ticket-error').css('display', 'block');
     }
   });
+
+  $('#main-link').on('click', () => {
+    $('.jt-text.slide').removeClass('slide');
+    $('.jt-preview.opacity').removeClass('opacity');
+
+    $('.main-park-open').addClass('slide');
+    $('.jp-icon-large').addClass('opacity');
+  });
+
+  $('#jt-link').on('click', () => {
+    $('.main-park-open.slide').removeClass('slide');
+    $('.jp-icon-large.opacity').removeClass('opacity');
+
+    $('.jt-text').addClass('slide');
+    $('.jt-preview').addClass('opacity');
+  });
+
+  $('#map-link').on('click', () => {
+    $('.main-park-open.slide').removeClass('slide');
+    $('.jp-icon-large.opacity').removeClass('opacity');
+    $('.jt-text.slide').removeClass('slide');
+    $('.jt-preview.opacity').removeClass('opacity');
+  });
 });

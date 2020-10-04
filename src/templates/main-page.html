@@ -1,15 +1,15 @@
 <div class="main-page-wraper">
   <div class="fixed-menu">
     <div class="subsection">
-      <a href="#main-section" class="icon-item">
+      <a href="#main-section" id="main-link" class="icon-item">
         <img class="icon-infos" src="./build/images/icon-main.png" />
         <span>Main</span>
       </a>
-      <a href="#jt-section" class="icon-item">
+      <a href="#jt-section" id="jt-link" class="icon-item">
         <img class="icon-infos" src="./build/images/icon-infos.png" />
         <span>Informations</span>
       </a>
-      <a href="#map-section" class="icon-item">
+      <a href="#map-section" id="map-link" class="icon-item">
         <img class="icon-map" src="./build/images/icon-map.png" />
         <span>Map</span>
       </a>
@@ -17,47 +17,53 @@
   </div>
   <div id="main-section">
     <div class="main-infos">
-      <img class="jp-icon-large" src="./build/images/jp-icon-large.png" />
-      <div class="main-park-open">The park will open soon</div>
+      <img
+        class="jp-icon-large opacity"
+        src="./build/images/jurassictour.png"
+      />
+      <div class="main-park-open-wrapper">
+        <div class="main-park-open slide">The park is open</div>
+      </div>
       <div class="main-choices">
         <div class="ticket-wrapper">
           <div class="button" id="get-ticket">Get a free ticket</div>
         </div>
         <div class="ticket-wrapper">
           <div id="ticket-error">Invalid code</div>
-          <input id="ticket-value" type="text" pattern="[0-9]+" />
-          <div class="button" id="use-ticket">Use your code</div>
+          <input
+            placeholder="Use your code"
+            id="ticket-value"
+            type="text"
+            pattern="[0-9]+"
+          />
+          <div class="button" id="use-ticket">Go to the park</div>
         </div>
       </div>
     </div>
-    <!-- <div class="main-bottom-menu">
-      <a href="#jt-section" class="icon-item">
-        <img class="icon-infos" src="./build/images/icon-infos.png" />
-        <span>Informations</span>
-      </a>
-      <a href="#map-section" class="icon-item">
-        <img class="icon-map" src="./build/images/icon-map.png" />
-        <span>Map</span>
-      </a>
-    </div> -->
-    <div class="legal">- Alpha Release - Jurassic Tour is a fan game -</div>
+    <div class="legal">
+      - Alpha Release - Jurassic Tour is a fan VR experience -
+    </div>
   </div>
   <div id="jt-section">
     <img class="jt-icon-large" src="./build/images/jurassictour.png" />
-    <div class="jt-title">The first attraction of the park</div>
+    <div class="jt-title">System requirements</div>
     <div class="jt-content">
-      <img class="jt-preview" src="./build/images/preview1.jpg" />
-      <div class="jt-text">
+      <img class="jt-preview opacity" src="./build/images/preview1.jpg" />
+      <div class="jt-text slide">
         <ul>
-          <li>Jurassic Tour is a VR game compatible with all PCVR headset</li>
+          <li>A free VR experience compatible with most PCVR headset</li>
           <li>
             <strong>You need a VR Ready PC</strong> to enjoy the experience
           </li>
-          <li>You must run the game from a webvr compatible browser</li>
+          <li>
+            You must run the game from a <strong>WebVR</strong> compatible
+            browser
+          </li>
           <li>
             Compatible browsers:
             <strong>Firefox, Oculus Browser</strong>
           </li>
+          <li>You need a good internet speed</li>
         </ul>
       </div>
     </div>

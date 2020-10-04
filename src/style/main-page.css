@@ -1,3 +1,18 @@
+@keyframes slide {
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .main-page-wraper {
   position: absolute;
   top: 0;
@@ -60,14 +75,32 @@
 .jp-icon-large {
   display: inline-block;
   width: 400px;
+  opacity: 0;
 }
 
-.main-park-open {
+.jp-icon-large.opacity {
+  animation: fadein 5s;
+  opacity: 1;
+}
+
+.main-park-open-wrapper {
   border-top: 1px solid white;
   padding-top: 10px;
   color: white;
   margin-top: 10px;
   font-size: 30px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.main-park-open {
+  width: 100%;
+  text-align: center;
+}
+
+.main-park-open.slide {
+  animation: 1s slide 1s forwards;
+  transform: translateX(-100%);
 }
 
 .main-choices {
@@ -99,7 +132,7 @@
 .main-choices .ticket-wrapper input {
   height: 38px;
   font-size: 18px;
-  width: 140px;
+  width: 144px;
 }
 
 .main-choices .ticket-wrapper #ticket-error {
@@ -215,7 +248,18 @@
 }
 
 .jt-preview {
+  opacity: 1;
   border: 2px solid white;
+}
+
+.jt-preview.opacity {
+  animation: fadein 3s;
+  opacity: 1;
+}
+
+.jt-text.slide {
+  animation: 1s slide 0s forwards;
+  transform: translateX(300%);
 }
 
 .jt-preview,
