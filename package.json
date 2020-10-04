@@ -6,7 +6,7 @@
     "deploy": "ghpages -p .ghpages && rm -rf .ghpages",
     "lint": "semistandard -v | snazzy",
     "lint:fix": "semistandard --fix",
-    "start": "webpack-dev-server --host 0.0.0.0 --progress --colors --hot-only --inline --port 8080"
+    "start": "webpack-dev-server --config webpack-dev.config.js --host 0.0.0.0 --progress --colors --hot-only --inline --port 8080"
   },
   "dependencies": {
     "aframe": "^1.0.4",
@@ -59,9 +59,11 @@
     "css-loader": "^0.28.7",
     "debug": "^4.1.0",
     "diff-dom": "^3.1.0",
+    "file-loader": "^6.1.0",
     "ghpages": "0.0.10",
     "html-entities": "^1.2.1",
     "html-require-loader": "*",
+    "html-webpack-plugin": "^4.5.0",
     "ip": "1.1.5",
     "json-loader": "^0.5.7",
     "nunjucks": "3.0.1",

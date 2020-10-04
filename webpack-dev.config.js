@@ -4,24 +4,8 @@ const ip = require('ip');
 const path = require('path');
 const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const hash = Math.random() * 100000 + 1000;
 
 PLUGINS = [
-  new HtmlWebpackPlugin({
-    filename: './index.html',
-    templateContent: `
-    <html>
-      <head>
-        <meta charset="UTF-8" />
-        <title>Jurassic Tour VR</title>
-      </head>
-      <body>
-        <div id="app"></div>
-      </body>
-    </html>
-  `,
-  }),
   new webpack.EnvironmentPlugin(['NODE_ENV']),
   new webpack.HotModuleReplacementPlugin(),
   new CopyPlugin([
@@ -42,8 +26,8 @@ module.exports = {
     build: './src/index.js',
   },
   output: {
-    path: __dirname + '/dist',
-    filename: 'build.[hash].js',
+    path: __dirname,
+    filename: 'build/[name].js',
   },
   plugins: PLUGINS,
   module: {
