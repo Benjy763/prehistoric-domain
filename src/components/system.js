@@ -1,7 +1,7 @@
 AFRAME.registerSystem('game', {
   schema: {},
   init: function () {
-    this.firstScene = 'gate';
+    this.firstScene = 'trex';
     this.displayDistance = 100; // 150
     this.languages = {
       en: {
@@ -265,11 +265,11 @@ AFRAME.registerSystem('game', {
   },
   loading: function (loading = true) {
     if (!loading) {
-      document
-        .querySelector(
-          '#' + this.scenes[this.actuelScene].car + ' #loading-logo'
-        )
-        .setAttribute('visible', false);
+      // document
+      //   .querySelector(
+      //     '#' + this.scenes[this.actuelScene].car + ' #loading-logo'
+      //   )
+      //   .setAttribute('visible', false);
       document
         .querySelector('#' + this.scenes[this.actuelScene].car + ' #rig')
         .setAttribute('position', { x: -0.38, y: 1.0, z: 0.5 });
@@ -280,10 +280,10 @@ AFRAME.registerSystem('game', {
       .setAttribute('visible', true);
     document
       .querySelector('#' + this.scenes[this.actuelScene].car + ' #rig')
-      .setAttribute('position', { x: -0.38, y: -100, z: 0.5 });
+      .setAttribute('position', { x: -0.38, y: -80, z: 0.5 });
   },
   getVoice(element) {
-    const language = window.language;
+    const language = window.language ? window.language : 'en';
     return document.getElementById(this.languages[language][element]);
   },
 });

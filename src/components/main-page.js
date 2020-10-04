@@ -12,6 +12,8 @@ $(document).ready(function () {
   trexAudio = document.getElementById('trex-sound');
   soundtrackAudio = document.getElementById('soundtrack-sound');
 
+  //debug();
+
   initLoadMecanisms();
   initScrollSmoothEffect();
   initTicketMecanisms();
@@ -135,13 +137,16 @@ function initScrollSmoothEffect() {
   });
 }
 
+function debug() {
+  // Debug
+  $('.loading-website').css('display', 'none');
+  $('#main-page').css('display', 'none');
+  $('#static-loading').css('display', 'flex');
+  $('#main-scene-wrapper').css('display', 'block');
+}
+
 function initLoadMecanisms() {
   $('.main-page-wrapper').scrollTop(0);
-  // Debug
-  // $('.loading-website').css('display', 'none');
-  // $('#main-page').css('display', 'none');
-  // $('#static-loading').css('display', 'flex');
-  // $('#main-scene-wrapper').css('display', 'block');
 
   // Loading mecanisms
   $('.loading-website .title').css('opacity', '1');
