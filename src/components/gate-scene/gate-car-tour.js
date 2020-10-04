@@ -9,10 +9,10 @@ AFRAME.registerComponent('gate-car-tour', {
     this.brachio = document.querySelector('#brachio');
     this.gateSound = document.getElementById('gate-sound');
     this.gateCloseSound = document.getElementById('gate-close-sound');
-    this.voiceGate1Sound = document.getElementById('voice-gate1-sound');
-    this.voiceGate2Sound = document.getElementById('voice-gate2-sound');
-    this.voiceGate3Sound = document.getElementById('voice-gate3-sound');
-    this.voiceGate4Sound = document.getElementById('voice-gate4-sound');
+    this.voiceGate1Sound = this.system.getVoice('gate1');
+    this.voiceGate2Sound = this.system.getVoice('gate2');
+    this.voiceGate3Sound = this.system.getVoice('gate3');
+    this.voiceGate4Sound = this.system.getVoice('gate4');
     this.voicePhase = 'gate1';
     this.screenDefault = document.getElementById('screen-default');
     this.screenBrachio = document.getElementById('screen-brachio');

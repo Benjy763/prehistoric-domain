@@ -3,6 +3,32 @@ AFRAME.registerSystem('game', {
   init: function () {
     this.firstScene = 'gate';
     this.displayDistance = 100; // 150
+    this.languages = {
+      en: {
+        gate1: 'voice-gate1-sound-en',
+        gate2: 'voice-gate2-sound-en',
+        gate3: 'voice-gate3-sound-en',
+        gate4: 'voice-gate4-sound-en',
+        dilo: 'voice-dilo-sound-en',
+        trex1: 'voice-trex1-sound-en',
+        trex2: 'voice-trex2-sound-en',
+        raptor: 'voice-raptor-sound-en',
+        trice1: 'voice-trice1-sound-en',
+        trice2: 'voice-trice2-sound-en',
+      },
+      fr: {
+        gate1: 'voice-gate1-sound-fr',
+        gate2: 'voice-gate2-sound-fr',
+        gate3: 'voice-gate3-sound-fr',
+        gate4: 'voice-gate4-sound-fr',
+        dilo: 'voice-dilo-sound-fr',
+        trex1: 'voice-trex1-sound-fr',
+        trex2: 'voice-trex2-sound-fr',
+        raptor: 'voice-raptor-sound-fr',
+        trice1: 'voice-trice1-sound-fr',
+        trice2: 'voice-trice2-sound-fr',
+      },
+    };
     this.scenes = {
       loading: {
         scene: 'loading-scene',
@@ -255,5 +281,9 @@ AFRAME.registerSystem('game', {
     document
       .querySelector('#' + this.scenes[this.actuelScene].car + ' #rig')
       .setAttribute('position', { x: -0.38, y: -100, z: 0.5 });
+  },
+  getVoice(element) {
+    const language = window.language;
+    return document.getElementById(this.languages[language][element]);
   },
 });

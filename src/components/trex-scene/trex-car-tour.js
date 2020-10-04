@@ -24,8 +24,8 @@ AFRAME.registerComponent('trex-car-tour', {
     this.voicePhase = 'trex1';
     this.soundMixing1SoundPlaying = false;
     this.leaveSoundPlaying = false;
-    this.voiceTrex1Sound = document.getElementById('voice-trex1-sound');
-    this.voiceTrex2Sound = document.getElementById('voice-trex2-sound');
+    this.voiceTrex1Sound = this.system.getVoice('trex1');
+    this.voiceTrex2Sound = this.system.getVoice('trex2');
     this.soundMixing1Audio = document.getElementById('sound-mixing-1');
     this.leaveAudio = document.getElementById('leave');
 

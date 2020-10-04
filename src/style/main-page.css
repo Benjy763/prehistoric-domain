@@ -91,7 +91,7 @@
   }
 }
 
-.main-page-wraper {
+.main-page-wrapper {
   position: absolute;
   top: 0;
   left: 0;
@@ -126,8 +126,8 @@
 }
 
 @media screen and (max-width: 1140px) {
-  .main-page-wraper .loading-website .title,
-  .main-page-wraper .loading-website .subtitle {
+  .main-page-wrapper .loading-website .title,
+  .main-page-wrapper .loading-website .subtitle {
     font-family: 'Quicksand', sans-serif;
     font-size: 18px;
   }
@@ -229,12 +229,12 @@
   position: relative;
 }
 
-.main-choices .ticket-wrapper .button {
+.main-page-wrapper .button {
   border: 2px solid white;
   padding: 5px;
 }
 
-.main-choices .ticket-wrapper .button:hover {
+.main-page-wrapper .button:hover {
   cursor: pointer;
   border: 2px solid #f7d23f;
 }
@@ -254,6 +254,28 @@
 
 #use-ticket {
   margin-top: 10px;
+}
+
+.language-wrapper {
+  display: none;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+  font-size: 20px;
+  color: white;
+}
+
+.language-wrapper .title {
+  margin: 10px 0;
+}
+
+.language-wrapper .buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.language-wrapper .button {
+  margin: 0 10px;
 }
 
 .legal {

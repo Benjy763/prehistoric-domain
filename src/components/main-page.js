@@ -15,6 +15,7 @@ $(document).ready(function () {
   initLoadMecanisms();
   initScrollSmoothEffect();
   initTicketMecanisms();
+  initLanguageMecanisms();
   initSectionsAnimations();
 });
 
@@ -88,20 +89,37 @@ function initTicketMecanisms() {
 
   $('#use-ticket').on('click', () => {
     if (validValues.includes(Number($('#ticket-value').val()))) {
-      $('#ticket-error').css('display', 'none');
-      $('#main-page').css('display', 'none');
-      $('#static-loading').css('display', 'flex');
-      $('#main-scene-wrapper').css('display', 'block');
-
-      // Stop sounds
-      turnonAudio.pause();
-      runpcAudio.pause();
-      trexAudio.pause();
-      soundtrackAudio.pause();
+      $('.main-choices').css('display', 'none');
+      $('.language-wrapper').css('display', 'block');
+      initLanguageMecanisms();
     } else {
       $('#ticket-error').css('display', 'block');
     }
   });
+}
+
+function initLanguageMecanisms() {
+  // Add Languages mecanims
+  $('#language-en').on('click', () => {
+    window.language = 'en';
+    openGame();
+  });
+
+  $('#language-fr').on('click', () => {
+    window.language = 'fr';
+    openGame();
+  });
+}
+
+function openGame() {
+  $('#main-page').css('display', 'none');
+  $('#static-loading').css('display', 'flex');
+  $('#main-scene-wrapper').css('display', 'block');
+  // Stop sounds
+  turnonAudio.pause();
+  runpcAudio.pause();
+  trexAudio.pause();
+  soundtrackAudio.pause();
 }
 
 function initScrollSmoothEffect() {
@@ -118,6 +136,7 @@ function initScrollSmoothEffect() {
 }
 
 function initLoadMecanisms() {
+  $('.main-page-wrapper').scrollTop(0);
   // Debug
   // $('.loading-website').css('display', 'none');
   // $('#main-page').css('display', 'none');
@@ -132,10 +151,10 @@ function initLoadMecanisms() {
   setTimeout(() => {
     $('.loading-website .title').css('opacity', '0');
     // $('.loading-website .subtitle').css('opacity', '0');
-  }, 4000);
+  }, 3000);
   setTimeout(() => {
     $('.loading-website').css('display', 'none');
     $('#main-section').css('display', 'flex');
     soundtrackAudio.play();
-  }, 5000);
+  }, 4000);
 }

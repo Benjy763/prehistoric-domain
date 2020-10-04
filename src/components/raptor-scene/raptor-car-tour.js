@@ -16,7 +16,7 @@ AFRAME.registerComponent('raptor-car-tour', {
 
     // Sounds
     this.voiceRaptorSoundPlaying = false;
-    this.voiceRaptorSound = document.getElementById('voice-raptor-sound');
+    this.voiceRaptorSound = this.system.getVoice('raptor');
     // Animation phase
     this.sceneChanged = false;
 

@@ -29,7 +29,7 @@ AFRAME.registerComponent('dilo-car-tour', {
     this.soundMixing1SoundPlaying = false;
     this.voiceDiloSoundPlaying = false;
     this.soundMixing1Audio = document.getElementById('sound-mixing-1');
-    this.voiceDiloSound = document.getElementById('voice-dilo-sound');
+    this.voiceDiloSound = this.system.getVoice('dilo');
 
     // Init car (when reference is registered in the system) with tour data
     this.el.addEventListener('carRegistered', () => {
