@@ -1,7 +1,7 @@
 AFRAME.registerSystem('game', {
   schema: {},
   init: function () {
-    this.firstScene = 'trex';
+    this.firstScene = 'gate';
     this.displayDistance = 100; // 150
     this.languages = {
       en: {
