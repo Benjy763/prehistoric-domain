@@ -1,6 +1,19 @@
 let $ = require('jquery');
 const validValues = [6971, 6972, 6973, 6974, 6975];
+let turnonAudio;
+let runpcAudio;
+let trexAudio;
+let soundtrackAudio;
+
 $(document).ready(function () {
+  // Get audio assets
+  turnonAudio = document.getElementById('turnon-sound');
+  runpcAudio = document.getElementById('runpc-sound');
+  trexAudio = document.getElementById('trex-sound');
+  soundtrackAudio = document.getElementById('soundtrack-sound');
+  soundtrackAudio.play();
+
+  // Add scroll smooth effect
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
@@ -11,6 +24,7 @@ $(document).ready(function () {
     });
   });
 
+  // Add tickets mecanims
   $('#get-ticket').on('click', () => {
     const randomTicket = Math.floor(Math.random() * 5) + 6971;
     window.open(`./build/images/ticket-${randomTicket}.jpg`);
@@ -28,25 +42,61 @@ $(document).ready(function () {
   });
 
   $('#main-link').on('click', () => {
-    $('.jt-text.slide').removeClass('slide');
-    $('.jt-preview.opacity').removeClass('opacity');
+    // Animations
+    $('.jt-text').removeClass('slide');
+    $('.jt-preview').removeClass('opacity');
+    $('#map-section').removeClass('screen');
 
     $('.main-park-open').addClass('slide');
     $('.jp-icon-large').addClass('opacity');
+
+    // Sounds
+    turnonAudio.pause();
+    runpcAudio.pause();
+    trexAudio.pause();
+    turnonAudio.currentTime = 0;
+    runpcAudio.currentTime = 0;
+    trexAudio.currentTime = 0;
+
+    soundtrackAudio.play();
   });
 
   $('#jt-link').on('click', () => {
-    $('.main-park-open.slide').removeClass('slide');
-    $('.jp-icon-large.opacity').removeClass('opacity');
+    // Animations
+    $('.main-park-open').removeClass('slide');
+    $('.jp-icon-large').removeClass('opacity');
+    $('#map-section').removeClass('screen');
 
     $('.jt-text').addClass('slide');
     $('.jt-preview').addClass('opacity');
+
+    // Sounds
+    turnonAudio.pause();
+    runpcAudio.pause();
+    soundtrackAudio.pause();
+    turnonAudio.currentTime = 0;
+    runpcAudio.currentTime = 0;
+    soundtrackAudio.currentTime = 0;
+
+    trexAudio.play();
   });
 
   $('#map-link').on('click', () => {
-    $('.main-park-open.slide').removeClass('slide');
-    $('.jp-icon-large.opacity').removeClass('opacity');
+    // Animations
+    $('.main-park-open').removeClass('slide');
+    $('.jp-icon-large').removeClass('opacity');
     $('.jt-text.slide').removeClass('slide');
-    $('.jt-preview.opacity').removeClass('opacity');
+    $('.jt-preview').removeClass('opacity');
+
+    $('#map-section').addClass('screen');
+
+    // Sounds
+    trexAudio.pause();
+    soundtrackAudio.pause();
+    trexAudio.currentTime = 0;
+    soundtrackAudio.currentTime = 0;
+
+    turnonAudio.play();
+    runpcAudio.play();
   });
 });
