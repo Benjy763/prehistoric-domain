@@ -25,12 +25,12 @@ $(document).ready(function () {
 
   // Loading mecanisms
   $('.loading-website .title').css('opacity', '1');
-  setTimeout(() => {
-    $('.loading-website .subtitle').css('opacity', '1');
-  }, 1500);
+  // setTimeout(() => {
+  //   $('.loading-website .subtitle').css('opacity', '1');
+  // }, 1500);
   setTimeout(() => {
     $('.loading-website .title').css('opacity', '0');
-    $('.loading-website .subtitle').css('opacity', '0');
+    // $('.loading-website .subtitle').css('opacity', '0');
   }, 4000);
   setTimeout(() => {
     $('.loading-website').css('display', 'none');
@@ -50,6 +50,12 @@ $(document).ready(function () {
       $('#main-page').css('display', 'none');
       $('#static-loading').css('display', 'flex');
       $('#main-scene-wrapper').css('display', 'block');
+
+      // Stop sounds
+      turnonAudio.pause();
+      runpcAudio.pause();
+      trexAudio.pause();
+      soundtrackAudio.pause();
     } else {
       $('#ticket-error').css('display', 'block');
     }
