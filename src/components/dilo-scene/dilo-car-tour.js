@@ -29,7 +29,6 @@ AFRAME.registerComponent('dilo-car-tour', {
     this.soundMixing1SoundPlaying = false;
     this.voiceDiloSoundPlaying = false;
     this.soundMixing1Audio = document.getElementById('sound-mixing-1');
-    this.voiceDiloSound = this.system.getVoice('dilo');
 
     // Init car (when reference is registered in the system) with tour data
     this.el.addEventListener('carRegistered', () => {
@@ -43,6 +42,7 @@ AFRAME.registerComponent('dilo-car-tour', {
     this.el.addEventListener(
       'start',
       () => {
+        this.voiceDiloSound = this.system.getVoice('dilo');
         // Register current tour in system
         this.console.registerCurrentTour(this);
         this.phase = 'start';

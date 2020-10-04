@@ -9,10 +9,6 @@ AFRAME.registerComponent('gate-car-tour', {
     this.brachio = document.querySelector('#brachio');
     this.gateSound = document.getElementById('gate-sound');
     this.gateCloseSound = document.getElementById('gate-close-sound');
-    this.voiceGate1Sound = this.system.getVoice('gate1');
-    this.voiceGate2Sound = this.system.getVoice('gate2');
-    this.voiceGate3Sound = this.system.getVoice('gate3');
-    this.voiceGate4Sound = this.system.getVoice('gate4');
     this.voicePhase = 'gate1';
     this.screenDefault = document.getElementById('screen-default');
     this.screenBrachio = document.getElementById('screen-brachio');
@@ -50,6 +46,10 @@ AFRAME.registerComponent('gate-car-tour', {
     this.el.addEventListener(
       'start',
       () => {
+        this.voiceGate1Sound = this.system.getVoice('gate1');
+        this.voiceGate2Sound = this.system.getVoice('gate2');
+        this.voiceGate3Sound = this.system.getVoice('gate3');
+        this.voiceGate4Sound = this.system.getVoice('gate4');
         // Register current tour in system
         this.console.registerCurrentTour(this);
         this.phase = 'start';

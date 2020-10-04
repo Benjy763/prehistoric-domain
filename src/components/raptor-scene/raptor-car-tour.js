@@ -16,7 +16,6 @@ AFRAME.registerComponent('raptor-car-tour', {
 
     // Sounds
     this.voiceRaptorSoundPlaying = false;
-    this.voiceRaptorSound = this.system.getVoice('raptor');
     // Animation phase
     this.sceneChanged = false;
 
@@ -32,6 +31,7 @@ AFRAME.registerComponent('raptor-car-tour', {
     this.el.addEventListener(
       'start',
       () => {
+        this.voiceRaptorSound = this.system.getVoice('raptor');
         // Register current tour in system
         this.console.registerCurrentTour(this);
         this.phase = 'start';

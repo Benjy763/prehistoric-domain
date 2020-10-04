@@ -11,8 +11,6 @@ AFRAME.registerComponent('trice-car-tour', {
     this.gateSound = document.getElementById('gate-sound');
     this.gateCloseSound = document.getElementById('gate-close-sound');
     this.endingSound = document.getElementById('soundtrack-ending-sound');
-    this.voiceTrice1Sound = this.system.getVoice('trice1');
-    this.voiceTrice2Sound = this.system.getVoice('trice2');
     this.voicePhase = 'trice1';
     this.screenDefault = document.getElementById('screen-default-2');
     this.screenBrachio = document.getElementById('screen-brachio-2');
@@ -51,6 +49,8 @@ AFRAME.registerComponent('trice-car-tour', {
     this.el.addEventListener(
       'start',
       () => {
+        this.voiceTrice1Sound = this.system.getVoice('trice1');
+        this.voiceTrice2Sound = this.system.getVoice('trice2');
         // Register current tour in system
         this.console.registerCurrentTour(this);
         this.phase = 'start';
