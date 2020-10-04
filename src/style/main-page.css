@@ -131,10 +131,9 @@
 }
 
 @media screen and (max-width: 1140px) {
-  .main-page-wrapper .loading-website .title,
-  .main-page-wrapper .loading-website .subtitle {
-    font-family: 'Quicksand', sans-serif;
-    font-size: 18px;
+  .loading-website .title,
+  .loading-website .subtitle {
+    font-size: 15px !important;
   }
 }
 

@@ -158,8 +158,8 @@ function initLoadMecanisms() {
     // $('.loading-website .subtitle').css('opacity', '0');
   }, 3000);
   setTimeout(() => {
+    soundtrackAudio.play();
     $('.loading-website').css('display', 'none');
     $('#main-section').css('display', 'flex');
-    soundtrackAudio.play();
   }, 4000);
 }
