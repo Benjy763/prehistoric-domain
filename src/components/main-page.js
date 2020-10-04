@@ -11,7 +11,6 @@ $(document).ready(function () {
   runpcAudio = document.getElementById('runpc-sound');
   trexAudio = document.getElementById('trex-sound');
   soundtrackAudio = document.getElementById('soundtrack-sound');
-  soundtrackAudio.play();
 
   // Add scroll smooth effect
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -23,6 +22,21 @@ $(document).ready(function () {
       });
     });
   });
+
+  // Loading mecanisms
+  $('.loading-website .title').css('opacity', '1');
+  setTimeout(() => {
+    $('.loading-website .subtitle').css('opacity', '1');
+  }, 1500);
+  setTimeout(() => {
+    $('.loading-website .title').css('opacity', '0');
+    $('.loading-website .subtitle').css('opacity', '0');
+  }, 4000);
+  setTimeout(() => {
+    $('.loading-website').css('display', 'none');
+    $('#main-section').css('display', 'flex');
+    soundtrackAudio.play();
+  }, 5000);
 
   // Add tickets mecanims
   $('#get-ticket').on('click', () => {

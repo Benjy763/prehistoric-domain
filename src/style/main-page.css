@@ -101,6 +101,38 @@
   overflow: hidden;
 }
 
+/*------------- LOADING PART -------------*/
+.loading-website {
+  z-index: 9999;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.loading-website .title,
+.loading-website .subtitle {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 22px;
+  color: white;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+@media screen and (max-width: 1140px) {
+  .main-page-wraper .loading-website .title,
+  .main-page-wraper .loading-website .subtitle {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 18px;
+  }
+}
+
 /*------------- FIXED MENU PART -------------*/
 .fixed-menu {
   display: flex;
@@ -134,7 +166,7 @@
 
 /*------------- MAIN PART -------------*/
 #main-section {
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
