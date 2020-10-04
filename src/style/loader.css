@@ -30,12 +30,17 @@
   width: 130px;
 }
 
-#put-headset {
+#put-headset,
+#loading-infos {
   margin: 10px 0;
   display: none;
   font-family: 'Tribeca', Verdana, Tahoma;
   font-size: 22px;
   color: white;
+}
+
+#loading-infos {
+  display: block;
 }
 
 /* VR logo replacement */
