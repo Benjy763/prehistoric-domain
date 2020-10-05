@@ -15,6 +15,12 @@ PLUGINS = [
       <head>
         <meta charset="UTF-8" />
         <title>Jurassic Tour VR</title>
+        <style type="text/css">
+          @font-face {
+            font-family: 'Tribeca';
+            src: url('./build/font/Tribeca.ttf') format('truetype');
+          }
+    </style>
       </head>
       <body>
         <div id="app"></div>
@@ -48,10 +54,6 @@ module.exports = {
   plugins: PLUGINS,
   module: {
     rules: [
-      {
-        test: /\.(eot|ttf)$/,
-        loader: 'file-loader',
-      },
       {
         test: /\.js/,
         exclude: [/(node_modules)/, /vendors/],

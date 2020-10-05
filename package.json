@@ -59,7 +59,6 @@
     "css-loader": "^0.28.7",
     "debug": "^4.1.0",
     "diff-dom": "^3.1.0",
-    "file-loader": "^6.1.0",
     "ghpages": "0.0.10",
     "html-entities": "^1.2.1",
     "html-require-loader": "*",

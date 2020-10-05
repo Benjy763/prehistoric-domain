@@ -33,10 +33,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(eot|ttf)$/,
-        loader: 'file-loader',
-      },
-      {
         test: /\.js/,
         exclude: [/(node_modules)/, /vendors/],
         use: ['babel-loader', 'aframe-super-hot-loader'],
