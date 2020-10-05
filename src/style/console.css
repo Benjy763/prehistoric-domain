@@ -174,7 +174,7 @@ html.a-fullscreen .a-canvas {
 .right-wrapper {
   z-index: 10;
   flex: 1;
-  height: 50%;
+  height: 100%;
   background-color: black;
 }
 

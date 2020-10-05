@@ -109,7 +109,7 @@ AFRAME.registerSystem('game', {
       // Remove loading interface
       document.getElementById('static-loading').style.display = 'none';
       // Add scene screen
-      document.getElementById('main-scene-wrapper').style.zIndex = '9999';
+      document.getElementById('main-scene-wrapper').style.zIndex = '10';
       // Show console interface
       document.getElementById('console').style.display = 'block';
     };
