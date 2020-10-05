@@ -418,6 +418,14 @@
   width: 530px;
 }
 
+.jt-content .jt-text a {
+  color: #f7d23f;
+}
+
+.jt-text strong {
+  color: #f02828;
+}
+
 .jt-text ul {
   margin: 0;
   padding-left: 20px;
