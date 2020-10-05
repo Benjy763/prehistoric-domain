@@ -96,7 +96,7 @@ html.a-fullscreen .a-canvas {
   white-space: -moz-pre-wrap;
 }
 
-#main-terminal {
+.main-terminal {
   padding: 5px;
   margin: 8px;
   background-color: #203085;
@@ -104,22 +104,22 @@ html.a-fullscreen .a-canvas {
   height: calc(100% - 26px);
 }
 
-#main-terminal .inner-wrap {
+.main-terminal .inner-wrap {
   height: 100%;
   width: 450px;
   overflow: hidden;
 }
 
-#main-terminal #system-output {
+.main-terminal #system-output {
   color: #ccc;
 }
 
-#system-output td {
+.system-output td {
   width: 185px;
 }
 
 @media screen and (max-width: 1670px) {
-  #main-terminal .inner-wrap {
+  .main-terminal .inner-wrap {
     width: 360px;
   }
 }

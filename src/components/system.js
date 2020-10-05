@@ -78,7 +78,7 @@ AFRAME.registerSystem('game', {
     this.loadingAssets();
 
     // Debug events
-    this.startListener();
+    //this.startDebugListener();
   },
   registerCar: function (car) {
     // Save all car references at start
@@ -217,7 +217,7 @@ AFRAME.registerSystem('game', {
       this.loading(false);
     }, 15000);
   },
-  startListener: function () {
+  startDebugListener: function () {
     // ----- Section for debug events -----
     document.addEventListener('keyup', (e) => {
       // Start tour in debug mode with key 8 (display in navigator)
