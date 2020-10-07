@@ -411,6 +411,7 @@
   }
 
   .jt-content .jt-text ul {
+    padding-left: 0px;
     list-style-type: none;
   }
 }

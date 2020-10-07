@@ -184,9 +184,12 @@ AFRAME.registerSystem('game', {
       // Preloading
       setTimeout(() => {
         // Press start
+        document.getElementById('loader-logo').style.display = 'none';
         document.getElementById('loading-logo').style.display = 'none';
         document.getElementById('loading-infos').style.display = 'none';
-        document.getElementById('put-headset').style.display = 'block';
+        document.getElementById('loading-infos').style.display = 'none';
+        document.getElementById('explains-logo').style.display = 'block';
+        //document.getElementById('put-headset').style.display = 'block';
         document.getElementById('enter-vr').style.display = 'block';
 
         this.initClickEvents();
