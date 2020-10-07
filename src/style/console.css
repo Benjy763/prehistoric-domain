@@ -1,3 +1,12 @@
+@keyframes blink {
+  from {
+    background-color: #a1a699;
+  }
+  to {
+    background-color: #f7d23f;
+  }
+}
+
 body {
   font-family: 'Tribeca', Verdana, Tahoma;
   margin: 0;
@@ -516,20 +525,23 @@ html.a-fullscreen .a-canvas {
 }
 #buttons #start-tour {
   cursor: pointer;
-}
-#buttons span.active {
-  cursor: pointer;
-  background: #818679;
-  text-shadow: none;
-  color: #000;
-}
-#buttons span.half {
-  width: 66px;
+  animation-duration: 500ms;
+  animation-name: blink;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 #buttons #start-tour:hover {
   background: #919689;
   text-shadow: none;
-  color: #ccc;
+  color: black;
+}
+#buttons span.active {
+  cursor: pointer;
+  background-color: #818679 !important;
+  text-shadow: none;
+}
+#buttons span.half {
+  width: 66px;
 }
 
 #wrap-paddock-screenSecond {
