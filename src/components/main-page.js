@@ -1,11 +1,12 @@
 let $ = require('jquery');
-const validValues = [6971, 6972, 6973, 6974, 6975];
+const validValues = [9391];
 let turnonAudio;
 let runpcAudio;
 let trexAudio;
 let soundtrackAudio;
 
 $(document).ready(function () {
+  $('.main-page-wrapper').scrollTop(0);
   // Get assets
   turnonAudio = document.getElementById('turnon-sound');
   runpcAudio = document.getElementById('runpc-sound');
@@ -85,7 +86,7 @@ function initSectionsAnimations() {
 function initTicketMecanisms() {
   // Add tickets mecanims
   $('#get-ticket').on('click', () => {
-    const randomTicket = Math.floor(Math.random() * 5) + 6971;
+    const randomTicket = Math.floor(Math.random() * 5) + 9391;
     window.open(`./build/images/ticket-${randomTicket}.jpg`);
   });
 
@@ -146,20 +147,9 @@ function debug() {
 }
 
 function initLoadMecanisms() {
-  $('.main-page-wrapper').scrollTop(0);
-
-  // Loading mecanisms
-  $('.loading-website .title').css('opacity', '1');
-  // setTimeout(() => {
-  //   $('.loading-website .subtitle').css('opacity', '1');
-  // }, 1500);
-  setTimeout(() => {
-    $('.loading-website .title').css('opacity', '0');
-    // $('.loading-website .subtitle').css('opacity', '0');
-  }, 3000);
-  setTimeout(() => {
+  $('#enter-xp').on('click', () => {
     soundtrackAudio.play();
     $('.loading-website').css('display', 'none');
     $('#main-section').css('display', 'flex');
-  }, 4000);
+  });
 }

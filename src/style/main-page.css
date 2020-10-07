@@ -126,6 +126,34 @@
   transition: opacity 1s ease-in-out;
 }
 
+.loading-website .button {
+  margin-top: 10px;
+  opacity: 0;
+  cursor: pointer;
+  padding: 3px 5px 5px 5px;
+  border: 1px solid white;
+  color: white;
+}
+
+.loading-website .button:hover {
+  border-color: #f7d23f;
+}
+
+.loading-website .title.opacity {
+  animation: fadein 5s;
+  opacity: 1;
+}
+
+.loading-website .subtitle.opacity {
+  animation: fadein 5s;
+  opacity: 1;
+}
+
+.loading-website .button.opacity {
+  animation: fadein 5s;
+  opacity: 1;
+}
+
 @media screen and (max-width: 1140px) {
   .loading-website .title,
   .loading-website .subtitle {
@@ -226,11 +254,16 @@
   color: white;
 }
 
+.main-choices.centered {
+  justify-content: center;
+}
+
 .main-choices .ticket-wrapper {
   position: relative;
 }
 
 .main-page-wrapper .button {
+  text-align: center;
   border: 2px solid white;
   padding: 5px;
 }
