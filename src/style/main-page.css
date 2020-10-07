@@ -117,8 +117,7 @@
   flex-direction: column;
 }
 
-.loading-website .title,
-.loading-website .subtitle {
+.loading-website .title {
   font-family: 'Quicksand', sans-serif;
   font-size: 22px;
   color: white;
@@ -127,6 +126,7 @@
 }
 
 .loading-website .button {
+  font-size: 18px;
   margin-top: 10px;
   opacity: 0;
   cursor: pointer;
@@ -157,7 +157,11 @@
 @media screen and (max-width: 1140px) {
   .loading-website .title,
   .loading-website .subtitle {
-    font-size: 15px !important;
+    font-size: 14px !important;
+  }
+
+  .loading-website .button {
+    font-size: 14px !important;
   }
 }
 
