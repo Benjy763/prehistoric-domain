@@ -155,6 +155,10 @@
 }
 
 @media screen and (max-width: 1140px) {
+  .legal {
+    font-size: 12px !important;
+  }
+
   .loading-website .title,
   .loading-website .subtitle {
     font-size: 14px !important;
@@ -209,10 +213,43 @@
 }
 
 .main-infos {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.vr-status {
+  position: absolute;
+  top: 32px;
+  right: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 20px;
+  color: white;
+}
+
+.img-on,
+.img-off {
+  width: 80px;
+  margin-bottom: 10px;
+}
+
+.vr-on,
+.vr-off {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.vr-on {
+  display: none;
 }
 
 .jp-icon-large {
@@ -269,7 +306,7 @@
 .main-page-wrapper .button {
   text-align: center;
   border: 2px solid white;
-  padding: 5px;
+  padding: 8px;
 }
 
 .main-page-wrapper .button:hover {
@@ -283,11 +320,20 @@
   width: 144px;
 }
 
-.main-choices .ticket-wrapper #ticket-error {
-  display: none;
+.main-choices .ticket-wrapper .error {
+  font-size: 16px;
   color: #f02828;
   position: absolute;
   top: -24px;
+}
+
+#ticket-error,
+#vr-error {
+  display: none;
+}
+
+#vr-error {
+  top: -40px;
 }
 
 #use-ticket {

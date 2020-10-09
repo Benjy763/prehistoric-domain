@@ -65,6 +65,16 @@
     </div>
   </div>
   <div id="main-section">
+    <div class="vr-status">
+      <div class="vr-off">
+        <img class="img-off" src="./build/images/vr-off.png" />
+        VR Off
+      </div>
+      <div class="vr-on">
+        <img class="img-on" src="./build/images/vr-on.png" />
+        VR On
+      </div>
+    </div>
     <div class="main-infos">
       <img
         class="jp-icon-large opacity"
@@ -85,7 +95,10 @@
           <div class="button" id="get-ticket">Get a free ticket</div>
         </div> -->
         <div class="ticket-wrapper">
-          <div id="ticket-error">Invalid code</div>
+          <div id="ticket-error" class="error">Invalid code</div>
+          <div id="vr-error" class="error">
+            No headset detected <br />Connect and refresh
+          </div>
           <input
             placeholder="Use your code"
             id="ticket-value"

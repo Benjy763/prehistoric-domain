@@ -20,7 +20,19 @@ $(document).ready(function () {
   initTicketMecanisms();
   initLanguageMecanisms();
   initSectionsAnimations();
+  checkVrStatus();
 });
+
+function checkVrStatus() {
+  const status = AFRAME.utils.device.checkHeadsetConnected();
+  if (status) {
+    $('.vr-off').css('display', 'none');
+    $('.vr-on').css('display', 'flex');
+  } else {
+    $('.vr-on').css('display', 'none');
+    $('.vr-off').css('display', 'flex');
+  }
+}
 
 function initSectionsAnimations() {
   $('#main-link').on('click', () => {
@@ -91,12 +103,19 @@ function initTicketMecanisms() {
   });
 
   $('#use-ticket').on('click', () => {
-    if (validValues.includes(Number($('#ticket-value').val()))) {
+    const status = AFRAME.utils.device.checkHeadsetConnected();
+    if (status && validValues.includes(Number($('#ticket-value').val()))) {
       $('.main-choices').css('display', 'none');
       $('.language-wrapper').css('display', 'block');
       initLanguageMecanisms();
     } else {
-      $('#ticket-error').css('display', 'block');
+      if (status) {
+        $('#vr-error').css('display', 'none');
+        $('#ticket-error').css('display', 'block');
+      } else {
+        $('#ticket-error').css('display', 'none');
+        $('#vr-error').css('display', 'block');
+      }
     }
   });
 }
