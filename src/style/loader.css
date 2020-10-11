@@ -18,6 +18,11 @@
   display: none;
 }
 
+#main-scene-wrapper .scene-content.fullscreen {
+  width: 100vw;
+  height: 100vh;
+}
+
 #console {
   display: none;
 }

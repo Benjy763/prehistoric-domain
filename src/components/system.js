@@ -235,6 +235,10 @@ AFRAME.registerSystem('game', {
         document
           .getElementById('main-scene-wrapper')
           .classList.remove('scene-wrapper');
+          // Display fullscreen
+        document
+          .getElementById('main-scene-content')
+          .classList.add('fullscreen');
         // Display scene
         this.displayScene();
         // Rendering scene
