@@ -35,12 +35,20 @@
   width: 130px;
 }
 
-#put-headset,
+#see-faq,
 #loading-infos {
   margin: 10px 0;
   display: none;
   font-family: 'Tribeca', Verdana, Tahoma;
   font-size: 22px;
+  color: white;
+}
+
+#see-faq {
+  margin: 0 0 10px 0;
+  display: none;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 18px;
   color: white;
 }
 

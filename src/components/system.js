@@ -189,7 +189,7 @@ AFRAME.registerSystem('game', {
         document.getElementById('loading-infos').style.display = 'none';
         document.getElementById('loading-infos').style.display = 'none';
         document.getElementById('explains-logo').style.display = 'block';
-        //document.getElementById('put-headset').style.display = 'block';
+        document.getElementById('see-faq').style.display = 'block';
         document.getElementById('enter-vr').style.display = 'block';
 
         this.initClickEvents();
