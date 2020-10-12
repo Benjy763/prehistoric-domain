@@ -36,6 +36,7 @@ PLUGINS = [
 
           gtag('config', 'UA-179628072-1');
         </script>
+        <meta name="viewport" content="initial-scale=1">
         <meta charset="UTF-8" />
         <title>Jurassic Tour VR</title>
         <style type="text/css">
