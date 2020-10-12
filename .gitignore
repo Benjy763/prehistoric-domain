@@ -1,4 +1,5 @@
 build
 dist
+dist-ws
 node_modules
 *.ttf

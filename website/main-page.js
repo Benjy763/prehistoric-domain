@@ -128,12 +128,12 @@ function initTicketMecanisms() {
 function initLanguageMecanisms() {
   // Add Languages mecanims
   $('#language-en').on('click', () => {
-    window.language = 'en';
+    localStorage.setItem('language', 'en');
     openGame();
   });
 
   $('#language-fr').on('click', () => {
-    window.language = 'fr';
+    localStorage.setItem('language', 'fr');
     openGame();
   });
 }
@@ -145,6 +145,7 @@ function openGame() {
   runpcAudio.pause();
   trexAudio.pause();
   soundtrackAudio.pause();
+  localStorage.setItem('from-index', true);
   window.location.href = window.location.href + "experience/vr.html";
 }
 

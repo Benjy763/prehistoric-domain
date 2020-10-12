@@ -3,6 +3,7 @@ AFRAME.registerSystem('game', {
   init: function () {
     this.firstScene = 'gate';
     this.displayDistance = 100; // 150
+    this.language = 'en';
     this.languages = {
       en: {
         gate1: 'voice-gate1-sound-en',
@@ -75,10 +76,16 @@ AFRAME.registerSystem('game', {
     this.actuelScene = this.firstScene;
     this.tourStarted = false;
     this.console = document.querySelector('a-scene').systems['console'];
+    this.initLanguage();
     this.loadingAssets();
 
     // Debug events
     //this.startDebugListener();
+  },
+  initLanguage: function() {
+    if (localStorage.getItem('language') !== null) {
+      this.language = localStorage.getItem('language');
+    }
   },
   registerCar: function (car) {
     // Save all car references at start
@@ -291,7 +298,6 @@ AFRAME.registerSystem('game', {
       .setAttribute('position', { x: -0.38, y: -80, z: 0.5 });
   },
   getVoice(element) {
-    const language = window.language ? window.language : 'en';
-    return document.getElementById(this.languages[language][element]);
+    return document.getElementById(this.languages[this.language][element]);
   },
 });
