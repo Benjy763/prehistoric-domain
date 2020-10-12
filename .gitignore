@@ -1,6 +1,5 @@
 build
 dist
 dist-ws
-dist-ws/index.html
 node_modules
 *.ttf
