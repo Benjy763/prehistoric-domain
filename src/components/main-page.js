@@ -4,6 +4,7 @@ let turnonAudio;
 let runpcAudio;
 let trexAudio;
 let soundtrackAudio;
+let statusInterval;
 
 $(document).ready(function () {
   $('.main-page-wrapper').scrollTop(0);
@@ -20,7 +21,9 @@ $(document).ready(function () {
   initTicketMecanisms();
   initLanguageMecanisms();
   initSectionsAnimations();
-  checkVrStatus();
+  statusInterval = setInterval(() => {
+    checkVrStatus();
+  }, 3000);
 });
 
 function checkVrStatus() {
@@ -134,6 +137,7 @@ function initLanguageMecanisms() {
 }
 
 function openGame() {
+  clearInterval(statusInterval);
   $('#main-page').css('display', 'none');
   $('#static-loading').css('display', 'flex');
   $('#main-scene-wrapper').css('display', 'block');

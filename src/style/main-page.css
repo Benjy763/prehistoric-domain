@@ -297,7 +297,7 @@
   justify-content: space-between;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
     'Lucida Sans', Arial, sans-serif;
-  font-size: 20px;
+  font-size: 18px;
   color: white;
 }
 
@@ -307,6 +307,10 @@
 
 .main-choices .ticket-wrapper {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .main-page-wrapper .button {
@@ -358,6 +362,7 @@
 
 .language-wrapper .title {
   margin: 10px 0;
+  text-align: center;
 }
 
 .language-wrapper .buttons {
