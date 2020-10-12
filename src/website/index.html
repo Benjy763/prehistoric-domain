@@ -1,15 +1,53 @@
+!DOCTYPE html>
+<html>
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-179628072-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'UA-179628072-1');
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'UA-179628072-1');
+    </script>
+    <meta charset="utf-8" />
+    <title>Jurassic Tour</title>
+    <script src="main-page.js"></script>
+    <link href="style.css" rel="stylesheet">
+    <style type="text/css">
+      @font-face {
+        font-family: 'Tribeca';
+        src: url('./font/Tribeca.ttf') format('truetype');
+      }
+    </style>
+  </head>
+  <body>
 <!-- Website assets -->
 <audio
   id="turnon-sound"
   response-type="arraybuffer"
-  src="./build/sounds/website/turnon.mp3"
+  src="./sounds/turnon.mp3"
   preload="auto"
   volume="1"
 ></audio>
 <audio
   id="runpc-sound"
   response-type="arraybuffer"
-  src="./build/sounds/website/runpc.mp3"
+  src="./sounds/runpc.mp3"
   preload="auto"
   volume="1"
   loop="true"
@@ -17,7 +55,7 @@
 <audio
   id="trex-sound"
   response-type="arraybuffer"
-  src="./build/sounds/website/trex.mp3"
+  src="./sounds/trex.mp3"
   preload="auto"
   volume="1"
   loop="true"
@@ -25,7 +63,7 @@
 <audio
   id="soundtrack-sound"
   response-type="arraybuffer"
-  src="./build/sounds/website/soundtrack.mp3"
+  src="./sounds/soundtrack.mp3"
   preload="auto"
   volume="1"
   loop="true"
@@ -43,15 +81,15 @@
   <div class="fixed-menu">
     <div class="subsection">
       <a href="#main-section" id="main-link" class="icon-item">
-        <img class="icon-infos" src="./build/images/icon-main.png" />
+        <img class="icon-infos" src="./images/icon-main.png" />
         <span>Main</span>
       </a>
       <a href="#jt-section" id="jt-link" class="icon-item">
-        <img class="icon-infos" src="./build/images/icon-infos.png" />
+        <img class="icon-infos" src="./images/icon-infos.png" />
         <span>Informations</span>
       </a>
       <a href="#map-section" id="map-link" class="icon-item">
-        <img class="icon-map" src="./build/images/icon-map.png" />
+        <img class="icon-map" src="./images/icon-map.png" />
         <span>FAQ</span>
       </a>
       <a
@@ -60,7 +98,7 @@
         id="map-link"
         class="icon-item"
       >
-        <img class="icon-dicord" src="./build/images/icon-discord.png" />
+        <img class="icon-dicord" src="./images/icon-discord.png" />
         <span>Follow</span>
       </a>
     </div>
@@ -68,18 +106,18 @@
   <div id="main-section">
     <div class="vr-status">
       <div class="vr-off">
-        <img class="img-off" src="./build/images/vr-off.png" />
+        <img class="img-off" src="./images/vr-off.png" />
         VR Off
       </div>
       <div class="vr-on">
-        <img class="img-on" src="./build/images/vr-on.png" />
+        <img class="img-on" src="./images/vr-on.png" />
         VR On
       </div>
     </div>
     <div class="main-infos">
       <img
         class="jp-icon-large opacity"
-        src="./build/images/jurassictourvr.png"
+        src="./images/jurassictourvr.png"
       />
       <div class="main-park-open-wrapper">
         <div class="main-park-open slide">The park is open</div>
@@ -115,10 +153,10 @@
     </div>
   </div>
   <div id="jt-section">
-    <img class="jt-icon-large" src="./build/images/jurassictourvr.png" />
+    <img class="jt-icon-large" src="./images/jurassictourvr.png" />
     <div class="jt-title">Informations</div>
     <div class="jt-content">
-      <img class="jt-preview" src="./build/images/preview1.jpg" />
+      <img class="jt-preview" src="./images/preview1.jpg" />
       <div class="jt-text">
         <div class="jt-text-title">The Experience</div>
         <ul>
@@ -155,16 +193,16 @@
     </div>
   </div>
   <div id="map-section" class="screen">
-    <img class="map-icon-large" src="./build/images/jurassictourvr.png" />
+    <img class="map-icon-large" src="./images/jurassictourvr.png" />
     <div class="map-title">FAQ</div>
     <div class="map-content">
       <div class="map-window">
         <img
           class="map-window-img"
-          src="./build/images/background-window.png"
+          src="./images/background-window.png"
         />
         <div class="map-wrapper">
-          <img class="map" src="./build/images/map.jpg" />
+          <img class="map" src="./images/map.jpg" />
         </div>
       </div>
       <div class="map-text">
@@ -201,3 +239,5 @@
     </div>
   </div>
 </div>
+</body>
+</html>

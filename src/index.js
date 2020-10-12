@@ -12,7 +12,6 @@ require('aframe-geometry-merger-component');
 require('./vendors/aframe-gif-shader/dist/aframe-gif-component.js');
 
 // Require all components.
-require('./style/main-page.css');
 require('./style/loader.css');
 require('./style/console.css');
 requireAll(require.context('./components/', true, /\.js$/));

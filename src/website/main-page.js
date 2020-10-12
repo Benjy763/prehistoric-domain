@@ -140,14 +140,12 @@ function initLanguageMecanisms() {
 
 function openGame() {
   clearInterval(statusInterval);
-  $('#main-page').css('display', 'none');
-  $('#static-loading').css('display', 'flex');
-  $('#main-scene-wrapper').css('display', 'block');
   // Stop sounds
   turnonAudio.pause();
   runpcAudio.pause();
   trexAudio.pause();
   soundtrackAudio.pause();
+  window.location.href = window.location.href + "experience/vr.html";
 }
 
 function initScrollSmoothEffect() {
