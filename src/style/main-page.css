@@ -439,6 +439,12 @@
   padding-top: 20px;
 }
 
+@media screen and (max-width: 1600px) {
+  #jt-section .jt-icon-large {
+    width: 200px;
+  }
+}
+
 @media screen and (max-width: 1140px) {
   #jt-section .jt-icon-large {
     width: 240px;
@@ -674,6 +680,12 @@
   top: 0;
   width: 553px;
   height: 338px;
+}
+
+@media screen and (max-width: 1600px) {
+  .map-icon-large {
+    width: 200px;
+  }
 }
 
 @media screen and (max-width: 1140px) {
