@@ -5,6 +5,48 @@ let runpcAudio;
 let trexAudio;
 let soundtrackAudio;
 let statusInterval;
+let models = {
+  "trex-roar": "./build/sounds/trex/roar-2.mp3",
+  "trex-foot-step": "./build/sounds/trex/foot-step-3.mp3",
+  "trex-leave": "./build/sounds/trex/leave-2.mp3",
+  "brachio-step": "./build/sounds/brachio/brachio-step.mp3",
+  "brachio-roar": "./build/sounds/brachio/brachio-roar.mp3",
+  "dilo-roar": "./build/sounds/dilo/dilo-roar.mp3",
+  "goat-roar": "./build/sounds/goat/goat.mp3",
+  "goat-elevator": "./build/sounds/goat/elevator.mp3",
+  "raptor-benddown": "./build/sounds/raptor/benddown.mp3",
+  "raptor-bendup": "./build/sounds/raptor/bendup.mp3",
+  "raptor-body-roar": "./build/sounds/raptor/body-roar.mp3",
+  "raptor-far-roar": "./build/sounds/raptor/far-roar.mp3",
+  "raptor-head-animation": "./build/sounds/raptor/head-animation.mp3",
+  "raptor-ambiant": "./build/sounds/raptor/ambiant.mp3",
+  "trice-agressive": "./build/sounds/trice/agressive.mp3",
+  "trice-roar1": "./build/sounds/trice/roar1.mp3",
+  "trice-roar2": "./build/sounds/trice/roar2.mp3",
+  "trice-run": "./build/sounds/trice/run.mp3",
+  "trice-snoring": "./build/sounds/trice/snoring.mp3",
+  "car-asset": "./build/models/objects/car/car.glb",
+  "grass-asset": "./build/models/environment/grass/scene.gltf",
+  "building-asset": "./build/models/environment/building/scene.gltf",
+  "small-fence-asset": "./build/models/environment/small-fence/small-fence.glb",
+  "spot-asset": "./build/models/environment/spot/spot.gltf",
+  "gate-asset": "./build/models/environment/gate/gate.glb",
+  "sign-asset": "./build/models/environment/sign/sign.glb",
+  "hut-asset": "./build/models/environment/hut/hut.glb",
+  "tunnel-asset": "./build/models/environment/tunnel/tunnel.gltf",
+  "electric-fence-asset": "./build/models/environment/electric-fence/electric-fence.glb",
+  "electric-fence-dilo-asset": "./build/models/environment/electric-fence/electric-fence-dilo.glb",
+  "double-rock-asset": "./build/models/environment/double-rock/double-rock.gltf",
+  "palms-asset": "./build/models/environment/palms/palms.gltf",
+  "simple-plant-asset": "./build/models/environment/simple-plant/simple-plant.gltf",
+  "tropical-plant-asset": "./build/models/environment/tropical-plant/tropical-plant.gltf",
+  "goat-asset": "./build/models/dinosaurs/goat/scene.gltf",
+  "trex-asset": "./build/models/dinosaurs/trex/trex.glb",
+  "brachio-asset": "./build/models/dinosaurs/brachio/brachio.gltf",
+  "raptor-head-asset": "./build/models/dinosaurs/raptor/head/scene.gltf",
+  "raptor-asset": "./build/models/dinosaurs/raptor/full/scene.gltf",
+  "trice-asset": "./build/models/dinosaurs/trice/scene.gltf"
+}
 
 $(document).ready(function () {
   $('.main-page-wrapper').scrollTop(0);
@@ -21,10 +63,18 @@ $(document).ready(function () {
   initTicketMecanisms();
   initLanguageMecanisms();
   initSectionsAnimations();
+
   statusInterval = setInterval(() => {
     checkVrStatus();
   }, 3000);
 });
+
+function lazyLoadModels() {
+  Object.keys(models).forEach(id => {
+    const d = new Date();
+    $(`#${id}`).attr('src', models[id]+"?"+d.getTime());
+  })
+}
 
 function checkVrStatus() {
   const status = AFRAME.utils.device.checkHeadsetConnected();
@@ -137,6 +187,7 @@ function initLanguageMecanisms() {
 }
 
 function openGame() {
+  lazyLoadModels();
   clearInterval(statusInterval);
   $('#main-page').css('display', 'none');
   $('#static-loading').css('display', 'flex');
