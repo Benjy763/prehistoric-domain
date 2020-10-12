@@ -1,4 +1,7 @@
 @import url(//fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap);
+body {
+  font-family: 'Tribeca', Verdana, Tahoma;
+}
 @keyframes slide {
   to {
     transform: translateX(0);
@@ -437,7 +440,7 @@
 
 /*------------- INFOS PART -------------*/
 #jt-section {
-  background-image: url('../images/jt-background.jpg');
+  background-image: url('./images/jt-background.jpg');
   background-repeat: repeat;
   position: relative;
   display: flex;
@@ -553,7 +556,7 @@
 
 /*------------- MAP PART -------------*/
 #map-section {
-  background-image: url('../images/console-background-large.jpg');
+  background-image: url('./images/console-background-large.jpg');
   background-repeat: repeat;
   position: relative;
   display: flex;

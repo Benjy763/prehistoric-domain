@@ -109,7 +109,7 @@ function initTicketMecanisms() {
 
   $('#use-ticket').on('click', () => {
     const status = AFRAME.utils.device.checkHeadsetConnected();
-    if (status && validValues.includes(Number($('#ticket-value').val()))) {
+    if (validValues.includes(Number($('#ticket-value').val()))) {
       $('.main-choices').css('display', 'none');
       $('.language-wrapper').css('display', 'block');
       initLanguageMecanisms();
