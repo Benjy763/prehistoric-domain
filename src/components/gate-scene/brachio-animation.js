@@ -45,7 +45,7 @@ AFRAME.registerComponent('brachio-animation', {
       setTimeout(() => {
         this.footStepAudio.stopSound();
         this.footRoarAudio.stopSound();
-      }, 6000);
+      }, 8000);
       const event = new Event('restart');
       this.car.dispatchEvent(event);
       this.phase = 'exit';
