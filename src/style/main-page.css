@@ -307,6 +307,7 @@
   text-align: center;
   border: 2px solid white;
   padding: 8px;
+  width: 150px;
 }
 
 .main-page-wrapper .button:hover {
@@ -317,7 +318,8 @@
 .main-choices .ticket-wrapper input {
   height: 38px;
   font-size: 18px;
-  width: 144px;
+  padding: 0 9px;
+  width: 150px;
 }
 
 .main-choices .ticket-wrapper .error {
