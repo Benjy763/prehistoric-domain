@@ -429,7 +429,7 @@ body {
   border-bottom: 2px solid #f7d23f;
 }
 
-@media screen and (max-width: 1140px) {
+@media screen and (max-width: 1500px) {
   #main-section .jp-icon-large {
     width: 280px;
   }
@@ -457,6 +457,30 @@ body {
 @media screen and (max-width: 1600px) {
   #jt-section .jt-icon-large {
     width: 200px;
+  }
+}
+
+@media screen and (max-width: 1500px) {
+  #jt-section .jt-content {
+    width: 900px;
+  }
+
+  #jt-section .jt-icon-large {
+    width: 240px;
+  }
+
+  #jt-section .jt-content {
+    justify-content: center;
+    margin-top: 20px;
+  }
+  .jt-content .jt-preview {
+    height: 250px;
+  }
+
+  .jt-content .jt-text {
+    width: 100vw;
+    font-size: 14px;
+    padding-left: 20px;
   }
 }
 
@@ -703,6 +727,24 @@ body {
   }
 }
 
+@media screen and (max-width: 1500px) {
+  #map-section .cmd-view {
+    font-size: 13px;
+  }
+
+  #map-section .map-wrapper {
+    height: 216px;
+  }
+
+  #map-section .map-window-img {
+    height: 271px;
+  }
+
+  #map-section .map {
+    top: -255px;
+  }
+}
+
 @media screen and (max-width: 1140px) {
   #map-section .map-icon-large {
     width: 240px;
@@ -720,7 +762,7 @@ body {
   }
 }
 
-/* ----- Console ----- */
+/* ----- CONSOLE ----- */
 @keyframes blink {
   from {
     background-color: #a1a699;
