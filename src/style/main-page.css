@@ -125,6 +125,12 @@
   transition: opacity 1s ease-in-out;
 }
 
+.loading-website .title:first-child {
+  border-bottom: 1px solid white;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
 .loading-website .button {
   font-size: 18px;
   margin-top: 10px;
@@ -230,13 +236,13 @@
   justify-content: center;
   align-items: center;
   font-family: 'Quicksand', sans-serif;
-  font-size: 20px;
+  font-size: 16px;
   color: white;
 }
 
 .img-on,
 .img-off {
-  width: 80px;
+  width: 60px;
   margin-bottom: 10px;
 }
 
