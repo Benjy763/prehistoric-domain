@@ -59,6 +59,12 @@
   width: 800px;
 }
 
+@media screen and (max-width: 1600px) {
+  #explains-logo {
+    width: 600px;
+  }
+}
+
 /* VR logo replacement */
 
 #enter-vr {
