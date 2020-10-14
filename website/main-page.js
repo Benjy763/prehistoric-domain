@@ -146,7 +146,7 @@ function openGame() {
   trexAudio.pause();
   soundtrackAudio.pause();
   localStorage.setItem('from-index', true);
-  window.location.href = window.location.href + "experience/vr.html";
+  window.location.href = 'https://' + window.location.host + "/experience/";
 }
 
 function initScrollSmoothEffect() {
