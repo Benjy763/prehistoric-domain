@@ -465,10 +465,6 @@ body {
     width: 900px;
   }
 
-  #jt-section .jt-icon-large {
-    width: 240px;
-  }
-
   #jt-section .jt-content {
     justify-content: center;
     margin-top: 20px;
@@ -501,6 +497,7 @@ body {
     text-align: center;
     width: 100vw;
     font-size: 14px;
+    padding-left: 0;
   }
 
   .jt-content .jt-text ul {
