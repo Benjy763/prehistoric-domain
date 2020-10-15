@@ -23,9 +23,9 @@ $(document).ready(function () {
   initLanguageMecanisms();
   initSectionsAnimations();
 
-  statusInterval = setInterval(() => {
-    checkVrStatus();
-  }, 3000);
+  // statusInterval = setInterval(() => {
+  //   checkVrStatus();
+  // }, 3000);
 });
 
 function checkVrStatus() {
@@ -103,8 +103,8 @@ function initSectionsAnimations() {
 function initTicketMecanisms() {
   // Add tickets mecanims
   $('#get-ticket').on('click', () => {
-    const randomTicket = Math.floor(Math.random() * 5) + 9391;
-    window.open(`./build/images/ticket-${randomTicket}.jpg`);
+    const randomTicket = Math.floor(Math.random() * 9) + 9391;
+    window.open(`./images/ticket-${randomTicket}.jpg`);
   });
 
   $('#use-ticket').on('click', () => {
