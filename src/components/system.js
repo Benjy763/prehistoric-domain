@@ -287,7 +287,7 @@ AFRAME.registerSystem('game', {
       //   .setAttribute('visible', false);
       document
         .querySelector('#' + this.scenes[this.actuelScene].car + ' #rig')
-        .setAttribute('position', { x: -0.38, y: 1.0, z: 0.5 });
+        .setAttribute('position', { x: -0.38, y: 1.0, z: 0.37 });
       return;
     }
     document
@@ -295,7 +295,7 @@ AFRAME.registerSystem('game', {
       .setAttribute('visible', true);
     document
       .querySelector('#' + this.scenes[this.actuelScene].car + ' #rig')
-      .setAttribute('position', { x: -0.38, y: -80, z: 0.5 });
+      .setAttribute('position', { x: -0.38, y: -80, z: 0.37 });
   },
   getVoice(element) {
     return document.getElementById(this.languages[this.language][element]);
