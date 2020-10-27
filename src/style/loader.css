@@ -1,3 +1,4 @@
+@import url(//fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap);
 #static-loading,
 #console {
   position: absolute;
@@ -27,16 +28,17 @@
 }
 
 #static-loading img#loading-logo {
-  width: 130px;
+  width: 180px;
 }
 
 #see-faq,
 #loading-infos {
   margin: 10px 0;
   display: none;
-  font-family: 'Tribeca', Verdana, Tahoma;
+  font-family: 'Quicksand', sans-serif;
   font-size: 22px;
   color: white;
+  text-align: center;
 }
 
 #see-faq {
