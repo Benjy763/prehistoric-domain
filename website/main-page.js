@@ -14,6 +14,7 @@ $(document).ready(function () {
   runpcAudio = document.getElementById('runpc-sound');
   trexAudio = document.getElementById('trex-sound');
   soundtrackAudio = document.getElementById('soundtrack-sound');
+  labAudio = document.getElementById('lab-sound');
 
   //debug();
 
@@ -23,9 +24,9 @@ $(document).ready(function () {
   initLanguageMecanisms();
   initSectionsAnimations();
 
-  // statusInterval = setInterval(() => {
-  //   checkVrStatus();
-  // }, 3000);
+  statusInterval = setInterval(() => {
+    checkVrStatus();
+  }, 3000);
 });
 
 function checkVrStatus() {
@@ -41,63 +42,51 @@ function checkVrStatus() {
 
 function initSectionsAnimations() {
   $('#main-link').on('click', () => {
-    // Animations
-    $('.jt-text').removeClass('slide');
-    $('.jt-preview').removeClass('opacity');
-    $('#map-section').removeClass('screen');
-
+    resetAnimations();
     $('.main-park-open').addClass('slide');
     $('.jp-icon-large').addClass('opacity');
-
-    // Sounds
-    turnonAudio.pause();
-    runpcAudio.pause();
-    trexAudio.pause();
-    turnonAudio.currentTime = 0;
-    runpcAudio.currentTime = 0;
-    trexAudio.currentTime = 0;
-
     soundtrackAudio.play();
   });
 
   $('#jt-link').on('click', () => {
-    // Animations
-    $('.main-park-open').removeClass('slide');
-    $('.jp-icon-large').removeClass('opacity');
-    $('#map-section').removeClass('screen');
-
+    resetAnimations();
     $('.jt-text').addClass('slide');
     $('.jt-preview').addClass('opacity');
-
-    // Sounds
-    turnonAudio.pause();
-    runpcAudio.pause();
-    soundtrackAudio.pause();
-    turnonAudio.currentTime = 0;
-    runpcAudio.currentTime = 0;
-    soundtrackAudio.currentTime = 0;
-
     trexAudio.play();
   });
 
   $('#map-link').on('click', () => {
-    // Animations
-    $('.main-park-open').removeClass('slide');
-    $('.jp-icon-large').removeClass('opacity');
-    $('.jt-text.slide').removeClass('slide');
-    $('.jt-preview').removeClass('opacity');
-
+    resetAnimations();
     $('#map-section').addClass('screen');
-
-    // Sounds
-    trexAudio.pause();
-    soundtrackAudio.pause();
-    trexAudio.currentTime = 0;
-    soundtrackAudio.currentTime = 0;
-
     turnonAudio.play();
     runpcAudio.play();
   });
+
+  $('#credits-link').on('click', () => {
+    resetAnimations();
+    labAudio.play();
+  });
+}
+
+function resetAnimations() {
+  // Animations
+  $('.main-park-open').removeClass('slide');
+  $('.jp-icon-large').removeClass('opacity');
+  $('.jt-text.slide').removeClass('slide');
+  $('.jt-preview').removeClass('opacity');
+  $('#map-section').removeClass('screen');
+
+  // Sounds
+  labAudio.pause();
+  turnonAudio.pause();
+  runpcAudio.pause();
+  trexAudio.pause();
+  soundtrackAudio.pause();
+  labAudio.currentTime = 0;
+  turnonAudio.currentTime = 0;
+  runpcAudio.currentTime = 0;
+  trexAudio.currentTime = 0;
+  soundtrackAudio.currentTime = 0;
 }
 
 function initTicketMecanisms() {
