@@ -1,5 +1,5 @@
 let $ = require('jquery');
-const validValues = [9391];
+const validValues = [9392, 1235, 9658, 5132, 1125, 6589, 1456, 4574, 9257, 6398];
 let turnonAudio;
 let runpcAudio;
 let trexAudio;
@@ -23,9 +23,9 @@ $(document).ready(function () {
   initLanguageMecanisms();
   initSectionsAnimations();
 
-  statusInterval = setInterval(() => {
-    checkVrStatus();
-  }, 3000);
+  // statusInterval = setInterval(() => {
+  //   checkVrStatus();
+  // }, 3000);
 });
 
 function checkVrStatus() {
@@ -103,8 +103,8 @@ function initSectionsAnimations() {
 function initTicketMecanisms() {
   // Add tickets mecanims
   $('#get-ticket').on('click', () => {
-    const randomTicket = Math.floor(Math.random() * 5) + 9391;
-    window.open(`./build/images/ticket-${randomTicket}.jpg`);
+    const randomTicket = Math.floor(Math.random() * 9) + 0;
+    window.open(`./images/ticket-${validValues[randomTicket]}.jpg`);
   });
 
   $('#use-ticket').on('click', () => {
