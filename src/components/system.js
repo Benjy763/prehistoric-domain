@@ -1,7 +1,7 @@
 AFRAME.registerSystem('game', {
   schema: {},
   init: function () {
-    this.firstScene = 'raptor';
+    this.firstScene = 'gate';
     this.displayDistance = 100; // 150
     this.language = 'en';
     this.languages = {
@@ -80,7 +80,7 @@ AFRAME.registerSystem('game', {
     this.loadingAssets();
 
     // Debug events
-    //this.startDebugListener();
+    this.startDebugListener();
   },
   initLanguage: function() {
     if (localStorage.getItem('language') !== null) {
