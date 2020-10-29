@@ -80,7 +80,7 @@ AFRAME.registerSystem('game', {
     this.loadingAssets();
 
     // Debug events
-    this.startDebugListener();
+    //this.startDebugListener();
   },
   initLanguage: function() {
     if (localStorage.getItem('language') !== null) {
