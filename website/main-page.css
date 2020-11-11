@@ -230,6 +230,13 @@ body {
   align-items: center;
 }
 
+.main-infos .icon-item {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 20px;
+  margin-top: 20px;
+  color: #f7d23f;
+}
+
 .vr-status {
   position: absolute;
   top: 32px;
