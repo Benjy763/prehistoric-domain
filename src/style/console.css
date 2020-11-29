@@ -368,7 +368,7 @@ html.a-fullscreen .a-canvas {
 }
 #sys-icons-inner {
   height: 15px;
-  background: url(sprite.png) 0 -69px no-repeat transparent;
+  background: url(./fence/sprite.png) 0 -69px no-repeat transparent;
   width: 410px;
   border: 2px solid #555;
   border-radius: 4px;
@@ -376,7 +376,7 @@ html.a-fullscreen .a-canvas {
 }
 #vehicle-schema-inner {
   height: 319px;
-  background: url(sprite.png) 0 -197px no-repeat #515151;
+  background: url(./fence/sprite.png) 0 -197px no-repeat #515151;
   width: 392px;
   margin: 10px 10px 0;
   border-right: 3px solid #000;
@@ -498,7 +498,7 @@ html.a-fullscreen .a-canvas {
   font-weight: bold;
   font-style: italic;
   font-size: 13px;
-  background: url(sprite.png) 0 -156px no-repeat transparent;
+  background: url(./fence/sprite.png) 0 -156px no-repeat transparent;
   padding: 0 0 0 83px;
 }
 #glitches-list ul li.failed {
@@ -548,7 +548,7 @@ html.a-fullscreen .a-canvas {
   margin: 12px;
 }
 #paddock-screen {
-  background: url(sprite.png) 0 0 no-repeat transparent;
+  background: url(./fence/sprite.png) 0 0 no-repeat transparent;
   height: 30px;
   padding: 10px 15px 10px 175px;
   text-align: center;
@@ -587,7 +587,7 @@ html.a-fullscreen .a-canvas {
   width: 465px;
   height: 573px;
   display: inline-block;
-  background: url(map.jpg) 0 0 no-repeat transparent;
+  background: url(./fence/map.jpg) 0 0 no-repeat transparent;
   box-shadow: 0px 0px 2px 2px #000 inset;
   border-radius: 4px;
 }
@@ -598,7 +598,7 @@ html.a-fullscreen .a-canvas {
   position: relative;
 }
 #marker {
-  background: url(sprite.png) -425px -140px no-repeat transparent;
+  background: url(./fence/sprite.png) -425px -140px no-repeat transparent;
   width: 103px;
   height: 57px;
   position: absolute;
@@ -696,7 +696,7 @@ div#yellow-table-middle {
   padding: 3px;
 }
 #tour-running > div {
-  background: url(sprite.png) -300px -531px no-repeat #002d07;
+  background: url(./fence/sprite.png) -300px -531px no-repeat #002d07;
   height: 32px;
 }
 
