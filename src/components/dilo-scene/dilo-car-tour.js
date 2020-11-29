@@ -53,15 +53,6 @@ AFRAME.registerComponent('dilo-car-tour', {
       },
       false
     );
-
-    // Restart tour listener, trigger by brachio controler
-    this.el.addEventListener(
-      'restart',
-      () => {
-        this.phase = 'restart';
-      },
-      false
-    );
   },
   // --- Phase functions ---
   start: function () {
