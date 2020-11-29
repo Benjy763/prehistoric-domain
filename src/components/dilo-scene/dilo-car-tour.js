@@ -21,7 +21,7 @@ AFRAME.registerComponent('dilo-car-tour', {
 
     // Sounds
     this.diloRoarPlaying = false;
-    this.diloRoar = document.querySelector('#palms-08-sound');
+    this.diloRoar = document.querySelector('#dilo-palms-08-sound');
 
     // Animation phase
     this.sceneChanged = false;
