@@ -1,79 +1,15 @@
 import {debug} from './debug.const';
+import {languages} from './languages.config';
+import {scenes} from './scenes.config';
 
 AFRAME.registerSystem('game', {
   schema: {},
   init: function () {
-    this.firstScene = 'gate';
-    this.displayDistance = 100; // 150
-    this.language = 'en';
-    this.languages = {
-      en: {
-        gate1: 'voice-gate1-sound-en',
-        gate2: 'voice-gate2-sound-en',
-        gate3: 'voice-gate3-sound-en',
-        gate4: 'voice-gate4-sound-en',
-        dilo: 'voice-dilo-sound-en',
-        trex1: 'voice-trex1-sound-en',
-        trex2: 'voice-trex2-sound-en',
-        raptor: 'voice-raptor-sound-en',
-        trice1: 'voice-trice1-sound-en',
-        trice2: 'voice-trice2-sound-en',
-      },
-      fr: {
-        gate1: 'voice-gate1-sound-fr',
-        gate2: 'voice-gate2-sound-fr',
-        gate3: 'voice-gate3-sound-fr',
-        gate4: 'voice-gate4-sound-fr',
-        dilo: 'voice-dilo-sound-fr',
-        trex1: 'voice-trex1-sound-fr',
-        trex2: 'voice-trex2-sound-fr',
-        raptor: 'voice-raptor-sound-fr',
-        trice1: 'voice-trice1-sound-fr',
-        trice2: 'voice-trice2-sound-fr',
-      },
-    };
-    this.scenes = {
-      loading: {
-        scene: 'loading-scene',
-        camera: 'loading-scene-camera',
-      },
-      gate: {
-        scene: 'gate-scene',
-        camera: 'gate-scene-camera',
-        car: 'gate-car',
-        carReference: null,
-      },
-      dilo: {
-        scene: 'dilo-scene',
-        camera: 'dilo-scene-camera',
-        car: 'dilo-car',
-        carReference: null,
-      },
-      trex: {
-        scene: 'trex-scene',
-        camera: 'trex-scene-camera',
-        car: 'trex-car',
-        carReference: null,
-      },
-      raptor: {
-        scene: 'raptor-scene',
-        camera: 'raptor-scene-camera',
-        car: 'raptor-car',
-        carReference: null,
-      },
-      trice: {
-        scene: 'trice-scene',
-        camera: 'trice-scene-camera',
-        car: 'trice-car',
-        carReference: null,
-      },
-      ending: {
-        scene: 'ending-scene',
-        camera: 'ending-scene-camera',
-        car: null,
-        carReference: null,
-      },
-    };
+    this.firstScene = scenes.selection;
+    this.displayDistance = 100; // 150 to test
+    this.language = languages.selection;
+    this.languages = languages;
+    this.scenes = scenes;
     this.carReference;
     this.actuelScene = this.firstScene;
     this.tourStarted = false;

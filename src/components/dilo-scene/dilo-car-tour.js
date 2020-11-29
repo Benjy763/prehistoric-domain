@@ -7,6 +7,7 @@ AFRAME.registerComponent('dilo-car-tour', {
     this.console = document.querySelector('a-scene').systems['console'];
     this.gate = document.querySelector('#dilo');
     this.carControls;
+
     // Tour Path
     const curve = new THREE.SplineCurve([
       new THREE.Vector2(4.554, 44.617),
