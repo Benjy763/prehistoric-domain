@@ -7,32 +7,36 @@ AFRAME.registerComponent('gate-car-tour', {
     this.console = document.querySelector('a-scene').systems['console'];
     this.gate = document.querySelector('#gate');
     this.brachio = document.querySelector('#brachio');
-    this.gateSound = document.getElementById('gate-sound');
-    this.gateCloseSound = document.getElementById('gate-close-sound');
-    this.voicePhase = 'gate1';
     this.screenDefault = document.getElementById('screen-default');
     this.screenBrachio = document.getElementById('screen-brachio');
     this.screenTrice = document.getElementById('screen-trice');
     this.screenGalli = document.getElementById('screen-galli');
+
+    // Voice and screen phases
+    this.voicePhase = 'gate1';
     this.screenPhase = 'default';
+
+    // Main control of the car
     this.carControls;
+
+    // Specific statuses
     this.animationsStatuses = {
       gateOpen: false,
       gateClosed: false,
     };
-    //this.brachio = document.querySelector('#brachio');
+
     // Tour Path
     const curve = new THREE.SplineCurve([
       new THREE.Vector2(7.988, 81.899),
       new THREE.Vector2(9.7, -174.7),
     ]);
 
-    // Animation phase
+    // En scene activation
     this.sceneChanged = false;
 
     // Sound
-    this.soundMixing1SoundPlaying = false;
-    this.soundMixing1Audio = document.getElementById('sound-mixing-1');
+    this.gateSound = document.getElementById('gate-sound');
+    this.gateCloseSound = document.getElementById('gate-close-sound');
 
     // Init car (when reference is registered in the system) with tour data
     this.el.addEventListener('carRegistered', () => {
@@ -46,17 +50,19 @@ AFRAME.registerComponent('gate-car-tour', {
     this.el.addEventListener(
       'start',
       () => {
+        // Get voice from system when init
         this.voiceGate1Sound = this.system.getVoice('gate1');
         this.voiceGate2Sound = this.system.getVoice('gate2');
         this.voiceGate3Sound = this.system.getVoice('gate3');
         this.voiceGate4Sound = this.system.getVoice('gate4');
+
         // Register current tour in system
         this.console.registerCurrentTour(this);
         this.phase = 'start';
+
         // Update console statuses
         this.carControls.changeDrivingState('starting');
         this.console.updateSituation();
-        document.getElementById('jungle-asset').play();
       },
       false
     );

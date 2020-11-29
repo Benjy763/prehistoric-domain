@@ -2,12 +2,14 @@ AFRAME.registerComponent('brachio-animation', {
   schema: {},
   init: function () {
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
+
     // Objects shortcut
     this.object = this.el.object3D;
     this.system = document.querySelector('a-scene').systems['game'];
     this.car = document.querySelector('#gate-car');
     this.phase = '';
-    // trex run Path
+
+    // Brachio run Path
     this.brachioMarker = 0; // Position on the curve
     this.brachioSpeed = 0.0003; // Speed on the curve
     this.curve = new THREE.SplineCurve([
@@ -51,13 +53,7 @@ AFRAME.registerComponent('brachio-animation', {
       this.phase = 'exit';
       return;
     }
-    this.brachioMarker += this.brachioSpeed;
-    this.object.position.copy(
-      this.system.convertPosition(
-        this.curve.getPointAt(this.brachioMarker),
-        this.object.position.y
-      )
-    );
+    this.brachioMarker = this.system.moveOnCurve(this.object, this.curve, this.brachioMarker, this.brachioSpeed);
   },
   tick: function () {
     // Animation steps

@@ -25,21 +25,10 @@ AFRAME.registerComponent('car-controls', {
     this.curve = curve;
     this.maxDistance = maxDistance;
 
-    this.updateRotation();
-  },
-  updateRotation: function () {
     const nextMarkerForRotation = !this.carSpeed
       ? this.defaultSpeed
       : this.carSpeed;
-    const newPosition = this.system.convertPosition(
-      this.curve.getPointAt(this.carMarker + nextMarkerForRotation),
-      this.object.position.y
-    );
-    this.object.lookAt(newPosition.x, newPosition.y, newPosition.z);
-    // Correct rotation with offset
-    const rotation = this.el.getAttribute('rotation');
-    rotation.y += 88;
-    this.el.setAttribute('rotation', rotation);
+    this.system.updateRotation(this.el, this.object, this.curve ,this.carMarker, nextMarkerForRotation, 88);
   },
   stopTrackingCar: function () {
     this.drivingState = 'stopped';
@@ -64,13 +53,7 @@ AFRAME.registerComponent('car-controls', {
     if (this.carSpeed === 0) {
       return;
     }
-    this.carMarker += this.carSpeed;
-    this.object.position.copy(
-      this.system.convertPosition(
-        this.curve.getPointAt(this.carMarker),
-        this.object.position.y
-      )
-    );
+    this.carMarker = this.system.moveOnCurve(this.object, this.curve, this.carMarker, this.carSpeed);
     if (this.system.truncMarker(this.carMarker) !== 0) {
       this.console.updateCarPosition(
         Math.round(
@@ -79,7 +62,10 @@ AFRAME.registerComponent('car-controls', {
         null
       );
     }
-    this.updateRotation();
+    const nextMarkerForRotation = !this.carSpeed
+      ? this.defaultSpeed
+      : this.carSpeed;
+    this.system.updateRotation(this.el, this.object, this.curve ,this.carMarker, nextMarkerForRotation, 88);
   },
   changeDrivingState(state) {
     // Manage linked changes

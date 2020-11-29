@@ -1,3 +1,5 @@
+import {debug} from './debug.const';
+
 AFRAME.registerSystem('game', {
   schema: {},
   init: function () {
@@ -80,7 +82,16 @@ AFRAME.registerSystem('game', {
     this.loadingAssets();
 
     // Debug events
-    //this.startDebugListener();
+    if (debug) {
+      // Remove embedded for debug
+      document.getElementById('main-scene-wrapper').embedded = false;
+      // Display vr mirror in fullscreen
+      document
+      .getElementById('main-scene-content')
+      .classList.add('fullscreen');
+      // Unclock debug listener
+      this.startDebugListener();
+    }
   },
   initLanguage: function() {
     if (localStorage.getItem('language') !== null) {
@@ -225,6 +236,9 @@ AFRAME.registerSystem('game', {
       const event = new Event('start');
       car.dispatchEvent(event);
       this.loading(false);
+
+      // Global sound launch
+      document.getElementById('jungle-asset').play();
     }, 15000);
   },
   startDebugListener: function () {
@@ -236,16 +250,10 @@ AFRAME.registerSystem('game', {
         document.getElementById('static-loading').style.display = 'none';
         // Add scene screen
         document.getElementById('main-scene-wrapper').style.zIndex = '9999';
-        // Remove embedded for debug
-        document.getElementById('main-scene-wrapper').embedded = false;
         // Remove windows for debug
         document
           .getElementById('main-scene-wrapper')
           .classList.remove('scene-wrapper');
-          // Display fullscreen
-        document
-          .getElementById('main-scene-content')
-          .classList.add('fullscreen');
         // Display scene
         this.displayScene();
         // Rendering scene
@@ -267,7 +275,29 @@ AFRAME.registerSystem('game', {
       }
     });
   },
+  // ----- Main Tools --------
   // ----- Curve functions --------
+  moveOnCurve(object, curve, marker, speed) {
+    marker += speed;
+    object.position.copy(
+      this.convertPosition(
+        curve.getPointAt(marker),
+        object.position.y
+      )
+    );
+    return marker;
+  },
+  updateRotation: function (el, object, curve, marker, speed, offset = 0) {
+    const newPosition = this.convertPosition(
+      curve.getPointAt(marker + speed),
+      object.position.y
+    );
+    object.lookAt(newPosition.x, newPosition.y, newPosition.z);
+    // Correct rotation with offset
+    const rotation = el.getAttribute('rotation');
+    rotation.y += offset;
+    el.setAttribute('rotation', rotation);
+  },
   convertPosition: function (position2D, ypos) {
     return {
       x: position2D.x,
@@ -278,16 +308,18 @@ AFRAME.registerSystem('game', {
   truncMarker: function (carMarker) {
     return Math.trunc(carMarker * 1000);
   },
+  // ----- Loading functions --------
   loading: function (loading = true) {
     if (!loading) {
-      // document
-      //   .querySelector(
-      //     '#' + this.scenes[this.actuelScene].car + ' #loading-logo'
-      //   )
-      //   .setAttribute('visible', false);
+
       document
         .querySelector('#' + this.scenes[this.actuelScene].car + ' #rig')
         .setAttribute('position', { x: -0.38, y: 1.0, z: 0.44 });
+      if (debug) {
+        document
+          .querySelector('#' + this.scenes[this.actuelScene].car + ' #rig')
+          .setAttribute('position', { x: -0.38, y: 0.7, z: 0.44 });
+      }
       return;
     }
     document
@@ -297,6 +329,7 @@ AFRAME.registerSystem('game', {
       .querySelector('#' + this.scenes[this.actuelScene].car + ' #rig')
       .setAttribute('position', { x: -0.38, y: -80, z: 0.44 });
   },
+  // ----- Languages functions --------
   getVoice(element) {
     return document.getElementById(this.languages[this.language][element]);
   },

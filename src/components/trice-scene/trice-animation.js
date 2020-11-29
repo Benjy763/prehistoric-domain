@@ -162,16 +162,6 @@ AFRAME.registerComponent('trice-animation', {
     rotation.x += this.carRotation;
     this.car.setAttribute('rotation', rotation);
   },
-  updateRotation: function () {
-    const newPosition = this.system.convertPosition(
-      this.curve.getPointAt(this.triceMarker + this.triceSpeed),
-      this.object.position.y
-    );
-    this.object.lookAt(newPosition.x, newPosition.y, newPosition.z);
-    // Correct rotation with offset
-    const rotation = this.el.getAttribute('rotation');
-    this.el.setAttribute('rotation', rotation);
-  },
   tick: function () {
     if (this.isShaking) {
       this.shaking();

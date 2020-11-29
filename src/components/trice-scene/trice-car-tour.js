@@ -57,7 +57,6 @@ AFRAME.registerComponent('trice-car-tour', {
         // Update console statuses
         this.carControls.changeDrivingState('starting');
         this.console.updateSituation();
-        document.getElementById('jungle-asset').play();
       },
       false
     );

@@ -146,14 +146,9 @@ AFRAME.registerComponent('trex-animation', {
       }, 500);
       this.trexFootStepAudioPlaying = true;
     }
-    this.trexMarker += this.trexSpeed;
-    this.object.position.copy(
-      this.system.convertPosition(
-        this.curve.getPointAt(this.trexMarker),
-        this.object.position.y
-      )
-    );
-    this.updateRotation();
+    this.system.moveOnCurve(this.object, this.curve, this.trexMarker, this.trexSpeed);
+    this.system.updateRotation(this.el, this.object, this.curve ,this.trexMarker, this.trexSpeed);
+
   },
   trexRoar: function () {
     this.trexRoarAudio.playSound();
@@ -187,24 +182,8 @@ AFRAME.registerComponent('trex-animation', {
       }, 500);
       this.trexLeaveAudioPlaying = true;
     }
-    this.trexMarker += this.trexSpeed;
-    this.object.position.copy(
-      this.system.convertPosition(
-        this.curve.getPointAt(this.trexMarker),
-        this.object.position.y
-      )
-    );
-    this.updateRotation();
-  },
-  updateRotation: function () {
-    const newPosition = this.system.convertPosition(
-      this.curve.getPointAt(this.trexMarker + this.trexSpeed),
-      this.object.position.y
-    );
-    this.object.lookAt(newPosition.x, newPosition.y, newPosition.z);
-    // Correct rotation with offset
-    const rotation = this.el.getAttribute('rotation');
-    this.el.setAttribute('rotation', rotation);
+    this.system.moveOnCurve(this.object, this.curve, this.trexMarker, this.trexSpeed);
+    this.system.updateRotation(this.el, this.object, this.curve ,this.trexMarker, this.trexSpeed);
   },
   tick: function () {
     if (this.isShaking) {

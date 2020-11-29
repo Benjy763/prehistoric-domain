@@ -46,13 +46,7 @@ AFRAME.registerComponent('raptor-animation', {
       this.phase = 'exit';
       return;
     }
-    this.raptorMarker += this.raptorSpeed;
-    this.object.position.copy(
-      this.system.convertPosition(
-        this.curve.getPointAt(this.raptorMarker),
-        this.object.position.y
-      )
-    );
+    this.system.moveOnCurve(this.object, this.curve, this.raptorMarker, -this.raptorSpeed);
   },
   exit: function () {
     setTimeout(() => {
@@ -60,13 +54,8 @@ AFRAME.registerComponent('raptor-animation', {
         this.phase = 'end';
         return;
       }
-      this.raptorMarker -= this.raptorSpeed;
-      this.object.position.copy(
-        this.system.convertPosition(
-          this.curve.getPointAt(this.raptorMarker),
-          this.object.position.y
-        )
-      );
+      this.system.moveOnCurve(this.object, this.curve, this.raptorMarker, this.raptorSpeed);
+
     }, 10000);
   },
   tick: function () {
