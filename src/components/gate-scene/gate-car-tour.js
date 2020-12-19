@@ -5,7 +5,7 @@ AFRAME.registerComponent('gate-car-tour', {
 
     this.system = document.querySelector('a-scene').systems['game'];
     this.console = document.querySelector('a-scene').systems['console'];
-    this.gate = document.querySelector('#gate');
+    this.gate = document.querySelector('#gate-gate');
     this.brachio = document.querySelector('#brachio');
     this.screenDefault = document.getElementById('screen-default');
     this.screenBrachio = document.getElementById('screen-brachio');

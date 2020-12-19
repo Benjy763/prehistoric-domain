@@ -5,7 +5,7 @@ AFRAME.registerComponent('trice-car-tour', {
 
     this.system = document.querySelector('a-scene').systems['game'];
     this.console = document.querySelector('a-scene').systems['console'];
-    this.gate = document.querySelector('#gate-back');
+    this.gate = document.querySelector('#trice-gate-back');
     this.trice = document.querySelector('#trice');
     this.carAlarmSound = document.getElementById('car-alarm-sound');
     this.gateSound = document.getElementById('gate-sound');

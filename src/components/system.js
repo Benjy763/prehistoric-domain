@@ -1,9 +1,16 @@
+/*
+  This is the main game file.
+  Here there are main mecanisms to launch the experience, change scene, loadings...
+  Also there are utility functions that help making scenes (ex move object on curves, logs...)
+*/
+
 import {debug} from './debug.const';
 import {languages} from './languages.config';
 import {scenes} from './scenes.config';
 
 AFRAME.registerSystem('game', {
   schema: {},
+  // ----- Launch and changing scene functions --------
   init: function () {
     this.firstScene = scenes.selection;
     this.displayDistance = 100; // 150 to test
@@ -53,11 +60,6 @@ AFRAME.registerSystem('game', {
     const event = new Event('carRegistered');
     car.el.dispatchEvent(event);
   },
-  log: function (text) {
-    document
-      .querySelector('#log')
-      .setAttribute('text', { value: text, color: 'white', width: 0.5 });
-  },
   initClickEvents: function () {
     document.getElementById('enter-vr').onclick = () => {
       // Remove loading interface
@@ -87,7 +89,6 @@ AFRAME.registerSystem('game', {
   displayScene: function () {
     // Hide vr button and loading static screen
     document.querySelector('#enter-vr').style.display = 'none';
-
     // Display camera
     this.disableAllCameras();
     document
@@ -152,9 +153,11 @@ AFRAME.registerSystem('game', {
   },
   disableAllCameras: function () {
     Object.keys(this.scenes).forEach((sceneId) => {
-      document
-        .getElementById(this.scenes[sceneId].camera)
-        .setAttribute('camera', 'active', false);
+      if (this.scenes[sceneId].camera) {
+        document
+          .getElementById(this.scenes[sceneId].camera)
+          .setAttribute('camera', 'active', false);
+      }
     });
   },
   renderingScene: function (sceneId) {
@@ -177,6 +180,7 @@ AFRAME.registerSystem('game', {
       document.getElementById('jungle-asset').play();
     }, 15000);
   },
+  // Section with debug key
   startDebugListener: function () {
     // ----- Section for debug events -----
     document.addEventListener('keyup', (e) => {
@@ -205,15 +209,23 @@ AFRAME.registerSystem('game', {
         document.getElementById('console').style.display = 'block';
       }
 
-      // Other debug
+      // press key 7 and move car in given position on the curve
       if (e.keyCode == 55) {
-        this.carReference.carMarker = 0.3;
+        this.carReference.carMarker = 0.25;
       }
     });
   },
   // ----- Main Tools --------
+  // ----- Log functions --------
+  log: function (text) {
+    document
+      .querySelector('#log')
+      .setAttribute('text', { value: text, color: 'white', width: 0.5 });
+  },
   // ----- Curve functions --------
+  // Move an object on the given curve according to given speed
   moveOnCurve(object, curve, marker, speed) {
+    //console.log(object, curve, marker, speed);
     marker += speed;
     object.position.copy(
       this.convertPosition(
@@ -223,6 +235,7 @@ AFRAME.registerSystem('game', {
     );
     return marker;
   },
+  // Give to the given object the new rotation position after moving on the curve
   updateRotation: function (el, object, curve, marker, speed, offset = 0) {
     const newPosition = this.convertPosition(
       curve.getPointAt(marker + speed),
@@ -234,6 +247,7 @@ AFRAME.registerSystem('game', {
     rotation.y += offset;
     el.setAttribute('rotation', rotation);
   },
+  // Convert position in x y z object
   convertPosition: function (position2D, ypos) {
     return {
       x: position2D.x,
@@ -241,6 +255,7 @@ AFRAME.registerSystem('game', {
       z: position2D.y,
     };
   },
+  // Trunc marker to have better values (ex: 515 instead of 0.5155554)
   truncMarker: function (carMarker) {
     return Math.trunc(carMarker * 1000);
   },

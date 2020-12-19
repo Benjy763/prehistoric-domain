@@ -1,4 +1,5 @@
-export const languages = {
+export const scenes = {
+  // Starting scene
   selection: 'gate',
   loading: {
     scene: 'loading-scene',

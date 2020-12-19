@@ -46,7 +46,7 @@ AFRAME.registerComponent('raptor-animation', {
       this.phase = 'exit';
       return;
     }
-    this.system.moveOnCurve(this.object, this.curve, this.raptorMarker, -this.raptorSpeed);
+    this.raptorMarker = this.system.moveOnCurve(this.object, this.curve, this.raptorMarker, this.raptorSpeed);
   },
   exit: function () {
     setTimeout(() => {
@@ -54,7 +54,7 @@ AFRAME.registerComponent('raptor-animation', {
         this.phase = 'end';
         return;
       }
-      this.system.moveOnCurve(this.object, this.curve, this.raptorMarker, this.raptorSpeed);
+      this.raptorMarker = this.system.moveOnCurve(this.object, this.curve, this.raptorMarker, -this.raptorSpeed);
 
     }, 10000);
   },

@@ -146,7 +146,7 @@ AFRAME.registerComponent('trex-animation', {
       }, 500);
       this.trexFootStepAudioPlaying = true;
     }
-    this.system.moveOnCurve(this.object, this.curve, this.trexMarker, this.trexSpeed);
+    this.trexMarker = this.system.moveOnCurve(this.object, this.curve, this.trexMarker, this.trexSpeed);
     this.system.updateRotation(this.el, this.object, this.curve ,this.trexMarker, this.trexSpeed);
 
   },
@@ -182,7 +182,7 @@ AFRAME.registerComponent('trex-animation', {
       }, 500);
       this.trexLeaveAudioPlaying = true;
     }
-    this.system.moveOnCurve(this.object, this.curve, this.trexMarker, this.trexSpeed);
+    this.trexMarker = this.system.moveOnCurve(this.object, this.curve, this.trexMarker, this.trexSpeed);
     this.system.updateRotation(this.el, this.object, this.curve ,this.trexMarker, this.trexSpeed);
   },
   tick: function () {
