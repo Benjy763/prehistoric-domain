@@ -59,33 +59,42 @@ AFRAME.registerSystem('game', {
     car.el.dispatchEvent(event);
   },
   initClickEvents: function () {
+    document.getElementById('enter').onclick = () => {
+      // Remove loading interface
+      document.getElementById('static-loading').style.display = 'none';
+      // Add scene screen
+      document.getElementById('main-scene-wrapper').style.zIndex = '10';
+
+      this.startTour();
+    };
+
     document.getElementById('enter-vr').onclick = () => {
       // Remove loading interface
       document.getElementById('static-loading').style.display = 'none';
       // Add scene screen
       document.getElementById('main-scene-wrapper').style.zIndex = '10';
-      // Show console interface
-      document.getElementById('console').style.display = 'block';
-    };
 
-    document.getElementById('start-tour').onclick = () => {
-      if (this.tourStarted) {
-        return;
-      }
-      // Init console
-      this.console.initTour();
-      setTimeout(() => {
-        // Display scene
-        this.displayScene();
-        // Rendering scene
-        this.renderingScene(this.firstScene);
-      }, 1000);
-      this.tourStarted = true;
+      this.startTour();
     };
+  },
+  startTour() {
+    if (this.tourStarted) {
+      return;
+    }
+    // Init console
+    this.console.initTour();
+    setTimeout(() => {
+      // Display scene
+      this.displayScene();
+      // Rendering scene
+      this.renderingScene(this.firstScene);
+    }, 1000);
+    this.tourStarted = true;
   },
   // Only for the first time
   displayScene: function () {
     // Hide vr button and loading static screen
+    document.querySelector('#enter').style.display = 'none';
     document.querySelector('#enter-vr').style.display = 'none';
     // Display camera
     this.disableAllCameras();
