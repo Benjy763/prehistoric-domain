@@ -1,12 +1,12 @@
-# Jurassic Tour
+# Prehistoric Domain
 
 ## Installation
 
 ### Prerequisites
 
 - IDE (Vscode, Atom, Sublime...)
-- NodeJS and NPM https://nodejs.org/en/
-- Read A-Frame docs https://aframe.io/docs/1.0.0/introduction/ & https://aframe.io/aframe-school/#/
+- NodeJS and NPM <https://nodejs.org/en/>
+- Read A-Frame docs <https://aframe.io/docs/1.0.0/introduction/> & <https://aframe.io/aframe-school/#/>
 
 ### Installation
 
@@ -18,7 +18,7 @@ npm install
 
 Start process to test and develop localy.
 
-### To run the VR experience run:
+### To run the VR experience run
 
 ```
 npm start
@@ -32,7 +32,7 @@ npm start
 And visit the url **localhost:8080**,
 there is a live reloead process, when you make a code change, the page reload automatically.
 
-### To run the website run:
+### To run the website run
 
 ```
 npm run start:ws
@@ -99,8 +99,8 @@ npm run start
 
 This will open the A-Frame editor
 
-See more here https://aframe.io/docs/1.0.0/introduction/visual-inspector-and-dev-tools.html
+See more here <https://aframe.io/docs/1.0.0/introduction/visual-inspector-and-dev-tools.html>
 
 ### Easily save modifications
 
-Use **aframe-watcher**: https://github.com/supermedium/aframe-watcher
+Use **aframe-watcher**: <https://github.com/supermedium/aframe-watcher>

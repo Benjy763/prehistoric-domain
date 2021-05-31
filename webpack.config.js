@@ -14,7 +14,7 @@ PLUGINS = [
     <html>
       <head>
         <meta charset="UTF-8" />
-        <title>Jurassic Tour VR</title>
+        <title>Prehistoric Domain</title>
         <script>
           // Routing check
           if (!localStorage.getItem('from-index')) {
