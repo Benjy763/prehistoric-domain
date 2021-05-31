@@ -26,8 +26,8 @@ PLUGINS = [
         </script>
         <style type="text/css">
           @font-face {
-            font-family: 'Tribeca';
-            src: url('./build/font/Tribeca.ttf') format('truetype');
+            font-family: 'Exo';
+            src: url('./build/font/Exo-Regular.ttf') format('truetype');
           }
     </style>
       </head>

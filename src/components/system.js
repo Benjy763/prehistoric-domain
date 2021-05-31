@@ -4,9 +4,9 @@
   Also there are utility functions that help making scenes (ex move object on curves, logs...)
 */
 
-import {debug} from './debug.const';
-import {languages} from './languages.config';
-import {scenes} from './scenes.config';
+import { debug } from './debug.const';
+import { languages } from './languages.config';
+import { scenes } from './scenes.config';
 
 AFRAME.registerSystem('game', {
   schema: {},
@@ -29,14 +29,12 @@ AFRAME.registerSystem('game', {
       // Remove embedded for debug
       document.getElementById('main-scene-wrapper').embedded = false;
       // Display vr mirror in fullscreen
-      document
-      .getElementById('main-scene-content')
-      .classList.add('fullscreen');
+      document.getElementById('main-scene-content').classList.add('fullscreen');
       // Unclock debug listener
       this.startDebugListener();
     }
   },
-  initLanguage: function() {
+  initLanguage: function () {
     if (localStorage.getItem('language') !== null) {
       this.language = localStorage.getItem('language');
     }
@@ -139,12 +137,9 @@ AFRAME.registerSystem('game', {
       // Preloading
       setTimeout(() => {
         // Press start
-        document.getElementById('loader-logo').style.display = 'none';
         document.getElementById('loading-logo').style.display = 'none';
         document.getElementById('loading-infos').style.display = 'none';
         document.getElementById('loading-infos').style.display = 'none';
-        document.getElementById('explains-logo').style.display = 'block';
-        document.getElementById('see-faq').style.display = 'block';
         document.getElementById('enter-vr').style.display = 'block';
 
         this.initClickEvents();
@@ -228,10 +223,7 @@ AFRAME.registerSystem('game', {
     //console.log(object, curve, marker, speed);
     marker += speed;
     object.position.copy(
-      this.convertPosition(
-        curve.getPointAt(marker),
-        object.position.y
-      )
+      this.convertPosition(curve.getPointAt(marker), object.position.y)
     );
     return marker;
   },
@@ -262,7 +254,6 @@ AFRAME.registerSystem('game', {
   // ----- Loading functions --------
   loading: function (loading = true) {
     if (!loading) {
-
       document
         .querySelector('#' + this.scenes[this.actuelScene].car + ' #rig')
         .setAttribute('position', { x: -0.38, y: 1.0, z: 0.44 });
