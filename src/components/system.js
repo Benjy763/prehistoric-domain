@@ -206,15 +206,6 @@ AFRAME.registerSystem('game', {
         // Rendering scene
         this.renderingScene(this.firstScene);
       }
-      // Display console screen in debug mode with key 9
-      if (e.keyCode == 57) {
-        // Remove loading interface
-        document.getElementById('static-loading').style.display = 'none';
-        // Add scene screen
-        document.getElementById('main-scene-wrapper').style.zIndex = '9999';
-        // Show console interface
-        document.getElementById('console').style.display = 'block';
-      }
 
       // press key 7 and move car in given position on the curve
       if (e.keyCode == 55) {

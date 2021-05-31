@@ -12,7 +12,6 @@ require('./vendors/aframe-gif-shader/dist/aframe-gif-component.js');
 
 // Require all components.
 require('./style/loader.css');
-require('./style/console.css');
 requireAll(require.context('./components/', true, /\.js$/));
 
 require('aframe-particle-system-component');
