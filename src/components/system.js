@@ -20,7 +20,6 @@ AFRAME.registerSystem('game', {
     this.carReference;
     this.actuelScene = this.firstScene;
     this.tourStarted = false;
-    this.console = document.querySelector('a-scene').systems['console'];
     this.initLanguage();
     this.loadingAssets();
 
@@ -81,8 +80,7 @@ AFRAME.registerSystem('game', {
     if (this.tourStarted) {
       return;
     }
-    // Init console
-    this.console.initTour();
+
     setTimeout(() => {
       // Display scene
       this.displayScene();

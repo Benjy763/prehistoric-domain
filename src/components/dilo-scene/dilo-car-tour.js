@@ -4,7 +4,6 @@ AFRAME.registerComponent('dilo-car-tour', {
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
 
     this.system = document.querySelector('a-scene').systems['game'];
-    this.console = document.querySelector('a-scene').systems['console'];
     this.gate = document.querySelector('#dilo');
     this.carControls;
 
@@ -44,12 +43,8 @@ AFRAME.registerComponent('dilo-car-tour', {
       'start',
       () => {
         this.voiceDiloSound = this.system.getVoice('dilo');
-        // Register current tour in system
-        this.console.registerCurrentTour(this);
         this.phase = 'start';
-        // Update console statuses
         this.carControls.changeDrivingState('starting');
-        this.console.updateSituation();
       },
       false
     );

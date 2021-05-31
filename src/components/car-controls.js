@@ -11,7 +11,6 @@ AFRAME.registerComponent('car-controls', {
     this.rotation = this.el.getAttribute('rotation').y;
     this.tick = AFRAME.utils.throttleTick(this.tick, 20, this);
     this.system = document.querySelector('a-scene').systems['game'];
-    this.console = document.querySelector('a-scene').systems['console'];
 
     // Share car reference
     this.system.registerCar(this);
@@ -28,7 +27,14 @@ AFRAME.registerComponent('car-controls', {
     const nextMarkerForRotation = !this.carSpeed
       ? this.defaultSpeed
       : this.carSpeed;
-    this.system.updateRotation(this.el, this.object, this.curve ,this.carMarker, nextMarkerForRotation, 88);
+    this.system.updateRotation(
+      this.el,
+      this.object,
+      this.curve,
+      this.carMarker,
+      nextMarkerForRotation,
+      88
+    );
   },
   stopTrackingCar: function () {
     this.drivingState = 'stopped';
@@ -53,29 +59,31 @@ AFRAME.registerComponent('car-controls', {
     if (this.carSpeed === 0) {
       return;
     }
-    this.carMarker = this.system.moveOnCurve(this.object, this.curve, this.carMarker, this.carSpeed);
-    if (this.system.truncMarker(this.carMarker) !== 0) {
-      this.console.updateCarPosition(
-        Math.round(
-          (this.system.truncMarker(this.carMarker) / this.maxDistance) * 10
-        ),
-        null
-      );
-    }
+    this.carMarker = this.system.moveOnCurve(
+      this.object,
+      this.curve,
+      this.carMarker,
+      this.carSpeed
+    );
     const nextMarkerForRotation = !this.carSpeed
       ? this.defaultSpeed
       : this.carSpeed;
-    this.system.updateRotation(this.el, this.object, this.curve ,this.carMarker, nextMarkerForRotation, 88);
+    this.system.updateRotation(
+      this.el,
+      this.object,
+      this.curve,
+      this.carMarker,
+      nextMarkerForRotation,
+      88
+    );
   },
   changeDrivingState(state) {
     // Manage linked changes
     switch (state) {
       case 'starting':
-        this.console.startCar();
         this.carDriveAudio.play();
         break;
       case 'stopping':
-        this.console.stopCar();
         this.carStopAudio.play();
         this.carDriveAudio.currentTime = 0;
         this.carDriveAudio.pause();

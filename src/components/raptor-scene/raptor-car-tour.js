@@ -4,7 +4,6 @@ AFRAME.registerComponent('raptor-car-tour', {
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
 
     this.system = document.querySelector('a-scene').systems['game'];
-    this.console = document.querySelector('a-scene').systems['console'];
     this.raptor = document.querySelector('#raptor');
     this.raptorRoar = document.querySelector('#raptor-head');
     this.carControls;
@@ -32,12 +31,8 @@ AFRAME.registerComponent('raptor-car-tour', {
       'start',
       () => {
         this.voiceRaptorSound = this.system.getVoice('raptor');
-        // Register current tour in system
-        this.console.registerCurrentTour(this);
         this.phase = 'start';
-        // Update console statuses
         this.carControls.changeDrivingState('starting');
-        this.console.updateSituation();
       },
       false
     );

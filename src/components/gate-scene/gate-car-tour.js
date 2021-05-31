@@ -4,7 +4,6 @@ AFRAME.registerComponent('gate-car-tour', {
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
 
     this.system = document.querySelector('a-scene').systems['game'];
-    this.console = document.querySelector('a-scene').systems['console'];
     this.gate = document.querySelector('#gate-gate');
     this.brachio = document.querySelector('#brachio');
     this.screenDefault = document.getElementById('screen-default');
@@ -56,13 +55,8 @@ AFRAME.registerComponent('gate-car-tour', {
         this.voiceGate3Sound = this.system.getVoice('gate3');
         this.voiceGate4Sound = this.system.getVoice('gate4');
 
-        // Register current tour in system
-        this.console.registerCurrentTour(this);
         this.phase = 'start';
-
-        // Update console statuses
         this.carControls.changeDrivingState('starting');
-        this.console.updateSituation();
       },
       false
     );

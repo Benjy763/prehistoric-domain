@@ -4,7 +4,6 @@ AFRAME.registerComponent('trice-car-tour', {
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
 
     this.system = document.querySelector('a-scene').systems['game'];
-    this.console = document.querySelector('a-scene').systems['console'];
     this.gate = document.querySelector('#trice-gate-back');
     this.trice = document.querySelector('#trice');
     this.carAlarmSound = document.getElementById('car-alarm-sound');
@@ -51,12 +50,8 @@ AFRAME.registerComponent('trice-car-tour', {
       () => {
         this.voiceTrice1Sound = this.system.getVoice('trice1');
         this.voiceTrice2Sound = this.system.getVoice('trice2');
-        // Register current tour in system
-        this.console.registerCurrentTour(this);
         this.phase = 'start';
-        // Update console statuses
         this.carControls.changeDrivingState('starting');
-        this.console.updateSituation();
       },
       false
     );

@@ -8,8 +8,7 @@ body {
   font-size: clamp(16px, 1vw, 40px);
 }
 
-#static-loading,
-#console {
+#static-loading {
   position: absolute;
   top: 0;
   left: 0;
@@ -26,10 +25,6 @@ body {
 #main-scene-wrapper .scene-content.fullscreen {
   width: 100vw;
   height: 100vh;
-}
-
-#console {
-  display: none;
 }
 
 #static-loading img.loader-logo {
