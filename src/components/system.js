@@ -140,7 +140,10 @@ AFRAME.registerSystem('game', {
         document.getElementById('loading-logo').style.display = 'none';
         document.getElementById('loading-infos').style.display = 'none';
         document.getElementById('loading-infos').style.display = 'none';
-        document.getElementById('enter-vr').style.display = 'block';
+        document.getElementById('enter').style.display = 'block';
+        if (AFRAME.utils.device.checkHeadsetConnected()) {
+          document.getElementById('enter-vr').style.display = 'block';
+        }
 
         this.initClickEvents();
       }, 2000);

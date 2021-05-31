@@ -1,4 +1,10 @@
 @import url(//fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap);
+
+html,
+body {
+  font-size: clamp(16px, 1vw, 40px);
+}
+
 #static-loading,
 #console {
   position: absolute;
@@ -24,30 +30,40 @@
 }
 
 #static-loading img.loader-logo {
-  width: 400px;
+  width: 25rem;
+}
+
+@media screen and (max-width: 800px) {
+  #static-loading img.loader-logo {
+    width: 200px;
+  }
 }
 
 #static-loading img#loading-logo {
-  width: 180px;
+  width: 11.25rem;
 }
 
 #see-faq,
 #loading-infos {
-  margin: 10px 0;
+  margin: 0.625rem 0;
   display: none;
   font-family: 'Quicksand', sans-serif;
-  font-size: 22px;
+  font-size: 1.375rem;
   color: white;
   text-align: center;
+}
+
+#loading-infos span {
+  font-size: 1rem;
 }
 
 #see-faq {
   margin: 0 0 10px 0;
   display: none;
   font-family: 'Quicksand', sans-serif;
-  font-size: 16px;
+  font-size: 1rem;
   color: white;
-  padding: 5px;
+  padding: 0.313rem;
   border-left: 1px solid white;
   border-right: 1px solid white;
 }
@@ -56,29 +72,29 @@
   display: block;
 }
 
-#explains-logo {
-  display: none;
-  width: 800px;
-}
-
-@media screen and (max-width: 1600px) {
-  #explains-logo {
-    width: 600px;
-  }
-}
-
 /* VR logo replacement */
 
+.vr-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#enter,
 #enter-vr {
+  width: 100%;
+  text-align: center;
   text-transform: uppercase;
   display: none;
-  font-size: 30px;
+  font-size: 1.875rem;
   text-decoration: none;
   color: white;
-  margin-top: 20px;
+  margin-top: 1.25rem;
   border: 1px solid white;
-  padding: 18px;
+  padding: 1.125rem;
 }
+#enter:hover,
 #enter-vr:hover {
   border-color: #ec652b;
 }
