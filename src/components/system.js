@@ -20,6 +20,7 @@ AFRAME.registerSystem('game', {
     this.carReference;
     this.actuelScene = this.firstScene;
     this.tourStarted = false;
+    this.vr = false;
     this.initLanguage();
     this.loadingAssets();
 
@@ -59,6 +60,7 @@ AFRAME.registerSystem('game', {
   },
   initClickEvents: function () {
     document.getElementById('enter').onclick = () => {
+      this.vr = false;
       // Remove loading interface
       document.getElementById('static-loading').style.display = 'none';
       // Add scene screen
@@ -68,6 +70,7 @@ AFRAME.registerSystem('game', {
     };
 
     document.getElementById('enter-vr').onclick = () => {
+      this.vr = true;
       // Remove loading interface
       document.getElementById('static-loading').style.display = 'none';
       // Add scene screen
@@ -189,6 +192,7 @@ AFRAME.registerSystem('game', {
   startDebugListener: function () {
     // ----- Section for debug events -----
     document.addEventListener('keyup', (e) => {
+      this.vr = false;
       // Start tour in debug mode with key 8 (display in navigator)
       if (e.keyCode == 56) {
         // Remove interface to see vr display
@@ -258,10 +262,10 @@ AFRAME.registerSystem('game', {
       document
         .querySelector('#' + this.scenes[this.actuelScene].car + ' #rig')
         .setAttribute('position', { x: -0.38, y: 1.0, z: 0.44 });
-      if (debug) {
+      if (!this.vr) {
         document
           .querySelector('#' + this.scenes[this.actuelScene].car + ' #rig')
-          .setAttribute('position', { x: -0.38, y: 0.7, z: 0.44 });
+          .setAttribute('position', { x: -0.42, y: 0.4, z: 0.44 });
       }
       return;
     }

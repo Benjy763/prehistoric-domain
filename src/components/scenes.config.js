@@ -1,6 +1,6 @@
 export const scenes = {
   // Starting scene
-  selection: 'dilo',
+  selection: 'gate',
   loading: {
     scene: 'loading-scene',
     camera: 'loading-scene-camera',
