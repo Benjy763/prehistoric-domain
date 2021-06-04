@@ -182,11 +182,13 @@ AFRAME.registerSystem('game', {
       car.querySelector('#rendering').setAttribute('visible', 'false');
       const event = new Event('start');
       car.dispatchEvent(event);
-      this.loading(false);
+      setTimeout(() => {
+        this.loading(false);
+      }, 5000);
 
       // Global sound launch
       document.getElementById('jungle-asset').play();
-    }, 15000);
+    }, 10000);
   },
   // Section with debug key
   startDebugListener: function () {
@@ -261,11 +263,11 @@ AFRAME.registerSystem('game', {
     if (!loading) {
       document
         .querySelector('#' + this.scenes[this.actuelScene].car + ' #rig')
-        .setAttribute('position', { x: -0.38, y: 1.0, z: 0.44 });
+        .setAttribute('position', { x: -0.38, y: 0.75, z: 0.5 });
       if (!this.vr) {
         document
           .querySelector('#' + this.scenes[this.actuelScene].car + ' #rig')
-          .setAttribute('position', { x: -0.42, y: 0.4, z: 0.44 });
+          .setAttribute('position', { x: -0.38, y: 0.4, z: 0.54 });
       }
       return;
     }
@@ -274,7 +276,7 @@ AFRAME.registerSystem('game', {
       .setAttribute('visible', true);
     document
       .querySelector('#' + this.scenes[this.actuelScene].car + ' #rig')
-      .setAttribute('position', { x: -0.38, y: -80, z: 0.44 });
+      .setAttribute('position', { x: -0.38, y: -80, z: 0.54 });
   },
   // ----- Languages functions --------
   getVoice(element) {

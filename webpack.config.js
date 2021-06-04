@@ -15,15 +15,6 @@ PLUGINS = [
       <head>
         <meta charset="UTF-8" />
         <title>Prehistoric Domain</title>
-        <script>
-          // Routing check
-          if (!localStorage.getItem('from-index')) {
-            window.location.href="https://jurassic-tour-vr.com";
-          }
-          else {
-            localStorage.removeItem('from-index');
-          }
-        </script>
         <style type="text/css">
           @font-face {
             font-family: 'Exo';

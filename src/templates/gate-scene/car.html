@@ -1,4 +1,4 @@
-<a-entity id="gate-car" gate-car-tour car-controls gltf-model="#car-asset" position="7.988 -0.29 81.899"
+<a-entity id="gate-car" gate-car-tour car-controls gltf-model="#car-asset" position="7.988 -0.10 81.899"
   rotation="0 -90 0" scale="1 1 1">
   <a-image id="loading-logo" src="#loading-asset" scale="3 2 2" position="-3 -78.5 0.34" rotation="0 90 0"></a-image>
   <!-- Tour images -->
@@ -12,12 +12,22 @@
     rotation="0 90 0" material="" geometry="" visible="false"></a-image>
   <a-image id="screen-brachio" src="#screen-brachio-asset" scale="0.23 0.205 0.25" position="-0.765 -100 -0.03445"
     rotation="0 90 0" material="" geometry="" visible="false"></a-image>
-  <a-entity id="interior-light" light="type: point; intensity: 5; distance: 12; decay: 13.300"
+
+  <a-plane position="2.55471 0.90886 -0.07318" rotation="0 -90 0" width="4" height="4" color="#000" material=""
+    geometry="width: 2; height: 2"></a-plane>
+
+  <a-entity id="interior-light" light="type: point; intensity: 2; distance: 12; decay: 13.300"
     position="0.4 2.478 -0.127" visible="" rotation="0 -2.33 0"></a-entity>
-  <a-entity id="headlight-light" light="type: spot; angle: 45; distance: 25; intensity: 9; penumbra: 0.27"
+  <a-entity id="interior-light-2" light="type: spot; intensity: 3.53; distance: 14.99; decay: 4.37; penumbra: 0.27"
+    position="0.55626 2.59979 -0.02144" visible="" rotation="-20 90 0"></a-entity>
+  <a-entity id="headlight-light" light="type: spot; angle: 45; distance: 25; intensity: 7; penumbra: 0.27"
     position="-3.16645 1.56139 0.02321" rotation="-13.02 90.2 0" visible=""></a-entity>
-  <a-entity id="headlight-light-2" light="type: spot; angle: 45; distance: 25; intensity: 9; penumbra: 0.27"
+  <a-entity id="headlight-light-2" light="type: spot; angle: 45; distance: 25; intensity: 7; penumbra: 0.27"
     position="1.53975 3.000 0.09997" rotation="48.120 90.2 0" visible=""></a-entity>
+  <a-entity id="headlight-light-3" light="type: spot; angle: 45; distance: 25; intensity: 3; penumbra: 0.27"
+    position="0.26292 2.48903 -0.62408" rotation="5 0 0" visible=""></a-entity>
+  <a-entity id="headlight-light-4" light="type: spot; angle: 45; distance: 25; intensity: 3; penumbra: 0.27"
+    position="0.30459 2.42094 0.43866" rotation="5 180 0" visible=""></a-entity>
   <a-entity id="rig" position="-0.38 1 0.44" rotation="0 90 0">
     <a-entity id="hands">
       <a-entity id="gate-scene-camera" camera position="0 1.6 0" look-controls>
