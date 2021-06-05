@@ -4,7 +4,6 @@ AFRAME.registerComponent('gate-car-tour', {
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
 
     this.system = document.querySelector('a-scene').systems['game'];
-    this.gate = document.querySelector('#gate-gate');
     this.brachio = document.querySelector('#brachio');
     this.screenDefault = document.getElementById('screen-default');
     this.screenBrachio = document.getElementById('screen-brachio');
@@ -32,10 +31,6 @@ AFRAME.registerComponent('gate-car-tour', {
 
     // En scene activation
     this.sceneChanged = false;
-
-    // Sound
-    this.gateSound = document.getElementById('gate-sound');
-    this.gateCloseSound = document.getElementById('gate-close-sound');
 
     // Init car (when reference is registered in the system) with tour data
     this.el.addEventListener('carRegistered', () => {
@@ -72,40 +67,6 @@ AFRAME.registerComponent('gate-car-tour', {
   },
   // --- Phase functions ---
   start: function () {
-    if (
-      this.system.truncMarker(this.carControls.carMarker) > 250 &&
-      !this.animationsStatuses.gateOpen
-    ) {
-      this.animationsStatuses.gateOpen = true;
-      this.gateSound.play();
-      this.gate.setAttribute('animation-mixer', {
-        clip: 'gate-*',
-        timeScale: 0.8,
-      });
-      setTimeout(() => {
-        this.gate.setAttribute('animation-mixer', {
-          clip: 'gate-*',
-          timeScale: 0,
-        });
-      }, 4500);
-    }
-    if (
-      this.system.truncMarker(this.carControls.carMarker) > 360 &&
-      !this.animationsStatuses.gateClosed
-    ) {
-      this.animationsStatuses.gateClosed = true;
-      this.gateCloseSound.play();
-      this.gate.setAttribute('animation-mixer', {
-        clip: 'gate-*',
-        timeScale: -0.8,
-      });
-      setTimeout(() => {
-        this.gate.setAttribute('animation-mixer', {
-          clip: 'gate-*',
-          timeScale: 0,
-        });
-      }, 4300);
-    }
     if (this.system.truncMarker(this.carControls.carMarker) > 560) {
       this.phase = 'stop';
     }
