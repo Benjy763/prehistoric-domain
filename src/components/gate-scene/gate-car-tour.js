@@ -9,6 +9,15 @@ AFRAME.registerComponent('gate-car-tour', {
     this.screenBrachio = document.getElementById('screen-brachio');
     this.screenTrice = document.getElementById('screen-trice');
     this.screenGalli = document.getElementById('screen-galli');
+    this.envLights = document.getElementById('gate-ambiant-light');
+    this.carLights = {
+      light1: document.getElementById('gate-interior-light'),
+      light2: document.getElementById('gate-interior-light-2'),
+      light3: document.getElementById('gate-headlight-light'),
+    };
+
+    // Sound
+    this.carTurnOn = document.getElementById('car-turn-on');
 
     // Voice and screen phases
     this.voicePhase = 'gate1';
@@ -50,8 +59,7 @@ AFRAME.registerComponent('gate-car-tour', {
         this.voiceGate3Sound = this.system.getVoice('gate3');
         this.voiceGate4Sound = this.system.getVoice('gate4');
 
-        this.phase = 'start';
-        this.carControls.changeDrivingState('starting');
+        this.phase = 'turnLights';
       },
       false
     );
@@ -66,6 +74,25 @@ AFRAME.registerComponent('gate-car-tour', {
     );
   },
   // --- Phase functions ---
+  turnLights: function () {
+    this.phase = 'waiting';
+    // Turn on global light
+    setTimeout(() => {
+      this.carTurnOn.play();
+      this.envLights.setAttribute('visible', 'true');
+    }, 10000);
+    // Turn on car lights
+    setTimeout(() => {
+      this.carLights.light1.setAttribute('visible', 'true');
+      this.carLights.light2.setAttribute('visible', 'true');
+      this.carLights.light3.setAttribute('visible', 'true');
+    }, 11000);
+    // Start car
+    setTimeout(() => {
+      this.phase = 'start';
+      this.carControls.changeDrivingState('starting');
+    }, 13000);
+  },
   start: function () {
     if (this.system.truncMarker(this.carControls.carMarker) > 560) {
       this.phase = 'stop';
@@ -150,6 +177,9 @@ AFRAME.registerComponent('gate-car-tour', {
     }
     // Animation phases
     switch (this.phase) {
+      case 'turnLights':
+        this.turnLights();
+        break;
       case 'start':
         this.start();
         break;
