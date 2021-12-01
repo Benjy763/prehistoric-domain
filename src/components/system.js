@@ -213,7 +213,7 @@ AFRAME.registerSystem('game', {
 
       // press key 7 and move car in given position on the curve
       if (e.keyCode == 55) {
-        this.carReference.carMarker = 0.25;
+        this.carReference.carMarker = scenes.carMarkerForDebug;
       }
     });
   },

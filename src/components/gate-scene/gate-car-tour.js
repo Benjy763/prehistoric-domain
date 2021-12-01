@@ -94,6 +94,14 @@ AFRAME.registerComponent('gate-car-tour', {
     }, 13000);
   },
   start: function () {
+    if (this.system.truncMarker(this.carControls.carMarker) > 400) {
+      // Trigger Brachio animation
+      const event = new Event('enter');
+      this.brachio.dispatchEvent(event);
+      this.phase = 'continue';
+    }
+  },
+  continue: function () {
     if (this.system.truncMarker(this.carControls.carMarker) > 560) {
       this.phase = 'stop';
     }
@@ -103,9 +111,6 @@ AFRAME.registerComponent('gate-car-tour', {
     this.phase = 'stay';
   },
   stay: function () {
-    const event = new Event('enter');
-    // Trigger Brachio animation
-    this.brachio.dispatchEvent(event);
     this.phase = 'animation';
   },
   restart: function () {
@@ -188,6 +193,9 @@ AFRAME.registerComponent('gate-car-tour', {
         break;
       case 'stay':
         this.stay();
+        break;
+      case 'continue':
+        this.continue();
         break;
       case 'restart':
         this.restart();
