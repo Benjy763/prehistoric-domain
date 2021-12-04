@@ -43,7 +43,8 @@ AFRAME.registerComponent('trex-animation', {
         // Load sounds
         this.trexRoarAudio = this.el.components['sound__trexroar'];
         this.trexFootStepAudio = this.el.components['sound__trexfootstep'];
-        this.trexLeaveAudio = this.el.components['sound__trexleave'];
+        this.trexDrinkAudio = this.el.components['sound__trexdrink'];
+        this.trexDrinkEndAudio = this.el.components['sound__trexdrinkend'];
 
         // Launch goat animation
         setTimeout(() => {
@@ -71,24 +72,19 @@ AFRAME.registerComponent('trex-animation', {
     this.car.setAttribute('rotation', rotation);
   },
   trexWait: function () {
-    this.el.setAttribute('animation-mixer', {
-      clip: 'T_Rex_Walk_InPlace',
-      timeScale: 1,
-    });
-    this.phase = 'trexEnter';
-    // setTimeout(() => {
-    //   if (!this.soundMixing1SoundPlaying) {
-    //     this.soundMixing1Audio.play();
-    //     this.soundMixing1SoundPlaying = true;
-    //   }
-    //   this.soundMixing1Audio.onended = () => {
-    //     this.el.setAttribute('animation-mixer', {
-    //       clip: '4.',
-    //       timeScale: 0.8,
-    //     });
-    //     this.phase = 'trexEnter';
-    //   };
-    // }, 500);
+    setTimeout(() => {
+      if (!this.soundMixing1SoundPlaying) {
+        this.soundMixing1Audio.play();
+        this.soundMixing1SoundPlaying = true;
+      }
+      this.soundMixing1Audio.onended = () => {
+        this.el.setAttribute('animation-mixer', {
+          clip: 'T_Rex_Walk_InPlace',
+          timeScale: 1,
+        });
+        this.phase = 'trexEnter';
+      };
+    }, 2000);
   },
   trexEnter: function () {
     if (this.system.truncMarker(this.trexMarker) > 960 && !this.trexSlowing) {
@@ -107,6 +103,7 @@ AFRAME.registerComponent('trex-animation', {
         clip: 'T_Rex_Drink',
         timeScale: 1,
       });
+      this.trexDrinkAudio.playSound();
       this.phase = 'trexDrink';
       return;
     }
@@ -132,11 +129,11 @@ AFRAME.registerComponent('trex-animation', {
   },
   trexDrink: function () {
     setTimeout(() => {
+      this.trexRoarAudio.playSound();
       this.el.setAttribute('animation-mixer', {
         clip: 'T_Rex_Idle_Roar2',
         timeScale: 0.8,
       });
-      this.trexRoarAudio.playSound();
       this.phase = 'trexRoar';
     }, 8000);
     this.phase = 'trexDrinking';
@@ -147,6 +144,9 @@ AFRAME.registerComponent('trex-animation', {
         clip: 'T_Rex_Drink',
         timeScale: 0.6,
       });
+      setTimeout(() => {
+        this.trexDrinkEndAudio.playSound();
+      }, 800);
       this.phase = 'trexFinish';
     }, 4000);
     this.phase = 'trexRoaring';
@@ -155,7 +155,7 @@ AFRAME.registerComponent('trex-animation', {
     setTimeout(() => {
       const event = new Event('restart');
       this.car.dispatchEvent(event);
-    }, 2000);
+    }, 2500);
     this.phase = 'end';
   },
   tick: function () {

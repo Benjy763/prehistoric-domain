@@ -1,7 +1,7 @@
 export const scenes = {
   // Starting scene
-  selection: 'gate',
-  carMarkerForDebug: 0.4,
+  selection: 'trex',
+  carMarkerForDebug: 0.52,
   loading: {
     scene: 'loading-scene',
     camera: 'loading-scene-camera',
