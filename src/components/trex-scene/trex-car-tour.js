@@ -20,7 +20,7 @@ AFRAME.registerComponent('trex-car-tour', {
     this.sceneChanged = false;
 
     // Sound
-    this.voicePhase = 'trex1';
+    this.voicePhase = 'stop';
     this.soundMixing1SoundPlaying = false;
     this.leaveSoundPlaying = false;
     this.soundMixing1Audio = document.getElementById('sound-mixing-1');
