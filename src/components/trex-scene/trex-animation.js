@@ -87,7 +87,7 @@ AFRAME.registerComponent('trex-animation', {
     }, 2000);
   },
   trexEnter: function () {
-    if (this.system.truncMarker(this.trexMarker) > 960 && !this.trexSlowing) {
+    if (this.system.truncMarker(this.trexMarker) > 940 && !this.trexSlowing) {
       this.trexSlowing = true;
       this.trexSpeed = 0.002;
       this.el.setAttribute('animation-mixer', {
@@ -95,7 +95,7 @@ AFRAME.registerComponent('trex-animation', {
         timeScale: 0.6,
       });
     }
-    if (this.system.truncMarker(this.trexMarker) > 980) {
+    if (this.system.truncMarker(this.trexMarker) > 960) {
       this.trexFootStepAudioPlaying = false;
       this.trexFootStepAudio.stopSound();
       this.trexSpeed = 0.0012;
