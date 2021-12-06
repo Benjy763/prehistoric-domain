@@ -5,6 +5,9 @@ AFRAME.registerComponent('raptor-car-tour', {
 
     this.system = document.querySelector('a-scene').systems['game'];
     this.raptor = document.querySelector('#raptor');
+    this.ambiantLight = document.querySelector('#raptor-ambiant-light');
+    this.ambiantLightIntensity = 1.4;
+    this.ambiantLightIntensitySpeed = 0.002;
     this.carControls;
     // Tour Path
     const curve = new THREE.SplineCurve([
@@ -38,23 +41,48 @@ AFRAME.registerComponent('raptor-car-tour', {
 
     // Restart tour listener, trigger by raptor controler
     this.el.addEventListener(
-      'restart',
+      'turnOnLight',
       () => {
-        this.phase = 'restart';
+        this.phase = 'turnOnLight';
       },
       false
     );
+    this.ambiantLight;
   },
   // --- Phase functions ---
   start: function () {
     if (this.system.truncMarker(this.carControls.carMarker) > 340) {
       this.carControls.changeDrivingState('stopping');
-      this.phase = 'stop';
+      this.phase = 'exit';
+      setTimeout(() => {
+        this.phase = 'turnOffLight';
+      }, 5000);
+    }
+  },
+  turnOffLight() {
+    if (this.ambiantLightIntensity < 0) {
       setTimeout(() => {
         const event = new Event('enter');
         this.raptor.dispatchEvent(event);
-      }, 1000);
+      }, 5000);
+      this.phase = 'exit';
     }
+    this.ambiantLightIntensity -= this.ambiantLightIntensitySpeed;
+    this.ambiantLight.setAttribute('light', {
+      intensity: this.ambiantLightIntensity,
+    });
+  },
+  turnOnLight() {
+    if (this.ambiantLightIntensity > 1.4) {
+      setTimeout(() => {
+        this.phase = 'restart';
+      }, 5000);
+      this.phase = 'exit';
+    }
+    this.ambiantLightIntensity += this.ambiantLightIntensitySpeed;
+    this.ambiantLight.setAttribute('light', {
+      intensity: this.ambiantLightIntensity,
+    });
   },
   restart: function () {
     this.carControls.changeDrivingState('starting');
@@ -84,6 +112,12 @@ AFRAME.registerComponent('raptor-car-tour', {
     switch (this.phase) {
       case 'start':
         this.start();
+        break;
+      case 'turnOffLight':
+        this.turnOffLight();
+        break;
+      case 'turnOnLight':
+        this.turnOnLight();
         break;
       case 'restart':
         this.restart();

@@ -6,6 +6,8 @@ AFRAME.registerComponent('raptor-animation', {
     this.object = this.el.object3D;
     this.system = document.querySelector('a-scene').systems['game'];
     this.phase = '';
+    this.car = document.querySelector('#raptor-car');
+
     // raptor run Path
     this.raptorMarker = 0; // Position on the curve
     this.raptorSpeed = 0.016; // Speed on the curve
@@ -95,6 +97,10 @@ AFRAME.registerComponent('raptor-animation', {
   },
   end: function () {
     if (this.system.truncMarker(this.raptorMarker) > 950) {
+      setTimeout(() => {
+        const event = new Event('turnOnLight');
+        this.car.dispatchEvent(event);
+      }, 5000);
       this.phase = 'exit';
     }
     this.raptorMarker = this.system.moveOnCurve(
