@@ -5,7 +5,6 @@ AFRAME.registerComponent('raptor-car-tour', {
 
     this.system = document.querySelector('a-scene').systems['game'];
     this.raptor = document.querySelector('#raptor');
-    this.raptorRoar = document.querySelector('#raptor-head');
     this.carControls;
     // Tour Path
     const curve = new THREE.SplineCurve([
@@ -14,7 +13,7 @@ AFRAME.registerComponent('raptor-car-tour', {
     ]);
 
     // Sounds
-    this.voiceRaptorSoundPlaying = false;
+    this.voiceRaptorSoundPlaying = true;
     // Animation phase
     this.sceneChanged = false;
 
@@ -54,8 +53,7 @@ AFRAME.registerComponent('raptor-car-tour', {
       setTimeout(() => {
         const event = new Event('enter');
         this.raptor.dispatchEvent(event);
-        this.raptorRoar.components['sound__ambiant'].playSound();
-      }, 15000);
+      }, 1000);
     }
   },
   restart: function () {

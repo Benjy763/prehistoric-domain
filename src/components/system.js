@@ -230,11 +230,10 @@ AFRAME.registerSystem('game', {
   },
   // ----- Curve functions --------
   // Move an object on the given curve according to given speed
-  moveOnCurve(object, curve, marker, speed) {
-    //console.log(object, curve, marker, speed);
+  moveOnCurve(object, curve, marker, speed, axe = 'xz') {
     marker += speed;
     object.position.copy(
-      this.convertPosition(curve.getPointAt(marker), object.position.y)
+      this.convertPosition(curve.getPointAt(marker), object, axe)
     );
     return marker;
   },
@@ -242,7 +241,7 @@ AFRAME.registerSystem('game', {
   updateRotation: function (el, object, curve, marker, speed, offset = 0) {
     const newPosition = this.convertPosition(
       curve.getPointAt(marker + speed),
-      object.position.y
+      object
     );
     object.lookAt(newPosition.x, newPosition.y, newPosition.z);
     // Correct rotation with offset
@@ -251,12 +250,19 @@ AFRAME.registerSystem('game', {
     el.setAttribute('rotation', rotation);
   },
   // Convert position in x y z object
-  convertPosition: function (position2D, ypos) {
-    return {
-      x: position2D.x,
-      y: ypos, // Must not move
-      z: position2D.y,
-    };
+  convertPosition: function (position2D, object, axe = 'xz') {
+    const pos = { ...object.position };
+    if (axe === 'xz') {
+      pos.x = position2D.x;
+      pos.z = position2D.y;
+    } else if (axe === 'xy') {
+      pos.x = position2D.x;
+      pos.y = position2D.y;
+    } else if (axe === 'yz') {
+      pos.y = position2D.x;
+      pos.z = position2D.y;
+    }
+    return pos;
   },
   // Trunc marker to have better values (ex: 515 instead of 0.5155554)
   truncMarker: function (carMarker) {
