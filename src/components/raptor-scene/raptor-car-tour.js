@@ -55,16 +55,16 @@ AFRAME.registerComponent('raptor-car-tour', {
       this.carControls.changeDrivingState('stopping');
       this.phase = 'exit';
       setTimeout(() => {
+        setTimeout(() => {
+          const event = new Event('enter');
+          this.raptor.dispatchEvent(event);
+        }, 5000);
         this.phase = 'turnOffLight';
       }, 5000);
     }
   },
   turnOffLight() {
     if (this.ambiantLightIntensity < 0) {
-      setTimeout(() => {
-        const event = new Event('enter');
-        this.raptor.dispatchEvent(event);
-      }, 5000);
       this.phase = 'exit';
     }
     this.ambiantLightIntensity -= this.ambiantLightIntensitySpeed;
@@ -73,10 +73,10 @@ AFRAME.registerComponent('raptor-car-tour', {
     });
   },
   turnOnLight() {
+    setTimeout(() => {
+      this.phase = 'restart';
+    }, 5000);
     if (this.ambiantLightIntensity > 1.4) {
-      setTimeout(() => {
-        this.phase = 'restart';
-      }, 5000);
       this.phase = 'exit';
     }
     this.ambiantLightIntensity += this.ambiantLightIntensitySpeed;

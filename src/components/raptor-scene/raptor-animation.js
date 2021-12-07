@@ -29,37 +29,47 @@ AFRAME.registerComponent('raptor-animation', {
     this.el.addEventListener(
       'enter',
       () => {
+        // Load sounds
+        this.raptorIntroAudio = this.el.components['sound__intro'];
+        this.raptorJumpStartAudio = this.el.components['sound__jumpstart'];
+        this.raptorRoarAudio = this.el.components['sound__roar'];
+        this.RaptorJumpEndAudio = this.el.components['sound__jumpend'];
+
         this.el.setAttribute('animation-mixer', {
           clip: 'Deinonychus_Jump_Jump',
-          timeScale: 0.8,
+          timeScale: 0.5,
         });
-        setTimeout(() => {
-          this.phase = 'jumpEnter';
-        }, 1000);
+        this.phase = 'hidden';
       },
       false
     );
   },
   // --- Phase functions ---
+  hidden: function () {
+    this.raptorIntroAudio.playSound();
+    this.phase = 'exit';
+    setTimeout(() => {
+      this.raptorJumpStartAudio.playSound();
+      this.phase = 'jumpEnter';
+    }, 19000);
+  },
   jumpEnter: function () {
-    if (this.system.truncMarker(this.raptorMarker) > 250) {
-      this.el.setAttribute('animation-mixer', {
-        clip: 'Deinonychus_Jump_Air',
-        timeScale: 0.8,
-      });
-    }
-    if (this.system.truncMarker(this.raptorMarker) > 370) {
+    if (this.system.truncMarker(this.raptorMarker) > 300) {
       this.el.setAttribute('animation-mixer', {
         clip: 'Deinonychus_Jump_Landing',
         timeScale: 0.8,
       });
     }
     if (this.system.truncMarker(this.raptorMarker) > 410) {
-      this.el.setAttribute('animation-mixer', {
-        clip: 'Deinonychus_Idle_Roar',
-        timeScale: 0.8,
-      });
-      this.phase = 'roar';
+      setTimeout(() => {
+        this.el.setAttribute('animation-mixer', {
+          clip: 'Deinonychus_Idle_Roar',
+          timeScale: 0.9,
+        });
+        this.raptorRoarAudio.playSound();
+        this.phase = 'roar';
+      }, 400);
+      this.phase = 'exit';
     }
     this.raptorMarker = this.system.moveOnCurve(
       this.object,
@@ -75,16 +85,13 @@ AFRAME.registerComponent('raptor-animation', {
         clip: 'Deinonychus_Jump_Jump',
         timeScale: 0.8,
       });
+      this.RaptorJumpEndAudio.playSound();
       this.phase = 'jumpEnd';
-    }, 8000);
+    }, 7000);
     this.phase = 'roaring';
   },
   jumpEnd: function () {
     if (this.system.truncMarker(this.raptorMarker) > 580) {
-      // this.el.setAttribute('animation-mixer', {
-      //   clip: 'Deinonychus_Jump_Air',
-      //   timeScale: 1,
-      // });
       this.phase = 'end';
     }
     this.raptorMarker = this.system.moveOnCurve(
@@ -114,6 +121,9 @@ AFRAME.registerComponent('raptor-animation', {
   tick: function () {
     // Animation steps
     switch (this.phase) {
+      case 'hidden':
+        this.hidden();
+        break;
       case 'jumpEnter':
         this.jumpEnter();
         break;
