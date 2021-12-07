@@ -198,9 +198,9 @@ AFRAME.registerSystem('game', {
   startDebugListener: function () {
     // ----- Section for debug events -----
     document.addEventListener('keyup', (e) => {
-      this.vr = false;
       // Start tour in debug mode with key 8 (display in navigator)
       if (e.keyCode == 56) {
+        this.vr = false;
         // Remove interface to see vr display
         document.getElementById('static-loading').style.display = 'none';
         // Add scene screen

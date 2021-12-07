@@ -76,7 +76,6 @@ AFRAME.registerComponent('trice-car-tour', {
     this.phase = 'stay';
   },
   stay: function () {
-    this.screenPhase = 'alarm';
     this.carAlarmSound.play();
     const event = new Event('enter');
     // Trigger trice animation
@@ -91,51 +90,7 @@ AFRAME.registerComponent('trice-car-tour', {
   },
   finish: function () {
     this.system.log(this.carControls.carMarker);
-    if (
-      this.system.truncMarker(this.carControls.carMarker) > 615 &&
-      !this.animationsStatuses.gateOpen
-    ) {
-      this.animationsStatuses.gateOpen = true;
-      this.gateSound.play();
-      this.gate.setAttribute('animation-mixer', {
-        clip: 'gate-*',
-        timeScale: 0.8,
-      });
-      setTimeout(() => {
-        this.gate.setAttribute('animation-mixer', {
-          clip: 'gate-*',
-          timeScale: 0,
-        });
-      }, 4500);
-    }
-    if (
-      this.system.truncMarker(this.carControls.carMarker) > 720 &&
-      !this.animationsStatuses.gateClosed
-    ) {
-      this.animationsStatuses.gateClosed = true;
-      this.gateCloseSound.play();
-      this.gate.setAttribute('animation-mixer', {
-        clip: 'gate-*',
-        timeScale: -0.8,
-      });
-      setTimeout(() => {
-        this.gate.setAttribute('animation-mixer', {
-          clip: 'gate-*',
-          timeScale: 0,
-        });
-      }, 4300);
-    }
-    if (
-      this.system.truncMarker(this.carControls.carMarker) > 750 &&
-      !this.endingSoundPlayed
-    ) {
-      this.endingSoundPlayed = true;
-      this.endingSound.play();
-    }
-    if (
-      this.system.truncMarker(this.carControls.carMarker) >
-      this.carControls.maxDistance
-    ) {
+    if (this.system.truncMarker(this.carControls.carMarker) > 750) {
       this.carControls.changeDrivingState('stopping');
       if (this.carControls.carSpeed <= 0) {
         this.phase = 'changeScene';

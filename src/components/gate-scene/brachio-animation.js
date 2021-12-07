@@ -13,7 +13,7 @@ AFRAME.registerComponent('brachio-animation', {
     this.brachioMarker = 0; // Position on the curve
     this.brachioSpeed = 0.0003; // Speed on the curve
     this.curve = new THREE.SplineCurve([
-      new THREE.Vector2(-49.327, -75.678),
+      new THREE.Vector2(-67.74806, -75.678),
       new THREE.Vector2(86.72, -75.678),
     ]);
 
@@ -42,7 +42,7 @@ AFRAME.registerComponent('brachio-animation', {
   },
   // --- Phase functions ---
   enter: function () {
-    if (this.system.truncMarker(this.brachioMarker) > 700) {
+    if (this.system.truncMarker(this.brachioMarker) > 850) {
       this.object = this.el.setAttribute('visible', false);
       setTimeout(() => {
         this.footStepAudio.stopSound();
@@ -53,7 +53,12 @@ AFRAME.registerComponent('brachio-animation', {
       this.phase = 'exit';
       return;
     }
-    this.brachioMarker = this.system.moveOnCurve(this.object, this.curve, this.brachioMarker, this.brachioSpeed);
+    this.brachioMarker = this.system.moveOnCurve(
+      this.object,
+      this.curve,
+      this.brachioMarker,
+      this.brachioSpeed
+    );
   },
   tick: function () {
     // Animation steps
