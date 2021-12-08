@@ -46,7 +46,7 @@ AFRAME.registerComponent('trex-animation', {
         this.trexDrinkAudio = this.el.components['sound__trexdrink'];
         this.trexDrinkEndAudio = this.el.components['sound__trexdrinkend'];
 
-        // Launch goat animation
+        // Launch animation
         setTimeout(() => {
           this.phase = 'trexWait';
         }, 500);

@@ -14,7 +14,8 @@ AFRAME.registerComponent('brachio-animation', {
     this.brachioSpeed = 0.0003; // Speed on the curve
     this.curve = new THREE.SplineCurve([
       new THREE.Vector2(-67.74806, -75.678),
-      new THREE.Vector2(86.72, -75.678),
+      new THREE.Vector2(61.983, -66.425),
+      new THREE.Vector2(186.324, -19.725),
     ]);
 
     // Sound

@@ -7,8 +7,6 @@ AFRAME.registerComponent('trice-car-tour', {
     this.gate = document.querySelector('#trice-gate-back');
     this.trice = document.querySelector('#trice');
     this.carAlarmSound = document.getElementById('car-alarm-sound');
-    this.gateSound = document.getElementById('gate-sound');
-    this.gateCloseSound = document.getElementById('gate-close-sound');
     this.endingSound = document.getElementById('soundtrack-ending-sound');
     this.voicePhase = 'trice1';
     this.screenDefault = document.getElementById('screen-default-2');
