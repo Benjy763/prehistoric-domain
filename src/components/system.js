@@ -104,7 +104,7 @@ AFRAME.registerSystem('game', {
       .setAttribute('camera', {
         far: this.displayDistance,
         active: true,
-        fov: this.vr ? 80 : 50,
+        fov: this.vr ? 60 : 60,
       });
 
     // Display scene

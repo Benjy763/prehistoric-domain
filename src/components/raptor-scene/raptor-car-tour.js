@@ -6,7 +6,7 @@ AFRAME.registerComponent('raptor-car-tour', {
     this.system = document.querySelector('a-scene').systems['game'];
     this.raptor = document.querySelector('#raptor');
     this.ambiantLight = document.querySelector('#raptor-ambiant-light');
-    this.ambiantLightIntensity = 1.2;
+    this.ambiantLightIntensity = 1;
     this.ambiantLightIntensitySpeed = 0.002;
     this.carControls;
     // Tour Path

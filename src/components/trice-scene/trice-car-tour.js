@@ -90,7 +90,7 @@ AFRAME.registerComponent('trice-car-tour', {
   },
   finish: function () {
     this.system.log(this.carControls.carMarker);
-    if (this.system.truncMarker(this.carControls.carMarker) > 750) {
+    if (this.system.truncMarker(this.carControls.carMarker) > 680) {
       this.carControls.changeDrivingState('stopping');
       if (this.carControls.carSpeed <= 0) {
         this.phase = 'changeScene';

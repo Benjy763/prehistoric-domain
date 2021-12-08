@@ -1,6 +1,6 @@
 export const scenes = {
   // Starting scene
-  selection: 'gate',
+  selection: 'dilo',
   carMarkerForDebug: 0.32,
   loading: {
     scene: 'loading-scene',
