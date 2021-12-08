@@ -14,8 +14,7 @@ AFRAME.registerComponent('brachio-animation', {
     this.brachioSpeed = 0.0003; // Speed on the curve
     this.curve = new THREE.SplineCurve([
       new THREE.Vector2(-67.74806, -75.678),
-      new THREE.Vector2(61.983, -66.425),
-      new THREE.Vector2(186.324, -19.725),
+      new THREE.Vector2(86.72, -75.678),
     ]);
 
     // Sound
@@ -43,16 +42,24 @@ AFRAME.registerComponent('brachio-animation', {
   },
   // --- Phase functions ---
   enter: function () {
-    if (this.system.truncMarker(this.brachioMarker) > 850) {
-      this.object = this.el.setAttribute('visible', false);
-      setTimeout(() => {
-        this.footStepAudio.stopSound();
-        this.footRoarAudio.stopSound();
-      }, 8000);
+    if (this.system.truncMarker(this.brachioMarker) > 600) {
       const event = new Event('restart');
       this.car.dispatchEvent(event);
+      this.phase = 'finish';
+    }
+    this.brachioMarker = this.system.moveOnCurve(
+      this.object,
+      this.curve,
+      this.brachioMarker,
+      this.brachioSpeed
+    );
+  },
+  finish: function () {
+    if (this.system.truncMarker(this.brachioMarker) > 900) {
+      this.object = this.el.setAttribute('visible', false);
+      this.footStepAudio.stopSound();
+      this.footRoarAudio.stopSound();
       this.phase = 'exit';
-      return;
     }
     this.brachioMarker = this.system.moveOnCurve(
       this.object,
@@ -66,6 +73,9 @@ AFRAME.registerComponent('brachio-animation', {
     switch (this.phase) {
       case 'enter':
         this.enter();
+        break;
+      case 'finish':
+        this.finish();
         break;
     }
   },

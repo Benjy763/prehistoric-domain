@@ -127,7 +127,11 @@ AFRAME.registerSystem('game', {
     this.disableAllCameras();
     document
       .getElementById(this.scenes[sceneId].camera)
-      .setAttribute('camera', { far: this.displayDistance, active: true });
+      .setAttribute('camera', {
+        far: this.displayDistance,
+        active: true,
+        fov: this.vr ? 60 : 60,
+      });
 
     // Register new scene
     this.actuelScene = sceneId;
