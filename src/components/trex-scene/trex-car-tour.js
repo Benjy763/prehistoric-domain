@@ -40,8 +40,8 @@ AFRAME.registerComponent('trex-car-tour', {
       () => {
         this.voiceTrex1Sound = this.system.getVoice('trex1');
         this.voiceTrex2Sound = this.system.getVoice('trex2');
-        this.phase = 'start';
-        this.carControls.changeDrivingState('starting');
+        this.phase = 'exit';
+        //this.carControls.changeDrivingState('starting');
       },
       false
     );
