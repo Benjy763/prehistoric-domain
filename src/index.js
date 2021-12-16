@@ -17,4 +17,4 @@ requireAll(require.context('./components/', true, /\.js$/));
 require('aframe-particle-system-component');
 require('./scene.html');
 
-require('aframe-fps-fps-look-controls="user-height: 0"-component');
+require('aframe-fps-look-controls-component');
