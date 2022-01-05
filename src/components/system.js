@@ -4,19 +4,29 @@
   Also there are utility functions that help making scenes (ex move object on curves, logs...)
 */
 
+import { AviaryScenes, MainScene, TourScenes } from './scenes.config';
+
 import { debug } from './debug.const';
 import { languages } from './languages.config';
-import { scenes } from './scenes.config';
 
 AFRAME.registerSystem('game', {
   schema: {},
   // ----- Launch and changing scene functions --------
   init: function () {
-    this.firstScene = scenes.selection;
+    // Main Scenes
+    switch (MainScene) {
+      case 'tour':
+        this.scenes = TourScenes;
+        break;
+      case 'aviary':
+        this.scenes = AviaryScenes;
+        break;
+    }
+
+    this.firstScene = this.scenes.selection;
     this.displayDistance = 100; // 150 to test
     this.language = languages.selection;
     this.languages = languages;
-    this.scenes = scenes;
     this.carReference;
     this.actuelScene = this.firstScene;
     this.tourStarted = false;
@@ -221,7 +231,7 @@ AFRAME.registerSystem('game', {
 
       // press key 7 and move car in given position on the curve
       if (e.keyCode == 55) {
-        this.carReference.carMarker = scenes.carMarkerForDebug;
+        this.carReference.carMarker = this.scenes.carMarkerForDebug;
       }
     });
   },

@@ -1,0 +1,82 @@
+AFRAME.registerComponent('quetza-animation', {
+  schema: {},
+  init: function () {
+    this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
+
+    // Objects shortcut
+    this.object = this.el.object3D;
+    this.system = document.querySelector('a-scene').systems['game'];
+    this.car = document.querySelector('#gate-car');
+    this.phase = '';
+
+    // Brachio run Path
+    this.brachioMarker = 0; // Position on the curve
+    this.brachioSpeed = 0.0003; // Speed on the curve
+    this.curve = new THREE.SplineCurve([
+      new THREE.Vector2(-67.74806, -75.678),
+      new THREE.Vector2(86.72, -75.678),
+    ]);
+
+    // Sound
+    this.footStepAudio;
+    this.footRoarAudio;
+
+    // Start tour listener
+    this.el.addEventListener(
+      'enter',
+      () => {
+        this.footStepAudio = this.el.components['sound__foot'];
+        this.footRoarAudio = this.el.components['sound__roar'];
+        this.el.setAttribute(
+          'animation-mixer',
+          'clip: brachiosaurus_scetchfab'
+        );
+        setTimeout(() => {
+          this.footStepAudio.playSound();
+          this.footRoarAudio.playSound();
+        }, 3200);
+        this.phase = 'enter';
+      },
+      false
+    );
+  },
+  // --- Phase functions ---
+  enter: function () {
+    if (this.system.truncMarker(this.brachioMarker) > 600) {
+      const event = new Event('restart');
+      this.car.dispatchEvent(event);
+      this.phase = 'finish';
+    }
+    this.brachioMarker = this.system.moveOnCurve(
+      this.object,
+      this.curve,
+      this.brachioMarker,
+      this.brachioSpeed
+    );
+  },
+  finish: function () {
+    if (this.system.truncMarker(this.brachioMarker) > 900) {
+      this.el.setAttribute('visible', false);
+      this.footStepAudio.stopSound();
+      this.footRoarAudio.stopSound();
+      this.phase = 'exit';
+    }
+    this.brachioMarker = this.system.moveOnCurve(
+      this.object,
+      this.curve,
+      this.brachioMarker,
+      this.brachioSpeed
+    );
+  },
+  tick: function () {
+    // Animation steps
+    switch (this.phase) {
+      case 'enter':
+        this.enter();
+        break;
+      case 'finish':
+        this.finish();
+        break;
+    }
+  },
+});
