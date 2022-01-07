@@ -1,0 +1,11 @@
+Model Information:
+* title:	Rock02
+* source:	https://sketchfab.com/3d-models/rock02-b87a85f760d94295a592f5ae4f8f9f96
+* author:	plasmaernst (https://sketchfab.com/plasmaernst)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Rock02" (https://sketchfab.com/3d-models/rock02-b87a85f760d94295a592f5ae4f8f9f96) by plasmaernst (https://sketchfab.com/plasmaernst) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

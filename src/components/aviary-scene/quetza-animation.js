@@ -6,12 +6,12 @@ AFRAME.registerComponent('quetza-animation', {
     // Objects shortcut
     this.object = this.el.object3D;
     this.system = document.querySelector('a-scene').systems['game'];
-    this.car = document.querySelector('#gate-car');
+    this.car = document.querySelector('#aviary-car');
     this.phase = '';
 
-    // Brachio run Path
-    this.brachioMarker = 0; // Position on the curve
-    this.brachioSpeed = 0.0003; // Speed on the curve
+    // Quetza run Path
+    this.quetzaMarker = 0; // Position on the curve
+    this.quetzaSpeed = 0.0003; // Speed on the curve
     this.curve = new THREE.SplineCurve([
       new THREE.Vector2(-67.74806, -75.678),
       new THREE.Vector2(86.72, -75.678),
@@ -27,10 +27,7 @@ AFRAME.registerComponent('quetza-animation', {
       () => {
         this.footStepAudio = this.el.components['sound__foot'];
         this.footRoarAudio = this.el.components['sound__roar'];
-        this.el.setAttribute(
-          'animation-mixer',
-          'clip: brachiosaurus_scetchfab'
-        );
+        this.el.setAttribute('animation-mixer', 'clip: quetzasaurus_scetchfab');
         setTimeout(() => {
           this.footStepAudio.playSound();
           this.footRoarAudio.playSound();
@@ -42,30 +39,30 @@ AFRAME.registerComponent('quetza-animation', {
   },
   // --- Phase functions ---
   enter: function () {
-    if (this.system.truncMarker(this.brachioMarker) > 600) {
+    if (this.system.truncMarker(this.quetzaMarker) > 600) {
       const event = new Event('restart');
       this.car.dispatchEvent(event);
       this.phase = 'finish';
     }
-    this.brachioMarker = this.system.moveOnCurve(
+    this.quetzaMarker = this.system.moveOnCurve(
       this.object,
       this.curve,
-      this.brachioMarker,
-      this.brachioSpeed
+      this.quetzaMarker,
+      this.quetzaSpeed
     );
   },
   finish: function () {
-    if (this.system.truncMarker(this.brachioMarker) > 900) {
+    if (this.system.truncMarker(this.quetzaMarker) > 900) {
       this.el.setAttribute('visible', false);
       this.footStepAudio.stopSound();
       this.footRoarAudio.stopSound();
       this.phase = 'exit';
     }
-    this.brachioMarker = this.system.moveOnCurve(
+    this.quetzaMarker = this.system.moveOnCurve(
       this.object,
       this.curve,
-      this.brachioMarker,
-      this.brachioSpeed
+      this.quetzaMarker,
+      this.quetzaSpeed
     );
   },
   tick: function () {
