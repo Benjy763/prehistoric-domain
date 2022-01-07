@@ -25,6 +25,8 @@ AFRAME.registerSystem('game', {
 
     this.firstScene = this.scenes.selection;
     this.displayDistance = 100; // 150 to test
+    this.fov = 60;
+    this.fovVR = 60;
     this.language = languages.selection;
     this.languages = languages;
     this.carReference;
@@ -114,7 +116,7 @@ AFRAME.registerSystem('game', {
       .setAttribute('camera', {
         far: this.displayDistance,
         active: true,
-        fov: this.vr ? 60 : 60,
+        fov: this.vr ? this.fovVR : this.fov,
       });
 
     // Display scene
@@ -140,7 +142,7 @@ AFRAME.registerSystem('game', {
       .setAttribute('camera', {
         far: this.displayDistance,
         active: true,
-        fov: this.vr ? 60 : 60,
+        fov: this.vr ? this.fovVR : this.fov,
       });
 
     // Register new scene

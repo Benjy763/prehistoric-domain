@@ -13,8 +13,10 @@ AFRAME.registerComponent('quetza-animation', {
     this.quetzaMarker = 0; // Position on the curve
     this.quetzaSpeed = 0.0003; // Speed on the curve
     this.curve = new THREE.SplineCurve([
-      new THREE.Vector2(-67.74806, -75.678),
-      new THREE.Vector2(86.72, -75.678),
+      new THREE.Vector2(31.025, -30.037), // y,z and x to 13.622
+      new THREE.Vector2(28.075, -6.894),
+      new THREE.Vector2(31.464, -2.59),
+      new THREE.Vector2(72.264, -2.59),
     ]);
 
     // Sound
@@ -48,7 +50,8 @@ AFRAME.registerComponent('quetza-animation', {
       this.object,
       this.curve,
       this.quetzaMarker,
-      this.quetzaSpeed
+      this.quetzaSpeed,
+      'yz'
     );
   },
   finish: function () {
@@ -62,7 +65,8 @@ AFRAME.registerComponent('quetza-animation', {
       this.object,
       this.curve,
       this.quetzaMarker,
-      this.quetzaSpeed
+      this.quetzaSpeed,
+      'yz'
     );
   },
   tick: function () {

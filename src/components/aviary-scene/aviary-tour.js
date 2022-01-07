@@ -4,15 +4,12 @@ AFRAME.registerComponent('aviary-car-tour', {
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
 
     this.system = document.querySelector('a-scene').systems['game'];
+    this.ptera = document.querySelector('#pteranodon');
     this.quetza = document.querySelector('#quetza');
     this.envLights = document.getElementById('gate-ambiant-light');
 
-    // Sound
-    this.carTurnOn = document.getElementById('car-turn-on');
-
     // Voice and screen phases
-    this.voicePhase = 'gate1';
-    this.screenPhase = 'default';
+    this.voicePhase = 'aviary1';
 
     // Main control of the car
     this.carControls;
@@ -47,7 +44,7 @@ AFRAME.registerComponent('aviary-car-tour', {
         // Get voice from system when init
         this.voiceAviary1Sound = this.system.getVoice('aviary1');
 
-        this.phase = 'turnLights';
+        this.phase = 'start';
       },
       false
     );
@@ -62,15 +59,21 @@ AFRAME.registerComponent('aviary-car-tour', {
     );
   },
   // --- Phase functions ---
-  start: function () {},
+  start: function () {
+    console.log('test', this.carControls);
+    setTimeout(() => {
+      // Trigger Pteranodon animation
+      const event = new Event('enter');
+      this.ptera.dispatchEvent(event);
+      this.phase = 'exit';
+    }, 6000);
+  },
   tick: function () {
     // Voice phases
     switch (this.voicePhase) {
       case 'aviary1':
-        if (this.system.truncMarker(this.carControls.carMarker) > 0) {
-          this.voiceAviary1Sound.play();
-          this.voicePhase = 'exit';
-        }
+        // this.voiceAviary1Sound.play();
+        // this.voicePhase = 'exit';
         break;
     }
     // Animation phases
