@@ -49,24 +49,56 @@ AFRAME.registerComponent('aviary-car-tour', {
       false
     );
 
-    // Restart tour listener, trigger by quetza controler
+    // Restart tour listeners
     this.el.addEventListener(
-      'restart',
+      'restartPtera',
       () => {
-        this.phase = 'restart';
+        this.phase = 'restartPtera';
+      },
+      false
+    );
+    this.el.addEventListener(
+      'restartQuetzaWalk',
+      () => {
+        this.phase = 'restartQuetzaWalk';
+      },
+      false
+    );
+    this.el.addEventListener(
+      'restartQuetzaFly',
+      () => {
+        this.phase = 'restartQuetzaFly';
       },
       false
     );
   },
   // --- Phase functions ---
   start: function () {
-    console.log('test', this.carControls);
     setTimeout(() => {
       // Trigger Pteranodon animation
       const event = new Event('enter');
       this.ptera.dispatchEvent(event);
-      this.phase = 'exit';
     }, 6000);
+    this.phase = 'exit';
+  },
+  restartPtera: function () {
+    setTimeout(() => {
+      // Trigger Pteranodon animation
+      const event = new Event('enterWalk');
+      this.quetza.dispatchEvent(event);
+    }, 6000);
+    this.phase = 'exit';
+  },
+  restartQuetzaWalk: function () {
+    setTimeout(() => {
+      // Trigger Pteranodon animation
+      const event = new Event('enterFly');
+      this.quetza.dispatchEvent(event);
+    }, 6000);
+    this.phase = 'exit';
+  },
+  restartQuetzaFly: function () {
+    this.phase = 'exit';
   },
   tick: function () {
     // Voice phases
@@ -80,6 +112,15 @@ AFRAME.registerComponent('aviary-car-tour', {
     switch (this.phase) {
       case 'start':
         this.start();
+        break;
+      case 'restartPtera':
+        this.restartPtera();
+        break;
+      case 'restartQuetzaWalk':
+        this.restartQuetzaWalk();
+        break;
+      case 'restartQuetzaFly':
+        this.restartQuetzaFly();
         break;
       case 'changeScene':
         if (!this.sceneChanged) {

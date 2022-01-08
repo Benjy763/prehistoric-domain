@@ -15,7 +15,7 @@ AFRAME.registerComponent('pteranodon-animation', {
     this.curve = new THREE.SplineCurve([
       new THREE.Vector2(-33.384, 1.828),
       new THREE.Vector2(5.136, -2.505),
-      new THREE.Vector2(56.808, -4.233),
+      new THREE.Vector2(60, -4.233),
     ]);
 
     // Sound
@@ -41,7 +41,7 @@ AFRAME.registerComponent('pteranodon-animation', {
   // --- Phase functions ---
   enter: function () {
     if (this.system.truncMarker(this.pteraMarker) > 800) {
-      const event = new Event('restart');
+      const event = new Event('restartPtera');
       this.car.dispatchEvent(event);
       this.phase = 'finish';
     }

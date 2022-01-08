@@ -254,10 +254,19 @@ AFRAME.registerSystem('game', {
     return marker;
   },
   // Give to the given object the new rotation position after moving on the curve
-  updateRotation: function (el, object, curve, marker, speed, offset = 0) {
+  updateRotation: function (
+    el,
+    object,
+    curve,
+    marker,
+    speed,
+    offset = 0,
+    axe = 'xz'
+  ) {
     const newPosition = this.convertPosition(
       curve.getPointAt(marker + speed),
-      object
+      object,
+      axe
     );
     object.lookAt(newPosition.x, newPosition.y, newPosition.z);
     // Correct rotation with offset
