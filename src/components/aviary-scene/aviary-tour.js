@@ -8,6 +8,10 @@ AFRAME.registerComponent('aviary-car-tour', {
     this.quetza = document.querySelector('#quetza');
     this.envLights = document.getElementById('gate-ambiant-light');
 
+    // Sounds
+    this.ambiant1Sound;
+    this.ambiant2Sound;
+
     // Voice and screen phases
     this.voicePhase = 'aviary1';
 
@@ -41,6 +45,15 @@ AFRAME.registerComponent('aviary-car-tour', {
     this.el.addEventListener(
       'start',
       () => {
+        // Get sounds
+        this.ambiant1Sound =
+          document.getElementById('aviary-cliff-1').components[
+            'sound__ambiant1'
+          ];
+        this.ambiant2Sound =
+          document.getElementById('aviary-cliff-2').components[
+            'sound__ambiant2'
+          ];
         // Get voice from system when init
         this.voiceAviary1Sound = this.system.getVoice('aviary1');
 
@@ -75,10 +88,13 @@ AFRAME.registerComponent('aviary-car-tour', {
   // --- Phase functions ---
   start: function () {
     setTimeout(() => {
+      this.ambiant1Sound.playSound();
+    }, 20000);
+    setTimeout(() => {
       // Trigger Pteranodon animation
       const event = new Event('enter');
       this.ptera.dispatchEvent(event);
-    }, 6000);
+    }, 45000);
     this.phase = 'exit';
   },
   restartPtera: function () {

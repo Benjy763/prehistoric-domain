@@ -11,29 +11,26 @@ AFRAME.registerComponent('pteranodon-animation', {
 
     // Ptera run Path
     this.pteraMarker = 0; // Position on the curve
-    this.pteraSpeed = 0.004; // Speed on the curve
+    this.pteraSpeed = 0.003; // Speed on the curve
     this.curve = new THREE.SplineCurve([
       new THREE.Vector2(-33.384, 1.828),
       new THREE.Vector2(5.136, -2.505),
-      new THREE.Vector2(60, -4.233),
+      new THREE.Vector2(80, -4.233),
     ]);
 
     // Sound
-    this.footStepAudio;
-    this.footRoarAudio;
+    this.passingAudio;
 
     // Start tour listener
     this.el.addEventListener(
       'enter',
       () => {
-        // this.footStepAudio = this.el.components['sound__foot'];
-        // this.footRoarAudio = this.el.components['sound__roar'];
+        this.passingAudio = this.el.components['sound__passing'];
         this.el.setAttribute('animation-mixer', 'clip: flying');
-        // setTimeout(() => {
-        //   this.footStepAudio.playSound();
-        //   this.footRoarAudio.playSound();
-        // }, 3200);
-        this.phase = 'enter';
+        this.passingAudio.playSound();
+        setTimeout(() => {
+          this.phase = 'enter';
+        }, 2000);
       },
       false
     );
