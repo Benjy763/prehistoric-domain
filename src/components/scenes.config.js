@@ -2,7 +2,7 @@ export const MainScene = 'aviary';
 
 export const TourScenes = {
   // Starting scene
-  selection: 'gate',
+  selection: 'dilo',
   carMarkerForDebug: 0.32,
   loading: {
     scene: 'loading-scene',

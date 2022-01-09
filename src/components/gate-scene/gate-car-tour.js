@@ -53,6 +53,8 @@ AFRAME.registerComponent('gate-car-tour', {
     this.el.addEventListener(
       'start',
       () => {
+        // Global sound launch
+        document.getElementById('jungle-asset').play();
         // Get voice from system when init
         this.voiceGate1Sound = this.system.getVoice('gate1');
         this.voiceGate2Sound = this.system.getVoice('gate2');
@@ -80,18 +82,18 @@ AFRAME.registerComponent('gate-car-tour', {
     setTimeout(() => {
       this.carTurnOn.play();
       this.envLights.setAttribute('visible', 'true');
-    }, 10000);
+    }, 6000);
     // Turn on car lights
     setTimeout(() => {
       this.carLights.light1.setAttribute('visible', 'true');
       this.carLights.light2.setAttribute('visible', 'true');
       this.carLights.light3.setAttribute('visible', 'true');
-    }, 11000);
+    }, 7000);
     // Start car
     setTimeout(() => {
       this.phase = 'start';
       this.carControls.changeDrivingState('starting');
-    }, 13000);
+    }, 9000);
   },
   start: function () {
     if (this.system.truncMarker(this.carControls.carMarker) > 400) {

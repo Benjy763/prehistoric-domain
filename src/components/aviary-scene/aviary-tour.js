@@ -45,6 +45,20 @@ AFRAME.registerComponent('aviary-car-tour', {
     this.el.addEventListener(
       'start',
       () => {
+        // Set main scene atmosphere color
+        const mainSCene = document.getElementById('main-scene');
+        mainSCene.setAttribute('background', {
+          color: '#5e5e5e',
+        });
+        mainSCene.setAttribute('fog', {
+          type: 'exponential',
+          color: '#5e5e5e',
+          density: 0.065,
+        });
+
+        // Global sound launch
+        document.getElementById('jungle-asset').play();
+
         // Get sounds
         this.ambiant1Sound =
           document.getElementById('aviary-cliff-1').components[

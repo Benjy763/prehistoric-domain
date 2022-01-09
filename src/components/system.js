@@ -200,15 +200,16 @@ AFRAME.registerSystem('game', {
     car.querySelector('#rendering').setAttribute('visible', 'true');
     setTimeout(() => {
       car.querySelector('#rendering').setAttribute('visible', 'false');
+
       const event = new Event('start');
       car.dispatchEvent(event);
+
+      // Delai for tour that is heavy to load
+      const delai = MainScene === 'tour' ? 4000 : 0;
       setTimeout(() => {
         this.loading(false);
-      }, 5000);
-
-      // Global sound launch
-      document.getElementById('jungle-asset').play();
-    }, 10000);
+      }, delai);
+    }, 4000);
   },
   // Section with debug key
   startDebugListener: function () {
