@@ -27,7 +27,7 @@ AFRAME.registerComponent('quetza-animation', {
     this.fog = 0.065;
     this.walkCurve = new THREE.SplineCurve([
       new THREE.Vector2(-8, -28),
-      new THREE.Vector2(5, -12),
+      new THREE.Vector2(3.769, -12.117),
     ]);
     this.flyCurve = new THREE.SplineCurve([
       new THREE.Vector2(40, -60), // y,z and x to 13.622

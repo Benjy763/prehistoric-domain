@@ -4,7 +4,12 @@
   Also there are utility functions that help making scenes (ex move object on curves, logs...)
 */
 
-import { AviaryScenes, MainScene, TourScenes } from './scenes.config';
+import {
+  AviaryScenes,
+  LagoonScenes,
+  MainScene,
+  TourScenes,
+} from './scenes.config';
 
 import { debug } from './debug.const';
 import { languages } from './languages.config';
@@ -20,6 +25,9 @@ AFRAME.registerSystem('game', {
         break;
       case 'aviary':
         this.scenes = AviaryScenes;
+        break;
+      case 'lagoon':
+        this.scenes = LagoonScenes;
         break;
     }
 

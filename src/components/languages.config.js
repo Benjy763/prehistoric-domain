@@ -2,6 +2,7 @@ export const languages = {
   selection: 'en',
   en: {
     aviary1: 'voice-aviary1-sound-en',
+    lagoon1: 'voice-lagoon1-sound-en',
     gate1: 'voice-gate1-sound-en',
     gate2: 'voice-gate2-sound-en',
     gate3: 'voice-gate3-sound-en',
@@ -15,6 +16,7 @@ export const languages = {
   },
   fr: {
     aviary1: 'voice-aviary1-sound-fr',
+    lagoon1: 'voice-lagoon1-sound-fr',
     gate1: 'voice-gate1-sound-fr',
     gate2: 'voice-gate2-sound-fr',
     gate3: 'voice-gate3-sound-fr',

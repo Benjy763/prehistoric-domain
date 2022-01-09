@@ -26,4 +26,7 @@ switch (MainScene) {
   case 'aviary':
     require('./aviary-main-scene.html');
     break;
+  case 'lagoon':
+    require('./lagoon-main-scene.html');
+    break;
 }

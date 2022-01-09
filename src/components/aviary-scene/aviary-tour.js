@@ -15,15 +15,6 @@ AFRAME.registerComponent('aviary-car-tour', {
     // Voice and screen phases
     this.voicePhase = 'aviary1';
 
-    // Main control of the car
-    this.carControls;
-
-    // Specific statuses
-    this.animationsStatuses = {
-      gateOpen: false,
-      gateClosed: false,
-    };
-
     // Tour Path
     const curve = new THREE.SplineCurve([
       new THREE.Vector2(7.988, 81.899),
@@ -32,14 +23,6 @@ AFRAME.registerComponent('aviary-car-tour', {
 
     // En scene activation
     this.sceneChanged = false;
-
-    // Init car (when reference is registered in the system) with tour data
-    this.el.addEventListener('carRegistered', () => {
-      // Get car reference
-      this.carControls = this.system.carReference;
-      // Init tour path for the car
-      this.carControls.initParams(curve, 700);
-    });
 
     // Start tour listeners
     this.el.addEventListener(

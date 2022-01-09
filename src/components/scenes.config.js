@@ -1,4 +1,4 @@
-export const MainScene = 'aviary';
+export const MainScene = 'lagoon';
 
 export const TourScenes = {
   // Starting scene
@@ -58,6 +58,28 @@ export const AviaryScenes = {
     scene: 'aviary-scene',
     camera: 'aviary-scene-camera',
     car: 'aviary-car',
+    carReference: null,
+  },
+  ending: {
+    scene: 'ending-scene',
+    camera: 'ending-scene-camera',
+    car: null,
+    carReference: null,
+  },
+};
+
+export const LagoonScenes = {
+  // Starting scene
+  selection: 'lagoon',
+  carMarkerForDebug: 0.32,
+  loading: {
+    scene: 'loading-scene',
+    camera: 'loading-scene-camera',
+  },
+  lagoon: {
+    scene: 'lagoon-scene',
+    camera: 'lagoon-scene-camera',
+    car: 'lagoon-car',
     carReference: null,
   },
   ending: {
