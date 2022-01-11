@@ -29,11 +29,11 @@ AFRAME.registerComponent('lagoon-car-tour', {
         // Set main scene atmosphere color
         const mainSCene = document.getElementById('main-scene');
         mainSCene.setAttribute('background', {
-          color: '#385f7e',
+          color: '#26537a', //#00496c
         });
         mainSCene.setAttribute('fog', {
           type: 'exponential',
-          color: '#385f7e',
+          color: '#26537a',
           density: 0.1,
         });
 
