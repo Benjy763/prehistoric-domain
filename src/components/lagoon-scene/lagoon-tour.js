@@ -60,13 +60,17 @@ AFRAME.registerComponent('lagoon-car-tour', {
   },
   // --- Phase functions ---
   start: function () {
+    setTimeout(() => {
+      const event = new Event('enter');
+      this.meg.dispatchEvent(event);
+    }, 6000);
     this.phase = 'exit';
   },
   restart: function () {},
   tick: function () {
     // Voice phases
     switch (this.voicePhase) {
-      case 'aviary1':
+      case 'lagoon1':
         // this.voiceAviary1Sound.play();
         // this.voicePhase = 'exit';
         break;

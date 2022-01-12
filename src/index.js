@@ -12,7 +12,7 @@ require('aframe-curve-component');
 //require('super-hands');
 //require('./vendors/aframe-gif-shader/dist/aframe-gif-component.js');
 
-// Require all components.
+// Require all components
 require('./style/loader.css');
 requireAll(require.context('./components/', true, /\.js$/));
 require('aframe-particle-system-component');
