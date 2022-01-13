@@ -156,10 +156,10 @@ AFRAME.registerSystem('game', {
     // Register new scene
     this.actuelScene = sceneId;
 
-    // Notify car reference to the new scene
-    this.carReference.stopTrackingCar();
-    this.carReference = this.scenes[this.actuelScene].carReference;
     if (this.carReference) {
+      // Notify car reference to the new scene
+      this.carReference.stopTrackingCar();
+      this.carReference = this.scenes[this.actuelScene].carReference;
       this.sendCarReference(this.carReference);
     }
 

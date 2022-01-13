@@ -29,11 +29,11 @@ AFRAME.registerComponent('aviary-car-tour', {
       'start',
       () => {
         // Set main scene atmosphere color
-        const mainSCene = document.getElementById('main-scene');
-        mainSCene.setAttribute('background', {
+        const mainScene = document.getElementById('main-scene');
+        mainScene.setAttribute('background', {
           color: '#5e5e5e',
         });
-        mainSCene.setAttribute('fog', {
+        mainScene.setAttribute('fog', {
           type: 'exponential',
           color: '#5e5e5e',
           density: 0.065,
@@ -139,7 +139,19 @@ AFRAME.registerComponent('aviary-car-tour', {
         if (!this.sceneChanged) {
           // Destroy and detach all unecessary objets
           //Change scene
-          this.system.changeScene('ending');
+          const mainScene = document.getElementById('main-scene');
+          mainScene.setAttribute('background', {
+            color: '#000', //#00496c
+          });
+          mainScene.setAttribute('fog', {
+            type: 'exponential',
+            color: '#000',
+            density: 0.1,
+          });
+          setTimeout(() => {
+            window.location.href = 'https://www.prehistoricdomain.com/map';
+          }, 8000);
+          this.system.changeScene('ending', false);
           this.sceneChanged = true;
         }
         break;

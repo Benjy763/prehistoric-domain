@@ -16,7 +16,7 @@ require('aframe-curve-component');
 require('./style/loader.css');
 requireAll(require.context('./components/', true, /\.js$/));
 require('aframe-particle-system-component');
-//require('aframe-fps-look-controls-component');
+require('aframe-fps-look-controls-component');
 
 // Main Scenes
 switch (MainScene) {

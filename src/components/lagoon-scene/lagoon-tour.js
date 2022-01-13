@@ -8,7 +8,7 @@ AFRAME.registerComponent('lagoon-car-tour', {
 
     // Sounds
     this.ambiant1Sound;
-    this.ambiant2Sound;
+    this.hitSound;
 
     // Voice and screen phases
     this.voicePhase = 'lagoon1';
@@ -27,11 +27,11 @@ AFRAME.registerComponent('lagoon-car-tour', {
       'start',
       () => {
         // Set main scene atmosphere color
-        const mainSCene = document.getElementById('main-scene');
-        mainSCene.setAttribute('background', {
+        const mainScene = document.getElementById('main-scene');
+        mainScene.setAttribute('background', {
           color: '#26537a', //#00496c
         });
-        mainSCene.setAttribute('fog', {
+        mainScene.setAttribute('fog', {
           type: 'exponential',
           color: '#26537a',
           density: 0.1,
@@ -41,6 +41,13 @@ AFRAME.registerComponent('lagoon-car-tour', {
         document.getElementById('jungle-asset').play();
 
         // Get sounds
+        this.ambiant1Sound =
+          document.getElementById('lagoon-station').components[
+            'sound__ambiant1'
+          ];
+        this.hitSound =
+          document.getElementById('lagoon-dome').components['sound__hit'];
+
         // Get voice from system when init
         this.voiceLagoon1Sound = this.system.getVoice('lagoon1');
 
@@ -49,7 +56,15 @@ AFRAME.registerComponent('lagoon-car-tour', {
       false
     );
 
-    // Restart tour listeners
+    // Tour listeners
+    this.el.addEventListener(
+      'hit',
+      () => {
+        this.phase = 'hit';
+      },
+      false
+    );
+
     this.el.addEventListener(
       'restart',
       () => {
@@ -61,12 +76,20 @@ AFRAME.registerComponent('lagoon-car-tour', {
   // --- Phase functions ---
   start: function () {
     setTimeout(() => {
+      this.ambiant1Sound.playSound();
+    }, 10000);
+    setTimeout(() => {
       const event = new Event('enter');
       this.meg.dispatchEvent(event);
-    }, 6000);
+    }, 30000);
     this.phase = 'exit';
   },
-  restart: function () {},
+  hit: function () {
+    setTimeout(() => {
+      this.hitSound.playSound();
+    }, 3000);
+    this.phase = 'exit';
+  },
   tick: function () {
     // Voice phases
     switch (this.voicePhase) {
@@ -80,14 +103,31 @@ AFRAME.registerComponent('lagoon-car-tour', {
       case 'start':
         this.start();
         break;
+      case 'hit':
+        this.hit();
+        break;
       case 'restart':
-        this.restart();
+        setTimeout(() => {
+          this.phase = 'changeScene';
+        }, 3000);
         break;
       case 'changeScene':
         if (!this.sceneChanged) {
           // Destroy and detach all unecessary objets
           //Change scene
-          this.system.changeScene('ending');
+          const mainScene = document.getElementById('main-scene');
+          mainScene.setAttribute('background', {
+            color: '#000', //#00496c
+          });
+          mainScene.setAttribute('fog', {
+            type: 'exponential',
+            color: '#000',
+            density: 0.1,
+          });
+          setTimeout(() => {
+            window.location.href = 'https://www.prehistoricdomain.com/map';
+          }, 8000);
+          this.system.changeScene('ending', false);
           this.sceneChanged = true;
         }
         break;

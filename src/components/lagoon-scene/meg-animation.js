@@ -12,6 +12,7 @@ AFRAME.registerComponent('meg-animation', {
     this.sharkObject = this.shark.object3D;
     this.phase = '';
     this.bitten = false;
+    this.isMegPassed = false;
 
     // Meg run Path
     this.megMarker = 0; // Position on the curve
@@ -43,12 +44,8 @@ AFRAME.registerComponent('meg-animation', {
     ]);
 
     // Sound
-    this.megAmbiant1Audio;
-    this.megAmbiant2Audio;
     this.megPassingAudio;
-    this.megLeaveAudio;
-    this.megRoar1Audio;
-    this.megRoar2Audio;
+    this.megBiteAudio;
 
     // Start tour listener
     this.el.addEventListener(
@@ -58,6 +55,9 @@ AFRAME.registerComponent('meg-animation', {
         const megPosition = this.el.getAttribute('position');
         megPosition.y = -8;
         this.el.setAttribute('position', megPosition);
+
+        this.megPassingAudio = this.el.components['sound__passing'];
+        this.megBiteAudio = this.el.components['sound__bite'];
 
         this.phase = 'enter';
       },
@@ -81,6 +81,8 @@ AFRAME.registerComponent('meg-animation', {
         y: 180.0,
         z: 0,
       });
+      const event = new Event('hit');
+      this.car.dispatchEvent(event);
       this.phase = 'return';
     }
 
@@ -100,6 +102,11 @@ AFRAME.registerComponent('meg-animation', {
     );
   },
   enterMeg: function () {
+    if (this.system.truncMarker(this.megMarker) > 430 && !this.isMegPassed) {
+      this.megPassingAudio.playSound();
+      this.isMegPassed = true;
+      return;
+    }
     if (this.system.truncMarker(this.megMarker) > 900) {
       return;
     }
@@ -148,15 +155,15 @@ AFRAME.registerComponent('meg-animation', {
       // TearOffBite_InPlace
       this.el.setAttribute('animation-mixer', {
         clip: 'SwimBite_InPlace',
-        timeScale: 0.3,
+        timeScale: 0.2,
       });
       setTimeout(() => {
         this.el.setAttribute('animation-mixer', {
           clip: 'Swim_InPlace',
           timeScale: 0.7,
         });
-        this.shark.setAttribute('visible', false);
       }, 3000);
+      this.megBiteAudio.playSound();
       this.bitten = true;
     }
     const megPosition = this.el.getAttribute('position');
@@ -169,12 +176,21 @@ AFRAME.registerComponent('meg-animation', {
       });
       this.megMarker = 0;
       this.megSpeed = 0.001;
-      this.phase = 'turnAround';
+      this.isMegPassed = false;
+      setTimeout(() => {
+        this.phase = 'turnAround';
+      }, 10000);
+      this.phase = 'exit';
     }
     megPosition.y += this.megSpeed;
     this.el.setAttribute('position', megPosition);
   },
   turnAround: function () {
+    if (this.system.truncMarker(this.megMarker) > 250 && !this.isMegPassed) {
+      this.megPassingAudio.playSound();
+      this.isMegPassed = true;
+      return;
+    }
     if (this.system.truncMarker(this.megMarker) > 900) {
       const event = new Event('restart');
       this.car.dispatchEvent(event);

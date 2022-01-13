@@ -41,7 +41,7 @@ export const TourScenes = {
   ending: {
     scene: 'ending-scene',
     camera: 'ending-scene-camera',
-    car: null,
+    car: 'ending-car',
     carReference: null,
   },
 };
@@ -63,7 +63,7 @@ export const AviaryScenes = {
   ending: {
     scene: 'ending-scene',
     camera: 'ending-scene-camera',
-    car: null,
+    car: 'ending-car',
     carReference: null,
   },
 };
@@ -85,7 +85,7 @@ export const LagoonScenes = {
   ending: {
     scene: 'ending-scene',
     camera: 'ending-scene-camera',
-    car: null,
+    car: 'ending-car',
     carReference: null,
   },
 };
