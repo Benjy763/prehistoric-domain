@@ -1,8 +1,9 @@
-export const MainScene = 'lagoon';
+export const MainScene = 'tour';
 
 export const TourScenes = {
   // Starting scene
-  selection: 'dilo',
+  selection: 'gate',
+  assetsId: 'tour-assets',
   carMarkerForDebug: 0.32,
   loading: {
     scene: 'loading-scene',
@@ -49,6 +50,7 @@ export const TourScenes = {
 export const AviaryScenes = {
   // Starting scene
   selection: 'aviary',
+  assetsId: 'aviary-assets',
   carMarkerForDebug: 0.32,
   loading: {
     scene: 'loading-scene',
@@ -71,6 +73,7 @@ export const AviaryScenes = {
 export const LagoonScenes = {
   // Starting scene
   selection: 'lagoon',
+  assetsId: 'lagoon-assets',
   carMarkerForDebug: 0.32,
   loading: {
     scene: 'loading-scene',
@@ -89,3 +92,18 @@ export const LagoonScenes = {
     carReference: null,
   },
 };
+
+// Main Scenes
+let selectedScenes;
+switch (MainScene) {
+  case 'tour':
+    selectedScenes = TourScenes;
+    break;
+  case 'aviary':
+    selectedScenes = AviaryScenes;
+    break;
+  case 'lagoon':
+    selectedScenes = LagoonScenes;
+    break;
+}
+export const Scenes = selectedScenes;

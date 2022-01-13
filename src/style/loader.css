@@ -8,6 +8,24 @@ body {
   font-size: clamp(16px, 1vw, 40px);
 }
 
+#click-wrapper {
+  position: absolute;
+  cursor: default;
+  top: 4rem;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 999;
+}
+
+.click-container {
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-radius: 0.2rem;
+  color: #fff;
+}
+
 #static-loading {
   position: absolute;
   top: 0;
@@ -20,6 +38,10 @@ body {
   justify-content: center;
   flex-direction: column;
   background-color: black;
+}
+
+#main-scene-wrapper {
+  position: relative;
 }
 
 #main-scene-wrapper .scene-content.fullscreen {
@@ -52,7 +74,7 @@ body {
 }
 
 #loading-infos span {
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 #see-faq {

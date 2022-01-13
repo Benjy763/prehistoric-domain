@@ -1,6 +1,6 @@
 <div id="static-loading">
   <img id="loader-logo" class="loader-logo" src="./build/images/prehistoric-domain .png" />
-  <div id="loading-infos">AVIARY<br /><span>Fiber 10s | ADSL 2min</span></div>
+  <div id="loading-infos">AVIARY<br /><span class="progress-label">0%</span></div>
   <img id="loading-logo" src="./build/images/loading.gif" />
   <div class="vr-buttons">
     <a id="enter" href="#">Start</a>
@@ -10,9 +10,9 @@
 <div id="main-scene-wrapper">
   <div class="scene-border-inner">
     <div id="main-scene-content" class="scene-content">
-      <a-scene renderer="foveationLevel: 3; sortObjects: true; precision: medium" background="color: #40657b"
+      <a-scene preloader renderer="foveationLevel: 3; sortObjects: true; precision: medium" background="color: #000"
         embedded="true" vr-mode-ui="enterVRButton: #enter-vr" id="main-scene"
-        fog="type: exponential; color: #40657b;  density: 0">
+        fog="type: exponential; color: #000;  density: 0.065">
         <!-- All assets -->
         <require path="aviary-assets.html"></require>
 

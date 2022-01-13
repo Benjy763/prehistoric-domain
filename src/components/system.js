@@ -4,12 +4,7 @@
   Also there are utility functions that help making scenes (ex move object on curves, logs...)
 */
 
-import {
-  AviaryScenes,
-  LagoonScenes,
-  MainScene,
-  TourScenes,
-} from './scenes.config';
+import { MainScene, Scenes } from './scenes.config';
 
 import { debug } from './debug.const';
 import { languages } from './languages.config';
@@ -18,18 +13,7 @@ AFRAME.registerSystem('game', {
   schema: {},
   // ----- Launch and changing scene functions --------
   init: function () {
-    // Main Scenes
-    switch (MainScene) {
-      case 'tour':
-        this.scenes = TourScenes;
-        break;
-      case 'aviary':
-        this.scenes = AviaryScenes;
-        break;
-      case 'lagoon':
-        this.scenes = LagoonScenes;
-        break;
-    }
+    this.scenes = Scenes;
 
     this.firstScene = this.scenes.selection;
     this.displayDistance = 100; // 150 to test
@@ -53,6 +37,17 @@ AFRAME.registerSystem('game', {
       // Unclock debug listener
       this.startDebugListener();
     }
+
+    // Manage clicks
+    document.querySelector('canvas').addEventListener(
+      'click',
+      () => {
+        document
+          .querySelector('#click-wrapper')
+          .setAttribute('style', 'display: none');
+      },
+      { once: true }
+    );
   },
   initLanguage: function () {
     if (localStorage.getItem('language') !== null) {
