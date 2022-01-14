@@ -1,10 +1,12 @@
-export const MainScene = 'tour';
+export const MainScene = 'lagoon';
 
 export const TourScenes = {
   // Starting scene
   selection: 'gate',
   assetsId: 'tour-assets',
   carMarkerForDebug: 0.32,
+  color: '#000',
+  density: 0.03,
   loading: {
     scene: 'loading-scene',
     camera: 'loading-scene-camera',
@@ -52,6 +54,8 @@ export const AviaryScenes = {
   selection: 'aviary',
   assetsId: 'aviary-assets',
   carMarkerForDebug: 0.32,
+  color: '#5e5e5e',
+  density: 0.065,
   loading: {
     scene: 'loading-scene',
     camera: 'loading-scene-camera',
@@ -75,6 +79,8 @@ export const LagoonScenes = {
   selection: 'lagoon',
   assetsId: 'lagoon-assets',
   carMarkerForDebug: 0.32,
+  color: '#26537a',
+  density: 0.1,
   loading: {
     scene: 'loading-scene',
     camera: 'loading-scene-camera',

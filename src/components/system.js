@@ -208,10 +208,19 @@ AFRAME.registerSystem('game', {
       car.dispatchEvent(event);
 
       // Delai for tour that is heavy to load
-      const delai = MainScene === 'tour' ? 4000 : 0;
       setTimeout(() => {
+        // Set main scene atmosphere color
+        const mainScene = document.getElementById('main-scene');
+        mainScene.setAttribute('background', {
+          color: this.scenes.color,
+        });
+        mainScene.setAttribute('fog', {
+          type: 'exponential',
+          color: this.scenes.color,
+          density: this.scenes.density,
+        });
         this.loading(false);
-      }, delai);
+      }, 6000);
     }, 4000);
   },
   // Section with debug key

@@ -26,17 +26,6 @@ AFRAME.registerComponent('lagoon-car-tour', {
     this.el.addEventListener(
       'start',
       () => {
-        // Set main scene atmosphere color
-        const mainScene = document.getElementById('main-scene');
-        mainScene.setAttribute('background', {
-          color: '#26537a', //#00496c
-        });
-        mainScene.setAttribute('fog', {
-          type: 'exponential',
-          color: '#26537a',
-          density: 0.1,
-        });
-
         // Global sound launch
         document.getElementById('jungle-asset').play();
 
