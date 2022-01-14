@@ -8,6 +8,21 @@ body {
   font-size: clamp(16px, 1vw, 40px);
 }
 
+#main-icon {
+  z-index: 999;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+
+#main-icon a {
+  text-decoration: none;
+}
+
+#main-icon a img {
+  width: 3.125rem;
+}
+
 #click-wrapper {
   position: absolute;
   cursor: default;
