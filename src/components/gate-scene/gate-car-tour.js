@@ -120,7 +120,6 @@ AFRAME.registerComponent('gate-car-tour', {
     this.phase = 'finish';
   },
   finish: function () {
-    this.system.log(this.carControls.maxDistance);
     if (
       this.system.truncMarker(this.carControls.carMarker) >
       this.carControls.maxDistance

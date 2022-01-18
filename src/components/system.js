@@ -9,6 +9,16 @@ import { MainScene, Scenes } from './scenes.config';
 import { debug } from './debug.const';
 import { languages } from './languages.config';
 
+const SupportedPlatform = [
+  'Win32',
+  'MacIntel',
+  'MacPPC',
+  'Mac68K',
+  'Win16',
+  'Linux i686',
+  'Windows',
+];
+
 AFRAME.registerSystem('game', {
   schema: {},
   // ----- Launch and changing scene functions --------
@@ -25,6 +35,14 @@ AFRAME.registerSystem('game', {
     this.actuelScene = this.firstScene;
     this.tourStarted = false;
     this.vr = false;
+
+    const userAgentDataPlatform = window.navigator.userAgentData
+      ? SupportedPlatform.includes(window.navigator.userAgentData.platform)
+      : false;
+    this.isMobile =
+      !SupportedPlatform.includes(window.navigator.platform) &&
+      !userAgentDataPlatform;
+
     this.initLanguage();
     this.loadingAssets();
 
@@ -174,6 +192,9 @@ AFRAME.registerSystem('game', {
         document.getElementById('loading-infos').style.display = 'none';
         document.getElementById('loading-infos').style.display = 'none';
         document.getElementById('enter').style.display = 'block';
+        if (this.isMobile) {
+          document.getElementById('enter').style.display = 'none';
+        }
         if (AFRAME.utils.device.checkHeadsetConnected()) {
           document.getElementById('enter-vr').style.display = 'block';
         }
@@ -308,14 +329,31 @@ AFRAME.registerSystem('game', {
   },
   // ----- Loading functions --------
   loading: function (loading = true) {
+    // Fix to set base camera position depending on device
+    document
+      .getElementById(this.scenes[this.actuelScene].camera)
+      .setAttribute('position', {
+        x: 0,
+        y: this.isMobile && this.vr ? 0 : 1.6,
+        z: 0,
+      });
+
     if (!loading) {
       document
         .querySelector('#' + this.scenes[this.actuelScene].car + ' #rig')
-        .setAttribute('position', { x: -0.38, y: 0.75, z: 0.5 });
+        .setAttribute('position', {
+          x: -0.38,
+          y: 0.4,
+          z: 0.5,
+        });
       if (!this.vr) {
         document
           .querySelector('#' + this.scenes[this.actuelScene].car + ' #rig')
-          .setAttribute('position', { x: -0.38, y: 0.4, z: 0.54 });
+          .setAttribute('position', {
+            x: -0.38,
+            y: 0.75,
+            z: 0.54,
+          });
       }
       return;
     }
@@ -324,7 +362,11 @@ AFRAME.registerSystem('game', {
       .setAttribute('visible', true);
     document
       .querySelector('#' + this.scenes[this.actuelScene].car + ' #rig')
-      .setAttribute('position', { x: -0.38, y: -80, z: 0.54 });
+      .setAttribute('position', {
+        x: -0.38,
+        y: -80,
+        z: 0.54,
+      });
   },
   // ----- Languages functions --------
   getVoice(element) {
