@@ -330,20 +330,21 @@ AFRAME.registerSystem('game', {
   // ----- Loading functions --------
   loading: function (loading = true) {
     // Fix to set base camera position depending on device
-    document
-      .getElementById(this.scenes[this.actuelScene].camera)
-      .setAttribute('position', {
+    const cameraClasses = document.getElementsByClassName('camera-entity');
+    [].forEach.call(cameraClasses, (camera) =>
+      camera.setAttribute('position', {
         x: 0,
         y: this.isMobile && this.vr ? 0 : 1.6,
         z: 0,
-      });
+      })
+    );
 
     if (!loading) {
       document
         .querySelector('#' + this.scenes[this.actuelScene].car + ' #rig')
         .setAttribute('position', {
           x: -0.38,
-          y: 0.4,
+          y: 0.75,
           z: 0.5,
         });
       if (!this.vr) {
@@ -351,7 +352,7 @@ AFRAME.registerSystem('game', {
           .querySelector('#' + this.scenes[this.actuelScene].car + ' #rig')
           .setAttribute('position', {
             x: -0.38,
-            y: 0.75,
+            y: 0.4,
             z: 0.54,
           });
       }

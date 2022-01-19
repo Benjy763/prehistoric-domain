@@ -1,4 +1,4 @@
-export const MainScene = 'lagoon';
+export const MainScene = 'tour';
 
 export const TourScenes = {
   // Starting scene
