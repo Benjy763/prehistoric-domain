@@ -69,9 +69,7 @@ AFRAME.registerSystem('game', {
     );
   },
   initLanguage: function () {
-    if (localStorage.getItem('language') !== null) {
-      this.language = localStorage.getItem('language');
-    }
+    this.language = 'en';
   },
   registerCar: function (car) {
     // Save all car references at start
@@ -337,7 +335,7 @@ AFRAME.registerSystem('game', {
     [].forEach.call(cameraClasses, (camera) =>
       camera.setAttribute('position', {
         x: 0,
-        y: this.isMobile && this.vr ? 0 : 1.6,
+        y: this.vr ? 0 : 1.6,
         z: 0,
       })
     );

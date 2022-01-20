@@ -6,7 +6,6 @@ AFRAME.registerComponent('aviary-car-tour', {
     this.system = document.querySelector('a-scene').systems['game'];
     this.ptera = document.querySelector('#pteranodon');
     this.quetza = document.querySelector('#quetza');
-    this.envLights = document.getElementById('gate-ambiant-light');
 
     // Sounds
     this.ambiant1Sound;

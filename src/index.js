@@ -29,4 +29,7 @@ switch (MainScene) {
   case 'lagoon':
     require('./lagoon-main-scene.html');
     break;
+  case 'cinema':
+    require('./cinema-main-scene.html');
+    break;
 }

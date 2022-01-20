@@ -1,4 +1,4 @@
-export const MainScene = 'tour';
+export const MainScene = 'cinema';
 
 export const TourScenes = {
   // Starting scene
@@ -99,6 +99,31 @@ export const LagoonScenes = {
   },
 };
 
+export const CinemaScenes = {
+  // Starting scene
+  selection: 'cinema',
+  assetsId: 'cinema-assets',
+  carMarkerForDebug: 0.32,
+  color: '#000',
+  density: 0.03,
+  loading: {
+    scene: 'loading-scene',
+    camera: 'loading-scene-camera',
+  },
+  cinema: {
+    scene: 'cinema-scene',
+    camera: 'cinema-scene-camera',
+    car: 'cinema-car',
+    carReference: null,
+  },
+  ending: {
+    scene: 'ending-scene',
+    camera: 'ending-scene-camera',
+    car: 'ending-car',
+    carReference: null,
+  },
+};
+
 // Main Scenes
 let selectedScenes;
 switch (MainScene) {
@@ -110,6 +135,9 @@ switch (MainScene) {
     break;
   case 'lagoon':
     selectedScenes = LagoonScenes;
+    break;
+  case 'cinema':
+    selectedScenes = CinemaScenes;
     break;
 }
 export const Scenes = selectedScenes;

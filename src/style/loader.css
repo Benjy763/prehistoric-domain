@@ -66,6 +66,8 @@ body {
 
 #static-loading img.loader-logo {
   width: 25rem;
+  border: solid 0.125rem white;
+  border-radius: 0.625rem;
 }
 
 @media screen and (max-width: 800px) {
