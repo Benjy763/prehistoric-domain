@@ -162,7 +162,7 @@ AFRAME.registerComponent('trice-car-tour', {
           // Destroy and detach all unecessary objets
           // Change scene
           setTimeout(() => {
-            window.location.href = 'https://www.prehistoricdomain.com/map';
+            window.location.href = 'https://map.prehistoricdomain.com/';
           }, 8000);
           this.system.changeScene('ending', false);
           this.sceneChanged = true;

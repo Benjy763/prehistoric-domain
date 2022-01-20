@@ -16,6 +16,7 @@ const SupportedPlatform = [
   'Mac68K',
   'Win16',
   'Linux i686',
+  'Linux x86_64',
   'Windows',
 ];
 
@@ -169,11 +170,13 @@ AFRAME.registerSystem('game', {
     // Register new scene
     this.actuelScene = sceneId;
 
-    if (this.carReference) {
+    if (!!this.carReference) {
       // Notify car reference to the new scene
       this.carReference.stopTrackingCar();
       this.carReference = this.scenes[this.actuelScene].carReference;
-      this.sendCarReference(this.carReference);
+      if (!!this.carReference) {
+        this.sendCarReference(this.carReference);
+      }
     }
 
     // Rendering scene
