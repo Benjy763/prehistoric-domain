@@ -12,14 +12,14 @@ AFRAME.registerComponent('raptor-animation', {
     this.raptorMarker = 0; // Position on the curve
     this.raptorSpeed = 0.016; // Speed on the curve
     this.jumpcurve = new THREE.SplineCurve([
-      new THREE.Vector2(-0.5, -3.208),
+      new THREE.Vector2(-1.8, -3.208),
       new THREE.Vector2(0.974, -3.656),
       new THREE.Vector2(2.2, -4.487),
       new THREE.Vector2(2.4, -6.011),
-      new THREE.Vector2(1.8, -6.974),
+      new THREE.Vector2(2.1, -7.1),
       new THREE.Vector2(2.717, -8.101),
       new THREE.Vector2(2.275, -9.477),
-      new THREE.Vector2(-1.2, -13.351),
+      new THREE.Vector2(-1.8, -13.351),
     ]);
 
     // Sound
