@@ -1,5 +1,7 @@
 import { MainScene } from './components/scenes.config';
 
+// Position for promos: -0.280 0.200 0.200
+
 function requireAll(req) {
   req.keys().forEach(req);
 }
