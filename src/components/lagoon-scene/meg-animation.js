@@ -167,8 +167,13 @@ AFRAME.registerComponent('meg-animation', {
       this.bitten = true;
     }
     const megPosition = this.el.getAttribute('position');
-    if (megPosition.y > 40) {
-      // Reset default meg position
+    if (megPosition.y > 50) {
+      // Reset default meg and shark positions
+      this.shark.setAttribute('position', {
+        x: 11,
+        y: 1.6821,
+        z: -80,
+      });
       this.el.setAttribute('position', {
         x: 11,
         y: 1.6821,

@@ -47,12 +47,13 @@ AFRAME.registerSystem('game', {
     this.initLanguage();
     this.loadingAssets();
 
+    // Remove embedded for debug
+    document.getElementById('main-scene-wrapper').embedded = false;
+    // Display vr mirror in fullscreen
+    document.getElementById('main-scene-content').classList.add('fullscreen');
+
     // Debug events
     if (debug) {
-      // Remove embedded for debug
-      document.getElementById('main-scene-wrapper').embedded = false;
-      // Display vr mirror in fullscreen
-      document.getElementById('main-scene-content').classList.add('fullscreen');
       // Unclock debug listener
       this.startDebugListener();
     }
@@ -340,6 +341,7 @@ AFRAME.registerSystem('game', {
       })
     );
 
+    // Fix rig height
     if (!loading) {
       document
         .querySelector('#' + this.scenes[this.actuelScene].car + ' #rig')
@@ -367,7 +369,7 @@ AFRAME.registerSystem('game', {
       .setAttribute('position', {
         x: -0.38,
         y: -80,
-        z: 0.54,
+        z: 0.34,
       });
   },
   // ----- Languages functions --------
