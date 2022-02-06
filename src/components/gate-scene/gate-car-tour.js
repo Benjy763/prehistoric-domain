@@ -81,14 +81,14 @@ AFRAME.registerComponent('gate-car-tour', {
     // Turn on global light
     setTimeout(() => {
       this.carTurnOn.play();
-      this.envLights.setAttribute('visible', 'true');
     }, 6000);
     // Turn on car lights
     setTimeout(() => {
+      this.envLights.setAttribute('visible', 'true');
       this.carLights.light1.setAttribute('visible', 'true');
       this.carLights.light2.setAttribute('visible', 'true');
       this.carLights.light3.setAttribute('visible', 'true');
-    }, 7000);
+    }, 6000);
     // Start car
     setTimeout(() => {
       this.phase = 'start';
