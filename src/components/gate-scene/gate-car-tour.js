@@ -9,6 +9,7 @@ AFRAME.registerComponent('gate-car-tour', {
     this.screenBrachio = document.getElementById('screen-brachio');
     this.screenTrice = document.getElementById('screen-trice');
     this.screenGalli = document.getElementById('screen-galli');
+    this.bigDoor = document.getElementById('big-door');
     this.envLights = document.getElementById('gate-ambiant-light');
     this.carLights = {
       light1: document.getElementById('gate-interior-light'),
@@ -96,6 +97,24 @@ AFRAME.registerComponent('gate-car-tour', {
     }, 9000);
   },
   start: function () {
+    const bigDoorPosition = this.bigDoor.getAttribute('position');
+    if (
+      this.system.truncMarker(this.carControls.carMarker) > 150 &&
+      this.system.truncMarker(this.carControls.carMarker) < 250 &&
+      bigDoorPosition.y < 20
+    ) {
+      bigDoorPosition.y += 0.04;
+      this.bigDoor.setAttribute('position', bigDoorPosition);
+    }
+
+    if (
+      this.system.truncMarker(this.carControls.carMarker) > 250 &&
+      bigDoorPosition.y > 10
+    ) {
+      bigDoorPosition.y -= 0.04;
+      this.bigDoor.setAttribute('position', bigDoorPosition);
+    }
+
     if (this.system.truncMarker(this.carControls.carMarker) > 400) {
       // Trigger Brachio animation
       const event = new Event('enter');
