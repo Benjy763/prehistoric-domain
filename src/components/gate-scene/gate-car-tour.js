@@ -99,8 +99,8 @@ AFRAME.registerComponent('gate-car-tour', {
   start: function () {
     const bigDoorPosition = this.bigDoor.getAttribute('position');
     if (
-      this.system.truncMarker(this.carControls.carMarker) > 150 &&
-      this.system.truncMarker(this.carControls.carMarker) < 250 &&
+      this.system.truncMarker(this.carControls.carMarker) > 200 &&
+      this.system.truncMarker(this.carControls.carMarker) < 280 &&
       bigDoorPosition.y < 20
     ) {
       bigDoorPosition.y += 0.04;
@@ -108,7 +108,7 @@ AFRAME.registerComponent('gate-car-tour', {
     }
 
     if (
-      this.system.truncMarker(this.carControls.carMarker) > 250 &&
+      this.system.truncMarker(this.carControls.carMarker) > 280 &&
       bigDoorPosition.y > 10
     ) {
       bigDoorPosition.y -= 0.04;
