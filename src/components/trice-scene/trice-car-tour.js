@@ -9,6 +9,7 @@ AFRAME.registerComponent('trice-car-tour', {
     this.carAlarmSound = document.getElementById('car-alarm-sound');
     this.endingSound = document.getElementById('soundtrack-ending-sound');
     this.voicePhase = 'trice1';
+    this.bigDoor = document.getElementById('trice-big-door');
     this.screenDefault = document.getElementById('screen-default-2');
     this.screenBrachio = document.getElementById('screen-brachio-2');
     this.screenTrice = document.getElementById('screen-trice-2');
@@ -87,7 +88,25 @@ AFRAME.registerComponent('trice-car-tour', {
     this.phase = 'finish';
   },
   finish: function () {
-    if (this.system.truncMarker(this.carControls.carMarker) > 680) {
+    const bigDoorPosition = this.bigDoor.getAttribute('position');
+    if (
+      this.system.truncMarker(this.carControls.carMarker) > 660 &&
+      this.system.truncMarker(this.carControls.carMarker) < 750 &&
+      bigDoorPosition.y < 20
+    ) {
+      bigDoorPosition.y += 0.04;
+      this.bigDoor.setAttribute('position', bigDoorPosition);
+    }
+
+    if (
+      this.system.truncMarker(this.carControls.carMarker) > 750 &&
+      bigDoorPosition.y > 10
+    ) {
+      bigDoorPosition.y -= 0.04;
+      this.bigDoor.setAttribute('position', bigDoorPosition);
+    }
+
+    if (this.system.truncMarker(this.carControls.carMarker) > 850) {
       this.carControls.changeDrivingState('stopping');
       if (this.carControls.carSpeed <= 0) {
         this.phase = 'changeScene';

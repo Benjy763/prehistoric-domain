@@ -9,7 +9,7 @@ AFRAME.registerComponent('gate-car-tour', {
     this.screenBrachio = document.getElementById('screen-brachio');
     this.screenTrice = document.getElementById('screen-trice');
     this.screenGalli = document.getElementById('screen-galli');
-    this.bigDoor = document.getElementById('big-door');
+    this.bigDoor = document.getElementById('gate-big-door');
     this.envLights = document.getElementById('gate-ambiant-light');
     this.carLights = {
       light1: document.getElementById('gate-interior-light'),
