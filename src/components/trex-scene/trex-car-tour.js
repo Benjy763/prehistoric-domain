@@ -6,6 +6,10 @@ AFRAME.registerComponent('trex-car-tour', {
     this.system = document.querySelector('a-scene').systems['game'];
     this.carControls;
     this.trex = document.querySelector('#trex');
+    this.screenDefault = document.getElementById('dilo-screen-default');
+    this.screenTrex = document.getElementById('trex-screen-trex');
+    this.screenPhase = 'trex';
+
     // Tour Path
     const curve = new THREE.SplineCurve([
       new THREE.Vector2(18.6, 85),
@@ -87,6 +91,20 @@ AFRAME.registerComponent('trex-car-tour', {
   tick: function () {
     if (!this.carControls) {
       return;
+    }
+    // Screen phases
+    switch (this.screenPhase) {
+      case 'trex':
+        if (this.system.truncMarker(this.carControls.carMarker) > 0) {
+          this.screenDefault.setAttribute('visible', 'false');
+          this.screenTrex.setAttribute('visible', 'true');
+          this.screenPhase = 'default';
+        }
+        break;
+      case 'default':
+        this.screenDefault.setAttribute('visible', 'true');
+        this.screenPhase = 'end';
+        break;
     }
     // Voice phases
     switch (this.voicePhase) {

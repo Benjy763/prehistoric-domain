@@ -10,11 +10,11 @@ AFRAME.registerComponent('trice-car-tour', {
     this.endingSound = document.getElementById('soundtrack-ending-sound');
     this.voicePhase = 'trice1';
     this.bigDoor = document.getElementById('trice-big-door');
-    this.screenDefault = document.getElementById('screen-default-2');
-    this.screenBrachio = document.getElementById('screen-brachio-2');
-    this.screenTrice = document.getElementById('screen-trice-2');
-    this.screenGalli = document.getElementById('screen-galli-2');
-    this.screenAlarm = document.getElementById('screen-alarm');
+    this.screenDefault = document.getElementById('trice-screen-default-2');
+    this.screenBrachio = document.getElementById('trice-screen-brachio-2');
+    this.screenTrice = document.getElementById('trice-screen-trice-2');
+    this.screenGalli = document.getElementById('trice-screen-galli-2');
+    this.screenAlarm = document.getElementById('trice-screen-alarm');
     this.screenPhase = 'galli';
     this.carControls;
     this.animationsStatuses = {
@@ -75,6 +75,7 @@ AFRAME.registerComponent('trice-car-tour', {
     this.phase = 'stay';
   },
   stay: function () {
+    this.screenPhase = 'alarm';
     this.carAlarmSound.play();
     const event = new Event('enter');
     // Trigger trice animation

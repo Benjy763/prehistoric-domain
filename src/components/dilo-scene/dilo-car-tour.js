@@ -7,6 +7,10 @@ AFRAME.registerComponent('dilo-car-tour', {
     this.gate = document.querySelector('#dilo');
     this.carControls;
 
+    this.screenDefault = document.getElementById('dilo-screen-default');
+    this.screenDilo = document.getElementById('dilo-screen-dilo');
+    this.screenPhase = 'dilo';
+
     // Tour Path
     const curve = new THREE.SplineCurve([
       new THREE.Vector2(4.554, 44.617),
@@ -68,6 +72,20 @@ AFRAME.registerComponent('dilo-car-tour', {
   tick: function () {
     if (!this.carControls) {
       return;
+    }
+    // Screen phases
+    switch (this.screenPhase) {
+      case 'dilo':
+        if (this.system.truncMarker(this.carControls.carMarker) > 0) {
+          this.screenDefault.setAttribute('visible', 'false');
+          this.screenDilo.setAttribute('visible', 'true');
+          this.screenPhase = 'default';
+        }
+        break;
+      case 'default':
+        this.screenDefault.setAttribute('visible', 'true');
+        this.screenPhase = 'end';
+        break;
     }
     // Voice
     if (

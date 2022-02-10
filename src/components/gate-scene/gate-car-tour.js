@@ -5,10 +5,10 @@ AFRAME.registerComponent('gate-car-tour', {
 
     this.system = document.querySelector('a-scene').systems['game'];
     this.brachio = document.querySelector('#brachio');
-    this.screenDefault = document.getElementById('screen-default');
-    this.screenBrachio = document.getElementById('screen-brachio');
-    this.screenTrice = document.getElementById('screen-trice');
-    this.screenGalli = document.getElementById('screen-galli');
+    this.screenDefault = document.getElementById('gate-screen-default');
+    this.screenBrachio = document.getElementById('gate-screen-brachio');
+    this.screenTrice = document.getElementById('gate-screen-trice');
+    this.screenGalli = document.getElementById('gate-screen-galli');
     this.bigDoor = document.getElementById('gate-big-door');
     this.envLights = document.getElementById('gate-ambiant-light');
     this.carLights = {

@@ -197,7 +197,6 @@ AFRAME.registerSystem('game', {
         if (this.isMobile) {
           document.getElementById('enter').style.display = 'none';
         }
-        console.log(AFRAME.utils.device.checkHeadsetConnected());
         if (AFRAME.utils.device.checkHeadsetConnected()) {
           document.getElementById('enter-vr').style.display = 'block';
         }

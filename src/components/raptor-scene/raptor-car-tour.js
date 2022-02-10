@@ -9,6 +9,10 @@ AFRAME.registerComponent('raptor-car-tour', {
     this.ambiantLightIntensity = 1;
     this.ambiantLightIntensitySpeed = 0.002;
     this.carControls;
+    this.screenDefault = document.getElementById('raptor-screen-default');
+    this.screenRaptor = document.getElementById('raptor-screen-raptor');
+    this.screenPhase = 'raptor';
+
     // Tour Path
     const curve = new THREE.SplineCurve([
       new THREE.Vector2(4.535, 81.899),
@@ -99,6 +103,20 @@ AFRAME.registerComponent('raptor-car-tour', {
   tick: function () {
     if (!this.carControls) {
       return;
+    }
+    // Screen phases
+    switch (this.screenPhase) {
+      case 'raptor':
+        if (this.system.truncMarker(this.carControls.carMarker) > 0) {
+          this.screenDefault.setAttribute('visible', 'false');
+          this.screenRaptor.setAttribute('visible', 'true');
+          this.screenPhase = 'default';
+        }
+        break;
+      case 'default':
+        this.screenDefault.setAttribute('visible', 'true');
+        this.screenPhase = 'end';
+        break;
     }
     // Voice
     if (
