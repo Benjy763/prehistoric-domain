@@ -2,7 +2,7 @@ export const MainScene = 'tour';
 
 export const TourScenes = {
   // Starting scene
-  selection: 'raptor',
+  selection: 'trex',
   assetsId: 'tour-assets',
   carMarkerForDebug: 0.32,
   color: '#000',
