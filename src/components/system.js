@@ -44,6 +44,7 @@ AFRAME.registerSystem('game', {
       !SupportedPlatform.includes(window.navigator.platform) &&
       !userAgentDataPlatform;
 
+    this.initPerformances();
     this.initLanguage();
     this.loadingAssets();
 
@@ -68,9 +69,6 @@ AFRAME.registerSystem('game', {
       },
       { once: true }
     );
-  },
-  initLanguage: function () {
-    this.language = 'en';
   },
   registerCar: function (car) {
     // Save all car references at start
@@ -128,8 +126,7 @@ AFRAME.registerSystem('game', {
   // Only for the first time
   displayScene: function () {
     // Hide vr button and loading static screen
-    document.querySelector('#enter').style.display = 'none';
-    document.querySelector('#enter-vr').style.display = 'none';
+    document.querySelector('#menu-wrapper').style.display = 'none';
     // Display camera
     this.disableAllCameras();
     document
@@ -189,6 +186,7 @@ AFRAME.registerSystem('game', {
     document.querySelector('a-assets').addEventListener('loaded', () => {
       // Preloading
       setTimeout(() => {
+        document.getElementById('menu-wrapper').style.display = 'block';
         // Press start
         document.getElementById('loading-logo').style.display = 'none';
         document.getElementById('loading-infos').style.display = 'none';
@@ -372,7 +370,58 @@ AFRAME.registerSystem('game', {
         z: 0.34,
       });
   },
+  // ----- Performances functions --------
+  initPerformances: function () {
+    const perfEl = document.getElementById('perf');
+    const qualityEl = document.getElementById('quality');
+
+    // Default performance
+    perfEl.style.borderColor = '#ec652b';
+    this.toggle('performance', false);
+
+    perfEl.onclick = () => {
+      console.log('perf');
+      perfEl.style.borderColor = '#ec652b';
+      qualityEl.style.borderColor = '#fff';
+
+      this.toggle('performance', false);
+    };
+    qualityEl.onclick = () => {
+      console.log('quality');
+      qualityEl.style.borderColor = '#ec652b';
+      perfEl.style.borderColor = '#fff';
+
+      this.toggle('performance', true);
+    };
+
+    this.language = 'en';
+  },
+  toggle: function (className, displayState) {
+    let elements = document.getElementsByClassName(className);
+    for (let i = 0; i < elements.length; i++) {
+      elements[i].setAttribute('visible', displayState);
+    }
+  },
   // ----- Languages functions --------
+  initLanguage: function () {
+    const enEl = document.getElementById('language-en');
+    const frEl = document.getElementById('language-fr');
+
+    // Default en
+    this.language = 'en';
+    enEl.style.borderColor = '#ec652b';
+
+    enEl.onclick = () => {
+      this.language = 'en';
+      enEl.style.borderColor = '#ec652b';
+      frEl.style.borderColor = '#fff';
+    };
+    frEl.onclick = () => {
+      this.language = 'fr';
+      frEl.style.borderColor = '#ec652b';
+      enEl.style.borderColor = '#fff';
+    };
+  },
   getVoice(element) {
     return document.getElementById(this.languages[this.language][element]);
   },

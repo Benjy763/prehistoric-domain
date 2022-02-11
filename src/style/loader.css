@@ -36,7 +36,7 @@ body {
 
 .click-container {
   padding: 0.5rem;
-  border: 1px solid white;
+  border: 1px solid #d4c9ba;
   border-radius: 0.2rem;
   color: #fff;
   text-align: center;
@@ -67,7 +67,7 @@ body {
 
 #static-loading img.loader-logo {
   width: 25rem;
-  border: solid 0.125rem white;
+  border: solid 0.125rem #d4c9ba;
   border-radius: 0.625rem;
 }
 
@@ -87,7 +87,7 @@ body {
   display: none;
   font-family: 'Quicksand', sans-serif;
   font-size: 1.375rem;
-  color: white;
+  color: #d4c9ba;
   text-align: center;
 }
 
@@ -100,10 +100,10 @@ body {
   display: none;
   font-family: 'Quicksand', sans-serif;
   font-size: 1rem;
-  color: white;
+  color: #d4c9ba;
   padding: 0.313rem;
-  border-left: 1px solid white;
-  border-right: 1px solid white;
+  border-left: 1px solid #d4c9ba;
+  border-right: 1px solid #d4c9ba;
 }
 
 #loading-infos {
@@ -111,28 +111,41 @@ body {
 }
 
 /* VR logo replacement */
+#menu-wrapper {
+  display: none;
+}
 
-.vr-buttons {
+.menu {
+  width: 12rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 
-#enter,
-#enter-vr {
-  width: 100%;
+.buttons-item {
+  min-width: 5rem;
+  margin: 0.8rem 0.8rem 0 0.8rem;
   text-align: center;
   text-transform: uppercase;
-  display: none;
-  font-size: 1.875rem;
+  font-size: 0.7rem;
   text-decoration: none;
-  color: white;
-  margin-top: 1.25rem;
-  border: 1px solid white;
-  padding: 1.125rem;
+  color: #d4c9ba;
+  border: 1px solid #d4c9ba;
+  padding: 0.5rem;
 }
-#enter:hover,
-#enter-vr:hover {
+.buttons-item-vr {
+  padding: 0.8rem;
+  margin: 0.8rem 0.8rem 0 0.8rem;
+  font-size: 1.2rem;
+  min-width: 100%;
+  border: 3px solid #d4c9ba;
+}
+.buttons-item:hover {
   border-color: #ec652b;
+}
+
+#enter,
+#enter-vr {
+  display: none;
 }
