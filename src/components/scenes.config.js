@@ -6,7 +6,7 @@ export const TourScenes = {
   assetsId: 'tour-assets',
   carMarkerForDebug: 0.32,
   color: '#000',
-  density: 0.03,
+  density: 0.025,
   loading: {
     scene: 'loading-scene',
     camera: 'loading-scene-camera',
