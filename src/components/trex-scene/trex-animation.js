@@ -49,7 +49,7 @@ AFRAME.registerComponent('trex-animation', {
         // Launch animation
         setTimeout(() => {
           this.phase = 'trexWait';
-        }, 500);
+        }, 6000);
       },
       false
     );
@@ -85,6 +85,7 @@ AFRAME.registerComponent('trex-animation', {
         this.phase = 'trexEnter';
       };
     }, 2000);
+    this.phase = 'exit';
   },
   trexEnter: function () {
     if (this.system.truncMarker(this.trexMarker) > 940 && !this.trexSlowing) {
