@@ -12,7 +12,7 @@ AFRAME.registerComponent('aviary-car-tour', {
     this.ambiant2Sound;
 
     // Voice and screen phases
-    this.voicePhase = 'aviary1';
+    this.voicePhase = 'stop';
 
     // Tour Path
     const curve = new THREE.SplineCurve([
@@ -41,7 +41,7 @@ AFRAME.registerComponent('aviary-car-tour', {
           ];
         // Get voice from system when init
         this.voiceAviary1Sound = this.system.getVoice('aviary1');
-
+        this.voicePhase = 'aviary1';
         this.phase = 'start';
       },
       false
@@ -107,8 +107,8 @@ AFRAME.registerComponent('aviary-car-tour', {
     // Voice phases
     switch (this.voicePhase) {
       case 'aviary1':
-        // this.voiceAviary1Sound.play();
-        // this.voicePhase = 'exit';
+        this.voiceAviary1Sound.play();
+        this.voicePhase = 'exit';
         break;
     }
     // Animation phases

@@ -11,7 +11,7 @@ AFRAME.registerComponent('lagoon-car-tour', {
     this.hitSound;
 
     // Voice and screen phases
-    this.voicePhase = 'lagoon1';
+    this.voicePhase = 'stop';
 
     // Tour Path
     const curve = new THREE.SplineCurve([
@@ -38,8 +38,9 @@ AFRAME.registerComponent('lagoon-car-tour', {
           document.getElementById('lagoon-dome').components['sound__hit'];
 
         // Get voice from system when init
-        this.voiceLagoon1Sound = this.system.getVoice('lagoon1');
 
+        this.voiceLagoon1Sound = this.system.getVoice('lagoon1');
+        this.voicePhase = 'lagoon1';
         this.phase = 'start';
       },
       false
@@ -83,8 +84,8 @@ AFRAME.registerComponent('lagoon-car-tour', {
     // Voice phases
     switch (this.voicePhase) {
       case 'lagoon1':
-        // this.voiceAviary1Sound.play();
-        // this.voicePhase = 'exit';
+        this.voiceLagoon1Sound.play();
+        this.voicePhase = 'exit';
         break;
     }
     // Animation phases
