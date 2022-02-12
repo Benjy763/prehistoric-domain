@@ -19,6 +19,8 @@ AFRAME.registerComponent('gate-car-tour', {
 
     // Sound
     this.carTurnOn = document.getElementById('car-turn-on');
+    this.gateSound = document.querySelector('#gate-big-door');
+    this.gateSoundPhase = 'open';
 
     // Voice and screen phases
     this.voicePhase = 'gate1';
@@ -79,22 +81,27 @@ AFRAME.registerComponent('gate-car-tour', {
   // --- Phase functions ---
   turnLights: function () {
     this.phase = 'waiting';
-    // Turn on global light
-    setTimeout(() => {
-      this.carTurnOn.play();
-    }, 6000);
-    // Turn on car lights
-    setTimeout(() => {
-      this.envLights.setAttribute('visible', 'true');
-      this.carLights.light1.setAttribute('visible', 'true');
-      this.carLights.light2.setAttribute('visible', 'true');
-      this.carLights.light3.setAttribute('visible', 'true');
-    }, 6000);
     // Start car
     setTimeout(() => {
       this.phase = 'start';
       this.carControls.changeDrivingState('starting');
-    }, 9000);
+    }, 6000);
+  },
+  gateSounds: function () {
+    if (
+      this.system.truncMarker(this.carControls.carMarker) > 190 &&
+      this.gateSoundPhase === 'open'
+    ) {
+      this.gateSound.components['sound__gateopen'].playSound();
+      this.gateSoundPhase = 'close';
+    }
+    if (
+      this.system.truncMarker(this.carControls.carMarker) > 275 &&
+      this.gateSoundPhase === 'close'
+    ) {
+      this.gateSound.components['sound__gateclose'].playSound();
+      this.gateSoundPhase = 'exit';
+    }
   },
   start: function () {
     const bigDoorPosition = this.bigDoor.getAttribute('position');
@@ -206,6 +213,7 @@ AFRAME.registerComponent('gate-car-tour', {
         this.turnLights();
         break;
       case 'start':
+        this.gateSounds();
         this.start();
         break;
       case 'stop':

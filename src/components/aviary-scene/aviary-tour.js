@@ -9,7 +9,7 @@ AFRAME.registerComponent('aviary-car-tour', {
 
     // Sounds
     this.ambiant1Sound;
-    this.ambiant2Sound;
+    this.ambiant3Sound;
 
     // Voice and screen phases
     this.voicePhase = 'stop';
@@ -35,9 +35,9 @@ AFRAME.registerComponent('aviary-car-tour', {
           document.getElementById('aviary-cliff-1').components[
             'sound__ambiant1'
           ];
-        this.ambiant2Sound =
-          document.getElementById('aviary-cliff-2').components[
-            'sound__ambiant2'
+        this.ambiant3Sound =
+          document.getElementById('aviary-cliff-1').components[
+            'sound__ambiant3'
           ];
         // Get voice from system when init
         this.voiceAviary1Sound = this.system.getVoice('aviary1');
@@ -58,6 +58,9 @@ AFRAME.registerComponent('aviary-car-tour', {
     this.el.addEventListener(
       'restartQuetzaWalk',
       () => {
+        setTimeout(() => {
+          this.ambiant3Sound.playSound();
+        }, 5000);
         this.phase = 'restartQuetzaWalk';
       },
       false
