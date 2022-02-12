@@ -33,7 +33,9 @@ AFRAME.registerComponent('trice-car-tour', {
     // Sound
     this.endingSoundPlayed = false;
     this.soundMixing1SoundPlaying = false;
-    this.soundMixing1Audio = document.getElementById('sound-mixing-1');
+    this.carTurnOn = document.getElementById('car-turn-on');
+    this.gateSound = document.querySelector('#trice-big-door');
+    this.gateSoundPhase = 'open';
 
     // Init car (when reference is registered in the system) with tour data
     this.el.addEventListener('carRegistered', () => {
@@ -65,6 +67,22 @@ AFRAME.registerComponent('trice-car-tour', {
     );
   },
   // --- Phase functions ---
+  gateSounds: function () {
+    if (
+      this.system.truncMarker(this.carControls.carMarker) > 650 &&
+      this.gateSoundPhase === 'open'
+    ) {
+      this.gateSound.components['sound__gateopen'].playSound();
+      this.gateSoundPhase = 'close';
+    }
+    if (
+      this.system.truncMarker(this.carControls.carMarker) > 745 &&
+      this.gateSoundPhase === 'close'
+    ) {
+      this.gateSound.components['sound__gateclose'].playSound();
+      this.gateSoundPhase = 'exit';
+    }
+  },
   start: function () {
     if (this.system.truncMarker(this.carControls.carMarker) > 310) {
       this.phase = 'stop';
@@ -175,6 +193,7 @@ AFRAME.registerComponent('trice-car-tour', {
         this.restart();
         break;
       case 'finish':
+        this.gateSounds();
         this.finish();
         break;
       case 'changeScene':
