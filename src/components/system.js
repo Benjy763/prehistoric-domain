@@ -376,8 +376,8 @@ AFRAME.registerSystem('game', {
     const qualityEl = document.getElementById('quality');
 
     // Default performance
-    perfEl.style.borderColor = '#ec652b';
-    this.toggle('performance', false);
+    qualityEl.style.borderColor = '#ec652b';
+    this.toggle('performance', true);
 
     perfEl.onclick = () => {
       console.log('perf');
