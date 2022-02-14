@@ -20,7 +20,7 @@ AFRAME.registerComponent('raptor-car-tour', {
     ]);
 
     // Sounds
-    this.voiceRaptorSoundPlaying = true;
+    this.voiceRaptorSoundPlaying = false;
     // Animation phase
     this.sceneChanged = false;
 

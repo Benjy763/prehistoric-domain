@@ -374,6 +374,9 @@ AFRAME.registerSystem('game', {
   initPerformances: function () {
     const perfEl = document.getElementById('perf');
     const qualityEl = document.getElementById('quality');
+    if (!perfEl || !qualityEl) {
+      return;
+    }
 
     // Default performance
     qualityEl.style.borderColor = '#ec652b';
@@ -406,6 +409,9 @@ AFRAME.registerSystem('game', {
   initLanguage: function () {
     const enEl = document.getElementById('language-en');
     const frEl = document.getElementById('language-fr');
+    if (!enEl || !frEl) {
+      return;
+    }
 
     // Default en
     this.language = 'en';
