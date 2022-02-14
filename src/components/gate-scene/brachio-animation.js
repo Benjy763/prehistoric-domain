@@ -2,16 +2,18 @@ AFRAME.registerComponent('brachio-animation', {
   schema: {},
   init: function () {
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
+
     // Objects shortcut
     this.object = this.el.object3D;
     this.system = document.querySelector('a-scene').systems['game'];
     this.car = document.querySelector('#gate-car');
     this.phase = '';
-    // trex run Path
+
+    // Brachio run Path
     this.brachioMarker = 0; // Position on the curve
     this.brachioSpeed = 0.0003; // Speed on the curve
     this.curve = new THREE.SplineCurve([
-      new THREE.Vector2(-49.327, -75.678),
+      new THREE.Vector2(-67.74806, -75.678),
       new THREE.Vector2(86.72, -75.678),
     ]);
 
@@ -40,23 +42,30 @@ AFRAME.registerComponent('brachio-animation', {
   },
   // --- Phase functions ---
   enter: function () {
-    if (this.system.truncMarker(this.brachioMarker) > 700) {
-      this.object = this.el.setAttribute('visible', false);
-      setTimeout(() => {
-        this.footStepAudio.stopSound();
-        this.footRoarAudio.stopSound();
-      }, 8000);
+    if (this.system.truncMarker(this.brachioMarker) > 600) {
       const event = new Event('restart');
       this.car.dispatchEvent(event);
-      this.phase = 'exit';
-      return;
+      this.phase = 'finish';
     }
-    this.brachioMarker += this.brachioSpeed;
-    this.object.position.copy(
-      this.system.convertPosition(
-        this.curve.getPointAt(this.brachioMarker),
-        this.object.position.y
-      )
+    this.brachioMarker = this.system.moveOnCurve(
+      this.object,
+      this.curve,
+      this.brachioMarker,
+      this.brachioSpeed
+    );
+  },
+  finish: function () {
+    if (this.system.truncMarker(this.brachioMarker) > 900) {
+      this.el.setAttribute('visible', false);
+      this.footStepAudio.stopSound();
+      this.footRoarAudio.stopSound();
+      this.phase = 'exit';
+    }
+    this.brachioMarker = this.system.moveOnCurve(
+      this.object,
+      this.curve,
+      this.brachioMarker,
+      this.brachioSpeed
     );
   },
   tick: function () {
@@ -64,6 +73,9 @@ AFRAME.registerComponent('brachio-animation', {
     switch (this.phase) {
       case 'enter':
         this.enter();
+        break;
+      case 'finish':
+        this.finish();
         break;
     }
   },

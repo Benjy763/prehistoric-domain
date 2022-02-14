@@ -4,35 +4,45 @@ AFRAME.registerComponent('gate-car-tour', {
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
 
     this.system = document.querySelector('a-scene').systems['game'];
-    this.console = document.querySelector('a-scene').systems['console'];
-    this.gate = document.querySelector('#gate');
     this.brachio = document.querySelector('#brachio');
-    this.gateSound = document.getElementById('gate-sound');
-    this.gateCloseSound = document.getElementById('gate-close-sound');
+    this.screenDefault = document.getElementById('gate-screen-default');
+    this.screenBrachio = document.getElementById('gate-screen-brachio');
+    this.screenTrice = document.getElementById('gate-screen-trice');
+    this.screenGalli = document.getElementById('gate-screen-galli');
+    this.bigDoor = document.getElementById('gate-big-door');
+    this.envLights = document.getElementById('gate-ambiant-light');
+    this.carLights = {
+      light1: document.getElementById('gate-interior-light'),
+      light2: document.getElementById('gate-interior-light-2'),
+      light3: document.getElementById('gate-headlight-light'),
+    };
+
+    // Sound
+    this.carTurnOn = document.getElementById('car-turn-on');
+    this.gateSound = document.querySelector('#gate-big-door');
+    this.gateSoundPhase = 'open';
+
+    // Voice and screen phases
     this.voicePhase = 'gate1';
-    this.screenDefault = document.getElementById('screen-default');
-    this.screenBrachio = document.getElementById('screen-brachio');
-    this.screenTrice = document.getElementById('screen-trice');
-    this.screenGalli = document.getElementById('screen-galli');
     this.screenPhase = 'default';
+
+    // Main control of the car
     this.carControls;
+
+    // Specific statuses
     this.animationsStatuses = {
       gateOpen: false,
       gateClosed: false,
     };
-    //this.brachio = document.querySelector('#brachio');
+
     // Tour Path
     const curve = new THREE.SplineCurve([
       new THREE.Vector2(7.988, 81.899),
       new THREE.Vector2(9.7, -174.7),
     ]);
 
-    // Animation phase
+    // En scene activation
     this.sceneChanged = false;
-
-    // Sound
-    this.soundMixing1SoundPlaying = false;
-    this.soundMixing1Audio = document.getElementById('sound-mixing-1');
 
     // Init car (when reference is registered in the system) with tour data
     this.el.addEventListener('carRegistered', () => {
@@ -46,17 +56,15 @@ AFRAME.registerComponent('gate-car-tour', {
     this.el.addEventListener(
       'start',
       () => {
+        // Global sound launch
+        document.getElementById('jungle-asset').play();
+        // Get voice from system when init
         this.voiceGate1Sound = this.system.getVoice('gate1');
         this.voiceGate2Sound = this.system.getVoice('gate2');
         this.voiceGate3Sound = this.system.getVoice('gate3');
         this.voiceGate4Sound = this.system.getVoice('gate4');
-        // Register current tour in system
-        this.console.registerCurrentTour(this);
-        this.phase = 'start';
-        // Update console statuses
-        this.carControls.changeDrivingState('starting');
-        this.console.updateSituation();
-        document.getElementById('jungle-asset').play();
+
+        this.phase = 'turnLights';
       },
       false
     );
@@ -71,41 +79,57 @@ AFRAME.registerComponent('gate-car-tour', {
     );
   },
   // --- Phase functions ---
+  turnLights: function () {
+    this.phase = 'waiting';
+    // Start car
+    setTimeout(() => {
+      this.phase = 'start';
+      this.carControls.changeDrivingState('starting');
+    }, 6000);
+  },
+  gateSounds: function () {
+    if (
+      this.system.truncMarker(this.carControls.carMarker) > 190 &&
+      this.gateSoundPhase === 'open'
+    ) {
+      this.gateSound.components['sound__gateopen'].playSound();
+      this.gateSoundPhase = 'close';
+    }
+    if (
+      this.system.truncMarker(this.carControls.carMarker) > 275 &&
+      this.gateSoundPhase === 'close'
+    ) {
+      this.gateSound.components['sound__gateclose'].playSound();
+      this.gateSoundPhase = 'exit';
+    }
+  },
   start: function () {
+    const bigDoorPosition = this.bigDoor.getAttribute('position');
     if (
-      this.system.truncMarker(this.carControls.carMarker) > 250 &&
-      !this.animationsStatuses.gateOpen
+      this.system.truncMarker(this.carControls.carMarker) > 200 &&
+      this.system.truncMarker(this.carControls.carMarker) < 280 &&
+      bigDoorPosition.y < 20
     ) {
-      this.animationsStatuses.gateOpen = true;
-      this.gateSound.play();
-      this.gate.setAttribute('animation-mixer', {
-        clip: 'gate-*',
-        timeScale: 0.8,
-      });
-      setTimeout(() => {
-        this.gate.setAttribute('animation-mixer', {
-          clip: 'gate-*',
-          timeScale: 0,
-        });
-      }, 4500);
+      bigDoorPosition.y += 0.04;
+      this.bigDoor.setAttribute('position', bigDoorPosition);
     }
+
     if (
-      this.system.truncMarker(this.carControls.carMarker) > 360 &&
-      !this.animationsStatuses.gateClosed
+      this.system.truncMarker(this.carControls.carMarker) > 280 &&
+      bigDoorPosition.y > 10
     ) {
-      this.animationsStatuses.gateClosed = true;
-      this.gateCloseSound.play();
-      this.gate.setAttribute('animation-mixer', {
-        clip: 'gate-*',
-        timeScale: -0.8,
-      });
-      setTimeout(() => {
-        this.gate.setAttribute('animation-mixer', {
-          clip: 'gate-*',
-          timeScale: 0,
-        });
-      }, 4300);
+      bigDoorPosition.y -= 0.04;
+      this.bigDoor.setAttribute('position', bigDoorPosition);
     }
+
+    if (this.system.truncMarker(this.carControls.carMarker) > 400) {
+      // Trigger Brachio animation
+      const event = new Event('enter');
+      this.brachio.dispatchEvent(event);
+      this.phase = 'continue';
+    }
+  },
+  continue: function () {
     if (this.system.truncMarker(this.carControls.carMarker) > 560) {
       this.phase = 'stop';
     }
@@ -115,9 +139,6 @@ AFRAME.registerComponent('gate-car-tour', {
     this.phase = 'stay';
   },
   stay: function () {
-    const event = new Event('enter');
-    // Trigger Brachio animation
-    this.brachio.dispatchEvent(event);
     this.phase = 'animation';
   },
   restart: function () {
@@ -125,7 +146,6 @@ AFRAME.registerComponent('gate-car-tour', {
     this.phase = 'finish';
   },
   finish: function () {
-    this.system.log(this.carControls.maxDistance);
     if (
       this.system.truncMarker(this.carControls.carMarker) >
       this.carControls.maxDistance
@@ -189,7 +209,11 @@ AFRAME.registerComponent('gate-car-tour', {
     }
     // Animation phases
     switch (this.phase) {
+      case 'turnLights':
+        this.turnLights();
+        break;
       case 'start':
+        this.gateSounds();
         this.start();
         break;
       case 'stop':
@@ -197,6 +221,9 @@ AFRAME.registerComponent('gate-car-tour', {
         break;
       case 'stay':
         this.stay();
+        break;
+      case 'continue':
+        this.continue();
         break;
       case 'restart':
         this.restart();

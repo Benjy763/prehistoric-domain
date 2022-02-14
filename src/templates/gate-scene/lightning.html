@@ -1,35 +1,20 @@
-<a-light id="ambiant-light" type="ambient" light="intensity: 0.3"></a-light>
+<a-light id="gate-ambiant-light" type="ambient" light="intensity: 1;color:#c2d9ff"></a-light>
 
-<a-entity
-  position="1.7 21.234 13.05537"
-  light="distance: 9.91; intensity: 30; type: point; angle: 50; color: #e78341"
-  id="flame-light-1"
-  rotation="0.76 4.73 2.47"
-></a-entity>
-<a-entity
-  position="15.509 21.234 10.5801"
-  light="type: point; intensity: 30; distance: 9.59; color: #e78341"
-  id="flame-light-2"
-></a-entity>
-<a-entity
-  position="1.4 12 10.125"
-  light="distance: 9.37; intensity: 30; type: point; angle: 50;color: #e78341"
-  id="flame-light-3"
-  rotation="0.76 4.73 2.47"
-></a-entity>
-<a-entity
-  position="16.3 12 10.125"
-  light="type: point; intensity: 30; distance: 9;color: #e78341"
-  id="flame-light-4"
-></a-entity>
-<a-entity
-  position="2.21184 7.9759 10.125"
-  light="distance: 9.37; intensity: 30; type: point; angle: 50; color: #e78341"
-  id="flame-light-5"
-  rotation="0.76 4.73 2.47"
-></a-entity>
-<a-entity
-  position="13.86765 8.02148 10.125"
-  light="type: point; intensity: 30; distance: 9; color: #e78341"
-  id="flame-light-6"
-></a-entity>
+<a-entity id="gate-point-1"
+  light="type: spot; intensity: 13.62; distance: 14.67; decay: 1;color: #ffffff; groundColor: #000000; angle: 42.68; penumbra: 0"
+  position="-1.55399 10.603 24.217"></a-entity>
+<a-entity id="gate-point-2"
+  light="type: spot; intensity: 13.62; distance: 14.67; decay: 1;color: #ffffff; groundColor: #000000; angle: 42.68; penumbra: 0"
+  position="17.62254 10.603 24.217"></a-entity>
+<a-entity id="gate-point-3"
+  light="type: point; intensity: 12.86; distance: 10; decay: 1;color: #f7ba92; groundColor: #000000; angle: 180; penumbra: 0"
+  position="-20.54429 7.68827 52.60193"></a-entity>
+<a-entity id="gate-point-4"
+  light="type: point; intensity: 17.07; distance: 10; decay: 1;color: #f7ba92; groundColor: #000000; angle: 180; penumbra: 0"
+  position="-16.802 7.28471 73.93497"></a-entity>
+<a-entity id="gate-point-5" rotation="-7.09 0 0"
+  light="type: spot; intensity: 11.14; distance: 19.81; decay: 1.12;color: #ffffff; groundColor: #000000; angle: 54.27; penumbra: 1"
+  position="9.0733 9.84257 18.35105"></a-entity>
+<a-entity id="gate-point-6" rotation="-40.76 0.81 0"
+  light="type: spot; intensity: 4.69; distance: 15.52; decay: 1.12;color: #ffffff; groundColor: #000000; angle: 56.87; penumbra: 0.21"
+  position="31.30413 15.15987 19.59063"></a-entity>

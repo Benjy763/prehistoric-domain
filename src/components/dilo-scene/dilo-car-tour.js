@@ -4,9 +4,13 @@ AFRAME.registerComponent('dilo-car-tour', {
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
 
     this.system = document.querySelector('a-scene').systems['game'];
-    this.console = document.querySelector('a-scene').systems['console'];
     this.gate = document.querySelector('#dilo');
     this.carControls;
+
+    this.screenDefault = document.getElementById('dilo-screen-default');
+    this.screenDilo = document.getElementById('dilo-screen-dilo');
+    this.screenPhase = 'dilo';
+
     // Tour Path
     const curve = new THREE.SplineCurve([
       new THREE.Vector2(4.554, 44.617),
@@ -20,7 +24,7 @@ AFRAME.registerComponent('dilo-car-tour', {
 
     // Sounds
     this.diloRoarPlaying = false;
-    this.diloRoar = document.querySelector('#palms-08-sound');
+    this.diloRoar = document.querySelector('#dilo-palms-08-sound');
 
     // Animation phase
     this.sceneChanged = false;
@@ -43,22 +47,8 @@ AFRAME.registerComponent('dilo-car-tour', {
       'start',
       () => {
         this.voiceDiloSound = this.system.getVoice('dilo');
-        // Register current tour in system
-        this.console.registerCurrentTour(this);
         this.phase = 'start';
-        // Update console statuses
         this.carControls.changeDrivingState('starting');
-        this.console.updateSituation();
-        document.getElementById('jungle-asset').play();
-      },
-      false
-    );
-
-    // Restart tour listener, trigger by brachio controler
-    this.el.addEventListener(
-      'restart',
-      () => {
-        this.phase = 'restart';
       },
       false
     );
@@ -72,7 +62,7 @@ AFRAME.registerComponent('dilo-car-tour', {
       this.diloRoarPlaying = true;
       this.diloRoar.components['sound__diloroar'].playSound();
     }
-    if (this.system.truncMarker(this.carControls.carMarker) > 900) {
+    if (this.system.truncMarker(this.carControls.carMarker) > 800) {
       this.phase = 'stop';
     }
   },
@@ -82,6 +72,20 @@ AFRAME.registerComponent('dilo-car-tour', {
   tick: function () {
     if (!this.carControls) {
       return;
+    }
+    // Screen phases
+    switch (this.screenPhase) {
+      case 'dilo':
+        if (this.system.truncMarker(this.carControls.carMarker) > 0) {
+          this.screenDefault.setAttribute('visible', 'false');
+          this.screenDilo.setAttribute('visible', 'true');
+          this.screenPhase = 'default';
+        }
+        break;
+      case 'default':
+        this.screenDefault.setAttribute('visible', 'true');
+        this.screenPhase = 'end';
+        break;
     }
     // Voice
     if (

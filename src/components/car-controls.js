@@ -11,7 +11,6 @@ AFRAME.registerComponent('car-controls', {
     this.rotation = this.el.getAttribute('rotation').y;
     this.tick = AFRAME.utils.throttleTick(this.tick, 20, this);
     this.system = document.querySelector('a-scene').systems['game'];
-    this.console = document.querySelector('a-scene').systems['console'];
 
     // Share car reference
     this.system.registerCar(this);
@@ -25,21 +24,17 @@ AFRAME.registerComponent('car-controls', {
     this.curve = curve;
     this.maxDistance = maxDistance;
 
-    this.updateRotation();
-  },
-  updateRotation: function () {
     const nextMarkerForRotation = !this.carSpeed
       ? this.defaultSpeed
       : this.carSpeed;
-    const newPosition = this.system.convertPosition(
-      this.curve.getPointAt(this.carMarker + nextMarkerForRotation),
-      this.object.position.y
+    this.system.updateRotation(
+      this.el,
+      this.object,
+      this.curve,
+      this.carMarker,
+      nextMarkerForRotation,
+      88
     );
-    this.object.lookAt(newPosition.x, newPosition.y, newPosition.z);
-    // Correct rotation with offset
-    const rotation = this.el.getAttribute('rotation');
-    rotation.y += 88;
-    this.el.setAttribute('rotation', rotation);
   },
   stopTrackingCar: function () {
     this.drivingState = 'stopped';
@@ -64,32 +59,31 @@ AFRAME.registerComponent('car-controls', {
     if (this.carSpeed === 0) {
       return;
     }
-    this.carMarker += this.carSpeed;
-    this.object.position.copy(
-      this.system.convertPosition(
-        this.curve.getPointAt(this.carMarker),
-        this.object.position.y
-      )
+    this.carMarker = this.system.moveOnCurve(
+      this.object,
+      this.curve,
+      this.carMarker,
+      this.carSpeed
     );
-    if (this.system.truncMarker(this.carMarker) !== 0) {
-      this.console.updateCarPosition(
-        Math.round(
-          (this.system.truncMarker(this.carMarker) / this.maxDistance) * 10
-        ),
-        null
-      );
-    }
-    this.updateRotation();
+    const nextMarkerForRotation = !this.carSpeed
+      ? this.defaultSpeed
+      : this.carSpeed;
+    this.system.updateRotation(
+      this.el,
+      this.object,
+      this.curve,
+      this.carMarker,
+      nextMarkerForRotation,
+      88
+    );
   },
   changeDrivingState(state) {
     // Manage linked changes
     switch (state) {
       case 'starting':
-        this.console.startCar();
         this.carDriveAudio.play();
         break;
       case 'stopping':
-        this.console.stopCar();
         this.carStopAudio.play();
         this.carDriveAudio.currentTime = 0;
         this.carDriveAudio.pause();

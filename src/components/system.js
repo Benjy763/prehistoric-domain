@@ -1,91 +1,74 @@
+/*
+  This is the main game file.
+  Here there are main mecanisms to launch the experience, change scene, loadings...
+  Also there are utility functions that help making scenes (ex move object on curves, logs...)
+*/
+
+import { MainScene, Scenes } from './scenes.config';
+
+import { debug } from './debug.const';
+import { languages } from './languages.config';
+
+const SupportedPlatform = [
+  'Win32',
+  'MacIntel',
+  'MacPPC',
+  'Mac68K',
+  'Win16',
+  'Linux i686',
+  'Linux x86_64',
+  'Windows',
+];
+
 AFRAME.registerSystem('game', {
   schema: {},
+  // ----- Launch and changing scene functions --------
   init: function () {
-    this.firstScene = 'gate';
-    this.displayDistance = 100; // 150
-    this.language = 'en';
-    this.languages = {
-      en: {
-        gate1: 'voice-gate1-sound-en',
-        gate2: 'voice-gate2-sound-en',
-        gate3: 'voice-gate3-sound-en',
-        gate4: 'voice-gate4-sound-en',
-        dilo: 'voice-dilo-sound-en',
-        trex1: 'voice-trex1-sound-en',
-        trex2: 'voice-trex2-sound-en',
-        raptor: 'voice-raptor-sound-en',
-        trice1: 'voice-trice1-sound-en',
-        trice2: 'voice-trice2-sound-en',
-      },
-      fr: {
-        gate1: 'voice-gate1-sound-fr',
-        gate2: 'voice-gate2-sound-fr',
-        gate3: 'voice-gate3-sound-fr',
-        gate4: 'voice-gate4-sound-fr',
-        dilo: 'voice-dilo-sound-fr',
-        trex1: 'voice-trex1-sound-fr',
-        trex2: 'voice-trex2-sound-fr',
-        raptor: 'voice-raptor-sound-fr',
-        trice1: 'voice-trice1-sound-fr',
-        trice2: 'voice-trice2-sound-fr',
-      },
-    };
-    this.scenes = {
-      loading: {
-        scene: 'loading-scene',
-        camera: 'loading-scene-camera',
-      },
-      gate: {
-        scene: 'gate-scene',
-        camera: 'gate-scene-camera',
-        car: 'gate-car',
-        carReference: null,
-      },
-      dilo: {
-        scene: 'dilo-scene',
-        camera: 'dilo-scene-camera',
-        car: 'dilo-car',
-        carReference: null,
-      },
-      trex: {
-        scene: 'trex-scene',
-        camera: 'trex-scene-camera',
-        car: 'trex-car',
-        carReference: null,
-      },
-      raptor: {
-        scene: 'raptor-scene',
-        camera: 'raptor-scene-camera',
-        car: 'raptor-car',
-        carReference: null,
-      },
-      trice: {
-        scene: 'trice-scene',
-        camera: 'trice-scene-camera',
-        car: 'trice-car',
-        carReference: null,
-      },
-      ending: {
-        scene: 'ending-scene',
-        camera: 'ending-scene-camera',
-        car: null,
-        carReference: null,
-      },
-    };
+    this.scenes = Scenes;
+
+    this.firstScene = this.scenes.selection;
+    this.displayDistance = 100; // 150 to test
+    this.fov = 50;
+    this.fovVR = 60;
+    this.language = languages.selection;
+    this.languages = languages;
     this.carReference;
     this.actuelScene = this.firstScene;
     this.tourStarted = false;
-    this.console = document.querySelector('a-scene').systems['console'];
+    this.vr = false;
+
+    const userAgentDataPlatform = window.navigator.userAgentData
+      ? SupportedPlatform.includes(window.navigator.userAgentData.platform)
+      : false;
+    this.isMobile =
+      !SupportedPlatform.includes(window.navigator.platform) &&
+      !userAgentDataPlatform;
+
+    this.initPerformances();
     this.initLanguage();
     this.loadingAssets();
 
+    // Remove embedded for debug
+    document.getElementById('main-scene-wrapper').embedded = false;
+    // Display vr mirror in fullscreen
+    document.getElementById('main-scene-content').classList.add('fullscreen');
+
     // Debug events
-    //this.startDebugListener();
-  },
-  initLanguage: function() {
-    if (localStorage.getItem('language') !== null) {
-      this.language = localStorage.getItem('language');
+    if (debug) {
+      // Unclock debug listener
+      this.startDebugListener();
     }
+
+    // Manage clicks
+    document.querySelector('canvas').addEventListener(
+      'click',
+      () => {
+        document
+          .querySelector('#click-wrapper')
+          .setAttribute('style', 'display: none');
+      },
+      { once: true }
+    );
   },
   registerCar: function (car) {
     // Save all car references at start
@@ -106,46 +89,53 @@ AFRAME.registerSystem('game', {
     const event = new Event('carRegistered');
     car.el.dispatchEvent(event);
   },
-  log: function (text) {
-    document
-      .querySelector('#log')
-      .setAttribute('text', { value: text, color: 'white', width: 0.5 });
-  },
   initClickEvents: function () {
-    document.getElementById('enter-vr').onclick = () => {
+    document.getElementById('enter').onclick = () => {
+      this.vr = false;
       // Remove loading interface
       document.getElementById('static-loading').style.display = 'none';
       // Add scene screen
       document.getElementById('main-scene-wrapper').style.zIndex = '10';
-      // Show console interface
-      document.getElementById('console').style.display = 'block';
+
+      this.startTour();
     };
 
-    document.getElementById('start-tour').onclick = () => {
-      if (this.tourStarted) {
-        return;
-      }
-      // Init console
-      this.console.initTour();
-      setTimeout(() => {
-        // Display scene
-        this.displayScene();
-        // Rendering scene
-        this.renderingScene(this.firstScene);
-      }, 1000);
-      this.tourStarted = true;
+    document.getElementById('enter-vr').onclick = () => {
+      this.vr = true;
+      // Remove loading interface
+      document.getElementById('static-loading').style.display = 'none';
+      // Add scene screen
+      document.getElementById('main-scene-wrapper').style.zIndex = '10';
+
+      this.startTour();
     };
+  },
+  startTour() {
+    if (this.tourStarted) {
+      return;
+    }
+
+    setTimeout(() => {
+      // Display scene
+      this.displayScene();
+      // Rendering scene
+      this.renderingScene(this.firstScene);
+    }, 1000);
+    this.tourStarted = true;
   },
   // Only for the first time
   displayScene: function () {
     // Hide vr button and loading static screen
-    document.querySelector('#enter-vr').style.display = 'none';
-
+    document.querySelector('#menu-wrapper').style.display = 'none';
     // Display camera
     this.disableAllCameras();
     document
       .getElementById(this.scenes[this.firstScene].camera)
-      .setAttribute('camera', { far: this.displayDistance, active: true });
+      .setAttribute('camera', {
+        far: this.displayDistance,
+        active: true,
+        fov: this.vr ? this.fovVR : this.fov,
+      });
 
     // Display scene
     document.getElementById('loading-scene').setAttribute('visible', 'false');
@@ -167,16 +157,22 @@ AFRAME.registerSystem('game', {
     this.disableAllCameras();
     document
       .getElementById(this.scenes[sceneId].camera)
-      .setAttribute('camera', { far: this.displayDistance, active: true });
+      .setAttribute('camera', {
+        far: this.displayDistance,
+        active: true,
+        fov: this.vr ? this.fovVR : this.fov,
+      });
 
     // Register new scene
     this.actuelScene = sceneId;
 
-    // Notify car reference to the new scene
-    this.carReference.stopTrackingCar();
-    this.carReference = this.scenes[this.actuelScene].carReference;
-    if (this.carReference) {
-      this.sendCarReference(this.carReference);
+    if (!!this.carReference) {
+      // Notify car reference to the new scene
+      this.carReference.stopTrackingCar();
+      this.carReference = this.scenes[this.actuelScene].carReference;
+      if (!!this.carReference) {
+        this.sendCarReference(this.carReference);
+      }
     }
 
     // Rendering scene
@@ -190,14 +186,18 @@ AFRAME.registerSystem('game', {
     document.querySelector('a-assets').addEventListener('loaded', () => {
       // Preloading
       setTimeout(() => {
+        document.getElementById('menu-wrapper').style.display = 'block';
         // Press start
-        document.getElementById('loader-logo').style.display = 'none';
         document.getElementById('loading-logo').style.display = 'none';
         document.getElementById('loading-infos').style.display = 'none';
         document.getElementById('loading-infos').style.display = 'none';
-        document.getElementById('explains-logo').style.display = 'block';
-        document.getElementById('see-faq').style.display = 'block';
-        document.getElementById('enter-vr').style.display = 'block';
+        document.getElementById('enter').style.display = 'block';
+        if (this.isMobile) {
+          document.getElementById('enter').style.display = 'none';
+        }
+        if (AFRAME.utils.device.checkHeadsetConnected()) {
+          document.getElementById('enter-vr').style.display = 'block';
+        }
 
         this.initClickEvents();
       }, 2000);
@@ -205,9 +205,11 @@ AFRAME.registerSystem('game', {
   },
   disableAllCameras: function () {
     Object.keys(this.scenes).forEach((sceneId) => {
-      document
-        .getElementById(this.scenes[sceneId].camera)
-        .setAttribute('camera', 'active', false);
+      if (this.scenes[sceneId].camera) {
+        document
+          .getElementById(this.scenes[sceneId].camera)
+          .setAttribute('camera', 'active', false);
+      }
     });
   },
   renderingScene: function (sceneId) {
@@ -222,72 +224,139 @@ AFRAME.registerSystem('game', {
     car.querySelector('#rendering').setAttribute('visible', 'true');
     setTimeout(() => {
       car.querySelector('#rendering').setAttribute('visible', 'false');
+
       const event = new Event('start');
       car.dispatchEvent(event);
-      this.loading(false);
-    }, 15000);
+
+      // Delai for tour that is heavy to load
+      setTimeout(() => {
+        // Set main scene atmosphere color
+        const mainScene = document.getElementById('main-scene');
+        mainScene.setAttribute('background', {
+          color: this.scenes.color,
+        });
+        mainScene.setAttribute('fog', {
+          type: 'exponential',
+          color: this.scenes.color,
+          density: this.scenes.density,
+        });
+        this.loading(false);
+      }, 6000);
+    }, 4000);
   },
+  // Section with debug key
   startDebugListener: function () {
     // ----- Section for debug events -----
     document.addEventListener('keyup', (e) => {
       // Start tour in debug mode with key 8 (display in navigator)
       if (e.keyCode == 56) {
+        this.vr = false;
         // Remove interface to see vr display
         document.getElementById('static-loading').style.display = 'none';
         // Add scene screen
         document.getElementById('main-scene-wrapper').style.zIndex = '9999';
-        // Remove embedded for debug
-        document.getElementById('main-scene-wrapper').embedded = false;
         // Remove windows for debug
         document
           .getElementById('main-scene-wrapper')
           .classList.remove('scene-wrapper');
-          // Display fullscreen
-        document
-          .getElementById('main-scene-content')
-          .classList.add('fullscreen');
         // Display scene
         this.displayScene();
         // Rendering scene
         this.renderingScene(this.firstScene);
       }
-      // Display console screen in debug mode with key 9
-      if (e.keyCode == 57) {
-        // Remove loading interface
-        document.getElementById('static-loading').style.display = 'none';
-        // Add scene screen
-        document.getElementById('main-scene-wrapper').style.zIndex = '9999';
-        // Show console interface
-        document.getElementById('console').style.display = 'block';
-      }
 
-      // Other debug
+      // press key 7 and move car in given position on the curve
       if (e.keyCode == 55) {
-        this.carReference.carMarker = 0.3;
+        this.carReference.carMarker = this.scenes.carMarkerForDebug;
       }
     });
   },
-  // ----- Curve functions --------
-  convertPosition: function (position2D, ypos) {
-    return {
-      x: position2D.x,
-      y: ypos, // Must not move
-      z: position2D.y,
-    };
+  // ----- Main Tools --------
+  // ----- Log functions --------
+  log: function (text) {
+    document
+      .querySelector('#log')
+      .setAttribute('text', { value: text, color: 'white', width: 0.5 });
   },
+  // ----- Curve functions --------
+  // Move an object on the given curve according to given speed
+  moveOnCurve(object, curve, marker, speed, axe = 'xz') {
+    marker += speed;
+    object.position.copy(
+      this.convertPosition(curve.getPointAt(marker), object, axe)
+    );
+    return marker;
+  },
+  // Give to the given object the new rotation position after moving on the curve
+  updateRotation: function (
+    el,
+    object,
+    curve,
+    marker,
+    speed,
+    offset = 0,
+    axe = 'xz'
+  ) {
+    const newPosition = this.convertPosition(
+      curve.getPointAt(marker + speed),
+      object,
+      axe
+    );
+    object.lookAt(newPosition.x, newPosition.y, newPosition.z);
+    // Correct rotation with offset
+    const rotation = el.getAttribute('rotation');
+    rotation.y += offset;
+    el.setAttribute('rotation', rotation);
+  },
+  // Convert position in x y z object
+  convertPosition: function (position2D, object, axe = 'xz') {
+    const pos = { ...object.position };
+    if (axe === 'xz') {
+      pos.x = position2D.x;
+      pos.z = position2D.y;
+    } else if (axe === 'xy') {
+      pos.x = position2D.x;
+      pos.y = position2D.y;
+    } else if (axe === 'yz') {
+      pos.y = position2D.x;
+      pos.z = position2D.y;
+    }
+    return pos;
+  },
+  // Trunc marker to have better values (ex: 515 instead of 0.5155554)
   truncMarker: function (carMarker) {
     return Math.trunc(carMarker * 1000);
   },
+  // ----- Loading functions --------
   loading: function (loading = true) {
+    // Fix to set base camera position depending on device
+    const cameraClasses = document.getElementsByClassName('camera-entity');
+    [].forEach.call(cameraClasses, (camera) =>
+      camera.setAttribute('position', {
+        x: 0,
+        y: this.vr ? 0 : 1.6,
+        z: 0,
+      })
+    );
+
+    // Fix rig height
     if (!loading) {
-      // document
-      //   .querySelector(
-      //     '#' + this.scenes[this.actuelScene].car + ' #loading-logo'
-      //   )
-      //   .setAttribute('visible', false);
       document
         .querySelector('#' + this.scenes[this.actuelScene].car + ' #rig')
-        .setAttribute('position', { x: -0.38, y: 1.0, z: 0.44 });
+        .setAttribute('position', {
+          x: -0.38,
+          y: 0.75,
+          z: 0.5,
+        });
+      if (!this.vr) {
+        document
+          .querySelector('#' + this.scenes[this.actuelScene].car + ' #rig')
+          .setAttribute('position', {
+            x: -0.38,
+            y: 0.4,
+            z: 0.54,
+          });
+      }
       return;
     }
     document
@@ -295,7 +364,69 @@ AFRAME.registerSystem('game', {
       .setAttribute('visible', true);
     document
       .querySelector('#' + this.scenes[this.actuelScene].car + ' #rig')
-      .setAttribute('position', { x: -0.38, y: -80, z: 0.44 });
+      .setAttribute('position', {
+        x: -0.38,
+        y: -80,
+        z: 0.34,
+      });
+  },
+  // ----- Performances functions --------
+  initPerformances: function () {
+    const perfEl = document.getElementById('perf');
+    const qualityEl = document.getElementById('quality');
+    if (!perfEl || !qualityEl) {
+      return;
+    }
+
+    // Default performance
+    qualityEl.style.borderColor = '#ec652b';
+    this.toggle('performance', true);
+
+    perfEl.onclick = () => {
+      console.log('perf');
+      perfEl.style.borderColor = '#ec652b';
+      qualityEl.style.borderColor = '#fff';
+
+      this.toggle('performance', false);
+    };
+    qualityEl.onclick = () => {
+      console.log('quality');
+      qualityEl.style.borderColor = '#ec652b';
+      perfEl.style.borderColor = '#fff';
+
+      this.toggle('performance', true);
+    };
+
+    this.language = 'en';
+  },
+  toggle: function (className, displayState) {
+    let elements = document.getElementsByClassName(className);
+    for (let i = 0; i < elements.length; i++) {
+      elements[i].setAttribute('visible', displayState);
+    }
+  },
+  // ----- Languages functions --------
+  initLanguage: function () {
+    const enEl = document.getElementById('language-en');
+    const frEl = document.getElementById('language-fr');
+    if (!enEl || !frEl) {
+      return;
+    }
+
+    // Default en
+    this.language = 'en';
+    enEl.style.borderColor = '#ec652b';
+
+    enEl.onclick = () => {
+      this.language = 'en';
+      enEl.style.borderColor = '#ec652b';
+      frEl.style.borderColor = '#fff';
+    };
+    frEl.onclick = () => {
+      this.language = 'fr';
+      frEl.style.borderColor = '#ec652b';
+      enEl.style.borderColor = '#fff';
+    };
   },
   getVoice(element) {
     return document.getElementById(this.languages[this.language][element]);

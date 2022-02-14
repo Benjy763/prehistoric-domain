@@ -1,0 +1,673 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 9290,
+      "max": [
+        209.80386352539062,
+        1903.9996337890625,
+        88.965423583984375
+      ],
+      "min": [
+        -56.13043212890625,
+        898.49951171875,
+        -129.07057189941406
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 111480,
+      "componentType": 5126,
+      "count": 9290,
+      "max": [
+        0.99992495775222778,
+        1,
+        0.99923402070999146
+      ],
+      "min": [
+        -0.99992996454238892,
+        -1,
+        -0.99917680025100708
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 9290,
+      "max": [
+        0.99999672174453735,
+        1,
+        0.99999862909317017,
+        1
+      ],
+      "min": [
+        -0.99999558925628662,
+        -1,
+        -1,
+        -1
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 9290,
+      "max": [
+        5.0391674041748047,
+        5.3406624794006348
+      ],
+      "min": [
+        -4.0956201553344727,
+        -4.3406620025634766
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 23940,
+      "max": [
+        9289
+      ],
+      "min": [
+        0
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 222960,
+      "componentType": 5126,
+      "count": 101,
+      "max": [
+        203.79180908203125,
+        1796.9984130859375,
+        35.054370880126953
+      ],
+      "min": [
+        -52.175815582275391,
+        1794.9991455078125,
+        -125.11721801757812
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 224172,
+      "componentType": 5126,
+      "count": 101,
+      "max": [
+        0.99982643127441406,
+        1,
+        0.99915248155593872
+      ],
+      "min": [
+        -0.99915099143981934,
+        -1,
+        -0.99915140867233276
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "byteOffset": 148640,
+      "componentType": 5126,
+      "count": 101,
+      "max": [
+        0.018589623272418976,
+        0.99999964237213135,
+        0.58189696073532104,
+        1
+      ],
+      "min": [
+        -0.99919956922531128,
+        -0.99999964237213135,
+        -0.53622394800186157,
+        -1
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 74320,
+      "componentType": 5126,
+      "count": 101,
+      "max": [
+        1.2952365875244141,
+        0.98212337493896484
+      ],
+      "min": [
+        -0.30755576491355896,
+        0.01622888445854187
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 75128,
+      "componentType": 5126,
+      "count": 101,
+      "max": [
+        1.2952365875244141,
+        0.98212337493896484
+      ],
+      "min": [
+        -0.30755576491355896,
+        0.01622888445854187
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 95760,
+      "componentType": 5125,
+      "count": 228,
+      "max": [
+        100
+      ],
+      "min": [
+        0
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 225384,
+      "componentType": 5126,
+      "count": 9290,
+      "max": [
+        209.80706787109375,
+        1005.5001831054688,
+        88.964752197265625
+      ],
+      "min": [
+        -56.127220153808594,
+        0,
+        -129.07124328613281
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 336864,
+      "componentType": 5126,
+      "count": 9290,
+      "max": [
+        0.99992519617080688,
+        1,
+        0.99917733669281006
+      ],
+      "min": [
+        -0.99992978572845459,
+        -1,
+        -0.99919295310974121
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "byteOffset": 150256,
+      "componentType": 5126,
+      "count": 9290,
+      "max": [
+        0.99999755620956421,
+        1,
+        0.99999892711639404,
+        1
+      ],
+      "min": [
+        -0.99999731779098511,
+        -1,
+        -0.99999958276748657,
+        -1
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 75936,
+      "componentType": 5126,
+      "count": 9290,
+      "max": [
+        5.0391674041748047,
+        5.3406624794006348
+      ],
+      "min": [
+        -4.0956201553344727,
+        -4.3406620025634766
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 96672,
+      "componentType": 5125,
+      "count": 23940,
+      "max": [
+        9289
+      ],
+      "min": [
+        0
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 448344,
+      "componentType": 5126,
+      "count": 101,
+      "max": [
+        203.79254150390625,
+        898.49896240234375,
+        35.053802490234375
+      ],
+      "min": [
+        -52.175056457519531,
+        896.49969482421875,
+        -125.11839294433594
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 449556,
+      "componentType": 5126,
+      "count": 101,
+      "max": [
+        0.99982643127441406,
+        1,
+        0.99915111064910889
+      ],
+      "min": [
+        -0.99915111064910889,
+        -1,
+        -0.99915093183517456
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "byteOffset": 298896,
+      "componentType": 5126,
+      "count": 101,
+      "max": [
+        0.99918115139007568,
+        0.99999970197677612,
+        0.53580999374389648,
+        1
+      ],
+      "min": [
+        -0.018227685242891312,
+        -0.99999964237213135,
+        -0.58234518766403198,
+        -1
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 150256,
+      "componentType": 5126,
+      "count": 101,
+      "max": [
+        1.2952365875244141,
+        0.98212337493896484
+      ],
+      "min": [
+        -0.30755576491355896,
+        0.01622888445854187
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 151064,
+      "componentType": 5126,
+      "count": 101,
+      "max": [
+        1.2952365875244141,
+        0.98212337493896484
+      ],
+      "min": [
+        -0.30755576491355896,
+        0.01622888445854187
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 192432,
+      "componentType": 5125,
+      "count": 228,
+      "max": [
+        100
+      ],
+      "min": [
+        0
+      ],
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "studio lab (https://sketchfab.com/leonlabyk)",
+      "license": "SKETCHFAB Standard (https://sketchfab.com/licenses)",
+      "source": "https://sketchfab.com/3d-models/scafold-cd31f64c9d394f4ab46b43c98e0fab26",
+      "title": "Scafold"
+    },
+    "generator": "Sketchfab-4.61.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 193344,
+      "byteOffset": 0,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 151872,
+      "byteOffset": 193344,
+      "byteStride": 8,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 450768,
+      "byteOffset": 345216,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 300512,
+      "byteOffset": 795984,
+      "byteStride": 16,
+      "name": "floatBufferViews",
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 1096496,
+      "uri": "scene.bin"
+    }
+  ],
+  "images": [
+    {
+      "uri": "textures/SteelGratingShader_baseColor.png"
+    },
+    {
+      "uri": "textures/SteelGratingShader_metallicRoughness.png"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "emissiveFactor": [
+        0,
+        0,
+        0
+      ],
+      "name": "YellowIronShader",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.34715108509999998,
+          0.22257504140000001,
+          0,
+          1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 0.37633384150000004
+      }
+    },
+    {
+      "alphaMode": "BLEND",
+      "doubleSided": true,
+      "emissiveFactor": [
+        0,
+        0,
+        0
+      ],
+      "name": "SteelGratingShader",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "baseColorTexture": {
+          "index": 0,
+          "texCoord": 0
+        },
+        "metallicFactor": 0.032202743899999997,
+        "metallicRoughnessTexture": {
+          "index": 1,
+          "texCoord": 0
+        },
+        "roughnessFactor": 1
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "ScaffoldTop_YellowIronShader_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TANGENT": 2,
+            "TEXCOORD_0": 3
+          },
+          "indices": 4,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "ScaffoldTop_SteelGratingShader_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 6,
+            "POSITION": 5,
+            "TANGENT": 7,
+            "TEXCOORD_0": 8,
+            "TEXCOORD_1": 9
+          },
+          "indices": 10,
+          "material": 1,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "ScaffoldBottom_YellowIronShader_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 12,
+            "POSITION": 11,
+            "TANGENT": 13,
+            "TEXCOORD_0": 14
+          },
+          "indices": 15,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "ScaffoldBottom_SteelGratingShader_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 17,
+            "POSITION": 16,
+            "TANGENT": 18,
+            "TEXCOORD_0": 19,
+            "TEXCOORD_1": 20
+          },
+          "indices": 21,
+          "material": 1,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "name": "RootNode (gltf orientation matrix)",
+      "rotation": [
+        -0.70710678118654746,
+        -0,
+        -0,
+        0.70710678118654757
+      ]
+    },
+    {
+      "children": [
+        2
+      ],
+      "name": "RootNode (model correction matrix)"
+    },
+    {
+      "children": [
+        3
+      ],
+      "matrix": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        -1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "name": "Scaffold.fbx"
+    },
+    {
+      "children": [
+        4,
+        7
+      ],
+      "name": "RootNode"
+    },
+    {
+      "children": [
+        5,
+        6
+      ],
+      "matrix": [
+        0.0099999997764825821,
+        0,
+        0,
+        0,
+        0,
+        0.0099999997764825821,
+        0,
+        0,
+        0,
+        0,
+        0.0099999997764825821,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "name": "ScaffoldTop"
+    },
+    {
+      "mesh": 0,
+      "name": "ScaffoldTop_YellowIronShader_0"
+    },
+    {
+      "mesh": 1,
+      "name": "ScaffoldTop_SteelGratingShader_0"
+    },
+    {
+      "children": [
+        8,
+        9
+      ],
+      "matrix": [
+        0.0099999997764825821,
+        0,
+        0,
+        0,
+        0,
+        0.0099999997764825821,
+        0,
+        0,
+        0,
+        0,
+        0.0099999997764825821,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "name": "ScaffoldBottom"
+    },
+    {
+      "mesh": 2,
+      "name": "ScaffoldBottom_YellowIronShader_0"
+    },
+    {
+      "mesh": 3,
+      "name": "ScaffoldBottom_SteelGratingShader_0"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "OSG_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
+    }
+  ]
+}
+

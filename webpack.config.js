@@ -14,20 +14,11 @@ PLUGINS = [
     <html>
       <head>
         <meta charset="UTF-8" />
-        <title>Jurassic Tour VR</title>
-        <script>
-          // Routing check
-          if (!localStorage.getItem('from-index')) {
-            window.location.href="https://jurassic-tour-vr.com";
-          }
-          else {
-            localStorage.removeItem('from-index');
-          }
-        </script>
+        <title>Prehistoric Domain</title>
         <style type="text/css">
           @font-face {
-            font-family: 'Tribeca';
-            src: url('./build/font/Tribeca.ttf') format('truetype');
+            font-family: 'Exo';
+            src: url('./build/font/Exo-Regular.ttf') format('truetype');
           }
     </style>
       </head>
@@ -102,7 +93,7 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.png|\.jpg|\.gif/,
+        test: /\.png|\.jpg|\.gif|\.mp4/,
         exclude: /(node_modules)/,
         use: ['url-loader'],
       },

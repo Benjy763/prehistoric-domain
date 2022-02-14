@@ -1,3 +1,7 @@
+import { MainScene } from './components/scenes.config';
+
+// Position for promos: -0.280 0.200 0.200
+
 function requireAll(req) {
   req.keys().forEach(req);
 }
@@ -5,16 +9,29 @@ function requireAll(req) {
 // Require libs
 require('aframe');
 require('aframe-extras');
-require('aframe-fps-counter-component');
-require('super-hands');
 require('aframe-curve-component');
-require('aframe-geometry-merger-component');
-require('./vendors/aframe-gif-shader/dist/aframe-gif-component.js');
+// require('aframe-fps-counter-component');
+//require('super-hands');
+//require('./vendors/aframe-gif-shader/dist/aframe-gif-component.js');
 
-// Require all components.
+// Require all components
 require('./style/loader.css');
-require('./style/console.css');
 requireAll(require.context('./components/', true, /\.js$/));
-
 require('aframe-particle-system-component');
-require('./scene.html');
+require('aframe-fps-look-controls-component');
+
+// Main Scenes
+switch (MainScene) {
+  case 'tour':
+    require('./tour-main-scene.html');
+    break;
+  case 'aviary':
+    require('./aviary-main-scene.html');
+    break;
+  case 'lagoon':
+    require('./lagoon-main-scene.html');
+    break;
+  case 'cinema':
+    require('./cinema-main-scene.html');
+    break;
+}

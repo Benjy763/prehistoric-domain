@@ -1,0 +1,484 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 3205,
+      "max": [
+        -448.52716064453125,
+        231.53793334960938,
+        789.633056640625
+      ],
+      "min": [
+        -550.7501831054688,
+        -238.24246215820313,
+        92.70659637451172
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 38460,
+      "componentType": 5126,
+      "count": 3205,
+      "max": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "min": [
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 3205,
+      "max": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "min": [
+        -1.0,
+        -1.0,
+        -1.0,
+        1.0
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 3205,
+      "max": [
+        0.9980940222740173,
+        0.9991428852081299
+      ],
+      "min": [
+        0.0011565126478672028,
+        0.023235421627759933
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 11262,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 76920,
+      "componentType": 5126,
+      "count": 427,
+      "max": [
+        -503.0753479003906,
+        195.27096557617188,
+        732.892578125
+      ],
+      "min": [
+        -542.5448608398438,
+        -187.85189819335938,
+        112.14810180664063
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 82044,
+      "componentType": 5126,
+      "count": 427,
+      "max": [
+        0.6227406859397888,
+        0.9546965956687927,
+        0.9020006060600281
+      ],
+      "min": [
+        -1.0,
+        -0.9019902348518372,
+        -0.9019771814346313
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 25640,
+      "componentType": 5126,
+      "count": 427,
+      "max": [
+        0.9966934323310852,
+        0.993278980255127
+      ],
+      "min": [
+        0.006892219185829163,
+        0.45174747705459595
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 45048,
+      "componentType": 5125,
+      "count": 2160,
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "Mellora (https://sketchfab.com/Mellora)",
+      "license": "SKETCHFAB Editorial (https://sketchfab.com/licenses)",
+      "source": "https://sketchfab.com/3d-models/cyberpunk-sci-fi-billboard-sign-03f6d49306994c0c86dfcca00751ee35",
+      "title": "Cyberpunk sci-fi billboard / sign"
+    },
+    "generator": "Sketchfab-11.44.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 53688,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 29056,
+      "byteOffset": 53688,
+      "byteStride": 8,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 87168,
+      "byteOffset": 82744,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 51280,
+      "byteOffset": 169912,
+      "byteStride": 16,
+      "name": "floatBufferViews",
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 221192,
+      "uri": "scene.bin"
+    }
+  ],
+  "images": [
+    {
+      "uri": "textures/Material_40_baseColor.png"
+    },
+    {
+      "uri": "textures/Material_40_metallicRoughness.png"
+    },
+    {
+      "uri": "textures/Material_40_emissive.png"
+    },
+    {
+      "uri": "textures/Material_40_normal.png"
+    },
+    {
+      "uri": "textures/Material_41_baseColor.png"
+    },
+    {
+      "uri": "textures/Material_41_emissive.png"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "emissiveFactor": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "emissiveTexture": {
+        "index": 2
+      },
+      "name": "Material_40",
+      "normalTexture": {
+        "index": 3
+      },
+      "occlusionTexture": {
+        "index": 1,
+        "strength": 0.4651295731707317
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicRoughnessTexture": {
+          "index": 1
+        }
+      }
+    },
+    {
+      "alphaMode": "BLEND",
+      "doubleSided": true,
+      "emissiveFactor": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "emissiveTexture": {
+        "index": 5
+      },
+      "name": "Material_41",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 4
+        },
+        "metallicFactor": 0.0
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "billboard_Material #40_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TANGENT": 2,
+            "TEXCOORD_0": 3
+          },
+          "indices": 4,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "screen projection_Material #41_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 6,
+            "POSITION": 5,
+            "TEXCOORD_0": 7
+          },
+          "indices": 8,
+          "material": 1,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "matrix": [
+        0.004100419749893808,
+        -1.2067160218889424e-18,
+        0.003979901543634534,
+        0.0,
+        -0.003979901543634534,
+        -1.1950971689781742e-18,
+        0.004100419749893808,
+        0.0,
+        -3.354278323005514e-20,
+        -0.0057142856530845165,
+        -1.698027041025798e-18,
+        0.0,
+        -0.00015591419651173055,
+        -0.0009991913102567196,
+        0.00038049888098612406,
+        1.0
+      ],
+      "name": "Sketchfab_model"
+    },
+    {
+      "children": [
+        2
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "36bae357402a4464b57a015d91ca1c82.fbx"
+    },
+    {
+      "children": [
+        3,
+        6
+      ],
+      "name": "RootNode"
+    },
+    {
+      "children": [
+        4
+      ],
+      "matrix": [
+        7.549790093097641e-08,
+        0.9999999999999972,
+        -2.220446049250313e-16,
+        0.0,
+        1.6292068394374581e-07,
+        -1.2212453270876722e-14,
+        0.9999999999999869,
+        0.0,
+        0.999999999999984,
+        -7.549790109750987e-08,
+        -1.6292068405476812e-07,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "billboard"
+    },
+    {
+      "children": [
+        5
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        -0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        499.638671875,
+        3.35226440429688,
+        -441.169830322266,
+        1.0
+      ],
+      "name": "Object_4"
+    },
+    {
+      "mesh": 0,
+      "name": "billboard_Material #40_0"
+    },
+    {
+      "children": [
+        7
+      ],
+      "matrix": [
+        7.549790093097641e-08,
+        0.9999999999999972,
+        -2.220446049250313e-16,
+        0.0,
+        1.6292068394374581e-07,
+        -1.2212453270876722e-14,
+        0.9999999999999869,
+        0.0,
+        0.999999999999984,
+        -7.549790109750987e-08,
+        -1.6292068405476812e-07,
+        0.0,
+        -18.649505615234375,
+        -19.219757080078125,
+        7.061793327331543,
+        1.0
+      ],
+      "name": "screen projection"
+    },
+    {
+      "children": [
+        8
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        -0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        522.810180664063,
+        -3.70952606201172,
+        -422.520324707031,
+        1.0
+      ],
+      "name": "Object_7"
+    },
+    {
+      "mesh": 1,
+      "name": "screen projection_Material #41_0"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Sketchfab_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
+    },
+    {
+      "sampler": 0,
+      "source": 2
+    },
+    {
+      "sampler": 0,
+      "source": 3
+    },
+    {
+      "sampler": 0,
+      "source": 4
+    },
+    {
+      "sampler": 0,
+      "source": 5
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+Model Information:
+* title:	sci-fi wall
+* source:	https://sketchfab.com/3d-models/sci-fi-wall-df15e5c92bfd49b691b1c634947846cb
+* author:	BeerP (https://sketchfab.com/BeerPuls)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "sci-fi wall" (https://sketchfab.com/3d-models/sci-fi-wall-df15e5c92bfd49b691b1c634947846cb) by BeerP (https://sketchfab.com/BeerPuls) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

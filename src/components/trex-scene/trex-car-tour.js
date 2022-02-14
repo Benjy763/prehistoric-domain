@@ -4,9 +4,12 @@ AFRAME.registerComponent('trex-car-tour', {
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
 
     this.system = document.querySelector('a-scene').systems['game'];
-    this.console = document.querySelector('a-scene').systems['console'];
     this.carControls;
     this.trex = document.querySelector('#trex');
+    this.screenDefault = document.getElementById('dilo-screen-default');
+    this.screenTrex = document.getElementById('trex-screen-trex');
+    this.screenPhase = 'trex';
+
     // Tour Path
     const curve = new THREE.SplineCurve([
       new THREE.Vector2(18.6, 85),
@@ -42,12 +45,7 @@ AFRAME.registerComponent('trex-car-tour', {
         this.voiceTrex1Sound = this.system.getVoice('trex1');
         this.voiceTrex2Sound = this.system.getVoice('trex2');
         this.phase = 'start';
-        // Register current tour in system
-        this.console.registerCurrentTour(this);
-        // Update console statuses
         this.carControls.changeDrivingState('starting');
-        this.console.updateSituation();
-        document.getElementById('jungle-asset').play();
       },
       false
     );
@@ -94,20 +92,26 @@ AFRAME.registerComponent('trex-car-tour', {
     if (!this.carControls) {
       return;
     }
+    // Screen phases
+    switch (this.screenPhase) {
+      case 'trex':
+        if (this.system.truncMarker(this.carControls.carMarker) > 0) {
+          this.screenDefault.setAttribute('visible', 'false');
+          this.screenTrex.setAttribute('visible', 'true');
+          this.screenPhase = 'default';
+        }
+        break;
+      case 'default':
+        this.screenDefault.setAttribute('visible', 'true');
+        this.screenPhase = 'end';
+        break;
+    }
     // Voice phases
     switch (this.voicePhase) {
       case 'trex1':
         if (this.system.truncMarker(this.carControls.carMarker) > 70) {
           this.voiceTrex1Sound.play();
           this.voicePhase = 'trex2';
-        }
-        break;
-      case 'trex2':
-        if (this.system.truncMarker(this.carControls.carMarker) > 530) {
-          setTimeout(() => {
-            this.voiceTrex2Sound.play();
-            this.voicePhase = 'end';
-          }, 4000);
         }
         break;
     }

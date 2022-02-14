@@ -4,10 +4,15 @@ AFRAME.registerComponent('raptor-car-tour', {
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
 
     this.system = document.querySelector('a-scene').systems['game'];
-    this.console = document.querySelector('a-scene').systems['console'];
     this.raptor = document.querySelector('#raptor');
-    this.raptorRoar = document.querySelector('#raptor-head');
+    this.ambiantLight = document.querySelector('#raptor-ambiant-light');
+    this.ambiantLightIntensity = 1;
+    this.ambiantLightIntensitySpeed = 0.002;
     this.carControls;
+    this.screenDefault = document.getElementById('raptor-screen-default');
+    this.screenRaptor = document.getElementById('raptor-screen-raptor');
+    this.screenPhase = 'raptor';
+
     // Tour Path
     const curve = new THREE.SplineCurve([
       new THREE.Vector2(4.535, 81.899),
@@ -32,37 +37,56 @@ AFRAME.registerComponent('raptor-car-tour', {
       'start',
       () => {
         this.voiceRaptorSound = this.system.getVoice('raptor');
-        // Register current tour in system
-        this.console.registerCurrentTour(this);
         this.phase = 'start';
-        // Update console statuses
         this.carControls.changeDrivingState('starting');
-        this.console.updateSituation();
-        document.getElementById('jungle-asset').play();
       },
       false
     );
 
     // Restart tour listener, trigger by raptor controler
     this.el.addEventListener(
-      'restart',
+      'turnOnLight',
       () => {
-        this.phase = 'restart';
+        this.phase = 'turnOnLight';
       },
       false
     );
+    this.ambiantLight;
   },
   // --- Phase functions ---
   start: function () {
     if (this.system.truncMarker(this.carControls.carMarker) > 340) {
       this.carControls.changeDrivingState('stopping');
-      this.phase = 'stop';
+      this.phase = 'exit';
       setTimeout(() => {
-        const event = new Event('enter');
-        this.raptor.dispatchEvent(event);
-        this.raptorRoar.components['sound__ambiant'].playSound();
-      }, 15000);
+        setTimeout(() => {
+          const event = new Event('enter');
+          this.raptor.dispatchEvent(event);
+        }, 5000);
+        this.phase = 'turnOffLight';
+      }, 5000);
     }
+  },
+  turnOffLight() {
+    if (this.ambiantLightIntensity < 0) {
+      this.phase = 'exit';
+    }
+    this.ambiantLightIntensity -= this.ambiantLightIntensitySpeed;
+    this.ambiantLight.setAttribute('light', {
+      intensity: this.ambiantLightIntensity,
+    });
+  },
+  turnOnLight() {
+    setTimeout(() => {
+      this.phase = 'restart';
+    }, 5000);
+    if (this.ambiantLightIntensity > 1.4) {
+      this.phase = 'exit';
+    }
+    this.ambiantLightIntensity += this.ambiantLightIntensitySpeed;
+    this.ambiantLight.setAttribute('light', {
+      intensity: this.ambiantLightIntensity,
+    });
   },
   restart: function () {
     this.carControls.changeDrivingState('starting');
@@ -80,6 +104,20 @@ AFRAME.registerComponent('raptor-car-tour', {
     if (!this.carControls) {
       return;
     }
+    // Screen phases
+    switch (this.screenPhase) {
+      case 'raptor':
+        if (this.system.truncMarker(this.carControls.carMarker) > 0) {
+          this.screenDefault.setAttribute('visible', 'false');
+          this.screenRaptor.setAttribute('visible', 'true');
+          this.screenPhase = 'default';
+        }
+        break;
+      case 'default':
+        this.screenDefault.setAttribute('visible', 'true');
+        this.screenPhase = 'end';
+        break;
+    }
     // Voice
     if (
       this.system.truncMarker(this.carControls.carMarker) > 50 &&
@@ -92,6 +130,12 @@ AFRAME.registerComponent('raptor-car-tour', {
     switch (this.phase) {
       case 'start':
         this.start();
+        break;
+      case 'turnOffLight':
+        this.turnOffLight();
+        break;
+      case 'turnOnLight':
+        this.turnOnLight();
         break;
       case 'restart':
         this.restart();

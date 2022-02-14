@@ -4,19 +4,17 @@ AFRAME.registerComponent('trice-car-tour', {
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
 
     this.system = document.querySelector('a-scene').systems['game'];
-    this.console = document.querySelector('a-scene').systems['console'];
-    this.gate = document.querySelector('#gate-back');
+    this.gate = document.querySelector('#trice-gate-back');
     this.trice = document.querySelector('#trice');
     this.carAlarmSound = document.getElementById('car-alarm-sound');
-    this.gateSound = document.getElementById('gate-sound');
-    this.gateCloseSound = document.getElementById('gate-close-sound');
     this.endingSound = document.getElementById('soundtrack-ending-sound');
     this.voicePhase = 'trice1';
-    this.screenDefault = document.getElementById('screen-default-2');
-    this.screenBrachio = document.getElementById('screen-brachio-2');
-    this.screenTrice = document.getElementById('screen-trice-2');
-    this.screenGalli = document.getElementById('screen-galli-2');
-    this.screenAlarm = document.getElementById('screen-alarm');
+    this.bigDoor = document.getElementById('trice-big-door');
+    this.screenDefault = document.getElementById('trice-screen-default-2');
+    this.screenBrachio = document.getElementById('trice-screen-brachio-2');
+    this.screenTrice = document.getElementById('trice-screen-trice-2');
+    this.screenGalli = document.getElementById('trice-screen-galli-2');
+    this.screenAlarm = document.getElementById('trice-screen-alarm');
     this.screenPhase = 'galli';
     this.carControls;
     this.animationsStatuses = {
@@ -35,7 +33,9 @@ AFRAME.registerComponent('trice-car-tour', {
     // Sound
     this.endingSoundPlayed = false;
     this.soundMixing1SoundPlaying = false;
-    this.soundMixing1Audio = document.getElementById('sound-mixing-1');
+    this.carTurnOn = document.getElementById('car-turn-on');
+    this.gateSound = document.querySelector('#trice-big-door');
+    this.gateSoundPhase = 'open';
 
     // Init car (when reference is registered in the system) with tour data
     this.el.addEventListener('carRegistered', () => {
@@ -51,13 +51,8 @@ AFRAME.registerComponent('trice-car-tour', {
       () => {
         this.voiceTrice1Sound = this.system.getVoice('trice1');
         this.voiceTrice2Sound = this.system.getVoice('trice2');
-        // Register current tour in system
-        this.console.registerCurrentTour(this);
         this.phase = 'start';
-        // Update console statuses
         this.carControls.changeDrivingState('starting');
-        this.console.updateSituation();
-        document.getElementById('jungle-asset').play();
       },
       false
     );
@@ -72,6 +67,22 @@ AFRAME.registerComponent('trice-car-tour', {
     );
   },
   // --- Phase functions ---
+  gateSounds: function () {
+    if (
+      this.system.truncMarker(this.carControls.carMarker) > 650 &&
+      this.gateSoundPhase === 'open'
+    ) {
+      this.gateSound.components['sound__gateopen'].playSound();
+      this.gateSoundPhase = 'close';
+    }
+    if (
+      this.system.truncMarker(this.carControls.carMarker) > 745 &&
+      this.gateSoundPhase === 'close'
+    ) {
+      this.gateSound.components['sound__gateclose'].playSound();
+      this.gateSoundPhase = 'exit';
+    }
+  },
   start: function () {
     if (this.system.truncMarker(this.carControls.carMarker) > 310) {
       this.phase = 'stop';
@@ -96,52 +107,25 @@ AFRAME.registerComponent('trice-car-tour', {
     this.phase = 'finish';
   },
   finish: function () {
-    this.system.log(this.carControls.carMarker);
+    const bigDoorPosition = this.bigDoor.getAttribute('position');
     if (
-      this.system.truncMarker(this.carControls.carMarker) > 615 &&
-      !this.animationsStatuses.gateOpen
+      this.system.truncMarker(this.carControls.carMarker) > 660 &&
+      this.system.truncMarker(this.carControls.carMarker) < 750 &&
+      bigDoorPosition.y < 20
     ) {
-      this.animationsStatuses.gateOpen = true;
-      this.gateSound.play();
-      this.gate.setAttribute('animation-mixer', {
-        clip: 'gate-*',
-        timeScale: 0.8,
-      });
-      setTimeout(() => {
-        this.gate.setAttribute('animation-mixer', {
-          clip: 'gate-*',
-          timeScale: 0,
-        });
-      }, 4500);
+      bigDoorPosition.y += 0.04;
+      this.bigDoor.setAttribute('position', bigDoorPosition);
     }
-    if (
-      this.system.truncMarker(this.carControls.carMarker) > 720 &&
-      !this.animationsStatuses.gateClosed
-    ) {
-      this.animationsStatuses.gateClosed = true;
-      this.gateCloseSound.play();
-      this.gate.setAttribute('animation-mixer', {
-        clip: 'gate-*',
-        timeScale: -0.8,
-      });
-      setTimeout(() => {
-        this.gate.setAttribute('animation-mixer', {
-          clip: 'gate-*',
-          timeScale: 0,
-        });
-      }, 4300);
-    }
+
     if (
       this.system.truncMarker(this.carControls.carMarker) > 750 &&
-      !this.endingSoundPlayed
+      bigDoorPosition.y > 10
     ) {
-      this.endingSoundPlayed = true;
-      this.endingSound.play();
+      bigDoorPosition.y -= 0.04;
+      this.bigDoor.setAttribute('position', bigDoorPosition);
     }
-    if (
-      this.system.truncMarker(this.carControls.carMarker) >
-      this.carControls.maxDistance
-    ) {
+
+    if (this.system.truncMarker(this.carControls.carMarker) > 850) {
       this.carControls.changeDrivingState('stopping');
       if (this.carControls.carSpeed <= 0) {
         this.phase = 'changeScene';
@@ -209,12 +193,16 @@ AFRAME.registerComponent('trice-car-tour', {
         this.restart();
         break;
       case 'finish':
+        this.gateSounds();
         this.finish();
         break;
       case 'changeScene':
         if (!this.sceneChanged) {
           // Destroy and detach all unecessary objets
           // Change scene
+          setTimeout(() => {
+            window.location.href = 'https://map.prehistoricdomain.com/';
+          }, 8000);
           this.system.changeScene('ending', false);
           this.sceneChanged = true;
         }
