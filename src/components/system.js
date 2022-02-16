@@ -4,8 +4,7 @@
   Also there are utility functions that help making scenes (ex move object on curves, logs...)
 */
 
-import { MainScene, Scenes } from './scenes.config';
-
+import { Scenes } from './scenes.config';
 import { debug } from './debug.const';
 import { languages } from './languages.config';
 

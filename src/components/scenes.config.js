@@ -2,9 +2,10 @@ export const MainScene = 'tour';
 
 export const TourScenes = {
   // Starting scene
-  selection: 'gate',
+  mobileCompatible: false,
+  selection: 'trice',
   assetsId: 'tour-assets',
-  carMarkerForDebug: 0.32,
+  carMarkerForDebug: 0.3,
   color: '#000',
   density: 0.025,
   loading: {
@@ -51,6 +52,7 @@ export const TourScenes = {
 
 export const AviaryScenes = {
   // Starting scene
+  mobileCompatible: true,
   selection: 'aviary',
   assetsId: 'aviary-assets',
   carMarkerForDebug: 0.32,
@@ -76,6 +78,7 @@ export const AviaryScenes = {
 
 export const LagoonScenes = {
   // Starting scene
+  mobileCompatible: true,
   selection: 'lagoon',
   assetsId: 'lagoon-assets',
   carMarkerForDebug: 0.32,
@@ -101,6 +104,7 @@ export const LagoonScenes = {
 
 export const CinemaScenes = {
   // Starting scene
+  mobileCompatible: true,
   selection: 'cinema',
   assetsId: 'cinema-assets',
   carMarkerForDebug: 0.32,
