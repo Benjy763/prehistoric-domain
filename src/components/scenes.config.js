@@ -3,7 +3,7 @@ export const MainScene = 'tour';
 export const TourScenes = {
   // Starting scene
   mobileCompatible: false,
-  selection: 'trice',
+  selection: 'gate',
   assetsId: 'tour-assets',
   carMarkerForDebug: 0.3,
   color: '#000',
