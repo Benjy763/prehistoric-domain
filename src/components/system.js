@@ -382,14 +382,12 @@ AFRAME.registerSystem('game', {
     this.toggle('performance', true);
 
     perfEl.onclick = () => {
-      console.log('perf');
       perfEl.style.borderColor = '#ec652b';
       qualityEl.style.borderColor = '#fff';
 
       this.toggle('performance', false);
     };
     qualityEl.onclick = () => {
-      console.log('quality');
       qualityEl.style.borderColor = '#ec652b';
       perfEl.style.borderColor = '#fff';
 
