@@ -5,7 +5,7 @@ export const TourScenes = {
   mobileCompatible: false,
   selection: 'gate',
   assetsId: 'tour-assets',
-  carMarkerForDebug: 0.3,
+  carMarkerForDebug: 0.7,
   color: '#000',
   density: 0.025,
   loading: {
