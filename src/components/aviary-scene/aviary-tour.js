@@ -42,7 +42,9 @@ AFRAME.registerComponent('aviary-car-tour', {
         // Get voice from system when init
         this.voiceAviary1Sound = this.system.getVoice('aviary1');
         this.voicePhase = 'aviary1';
-        this.phase = 'start';
+        setTimeout(() => {
+          this.phase = 'start';
+        }, 10000);
       },
       false
     );
