@@ -72,7 +72,7 @@ AFRAME.registerComponent('dilo-car-tour', {
       const event = new Event('enter');
       this.dilo.dispatchEvent(event);
     }
-    if (this.system.truncMarker(this.carControls.carMarker) > 800) {
+    if (this.system.truncMarker(this.carControls.carMarker) > 830) {
       this.phase = 'stop';
     }
   },

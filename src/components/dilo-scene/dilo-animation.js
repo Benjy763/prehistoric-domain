@@ -10,20 +10,22 @@ AFRAME.registerComponent('dilo-animation', {
 
     // dilo run Path
     this.diloMarker = 0; // Position on the curve
-    this.diloSpeed = 0.0016; // Speed on the curve
+    this.diloSpeed = 0.0008; // Speed on the curve
     this.curve = new THREE.SplineCurve([
-      new THREE.Vector2(51.594, -20.419),
-      new THREE.Vector2(39.932, -23.053),
-      new THREE.Vector2(34.854, -27.586),
-      new THREE.Vector2(34.578, -37.863),
-      new THREE.Vector2(32.643, -48.31),
-      new THREE.Vector2(33.145, -64.481),
-      new THREE.Vector2(37.96, -83.969),
+      new THREE.Vector2(112, 9.548),
+      new THREE.Vector2(50.377, 3.005),
+      new THREE.Vector2(41.511, -16.068),
+      new THREE.Vector2(36.279, -28.779),
+      new THREE.Vector2(36.382, -40.264),
+      new THREE.Vector2(26.553, -57.518),
+      new THREE.Vector2(16.536, -84.802),
+      new THREE.Vector2(13.938, -133.246),
     ]);
 
     // Sound
     this.diloWalkAudio;
     this.diloRoar2Audio;
+    this.diloRoar2AudioPlayed = false;
 
     // Start tour listener
     this.el.addEventListener(
@@ -33,9 +35,6 @@ AFRAME.registerComponent('dilo-animation', {
         this.diloWalkAudio = this.el.components['sound__dilowalk'];
         this.diloRoar2Audio = this.el.components['sound__diloroar2'];
         this.diloWalkAudio.playSound();
-        setTimeout(() => {
-          this.diloRoar2Audio.playSound();
-        }, 5000);
 
         this.el.setAttribute('animation-mixer', {
           clip: 'CINEMA_4D_Main',
@@ -48,6 +47,14 @@ AFRAME.registerComponent('dilo-animation', {
   },
   // --- Phase functions ---
   start: function () {
+    if (
+      this.system.truncMarker(this.diloMarker) > 500 &&
+      !this.diloRoar2AudioPlayed
+    ) {
+      this.diloRoar2AudioPlayed = true;
+      this.diloRoar2Audio.playSound();
+      return;
+    }
     if (this.system.truncMarker(this.diloMarker) > 900) {
       this.phase = 'stop';
       this.diloWalkAudio.stopSound();

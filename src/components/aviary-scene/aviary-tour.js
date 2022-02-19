@@ -44,7 +44,7 @@ AFRAME.registerComponent('aviary-car-tour', {
         this.voicePhase = 'aviary1';
         setTimeout(() => {
           this.phase = 'start';
-        }, 10000);
+        }, 20000);
       },
       false
     );

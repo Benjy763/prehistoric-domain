@@ -93,10 +93,7 @@ AFRAME.registerComponent('raptor-car-tour', {
     this.phase = 'finish';
   },
   finish: function () {
-    if (
-      this.system.truncMarker(this.carControls.carMarker) >
-      this.carControls.maxDistance
-    ) {
+    if (this.system.truncMarker(this.carControls.carMarker) > 850) {
       this.phase = 'changeScene';
     }
   },
