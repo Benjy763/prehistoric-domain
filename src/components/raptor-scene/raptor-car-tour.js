@@ -29,7 +29,7 @@ AFRAME.registerComponent('raptor-car-tour', {
       // Get car reference
       this.carControls = this.system.carReference;
       // Init tour path for the car
-      this.carControls.initParams(curve, 620);
+      this.carControls.initParams(curve, 590);
     });
 
     // Start tour listeners
@@ -93,7 +93,10 @@ AFRAME.registerComponent('raptor-car-tour', {
     this.phase = 'finish';
   },
   finish: function () {
-    if (this.system.truncMarker(this.carControls.carMarker) > 850) {
+    if (
+      this.system.truncMarker(this.carControls.carMarker) >
+      this.carControls.maxDistance
+    ) {
       this.phase = 'changeScene';
     }
   },

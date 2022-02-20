@@ -138,7 +138,7 @@ AFRAME.registerComponent('trice-animation', {
         clip: 'Triceratops_Walk_InPlace',
         timeScale: 1,
       });
-      this.triceSpeed = 0.002;
+      this.triceSpeed = 0.0018;
       this.phase = 'run2';
     }, 3500);
     this.roar2Audio.playSound();
