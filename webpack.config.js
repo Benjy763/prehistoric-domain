@@ -15,12 +15,13 @@ PLUGINS = [
       <head>
         <meta charset="UTF-8" />
         <title>Prehistoric Domain</title>
+        <script src="./build/vendors/aframe/aframe-v1.3.0.min.js"></script>
         <style type="text/css">
           @font-face {
             font-family: 'Exo';
             src: url('./build/font/Exo-Regular.ttf') format('truetype');
           }
-    </style>
+        </style>
       </head>
       <body>
         <div id="app"></div>

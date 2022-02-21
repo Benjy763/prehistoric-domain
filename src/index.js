@@ -7,7 +7,6 @@ function requireAll(req) {
 }
 
 // Require libs
-require('aframe');
 require('aframe-extras');
 require('aframe-curve-component');
 // require('aframe-fps-counter-component');
