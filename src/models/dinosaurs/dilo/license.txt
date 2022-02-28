@@ -1,0 +1,8 @@
+Model Information:
+* title:	Low Poly Dilophosaurus + Animated walk cycle
+* source:	https://sketchfab.com/3d-models/low-poly-dilophosaurus-animated-walk-cycle-2f8a8f09cf5d4bddb1afd52f424a2698
+* author:	WobblyG (https://sketchfab.com/WobblyG)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

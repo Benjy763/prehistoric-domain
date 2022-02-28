@@ -41,7 +41,9 @@ AFRAME.registerComponent('lagoon-car-tour', {
 
         this.voiceLagoon1Sound = this.system.getVoice('lagoon1');
         this.voicePhase = 'lagoon1';
-        this.phase = 'start';
+        setTimeout(() => {
+          this.phase = 'start';
+        }, 10000);
       },
       false
     );

@@ -4,7 +4,9 @@ AFRAME.registerComponent('dilo-car-tour', {
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
 
     this.system = document.querySelector('a-scene').systems['game'];
-    this.gate = document.querySelector('#dilo');
+    this.dilo = document.querySelector('#dilo');
+    this.diloEventDispatched = false;
+
     this.carControls;
 
     this.screenDefault = document.getElementById('dilo-screen-default');
@@ -62,7 +64,15 @@ AFRAME.registerComponent('dilo-car-tour', {
       this.diloRoarPlaying = true;
       this.diloRoar.components['sound__diloroar'].playSound();
     }
-    if (this.system.truncMarker(this.carControls.carMarker) > 800) {
+    if (
+      this.system.truncMarker(this.carControls.carMarker) > 600 &&
+      !this.diloEventDispatched
+    ) {
+      this.diloEventDispatched = true;
+      const event = new Event('enter');
+      this.dilo.dispatchEvent(event);
+    }
+    if (this.system.truncMarker(this.carControls.carMarker) > 830) {
       this.phase = 'stop';
     }
   },

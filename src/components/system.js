@@ -4,8 +4,7 @@
   Also there are utility functions that help making scenes (ex move object on curves, logs...)
 */
 
-import { MainScene, Scenes } from './scenes.config';
-
+import { Scenes } from './scenes.config';
 import { debug } from './debug.const';
 import { languages } from './languages.config';
 
@@ -383,14 +382,12 @@ AFRAME.registerSystem('game', {
     this.toggle('performance', true);
 
     perfEl.onclick = () => {
-      console.log('perf');
       perfEl.style.borderColor = '#ec652b';
       qualityEl.style.borderColor = '#fff';
 
       this.toggle('performance', false);
     };
     qualityEl.onclick = () => {
-      console.log('quality');
       qualityEl.style.borderColor = '#ec652b';
       perfEl.style.borderColor = '#fff';
 

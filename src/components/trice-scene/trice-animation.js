@@ -11,8 +11,10 @@ AFRAME.registerComponent('trice-animation', {
     this.triceMarker = 0; // Position on the curve
     this.triceSpeed = 0.28; // Speed on the curve
     this.curve = new THREE.SplineCurve([
-      new THREE.Vector2(72.068, -94.573),
-      new THREE.Vector2(7.785, -94.573),
+      new THREE.Vector2(17.468, -94.573),
+      new THREE.Vector2(8.061, -94.573),
+      new THREE.Vector2(-3.514, -99.403),
+      new THREE.Vector2(-30, -130),
     ]);
 
     // Car shaking
@@ -30,6 +32,7 @@ AFRAME.registerComponent('trice-animation', {
     this.roar1Audio;
     this.roar2Audio;
     this.runAudio;
+    this.walkAudio;
 
     // Start tour listener
     this.el.addEventListener(
@@ -40,6 +43,7 @@ AFRAME.registerComponent('trice-animation', {
         this.roar1Audio = this.el.components['sound__roar1'];
         this.roar2Audio = this.el.components['sound__roar2'];
         this.runAudio = this.el.components['sound__run'];
+        this.walkAudio = this.el.components['sound__walk'];
         this.phase = 'enter';
       },
       false
@@ -72,7 +76,7 @@ AFRAME.registerComponent('trice-animation', {
       this.runAudio.playSound();
       this.el.setAttribute('animation-mixer', {
         clip: 'Triceratops_Aggressive_Run_InPlace',
-        timeScale: 1,
+        timeScale: 0.9,
       });
       this.phase = 'run';
     }, 4000);
@@ -129,20 +133,34 @@ AFRAME.registerComponent('trice-animation', {
       timeScale: 1,
     });
     setTimeout(() => {
-      this.runAudio.playSound();
+      this.walkAudio.playSound();
       this.el.setAttribute('animation-mixer', {
-        clip: 'Triceratops_Aggressive_Run_InPlace',
+        clip: 'Triceratops_Walk_InPlace',
         timeScale: 1,
       });
+      this.triceSpeed = 0.0018;
       this.phase = 'run2';
     }, 3500);
     this.roar2Audio.playSound();
   },
   run2: function () {
-    if (this.object.position.x < -70) {
-      this.runAudio.stopSound();
+    if (this.system.truncMarker(this.triceMarker) > 900) {
+      this.walkAudio.stopSound();
       this.phase = 'end';
     }
+    this.triceMarker = this.system.moveOnCurve(
+      this.object,
+      this.curve,
+      this.triceMarker,
+      this.triceSpeed
+    );
+    this.system.updateRotation(
+      this.el,
+      this.object,
+      this.curve,
+      this.triceMarker,
+      this.triceSpeed
+    );
     this.object.position.x -= this.triceSpeed;
   },
   shaking: function () {
