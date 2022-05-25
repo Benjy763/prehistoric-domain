@@ -109,6 +109,9 @@ AFRAME.registerComponent('aviary-car-tour', {
     }, 3000);
   },
   tick: function () {
+    // Walk bound checking
+    this.system.checkBoundLimits();
+
     // Voice phases
     switch (this.voicePhase) {
       case 'aviary1':

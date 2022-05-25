@@ -35,6 +35,7 @@ AFRAME.registerSystem('game', {
     this.actuelScene = this.firstScene;
     this.tourStarted = false;
     this.vr = false;
+    this.isWalkEnabled = null;
 
     const userAgentDataPlatform = window.navigator.userAgentData
       ? SupportedPlatform.includes(window.navigator.userAgentData.platform)
@@ -178,7 +179,7 @@ AFRAME.registerSystem('game', {
     if (!render) {
       return;
     }
-    this.renderingScene(sceneId);
+    this.renderingScene();
   },
   loadingAssets: function () {
     // Load asset
@@ -211,10 +212,10 @@ AFRAME.registerSystem('game', {
       }
     });
   },
-  renderingScene: function (sceneId) {
+  renderingScene: function () {
     this.loading();
     // Select car to launch event
-    const car = document.getElementById(this.scenes[sceneId].car);
+    const car = document.getElementById(this.scenes[this.actuelScene].car);
     if (!car) {
       return;
     }
@@ -234,11 +235,16 @@ AFRAME.registerSystem('game', {
         mainScene.setAttribute('background', {
           color: this.scenes.color,
         });
+        // Set main scene fog
         mainScene.setAttribute('fog', {
           type: 'exponential',
           color: this.scenes.color,
           density: this.scenes.density,
         });
+        // Set main scene ability to walk
+        if (!!this.scenes.canWalk) {
+          this.enableWalk();
+        }
         this.loading(false);
       }, 6000);
     }, 4000);
@@ -276,6 +282,84 @@ AFRAME.registerSystem('game', {
     document
       .querySelector('#log')
       .setAttribute('text', { value: text, color: 'white', width: 0.5 });
+  },
+  // ----- Movement functions --------
+  checkBoundLimits() {
+    if (this.isWalkEnabled === null) {
+      return;
+    }
+    const position = this.getCameraPosition();
+    if (position.x < this.scenes.walkBounds.x[0]) {
+      this.setCameraPosition({
+        ...position,
+        x: this.scenes.walkBounds.x[0],
+      });
+    } else if (position.x > this.scenes.walkBounds.x[1]) {
+      this.setCameraPosition({
+        ...position,
+        x: this.scenes.walkBounds.x[1],
+      });
+    } else if (position.z < this.scenes.walkBounds.z[0]) {
+      this.setCameraPosition({
+        ...position,
+        z: this.scenes.walkBounds.z[0],
+      });
+    } else if (position.z > this.scenes.walkBounds.z[1]) {
+      this.setCameraPosition({
+        ...position,
+        z: this.scenes.walkBounds.z[1],
+      });
+    }
+  },
+  enableWalk() {
+    if (this.isWalkEnabled === true) {
+      return;
+    } else {
+      this.isWalkEnabled = true;
+    }
+
+    const car = document.getElementById(this.scenes[this.actuelScene].car);
+    car
+      .querySelector('#' + this.scenes[this.actuelScene].camera)
+      .setAttribute('wasd-controls', {
+        acceleration: 10,
+        enabled: true,
+      });
+  },
+  disableWalk() {
+    if (this.isWalkEnabled === false) {
+      return;
+    } else {
+      this.isWalkEnabled = false;
+    }
+
+    const car = document.getElementById(this.scenes[this.actuelScene].car);
+    car
+      .querySelector('#' + this.scenes[this.actuelScene].camera)
+      .setAttribute('wasd-controls', {
+        acceleration: 10,
+        enabled: false,
+      });
+  },
+  getCameraPosition() {
+    return document.querySelector('#' + this.scenes[this.actuelScene].camera)
+      .object3D.position;
+  },
+  setCameraPosition(position) {
+    const cameraPosition = this.getCameraPosition();
+    console.log(position.x, position.z);
+    cameraPosition.x = position.x;
+    cameraPosition.z = position.z;
+  },
+  getRigPosition() {
+    return document
+      .querySelector('#' + this.scenes[this.actuelScene].car + ' #rig')
+      .getAttribute('position');
+  },
+  setRigPosition(position) {
+    document
+      .querySelector('#' + this.scenes[this.actuelScene].car + ' #rig')
+      .setAttribute('position', position);
   },
   // ----- Curve functions --------
   // Move an object on the given curve according to given speed
@@ -340,34 +424,28 @@ AFRAME.registerSystem('game', {
 
     // Fix rig height
     if (!loading) {
-      document
-        .querySelector('#' + this.scenes[this.actuelScene].car + ' #rig')
-        .setAttribute('position', {
-          x: -0.38,
-          y: 0.75,
-          z: 0.5,
-        });
+      this.setRigPosition({
+        x: -0.38,
+        y: 0.75,
+        z: 0.5,
+      });
       if (!this.vr) {
-        document
-          .querySelector('#' + this.scenes[this.actuelScene].car + ' #rig')
-          .setAttribute('position', {
-            x: -0.38,
-            y: 0.4,
-            z: 0.54,
-          });
+        this.setRigPosition({
+          x: -0.38,
+          y: 0.4,
+          z: 0.54,
+        });
       }
       return;
     }
     document
       .querySelector('#' + this.scenes[this.actuelScene].car + ' #loading-logo')
       .setAttribute('visible', true);
-    document
-      .querySelector('#' + this.scenes[this.actuelScene].car + ' #rig')
-      .setAttribute('position', {
-        x: -0.38,
-        y: -80,
-        z: 0.34,
-      });
+    this.setRigPosition({
+      x: -0.38,
+      y: -80,
+      z: 0.34,
+    });
   },
   // ----- Performances functions --------
   initPerformances: function () {
