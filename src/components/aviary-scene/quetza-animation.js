@@ -55,7 +55,10 @@ AFRAME.registerComponent('quetza-animation', {
         this.quetzaRoar1Audio = this.el.components['sound__roar1'];
         this.quetzaRoar2Audio = this.el.components['sound__roar2'];
 
-        this.el.setAttribute('animation-mixer', 'clip: Walk');
+        this.el.setAttribute('animation-mixer', {
+          clip: 'Walk',
+          crossFadeDuration: 0.4,
+        });
 
         this.quetzaAmbiant1Audio.playSound();
         setTimeout(() => {

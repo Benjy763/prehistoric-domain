@@ -81,6 +81,7 @@ AFRAME.registerComponent('trex-animation', {
         this.el.setAttribute('animation-mixer', {
           clip: 'T_Rex_Walk_InPlace',
           timeScale: 1,
+          crossFadeDuration: 0.4,
         });
         this.phase = 'trexEnter';
       };
@@ -94,6 +95,7 @@ AFRAME.registerComponent('trex-animation', {
       this.el.setAttribute('animation-mixer', {
         clip: 'T_Rex_Walk_InPlace',
         timeScale: 0.6,
+        crossFadeDuration: 0.4,
       });
     }
     if (this.system.truncMarker(this.trexMarker) > 960) {
@@ -103,6 +105,7 @@ AFRAME.registerComponent('trex-animation', {
       this.el.setAttribute('animation-mixer', {
         clip: 'T_Rex_Drink',
         timeScale: 1,
+        crossFadeDuration: 0.2,
       });
       this.trexDrinkAudio.playSound();
       this.phase = 'trexDrink';
@@ -134,6 +137,7 @@ AFRAME.registerComponent('trex-animation', {
       this.el.setAttribute('animation-mixer', {
         clip: 'T_Rex_Idle_Roar2',
         timeScale: 0.8,
+        crossFadeDuration: 0.2,
       });
       this.phase = 'trexRoar';
     }, 8000);
@@ -144,6 +148,7 @@ AFRAME.registerComponent('trex-animation', {
       this.el.setAttribute('animation-mixer', {
         clip: 'T_Rex_Drink',
         timeScale: 0.6,
+        crossFadeDuration: 0.2,
       });
       setTimeout(() => {
         this.trexDrinkEndAudio.playSound();
