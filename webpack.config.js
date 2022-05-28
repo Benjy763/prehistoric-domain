@@ -19,7 +19,7 @@ PLUGINS = [
         <style type="text/css">
           @font-face {
             font-family: 'Exo';
-            src: url('./build/font/Exo-Regular.ttf') format('truetype');
+            src: url('./build/assets/font/Exo-Regular.ttf') format('truetype');
           }
         </style>
       </head>
@@ -32,10 +32,10 @@ PLUGINS = [
   new webpack.EnvironmentPlugin(['NODE_ENV']),
   new webpack.HotModuleReplacementPlugin(),
   new CopyPlugin([
-    { from: './src/models', to: 'build/models' },
-    { from: './src/images', to: 'build/images' },
-    { from: './src/sounds', to: 'build/sounds' },
-    { from: './src/font', to: 'build/font' },
+    { from: './src/assets/models', to: 'build/assets/models' },
+    { from: './src/assets/images', to: 'build/assets/images' },
+    { from: './src/assets/sounds', to: 'build/assets/sounds' },
+    { from: './src/assets/font', to: 'build/assets/font' },
     { from: './src/vendors', to: 'build/vendors' },
   ]),
 ];

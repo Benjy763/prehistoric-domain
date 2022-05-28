@@ -1,4 +1,4 @@
-export const MainScene = 'tour';
+export const MainScene = 'aviary';
 
 export const TourScenes = {
   // Starting scene

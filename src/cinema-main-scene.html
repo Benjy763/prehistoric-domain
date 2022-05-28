@@ -1,7 +1,7 @@
 <div id="static-loading">
-  <img id="loader-logo" style="display: block" class="loader-logo" src="./build/images/cinema-illu.jpg" />
+  <img id="loader-logo" style="display: block" class="loader-logo" src="./build/assets/images/cinema-illu.jpg" />
   <div id="loading-infos">CINEMA<br /><span class="progress-label">0%</span></div>
-  <img id="loading-logo" src="./build/images/loading.gif" />
+  <img id="loading-logo" src="./build/assets/images/loading.gif" />
   <div id="menu-wrapper">
     <!-- <div class="menu">
       <a id="perf" class="buttons-item" href="#">performance</a>
@@ -25,7 +25,7 @@
   </div>
   <div id="main-icon" style="display: none">
     <a href="https://www.prehistoricdomain.com/map">
-      <img id="loader-logo" class="loader-logo" src="./build/images/prehistoric-domain-main-logo.png" />
+      <img id="loader-logo" class="loader-logo" src="./build/assets/images/prehistoric-domain-main-logo.png" />
     </a>
   </div>
   <div class="scene-border-inner">
@@ -38,23 +38,23 @@
 
         <!-- Loading scene -->
         <a-entity id="loading-scene">
-          <require path="templates/loading.html"></require>
+          <require path="components/loading.html"></require>
         </a-entity>
         <a-entity id="ending-scene" visible="false">
-          <require path="templates/ending.html"></require>
+          <require path="components/ending.html"></require>
         </a-entity>
 
         <a-entity id="cinema-scene" visible="false">
           <!-- Ground environement -->
-          <require path="templates/cinema-scene/ground.html"></require>
+          <require path="components/cinema-scene/cinema-ground.html"></require>
           <!-- Lightning -->
-          <require path="templates/cinema-scene/lightning.html"></require>
+          <require path="components/cinema-scene/cinema-lightning.html"></require>
           <!-- Dinosaurs -->
-          <require path="templates/cinema-scene/dinosaurs.html"></require>
+          <require path="components/cinema-scene/cinema-dinosaurs.html"></require>
           <!-- Environment -->
-          <require path="templates/cinema-scene/environment.html"></require>
+          <require path="components/cinema-scene/cinema-environment.html"></require>
           <!-- Objects -->
-          <require path="templates/cinema-scene/car.html"></require>
+          <require path="components/cinema-scene/cinema-car.html"></require>
         </a-entity>
     </div>
   </div>
