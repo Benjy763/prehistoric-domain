@@ -58,6 +58,11 @@ export const AviaryScenes = {
   carMarkerForDebug: 0.32,
   color: '#5e5e5e',
   density: 0.065,
+  canWalk: true,
+  walkBounds: {
+    x: [-1.54, 2.024],
+    z: [-0.82, 2.35],
+  },
   loading: {
     scene: 'loading-scene',
     camera: 'loading-scene-camera',

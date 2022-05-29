@@ -3,7 +3,7 @@ AFRAME.registerComponent('cinema-car-tour', {
     this.scene = 'cinema';
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
 
-    this.system = document.querySelector('a-scene').systems['game'];
+    this.system = document.querySelector('a-scene').systems['system'];
 
     // Sounds
     this.ambiant1Sound;

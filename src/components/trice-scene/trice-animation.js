@@ -4,7 +4,9 @@ AFRAME.registerComponent('trice-animation', {
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
     // Objects shortcut
     this.object = this.el.object3D;
-    this.system = document.querySelector('a-scene').systems['game'];
+    this.system = document.querySelector('a-scene').systems['system'];
+    this.movesManager =
+      document.querySelector('a-scene').systems['movesManager'];
     this.car = document.querySelector('#trice-car');
     this.phase = '';
     // trex run Path
@@ -144,17 +146,17 @@ AFRAME.registerComponent('trice-animation', {
     this.roar2Audio.playSound();
   },
   run2: function () {
-    if (this.system.truncMarker(this.triceMarker) > 900) {
+    if (this.movesManager.truncMarker(this.triceMarker) > 900) {
       this.walkAudio.stopSound();
       this.phase = 'end';
     }
-    this.triceMarker = this.system.moveOnCurve(
+    this.triceMarker = this.movesManager.moveOnCurve(
       this.object,
       this.curve,
       this.triceMarker,
       this.triceSpeed
     );
-    this.system.updateRotation(
+    this.movesManager.updateRotation(
       this.el,
       this.object,
       this.curve,

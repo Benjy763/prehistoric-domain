@@ -3,7 +3,9 @@ AFRAME.registerComponent('dilo-car-tour', {
     this.scene = 'dilo';
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
 
-    this.system = document.querySelector('a-scene').systems['game'];
+    this.system = document.querySelector('a-scene').systems['system'];
+    this.movesManager =
+      document.querySelector('a-scene').systems['movesManager'];
     this.dilo = document.querySelector('#dilo');
     this.diloEventDispatched = false;
 
@@ -58,21 +60,21 @@ AFRAME.registerComponent('dilo-car-tour', {
   // --- Phase functions ---
   start: function () {
     if (
-      this.system.truncMarker(this.carControls.carMarker) > 350 &&
+      this.movesManager.truncMarker(this.carControls.carMarker) > 350 &&
       !this.diloRoarPlaying
     ) {
       this.diloRoarPlaying = true;
       this.diloRoar.components['sound__diloroar'].playSound();
     }
     if (
-      this.system.truncMarker(this.carControls.carMarker) > 600 &&
+      this.movesManager.truncMarker(this.carControls.carMarker) > 600 &&
       !this.diloEventDispatched
     ) {
       this.diloEventDispatched = true;
       const event = new Event('enter');
       this.dilo.dispatchEvent(event);
     }
-    if (this.system.truncMarker(this.carControls.carMarker) > 830) {
+    if (this.movesManager.truncMarker(this.carControls.carMarker) > 830) {
       this.phase = 'stop';
     }
   },
@@ -86,7 +88,7 @@ AFRAME.registerComponent('dilo-car-tour', {
     // Screen phases
     switch (this.screenPhase) {
       case 'dilo':
-        if (this.system.truncMarker(this.carControls.carMarker) > 0) {
+        if (this.movesManager.truncMarker(this.carControls.carMarker) > 0) {
           this.screenDefault.setAttribute('visible', 'false');
           this.screenDilo.setAttribute('visible', 'true');
           this.screenPhase = 'default';
@@ -99,7 +101,7 @@ AFRAME.registerComponent('dilo-car-tour', {
     }
     // Voice
     if (
-      this.system.truncMarker(this.carControls.carMarker) > 50 &&
+      this.movesManager.truncMarker(this.carControls.carMarker) > 50 &&
       !this.voiceDiloSoundPlaying
     ) {
       this.voiceDiloSound.play();

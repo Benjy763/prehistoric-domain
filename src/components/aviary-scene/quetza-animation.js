@@ -5,7 +5,9 @@ AFRAME.registerComponent('quetza-animation', {
 
     // Objects shortcut
     this.object = this.el.object3D;
-    this.system = document.querySelector('a-scene').systems['game'];
+    this.system = document.querySelector('a-scene').systems['system'];
+    this.movesManager =
+      document.querySelector('a-scene').systems['movesManager'];
     this.car = document.querySelector('#aviary-car');
     this.mainScene = document.getElementById('main-scene');
     this.phase = '';
@@ -87,7 +89,7 @@ AFRAME.registerComponent('quetza-animation', {
   },
   // --- Phase functions ---
   enterWalk: function () {
-    if (this.system.truncMarker(this.quetzaMarker) > 900) {
+    if (this.movesManager.truncMarker(this.quetzaMarker) > 900) {
       this.el.setAttribute('animation-mixer', {
         clip: 'Roar',
         timeScale: 0.5,
@@ -95,13 +97,13 @@ AFRAME.registerComponent('quetza-animation', {
       this.quetzaRoar1Audio.playSound();
       this.phase = 'roar';
     }
-    this.quetzaMarker = this.system.moveOnCurve(
+    this.quetzaMarker = this.movesManager.moveOnCurve(
       this.object,
       this.walkCurve,
       this.quetzaMarker,
       this.quetzaWalkSpeed
     );
-    this.system.updateRotation(
+    this.movesManager.updateRotation(
       this.el,
       this.object,
       this.walkCurve,
@@ -160,27 +162,27 @@ AFRAME.registerComponent('quetza-animation', {
     });
   },
   enterFly: function () {
-    if (this.system.truncMarker(this.quetzaMarker) > 900) {
+    if (this.movesManager.truncMarker(this.quetzaMarker) > 900) {
       const event = new Event('restartQuetzaFly');
       this.car.dispatchEvent(event);
       this.phase = 'exit';
     }
 
     if (
-      this.system.truncMarker(this.quetzaMarker) > 500 &&
-      this.system.truncMarker(this.quetzaMarker) < 510
+      this.movesManager.truncMarker(this.quetzaMarker) > 500 &&
+      this.movesManager.truncMarker(this.quetzaMarker) < 510
     ) {
       this.isShaking = true;
     }
 
-    this.quetzaMarker = this.system.moveOnCurve(
+    this.quetzaMarker = this.movesManager.moveOnCurve(
       this.object,
       this.flyCurve,
       this.quetzaMarker,
       this.quetzaFlySpeed,
       'yz'
     );
-    this.system.updateRotation(
+    this.movesManager.updateRotation(
       this.el,
       this.object,
       this.flyCurve,

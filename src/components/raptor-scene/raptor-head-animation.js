@@ -4,7 +4,7 @@ AFRAME.registerComponent('raptor-head-animation', {
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
     // Objects shortcut
     this.object = this.el.object3D;
-    this.system = document.querySelector('a-scene').systems['game'];
+    this.system = document.querySelector('a-scene').systems['system'];
     this.car = document.querySelector('#raptor-car');
     this.phase = '';
     this.rotation;

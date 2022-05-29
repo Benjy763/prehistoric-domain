@@ -3,7 +3,7 @@ AFRAME.registerComponent('lagoon-car-tour', {
     this.scene = 'aviary';
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
 
-    this.system = document.querySelector('a-scene').systems['game'];
+    this.system = document.querySelector('a-scene').systems['system'];
     this.meg = document.querySelector('#meg');
 
     // Sounds

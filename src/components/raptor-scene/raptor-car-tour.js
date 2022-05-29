@@ -3,7 +3,9 @@ AFRAME.registerComponent('raptor-car-tour', {
     this.scene = 'raptor';
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
 
-    this.system = document.querySelector('a-scene').systems['game'];
+    this.system = document.querySelector('a-scene').systems['system'];
+    this.movesManager =
+      document.querySelector('a-scene').systems['movesManager'];
     this.raptor = document.querySelector('#raptor');
     this.ambiantLight = document.querySelector('#raptor-ambiant-light');
     this.ambiantLightIntensity = 1;
@@ -55,7 +57,7 @@ AFRAME.registerComponent('raptor-car-tour', {
   },
   // --- Phase functions ---
   start: function () {
-    if (this.system.truncMarker(this.carControls.carMarker) > 340) {
+    if (this.movesManager.truncMarker(this.carControls.carMarker) > 340) {
       this.carControls.changeDrivingState('stopping');
       this.phase = 'exit';
       setTimeout(() => {
@@ -94,7 +96,7 @@ AFRAME.registerComponent('raptor-car-tour', {
   },
   finish: function () {
     if (
-      this.system.truncMarker(this.carControls.carMarker) >
+      this.movesManager.truncMarker(this.carControls.carMarker) >
       this.carControls.maxDistance
     ) {
       this.phase = 'changeScene';
@@ -107,7 +109,7 @@ AFRAME.registerComponent('raptor-car-tour', {
     // Screen phases
     switch (this.screenPhase) {
       case 'raptor':
-        if (this.system.truncMarker(this.carControls.carMarker) > 0) {
+        if (this.movesManager.truncMarker(this.carControls.carMarker) > 0) {
           this.screenDefault.setAttribute('visible', 'false');
           this.screenRaptor.setAttribute('visible', 'true');
           this.screenPhase = 'default';
@@ -120,7 +122,7 @@ AFRAME.registerComponent('raptor-car-tour', {
     }
     // Voice
     if (
-      this.system.truncMarker(this.carControls.carMarker) > 50 &&
+      this.movesManager.truncMarker(this.carControls.carMarker) > 50 &&
       !this.voiceRaptorSoundPlaying
     ) {
       this.voiceRaptorSound.play();

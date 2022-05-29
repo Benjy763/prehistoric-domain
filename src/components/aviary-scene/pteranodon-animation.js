@@ -5,7 +5,9 @@ AFRAME.registerComponent('pteranodon-animation', {
 
     // Objects shortcut
     this.object = this.el.object3D;
-    this.system = document.querySelector('a-scene').systems['game'];
+    this.system = document.querySelector('a-scene').systems['system'];
+    this.movesManager =
+      document.querySelector('a-scene').systems['movesManager'];
     this.car = document.querySelector('#aviary-car');
     this.phase = '';
 
@@ -37,12 +39,12 @@ AFRAME.registerComponent('pteranodon-animation', {
   },
   // --- Phase functions ---
   enter: function () {
-    if (this.system.truncMarker(this.pteraMarker) > 800) {
+    if (this.movesManager.truncMarker(this.pteraMarker) > 800) {
       const event = new Event('restartPtera');
       this.car.dispatchEvent(event);
       this.phase = 'finish';
     }
-    this.pteraMarker = this.system.moveOnCurve(
+    this.pteraMarker = this.movesManager.moveOnCurve(
       this.object,
       this.curve,
       this.pteraMarker,

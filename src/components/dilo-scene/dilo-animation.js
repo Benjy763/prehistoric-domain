@@ -4,7 +4,9 @@ AFRAME.registerComponent('dilo-animation', {
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
     // Objects shortcut
     this.object = this.el.object3D;
-    this.system = document.querySelector('a-scene').systems['game'];
+    this.system = document.querySelector('a-scene').systems['system'];
+    this.movesManager =
+      document.querySelector('a-scene').systems['movesManager'];
     this.phase = '';
     this.car = document.querySelector('#dilo-car');
 
@@ -48,25 +50,25 @@ AFRAME.registerComponent('dilo-animation', {
   // --- Phase functions ---
   start: function () {
     if (
-      this.system.truncMarker(this.diloMarker) > 500 &&
+      this.movesManager.truncMarker(this.diloMarker) > 500 &&
       !this.diloRoar2AudioPlayed
     ) {
       this.diloRoar2AudioPlayed = true;
       this.diloRoar2Audio.playSound();
       return;
     }
-    if (this.system.truncMarker(this.diloMarker) > 900) {
+    if (this.movesManager.truncMarker(this.diloMarker) > 900) {
       this.phase = 'stop';
       this.diloWalkAudio.stopSound();
       return;
     }
-    this.diloMarker = this.system.moveOnCurve(
+    this.diloMarker = this.movesManager.moveOnCurve(
       this.object,
       this.curve,
       this.diloMarker,
       this.diloSpeed
     );
-    this.system.updateRotation(
+    this.movesManager.updateRotation(
       this.el,
       this.object,
       this.curve,

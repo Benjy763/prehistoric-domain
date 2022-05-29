@@ -3,7 +3,12 @@ AFRAME.registerComponent('aviary-car-tour', {
     this.scene = 'aviary';
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
 
-    this.system = document.querySelector('a-scene').systems['game'];
+    this.system = document.querySelector('a-scene').systems['system'];
+    this.cameraPosition = document.querySelector(
+      '#' + this.system.getActualSceneObject().camera
+    ).object3D.position;
+    this.movesManager =
+      document.querySelector('a-scene').systems['movesManager'];
     this.ptera = document.querySelector('#pteranodon');
     this.quetza = document.querySelector('#quetza');
 
@@ -110,7 +115,7 @@ AFRAME.registerComponent('aviary-car-tour', {
   },
   tick: function () {
     // Walk bound checking
-    this.system.checkBoundLimits();
+    this.movesManager.checkBoundLimits(this.cameraPosition);
 
     // Voice phases
     switch (this.voicePhase) {

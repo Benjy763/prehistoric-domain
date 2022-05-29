@@ -3,7 +3,9 @@ AFRAME.registerComponent('trice-car-tour', {
     this.scene = 'trice';
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
 
-    this.system = document.querySelector('a-scene').systems['game'];
+    this.system = document.querySelector('a-scene').systems['system'];
+    this.movesManager =
+      document.querySelector('a-scene').systems['movesManager'];
     this.gate = document.querySelector('#trice-gate-back');
     this.trice = document.querySelector('#trice');
     this.carAlarmSound = document.getElementById('car-alarm-sound');
@@ -69,14 +71,14 @@ AFRAME.registerComponent('trice-car-tour', {
   // --- Phase functions ---
   gateSounds: function () {
     if (
-      this.system.truncMarker(this.carControls.carMarker) > 650 &&
+      this.movesManager.truncMarker(this.carControls.carMarker) > 650 &&
       this.gateSoundPhase === 'open'
     ) {
       this.gateSound.components['sound__gateopen'].playSound();
       this.gateSoundPhase = 'close';
     }
     if (
-      this.system.truncMarker(this.carControls.carMarker) > 745 &&
+      this.movesManager.truncMarker(this.carControls.carMarker) > 745 &&
       this.gateSoundPhase === 'close'
     ) {
       this.gateSound.components['sound__gateclose'].playSound();
@@ -84,7 +86,7 @@ AFRAME.registerComponent('trice-car-tour', {
     }
   },
   start: function () {
-    if (this.system.truncMarker(this.carControls.carMarker) > 310) {
+    if (this.movesManager.truncMarker(this.carControls.carMarker) > 310) {
       this.phase = 'stop';
     }
   },
@@ -109,8 +111,8 @@ AFRAME.registerComponent('trice-car-tour', {
   finish: function () {
     const bigDoorPosition = this.bigDoor.getAttribute('position');
     if (
-      this.system.truncMarker(this.carControls.carMarker) > 660 &&
-      this.system.truncMarker(this.carControls.carMarker) < 750 &&
+      this.movesManager.truncMarker(this.carControls.carMarker) > 660 &&
+      this.movesManager.truncMarker(this.carControls.carMarker) < 750 &&
       bigDoorPosition.y < 20
     ) {
       bigDoorPosition.y += 0.04;
@@ -118,14 +120,14 @@ AFRAME.registerComponent('trice-car-tour', {
     }
 
     if (
-      this.system.truncMarker(this.carControls.carMarker) > 750 &&
+      this.movesManager.truncMarker(this.carControls.carMarker) > 750 &&
       bigDoorPosition.y > 10
     ) {
       bigDoorPosition.y -= 0.04;
       this.bigDoor.setAttribute('position', bigDoorPosition);
     }
 
-    if (this.system.truncMarker(this.carControls.carMarker) > 850) {
+    if (this.movesManager.truncMarker(this.carControls.carMarker) > 850) {
       this.carControls.changeDrivingState('stopping');
       if (this.carControls.carSpeed <= 0) {
         this.phase = 'changeScene';
@@ -139,14 +141,14 @@ AFRAME.registerComponent('trice-car-tour', {
     // Screen phases
     switch (this.screenPhase) {
       case 'galli':
-        if (this.system.truncMarker(this.carControls.carMarker) > 0) {
+        if (this.movesManager.truncMarker(this.carControls.carMarker) > 0) {
           this.screenDefault.setAttribute('visible', 'false');
           this.screenGalli.setAttribute('visible', 'true');
           this.screenPhase = 'trice';
         }
         break;
       case 'trice':
-        if (this.system.truncMarker(this.carControls.carMarker) > 200) {
+        if (this.movesManager.truncMarker(this.carControls.carMarker) > 200) {
           this.screenGalli.setAttribute('visible', 'false');
           this.screenTrice.setAttribute('visible', 'true');
           this.screenPhase = 'other';
@@ -166,13 +168,13 @@ AFRAME.registerComponent('trice-car-tour', {
     // Voice phases
     switch (this.voicePhase) {
       case 'trice1':
-        if (this.system.truncMarker(this.carControls.carMarker) > 30) {
+        if (this.movesManager.truncMarker(this.carControls.carMarker) > 30) {
           this.voiceTrice1Sound.play();
           this.voicePhase = 'trice2';
         }
         break;
       case 'trice2':
-        if (this.system.truncMarker(this.carControls.carMarker) > 550) {
+        if (this.movesManager.truncMarker(this.carControls.carMarker) > 550) {
           this.voiceTrice2Sound.play();
           this.voicePhase = 'end';
         }

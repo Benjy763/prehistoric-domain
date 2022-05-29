@@ -4,7 +4,9 @@ AFRAME.registerComponent('raptor-animation', {
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
     // Objects shortcut
     this.object = this.el.object3D;
-    this.system = document.querySelector('a-scene').systems['game'];
+    this.system = document.querySelector('a-scene').systems['system'];
+    this.movesManager =
+      document.querySelector('a-scene').systems['movesManager'];
     this.phase = '';
     this.car = document.querySelector('#raptor-car');
 
@@ -54,14 +56,14 @@ AFRAME.registerComponent('raptor-animation', {
     }, 19000);
   },
   jumpEnter: function () {
-    if (this.system.truncMarker(this.raptorMarker) > 300) {
+    if (this.movesManager.truncMarker(this.raptorMarker) > 300) {
       this.el.setAttribute('animation-mixer', {
         clip: 'Deinonychus_Jump_Landing',
         timeScale: 0.8,
         crossFadeDuration: 0.2,
       });
     }
-    if (this.system.truncMarker(this.raptorMarker) > 410) {
+    if (this.movesManager.truncMarker(this.raptorMarker) > 410) {
       setTimeout(() => {
         this.el.setAttribute('animation-mixer', {
           clip: 'Deinonychus_Idle_Roar',
@@ -73,7 +75,7 @@ AFRAME.registerComponent('raptor-animation', {
       }, 400);
       this.phase = 'exit';
     }
-    this.raptorMarker = this.system.moveOnCurve(
+    this.raptorMarker = this.movesManager.moveOnCurve(
       this.object,
       this.jumpcurve,
       this.raptorMarker,
@@ -94,10 +96,10 @@ AFRAME.registerComponent('raptor-animation', {
     this.phase = 'roaring';
   },
   jumpEnd: function () {
-    if (this.system.truncMarker(this.raptorMarker) > 580) {
+    if (this.movesManager.truncMarker(this.raptorMarker) > 580) {
       this.phase = 'end';
     }
-    this.raptorMarker = this.system.moveOnCurve(
+    this.raptorMarker = this.movesManager.moveOnCurve(
       this.object,
       this.jumpcurve,
       this.raptorMarker,
@@ -106,14 +108,14 @@ AFRAME.registerComponent('raptor-animation', {
     );
   },
   end: function () {
-    if (this.system.truncMarker(this.raptorMarker) > 950) {
+    if (this.movesManager.truncMarker(this.raptorMarker) > 950) {
       setTimeout(() => {
         const event = new Event('turnOnLight');
         this.car.dispatchEvent(event);
       }, 5000);
       this.phase = 'exit';
     }
-    this.raptorMarker = this.system.moveOnCurve(
+    this.raptorMarker = this.movesManager.moveOnCurve(
       this.object,
       this.jumpcurve,
       this.raptorMarker,

@@ -3,7 +3,9 @@ AFRAME.registerComponent('trex-car-tour', {
     this.scene = 'trex';
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
 
-    this.system = document.querySelector('a-scene').systems['game'];
+    this.system = document.querySelector('a-scene').systems['system'];
+    this.movesManager =
+      document.querySelector('a-scene').systems['movesManager'];
     this.carControls;
     this.trex = document.querySelector('#trex');
     this.screenDefault = document.getElementById('dilo-screen-default');
@@ -61,7 +63,7 @@ AFRAME.registerComponent('trex-car-tour', {
   },
   // --- Phase functions ---
   start: function () {
-    if (this.system.truncMarker(this.carControls.carMarker) > 540) {
+    if (this.movesManager.truncMarker(this.carControls.carMarker) > 540) {
       this.phase = 'stop';
     }
   },
@@ -82,7 +84,7 @@ AFRAME.registerComponent('trex-car-tour', {
   },
   finish: function () {
     if (
-      this.system.truncMarker(this.carControls.carMarker) >
+      this.movesManager.truncMarker(this.carControls.carMarker) >
       this.carControls.maxDistance
     ) {
       this.phase = 'changeScene';
@@ -95,7 +97,7 @@ AFRAME.registerComponent('trex-car-tour', {
     // Screen phases
     switch (this.screenPhase) {
       case 'trex':
-        if (this.system.truncMarker(this.carControls.carMarker) > 0) {
+        if (this.movesManager.truncMarker(this.carControls.carMarker) > 0) {
           this.screenDefault.setAttribute('visible', 'false');
           this.screenTrex.setAttribute('visible', 'true');
           this.screenPhase = 'default';
@@ -109,7 +111,7 @@ AFRAME.registerComponent('trex-car-tour', {
     // Voice phases
     switch (this.voicePhase) {
       case 'trex1':
-        if (this.system.truncMarker(this.carControls.carMarker) > 70) {
+        if (this.movesManager.truncMarker(this.carControls.carMarker) > 70) {
           this.voiceTrex1Sound.play();
           this.voicePhase = 'trex2';
         }

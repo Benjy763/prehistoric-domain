@@ -10,7 +10,9 @@ AFRAME.registerComponent('car-controls', {
     this.drivingState = 'stopped'; // stopped, starting, driving, stopping
     this.rotation = this.el.getAttribute('rotation').y;
     this.tick = AFRAME.utils.throttleTick(this.tick, 20, this);
-    this.system = document.querySelector('a-scene').systems['game'];
+    this.system = document.querySelector('a-scene').systems['system'];
+    this.movesManager =
+      document.querySelector('a-scene').systems['movesManager'];
 
     // Share car reference
     this.system.registerCar(this);
@@ -27,7 +29,7 @@ AFRAME.registerComponent('car-controls', {
     const nextMarkerForRotation = !this.carSpeed
       ? this.defaultSpeed
       : this.carSpeed;
-    this.system.updateRotation(
+    this.movesManager.updateRotation(
       this.el,
       this.object,
       this.curve,
@@ -59,7 +61,7 @@ AFRAME.registerComponent('car-controls', {
     if (this.carSpeed === 0) {
       return;
     }
-    this.carMarker = this.system.moveOnCurve(
+    this.carMarker = this.movesManager.moveOnCurve(
       this.object,
       this.curve,
       this.carMarker,
@@ -68,7 +70,7 @@ AFRAME.registerComponent('car-controls', {
     const nextMarkerForRotation = !this.carSpeed
       ? this.defaultSpeed
       : this.carSpeed;
-    this.system.updateRotation(
+    this.movesManager.updateRotation(
       this.el,
       this.object,
       this.curve,

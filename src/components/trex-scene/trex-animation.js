@@ -4,7 +4,9 @@ AFRAME.registerComponent('trex-animation', {
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
     // Objects shortcut
     this.object = this.el.object3D;
-    this.system = document.querySelector('a-scene').systems['game'];
+    this.system = document.querySelector('a-scene').systems['system'];
+    this.movesManager =
+      document.querySelector('a-scene').systems['movesManager'];
     this.car = document.querySelector('#trex-car');
     this.phase = '';
     this.carRestarted = false;
@@ -89,7 +91,10 @@ AFRAME.registerComponent('trex-animation', {
     this.phase = 'exit';
   },
   trexEnter: function () {
-    if (this.system.truncMarker(this.trexMarker) > 940 && !this.trexSlowing) {
+    if (
+      this.movesManager.truncMarker(this.trexMarker) > 940 &&
+      !this.trexSlowing
+    ) {
       this.trexSlowing = true;
       this.trexSpeed = 0.002;
       this.el.setAttribute('animation-mixer', {
@@ -98,7 +103,7 @@ AFRAME.registerComponent('trex-animation', {
         crossFadeDuration: 0.4,
       });
     }
-    if (this.system.truncMarker(this.trexMarker) > 960) {
+    if (this.movesManager.truncMarker(this.trexMarker) > 960) {
       this.trexFootStepAudioPlaying = false;
       this.trexFootStepAudio.stopSound();
       this.trexSpeed = 0.0012;
@@ -117,13 +122,13 @@ AFRAME.registerComponent('trex-animation', {
       }, 500);
       this.trexFootStepAudioPlaying = true;
     }
-    this.trexMarker = this.system.moveOnCurve(
+    this.trexMarker = this.movesManager.moveOnCurve(
       this.object,
       this.curve,
       this.trexMarker,
       this.trexSpeed
     );
-    this.system.updateRotation(
+    this.movesManager.updateRotation(
       this.el,
       this.object,
       this.curve,

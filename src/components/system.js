@@ -19,11 +19,13 @@ const SupportedPlatform = [
   'Windows',
 ];
 
-AFRAME.registerSystem('game', {
+AFRAME.registerSystem('system', {
   schema: {},
   // ----- Launch and changing scene functions --------
   init: function () {
     this.scenes = Scenes;
+    this.movesManager =
+      document.querySelector('a-scene').systems['movesManager'];
 
     this.firstScene = this.scenes.selection;
     this.displayDistance = 100; // 150 to test
@@ -35,7 +37,6 @@ AFRAME.registerSystem('game', {
     this.actuelScene = this.firstScene;
     this.tourStarted = false;
     this.vr = false;
-    this.isWalkEnabled = null;
 
     const userAgentDataPlatform = window.navigator.userAgentData
       ? SupportedPlatform.includes(window.navigator.userAgentData.platform)
@@ -69,6 +70,9 @@ AFRAME.registerSystem('game', {
       },
       { once: true }
     );
+  },
+  getActualSceneObject: function () {
+    return this.scenes[this.actuelScene];
   },
   registerCar: function (car) {
     // Save all car references at start
@@ -243,7 +247,7 @@ AFRAME.registerSystem('game', {
         });
         // Set main scene ability to walk
         if (!!this.scenes.canWalk) {
-          this.enableWalk();
+          this.movesManager.enableWalk(this.scenes[this.actuelScene]);
         }
         this.loading(false);
       }, 6000);
@@ -283,133 +287,6 @@ AFRAME.registerSystem('game', {
       .querySelector('#log')
       .setAttribute('text', { value: text, color: 'white', width: 0.5 });
   },
-  // ----- Movement functions --------
-  checkBoundLimits() {
-    if (this.isWalkEnabled === null) {
-      return;
-    }
-    const position = this.getCameraPosition();
-    if (position.x < this.scenes.walkBounds.x[0]) {
-      this.setCameraPosition({
-        ...position,
-        x: this.scenes.walkBounds.x[0],
-      });
-    } else if (position.x > this.scenes.walkBounds.x[1]) {
-      this.setCameraPosition({
-        ...position,
-        x: this.scenes.walkBounds.x[1],
-      });
-    } else if (position.z < this.scenes.walkBounds.z[0]) {
-      this.setCameraPosition({
-        ...position,
-        z: this.scenes.walkBounds.z[0],
-      });
-    } else if (position.z > this.scenes.walkBounds.z[1]) {
-      this.setCameraPosition({
-        ...position,
-        z: this.scenes.walkBounds.z[1],
-      });
-    }
-  },
-  enableWalk() {
-    if (this.isWalkEnabled === true) {
-      return;
-    } else {
-      this.isWalkEnabled = true;
-    }
-
-    const car = document.getElementById(this.scenes[this.actuelScene].car);
-    car
-      .querySelector('#' + this.scenes[this.actuelScene].camera)
-      .setAttribute('wasd-controls', {
-        acceleration: 10,
-        enabled: true,
-      });
-  },
-  disableWalk() {
-    if (this.isWalkEnabled === false) {
-      return;
-    } else {
-      this.isWalkEnabled = false;
-    }
-
-    const car = document.getElementById(this.scenes[this.actuelScene].car);
-    car
-      .querySelector('#' + this.scenes[this.actuelScene].camera)
-      .setAttribute('wasd-controls', {
-        acceleration: 10,
-        enabled: false,
-      });
-  },
-  getCameraPosition() {
-    return document.querySelector('#' + this.scenes[this.actuelScene].camera)
-      .object3D.position;
-  },
-  setCameraPosition(position) {
-    const cameraPosition = this.getCameraPosition();
-    console.log(position.x, position.z);
-    cameraPosition.x = position.x;
-    cameraPosition.z = position.z;
-  },
-  getRigPosition() {
-    return document
-      .querySelector('#' + this.scenes[this.actuelScene].car + ' #rig')
-      .getAttribute('position');
-  },
-  setRigPosition(position) {
-    document
-      .querySelector('#' + this.scenes[this.actuelScene].car + ' #rig')
-      .setAttribute('position', position);
-  },
-  // ----- Curve functions --------
-  // Move an object on the given curve according to given speed
-  moveOnCurve(object, curve, marker, speed, axe = 'xz') {
-    marker += speed;
-    object.position.copy(
-      this.convertPosition(curve.getPointAt(marker), object, axe)
-    );
-    return marker;
-  },
-  // Give to the given object the new rotation position after moving on the curve
-  updateRotation: function (
-    el,
-    object,
-    curve,
-    marker,
-    speed,
-    offset = 0,
-    axe = 'xz'
-  ) {
-    const newPosition = this.convertPosition(
-      curve.getPointAt(marker + speed),
-      object,
-      axe
-    );
-    object.lookAt(newPosition.x, newPosition.y, newPosition.z);
-    // Correct rotation with offset
-    const rotation = el.getAttribute('rotation');
-    rotation.y += offset;
-    el.setAttribute('rotation', rotation);
-  },
-  // Convert position in x y z object
-  convertPosition: function (position2D, object, axe = 'xz') {
-    const pos = { ...object.position };
-    if (axe === 'xz') {
-      pos.x = position2D.x;
-      pos.z = position2D.y;
-    } else if (axe === 'xy') {
-      pos.x = position2D.x;
-      pos.y = position2D.y;
-    } else if (axe === 'yz') {
-      pos.y = position2D.x;
-      pos.z = position2D.y;
-    }
-    return pos;
-  },
-  // Trunc marker to have better values (ex: 515 instead of 0.5155554)
-  truncMarker: function (carMarker) {
-    return Math.trunc(carMarker * 1000);
-  },
   // ----- Loading functions --------
   loading: function (loading = true) {
     // Fix to set base camera position depending on device
@@ -424,13 +301,13 @@ AFRAME.registerSystem('game', {
 
     // Fix rig height
     if (!loading) {
-      this.setRigPosition({
+      this.movesManager.setRigPosition({
         x: -0.38,
         y: 0.75,
         z: 0.5,
       });
       if (!this.vr) {
-        this.setRigPosition({
+        this.movesManager.setRigPosition({
           x: -0.38,
           y: 0.4,
           z: 0.54,
@@ -441,7 +318,7 @@ AFRAME.registerSystem('game', {
     document
       .querySelector('#' + this.scenes[this.actuelScene].car + ' #loading-logo')
       .setAttribute('visible', true);
-    this.setRigPosition({
+    this.movesManager.setRigPosition({
       x: -0.38,
       y: -80,
       z: 0.34,

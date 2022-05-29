@@ -5,7 +5,9 @@ AFRAME.registerComponent('brachio-animation', {
 
     // Objects shortcut
     this.object = this.el.object3D;
-    this.system = document.querySelector('a-scene').systems['game'];
+    this.system = document.querySelector('a-scene').systems['system'];
+    this.movesManager =
+      document.querySelector('a-scene').systems['movesManager'];
     this.car = document.querySelector('#gate-car');
     this.phase = '';
 
@@ -42,12 +44,12 @@ AFRAME.registerComponent('brachio-animation', {
   },
   // --- Phase functions ---
   enter: function () {
-    if (this.system.truncMarker(this.brachioMarker) > 600) {
+    if (this.movesManager.truncMarker(this.brachioMarker) > 600) {
       const event = new Event('restart');
       this.car.dispatchEvent(event);
       this.phase = 'finish';
     }
-    this.brachioMarker = this.system.moveOnCurve(
+    this.brachioMarker = this.movesManager.moveOnCurve(
       this.object,
       this.curve,
       this.brachioMarker,
@@ -55,13 +57,13 @@ AFRAME.registerComponent('brachio-animation', {
     );
   },
   finish: function () {
-    if (this.system.truncMarker(this.brachioMarker) > 900) {
+    if (this.movesManager.truncMarker(this.brachioMarker) > 900) {
       this.el.setAttribute('visible', false);
       this.footStepAudio.stopSound();
       this.footRoarAudio.stopSound();
       this.phase = 'exit';
     }
-    this.brachioMarker = this.system.moveOnCurve(
+    this.brachioMarker = this.movesManager.moveOnCurve(
       this.object,
       this.curve,
       this.brachioMarker,
