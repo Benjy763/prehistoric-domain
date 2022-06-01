@@ -28,8 +28,9 @@ AFRAME.registerComponent('quetza-animation', {
     this.quetzaFlySpeed = 0.0075; // Speed on the curve
     this.fog = 0.065;
     this.walkCurve = new THREE.SplineCurve([
-      new THREE.Vector2(-8, -28),
-      new THREE.Vector2(3.769, -12.117),
+      new THREE.Vector2(-10, -25),
+      new THREE.Vector2(-1, -18),
+      new THREE.Vector2(5, -8.287),
     ]);
     this.flyCurve = new THREE.SplineCurve([
       new THREE.Vector2(40, -60), // y,z and x to 13.622
@@ -89,7 +90,7 @@ AFRAME.registerComponent('quetza-animation', {
   },
   // --- Phase functions ---
   enterWalk: function () {
-    if (this.movesManager.truncMarker(this.quetzaMarker) > 900) {
+    if (this.movesManager.truncMarker(this.quetzaMarker) > 950) {
       this.el.setAttribute('animation-mixer', {
         clip: 'Roar',
         timeScale: 0.5,
@@ -116,11 +117,11 @@ AFRAME.registerComponent('quetza-animation', {
     this.phase = 'exit';
     setTimeout(() => {
       this.el.setAttribute('animation-mixer', 'clip: Idle');
-      this.phase = 'moreFog';
+      this.phase = 'exit';
     }, 3000);
 
     if (this.stopRoar) {
-      this.phase = 'moreFog';
+      this.phase = 'leave';
       return;
     }
     // SecondRoar
@@ -134,32 +135,15 @@ AFRAME.registerComponent('quetza-animation', {
       this.stopRoar = true;
     }, 10000);
   },
-  moreFog: function () {
-    this.fog += 0.00012;
-    if (this.fog > 0.14) {
+  leave: function () {
+    setTimeout(() => {
       this.quetzaLeaveAudio.playSound();
       this.el.setAttribute('position', { x: 8, y: 31.025, z: -60 });
-      this.phase = 'lessFog';
-    }
-    this.mainScene.setAttribute('fog', {
-      type: 'exponential',
-      color: '#5e5e5e',
-      density: this.fog,
-    });
-  },
-  lessFog: function () {
-    this.fog -= 0.00012;
-    if (this.fog < 0.07) {
-      setTimeout(() => {}, 15000);
+
       const event = new Event('restartQuetzaWalk');
       this.car.dispatchEvent(event);
-      this.phase = 'exit';
-    }
-    this.mainScene.setAttribute('fog', {
-      type: 'exponential',
-      color: '#5e5e5e',
-      density: this.fog,
-    });
+    }, 10000);
+    this.phase = 'exit';
   },
   enterFly: function () {
     if (this.movesManager.truncMarker(this.quetzaMarker) > 900) {
@@ -223,11 +207,8 @@ AFRAME.registerComponent('quetza-animation', {
       case 'roar':
         this.roar();
         break;
-      case 'moreFog':
-        this.moreFog();
-        break;
-      case 'lessFog':
-        this.lessFog();
+      case 'leave':
+        this.leave();
         break;
       case 'enterFly':
         this.enterFly();

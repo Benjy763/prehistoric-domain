@@ -15,9 +15,9 @@ AFRAME.registerComponent('pteranodon-animation', {
     this.pteraMarker = 0; // Position on the curve
     this.pteraSpeed = 0.003; // Speed on the curve
     this.curve = new THREE.SplineCurve([
-      new THREE.Vector2(-33.384, 1.828),
-      new THREE.Vector2(5.136, -2.505),
-      new THREE.Vector2(80, -4.233),
+      new THREE.Vector2(-46.398, 8),
+      new THREE.Vector2(5.136, -3.5),
+      new THREE.Vector2(90, 5),
     ]);
 
     // Sound
