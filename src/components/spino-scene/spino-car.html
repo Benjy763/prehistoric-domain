@@ -1,11 +1,12 @@
-<a-entity id="spino-car" spino-car-tour position="7.988 27.64238 3.56841" rotation="0 -90 0" scale="1 1 1">
+<a-entity id="spino-car" gltf-model="#swamp-scene-asset" spino-car-tour position="0 2.52309 0" rotation="0 -90 0"
+  scale="3 3 3">
   <a-image id="loading-logo" src="#loading-asset" scale="3 2 2" position="-4 -78.5 0.34" rotation="0 90 0"></a-image>
   <a-image id="rendering" src="#rendering-asset" scale="0.23 0.205 0.25" position="-0.765 1.82434 -0.03445"
     rotation="0 90 0" material="" geometry="" visible="false"></a-image>
   <a-entity id="interior-light"
     light="type: directional; intensity: 0.67; distance: 1; decay: 1; angle: 180; penumbra: 0"
     position="4.22538 30.09121 3.52884" visible="" rotation="0 0 0"></a-entity>
-  <a-entity id="rig" position="-0.38 0.28837 0.54" rotation="0 90 0">
+  <a-entity id="rig" position="-0.38 -1.44 0.54" rotation="0 0 0">
     <a-entity id="hands">
       <a-entity id="spino-scene-camera" class="camera-entity" camera position="0 0 0" user-height="0"
         fps-look-controls="user-height: 0" wasd-controls="acceleration:10; enabled: false">
@@ -17,4 +18,6 @@
         hand-controls="hand: right; handModelStyle: highPoly; color: #ffcccc"></a-entity> -->
     </a-entity>
   </a-entity>
+  <!-- <a-entity id="spino-window" gltf-model="#window-asset" position="-0.20335 0.62774 -3.92827" rotation="0 0 0"
+    scale="0.05 0.02 0.01"></a-entity> -->
 </a-entity>

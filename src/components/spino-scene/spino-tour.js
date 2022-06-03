@@ -10,10 +10,10 @@ AFRAME.registerComponent('spino-car-tour', {
     this.movesManager =
       document.querySelector('a-scene').systems['movesManager'];
     this.spino = document.querySelector('#spino');
+    document.querySelector('#spino-tall-bush').object3D.renderOrder = 100;
 
     // Sounds
     this.ambiant1Sound;
-    this.ambiant3Sound;
 
     // Voice and screen phases
     this.voicePhase = 'stop';
