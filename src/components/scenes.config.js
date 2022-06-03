@@ -1,4 +1,4 @@
-export const MainScene = 'aviary';
+export const MainScene = 'swamp';
 
 export const TourScenes = {
   // Starting scene
@@ -57,7 +57,7 @@ export const AviaryScenes = {
   assetsId: 'aviary-assets',
   carMarkerForDebug: 0.32,
   color: '#5e5e5e',
-  density: 0.065,
+  density: 0.048,
   canWalk: true,
   walkBounds: {
     x: [-1.54, 2.024],
@@ -133,6 +133,37 @@ export const CinemaScenes = {
   },
 };
 
+export const SwampScenes = {
+  // Starting scene
+  mobileCompatible: true,
+  selection: 'spino',
+  assetsId: 'swamp-assets',
+  carMarkerForDebug: 0.32,
+  color: '#5e5e5e',
+  density: 0.03,
+  canWalk: true,
+  walkBounds: {
+    x: [-1.54, 2.024],
+    z: [-0.82, 2.35],
+  },
+  loading: {
+    scene: 'loading-scene',
+    camera: 'loading-scene-camera',
+  },
+  spino: {
+    scene: 'spino-scene',
+    camera: 'spino-scene-camera',
+    car: 'spino-car',
+    carReference: null,
+  },
+  ending: {
+    scene: 'ending-scene',
+    camera: 'ending-scene-camera',
+    car: 'ending-car',
+    carReference: null,
+  },
+};
+
 // Main Scenes
 let selectedScenes;
 switch (MainScene) {
@@ -147,6 +178,9 @@ switch (MainScene) {
     break;
   case 'cinema':
     selectedScenes = CinemaScenes;
+    break;
+  case 'swamp':
+    selectedScenes = SwampScenes;
     break;
 }
 export const Scenes = selectedScenes;

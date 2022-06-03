@@ -33,4 +33,7 @@ switch (MainScene) {
   case 'cinema':
     require('./cinema-main-scene.html');
     break;
+  case 'swamp':
+    require('./swamp-main-scene.html');
+    break;
 }
