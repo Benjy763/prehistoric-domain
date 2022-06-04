@@ -10,7 +10,6 @@ AFRAME.registerComponent('spino-car-tour', {
     this.movesManager =
       document.querySelector('a-scene').systems['movesManager'];
     this.spino = document.querySelector('#spino');
-    document.querySelector('#spino-tall-bush').object3D.renderOrder = 100;
 
     // Sounds
     this.ambiant1Sound;
@@ -30,9 +29,7 @@ AFRAME.registerComponent('spino-car-tour', {
 
         // Get sounds
         this.ambiant1Sound =
-          document.getElementById('spino-cliff-1').components[
-            'sound__ambiant1'
-          ];
+          document.getElementById('spino').components['sound__ambiant1'];
         // Get voice from system when init
         this.voicespino1Sound = this.system.getVoice('spino1');
         this.voicePhase = 'spino1';

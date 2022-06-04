@@ -14,6 +14,7 @@ AFRAME.registerComponent('water', {
           flowSpeed: 0.01,
           textureWidth: 1024,
           textureHeight: 1024,
+          reflectivity: 0.001,
           normalMap0: textureLoader.load(
             'build/assets/images/water-texture-1.jpg'
           ),

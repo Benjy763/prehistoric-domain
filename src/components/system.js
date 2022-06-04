@@ -302,15 +302,27 @@ AFRAME.registerSystem('system', {
     // Fix rig height
     if (!loading) {
       this.movesManager.setRigPosition({
-        x: -0.38,
-        y: 0.75,
-        z: 0.5,
+        x: this.scenes[this.actuelScene].rigPos
+          ? this.scenes[this.actuelScene].rigPos.x[0]
+          : -0.38,
+        y: this.scenes[this.actuelScene].rigPos
+          ? this.scenes[this.actuelScene].rigPos.y[0]
+          : 0.75,
+        z: this.scenes[this.actuelScene].rigPos
+          ? this.scenes[this.actuelScene].rigPos.z[0]
+          : 0.5,
       });
       if (!this.vr) {
         this.movesManager.setRigPosition({
-          x: -0.38,
-          y: 0.4,
-          z: 0.54,
+          x: this.scenes[this.actuelScene].rigPos
+            ? this.scenes[this.actuelScene].rigPos.x[1]
+            : -0.38,
+          y: this.scenes[this.actuelScene].rigPos
+            ? this.scenes[this.actuelScene].rigPos.y[1]
+            : 0.5,
+          z: this.scenes[this.actuelScene].rigPos
+            ? this.scenes[this.actuelScene].rigPos.z[1]
+            : 0.54,
         });
       }
       return;

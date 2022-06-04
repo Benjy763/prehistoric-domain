@@ -140,11 +140,11 @@ export const SwampScenes = {
   assetsId: 'swamp-assets',
   carMarkerForDebug: 0.32,
   color: '#5e5e5e',
-  density: 0.03,
+  density: 0.05,
   canWalk: true,
   walkBounds: {
-    x: [-1.54, 2.024],
-    z: [-0.82, 2.35],
+    x: [-2.6, 2.2],
+    z: [-5, 4],
   },
   loading: {
     scene: 'loading-scene',
@@ -155,6 +155,12 @@ export const SwampScenes = {
     camera: 'spino-scene-camera',
     car: 'spino-car',
     carReference: null,
+    rigPos: {
+      // First in value in VR and second without
+      x: [1, 1],
+      y: [-0.7, -0.7],
+      z: [0, 0],
+    },
   },
   ending: {
     scene: 'ending-scene',

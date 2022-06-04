@@ -159,7 +159,7 @@
         scope.visible = false;
         reflector.matrixWorld.copy(scope.matrixWorld);
         refractor.matrixWorld.copy(scope.matrixWorld);
-        reflector.onBeforeRender(renderer, scene, camera);
+        //reflector.onBeforeRender(renderer, scene, camera);
         refractor.onBeforeRender(renderer, scene, camera);
         scope.visible = true;
       };
