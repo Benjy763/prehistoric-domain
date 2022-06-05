@@ -9,7 +9,8 @@ AFRAME.registerComponent('spino-car-tour', {
     ).object3D.position;
     this.movesManager =
       document.querySelector('a-scene').systems['movesManager'];
-    this.spino = document.querySelector('#spino');
+    this.spinoMale = document.querySelector('#spino-male');
+    this.spinoFemale = document.querySelector('#spino-female');
 
     // Sounds
     this.ambiant1Sound;
@@ -29,7 +30,7 @@ AFRAME.registerComponent('spino-car-tour', {
 
         // Get sounds
         this.ambiant1Sound =
-          document.getElementById('spino').components['sound__ambiant1'];
+          document.getElementById('spino-male').components['sound__ambiant1'];
         // Get voice from system when init
         this.voicespino1Sound = this.system.getVoice('spino1');
         this.voicePhase = 'spino1';
@@ -42,14 +43,14 @@ AFRAME.registerComponent('spino-car-tour', {
   },
   // --- Phase functions ---
   start: function () {
-    setTimeout(() => {
-      this.ambiant1Sound.playSound();
-    }, 20000);
+    // setTimeout(() => {
+    //   this.ambiant1Sound.playSound();
+    // }, 20000);
     setTimeout(() => {
       // Trigger Pteranodon animation
       const event = new Event('enterWalk');
-      this.spino.dispatchEvent(event);
-    }, 45000);
+      this.spinoMale.dispatchEvent(event);
+    }, 0);
     this.phase = 'exit';
   },
   tick: function () {

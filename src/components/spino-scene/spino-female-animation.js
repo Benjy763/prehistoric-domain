@@ -1,4 +1,4 @@
-AFRAME.registerComponent('spino-animation', {
+AFRAME.registerComponent('spino-female-animation', {
   schema: {},
   init: function () {
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
