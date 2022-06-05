@@ -10,6 +10,7 @@ AFRAME.registerComponent('spino-male-animation', {
       document.querySelector('a-scene').systems['movesManager'];
     this.car = document.querySelector('#spino-car');
     this.mainScene = document.getElementById('main-scene');
+    this.spinoFemale = document.querySelector('#spino-female');
     this.phase = '';
 
     // Spino run Path
@@ -21,8 +22,12 @@ AFRAME.registerComponent('spino-male-animation', {
       new THREE.Vector2(-37.867, 55),
     ]);
     this.walkCurve2 = new THREE.SplineCurve([
-      new THREE.Vector2(-22.571, 55.687),
-      new THREE.Vector2(-22.571, 18.887),
+      new THREE.Vector2(-22.824, 55.687),
+      new THREE.Vector2(-22.824, 18.887),
+    ]);
+    this.walkCurve3 = new THREE.SplineCurve([
+      new THREE.Vector2(-22.824, 20.58),
+      new THREE.Vector2(-23.747, -49.624),
     ]);
 
     // Enablers
@@ -42,6 +47,13 @@ AFRAME.registerComponent('spino-male-animation', {
           crossFadeDuration: 0.4,
           timeScale: 0.1,
         });
+      },
+      false
+    );
+    this.el.addEventListener(
+      'roar',
+      () => {
+        this.phase = 'roar';
       },
       false
     );
@@ -93,12 +105,25 @@ AFRAME.registerComponent('spino-male-animation', {
       });
       setTimeout(() => {
         this.el.setAttribute('animation-mixer', {
-          clip: 'Spinosaurus_Fishing_Idle',
+          clip: 'Spinosaurus_LieDown_Start',
           loop: true,
           crossFadeDuration: 1.5,
-          timeScale: 1,
+          timeScale: 0.8,
         });
       }, 5000);
+      setTimeout(() => {
+        this.el.setAttribute('animation-mixer', {
+          clip: 'Spinosaurus_LieDown_Idle',
+          loop: true,
+          crossFadeDuration: 0.4,
+          timeScale: 1,
+        });
+      }, 7000);
+      setTimeout(() => {
+        // Trigger Spino animation
+        const event = new Event('enterWalk');
+        this.spinoFemale.dispatchEvent(event);
+      }, 10000);
       this.phase = 'fish';
     }
     this.spinoMarker = this.movesManager.moveOnCurve(
@@ -115,6 +140,58 @@ AFRAME.registerComponent('spino-male-animation', {
       this.spinoWalkSpeed
     );
   },
+  roar: function () {
+    setTimeout(() => {
+      this.el.setAttribute('animation-mixer', {
+        clip: 'Spinosaurus_LieDown_Start',
+        loop: true,
+        crossFadeDuration: 0.4,
+        timeScale: -0.8,
+      });
+    }, 5000);
+    setTimeout(() => {
+      // Trigger Spino animation
+      const event = new Event('roar');
+      this.spinoFemale.dispatchEvent(event);
+      this.el.setAttribute('animation-mixer', {
+        clip: 'Spinosaurus_Roar1',
+        loop: true,
+        crossFadeDuration: 0.4,
+        timeScale: 0.7,
+      });
+    }, 7000);
+    setTimeout(() => {
+      this.el.setAttribute('animation-mixer', {
+        clip: 'Spinosaurus_Idle',
+        loop: true,
+        crossFadeDuration: 0.4,
+        timeScale: 0.8,
+      });
+    }, 11000);
+    setTimeout(() => {
+      this.phase = 'leave';
+    }, 20000);
+    this.phase = 'exit';
+  },
+  leave: function () {
+    setTimeout(() => {
+      this.el.setAttribute('animation-mixer', {
+        clip: 'Spinosaurus_LieDown_Start',
+        loop: true,
+        crossFadeDuration: 0.4,
+        timeScale: 0.8,
+      });
+    }, 2000);
+    setTimeout(() => {
+      this.el.setAttribute('animation-mixer', {
+        clip: 'Spinosaurus_LieDown_Idle',
+        loop: true,
+        crossFadeDuration: 0.4,
+        timeScale: 1,
+      });
+    }, 4000);
+    this.phase = 'exit';
+  },
   tick: function () {
     // Animation steps
     switch (this.phase) {
@@ -123,6 +200,12 @@ AFRAME.registerComponent('spino-male-animation', {
         break;
       case 'walk2':
         this.walk2();
+        break;
+      case 'roar':
+        this.roar();
+        break;
+      case 'leave':
+        this.leave();
         break;
     }
   },

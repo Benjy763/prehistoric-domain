@@ -36,7 +36,7 @@ AFRAME.registerComponent('spino-car-tour', {
         this.voicePhase = 'spino1';
         setTimeout(() => {
           this.phase = 'start';
-        }, 0);
+        }, 15000);
       },
       false
     );
@@ -47,7 +47,7 @@ AFRAME.registerComponent('spino-car-tour', {
     //   this.ambiant1Sound.playSound();
     // }, 20000);
     setTimeout(() => {
-      // Trigger Pteranodon animation
+      // Trigger Spino animation
       const event = new Event('enterWalk');
       this.spinoMale.dispatchEvent(event);
     }, 0);
