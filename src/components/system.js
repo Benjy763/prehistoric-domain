@@ -147,9 +147,23 @@ AFRAME.registerSystem('system', {
       .getElementById(this.scenes[this.firstScene].scene)
       .setAttribute('visible', 'true');
   },
+  changeEndingScene: function () {
+    const mainScene = document.getElementById('main-scene');
+    mainScene.setAttribute('background', {
+      color: '#000', //#00496c
+    });
+    mainScene.setAttribute('fog', {
+      type: 'exponential',
+      color: '#000',
+      density: 0.1,
+    });
+    setTimeout(() => {
+      window.location.href = 'https://map.prehistoricdomain.com/';
+    }, 8000);
+    this.changeScene('ending', false);
+  },
   // Each time we change scene
   changeScene: function (sceneId, render = true) {
-    // change scene
     document
       .getElementById(this.scenes[this.actuelScene].scene)
       .setAttribute('visible', 'false');

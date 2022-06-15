@@ -148,6 +148,8 @@ AFRAME.registerSystem('movesManager', {
     } else if (axe === 'yz') {
       pos.y = position2D.x;
       pos.z = position2D.y;
+    } else if (axe === '3d') {
+      return position2D;
     }
     return pos;
   },

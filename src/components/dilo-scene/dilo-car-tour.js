@@ -117,12 +117,10 @@ AFRAME.registerComponent('dilo-car-tour', {
         this.stop();
         break;
       case 'changeScene':
-        if (!this.sceneChanged) {
-          // Destroy and detach all unecessary objets
-          // Change scene
-          this.system.changeScene('trex');
-          this.sceneChanged = true;
-        }
+        // Destroy and detach all unecessary objets
+        // Change scene
+        this.system.changeScene('trex');
+        this.phase = 'exit';
         break;
     }
   },

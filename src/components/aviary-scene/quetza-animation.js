@@ -26,7 +26,6 @@ AFRAME.registerComponent('quetza-animation', {
     this.quetzaMarker = 0; // Position on the curve
     this.quetzaWalkSpeed = 0.003; // Speed on the curve
     this.quetzaFlySpeed = 0.0075; // Speed on the curve
-    this.fog = 0.065;
     this.walkCurve = new THREE.SplineCurve([
       new THREE.Vector2(-10, -25),
       new THREE.Vector2(-1, -18),

@@ -146,12 +146,10 @@ AFRAME.registerComponent('raptor-car-tour', {
         this.finish();
         break;
       case 'changeScene':
-        if (!this.sceneChanged) {
-          // Destroy and detach all unecessary objets
-          // Change scene
-          this.system.changeScene('trice');
-          this.sceneChanged = true;
-        }
+        // Destroy and detach all unecessary objets
+        // Change scene
+        this.system.changeScene('trice');
+        this.phase = 'exit';
         break;
     }
   },

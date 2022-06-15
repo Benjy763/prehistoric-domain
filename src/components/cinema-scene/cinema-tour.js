@@ -56,24 +56,10 @@ AFRAME.registerComponent('cinema-car-tour', {
         this.start();
         break;
       case 'changeScene':
-        if (!this.sceneChanged) {
-          // Destroy and detach all unecessary objets
-          //Change scene
-          const mainScene = document.getElementById('main-scene');
-          mainScene.setAttribute('background', {
-            color: '#000', //#00496c
-          });
-          mainScene.setAttribute('fog', {
-            type: 'exponential',
-            color: '#000',
-            density: 0.1,
-          });
-          setTimeout(() => {
-            window.location.href = 'https://map.prehistoricdomain.com/';
-          }, 8000);
-          this.system.changeScene('ending', false);
-          this.sceneChanged = true;
-        }
+        // Destroy and detach all unecessary objets
+        // Change scene
+        this.system.changeEndingScene('ending');
+        this.phase = 'exit';
         break;
     }
   },

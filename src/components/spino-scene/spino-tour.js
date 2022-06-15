@@ -1,3 +1,5 @@
+import { Scenes } from '../../components/scenes.config';
+
 AFRAME.registerComponent('spino-car-tour', {
   init: function () {
     this.scene = 'spino';
@@ -11,6 +13,15 @@ AFRAME.registerComponent('spino-car-tour', {
       document.querySelector('a-scene').systems['movesManager'];
     this.spinoMale = document.querySelector('#spino-male');
     this.spinoFemale = document.querySelector('#spino-female');
+    this.object = this.el.object3D;
+    this.mainScene = document.getElementById('main-scene');
+
+    // Dive params
+    this.isDiveEnvChanged = false;
+    this.diveSpeed = 0.01;
+
+    // Fog
+    this.currentFog = 0;
 
     // Sounds
     this.ambiant1Sound;
@@ -35,8 +46,15 @@ AFRAME.registerComponent('spino-car-tour', {
         this.voicespino1Sound = this.system.getVoice('spino1');
         this.voicePhase = 'spino1';
         setTimeout(() => {
-          this.phase = 'start';
-        }, 15000);
+          this.phase = 'dive';
+        }, 10000);
+      },
+      false
+    );
+    this.el.addEventListener(
+      'dive',
+      () => {
+        this.phase = 'dive';
       },
       false
     );
@@ -52,6 +70,46 @@ AFRAME.registerComponent('spino-car-tour', {
       this.spinoMale.dispatchEvent(event);
     }, 0);
     this.phase = 'exit';
+  },
+  dive: function () {
+    if (this.object.position.y < -5 && !this.isDiveEnvChanged) {
+      // Hide all useless elements
+      let surfaceEls = document.getElementsByClassName('spino-surface');
+      for (let i = 0; i < surfaceEls.length; i++) {
+        surfaceEls[i].setAttribute('visible', false);
+      }
+      // Show all needed elements
+      let underwaterEls = document.getElementsByClassName('spino-underwater');
+      for (let i = 0; i < underwaterEls.length; i++) {
+        underwaterEls[i].setAttribute('visible', true);
+      }
+      // Set new ground postition
+      let ground = document.getElementById('spino-ground');
+      const groundPosition = ground.getAttribute('position');
+      groundPosition.y = -13.197;
+      ground.setAttribute('position', groundPosition);
+      // Change background color
+      setTimeout(() => {
+        this.mainScene.setAttribute('background', {
+          color: '#535d4b', //#00496c
+        });
+      }, 5000);
+      this.isDiveEnvChanged = true;
+    }
+
+    // Manage fog
+    if (this.object.position.y < -5 && this.currentFog < 0.08) {
+      this.currentFog += 0.001;
+      this.mainScene.setAttribute('fog', {
+        type: 'exponential',
+        color: '#535d4b',
+        density: this.currentFog,
+      });
+    }
+    if (this.object.position.y < -11.017) {
+      this.phase = 'exit';
+    }
+    this.object.position.y -= this.diveSpeed;
   },
   tick: function () {
     // Walk bound checking
@@ -69,25 +127,14 @@ AFRAME.registerComponent('spino-car-tour', {
       case 'start':
         this.start();
         break;
+      case 'dive':
+        this.dive();
+        break;
       case 'changeScene':
-        if (!this.sceneChanged) {
-          // Destroy and detach all unecessary objets
-          //Change scene
-          const mainScene = document.getElementById('main-scene');
-          mainScene.setAttribute('background', {
-            color: '#000', //#00496c
-          });
-          mainScene.setAttribute('fog', {
-            type: 'exponential',
-            color: '#000',
-            density: 0.1,
-          });
-          setTimeout(() => {
-            window.location.href = 'https://map.prehistoricdomain.com/';
-          }, 8000);
-          this.system.changeScene('ending', false);
-          this.sceneChanged = true;
-        }
+        // Destroy and detach all unecessary objets
+        // Change scene
+        this.system.changeEndingScene('ending');
+        this.phase = 'exit';
         break;
     }
   },

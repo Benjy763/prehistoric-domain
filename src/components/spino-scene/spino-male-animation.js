@@ -16,7 +16,6 @@ AFRAME.registerComponent('spino-male-animation', {
     // Spino run Path
     this.spinoMarker = 0; // Position on the curve
     this.spinoWalkSpeed = 0.0008; // Speed on the curve
-    this.fog = 0.065;
     this.walkCurve1 = new THREE.SplineCurve([
       new THREE.Vector2(-37.867, -15),
       new THREE.Vector2(-37.867, 55),

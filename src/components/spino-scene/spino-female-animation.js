@@ -11,23 +11,23 @@ AFRAME.registerComponent('spino-female-animation', {
     this.car = document.querySelector('#spino-car');
     this.mainScene = document.getElementById('main-scene');
     this.spinoMale = document.querySelector('#spino-male');
+    this.spinoCar = document.querySelector('#spino-car');
     this.phase = '';
 
     // Spino run Path
     this.spinoMarker = 0; // Position on the curve
     this.spinoWalkSpeed = 0.0008; // Speed on the curve
-    this.fog = 0.065;
     this.walkCurve1 = new THREE.SplineCurve([
       new THREE.Vector2(-28.408, -40.973),
       new THREE.Vector2(-24.678, -10.058),
       new THREE.Vector2(-21.574, 0.238),
-      new THREE.Vector2(-7.407, 28.496),
+      new THREE.Vector2(-3.314, 31.921),
     ]);
     this.walkCurve2 = new THREE.SplineCurve([
       new THREE.Vector2(-23.791, -11.48),
       new THREE.Vector2(-23.791, -7),
       new THREE.Vector2(-20, 1),
-      new THREE.Vector2(-4, 27),
+      new THREE.Vector2(2.66, 38),
     ]);
 
     // Sound
@@ -65,12 +65,12 @@ AFRAME.registerComponent('spino-female-animation', {
       });
       setTimeout(() => {
         this.el.setAttribute('animation-mixer', {
-          clip: 'Spinosaurus_Fishing_Idle',
+          clip: 'Spinosaurus_Idle_Break1',
           loop: true,
           crossFadeDuration: 2,
-          timeScale: 0.8,
+          timeScale: 0.6,
         });
-        this.phase = 'eat';
+        this.phase = 'drink';
       }, 5000);
       this.phase = 'exit';
     }
@@ -88,26 +88,18 @@ AFRAME.registerComponent('spino-female-animation', {
       this.spinoWalkSpeed
     );
   },
-  eat: function () {
+  drink: function () {
     setTimeout(() => {
       // Trigger Spino animation
       const event = new Event('roar');
       this.spinoMale.dispatchEvent(event);
       this.el.setAttribute('animation-mixer', {
-        clip: 'Spinosaurus_Fishing_Caught_Eat',
+        clip: 'Spinosaurus_Drink',
         loop: true,
         crossFadeDuration: 0.4,
         timeScale: 0.8,
       });
     }, 5000);
-    setTimeout(() => {
-      this.el.setAttribute('animation-mixer', {
-        clip: 'Spinosaurus_Fishing_Idle',
-        loop: true,
-        crossFadeDuration: 2,
-        timeScale: 0.8,
-      });
-    }, 10000);
     this.phase = 'exit';
   },
   roar: function () {
@@ -133,6 +125,8 @@ AFRAME.registerComponent('spino-female-animation', {
   },
   leave: function () {
     if (this.movesManager.truncMarker(this.spinoMarker) > 950) {
+      const event = new Event('dive');
+      this.spinoCar.dispatchEvent(event);
       this.phase = 'exit';
     }
     this.spinoMarker = this.movesManager.moveOnCurve(
@@ -155,8 +149,8 @@ AFRAME.registerComponent('spino-female-animation', {
       case 'enterWalk':
         this.enterWalk();
         break;
-      case 'eat':
-        this.eat();
+      case 'drink':
+        this.drink();
         break;
       case 'roar':
         this.roar();

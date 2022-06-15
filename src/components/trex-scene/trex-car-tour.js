@@ -135,12 +135,10 @@ AFRAME.registerComponent('trex-car-tour', {
         this.finish();
         break;
       case 'changeScene':
-        if (!this.sceneChanged) {
-          // Destroy and detach all unecessary objets
-          // Change scene
-          this.system.changeScene('raptor');
-          this.sceneChanged = true;
-        }
+        // Destroy and detach all unecessary objets
+        // Change scene
+        this.system.changeScene('raptor');
+        this.phase = 'exit';
         break;
     }
   },
