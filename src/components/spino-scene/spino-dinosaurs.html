@@ -3,6 +3,18 @@
   sound__ambiant1="src: #spino-ambiant-1; volume: 28; loop: false">
 </a-entity>
 <a-entity id="spino-female" spino-female-animation gltf-model="#spino-female-asset"
-  animation-mixer="clip: Spinosaurus_Idle" position="-28.09122 -0.91907 -54.54065" rotation="0 0 0"
+  animation-mixer="clip: Spinosaurus_Swim_InPlace" position="-28.09122 -0.91907 -54.54065" rotation="0 0 0"
   scale="0.016 0.016 0.016" sound__ambiant1="src: #spino-ambiant-1; volume: 28; loop: false">
+  <a-entity visible="false" id="spino-saw-fish-dead" gltf-model="#saw-fish-asset"
+    animation-mixer="clip: Swim; timeScale: 0;startFrame: 3000" position="-17.12829 1.30536 4.35958" rotation="0 0 0"
+    scale="2.5 2.5 2.5">
+  </a-entity>
+</a-entity>
+
+
+<a-entity id="spino-fish" gltf-model="#fish-asset" animation-mixer="clip: Take 001"
+  position="-11.62593 -12.17427 -7.8875" rotation="0 0 0" scale="0.002 0.002 0.002">
+</a-entity>
+<a-entity id="spino-saw-fish" gltf-model="#saw-fish-asset" animation-mixer="clip: Swim; timeScale: 0.5"
+  position="-5.30232 -10.87298 14.36493" rotation="0 0 0" scale="0.04 0.04 0.04">
 </a-entity>

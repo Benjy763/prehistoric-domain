@@ -18,7 +18,7 @@ AFRAME.registerComponent('spino-car-tour', {
 
     // Dive params
     this.isDiveEnvChanged = false;
-    this.diveSpeed = 0.01;
+    this.diveSpeed = 0.1; // 0.01
 
     // Fog
     this.currentFog = 0;
@@ -107,9 +107,14 @@ AFRAME.registerComponent('spino-car-tour', {
       });
     }
     if (this.object.position.y < -11.017) {
-      this.phase = 'exit';
+      this.phase = 'fishHunt';
     }
     this.object.position.y -= this.diveSpeed;
+  },
+  fishHunt: function () {
+    const event = new Event('fishHunt');
+    this.spinoFemale.dispatchEvent(event);
+    this.phase = 'exit';
   },
   tick: function () {
     // Walk bound checking
@@ -129,6 +134,9 @@ AFRAME.registerComponent('spino-car-tour', {
         break;
       case 'dive':
         this.dive();
+        break;
+      case 'fishHunt':
+        this.fishHunt();
         break;
       case 'changeScene':
         // Destroy and detach all unecessary objets
