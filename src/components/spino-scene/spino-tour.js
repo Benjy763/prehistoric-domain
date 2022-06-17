@@ -46,7 +46,7 @@ AFRAME.registerComponent('spino-car-tour', {
         this.voicespino1Sound = this.system.getVoice('spino1');
         this.voicePhase = 'spino1';
         setTimeout(() => {
-          this.phase = 'dive';
+          this.phase = 'start';
         }, 10000);
       },
       false
@@ -55,6 +55,14 @@ AFRAME.registerComponent('spino-car-tour', {
       'dive',
       () => {
         this.phase = 'dive';
+      },
+      false
+    );
+    this.el.addEventListener(
+      'surface',
+      () => {
+        this.isDiveEnvChanged = false;
+        this.phase = 'surface';
       },
       false
     );
@@ -91,7 +99,7 @@ AFRAME.registerComponent('spino-car-tour', {
       // Change background color
       setTimeout(() => {
         this.mainScene.setAttribute('background', {
-          color: '#535d4b', //#00496c
+          color: '#535d4b',
         });
       }, 5000);
       this.isDiveEnvChanged = true;
@@ -107,13 +115,58 @@ AFRAME.registerComponent('spino-car-tour', {
       });
     }
     if (this.object.position.y < -11.017) {
-      this.phase = 'fishHunt';
+      this.phase = 'fishHuntUnderwater';
     }
     this.object.position.y -= this.diveSpeed;
   },
-  fishHunt: function () {
+  surface: function () {
+    if (this.object.position.y > -5 && !this.isDiveEnvChanged) {
+      // Hide all useless elements
+      let surfaceEls = document.getElementsByClassName('spino-surface');
+      for (let i = 0; i < surfaceEls.length; i++) {
+        surfaceEls[i].setAttribute('visible', true);
+      }
+      // Show all needed elements
+      let underwaterEls = document.getElementsByClassName('spino-underwater');
+      for (let i = 0; i < underwaterEls.length; i++) {
+        underwaterEls[i].setAttribute('visible', false);
+      }
+      // Set new ground postition
+      let ground = document.getElementById('spino-ground');
+      const groundPosition = ground.getAttribute('position');
+      groundPosition.y = -0.3;
+      ground.setAttribute('position', groundPosition);
+      // Change background color
+      setTimeout(() => {
+        this.mainScene.setAttribute('background', {
+          color: '#5e5e5e',
+        });
+      }, 5000);
+      this.isDiveEnvChanged = true;
+    }
+
+    // Manage fog
+    if (this.object.position.y > -5 && this.currentFog > 0.05) {
+      this.currentFog -= 0.001;
+      this.mainScene.setAttribute('fog', {
+        type: 'exponential',
+        color: '#5e5e5e',
+        density: this.currentFog,
+      });
+    }
+    if (this.object.position.y > 1.02687) {
+      this.phase = 'fishHuntSurface';
+    }
+    this.object.position.y += this.diveSpeed;
+  },
+  fishHuntUnderwater: function () {
     const event = new Event('fishHunt');
     this.spinoFemale.dispatchEvent(event);
+    this.phase = 'exit';
+  },
+  fishHuntSurface: function () {
+    const event = new Event('fishHunt');
+    this.spinoMale.dispatchEvent(event);
     this.phase = 'exit';
   },
   tick: function () {
@@ -135,8 +188,14 @@ AFRAME.registerComponent('spino-car-tour', {
       case 'dive':
         this.dive();
         break;
-      case 'fishHunt':
-        this.fishHunt();
+      case 'surface':
+        this.surface();
+        break;
+      case 'fishHuntUnderwater':
+        this.fishHuntUnderwater();
+        break;
+      case 'fishHuntSurface':
+        this.fishHuntSurface();
         break;
       case 'changeScene':
         // Destroy and detach all unecessary objets

@@ -56,6 +56,13 @@ AFRAME.registerComponent('spino-male-animation', {
       },
       false
     );
+    this.el.addEventListener(
+      'fishHunt',
+      () => {
+        this.phase = 'fishHunt';
+      },
+      false
+    );
   },
   // --- Phase functions ---
   enterWalk: function () {
@@ -172,6 +179,20 @@ AFRAME.registerComponent('spino-male-animation', {
     }, 20000);
     this.phase = 'exit';
   },
+  fishHunt: function () {
+    setTimeout(() => {
+      this.el.setAttribute('animation-mixer', {
+        clip: 'Spinosaurus_Fishing_Caught_Eat',
+        loop: true,
+        crossFadeDuration: 0.4,
+        timeScale: 0.4,
+      });
+    }, 5000);
+    setTimeout(() => {
+      this.phase = 'leave';
+    }, 11000);
+    this.phase = 'exit';
+  },
   leave: function () {
     setTimeout(() => {
       this.el.setAttribute('animation-mixer', {
@@ -205,6 +226,9 @@ AFRAME.registerComponent('spino-male-animation', {
         break;
       case 'leave':
         this.leave();
+        break;
+      case 'fishHunt':
+        this.fishHunt();
         break;
     }
   },

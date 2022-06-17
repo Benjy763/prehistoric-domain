@@ -181,6 +181,7 @@ AFRAME.registerComponent('spino-female-animation', {
   },
   leave: function () {
     if (this.movesManager.truncMarker(this.spinoMarker) > 950) {
+      this.object.position.y = -13.102;
       const event = new Event('dive');
       this.spinoCar.dispatchEvent(event);
       this.el.setAttribute('animation-mixer', {
@@ -291,6 +292,22 @@ AFRAME.registerComponent('spino-female-animation', {
       this.spinoSwimSpeed2
     );
     if (this.movesManager.truncMarker(this.spinoMarker) > 950) {
+      this.sawFishDead.setAttribute('visible', false);
+      this.el.setAttribute('visible', false);
+      setTimeout(() => {
+        this.spinoMale.setAttribute('animation-mixer', {
+          clip: 'Spinosaurus_Fishing_Idle',
+          loop: true,
+          crossFadeDuration: 0.4,
+          timeScale: 1,
+        });
+        this.spinoMale.object3D.position.x = -27.473;
+        this.spinoMale.object3D.position.y = -1.235;
+        this.spinoMale.object3D.position.z = 8.252;
+        this.spinoMale.object3D.rotation.y = -1.92;
+        const event = new Event('surface');
+        this.spinoCar.dispatchEvent(event);
+      }, 3000);
       this.phase = 'exit';
     }
   },
