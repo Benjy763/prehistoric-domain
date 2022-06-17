@@ -18,7 +18,7 @@ AFRAME.registerComponent('spino-car-tour', {
 
     // Dive params
     this.isDiveEnvChanged = false;
-    this.diveSpeed = 0.1; // 0.01
+    this.diveSpeed = 0.01;
 
     // Fog
     this.currentFog = 0;
@@ -98,7 +98,7 @@ AFRAME.registerComponent('spino-car-tour', {
     }
 
     // Manage fog
-    if (this.object.position.y < -5 && this.currentFog < 0.08) {
+    if (this.object.position.y < -5 && this.currentFog < 0.07) {
       this.currentFog += 0.001;
       this.mainScene.setAttribute('fog', {
         type: 'exponential',

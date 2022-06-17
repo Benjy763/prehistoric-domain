@@ -15,11 +15,13 @@ AFRAME.registerComponent('spino-female-animation', {
     this.phase = '';
     this.fish = document.querySelector('#spino-fish');
     this.sawFish = document.querySelector('#spino-saw-fish');
+    this.sawFishDead = document.querySelector('#spino-saw-fish-dead');
 
     // Spino run Path
     this.spinoMarker = 0; // Position on the curve
     this.spinoWalkSpeed = 0.0008; // Speed on the curve
-    this.spinoSwimSpeed = 0.0015; // Speed on the curve
+    this.spinoSwimSpeed = 0.0022; // Speed on the curve
+    this.spinoSwimSpeed2 = 0.0035; // Speed on the curve
     this.walkCurve1 = new THREE.SplineCurve([
       new THREE.Vector2(-28.408, -40.973),
       new THREE.Vector2(-24.678, -10.058),
@@ -33,14 +35,18 @@ AFRAME.registerComponent('spino-female-animation', {
       new THREE.Vector2(2.66, 38),
     ]);
     this.swimCurve1 = new THREE.SplineCurve([
-      new THREE.Vector2(-18.451, 76.891),
-      new THREE.Vector2(-18.451, -78.054),
+      new THREE.Vector2(-44.111, 40.486),
+      new THREE.Vector2(-33.35, 29.313),
+      new THREE.Vector2(-22.73, 13.792),
+      new THREE.Vector2(-21.9, -3.527),
+      new THREE.Vector2(-15, -45.775),
     ]);
     this.swimCurve2 = new THREE.SplineCurve([
-      new THREE.Vector2(-57.938, -34.797),
-      new THREE.Vector2(-38.897, -17.181),
-      new THREE.Vector2(-37.04, 0.792),
-      new THREE.Vector2(-53.613, 37.61),
+      new THREE.Vector2(-41.057, -28.491),
+      new THREE.Vector2(-38.471, -18.809),
+      new THREE.Vector2(-35.549, -3.511),
+      new THREE.Vector2(-35.549, 10.424),
+      new THREE.Vector2(-40, 44.26),
     ]);
 
     // Fish Path
@@ -57,7 +63,7 @@ AFRAME.registerComponent('spino-female-animation', {
 
     //Saw Fish Path
     this.sawFishMarker = 0; // Position on the curve
-    this.sawFishSpeed = 0.0008; // Speed on the curve
+    this.sawFishSpeed = 0.0015; // Speed on the curve
     this.sawFishCurve1 = new THREE.SplineCurve([
       new THREE.Vector2(-17.728, -26.941),
       new THREE.Vector2(-21.238, -16.459),
@@ -68,7 +74,7 @@ AFRAME.registerComponent('spino-female-animation', {
       new THREE.Vector2(-50.525, 32.801),
       new THREE.Vector2(-39.857, 16.569),
       new THREE.Vector2(-28.62, 5.253),
-      new THREE.Vector2(-10.734, -21.098),
+      new THREE.Vector2(-3.602, -22.739),
     ]);
 
     // Sound
@@ -228,7 +234,7 @@ AFRAME.registerComponent('spino-female-animation', {
         this.sawFishSpeed
       );
     }
-    if (this.movesManager.truncMarker(this.fishMarker) > 950) {
+    if (this.movesManager.truncMarker(this.fishMarker) > 800) {
       this.sawFishMarker = 0;
       this.phase = 'spinoHunt';
     }
@@ -249,7 +255,7 @@ AFRAME.registerComponent('spino-female-animation', {
         this.sawFishSpeed
       );
     }
-    if (this.movesManager.truncMarker(this.sawFishMarker) > 400) {
+    if (this.movesManager.truncMarker(this.sawFishMarker) > 700) {
       this.spinoMarker = this.movesManager.moveOnCurve(
         this.object,
         this.swimCurve1,
@@ -266,6 +272,7 @@ AFRAME.registerComponent('spino-female-animation', {
     }
     if (this.movesManager.truncMarker(this.spinoMarker) > 950) {
       this.spinoMarker = 0;
+      this.sawFishDead.setAttribute('visible', true);
       this.phase = 'spinoEat';
     }
   },
@@ -274,14 +281,14 @@ AFRAME.registerComponent('spino-female-animation', {
       this.object,
       this.swimCurve2,
       this.spinoMarker,
-      this.spinoSwimSpeed
+      this.spinoSwimSpeed2
     );
     this.movesManager.updateRotation(
       this.el,
       this.object,
       this.swimCurve2,
       this.spinoMarker,
-      this.spinoSwimSpeed
+      this.spinoSwimSpeed2
     );
     if (this.movesManager.truncMarker(this.spinoMarker) > 950) {
       this.phase = 'exit';
