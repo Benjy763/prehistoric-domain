@@ -39,7 +39,9 @@ AFRAME.registerComponent('spino-male-animation', {
     this.el.addEventListener(
       'enterWalk',
       () => {
-        this.phase = 'enterWalk';
+        setTimeout(() => {
+          this.phase = 'enterWalk';
+        }, 5000);
         this.el.setAttribute('animation-mixer', {
           clip: 'Spinosaurus_Idle',
           loop: true,
@@ -174,6 +176,14 @@ AFRAME.registerComponent('spino-male-animation', {
         timeScale: 0.8,
       });
     }, 11000);
+    setTimeout(() => {
+      this.el.setAttribute('animation-mixer', {
+        clip: 'Spinosaurus_Idle_Break1',
+        loop: true,
+        crossFadeDuration: 0.4,
+        timeScale: -0.4,
+      });
+    }, 13000);
     setTimeout(() => {
       this.phase = 'leave';
     }, 20000);

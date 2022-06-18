@@ -30,11 +30,11 @@
   position="-33.02383 0.86462 0.47876" rotation="0 180 0" scale="0.5 1 1"></a-entity>
 <a-entity id="spino-swamp-rock-4" class="spino-surface" gltf-model="#swamp-rock-asset"
   position="-19.69261 -0.47081 -6.30993" rotation="0 90 0" scale="1 1 1"></a-entity>
-<a-entity id="spino-swamp-dead-tree" class="spino-surface" gltf-model="#swamp-dead-tree-asset"
-  position="-20.19461 0.04744 -1.45596" rotation="0 -662.24 0" scale="1.29 1.28 -0.088"></a-entity>
-<a-entity id="spino-swamp-dead-tree-2" class="spino-surface" gltf-model="#swamp-dead-tree-asset"
-  position="-10.3579 0.07785 -1.95029" rotation="0 90 0" scale="-1 1 -1"></a-entity>
-<a-entity id="spino-swamp-dead-tree-3" class="spino-surface" gltf-model="#swamp-dead-tree-asset"
+<a-entity id="spino-swamp-dead-tree" class="spino-surface dead-tree" gltf-model="#swamp-dead-tree-asset"
+  position="-9.80222 0.04744 1.87201" rotation="0 -662.24 0" scale="1 1 -1"></a-entity>
+<a-entity id="spino-swamp-dead-tree-2" class="spino-surface dead-tree" gltf-model="#swamp-dead-tree-asset"
+  position="-9.91254 0.07785 -2.44585" rotation="0 90 0" scale="-1 1 -1"></a-entity>
+<a-entity id="spino-swamp-dead-tree-3" class="spino-surface dead-tree" gltf-model="#swamp-dead-tree-asset"
   position="-28.51888 0.02918 19.41208" rotation="0.83 -45 6.69" scale="1.5 1.5 -1.5"></a-entity>
 <a-entity id="spino-swamp-grass" class="spino-surface" gltf-model="#swamp-grass-asset"
   position="-26.53887 -0.263 1.07055" rotation="0 90 0" scale="0.013 0.013 0.013"></a-entity>
@@ -68,6 +68,8 @@
   position="-33.00336 -1.17123 -13.12076" rotation="0 140 0" scale="4 4 4"></a-entity>
 <a-entity id="spino-palm-tree-long-2" class="spino-surface" gltf-model="#palm-tree-long-asset"
   position="-24.14184 -1.17123 5.36494" rotation="0 140 0" scale="4 4 4"></a-entity>
+<a-entity id="spino-birds" animation-mixer="clip:  Scene; timeScale: 1" class="spino-surface" gltf-model="#birds-asset"
+  position="-33.83607 12.56465 18.56839" rotation="0 0 0" scale="1 1 1"></a-entity>
 
 <a-entity id="spino-window-support-3" gltf-model="#window-support-asset" position="-12.15027 0.06225 5.26177"
   rotation="0 -90 0" scale="2.66 -2.56 0.8"></a-entity>
@@ -76,53 +78,53 @@
 
 <a-plane id="spino-water" class="spino-surface" position="-112.03784 0 6.56656" rotation="-90 0 0" width="200"
   height="200" color="#7BC8A4" water material="color: white; transparent: true; opacity: 0.0"></a-plane>
-<a-entity id="long-sea-plant-1" animation-mixer="clip:  Take 001; startFrame: 400; timeScale: 0.5"
+<a-entity id="spino-long-sea-plant-1" animation-mixer="clip:  Take 001; startFrame: 400; timeScale: 0.5"
   class="spino-underwater" visible="false" gltf-model="#long-sea-plant-asset" position="-23.65036 -13.38898 11.39674"
   rotation="0 140 0" scale="0.02 0.02 0.02">
 </a-entity>
-<a-entity id="long-sea-plant-2" animation-mixer="clip:  Take 001; startFrame: 800; timeScale: 0.5"
+<a-entity id="spino-long-sea-plant-2" animation-mixer="clip:  Take 001; startFrame: 800; timeScale: 0.5"
   class="spino-underwater" visible="false" gltf-model="#long-sea-plant-asset" position="-19.65666 -13.38898 7.78058"
   rotation="0 0 0" scale="0.02 0.02 0.02">
 </a-entity>
-<a-entity id="long-sea-plant-3" animation-mixer="clip:  Take 001; startFrame: 1200; timeScale: 0.5"
+<a-entity id="spino-long-sea-plant-3" animation-mixer="clip:  Take 001; startFrame: 1200; timeScale: 0.5"
   class="spino-underwater" visible="false" gltf-model="#long-sea-plant-asset" position="-28.99448 -13.38898 8.6647"
   rotation="0 20 0" scale="0.02 0.02 0.02">
 </a-entity>
-<a-entity id="long-sea-plant-4" animation-mixer="clip:  Take 001; startFrame: 1600; timeScale: 0.5"
+<a-entity id="spino-long-sea-plant-4" animation-mixer="clip:  Take 001; startFrame: 1600; timeScale: 0.5"
   class="spino-underwater" visible="false" gltf-model="#long-sea-plant-asset" position="-24.714 -13.38898 0.68759"
   rotation="0 140 0" scale="0.02 0.02 0.02">
 </a-entity>
-<a-entity id="long-sea-plant-5" animation-mixer="clip:  Take 001; startFrame: 2000; timeScale: 0.5"
+<a-entity id="spino-long-sea-plant-5" animation-mixer="clip:  Take 001; startFrame: 2000; timeScale: 0.5"
   class="spino-underwater" visible="false" gltf-model="#long-sea-plant-asset" position="-22.96965 -13.38898 -1.12882"
   rotation="0 150 0" scale="0.02 0.02 0.02">
 </a-entity>
-<a-entity id="long-sea-plant-6" animation-mixer="clip:  Take 001; startFrame: 2400; timeScale: 0.5"
+<a-entity id="spino-long-sea-plant-6" animation-mixer="clip:  Take 001; startFrame: 2400; timeScale: 0.5"
   class="spino-underwater" visible="false" gltf-model="#long-sea-plant-asset" position="-20.00437 -13.38898 -5.19825"
   rotation="0 0 0" scale="0.02 0.02 0.02">
 </a-entity>
-<a-entity id="small-sea-plant-1" animation-mixer="clip: Sway; startFrame: 400; timeScale: 0.5" class="spino-underwater"
-  visible="false" gltf-model="#small-sea-plant-asset" position="-28.48134 -13.3152 11.47225" rotation="0 0 0"
-  scale="1 1 1">
+<a-entity id="spino-small-sea-plant-1" animation-mixer="clip: Sway; startFrame: 400; timeScale: 0.5"
+  class="spino-underwater" visible="false" gltf-model="#small-sea-plant-asset" position="-28.48134 -13.3152 11.47225"
+  rotation="0 0 0" scale="1 1 1">
 </a-entity>
-<a-entity id="small-sea-plant-2" animation-mixer="clip: Sway; startFrame: 800; timeScale: 0.5" class="spino-underwater"
-  visible="false" gltf-model="#small-sea-plant-asset" position="-23.18516 -13.3152 -2.66978" rotation="0 50 0"
-  scale="1 1 1">
+<a-entity id="spino-small-sea-plant-2" animation-mixer="clip: Sway; startFrame: 800; timeScale: 0.5"
+  class="spino-underwater" visible="false" gltf-model="#small-sea-plant-asset" position="-23.18516 -13.3152 -2.66978"
+  rotation="0 50 0" scale="1 1 1">
 </a-entity>
-<a-entity id="small-sea-plant-3" animation-mixer="clip: Sway; startFrame: 1200; timeScale: 0.5" class="spino-underwater"
-  visible="false" gltf-model="#small-sea-plant-asset" position="-22.66031 -13.3152 14.27679" rotation="0 90 0"
-  scale="1 1 1">
+<a-entity id="spino-small-sea-plant-3" animation-mixer="clip: Sway; startFrame: 1200; timeScale: 0.5"
+  class="spino-underwater" visible="false" gltf-model="#small-sea-plant-asset" position="-22.66031 -13.3152 14.27679"
+  rotation="0 90 0" scale="1 1 1">
 </a-entity>
-<a-entity id="small-sea-plant-4" animation-mixer="clip: Sway; startFrame: 1600; timeScale: 0.5" class="spino-underwater"
-  visible="false" gltf-model="#small-sea-plant-asset" position="-22.35932 -13.3152 -6.06238" rotation="0 80 0"
-  scale="1 1 1">
+<a-entity id="spino-small-sea-plant-4" animation-mixer="clip: Sway; startFrame: 1600; timeScale: 0.5"
+  class="spino-underwater" visible="false" gltf-model="#small-sea-plant-asset" position="-22.35932 -13.3152 -6.06238"
+  rotation="0 80 0" scale="1 1 1">
 </a-entity>
-<a-entity id="small-sea-plant-5" animation-mixer="clip:Sway; startFrame: 2000; timeScale: 0.5" class="spino-underwater"
-  visible="false" gltf-model="#small-sea-plant-asset" position="-31.8259 -13.3152 7.50046" rotation="0 140 0"
-  scale="1 1 1">
+<a-entity id="spino-small-sea-plant-5" animation-mixer="clip:Sway; startFrame: 2000; timeScale: 0.5"
+  class="spino-underwater" visible="false" gltf-model="#small-sea-plant-asset" position="-31.8259 -13.3152 7.50046"
+  rotation="0 140 0" scale="1 1 1">
 </a-entity>
-<a-entity id="small-sea-plant-6" animation-mixer="clip: Sway; startFrame: 2400; timeScale: 0.5" class="spino-underwater"
-  visible="false" gltf-model="#small-sea-plant-asset" position="-29.38344 -13.3152 16.69337" rotation="0 0 0"
-  scale="1 1 1">
+<a-entity id="spino-small-sea-plant-6" animation-mixer="clip: Sway; startFrame: 2400; timeScale: 0.5"
+  class="spino-underwater" visible="false" gltf-model="#small-sea-plant-asset" position="-29.38344 -13.3152 16.69337"
+  rotation="0 0 0" scale="1 1 1">
 </a-entity>
 <a-entity id="spino-swamp-grass-101" visible="false" class="spino-underwater" gltf-model="#swamp-grass-asset"
   position="-23.69649 -13.27 2.07659" visible="false" rotation="0 90 0" scale="0.013 0.013 0.013"></a-entity>

@@ -13,12 +13,21 @@ AFRAME.registerComponent('spino-car-tour', {
       document.querySelector('a-scene').systems['movesManager'];
     this.spinoMale = document.querySelector('#spino-male');
     this.spinoFemale = document.querySelector('#spino-female');
+    this.birds = document.querySelector('#spino-birds');
     this.object = this.el.object3D;
     this.mainScene = document.getElementById('main-scene');
 
     // Dive params
     this.isDiveEnvChanged = false;
     this.diveSpeed = 0.01;
+
+    // Birds curve
+    this.birdsMarker = 0; // Position on the curve
+    this.birdsSpeed = 0.003; // Speed on the curve
+    this.birdsCurve = new THREE.SplineCurve([
+      new THREE.Vector2(-33.836, 18.578),
+      new THREE.Vector2(-52.504, -40),
+    ]);
 
     // Fog
     this.currentFog = 0;
@@ -46,7 +55,7 @@ AFRAME.registerComponent('spino-car-tour', {
         this.voicespino1Sound = this.system.getVoice('spino1');
         this.voicePhase = 'spino1';
         setTimeout(() => {
-          this.phase = 'start';
+          this.phase = 'birdsFly';
         }, 10000);
       },
       false
@@ -68,6 +77,24 @@ AFRAME.registerComponent('spino-car-tour', {
     );
   },
   // --- Phase functions ---
+  birdsFly: function () {
+    this.birdsMarker = this.movesManager.moveOnCurve(
+      this.birds.object3D,
+      this.birdsCurve,
+      this.birdsMarker,
+      this.birdsSpeed
+    );
+    this.movesManager.updateRotation(
+      this.birds,
+      this.birds.object3D,
+      this.birdsCurve,
+      this.birdsMarker,
+      this.birdsSpeed
+    );
+    if (this.movesManager.truncMarker(this.birdsMarker) > 950) {
+      this.phase = 'exit';
+    }
+  },
   start: function () {
     // setTimeout(() => {
     //   this.ambiant1Sound.playSound();
@@ -77,7 +104,7 @@ AFRAME.registerComponent('spino-car-tour', {
       const event = new Event('enterWalk');
       this.spinoMale.dispatchEvent(event);
     }, 0);
-    this.phase = 'exit';
+    this.phase = 'birdsFly';
   },
   dive: function () {
     if (this.object.position.y < -5 && !this.isDiveEnvChanged) {
@@ -130,6 +157,11 @@ AFRAME.registerComponent('spino-car-tour', {
       let underwaterEls = document.getElementsByClassName('spino-underwater');
       for (let i = 0; i < underwaterEls.length; i++) {
         underwaterEls[i].setAttribute('visible', false);
+      }
+      // Hide all useless elements
+      let deadTreeEls = document.getElementsByClassName('dead-tree');
+      for (let i = 0; i < deadTreeEls.length; i++) {
+        deadTreeEls[i].setAttribute('visible', false);
       }
       // Set new ground postition
       let ground = document.getElementById('spino-ground');
@@ -184,6 +216,9 @@ AFRAME.registerComponent('spino-car-tour', {
     switch (this.phase) {
       case 'start':
         this.start();
+        break;
+      case 'birdsFly':
+        this.birdsFly();
         break;
       case 'dive':
         this.dive();
