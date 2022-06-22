@@ -162,6 +162,18 @@ export const SwampScenes = {
       z: [1, 0],
     },
   },
+  sarco: {
+    scene: 'sarco-scene',
+    camera: 'sarco-scene-camera',
+    car: 'sarco-car',
+    carReference: null,
+    rigPos: {
+      // First in value in VR and second without
+      x: [-2, 1],
+      y: [-0.7, -0.3],
+      z: [1, 0],
+    },
+  },
   ending: {
     scene: 'ending-scene',
     camera: 'ending-scene-camera',
