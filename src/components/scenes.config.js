@@ -157,9 +157,9 @@ export const SwampScenes = {
     carReference: null,
     rigPos: {
       // First in value in VR and second without
-      x: [-3.5, 1],
+      x: [-2, 1],
       y: [-0.7, -0.3],
-      z: [0, 0],
+      z: [1, 0],
     },
   },
   ending: {

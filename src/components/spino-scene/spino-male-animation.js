@@ -200,7 +200,7 @@ AFRAME.registerComponent('spino-male-animation', {
     }, 5000);
     setTimeout(() => {
       this.phase = 'leave';
-    }, 11000);
+    }, 10200);
     this.phase = 'exit';
   },
   leave: function () {
