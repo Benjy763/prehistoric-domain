@@ -84,13 +84,6 @@ AFRAME.registerComponent('spino-car-tour', {
       this.birdsMarker,
       this.birdsSpeed
     );
-    this.movesManager.updateRotation(
-      this.birds,
-      this.birds.object3D,
-      this.birdsCurve,
-      this.birdsMarker,
-      this.birdsSpeed
-    );
     if (this.movesManager.truncMarker(this.birdsMarker) > 950) {
       this.phase = 'exit';
     }

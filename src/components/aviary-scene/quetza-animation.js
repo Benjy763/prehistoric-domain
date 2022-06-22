@@ -103,13 +103,6 @@ AFRAME.registerComponent('quetza-animation', {
       this.quetzaMarker,
       this.quetzaWalkSpeed
     );
-    this.movesManager.updateRotation(
-      this.el,
-      this.object,
-      this.walkCurve,
-      this.quetzaMarker,
-      this.quetzaWalkSpeed
-    );
   },
   roar: function () {
     this.quetzaMarker = 0;
@@ -163,15 +156,6 @@ AFRAME.registerComponent('quetza-animation', {
       this.flyCurve,
       this.quetzaMarker,
       this.quetzaFlySpeed,
-      'yz'
-    );
-    this.movesManager.updateRotation(
-      this.el,
-      this.object,
-      this.flyCurve,
-      this.quetzaMarker,
-      this.quetzaFlySpeed,
-      0,
       'yz'
     );
   },

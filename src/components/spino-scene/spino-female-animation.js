@@ -136,13 +136,6 @@ AFRAME.registerComponent('spino-female-animation', {
       this.spinoMarker,
       this.spinoWalkSpeed
     );
-    this.movesManager.updateRotation(
-      this.el,
-      this.object,
-      this.walkCurve1,
-      this.spinoMarker,
-      this.spinoWalkSpeed
-    );
   },
   drink: function () {
     setTimeout(() => {
@@ -198,13 +191,6 @@ AFRAME.registerComponent('spino-female-animation', {
       this.spinoMarker,
       this.spinoWalkSpeed
     );
-    this.movesManager.updateRotation(
-      this.el,
-      this.object,
-      this.walkCurve1,
-      this.spinoMarker,
-      this.spinoWalkSpeed
-    );
   },
   fishHunt: function () {
     this.fishMarker = this.movesManager.moveOnCurve(
@@ -213,22 +199,8 @@ AFRAME.registerComponent('spino-female-animation', {
       this.fishMarker,
       this.fishSpeed
     );
-    this.movesManager.updateRotation(
-      this.fish,
-      this.fish.object3D,
-      this.fishCurve,
-      this.fishMarker,
-      this.fishSpeed
-    );
     if (this.movesManager.truncMarker(this.sawFishMarker) < 950) {
       this.sawFishMarker = this.movesManager.moveOnCurve(
-        this.sawFish.object3D,
-        this.sawFishCurve1,
-        this.sawFishMarker,
-        this.sawFishSpeed
-      );
-      this.movesManager.updateRotation(
-        this.sawFish,
         this.sawFish.object3D,
         this.sawFishCurve1,
         this.sawFishMarker,
@@ -248,23 +220,9 @@ AFRAME.registerComponent('spino-female-animation', {
         this.sawFishMarker,
         this.sawFishSpeed
       );
-      this.movesManager.updateRotation(
-        this.sawFish,
-        this.sawFish.object3D,
-        this.sawFishCurve2,
-        this.sawFishMarker,
-        this.sawFishSpeed
-      );
     }
     if (this.movesManager.truncMarker(this.sawFishMarker) > 700) {
       this.spinoMarker = this.movesManager.moveOnCurve(
-        this.object,
-        this.swimCurve1,
-        this.spinoMarker,
-        this.spinoSwimSpeed
-      );
-      this.movesManager.updateRotation(
-        this.el,
         this.object,
         this.swimCurve1,
         this.spinoMarker,
@@ -279,13 +237,6 @@ AFRAME.registerComponent('spino-female-animation', {
   },
   spinoEat: function () {
     this.spinoMarker = this.movesManager.moveOnCurve(
-      this.object,
-      this.swimCurve2,
-      this.spinoMarker,
-      this.spinoSwimSpeed2
-    );
-    this.movesManager.updateRotation(
-      this.el,
       this.object,
       this.swimCurve2,
       this.spinoMarker,

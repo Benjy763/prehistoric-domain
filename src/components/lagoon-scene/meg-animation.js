@@ -94,14 +94,6 @@ AFRAME.registerComponent('meg-animation', {
       this.sharkMarker,
       this.sharkSpeed
     );
-    this.movesManager.updateRotation(
-      this.shark,
-      this.sharkObject,
-      this.sharkCurve1,
-      this.sharkMarker,
-      this.sharkSpeed,
-      90
-    );
   },
   enterMeg: function () {
     if (
@@ -121,13 +113,6 @@ AFRAME.registerComponent('meg-animation', {
       this.megMarker,
       this.megSpeed
     );
-    this.movesManager.updateRotation(
-      this.el,
-      this.object,
-      this.megCurve1,
-      this.megMarker,
-      this.megSpeed
-    );
   },
   sharkReturn: function () {
     if (this.movesManager.truncMarker(this.sharkMarker) > 580) {
@@ -141,14 +126,6 @@ AFRAME.registerComponent('meg-animation', {
         this.sharkCurve2,
         this.sharkMarker,
         this.sharkSpeed
-      );
-      this.movesManager.updateRotation(
-        this.shark,
-        this.sharkObject,
-        this.sharkCurve2,
-        this.sharkMarker,
-        this.sharkSpeed,
-        90
       );
     }
   },
@@ -211,13 +188,6 @@ AFRAME.registerComponent('meg-animation', {
     }
 
     this.megMarker = this.movesManager.moveOnCurve(
-      this.object,
-      this.megCurve3,
-      this.megMarker,
-      this.megSpeed
-    );
-    this.movesManager.updateRotation(
-      this.el,
       this.object,
       this.megCurve3,
       this.megMarker,

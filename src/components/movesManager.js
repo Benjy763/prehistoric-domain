@@ -113,28 +113,17 @@ AFRAME.registerSystem('movesManager', {
     object.position.copy(
       this.convertPosition(curve.getPointAt(marker), object, axe)
     );
+    this.updateRotation(object, curve, marker, speed, axe);
     return marker;
   },
   // Give to the given object the new rotation position after moving on the curve
-  updateRotation: function (
-    el,
-    object,
-    curve,
-    marker,
-    speed,
-    offset = 0,
-    axe = 'xz'
-  ) {
+  updateRotation: function (object, curve, marker, speed, axe) {
     const newPosition = this.convertPosition(
       curve.getPointAt(marker + speed),
       object,
       axe
     );
     object.lookAt(newPosition.x, newPosition.y, newPosition.z);
-    // Correct rotation with offset
-    const rotation = el.getAttribute('rotation');
-    rotation.y += offset;
-    el.setAttribute('rotation', rotation);
   },
   // Convert position in x y z object
   convertPosition: function (position2D, object, axe = 'xz') {

@@ -30,7 +30,6 @@ AFRAME.registerComponent('car-controls', {
       ? this.defaultSpeed
       : this.carSpeed;
     this.movesManager.updateRotation(
-      this.el,
       this.object,
       this.curve,
       this.carMarker,
@@ -71,7 +70,6 @@ AFRAME.registerComponent('car-controls', {
       ? this.defaultSpeed
       : this.carSpeed;
     this.movesManager.updateRotation(
-      this.el,
       this.object,
       this.curve,
       this.carMarker,

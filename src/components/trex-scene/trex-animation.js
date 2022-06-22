@@ -128,13 +128,6 @@ AFRAME.registerComponent('trex-animation', {
       this.trexMarker,
       this.trexSpeed
     );
-    this.movesManager.updateRotation(
-      this.el,
-      this.object,
-      this.curve,
-      this.trexMarker,
-      this.trexSpeed
-    );
   },
   trexDrink: function () {
     setTimeout(() => {

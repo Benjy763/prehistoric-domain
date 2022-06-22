@@ -92,13 +92,6 @@ AFRAME.registerComponent('spino-male-animation', {
       this.spinoMarker,
       this.spinoWalkSpeed
     );
-    this.movesManager.updateRotation(
-      this.el,
-      this.object,
-      this.walkCurve1,
-      this.spinoMarker,
-      this.spinoWalkSpeed
-    );
     if (this.object.position.y < -0.758) {
       this.object.position.y += this.waterExitSpeed;
     }
@@ -135,13 +128,6 @@ AFRAME.registerComponent('spino-male-animation', {
       this.phase = 'fish';
     }
     this.spinoMarker = this.movesManager.moveOnCurve(
-      this.object,
-      this.walkCurve2,
-      this.spinoMarker,
-      this.spinoWalkSpeed
-    );
-    this.movesManager.updateRotation(
-      this.el,
       this.object,
       this.walkCurve2,
       this.spinoMarker,

@@ -156,13 +156,6 @@ AFRAME.registerComponent('trice-animation', {
       this.triceMarker,
       this.triceSpeed
     );
-    this.movesManager.updateRotation(
-      this.el,
-      this.object,
-      this.curve,
-      this.triceMarker,
-      this.triceSpeed
-    );
     this.object.position.x -= this.triceSpeed;
   },
   shaking: function () {

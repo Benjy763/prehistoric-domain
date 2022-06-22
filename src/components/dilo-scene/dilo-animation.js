@@ -68,13 +68,6 @@ AFRAME.registerComponent('dilo-animation', {
       this.diloMarker,
       this.diloSpeed
     );
-    this.movesManager.updateRotation(
-      this.el,
-      this.object,
-      this.curve,
-      this.diloMarker,
-      this.diloSpeed
-    );
   },
   tick: function () {
     // Animation steps
