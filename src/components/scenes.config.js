@@ -136,7 +136,7 @@ export const CinemaScenes = {
 export const SwampScenes = {
   // Starting scene
   mobileCompatible: true,
-  selection: 'spino',
+  selection: 'sarco',
   assetsId: 'swamp-assets',
   carMarkerForDebug: 0.32,
   color: '#5e5e5e',

@@ -11,7 +11,7 @@ AFRAME.registerComponent('sarco-car-tour', {
     ).object3D.position;
     this.movesManager =
       document.querySelector('a-scene').systems['movesManager'];
-    this.sarcoMale = document.querySelector('#sarco');
+    this.sarcoMale = document.querySelector('#sarco-male');
     this.object = this.el.object3D;
     this.mainScene = document.getElementById('main-scene');
 
@@ -52,7 +52,14 @@ AFRAME.registerComponent('sarco-car-tour', {
     );
   },
   // --- Phase functions ---
-  start: function () {},
+  start: function () {
+    setTimeout(() => {
+      // Trigger Spino animation
+      const event = new Event('enter');
+      this.sarcoMale.dispatchEvent(event);
+    }, 0);
+    this.phase = 'exit';
+  },
   tick: function () {
     // Walk bound checking
     this.movesManager.checkBoundLimits(this.cameraPosition);

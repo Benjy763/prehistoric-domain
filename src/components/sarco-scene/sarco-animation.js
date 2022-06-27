@@ -1,4 +1,4 @@
-AFRAME.registerComponent('sarco-female-animation', {
+AFRAME.registerComponent('sarco-animation', {
   schema: {},
   init: function () {
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
@@ -10,7 +10,6 @@ AFRAME.registerComponent('sarco-female-animation', {
       document.querySelector('a-scene').systems['movesManager'];
     this.car = document.querySelector('#sarco-car');
     this.mainScene = document.getElementById('main-scene');
-    this.sarcoMale = document.querySelector('#sarco-male');
     this.sarcoCar = document.querySelector('#sarco-car');
     this.phase = '';
     this.bird = document.querySelector('#sarco-bird');
@@ -18,8 +17,6 @@ AFRAME.registerComponent('sarco-female-animation', {
     // Spino run Path
     this.sarcoMarker = 0; // Position on the curve
     this.sarcoWalkSpeed = 0.0008; // Speed on the curve
-    this.sarcoSwimSpeed = 0.0022; // Speed on the curve
-    this.sarcoSwimSpeed2 = 0.0035; // Speed on the curve
     this.walkCurve1 = new THREE.SplineCurve([
       new THREE.Vector2(-28.408, -40.973),
       new THREE.Vector2(-24.678, -10.058),
@@ -31,38 +28,41 @@ AFRAME.registerComponent('sarco-female-animation', {
     this.birdMarker = 0; // Position on the curve
     this.birdSpeed = 0.0008; // Speed on the curve
     this.birdCurve = new THREE.SplineCurve([
-      new THREE.Vector2(-10.508, -9.171),
-      new THREE.Vector2(-19.703, -3.136),
-      new THREE.Vector2(-20.977, 3.892),
-      new THREE.Vector2(-24.716, 6.492),
-      new THREE.Vector2(-32.015, 6.218),
-      new THREE.Vector2(-76.883, 3.19),
+      new THREE.Vector2(-18.96, 14.287),
+      new THREE.Vector2(-18.96, 6.686),
+    ]);
+    this.birdCurve2 = new THREE.SplineCurve([
+      new THREE.Vector2(-18.96, 6.686),
+      new THREE.Vector2(-33.901, -8.755),
     ]);
 
     // Sound
 
     // Start tour listener
     this.el.addEventListener(
-      'enterWalk',
+      'enter',
       () => {
-        this.phase = 'enterWalk';
-        this.el.setAttribute('animation-mixer', {
-          clip: 'Spinosaurus_Walk_InPlace',
-          loop: true,
-          crossFadeDuration: 0.4,
-          timeScale: 0.7,
-        });
+        this.phase = 'openJaws';
       },
       false
     );
   },
   // --- Phase functions ---
-  enterWalk: function () {},
+  openJaws: function () {
+    setTimeout(() => {
+      this.el.setAttribute('animation-mixer', {
+        clip: 'Sarcosuchus_Sneak_Idle_OpenJaws',
+        loop: true,
+        crossFadeDuration: 1.5,
+        timeScale: 0.8,
+      });
+    }, 0);
+  },
   tick: function () {
     // Animation steps
     switch (this.phase) {
-      case 'enterWalk':
-        this.enterWalk();
+      case 'openJaws':
+        this.openJaws();
         break;
     }
   },
