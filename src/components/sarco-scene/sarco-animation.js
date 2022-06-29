@@ -16,23 +16,21 @@ AFRAME.registerComponent('sarco-animation', {
 
     // Spino run Path
     this.sarcoMarker = 0; // Position on the curve
-    this.sarcoWalkSpeed = 0.0008; // Speed on the curve
+    this.sarcoWalkSpeed = 0.0015; // Speed on the curve
     this.walkCurve1 = new THREE.SplineCurve([
-      new THREE.Vector2(-28.408, -40.973),
-      new THREE.Vector2(-24.678, -10.058),
-      new THREE.Vector2(-21.574, 0.238),
-      new THREE.Vector2(-3.314, 31.921),
+      new THREE.Vector2(-18.969, 0.161),
+      new THREE.Vector2(-18.969, 32.365),
     ]);
 
     // Bird Path
     this.birdMarker = 0; // Position on the curve
-    this.birdSpeed = 0.0008; // Speed on the curve
+    this.birdSpeed = 0.05; // Speed on the curve
     this.birdCurve = new THREE.SplineCurve([
       new THREE.Vector2(-18.96, 14.287),
-      new THREE.Vector2(-18.96, 6.686),
+      new THREE.Vector2(-18.96, 5),
     ]);
     this.birdCurve2 = new THREE.SplineCurve([
-      new THREE.Vector2(-18.96, 6.686),
+      new THREE.Vector2(-18.96, 6.393),
       new THREE.Vector2(-33.901, -8.755),
     ]);
 
@@ -57,12 +55,131 @@ AFRAME.registerComponent('sarco-animation', {
         timeScale: 0.8,
       });
     }, 0);
+    setTimeout(() => {
+      this.bird.setAttribute('animation-mixer', {
+        clip: 'Take 002',
+        loop: true,
+        crossFadeDuration: 0.4,
+        timeScale: 1,
+      });
+      this.phase = 'birdFly';
+    }, 5000);
+    this.phase = 'exit';
+  },
+  birdFly: function () {
+    this.birdMarker = this.movesManager.moveOnCurve(
+      this.bird.object3D,
+      this.birdCurve,
+      this.birdMarker,
+      this.birdSpeed
+    );
+    if (this.movesManager.truncMarker(this.birdMarker) > 800) {
+      this.bird.setAttribute('animation-mixer', {
+        clip: 'Take 001',
+        pingPong: true,
+        crossFadeDuration: 0.4,
+        timeScale: 0.7,
+      });
+      setTimeout(() => {
+        this.birdSpeed = 0.01;
+        this.birdMarker = 0;
+        this.bird.setAttribute('animation-mixer', {
+          startFrame: 0,
+          clip: 'Take 002',
+          loop: true,
+          crossFadeDuration: 0,
+          timeScale: 1,
+        });
+        this.phase = 'birdLeave';
+      }, 8000);
+      this.phase = 'exit';
+    }
+  },
+  birdLeave: function () {
+    this.birdMarker = this.movesManager.moveOnCurve(
+      this.bird.object3D,
+      this.birdCurve2,
+      this.birdMarker,
+      this.birdSpeed
+    );
+    if (this.movesManager.truncMarker(this.birdMarker) > 800) {
+      setTimeout(() => {
+        this.phase = 'sarcoUp';
+      }, 8000);
+      this.phase = 'exit';
+    }
+  },
+  sarcoUp: function () {
+    this.el.setAttribute('animation-mixer', {
+      clip: 'Sarcosuchus_Sneak_StandUp',
+      loop: true,
+      crossFadeDuration: 0.4,
+      timeScale: 0.3,
+    });
+    setTimeout(() => {
+      this.el.setAttribute('animation-mixer', {
+        clip: 'Sarcosuchus_Idle',
+        loop: true,
+        crossFadeDuration: 0.4,
+        timeScale: 0.7,
+      });
+    }, 2500);
+    setTimeout(() => {
+      this.phase = 'sarcoRoar';
+    }, 4000);
+    this.phase = 'exit';
+  },
+  sarcoRoar: function () {
+    this.el.setAttribute('animation-mixer', {
+      clip: 'Sarcosuchus_Roar',
+      loop: true,
+      crossFadeDuration: 0.4,
+      timeScale: 1,
+    });
+    setTimeout(() => {
+      this.el.setAttribute('animation-mixer', {
+        clip: 'Sarcosuchus_Walk_InPlace',
+        loop: true,
+        crossFadeDuration: 0.4,
+        timeScale: 0.8,
+      });
+      setTimeout(() => {
+        this.phase = 'sarcoLeave';
+      }, 400);
+    }, 3000);
+    this.phase = 'exit';
+  },
+  sarcoLeave: function () {
+    this.sarcoMarker = this.movesManager.moveOnCurve(
+      this.object,
+      this.walkCurve1,
+      this.sarcoMarker,
+      this.sarcoWalkSpeed
+    );
+    if (this.movesManager.truncMarker(this.sarcoMarker) > 900) {
+      this.phase = 'exit';
+    }
   },
   tick: function () {
     // Animation steps
     switch (this.phase) {
       case 'openJaws':
         this.openJaws();
+        break;
+      case 'birdFly':
+        this.birdFly();
+        break;
+      case 'birdLeave':
+        this.birdLeave();
+        break;
+      case 'sarcoUp':
+        this.sarcoUp();
+        break;
+      case 'sarcoRoar':
+        this.sarcoRoar();
+        break;
+      case 'sarcoLeave':
+        this.sarcoLeave();
         break;
     }
   },
