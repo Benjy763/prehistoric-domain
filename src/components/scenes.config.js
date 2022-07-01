@@ -158,7 +158,7 @@ export const SwampScenes = {
     rigPos: {
       // First in value in VR and second without
       x: [-2, 1],
-      y: [-0.7, -0.3],
+      y: [-0.7, -0.1],
       z: [1, 0],
     },
   },
@@ -170,7 +170,7 @@ export const SwampScenes = {
     rigPos: {
       // First in value in VR and second without
       x: [-2, 1],
-      y: [-0.7, -0.3],
+      y: [-0.7, -0.1],
       z: [1, 0],
     },
   },

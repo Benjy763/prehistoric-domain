@@ -50,15 +50,65 @@ AFRAME.registerComponent('sarco-car-tour', {
       },
       false
     );
+    this.el.addEventListener(
+      'dive',
+      () => {
+        this.phase = 'dive';
+      },
+      false
+    );
   },
   // --- Phase functions ---
   start: function () {
     setTimeout(() => {
-      // Trigger Spino animation
+      // Trigger Sarco animation
       const event = new Event('enter');
       this.sarcoMale.dispatchEvent(event);
     }, 0);
     this.phase = 'exit';
+  },
+  dive: function () {
+    if (this.object.position.y < -5 && !this.isDiveEnvChanged) {
+      // Hide all useless elements
+      let surfaceEls = document.getElementsByClassName('sarco-surface');
+      for (let i = 0; i < surfaceEls.length; i++) {
+        surfaceEls[i].setAttribute('visible', false);
+      }
+      // Show all needed elements
+      let underwaterEls = document.getElementsByClassName('sarco-underwater');
+      for (let i = 0; i < underwaterEls.length; i++) {
+        underwaterEls[i].setAttribute('visible', true);
+      }
+      // Set new ground postition
+      let ground = document.getElementById('sarco-ground');
+      const groundPosition = ground.getAttribute('position');
+      groundPosition.y = -13.197;
+      ground.setAttribute('position', groundPosition);
+      // Change background color
+      setTimeout(() => {
+        this.mainScene.setAttribute('background', {
+          color: '#535d4b',
+        });
+      }, 5000);
+      this.isDiveEnvChanged = true;
+    }
+
+    // Manage fog
+    if (this.object.position.y < -5 && this.currentFog < 0.07) {
+      this.currentFog += 0.001;
+      this.mainScene.setAttribute('fog', {
+        type: 'exponential',
+        color: '#535d4b',
+        density: this.currentFog,
+      });
+    }
+    if (this.object.position.y < -11.017) {
+      // Trigger Sarco animation
+      const event = new Event('sarcoUnderwater');
+      this.sarcoMale.dispatchEvent(event);
+      this.phase = 'sarcoUnderwater';
+    }
+    this.object.position.y -= this.diveSpeed;
   },
   tick: function () {
     // Walk bound checking
@@ -75,6 +125,9 @@ AFRAME.registerComponent('sarco-car-tour', {
     switch (this.phase) {
       case 'start':
         this.start();
+        break;
+      case 'dive':
+        this.dive();
         break;
       case 'changeScene':
         // Destroy and detach all unecessary objets
