@@ -1,6 +1,6 @@
 let $ = require('jquery');
 
-import { Scenes } from './scenes.config';
+import { Scenes } from '../scenes.config';
 
 const assetsId = Scenes.assetsId;
 

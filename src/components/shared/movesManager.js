@@ -2,7 +2,7 @@
   This is the curve/movement management file.
 */
 
-import { Scenes } from './scenes.config';
+import { Scenes } from '../scenes.config';
 
 AFRAME.registerSystem('movesManager', {
   schema: {},

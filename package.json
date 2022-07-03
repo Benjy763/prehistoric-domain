@@ -2,7 +2,7 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack",
+    "build:scene": "cross-env NODE_ENV=production webpack",
     "build:ws": "cross-env NODE_ENV=production webpack --config webpack-ws.config.js",
     "deploy": "ghpages -p .ghpages && rm -rf .ghpages",
     "lint": "semistandard -v | snazzy",

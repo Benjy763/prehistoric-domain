@@ -4,9 +4,9 @@
   Also there are utility functions that help making scenes (ex move object on curves, logs...)
 */
 
-import { Scenes } from './scenes.config';
-import { debug } from './debug.const';
-import { languages } from './languages.config';
+import { Debug } from '../debug.const';
+import { Languages } from '../languages.config';
+import { Scenes } from '../scenes.config';
 
 const SupportedPlatform = [
   'Win32',
@@ -31,8 +31,8 @@ AFRAME.registerSystem('system', {
     this.displayDistance = 100; // 150 to test
     this.fov = 50;
     this.fovVR = 60;
-    this.language = languages.selection;
-    this.languages = languages;
+    this.language = Languages.selection;
+    this.languages = Languages;
     this.carReference;
     this.actuelScene = this.firstScene;
     this.tourStarted = false;
@@ -49,13 +49,19 @@ AFRAME.registerSystem('system', {
     this.initLanguage();
     this.loadingAssets();
 
+    // Set loading infos
+    document
+      .querySelector('#loader-logo')
+      .setAttribute('src', `/assets/images/${this.scenes.loadingScreen}`);
+    document.querySelector('#loading-infos').innerHTML = this.scenes.name;
+
     // Remove embedded for debug
     document.getElementById('main-scene-wrapper').embedded = false;
     // Display vr mirror in fullscreen
     document.getElementById('main-scene-content').classList.add('fullscreen');
 
     // Debug events
-    if (debug) {
+    if (Debug) {
       // Unclock debug listener
       this.startDebugListener();
     }
@@ -205,9 +211,14 @@ AFRAME.registerSystem('system', {
       // Preloading
       setTimeout(() => {
         document.getElementById('menu-wrapper').style.display = 'block';
+        if (!this.scenes.needPerformance) {
+          document.querySelector('#menu-performance').style.display = 'none';
+        }
+        if (!this.scenes.needLanguage) {
+          document.querySelector('#menu-language').style.display = 'none';
+        }
         // Press start
         document.getElementById('loading-logo').style.display = 'none';
-        document.getElementById('loading-infos').style.display = 'none';
         document.getElementById('loading-infos').style.display = 'none';
         document.getElementById('enter').style.display = 'block';
         if (this.isMobile) {

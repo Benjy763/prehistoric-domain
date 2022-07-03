@@ -15,11 +15,14 @@ PLUGINS = [
       <head>
         <meta charset="UTF-8" />
         <title>Prehistoric Domain</title>
-        <script src="./build/vendors/aframe/aframe-v1.3.0.min.js"></script>
+        <script src="/vendors/aframe/aframe-v1.3.0.min.js"></script>
+        <script src="/vendors/water/refractor.js"></script>
+        <script src="/vendors/water/reflector.js"></script>
+        <script src="/vendors/water/water2.js"></script>
         <style type="text/css">
           @font-face {
             font-family: 'Exo';
-            src: url('./build/assets/font/Exo-Regular.ttf') format('truetype');
+            src: url('/assets/font/Exo-Regular.ttf') format('truetype');
           }
         </style>
       </head>
@@ -31,13 +34,6 @@ PLUGINS = [
   }),
   new webpack.EnvironmentPlugin(['NODE_ENV']),
   new webpack.HotModuleReplacementPlugin(),
-  new CopyPlugin([
-    { from: './src/assets/models', to: 'build/assets/models' },
-    { from: './src/assets/images', to: 'build/assets/images' },
-    { from: './src/assets/sounds', to: 'build/assets/sounds' },
-    { from: './src/assets/font', to: 'build/assets/font' },
-    { from: './src/vendors', to: 'build/vendors' },
-  ]),
 ];
 
 module.exports = {

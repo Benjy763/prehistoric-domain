@@ -1,4 +1,4 @@
-export const languages = {
+export const Languages = {
   selection: 'en',
   en: {
     cinema1: 'voice-cinema1-sound-en',

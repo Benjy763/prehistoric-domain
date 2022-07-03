@@ -9,11 +9,11 @@ PLUGINS = [
   new webpack.EnvironmentPlugin(['NODE_ENV']),
   new webpack.HotModuleReplacementPlugin(),
   new CopyPlugin([
-    { from: './src/assets/models', to: 'build/assets/models' },
-    { from: './src/assets/images', to: 'build/assets/images' },
-    { from: './src/assets/sounds', to: 'build/assets/sounds' },
-    { from: './src/assets/font', to: 'build/assets/font' },
-    { from: './src/vendors', to: 'build/vendors' },
+    { from: './src/assets/models', to: 'assets/models' },
+    { from: './src/assets/images', to: 'assets/images' },
+    { from: './src/assets/sounds', to: 'assets/sounds' },
+    { from: './src/assets/font', to: 'assets/font' },
+    { from: './src/vendors', to: 'vendors' },
   ]),
 ];
 
