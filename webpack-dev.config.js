@@ -1,12 +1,10 @@
-const MinifyPlugin = require('babel-minify-webpack-plugin');
-const fs = require('fs');
 const ip = require('ip');
 const path = require('path');
 const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
 
 PLUGINS = [
-  new webpack.EnvironmentPlugin(['NODE_ENV']),
+  new webpack.EnvironmentPlugin(['NODE_ENV', 'MAIN_SCENE']),
   new webpack.HotModuleReplacementPlugin(),
   new CopyPlugin([
     { from: './src/assets/models', to: 'assets/models' },

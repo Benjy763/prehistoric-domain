@@ -1,4 +1,4 @@
-export const MainScene = 'aviary';
+export const MainScene = process.env.MAIN_SCENE;
 
 export const MainScenes = {
   tour: {

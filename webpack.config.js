@@ -5,6 +5,7 @@ const path = require('path');
 const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const hash = Math.random() * 100000 + 1000;
 
 PLUGINS = [
@@ -32,8 +33,9 @@ PLUGINS = [
     </html>
   `,
   }),
-  new webpack.EnvironmentPlugin(['NODE_ENV']),
+  new webpack.EnvironmentPlugin(['NODE_ENV', 'MAIN_SCENE']),
   new webpack.HotModuleReplacementPlugin(),
+  new CleanWebpackPlugin(),
 ];
 
 module.exports = {
@@ -45,7 +47,7 @@ module.exports = {
     build: './src/index.js',
   },
   output: {
-    path: __dirname + '/dist',
+    path: __dirname + '/dist/' + process.env.MAIN_SCENE,
     filename: 'build.[hash].js',
   },
   plugins: PLUGINS,
