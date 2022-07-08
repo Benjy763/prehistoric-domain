@@ -56,9 +56,9 @@ AFRAME.registerSystem('system', {
     document.querySelector('#loading-infos').innerHTML = this.scenes.name;
 
     // Remove embedded for debug
-    document.getElementById('main-scene-wrapper').embedded = false;
+    document.querySelector('#main-scene-wrapper').embedded = false;
     // Display vr mirror in fullscreen
-    document.getElementById('main-scene-content').classList.add('fullscreen');
+    document.querySelector('#main-scene-content').classList.add('fullscreen');
 
     // Debug events
     if (Debug) {
@@ -100,22 +100,22 @@ AFRAME.registerSystem('system', {
     car.el.dispatchEvent(event);
   },
   initClickEvents: function () {
-    document.getElementById('enter').onclick = () => {
+    document.querySelector('#enter').onclick = () => {
       this.vr = false;
       // Remove loading interface
-      document.getElementById('static-loading').style.display = 'none';
+      document.querySelector('#static-loading').style.display = 'none';
       // Add scene screen
-      document.getElementById('main-scene-wrapper').style.zIndex = '10';
+      document.querySelector('#main-scene-wrapper').style.zIndex = '10';
 
       this.startTour();
     };
 
-    document.getElementById('enter-vr').onclick = () => {
+    document.querySelector('#enter-vr').onclick = () => {
       this.vr = true;
       // Remove loading interface
-      document.getElementById('static-loading').style.display = 'none';
+      document.querySelector('#static-loading').style.display = 'none';
       // Add scene screen
-      document.getElementById('main-scene-wrapper').style.zIndex = '10';
+      document.querySelector('#main-scene-wrapper').style.zIndex = '10';
 
       this.startTour();
     };
@@ -148,13 +148,13 @@ AFRAME.registerSystem('system', {
       });
 
     // Display scene
-    document.getElementById('loading-scene').setAttribute('visible', 'false');
+    document.querySelector('#loading-scene').setAttribute('visible', 'false');
     document
       .getElementById(this.scenes[this.firstScene].scene)
       .setAttribute('visible', 'true');
   },
   changeEndingScene: function () {
-    const mainScene = document.getElementById('main-scene');
+    const mainScene = document.querySelector('#main-scene');
     mainScene.setAttribute('background', {
       color: '#000', //#00496c
     });
@@ -210,7 +210,7 @@ AFRAME.registerSystem('system', {
     document.querySelector('a-assets').addEventListener('loaded', () => {
       // Preloading
       setTimeout(() => {
-        document.getElementById('menu-wrapper').style.display = 'block';
+        document.querySelector('#menu-wrapper').style.display = 'block';
         if (!this.scenes.needPerformance) {
           document.querySelector('#menu-performance').style.display = 'none';
         }
@@ -218,14 +218,14 @@ AFRAME.registerSystem('system', {
           document.querySelector('#menu-language').style.display = 'none';
         }
         // Press start
-        document.getElementById('loading-logo').style.display = 'none';
-        document.getElementById('loading-infos').style.display = 'none';
-        document.getElementById('enter').style.display = 'block';
+        document.querySelector('#loading-logo').style.display = 'none';
+        document.querySelector('#loading-infos').style.display = 'none';
+        document.querySelector('#enter').style.display = 'block';
         if (this.isMobile) {
-          document.getElementById('enter').style.display = 'none';
+          document.querySelector('#enter').style.display = 'none';
         }
         if (AFRAME.utils.device.checkHeadsetConnected()) {
-          document.getElementById('enter-vr').style.display = 'block';
+          document.querySelector('#enter-vr').style.display = 'block';
         }
 
         this.initClickEvents();
@@ -260,7 +260,7 @@ AFRAME.registerSystem('system', {
       // Delai for tour that is heavy to load
       setTimeout(() => {
         // Set main scene atmosphere color
-        const mainScene = document.getElementById('main-scene');
+        const mainScene = document.querySelector('#main-scene');
         mainScene.setAttribute('background', {
           color: this.scenes.color,
         });
@@ -286,12 +286,12 @@ AFRAME.registerSystem('system', {
       if (e.keyCode == 56) {
         this.vr = false;
         // Remove interface to see vr display
-        document.getElementById('static-loading').style.display = 'none';
+        document.querySelector('#static-loading').style.display = 'none';
         // Add scene screen
-        document.getElementById('main-scene-wrapper').style.zIndex = '9999';
+        document.querySelector('#main-scene-wrapper').style.zIndex = '9999';
         // Remove windows for debug
         document
-          .getElementById('main-scene-wrapper')
+          .querySelector('#main-scene-wrapper')
           .classList.remove('scene-wrapper');
         // Display scene
         this.displayScene();
@@ -363,8 +363,8 @@ AFRAME.registerSystem('system', {
   },
   // ----- Performances functions --------
   initPerformances: function () {
-    const perfEl = document.getElementById('perf');
-    const qualityEl = document.getElementById('quality');
+    const perfEl = document.querySelector('#perf');
+    const qualityEl = document.querySelector('#quality');
     if (!perfEl || !qualityEl) {
       return;
     }
@@ -396,8 +396,8 @@ AFRAME.registerSystem('system', {
   },
   // ----- Languages functions --------
   initLanguage: function () {
-    const enEl = document.getElementById('language-en');
-    const frEl = document.getElementById('language-fr');
+    const enEl = document.querySelector('#language-en');
+    const frEl = document.querySelector('#language-fr');
     if (!enEl || !frEl) {
       return;
     }

@@ -146,7 +146,7 @@ export const MainScenes = {
       carReference: null,
     },
   },
-  swamp: {
+  sarco: {
     // Starting scene
     name: 'SWAMP THINGS',
     loadingScreen: 'spino-illu.jpg',
@@ -167,10 +167,10 @@ export const MainScenes = {
       scene: 'loading-scene',
       camera: 'loading-scene-camera',
     },
-    spino: {
-      scene: 'spino-scene',
-      camera: 'spino-scene-camera',
-      car: 'spino-car',
+    sarco: {
+      scene: 'sarco-scene',
+      camera: 'sarco-scene-camera',
+      car: 'sarco-car',
       carReference: null,
       rigPos: {
         // First in value in VR and second without
@@ -179,10 +179,38 @@ export const MainScenes = {
         z: [1, 0],
       },
     },
-    sarco: {
-      scene: 'sarco-scene',
-      camera: 'sarco-scene-camera',
-      car: 'sarco-car',
+    ending: {
+      scene: 'ending-scene',
+      camera: 'ending-scene-camera',
+      car: 'ending-car',
+      carReference: null,
+    },
+  },
+  spino: {
+    // Starting scene
+    name: 'SWAMP THINGS',
+    loadingScreen: 'spino-illu.jpg',
+    needPerformance: false,
+    needLanguage: true,
+    mobileCompatible: true,
+    selection: 'spino',
+    assetsId: 'swamp-assets',
+    carMarkerForDebug: 0.32,
+    color: '#5e5e5e',
+    density: 0.05,
+    canWalk: true,
+    walkBounds: {
+      x: [-2.6, 2.2],
+      z: [-5, 4],
+    },
+    loading: {
+      scene: 'loading-scene',
+      camera: 'loading-scene-camera',
+    },
+    spino: {
+      scene: 'spino-scene',
+      camera: 'spino-scene-camera',
+      car: 'spino-car',
       carReference: null,
       rigPos: {
         // First in value in VR and second without
