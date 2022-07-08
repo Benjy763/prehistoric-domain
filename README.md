@@ -8,6 +8,12 @@
 - NodeJS and NPM <https://nodejs.org/en/>
 - Read A-Frame docs <https://aframe.io/docs/1.0.0/introduction/> & <https://aframe.io/aframe-school/#/>
 
+### Scenes
+
+The `main-scenes` folder contains all independants VR experiences.
+Each one may launch one or multiples `scenes`. each scenes are in the `components` folder.
+It is possible to display only one scene or to chain them one after the other .
+
 ### Installation
 
 ```
