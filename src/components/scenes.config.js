@@ -148,7 +148,7 @@ export const MainScenes = {
   },
   sarco: {
     // Starting scene
-    name: 'SWAMP THINGS',
+    name: 'SARCOSUCHUS VIEWING GALLERY',
     loadingScreen: 'spino-illu.jpg',
     needPerformance: false,
     needLanguage: true,
@@ -175,7 +175,7 @@ export const MainScenes = {
       rigPos: {
         // First in value in VR and second without
         x: [-2, 1],
-        y: [-0.7, -0.1],
+        y: [-0.7, -0.5],
         z: [1, 0],
       },
     },
@@ -188,7 +188,7 @@ export const MainScenes = {
   },
   spino: {
     // Starting scene
-    name: 'SWAMP THINGS',
+    name: 'SPINOSAURUS VIEWING GALLERY',
     loadingScreen: 'spino-illu.jpg',
     needPerformance: false,
     needLanguage: true,
@@ -196,7 +196,7 @@ export const MainScenes = {
     selection: 'spino',
     assetsId: 'swamp-assets',
     carMarkerForDebug: 0.32,
-    color: '#5e5e5e',
+    color: '#ffc9b8',
     density: 0.05,
     canWalk: true,
     walkBounds: {
@@ -215,7 +215,47 @@ export const MainScenes = {
       rigPos: {
         // First in value in VR and second without
         x: [-2, 1],
-        y: [-0.7, -0.1],
+        y: [-0.7, -0.5],
+        z: [1, 0],
+      },
+    },
+    ending: {
+      scene: 'ending-scene',
+      camera: 'ending-scene-camera',
+      car: 'ending-car',
+      carReference: null,
+    },
+  },
+  dimetrodon: {
+    // Starting scene
+    name: 'Dimetrodon Viewing Gallery',
+    loadingScreen: 'spino-illu.jpg',
+    needPerformance: false,
+    needLanguage: true,
+    mobileCompatible: true,
+    selection: 'dimetrodon',
+    assetsId: 'dimetrodon-assets',
+    carMarkerForDebug: 0.32,
+    color: '#ffddc2',
+    density: 0.015,
+    canWalk: true,
+    walkBounds: {
+      x: [-2.6, 2.2],
+      z: [-5, 4],
+    },
+    loading: {
+      scene: 'loading-scene',
+      camera: 'loading-scene-camera',
+    },
+    dimetrodon: {
+      scene: 'dimetrodon-scene',
+      camera: 'dimetrodon-scene-camera',
+      car: 'dimetrodon-car',
+      carReference: null,
+      rigPos: {
+        // First in value in VR and second without
+        x: [-2, 1],
+        y: [-0.7, -0.5],
         z: [1, 0],
       },
     },

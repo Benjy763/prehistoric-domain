@@ -32,10 +32,10 @@ AFRAME.registerComponent('sarco-animation', {
     this.birdSpeed = 0.05; // Speed on the curve
     this.birdCurve = new THREE.SplineCurve([
       new THREE.Vector2(-18.96, 14.287),
-      new THREE.Vector2(-18.96, 5),
+      new THREE.Vector2(-18.96, 4),
     ]);
     this.birdCurve2 = new THREE.SplineCurve([
-      new THREE.Vector2(-18.96, 6.857),
+      new THREE.Vector2(-18.96, 6.057),
       new THREE.Vector2(-33.901, -8.755),
     ]);
 

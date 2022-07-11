@@ -52,7 +52,7 @@ AFRAME.registerComponent('spino-car-tour', {
         this.ambiant1Sound =
           document.getElementById('spino-male').components['sound__ambiant1'];
         // Get voice from system when init
-        this.voicespino1Sound = this.system.getVoice('spino1');
+        this.voiceSpino1Sound = this.system.getVoice('spino1');
         this.voicePhase = 'spino1';
         setTimeout(() => {
           this.phase = 'start';

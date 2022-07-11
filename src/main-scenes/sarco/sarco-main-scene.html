@@ -7,9 +7,9 @@
   </div>
   <div class="scene-border-inner">
     <div id="main-scene-content" class="scene-content">
-      <a-scene preloader renderer="foveationLevel: 3; sortObjects: true; precision: high" background="color: #000"
+      <a-scene preloader renderer="foveationLevel: 3; sortObjects: true; precision: high" background="color: #000000"
         embedded="true" vr-mode-ui="enterVRButton: #enter-vr" id="main-scene"
-        fog="type: exponential; color: #000;  density: 0">
+        fog="type: exponential; color: #000000;  density: 0.03">
         <!-- All assets -->
         <require path="main-scenes/sarco/sarco-assets.html"></require>
 
@@ -21,18 +21,6 @@
           <require path="components/ending/ending.html"></require>
         </a-entity>
 
-        <a-entity id="spino-scene" visible="false">
-          <!-- Ground environement -->
-          <require path="components/spino-scene/spino-ground.html"></require>
-          <!-- Lightning -->
-          <require path="components/spino-scene/spino-lightning.html"></require>
-          <!-- Dinosaurs -->
-          <require path="components/spino-scene/spino-dinosaurs.html"></require>
-          <!-- Environment -->
-          <require path="components/spino-scene/spino-environment.html"></require>
-          <!-- Objects -->
-          <require path="components/spino-scene/spino-car.html"></require>
-        </a-entity>
         <a-entity id="sarco-scene" visible="false">
           <!-- Ground environement -->
           <require path="components/sarco-scene/sarco-ground.html"></require>

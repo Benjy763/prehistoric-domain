@@ -29,7 +29,7 @@ AFRAME.registerSystem('system', {
 
     this.firstScene = this.scenes.selection;
     this.displayDistance = 100; // 150 to test
-    this.fov = 50;
+    this.fov = 40;
     this.fovVR = 60;
     this.language = Languages.selection;
     this.languages = Languages;
