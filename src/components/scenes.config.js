@@ -148,8 +148,8 @@ export const MainScenes = {
   },
   sarco: {
     // Starting scene
-    name: 'SARCOSUCHUS VIEWING GALLERY',
-    loadingScreen: 'spino-illu.jpg',
+    name: 'Sarcosuchus Viewving Gallery',
+    loadingScreen: 'sarco-illu.jpg',
     needPerformance: false,
     needLanguage: true,
     mobileCompatible: true,
@@ -188,7 +188,7 @@ export const MainScenes = {
   },
   spino: {
     // Starting scene
-    name: 'SPINOSAURUS VIEWING GALLERY',
+    name: 'Spinosaurus Viewving Gallery',
     loadingScreen: 'spino-illu.jpg',
     needPerformance: false,
     needLanguage: true,
@@ -229,7 +229,7 @@ export const MainScenes = {
   dimetrodon: {
     // Starting scene
     name: 'Dimetrodon Viewing Gallery',
-    loadingScreen: 'spino-illu.jpg',
+    loadingScreen: 'dimetrodon-illu.jpg',
     needPerformance: false,
     needLanguage: true,
     mobileCompatible: true,
