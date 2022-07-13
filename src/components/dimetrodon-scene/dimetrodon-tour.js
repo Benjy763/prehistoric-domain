@@ -9,7 +9,8 @@ AFRAME.registerComponent('dimetrodon-car-tour', {
     ).object3D.position;
     this.movesManager =
       document.querySelector('a-scene').systems['movesManager'];
-    this.dimetrodonMale = document.querySelector('#dimetrodon');
+    this.dimetrodon = document.querySelector('#dimetrodon');
+    this.rabbit = document.querySelector('#rabbit');
     this.object = this.el.object3D;
     this.mainScene = document.getElementById('main-scene');
 
@@ -42,7 +43,14 @@ AFRAME.registerComponent('dimetrodon-car-tour', {
       false
     );
   },
-  start: function () {},
+  start: function () {
+    setTimeout(() => {
+      // Trigger Rabbit animation
+      const event = new Event('enterWalk');
+      this.rabbit.dispatchEvent(event);
+    }, 1000);
+    this.phase = 'exit';
+  },
   tick: function () {
     // Walk bound checking
     this.movesManager.checkBoundLimits(this.cameraPosition);

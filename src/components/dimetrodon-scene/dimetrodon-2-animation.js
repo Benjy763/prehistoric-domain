@@ -1,4 +1,4 @@
-AFRAME.registerComponent('dimetrodon-animation', {
+AFRAME.registerComponent('dimetrodon-2-animation', {
   schema: {},
   init: function () {
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
@@ -13,15 +13,17 @@ AFRAME.registerComponent('dimetrodon-animation', {
 
     // Dimetrodon run Path
     this.dimetrodonMarker = 0; // Position on the curve
-    this.dimetrodonSpeed = 0.00072; // Speed on the curve
+    this.dimetrodonSpeed = 0.004; // Speed on the curve
     this.dimetrodonCurve = new THREE.SplineCurve([
-      new THREE.Vector2(-17.023, 15.229),
-      new THREE.Vector2(-26.376, 1.881),
-      new THREE.Vector2(-30.837, -11.567),
-      new THREE.Vector2(-25.591, -20.955),
+      new THREE.Vector2(-42.875, -21.32),
+      new THREE.Vector2(-49.144, -21.689),
     ]);
-
-    this.isAcceleration = false;
+    this.dimetrodonMarker = this.movesManager.moveOnCurve(
+      this.el.object3D,
+      this.dimetrodonCurve,
+      this.dimetrodonMarker,
+      this.dimetrodonSpeed
+    );
 
     // Sound
 
@@ -32,24 +34,10 @@ AFRAME.registerComponent('dimetrodon-animation', {
         this.el.setAttribute('animation-mixer', {
           clip: 'Animation',
           loop: true,
-          crossFadeDuration: 0.4,
-          timeScale: 0.4,
+          crossFadeDuration: 1.5,
+          timeScale: 0.3,
         });
         this.phase = 'enterWalk';
-      },
-      false
-    );
-
-    this.el.addEventListener(
-      'walkFast',
-      () => {
-        this.el.setAttribute('animation-mixer', {
-          clip: 'Animation',
-          loop: true,
-          crossFadeDuration: 1,
-          timeScale: 1.5,
-        });
-        this.phase = 'walkFast';
       },
       false
     );
@@ -63,23 +51,14 @@ AFRAME.registerComponent('dimetrodon-animation', {
       this.dimetrodonSpeed
     );
 
-    if (this.movesManager.truncMarker(this.dimetrodonMarker) > 950) {
-      this.phase = 'exit';
-    }
-  },
-  walkFast: function () {
-    this.dimetrodonMarker = this.movesManager.moveOnCurve(
-      this.el.object3D,
-      this.dimetrodonCurve,
-      this.dimetrodonMarker,
-      this.dimetrodonSpeed
-    );
-
-    if (this.dimetrodonSpeed < 0.003) {
-      this.dimetrodonSpeed += 0.0002;
-    }
-
-    if (this.movesManager.truncMarker(this.dimetrodonMarker) > 950) {
+    if (this.movesManager.truncMarker(this.dimetrodonMarker) > 900) {
+      this.el.setAttribute('animation-mixer', {
+        clip: 'stop',
+        loop: true,
+        crossFadeDuration: 1.5,
+        timeScale: 0.3,
+      });
+      this.phase = 'enterWalk';
       this.phase = 'exit';
     }
   },
@@ -88,9 +67,6 @@ AFRAME.registerComponent('dimetrodon-animation', {
     switch (this.phase) {
       case 'enterWalk':
         this.enterWalk();
-        break;
-      case 'walkFast':
-        this.walkFast();
         break;
     }
   },
