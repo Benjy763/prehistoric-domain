@@ -1,0 +1,8 @@
+Model Information:
+* title:	Terrain Alpine 4k
+* source:	https://sketchfab.com/3d-models/terrain-alpine-4k-a2fbcca51ad043e0b49f305c373186fc
+* author:	falk lochmann (https://sketchfab.com/falk)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

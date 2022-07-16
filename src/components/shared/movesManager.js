@@ -108,12 +108,14 @@ AFRAME.registerSystem('movesManager', {
   },
   // ----- Curve functions --------
   // Move an object on the given curve according to given speed
-  moveOnCurve(object, curve, marker, speed, axe = 'xz') {
+  moveOnCurve(object, curve, marker, speed, axe = 'xz', updateRotation = true) {
     marker += speed;
     object.position.copy(
       this.convertPosition(curve.getPointAt(marker), object, axe)
     );
-    this.updateRotation(object, curve, marker, speed, axe);
+    if (updateRotation) {
+      this.updateRotation(object, curve, marker, speed, axe);
+    }
     return marker;
   },
   // Give to the given object the new rotation position after moving on the curve

@@ -266,6 +266,47 @@ export const MainScenes = {
       carReference: null,
     },
   },
+  edmon: {
+    // Starting scene
+    name: 'Edmontosaurus Viewing Gallery',
+    loadingScreen: 'edmon-illu.jpg',
+    needPerformance: false,
+    needLanguage: true,
+    mobileCompatible: true,
+    selection: 'edmon',
+    assetsId: 'edmon-assets',
+    carMarkerForDebug: 0.32,
+    color: '#fff',
+    density: 0.015,
+    displayDistance: 200,
+    canWalk: true,
+    walkBounds: {
+      x: [-2.6, 2.2],
+      z: [-5, 4],
+    },
+    loading: {
+      scene: 'loading-scene',
+      camera: 'loading-scene-camera',
+    },
+    edmon: {
+      scene: 'edmon-scene',
+      camera: 'edmon-scene-camera',
+      car: 'edmon-car',
+      carReference: null,
+      rigPos: {
+        // First in value in VR and second without
+        x: [-2, 1],
+        y: [-0.7, -0.5],
+        z: [1, 0],
+      },
+    },
+    ending: {
+      scene: 'ending-scene',
+      camera: 'ending-scene-camera',
+      car: 'ending-car',
+      carReference: null,
+    },
+  },
 };
 
 // Scenes from main one selected
