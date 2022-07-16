@@ -278,7 +278,7 @@ export const MainScenes = {
     carMarkerForDebug: 0.32,
     color: '#fff',
     density: 0.015,
-    displayDistance: 200,
+    displayDistance: 400,
     canWalk: true,
     walkBounds: {
       x: [-2.6, 2.2],
