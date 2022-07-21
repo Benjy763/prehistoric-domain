@@ -1,10 +1,8 @@
-<a-light id="ambiant-light" type="ambient" light="intensity: 0.80"></a-light>
-<a-entity id="point-2"
-  light="type: point; intensity: 5; distance: 20; decay: 2.42;color: #6293e3; groundColor: #000000"
-  position="-6.54648 12.2142 20.498"></a-entity>
-<a-entity id="point-3" light="type: point; intensity: 5; distance: 20; decay: 2; color: #6293e3; groundColor: #000000"
-  position="-8.45352 12.2142 -34.30863"></a-entity>
-<!-- <a-entity id="point-4" light="type: point; intensity: 5; distance: 20; decay: 2; color: #6293e3; groundColor: #000000"
-  position="0 17.807 -21.852"></a-entity> -->
-<a-entity id="point-4" light="type: point; intensity: 1; distance: 50; decay: 3.1; color: #6293e3; groundColor: #000000"
-  position="-19.691 9.864 -19.408"></a-entity>
+<a-light id="trex-ambiant-light" visible="true" type="ambient" light="intensity: 1;color:#c2d9ff"></a-light>
+<!-- <a-light id="dimetrodon-light-1" light="intensity: 0.5" type="directional" position="0 0 0" rotation="-90 0 0" target="#dimetrodon-directionaltarget">
+  <a-entity id="dimetrodon-directionaltarget" position="0 0 -1"></a-entity>
+</a-light> -->
+<a-light id="trex-light-2" light="distance: 200; decay: 200; intensity: 0.7; penumbra: 0; angle: 0" type="directional"
+  position="25.21314 18.4106 -11.98769" rotation="-90 0 0" target="#dimetrodon-directionaltarget-2">
+  <a-entity id="trex-directionaltarget-2" position="-140.54425 -22.52936 -33.99376"></a-entity>
+</a-light>

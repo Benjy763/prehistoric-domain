@@ -307,6 +307,47 @@ export const MainScenes = {
       carReference: null,
     },
   },
+  trex: {
+    // Starting scene
+    name: 'Trex Viewing Gallery',
+    loadingScreen: 'edmon-illu.jpg',
+    needPerformance: false,
+    needLanguage: true,
+    mobileCompatible: true,
+    selection: 'trex',
+    assetsId: 'trex-assets',
+    carMarkerForDebug: 0.32,
+    color: '#fff',
+    density: 0.015,
+    displayDistance: 400,
+    canWalk: true,
+    walkBounds: {
+      x: [-2.6, 2.2],
+      z: [-5, 4],
+    },
+    loading: {
+      scene: 'loading-scene',
+      camera: 'loading-scene-camera',
+    },
+    trex: {
+      scene: 'trex-scene',
+      camera: 'trex-scene-camera',
+      car: 'trex-car',
+      carReference: null,
+      rigPos: {
+        // First in value in VR and second without
+        x: [-2, 1],
+        y: [-0.7, -0.5],
+        z: [1, 0],
+      },
+    },
+    ending: {
+      scene: 'ending-scene',
+      camera: 'ending-scene-camera',
+      car: 'ending-car',
+      carReference: null,
+    },
+  },
 };
 
 // Scenes from main one selected

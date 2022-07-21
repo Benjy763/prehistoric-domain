@@ -1,0 +1,39 @@
+<require path="main-scenes/shared/shared-main-scene.html"></require>
+<div id="main-scene-wrapper">
+  <div id="click-wrapper">
+    <div class="click-container">
+      Press F11 to toggle fullscreen <br />
+      Click in the scene to watch</div>
+  </div>
+  <div class="scene-border-inner">
+    <div id="main-scene-content" class="scene-content">
+      <a-scene preloader renderer="foveationLevel: 3; sortObjects: true; precision: high" background="color: #000000"
+        embedded="true" vr-mode-ui="enterVRButton: #enter-vr" id="main-scene"
+        fog="type: exponential; color: #000000;  density: 0; far: 999.97">
+        <!-- All assets -->
+        <require path="main-scenes/trex/trex-assets.html"></require>
+
+        <!-- Loading scene -->
+        <a-entity id="loading-scene">
+          <require path="components/loading/loading.html"></require>
+        </a-entity>
+        <a-entity id="ending-scene" visible="false">
+          <require path="components/ending/ending.html"></require>
+        </a-entity>
+
+        <a-entity id="trex-scene" visible="false">
+          <!-- Ground environement -->
+          <require path="components/trex-scene/trex-ground.html"></require>
+          <!-- Lightning -->
+          <require path="components/trex-scene/trex-lightning.html"></require>
+          <!-- Dinosaurs -->
+          <require path="components/trex-scene/trex-dinosaurs.html"></require>
+          <!-- Environment -->
+          <require path="components/trex-scene/trex-environment.html"></require>
+          <!-- Objects -->
+          <require path="components/trex-scene/trex-car.html"></require>
+        </a-entity>
+      </a-scene>
+    </div>
+  </div>
+</div>

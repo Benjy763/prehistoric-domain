@@ -47,7 +47,6 @@ AFRAME.registerComponent('trex-car-tour', {
         this.voiceTrex1Sound = this.system.getVoice('trex1');
         this.voiceTrex2Sound = this.system.getVoice('trex2');
         this.phase = 'start';
-        this.carControls.changeDrivingState('starting');
       },
       false
     );
@@ -62,77 +61,17 @@ AFRAME.registerComponent('trex-car-tour', {
     );
   },
   // --- Phase functions ---
-  start: function () {
-    if (this.movesManager.truncMarker(this.carControls.carMarker) > 540) {
-      this.phase = 'stop';
-    }
-  },
-  stop: function () {
-    this.carControls.changeDrivingState('stopping');
-    if (this.carControls.carSpeed <= 0) {
-      this.phase = 'stay';
-    }
-  },
-  stay: function () {
-    const event = new Event('enter');
-    this.trex.dispatchEvent(event);
-    this.phase = 'trex';
-  },
-  restart: function () {
-    this.carControls.changeDrivingState('starting');
-    this.phase = 'finish';
-  },
-  finish: function () {
-    if (
-      this.movesManager.truncMarker(this.carControls.carMarker) >
-      this.carControls.maxDistance
-    ) {
-      this.phase = 'changeScene';
-    }
-  },
+  start: function () {},
   tick: function () {
-    if (!this.carControls) {
-      return;
-    }
-    // Screen phases
-    switch (this.screenPhase) {
-      case 'trex':
-        if (this.movesManager.truncMarker(this.carControls.carMarker) > 0) {
-          this.screenDefault.setAttribute('visible', 'false');
-          this.screenTrex.setAttribute('visible', 'true');
-          this.screenPhase = 'default';
-        }
-        break;
-      case 'default':
-        this.screenDefault.setAttribute('visible', 'true');
-        this.screenPhase = 'end';
-        break;
-    }
     // Voice phases
     switch (this.voicePhase) {
       case 'trex1':
-        if (this.movesManager.truncMarker(this.carControls.carMarker) > 70) {
-          this.voiceTrex1Sound.play();
-          this.voicePhase = 'trex2';
-        }
         break;
     }
     // Animation phases
     switch (this.phase) {
       case 'start':
         this.start();
-        break;
-      case 'stop':
-        this.stop();
-        break;
-      case 'stay':
-        this.stay();
-        break;
-      case 'restart':
-        this.restart();
-        break;
-      case 'finish':
-        this.finish();
         break;
       case 'changeScene':
         // Destroy and detach all unecessary objets

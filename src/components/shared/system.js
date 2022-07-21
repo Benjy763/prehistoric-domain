@@ -55,7 +55,7 @@ AFRAME.registerSystem('system', {
     document
       .querySelector('#loader-logo')
       .setAttribute('src', `/assets/images/${this.scenes.loadingScreen}`);
-    document.querySelector('#loading-infos').innerHTML = this.scenes.name;
+    document.querySelector('#infos-name').innerHTML = this.scenes.name;
 
     // Remove embedded for debug
     document.querySelector('#main-scene-wrapper').embedded = false;
