@@ -317,8 +317,8 @@ export const MainScenes = {
     selection: 'trex',
     assetsId: 'trex-assets',
     carMarkerForDebug: 0.32,
-    color: '#fff',
-    density: 0.015,
+    color: '#000',
+    density: 0.007,
     displayDistance: 400,
     canWalk: true,
     walkBounds: {
