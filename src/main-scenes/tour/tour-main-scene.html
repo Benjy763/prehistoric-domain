@@ -7,9 +7,9 @@
   </div>
   <div class="scene-border-inner">
     <div id="main-scene-content" class="scene-content">
-      <a-scene preloader renderer="foveationLevel: 3; sortObjects: true; precision: high" background="color: #000000; transparent: false"
-        embedded="true" vr-mode-ui="enterVRButton: #enter-vr" id="main-scene"
-        fog="type: exponential; color: #000000;  density: 0; far: 999.97">
+      <a-scene preloader renderer="foveationLevel: 3; sortObjects: true; precision: high"
+        background="color: #000000; transparent: false" embedded="true" vr-mode-ui="enterVRButton: #enter-vr"
+        id="main-scene" fog="type: exponential; color: #000000;  density: 0.035; far: 999.98">
         <!-- All assets -->
         <require path="main-scenes/tour/tour-assets.html"></require>
 
@@ -19,19 +19,6 @@
         </a-entity>
         <a-entity id="ending-scene" visible="false">
           <require path="components/ending/ending.html"></require>
-        </a-entity>
-
-        <a-entity id="trex-scene" visible="false">
-          <!-- Ground environement -->
-          <require path="components/trex-scene/trex-ground.html"></require>
-          <!-- Lightning -->
-          <require path="components/trex-scene/trex-lightning.html"></require>
-          <!-- Dinosaurs -->
-          <require path="components/trex-scene/trex-dinosaurs.html"></require>
-          <!-- Environment -->
-          <require path="components/trex-scene/trex-environment.html"></require>
-          <!-- Objects -->
-          <require path="components/trex-scene/trex-car.html"></require>
         </a-entity>
 
         <a-entity id="gate-scene" visible="false">
@@ -58,18 +45,6 @@
           <require path="components/dilo-scene/dilo-environment.html"></require>
           <!-- Objects -->
           <require path="components/dilo-scene/dilo-car.html"></require>
-        </a-entity>
-        <a-entity id="raptor-scene" visible="false">
-          <!-- Ground environement -->
-          <require path="components/raptor-scene/raptor-ground.html"></require>
-          <!-- Lightning -->
-          <require path="components/raptor-scene/raptor-lightning.html"></require>
-          <!-- Dinosaurs -->
-          <require path="components/raptor-scene/raptor-dinosaurs.html"></require>
-          <!-- Environment -->
-          <require path="components/raptor-scene/raptor-environment.html"></require>
-          <!-- Objects -->
-          <require path="components/raptor-scene/raptor-car.html"></require>
         </a-entity>
         <a-entity id="trice-scene" visible="false">
           <!-- Ground environement -->

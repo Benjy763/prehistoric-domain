@@ -8,7 +8,7 @@ AFRAME.registerComponent('water', {
       waterObj = new THREE.Water(
         new THREE.BufferGeometry().copy(mesh.geometry),
         {
-          color: '#ccc',
+          color: '#aaa',
           scale: 1,
           flowDirection: new THREE.Vector2(-1, 0),
           flowSpeed: 0.01,

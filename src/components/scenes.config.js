@@ -359,7 +359,7 @@ export const MainScenes = {
     assetsId: 'deino-assets',
     carMarkerForDebug: 0.32,
     color: '#000',
-    density: 0.06,
+    density: 0.03,
     displayDistance: 400,
     canWalk: true,
     walkBounds: {
