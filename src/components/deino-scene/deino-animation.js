@@ -1,4 +1,4 @@
-AFRAME.registerComponent('raptor-animation', {
+AFRAME.registerComponent('deino-animation', {
   schema: {},
   init: function () {
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
@@ -8,11 +8,11 @@ AFRAME.registerComponent('raptor-animation', {
     this.movesManager =
       document.querySelector('a-scene').systems['movesManager'];
     this.phase = '';
-    this.car = document.querySelector('#raptor-car');
+    this.car = document.querySelector('#deino-car');
 
-    // raptor run Path
-    this.raptorMarker = 0; // Position on the curve
-    this.raptorSpeed = 0.016; // Speed on the curve
+    // deino run Path
+    this.deinoMarker = 0; // Position on the curve
+    this.deinoSpeed = 0.016; // Speed on the curve
     this.jumpcurve = new THREE.SplineCurve([
       new THREE.Vector2(-1.8, -3.208),
       new THREE.Vector2(0.974, -3.656),
@@ -32,10 +32,10 @@ AFRAME.registerComponent('raptor-animation', {
       'enter',
       () => {
         // Load sounds
-        this.raptorIntroAudio = this.el.components['sound__intro'];
-        this.raptorJumpStartAudio = this.el.components['sound__jumpstart'];
-        this.raptorRoarAudio = this.el.components['sound__roar'];
-        this.RaptorJumpEndAudio = this.el.components['sound__jumpend'];
+        this.deinoIntroAudio = this.el.components['sound__intro'];
+        this.deinoJumpStartAudio = this.el.components['sound__jumpstart'];
+        this.deinoRoarAudio = this.el.components['sound__roar'];
+        this.deinoJumpEndAudio = this.el.components['sound__jumpend'];
 
         this.el.setAttribute('animation-mixer', {
           clip: 'Deinonychus_Jump_Jump',
@@ -48,39 +48,40 @@ AFRAME.registerComponent('raptor-animation', {
   },
   // --- Phase functions ---
   hidden: function () {
-    this.raptorIntroAudio.playSound();
+    this.deinoIntroAudio.playSound();
     this.phase = 'exit';
     setTimeout(() => {
-      this.raptorJumpStartAudio.playSound();
+      this.deinoJumpStartAudio.playSound();
       this.phase = 'jumpEnter';
     }, 19000);
   },
   jumpEnter: function () {
-    if (this.movesManager.truncMarker(this.raptorMarker) > 300) {
+    if (this.movesManager.truncMarker(this.deinoMarker) > 300) {
       this.el.setAttribute('animation-mixer', {
         clip: 'Deinonychus_Jump_Landing',
         timeScale: 0.8,
         crossFadeDuration: 0.2,
       });
     }
-    if (this.movesManager.truncMarker(this.raptorMarker) > 410) {
+    if (this.movesManager.truncMarker(this.deinoMarker) > 410) {
       setTimeout(() => {
         this.el.setAttribute('animation-mixer', {
           clip: 'Deinonychus_Idle_Roar',
           timeScale: 0.9,
           crossFadeDuration: 0.2,
         });
-        this.raptorRoarAudio.playSound();
+        this.deinoRoarAudio.playSound();
         this.phase = 'roar';
       }, 400);
       this.phase = 'exit';
     }
-    this.raptorMarker = this.movesManager.moveOnCurve(
+    this.deinoMarker = this.movesManager.moveOnCurve(
       this.object,
       this.jumpcurve,
-      this.raptorMarker,
-      this.raptorSpeed,
-      'yz'
+      this.deinoMarker,
+      this.deinoSpeed,
+      'yz',
+      false
     );
   },
   roar: function () {
@@ -90,37 +91,39 @@ AFRAME.registerComponent('raptor-animation', {
         timeScale: 0.8,
         crossFadeDuration: 0.2,
       });
-      this.RaptorJumpEndAudio.playSound();
+      this.deinoJumpEndAudio.playSound();
       this.phase = 'jumpEnd';
     }, 7000);
     this.phase = 'roaring';
   },
   jumpEnd: function () {
-    if (this.movesManager.truncMarker(this.raptorMarker) > 580) {
+    if (this.movesManager.truncMarker(this.deinoMarker) > 580) {
       this.phase = 'end';
     }
-    this.raptorMarker = this.movesManager.moveOnCurve(
+    this.deinoMarker = this.movesManager.moveOnCurve(
       this.object,
       this.jumpcurve,
-      this.raptorMarker,
-      this.raptorSpeed,
-      'yz'
+      this.deinoMarker,
+      this.deinoSpeed,
+      'yz',
+      false
     );
   },
   end: function () {
-    if (this.movesManager.truncMarker(this.raptorMarker) > 950) {
+    if (this.movesManager.truncMarker(this.deinoMarker) > 950) {
       setTimeout(() => {
         const event = new Event('turnOnLight');
         this.car.dispatchEvent(event);
       }, 5000);
       this.phase = 'exit';
     }
-    this.raptorMarker = this.movesManager.moveOnCurve(
+    this.deinoMarker = this.movesManager.moveOnCurve(
       this.object,
       this.jumpcurve,
-      this.raptorMarker,
-      this.raptorSpeed,
-      'yz'
+      this.deinoMarker,
+      this.deinoSpeed,
+      'yz',
+      false
     );
   },
   tick: function () {

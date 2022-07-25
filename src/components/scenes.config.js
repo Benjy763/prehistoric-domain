@@ -348,6 +348,47 @@ export const MainScenes = {
       carReference: null,
     },
   },
+  deino: {
+    // Starting scene
+    name: 'Deinonychus Viewing Gallery',
+    loadingScreen: 'trex-illu.jpg',
+    needPerformance: false,
+    needLanguage: true,
+    mobileCompatible: true,
+    selection: 'deino',
+    assetsId: 'deino-assets',
+    carMarkerForDebug: 0.32,
+    color: '#000',
+    density: 0.06,
+    displayDistance: 400,
+    canWalk: true,
+    walkBounds: {
+      x: [-2.6, 2.2],
+      z: [-5, 4],
+    },
+    loading: {
+      scene: 'loading-scene',
+      camera: 'loading-scene-camera',
+    },
+    deino: {
+      scene: 'deino-scene',
+      camera: 'deino-scene-camera',
+      car: 'deino-car',
+      carReference: null,
+      rigPos: {
+        // First in value in VR and second without
+        x: [-2, 1],
+        y: [-0.7, -0.5],
+        z: [1, 0],
+      },
+    },
+    ending: {
+      scene: 'ending-scene',
+      camera: 'ending-scene-camera',
+      car: 'ending-car',
+      carReference: null,
+    },
+  },
 };
 
 // Scenes from main one selected
