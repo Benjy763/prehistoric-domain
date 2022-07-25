@@ -4,6 +4,9 @@ AFRAME.registerComponent('trex-car-tour', {
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
 
     this.system = document.querySelector('a-scene').systems['system'];
+    this.cameraPosition = document.querySelector(
+      '#' + this.system.getActualSceneObject().camera
+    ).object3D.position;
     this.movesManager =
       document.querySelector('a-scene').systems['movesManager'];
     this.carControls;
@@ -11,16 +14,6 @@ AFRAME.registerComponent('trex-car-tour', {
     this.screenDefault = document.getElementById('dilo-screen-default');
     this.screenTrex = document.getElementById('trex-screen-trex');
     this.screenPhase = 'trex';
-
-    // Tour Path
-    const curve = new THREE.SplineCurve([
-      new THREE.Vector2(18.6, 85),
-      new THREE.Vector2(4.6, 47),
-      new THREE.Vector2(-4.7, 12.8),
-      new THREE.Vector2(-4.7, -18),
-      new THREE.Vector2(2.8, -41),
-      new THREE.Vector2(32, -94),
-    ]);
 
     // Animation phase
     this.sceneChanged = false;
@@ -50,19 +43,19 @@ AFRAME.registerComponent('trex-car-tour', {
       },
       false
     );
-
-    // Restart tour listener, trigger by trex controler
-    this.el.addEventListener(
-      'restart',
-      () => {
-        this.phase = 'restart';
-      },
-      false
-    );
   },
   // --- Phase functions ---
-  start: function () {},
+  start: function () {
+    setTimeout(() => {
+      // Trigger Rabbit animation
+      const event = new Event('enterWalk');
+      this.trex.dispatchEvent(event);
+    }, 1000);
+    this.phase = 'exit';
+  },
   tick: function () {
+    // Walk bound checking
+    this.movesManager.checkBoundLimits(this.cameraPosition);
     // Voice phases
     switch (this.voicePhase) {
       case 'trex1':

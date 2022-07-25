@@ -310,7 +310,7 @@ export const MainScenes = {
   trex: {
     // Starting scene
     name: 'Trex Viewing Gallery',
-    loadingScreen: 'edmon-illu.jpg',
+    loadingScreen: 'trex-illu.jpg',
     needPerformance: false,
     needLanguage: true,
     mobileCompatible: true,
