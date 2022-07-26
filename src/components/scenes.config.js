@@ -188,7 +188,7 @@ export const MainScenes = {
   },
   spino: {
     // Starting scene
-    name: 'Spinosaurus Viewving Gallery',
+    name: 'Spinosaurus Viewing Gallery',
     loadingScreen: 'spino-illu.jpg',
     needPerformance: false,
     needLanguage: true,
@@ -196,7 +196,7 @@ export const MainScenes = {
     selection: 'spino',
     assetsId: 'swamp-assets',
     carMarkerForDebug: 0.32,
-    color: '#ffc9b8',
+    color: '#5e5e5e',
     density: 0.05,
     canWalk: true,
     walkBounds: {
