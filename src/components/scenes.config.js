@@ -58,6 +58,7 @@ export const MainScenes = {
     // Starting scene
     name: 'FLYING GIANTS',
     loadingScreen: 'aviary-illu.jpg',
+    displayDistance: 400,
     needPerformance: false,
     needLanguage: true,
     mobileCompatible: true,
@@ -65,7 +66,7 @@ export const MainScenes = {
     assetsId: 'aviary-assets',
     carMarkerForDebug: 0.32,
     color: '#5e5e5e',
-    density: 0.048,
+    density: 0.008,
     canWalk: true,
     walkBounds: {
       x: [-1.54, 2.024],
@@ -80,6 +81,12 @@ export const MainScenes = {
       camera: 'aviary-scene-camera',
       car: 'aviary-car',
       carReference: null,
+      rigPos: {
+        // First in value in VR and second without
+        x: [-2, 1],
+        y: [-0.7, -0.5],
+        z: [1, 0],
+      },
     },
     ending: {
       scene: 'ending-scene',

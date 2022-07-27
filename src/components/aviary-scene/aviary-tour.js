@@ -10,7 +10,6 @@ AFRAME.registerComponent('aviary-car-tour', {
     this.movesManager =
       document.querySelector('a-scene').systems['movesManager'];
     this.ptera = document.querySelector('#pteranodon');
-    this.quetza = document.querySelector('#quetza');
 
     // Sounds
     this.ambiant1Sound;
@@ -53,32 +52,6 @@ AFRAME.registerComponent('aviary-car-tour', {
       },
       false
     );
-
-    // Restart tour listeners
-    this.el.addEventListener(
-      'restartPtera',
-      () => {
-        this.phase = 'restartPtera';
-      },
-      false
-    );
-    this.el.addEventListener(
-      'restartQuetzaWalk',
-      () => {
-        setTimeout(() => {
-          this.ambiant3Sound.playSound();
-        }, 5000);
-        this.phase = 'restartQuetzaWalk';
-      },
-      false
-    );
-    this.el.addEventListener(
-      'restartQuetzaFly',
-      () => {
-        this.phase = 'restartQuetzaFly';
-      },
-      false
-    );
   },
   // --- Phase functions ---
   start: function () {
@@ -92,30 +65,9 @@ AFRAME.registerComponent('aviary-car-tour', {
     }, 45000);
     this.phase = 'exit';
   },
-  restartPtera: function () {
-    setTimeout(() => {
-      // Trigger Pteranodon animation
-      const event = new Event('enterWalk');
-      this.quetza.dispatchEvent(event);
-    }, 6000);
-    this.phase = 'exit';
-  },
-  restartQuetzaWalk: function () {
-    setTimeout(() => {
-      // Trigger Pteranodon animation
-      const event = new Event('enterFly');
-      this.quetza.dispatchEvent(event);
-    }, 6000);
-    this.phase = 'exit';
-  },
-  restartQuetzaFly: function () {
-    setTimeout(() => {
-      this.phase = 'changeScene';
-    }, 3000);
-  },
   tick: function () {
     // Walk bound checking
-    this.movesManager.checkBoundLimits(this.cameraPosition);
+    //this.movesManager.checkBoundLimits(this.cameraPosition);
 
     // Voice phases
     switch (this.voicePhase) {
@@ -128,15 +80,6 @@ AFRAME.registerComponent('aviary-car-tour', {
     switch (this.phase) {
       case 'start':
         this.start();
-        break;
-      case 'restartPtera':
-        this.restartPtera();
-        break;
-      case 'restartQuetzaWalk':
-        this.restartQuetzaWalk();
-        break;
-      case 'restartQuetzaFly':
-        this.restartQuetzaFly();
         break;
       case 'changeScene':
         // Destroy and detach all unecessary objets

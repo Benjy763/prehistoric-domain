@@ -1,4 +1,7 @@
 AFRAME.registerComponent('water', {
+  schema: {
+    scale: { default: 1 },
+  },
   init: function () {
     let mesh;
     let waterObj;
@@ -9,7 +12,7 @@ AFRAME.registerComponent('water', {
         new THREE.BufferGeometry().copy(mesh.geometry),
         {
           color: '#aaa',
-          scale: 1,
+          scale: this.data.scale,
           flowDirection: new THREE.Vector2(-1, 0),
           flowSpeed: 0.01,
           textureWidth: 1024,
