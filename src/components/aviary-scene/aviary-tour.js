@@ -27,6 +27,9 @@ AFRAME.registerComponent('aviary-car-tour', {
     // En scene activation
     this.sceneChanged = false;
 
+    // Inits
+    this.initPteraAnimation();
+
     // Start tour listeners
     this.el.addEventListener(
       'start',
@@ -45,13 +48,34 @@ AFRAME.registerComponent('aviary-car-tour', {
           ];
         // Get voice from system when init
         this.voiceAviary1Sound = this.system.getVoice('aviary1');
-        this.voicePhase = 'aviary1';
+        this.voicePhase = 'exit';
         setTimeout(() => {
           this.phase = 'start';
         }, 0);
       },
       false
     );
+  },
+  initPteraAnimation: function () {
+    const pteras = [
+      'pteranodon-3',
+      'pteranodon-4',
+      'pteranodon-5',
+      'pteranodon-6',
+      'pteranodon-7',
+    ];
+    let timeout = 200;
+    pteras.forEach((ptera) => {
+      timeout += 4000;
+      setTimeout(() => {
+        document.querySelector('#' + ptera).setAttribute('animation-mixer', {
+          clip: 'Ptera_Full_Break',
+          loop: true,
+          timeScale: 0.6,
+          crossFadeDuration: 0.5,
+        });
+      }, timeout);
+    });
   },
   // --- Phase functions ---
   start: function () {
@@ -60,8 +84,8 @@ AFRAME.registerComponent('aviary-car-tour', {
     }, 20000);
     setTimeout(() => {
       // Trigger Pteranodon animation
-      const event = new Event('enter');
-      this.ptera.dispatchEvent(event);
+      // const event = new Event('enter');
+      // this.ptera.dispatchEvent(event);
     }, 45000);
     this.phase = 'exit';
   },
