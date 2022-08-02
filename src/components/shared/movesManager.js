@@ -128,19 +128,19 @@ AFRAME.registerSystem('movesManager', {
     object.lookAt(newPosition.x, newPosition.y, newPosition.z);
   },
   // Convert position in x y z object
-  convertPosition: function (position2D, object, axe = 'xz') {
+  convertPosition: function (position, object, axe = 'xz') {
     const pos = { ...object.position };
     if (axe === 'xz') {
-      pos.x = position2D.x;
-      pos.z = position2D.y;
+      pos.x = position.x;
+      pos.z = position.y;
     } else if (axe === 'xy') {
-      pos.x = position2D.x;
-      pos.y = position2D.y;
+      pos.x = position.x;
+      pos.y = position.y;
     } else if (axe === 'yz') {
-      pos.y = position2D.x;
-      pos.z = position2D.y;
+      pos.y = position.x;
+      pos.z = position.y;
     } else if (axe === '3d') {
-      return position2D;
+      return position;
     }
     return pos;
   },

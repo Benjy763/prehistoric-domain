@@ -66,7 +66,7 @@ export const MainScenes = {
     assetsId: 'aviary-assets',
     carMarkerForDebug: 0.32,
     color: '#5e5e5e',
-    density: 0.008,
+    density: 0.006,
     canWalk: true,
     walkBounds: {
       x: [-1.54, 2.024],
