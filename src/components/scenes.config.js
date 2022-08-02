@@ -155,7 +155,7 @@ export const MainScenes = {
   },
   sarco: {
     // Starting scene
-    name: 'Sarcosuchus Viewving Gallery',
+    name: 'Sarcosuchus Viewing Gallery',
     loadingScreen: 'sarco-illu.jpg',
     needPerformance: false,
     needLanguage: true,
@@ -218,6 +218,46 @@ export const MainScenes = {
       scene: 'spino-scene',
       camera: 'spino-scene-camera',
       car: 'spino-car',
+      carReference: null,
+      rigPos: {
+        // First in value in VR and second without
+        x: [-2, 1],
+        y: [-0.7, -0.5],
+        z: [1, 0],
+      },
+    },
+    ending: {
+      scene: 'ending-scene',
+      camera: 'ending-scene-camera',
+      car: 'ending-car',
+      carReference: null,
+    },
+  },
+  quetza: {
+    // Starting scene
+    name: 'Quetzalcoatlus Viewing Gallery',
+    loadingScreen: 'quetza-illu.jpg',
+    needPerformance: false,
+    needLanguage: true,
+    mobileCompatible: true,
+    selection: 'quetza',
+    assetsId: 'swamp-assets',
+    carMarkerForDebug: 0.32,
+    color: '#5e5e5e',
+    density: 0.05,
+    canWalk: true,
+    walkBounds: {
+      x: [-2.6, 2.2],
+      z: [-5, 4],
+    },
+    loading: {
+      scene: 'loading-scene',
+      camera: 'loading-scene-camera',
+    },
+    quetza: {
+      scene: 'quetza-scene',
+      camera: 'quetza-scene-camera',
+      car: 'quetza-car',
       carReference: null,
       rigPos: {
         // First in value in VR and second without

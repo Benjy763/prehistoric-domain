@@ -10,7 +10,6 @@ AFRAME.registerComponent('sarco-animation', {
       document.querySelector('a-scene').systems['movesManager'];
     this.car = document.querySelector('#sarco-car');
     this.mainScene = document.getElementById('main-scene');
-    this.sarcoCar = document.querySelector('#sarco-car');
     this.phase = '';
     this.bird = document.querySelector('#sarco-bird');
 
