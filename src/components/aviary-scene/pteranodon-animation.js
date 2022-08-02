@@ -10,6 +10,7 @@ AFRAME.registerComponent('pteranodon-animation', {
       document.querySelector('a-scene').systems['movesManager'];
     this.car = document.querySelector('#aviary-car');
     this.phase = '';
+    this.animationPhase = 'canFly';
 
     // Ptera run Path
     this.pteraMarker = 0; // Position on the curve
@@ -97,6 +98,26 @@ AFRAME.registerComponent('pteranodon-animation', {
   endFly: function () {
     if (this.movesManager.truncMarker(this.pteraMarker) > 800) {
       this.phase = 'finish';
+    }
+    if (
+      this.movesManager.truncMarker(this.pteraMarker) > 300 &&
+      this.animationPhase === 'canFly'
+    ) {
+      this.el.setAttribute('animation-mixer', {
+        clip: 'Ptera_Fly',
+        loop: true,
+        crossFadeDuration: 0.4,
+        timeScale: 0.7,
+      });
+      setTimeout(() => {
+        this.el.setAttribute('animation-mixer', {
+          clip: 'Ptera_Plane',
+          loop: true,
+          crossFadeDuration: 0.4,
+          timeScale: 0.8,
+        });
+      }, 4000);
+      this.animationPhase = 'planing';
     }
     this.pteraMarker = this.movesManager.moveOnCurve(
       this.object,
