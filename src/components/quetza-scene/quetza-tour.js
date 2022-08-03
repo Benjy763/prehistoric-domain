@@ -11,7 +11,7 @@ AFRAME.registerComponent('quetza-car-tour', {
     ).object3D.position;
     this.movesManager =
       document.querySelector('a-scene').systems['movesManager'];
-    this.quetzaMale = document.querySelector('#quetza-male');
+    this.quetza = document.querySelector('#quetza');
     this.object = this.el.object3D;
     this.mainScene = document.getElementById('main-scene');
 
@@ -44,14 +44,7 @@ AFRAME.registerComponent('quetza-car-tour', {
         this.voicePhase = 'quetza1';
         setTimeout(() => {
           this.phase = 'start';
-        }, 20000);
-      },
-      false
-    );
-    this.el.addEventListener(
-      'dive',
-      () => {
-        this.phase = 'dive';
+        }, 8000);
       },
       false
     );
@@ -61,7 +54,7 @@ AFRAME.registerComponent('quetza-car-tour', {
     setTimeout(() => {
       // Trigger Quetza animation
       const event = new Event('enter');
-      this.quetzaMale.dispatchEvent(event);
+      this.quetza.dispatchEvent(event);
     }, 0);
     this.phase = 'exit';
   },
