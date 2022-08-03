@@ -64,7 +64,7 @@ AFRAME.registerComponent('pteranodon-animation', {
     this.el.addEventListener(
       'endFly',
       () => {
-        this.pteraSpeed = 0.0008;
+        this.pteraSpeed = 0.0007;
         this.pteraMarker = 0;
         this.el.setAttribute('animation-mixer', {
           clip: 'Ptera_Plane',

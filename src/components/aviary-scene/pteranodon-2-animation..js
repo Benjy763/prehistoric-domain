@@ -108,7 +108,7 @@ AFRAME.registerComponent('pteranodon-2-animation', {
     this.phase = 'exit';
   },
   fly: function () {
-    if (this.pteraSpeed < 0.006) {
+    if (this.pteraSpeed < 0.005) {
       this.pteraSpeed += 0.0002;
     }
     if (this.movesManager.truncMarker(this.pteraMarker) > 900) {
