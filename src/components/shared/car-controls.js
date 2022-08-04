@@ -22,23 +22,17 @@ AFRAME.registerComponent('car-controls', {
     this.carDriveAudio = document.getElementById('car-drive-asset');
     this.carStopAudio = document.getElementById('car-stop-asset');
   },
-  initParams: function (curve, maxDistance) {
+  initParams: function (curve, maxDistance, speed = 0.00018) {
     this.curve = curve;
     this.maxDistance = maxDistance;
-
-    const nextMarkerForRotation = !this.carSpeed
-      ? this.defaultSpeed
-      : this.carSpeed;
-    this.movesManager.updateRotation(
-      this.object,
-      this.curve,
-      this.carMarker,
-      nextMarkerForRotation,
-      88
-    );
+    this.defaultSpeed = speed;
   },
   stopTrackingCar: function () {
     this.drivingState = 'stopped';
+  },
+  changeCurve(curve, maxDistance, speed) {
+    this.initParams(curve, maxDistance, speed);
+    this.carMarker = 0;
   },
   stopCar: function () {
     // Animation
@@ -65,16 +59,6 @@ AFRAME.registerComponent('car-controls', {
       this.curve,
       this.carMarker,
       this.carSpeed
-    );
-    const nextMarkerForRotation = !this.carSpeed
-      ? this.defaultSpeed
-      : this.carSpeed;
-    this.movesManager.updateRotation(
-      this.object,
-      this.curve,
-      this.carMarker,
-      nextMarkerForRotation,
-      88
     );
   },
   changeDrivingState(state) {

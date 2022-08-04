@@ -1,0 +1,8 @@
+Model Information:
+* title:	S Swamp Grass Patch
+* source:	https://sketchfab.com/3d-models/s-swamp-grass-patch-b02f537d9f0f44d48b6d3d395679b1ab
+* author:	studio lab (https://sketchfab.com/leonlabyk)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

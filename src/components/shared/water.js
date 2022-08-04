@@ -1,6 +1,7 @@
 AFRAME.registerComponent('water', {
   schema: {
     scale: { default: 1 },
+    flowspeed: { default: 0.01 },
   },
   init: function () {
     let mesh;
@@ -14,7 +15,7 @@ AFRAME.registerComponent('water', {
           color: '#aaa',
           scale: this.data.scale,
           flowDirection: new THREE.Vector2(-1, 0),
-          flowSpeed: 0.01,
+          flowSpeed: this.data.flowspeed,
           textureWidth: 1024,
           textureHeight: 1024,
           reflectivity: 0.001,

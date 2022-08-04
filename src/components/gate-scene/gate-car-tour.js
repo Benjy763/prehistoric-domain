@@ -38,9 +38,25 @@ AFRAME.registerComponent('gate-car-tour', {
     };
 
     // Tour Path
-    const curve = new THREE.SplineCurve([
+    this.curve = new THREE.SplineCurve([
       new THREE.Vector2(7.988, 81.899),
-      new THREE.Vector2(9.7, -174.7),
+      new THREE.Vector2(8.557, -54.744),
+      new THREE.Vector2(7.81, -200.305),
+    ]);
+    this.curveTurn = new THREE.SplineCurve([
+      new THREE.Vector2(8.106, -154.025),
+      new THREE.Vector2(8.399, -170.891),
+      new THREE.Vector2(-0.218, -190.982),
+      new THREE.Vector2(5.347, -200.496),
+      new THREE.Vector2(19.822, -194.518),
+      new THREE.Vector2(17.203, -180.089),
+      new THREE.Vector2(10.805, -168.758),
+      new THREE.Vector2(10.685, -162.186),
+    ]);
+    this.curveBack = new THREE.SplineCurve([
+      new THREE.Vector2(10.423, -164.116),
+      new THREE.Vector2(10.891, -44.742),
+      new THREE.Vector2(10.808, 77.255),
     ]);
 
     // En scene activation
@@ -51,7 +67,7 @@ AFRAME.registerComponent('gate-car-tour', {
       // Get car reference
       this.carControls = this.system.carReference;
       // Init tour path for the car
-      this.carControls.initParams(curve, 700);
+      this.carControls.initParams(this.curve, 836, 0.0003);
     });
 
     // Start tour listeners
@@ -75,7 +91,8 @@ AFRAME.registerComponent('gate-car-tour', {
     this.el.addEventListener(
       'restart',
       () => {
-        this.phase = 'restart';
+        this.phase = 'curve1';
+        this.carControls.changeDrivingState('starting');
       },
       false
     );
@@ -85,31 +102,47 @@ AFRAME.registerComponent('gate-car-tour', {
     this.phase = 'waiting';
     // Start car
     setTimeout(() => {
-      this.phase = 'start';
+      this.phase = 'curve1';
       this.carControls.changeDrivingState('starting');
     }, 6000);
   },
   gateSounds: function () {
     if (
-      this.movesManager.truncMarker(this.carControls.carMarker) > 190 &&
+      this.movesManager.truncMarker(this.carControls.carMarker) > 70 &&
       this.gateSoundPhase === 'open'
     ) {
       this.gateSound.components['sound__gateopen'].playSound();
       this.gateSoundPhase = 'close';
     }
     if (
-      this.movesManager.truncMarker(this.carControls.carMarker) > 275 &&
+      this.movesManager.truncMarker(this.carControls.carMarker) > 140 &&
       this.gateSoundPhase === 'close'
     ) {
       this.gateSound.components['sound__gateclose'].playSound();
       this.gateSoundPhase = 'exit';
     }
   },
-  start: function () {
+  gateBackSounds: function () {
+    if (
+      this.movesManager.truncMarker(this.carControls.carMarker) > 800 &&
+      this.gateSoundPhase === 'open'
+    ) {
+      this.gateSound.components['sound__gateopen'].playSound();
+      this.gateSoundPhase = 'close';
+    }
+    if (
+      this.movesManager.truncMarker(this.carControls.carMarker) > 860 &&
+      this.gateSoundPhase === 'close'
+    ) {
+      this.gateSound.components['sound__gateclose'].playSound();
+      this.gateSoundPhase = 'exit';
+    }
+  },
+  openDoors: function () {
     const bigDoorPosition = this.bigDoor.getAttribute('position');
     if (
-      this.movesManager.truncMarker(this.carControls.carMarker) > 200 &&
-      this.movesManager.truncMarker(this.carControls.carMarker) < 280 &&
+      this.movesManager.truncMarker(this.carControls.carMarker) > 70 &&
+      this.movesManager.truncMarker(this.carControls.carMarker) < 140 &&
       bigDoorPosition.y < 20
     ) {
       bigDoorPosition.y += 0.04;
@@ -117,22 +150,67 @@ AFRAME.registerComponent('gate-car-tour', {
     }
 
     if (
-      this.movesManager.truncMarker(this.carControls.carMarker) > 280 &&
+      this.movesManager.truncMarker(this.carControls.carMarker) > 140 &&
       bigDoorPosition.y > 10
     ) {
       bigDoorPosition.y -= 0.04;
       this.bigDoor.setAttribute('position', bigDoorPosition);
     }
+  },
+  openDoorsBack: function () {
+    const bigDoorPosition = this.bigDoor.getAttribute('position');
+    if (
+      this.movesManager.truncMarker(this.carControls.carMarker) > 800 &&
+      this.movesManager.truncMarker(this.carControls.carMarker) < 860 &&
+      bigDoorPosition.y < 20
+    ) {
+      bigDoorPosition.y += 0.04;
+      this.bigDoor.setAttribute('position', bigDoorPosition);
+    }
 
-    if (this.movesManager.truncMarker(this.carControls.carMarker) > 400) {
-      // Trigger Brachio animation
-      const event = new Event('enter');
-      this.brachio.dispatchEvent(event);
-      this.phase = 'continue';
+    if (
+      this.movesManager.truncMarker(this.carControls.carMarker) > 860 &&
+      bigDoorPosition.y > 10
+    ) {
+      bigDoorPosition.y -= 0.04;
+      this.bigDoor.setAttribute('position', bigDoorPosition);
+    }
+  },
+  curve1: function () {
+    if (
+      this.movesManager.truncMarker(this.carControls.carMarker) >
+      this.carControls.maxDistance
+    ) {
+      this.carControls.changeCurve(this.curveTurn, 980, 0.0008);
+      this.phase = 'curve2';
+    }
+    // if (this.movesManager.truncMarker(this.carControls.carMarker) > 170) {
+    //   // Trigger Brachio animation
+    //   const event = new Event('enter');
+    //   this.brachio.dispatchEvent(event);
+    //   this.phase = 'continue';
+    // }
+  },
+  curve2: function () {
+    if (
+      this.movesManager.truncMarker(this.carControls.carMarker) >
+      this.carControls.maxDistance
+    ) {
+      this.carControls.changeCurve(this.curveBack, 980, 0.0003);
+      this.gateSoundPhase === 'open';
+      this.phase = 'curve3';
+    }
+  },
+  curve3: function () {
+    if (
+      this.movesManager.truncMarker(this.carControls.carMarker) >
+      this.carControls.maxDistance
+    ) {
+      this.phase = 'changeScene';
     }
   },
   continue: function () {
-    if (this.movesManager.truncMarker(this.carControls.carMarker) > 560) {
+    if (this.movesManager.truncMarker(this.carControls.carMarker) > 220) {
       this.phase = 'stop';
     }
   },
@@ -143,19 +221,11 @@ AFRAME.registerComponent('gate-car-tour', {
   stay: function () {
     this.phase = 'animation';
   },
-  restart: function () {
-    this.carControls.changeDrivingState('starting');
-    this.phase = 'finish';
-  },
-  finish: function () {
-    if (
-      this.movesManager.truncMarker(this.carControls.carMarker) >
-      this.carControls.maxDistance
-    ) {
-      this.phase = 'changeScene';
-    }
-  },
   tick: function () {
+    // console.log(
+    //   this.movesManager.truncMarker(this.carControls.carMarker),
+    //   this.el.object3D.position
+    // );
     if (!this.carControls) {
       return;
     }
@@ -214,9 +284,10 @@ AFRAME.registerComponent('gate-car-tour', {
       case 'turnLights':
         this.turnLights();
         break;
-      case 'start':
+      case 'curve1':
         this.gateSounds();
-        this.start();
+        this.openDoors();
+        this.curve1();
         break;
       case 'stop':
         this.stop();
@@ -227,11 +298,13 @@ AFRAME.registerComponent('gate-car-tour', {
       case 'continue':
         this.continue();
         break;
-      case 'restart':
-        this.restart();
+      case 'curve2':
+        this.curve2();
         break;
-      case 'finish':
-        this.finish();
+      case 'curve3':
+        this.gateBackSounds();
+        this.openDoorsBack();
+        this.curve3();
         break;
       case 'changeScene':
         // Destroy and detach all unecessary objets

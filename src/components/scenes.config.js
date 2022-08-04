@@ -10,9 +10,10 @@ export const MainScenes = {
     mobileCompatible: false,
     selection: 'gate',
     assetsId: 'tour-assets',
+    displayDistance: 80,
     carMarkerForDebug: 0.7,
     color: '#000',
-    density: 0.025,
+    density: 0.035,
     loading: {
       scene: 'loading-scene',
       camera: 'loading-scene-camera',
@@ -21,30 +22,6 @@ export const MainScenes = {
       scene: 'gate-scene',
       camera: 'gate-scene-camera',
       car: 'gate-car',
-      carReference: null,
-    },
-    dilo: {
-      scene: 'dilo-scene',
-      camera: 'dilo-scene-camera',
-      car: 'dilo-car',
-      carReference: null,
-    },
-    trex: {
-      scene: 'trex-scene',
-      camera: 'trex-scene-camera',
-      car: 'trex-car',
-      carReference: null,
-    },
-    raptor: {
-      scene: 'raptor-scene',
-      camera: 'raptor-scene-camera',
-      car: 'raptor-car',
-      carReference: null,
-    },
-    trice: {
-      scene: 'trice-scene',
-      camera: 'trice-scene-camera',
-      car: 'trice-car',
       carReference: null,
     },
     ending: {

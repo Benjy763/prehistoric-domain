@@ -8,8 +8,8 @@
   <div class="scene-border-inner">
     <div id="main-scene-content" class="scene-content">
       <a-scene preloader renderer="foveationLevel: 3; sortObjects: true; precision: high"
-        background="color: #000000; transparent: false" embedded="true" vr-mode-ui="enterVRButton: #enter-vr"
-        id="main-scene" fog="type: exponential; color: #5e5e5e;  density: 0.04; far: 999.98">
+        background="color: #a1a1a1; transparent: false" embedded="true" vr-mode-ui="enterVRButton: #enter-vr"
+        id="main-scene" fog="type: exponential; color: #a1a1a1;  density: 0; far: 999.98">
         <!-- All assets -->
         <require path="main-scenes/tour/tour-assets.html"></require>
 
@@ -32,31 +32,6 @@
           <require path="components/gate-scene/gate-environment.html"></require>
           <!-- Objects -->
           <require path="components/gate-scene/gate-car.html"></require>
-        </a-entity>
-
-        <a-entity id="dilo-scene" visible="false">
-          <!-- Ground environement -->
-          <require path="components/dilo-scene/dilo-ground.html"></require>
-          <!-- Lightning -->
-          <require path="components/dilo-scene/dilo-lightning.html"></require>
-          <!-- Dinosaurs -->
-          <require path="components/dilo-scene/dilo-dinosaurs.html"></require>
-          <!-- Environment -->
-          <require path="components/dilo-scene/dilo-environment.html"></require>
-          <!-- Objects -->
-          <require path="components/dilo-scene/dilo-car.html"></require>
-        </a-entity>
-        <a-entity id="trice-scene" visible="false">
-          <!-- Ground environement -->
-          <require path="components/trice-scene/trice-ground.html"></require>
-          <!-- Lightning -->
-          <require path="components/trice-scene/trice-lightning.html"></require>
-          <!-- Dinosaurs -->
-          <require path="components/trice-scene/trice-dinosaurs.html"></require>
-          <!-- Environment -->
-          <require path="components/trice-scene/trice-environment.html"></require>
-          <!-- Objects -->
-          <require path="components/trice-scene/trice-car.html"></require>
         </a-entity>
       </a-scene>
     </div>

@@ -53,7 +53,9 @@ AFRAME.registerComponent('brachio-animation', {
       this.object,
       this.curve,
       this.brachioMarker,
-      this.brachioSpeed
+      this.brachioSpeed,
+      'xz',
+      false
     );
   },
   finish: function () {
@@ -67,7 +69,9 @@ AFRAME.registerComponent('brachio-animation', {
       this.object,
       this.curve,
       this.brachioMarker,
-      this.brachioSpeed
+      this.brachioSpeed,
+      'xz',
+      false
     );
   },
   tick: function () {
