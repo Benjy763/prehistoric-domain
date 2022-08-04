@@ -67,7 +67,7 @@ AFRAME.registerComponent('gate-car-tour', {
       // Get car reference
       this.carControls = this.system.carReference;
       // Init tour path for the car
-      this.carControls.initParams(this.curve, 836, 0.0003);
+      this.carControls.initParams(this.curve, 836, 0.0002);
     });
 
     // Start tour listeners
@@ -181,7 +181,7 @@ AFRAME.registerComponent('gate-car-tour', {
       this.movesManager.truncMarker(this.carControls.carMarker) >
       this.carControls.maxDistance
     ) {
-      this.carControls.changeCurve(this.curveTurn, 980, 0.0008);
+      this.carControls.changeCurve(this.curveTurn, 980, 0.0004);
       this.phase = 'curve2';
     }
     // if (this.movesManager.truncMarker(this.carControls.carMarker) > 170) {
@@ -196,7 +196,7 @@ AFRAME.registerComponent('gate-car-tour', {
       this.movesManager.truncMarker(this.carControls.carMarker) >
       this.carControls.maxDistance
     ) {
-      this.carControls.changeCurve(this.curveBack, 980, 0.0003);
+      this.carControls.changeCurve(this.curveBack, 980, 0.0002);
       this.gateSoundPhase === 'open';
       this.phase = 'curve3';
     }

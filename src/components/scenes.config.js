@@ -5,12 +5,13 @@ export const MainScenes = {
     // Starting scene
     name: 'NIGHT TOUR',
     loadingScreen: 'deino-illu.jpg',
+    displayDistance: 60,
     needPerformance: true,
     needLanguage: true,
     mobileCompatible: false,
     selection: 'gate',
     assetsId: 'tour-assets',
-    displayDistance: 80,
+    displayDistance: 60,
     carMarkerForDebug: 0.7,
     color: '#000',
     density: 0.035,
@@ -23,6 +24,12 @@ export const MainScenes = {
       camera: 'gate-scene-camera',
       car: 'gate-car',
       carReference: null,
+      rigPos: {
+        // First in value in VR and second without
+        x: [-0.427, -0.427],
+        y: [0.4, 0.443],
+        z: [0.587, 0.587],
+      },
     },
     ending: {
       scene: 'ending-scene',

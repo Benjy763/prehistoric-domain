@@ -33,6 +33,7 @@ AFRAME.registerComponent('car-controls', {
   changeCurve(curve, maxDistance, speed) {
     this.initParams(curve, maxDistance, speed);
     this.carMarker = 0;
+    this.carSpeed = speed;
   },
   stopCar: function () {
     // Animation
