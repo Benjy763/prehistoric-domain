@@ -14,7 +14,7 @@ export const MainScenes = {
     displayDistance: 60,
     carMarkerForDebug: 0.7,
     color: '#000',
-    density: 0.035,
+    density: [0.04, 0.03],
     loading: {
       scene: 'loading-scene',
       camera: 'loading-scene-camera',
@@ -50,7 +50,7 @@ export const MainScenes = {
     assetsId: 'aviary-assets',
     carMarkerForDebug: 0.32,
     color: '#5e5e5e',
-    density: 0.006,
+    density: [0.006, 0.006],
     canWalk: true,
     walkBounds: {
       x: [-1.54, 2.024],
@@ -90,7 +90,7 @@ export const MainScenes = {
     assetsId: 'lagoon-assets',
     carMarkerForDebug: 0.32,
     color: '#26537a',
-    density: 0.1,
+    density: [0.1, 0.1],
     loading: {
       scene: 'loading-scene',
       camera: 'loading-scene-camera',
@@ -119,7 +119,7 @@ export const MainScenes = {
     assetsId: 'cinema-assets',
     carMarkerForDebug: 0.32,
     color: '#000',
-    density: 0.03,
+    density: [0.03, 0.03],
     loading: {
       scene: 'loading-scene',
       camera: 'loading-scene-camera',
@@ -148,7 +148,7 @@ export const MainScenes = {
     assetsId: 'swamp-assets',
     carMarkerForDebug: 0.32,
     color: '#5e5e5e',
-    density: 0.05,
+    density: [0.05, 0.05],
     canWalk: true,
     walkBounds: {
       x: [-2.6, 2.2],
@@ -188,7 +188,7 @@ export const MainScenes = {
     assetsId: 'swamp-assets',
     carMarkerForDebug: 0.32,
     color: '#5e5e5e',
-    density: 0.05,
+    density: [0.05, 0.05],
     canWalk: true,
     walkBounds: {
       x: [-2.6, 2.2],
@@ -228,7 +228,7 @@ export const MainScenes = {
     assetsId: 'swamp-assets',
     carMarkerForDebug: 0.32,
     color: '#5e5e5e',
-    density: 0.05,
+    density: [0.05, 0.05],
     canWalk: true,
     walkBounds: {
       x: [-2.6, 2.2],
@@ -268,7 +268,7 @@ export const MainScenes = {
     assetsId: 'dimetrodon-assets',
     carMarkerForDebug: 0.32,
     color: '#ffddc2',
-    density: 0.015,
+    density: [0.015, 0.015],
     canWalk: true,
     walkBounds: {
       x: [-2.6, 2.2],
@@ -308,7 +308,7 @@ export const MainScenes = {
     assetsId: 'edmon-assets',
     carMarkerForDebug: 0.32,
     color: '#fff',
-    density: 0.015,
+    density: [0.015, 0.015],
     displayDistance: 400,
     canWalk: true,
     walkBounds: {
@@ -349,7 +349,7 @@ export const MainScenes = {
     assetsId: 'trex-assets',
     carMarkerForDebug: 0.32,
     color: '#000',
-    density: 0.007,
+    density: [0.007, 0.007],
     displayDistance: 400,
     canWalk: true,
     walkBounds: {
@@ -390,7 +390,7 @@ export const MainScenes = {
     assetsId: 'deino-assets',
     carMarkerForDebug: 0.32,
     color: '#000',
-    density: 0.03,
+    density: [0.03, 0.03],
     displayDistance: 400,
     canWalk: true,
     walkBounds: {

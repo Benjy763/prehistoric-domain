@@ -270,7 +270,7 @@ AFRAME.registerSystem('system', {
         mainScene.setAttribute('fog', {
           type: 'exponential',
           color: this.scenes.color,
-          density: this.scenes.density,
+          density: this.vr ? this.scenes.density[0] : this.scenes.density[1],
         });
         // Set main scene ability to walk
         if (!!this.scenes.canWalk) {

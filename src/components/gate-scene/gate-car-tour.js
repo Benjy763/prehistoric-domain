@@ -12,6 +12,8 @@ AFRAME.registerComponent('gate-car-tour', {
     this.screenTrice = document.getElementById('gate-screen-trice');
     this.screenGalli = document.getElementById('gate-screen-galli');
     this.bigDoor = document.getElementById('gate-big-door');
+    this.directLight1 = document.getElementById('gate-light-2');
+    this.directLight2 = document.getElementById('gate-light-3');
     this.envLights = document.getElementById('gate-ambiant-light');
     this.carLights = {
       light1: document.getElementById('gate-interior-light'),
@@ -198,6 +200,9 @@ AFRAME.registerComponent('gate-car-tour', {
     ) {
       this.carControls.changeCurve(this.curveBack, 980, 0.0002);
       this.gateSoundPhase === 'open';
+      this.directLight1.setAttribute('visible', 'false');
+      this.directLight2.setAttribute('visible', 'true');
+
       this.phase = 'curve3';
     }
   },
