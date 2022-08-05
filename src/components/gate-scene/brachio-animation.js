@@ -59,7 +59,7 @@ AFRAME.registerComponent('brachio-animation', {
     );
   },
   finish: function () {
-    if (this.movesManager.truncMarker(this.brachioMarker) > 900) {
+    if (this.movesManager.truncMarker(this.brachioMarker) > 880) {
       this.el.setAttribute('visible', false);
       this.footStepAudio.stopSound();
       this.footRoarAudio.stopSound();

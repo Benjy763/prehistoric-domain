@@ -9,7 +9,7 @@ AFRAME.registerComponent('trex-animation', {
       document.querySelector('a-scene').systems['movesManager'];
     this.phase = '';
     this.animationChange = 'roar';
-    // trex run Path
+    // Trex run Path
     this.trexMarker = 0; // Position on the curve
     this.trexSpeed = 0.001; // Speed on the curve
     this.curve = new THREE.SplineCurve([

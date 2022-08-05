@@ -11,7 +11,7 @@ export const MainScenes = {
     mobileCompatible: false,
     selection: 'gate',
     assetsId: 'tour-assets',
-    displayDistance: 60,
+    displayDistance: 70,
     carMarkerForDebug: 0.7,
     color: '#000',
     density: [0.04, 0.03],
