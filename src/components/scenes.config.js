@@ -1,6 +1,43 @@
 export const MainScene = process.env.MAIN_SCENE;
 
 export const MainScenes = {
+  visitors: {
+    // Starting scene
+    name: 'Visitors House',
+    loadingScreen: 'deino-illu.jpg',
+    displayDistance: 60,
+    needPerformance: true,
+    needLanguage: true,
+    mobileCompatible: false,
+    selection: 'visitors',
+    assetsId: 'visitors-assets',
+    displayDistance: 70,
+    carMarkerForDebug: 0.7,
+    color: '#000',
+    density: [0.04, 0.03],
+    loading: {
+      scene: 'loading-scene',
+      camera: 'loading-scene-camera',
+    },
+    visitors: {
+      scene: 'visitors-scene',
+      camera: 'visitors-scene-camera',
+      car: 'visitors-car',
+      carReference: null,
+      rigPos: {
+        // First in value in VR and second without
+        x: [-0.427, -0.427],
+        y: [0.4, 0.443],
+        z: [0.587, 0.587],
+      },
+    },
+    ending: {
+      scene: 'ending-scene',
+      camera: 'ending-scene-camera',
+      car: 'ending-car',
+      carReference: null,
+    },
+  },
   tour: {
     // Starting scene
     name: 'NIGHT TOUR',
