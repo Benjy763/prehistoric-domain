@@ -31,8 +31,8 @@ AFRAME.registerSystem('system', {
     this.displayDistance = this.scenes.displayDistance
       ? this.scenes.displayDistance
       : 100;
-    this.fov = 40;
-    this.fovVR = 60;
+    this.fov = 45;
+    this.fovVR = 45;
     this.language = Languages.selection;
     this.languages = Languages;
     this.carReference;

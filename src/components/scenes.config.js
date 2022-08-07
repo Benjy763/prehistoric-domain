@@ -5,16 +5,15 @@ export const MainScenes = {
     // Starting scene
     name: 'Visitors House',
     loadingScreen: 'deino-illu.jpg',
-    displayDistance: 60,
     needPerformance: true,
     needLanguage: true,
     mobileCompatible: false,
     selection: 'visitors',
     assetsId: 'visitors-assets',
-    displayDistance: 70,
+    displayDistance: 200,
     carMarkerForDebug: 0.7,
-    color: '#000',
-    density: [0.04, 0.03],
+    color: '#fff',
+    density: [0.005, 0.005],
     loading: {
       scene: 'loading-scene',
       camera: 'loading-scene-camera',
@@ -26,9 +25,9 @@ export const MainScenes = {
       carReference: null,
       rigPos: {
         // First in value in VR and second without
-        x: [-0.427, -0.427],
-        y: [0.4, 0.443],
-        z: [0.587, 0.587],
+        x: [-2, 1],
+        y: [-0.7, -0.5],
+        z: [1, 0],
       },
     },
     ending: {
@@ -48,7 +47,6 @@ export const MainScenes = {
     mobileCompatible: false,
     selection: 'gate',
     assetsId: 'tour-assets',
-    displayDistance: 70,
     carMarkerForDebug: 0.7,
     color: '#000',
     density: [0.04, 0.03],
