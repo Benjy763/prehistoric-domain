@@ -13,7 +13,7 @@ export const MainScenes = {
     displayDistance: 200,
     carMarkerForDebug: 0.7,
     color: '#fff',
-    density: [0.005, 0.005],
+    density: [0, 0],
     loading: {
       scene: 'loading-scene',
       camera: 'loading-scene-camera',

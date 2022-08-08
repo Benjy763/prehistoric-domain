@@ -1,8 +1,0 @@
-Model Information:
-* title:	Valley Mountain Landscape
-* source:	https://sketchfab.com/3d-models/valley-mountain-landscape-b54cb3a478dc483a870847aa58daf136
-* author:	Nicholas-3D (https://sketchfab.com/Nicholas01)
-
-Model License:
-* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
-* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works
