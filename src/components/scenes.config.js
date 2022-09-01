@@ -25,9 +25,9 @@ export const MainScenes = {
       carReference: null,
       rigPos: {
         // First in value in VR and second without
-        x: [-2, 1],
+        x: [-21.292, -21.292],
         y: [-0.7, -0.5],
-        z: [1, 0],
+        z: [-3.743, -3.743],
       },
     },
     ending: {

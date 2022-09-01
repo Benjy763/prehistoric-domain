@@ -6,10 +6,14 @@
   <!-- <a-entity id="interior-light"
     light="type: directional; intensity: 0.67; distance: 1; decay: 1; angle: 180; penumbra: 0"
     position="4.22538 30.09121 3.52884" visible="" rotation="0 0 0"></a-entity> -->
-  <a-entity id="rig" movement-controls position="4.79496 -0.7 1.0998" rotation="0 90 0">
+  <a-entity id="rig" movement-controls="speed: 0.3" position="-21.292 -0.7 -3.743" rotation="0 90 0">
     <a-entity id="hands">
       <a-entity id="visitors-scene-camera" class="camera-entity" camera position="0 0 0" user-height="0"
-        fps-look-controls="user-height: 0" wasd-controls="acceleration:10; enabled: false">
+        fps-look-controls="user-height: 0"
+        simple-navmesh-constraint="navmesh:#visitors-navmesh-el;fall:0.5;height:1.65;exclude:#visitors-exclude-navmesh-el">
+        <a-box id="out-of-limit" visible="false" material="blending: none; shader: flat"
+          geometry="depth: 1; height: 1; width: 1; primitive: sphere; segmentsHeight: 10; segmentsWidth: 10; radius: 0.1"
+          color="black" side="back"></a-box>
       </a-entity>
       <a-entity id="leftHand" sphere-collider="objects: a-box" super-hands
         hand-controls="hand: left; handModelStyle: highPoly; color: #ffcccc"></a-entity>
@@ -18,7 +22,13 @@
         hand-controls="hand: right; handModelStyle: highPoly; color: #ffcccc"></a-entity>
     </a-entity>
   </a-entity>
+  <a-plane id="visitors-navmesh-el" geometry="primitive: circle; radius: 27" visible="false"
+    position="-45.32474 0 -2.49421" rotation="-90 0 0" width="8" height="5.8" color="yellow">
+  </a-plane>
+  <a-plane id="visitors-exclude-navmesh-el" geometry="primitive: circle; radius: 16" visible="false"
+    position="-45.44178 0 -2.33939" rotation="-90 0 0" width="8" height="5.8" color="red">
+  </a-plane>
+  <a-entity id="car-env"></a-entity>
   <!-- <a-entity id="visitors-terminal-temoin" gltf-model="#terminal-asset" position="11.59694 -0.64266 -1.82065"
     rotation="0 119.99999999999999 0" scale="0.027 0.027 0.027"> -->
-</a-entity>
 </a-entity>

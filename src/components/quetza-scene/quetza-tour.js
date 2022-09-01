@@ -44,7 +44,7 @@ AFRAME.registerComponent('quetza-car-tour', {
         this.voicePhase = 'quetza1';
         setTimeout(() => {
           this.phase = 'start';
-        }, 8000);
+        }, 20000);
       },
       false
     );

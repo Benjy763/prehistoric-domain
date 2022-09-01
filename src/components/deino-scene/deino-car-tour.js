@@ -34,7 +34,7 @@ AFRAME.registerComponent('deino-car-tour', {
     setTimeout(() => {
       const event = new Event('enter');
       this.deino.dispatchEvent(event);
-    }, 5000);
+    }, 20000);
     this.phase = 'exit';
   },
   tick: function () {

@@ -6,10 +6,13 @@
   <!-- <a-entity id="interior-light"
     light="type: directional; intensity: 0.67; distance: 1; decay: 1; angle: 180; penumbra: 0"
     position="4.22538 30.09121 3.52884" visible="" rotation="0 0 0"></a-entity> -->
-  <a-entity id="rig" movement-controls position="4.79496 -0.7 1.0998" rotation="0 90 0">
+  <a-entity id="rig" movement-controls="speed: 0.1" position="4.79496 -0.7 1.0998" rotation="0 90 0">
     <a-entity id="hands">
       <a-entity id="spino-scene-camera" class="camera-entity" camera position="0 0 0" user-height="0"
-        fps-look-controls="user-height: 0" wasd-controls="acceleration:10; enabled: false">
+        fps-look-controls="user-height: 0" simple-navmesh-constraint="navmesh:#spino-navmesh-el;fall:0.5;height:1.65;">
+        <a-box id="out-of-limit" visible="false" material="blending: none; shader: flat"
+          geometry="depth: 1; height: 1; width: 1; primitive: sphere; segmentsHeight: 10; segmentsWidth: 10; radius: 0.1"
+          color="black" side="back"></a-box>
       </a-entity>
       <a-entity id="leftHand" sphere-collider="objects: a-box" super-hands
         hand-controls="hand: left; handModelStyle: highPoly; color: #ffcccc"></a-entity>
@@ -18,30 +21,35 @@
         hand-controls="hand: right; handModelStyle: highPoly; color: #ffcccc"></a-entity>
     </a-entity>
   </a-entity>
-  <!-- <a-entity id="spino-window" gltf-model="#window-asset" position="-0.20335 0.62774 -3.92827" rotation="0 0 0"
+  <a-plane id="spino-navmesh-el" visible="false" position="0.00197 0 0.0526" rotation="-90 0 0" width="8" height="5.5"
+    color="yellow">
+  </a-plane>
+  <a-entity id="car-env">
+    <!-- <a-entity id="spino-window" gltf-model="#window-asset" position="-0.20335 0.62774 -3.92827" rotation="0 0 0"
   scale="0.05 0.02 0.01"></a-entity> -->
-  <a-entity id="spino-window-support" gltf-model="#window-support-asset" position="-5.86444 -0.88693 -1.31795"
-    rotation="0 -90 0" scale="-1.8 1.29 0.88">
-    <a-image id="spino-dont-touch" src="#dont-touch-asset" scale="0.3 0.3 0.3" position="1.0571 0.97374 -0.23214"
-      rotation="0 0 0"></a-image>
+    <a-entity id="spino-window-support" gltf-model="#window-support-asset" position="-5.86444 -0.88693 -1.31795"
+      rotation="0 -90 0" scale="-1.8 1.29 0.88">
+      <a-image id="spino-dont-touch" src="#dont-touch-asset" scale="0.3 0.3 0.3" position="1.0571 0.97374 -0.23214"
+        rotation="0 0 0"></a-image>
+    </a-entity>
+    <a-entity id="spino-window-support-1" gltf-model="#window-support-asset" position="-5.86367 -0.88797 1.42691"
+      rotation="0 -90 0" scale="1.8 1.29 0.88"></a-entity>
+    <a-entity id="spino-wall" gltf-model="#wall-asset" position="5.58477 0.81313 0.03597" rotation="90 90 0"
+      scale="1.8 1.5 1.5"></a-entity>
+    <a-entity id="spino-terminal" gltf-model="#terminal-asset" position="-3.01996 -0.64266 2.26421"
+      rotation="0 119.99999999999999 0" scale="0.027 0.027 0.027">
+      <a-image id="spino-pres" src="#spino-pres-asset" scale="32 16 10" position="-0.05575 46.56972 -7.50028"
+        rotation="-14.21 3.15 0"></a-image>
+    </a-entity>
+    <a-entity id="spino-door" gltf-model="#door-asset" position="5.50369 -0.92257 0.13499" rotation="0 -90 0"
+      scale="0.025 0.025 0.025"></a-entity>
+    <a-entity id="spino-floor" gltf-model="#floor-asset" position="2.80903 -5.56695 -8.9603" rotation="90 0 0"
+      scale="2.1 2.1 1"></a-entity>
+    <a-box id="spino-window-box-1" material="color: #0f0f0f" rotation="0 0 0"
+      geometry="depth: 0.7; height: 0.43; width: 0.09; segmentsHeight: 1" scale="1 1 1"
+      position="-5.79398 2.69948 3.75064" color="#000" depth="20" height="20" width="20"></a-box>
+    <a-box id="spino-window-box-2" material="color: #0f0f0f" rotation="0 0 0"
+      geometry="depth: 0.7; height: 0.43; width: 0.09; segmentsHeight: 1" scale="1 1 1"
+      position="-5.85685 2.73903 -3.63782" color="#000" depth="20" height="20" width="20"></a-box>
   </a-entity>
-  <a-entity id="spino-window-support-1" gltf-model="#window-support-asset" position="-5.86367 -0.88797 1.42691"
-    rotation="0 -90 0" scale="1.8 1.29 0.88"></a-entity>
-  <a-entity id="spino-wall" gltf-model="#wall-asset" position="5.58477 0.81313 0.03597" rotation="90 90 0"
-    scale="1.8 1.5 1.5"></a-entity>
-  <a-entity id="spino-terminal" gltf-model="#terminal-asset" position="-3.01996 -0.64266 2.26421"
-    rotation="0 119.99999999999999 0" scale="0.027 0.027 0.027">
-    <a-image id="spino-pres" src="#spino-pres-asset" scale="32 16 10" position="-0.05575 46.56972 -7.50028"
-      rotation="-14.21 3.15 0"></a-image>
-  </a-entity>
-  <a-entity id="spino-door" gltf-model="#door-asset" position="5.50369 -0.92257 0.13499" rotation="0 -90 0"
-    scale="0.025 0.025 0.025"></a-entity>
-  <a-entity id="spino-floor" gltf-model="#floor-asset" position="2.80903 -5.56695 -8.9603" rotation="90 0 0"
-    scale="2.1 2.1 1"></a-entity>
-  <a-box id="spino-window-box-1" material="color: #0f0f0f" rotation="0 0 0"
-    geometry="depth: 0.7; height: 0.43; width: 0.09; segmentsHeight: 1" scale="1 1 1"
-    position="-5.79398 2.69948 3.75064" color="#000" depth="20" height="20" width="20"></a-box>
-  <a-box id="spino-window-box-2" material="color: #0f0f0f" rotation="0 0 0"
-    geometry="depth: 0.7; height: 0.43; width: 0.09; segmentsHeight: 1" scale="1 1 1"
-    position="-5.85685 2.73903 -3.63782" color="#000" depth="20" height="20" width="20"></a-box>
 </a-entity>

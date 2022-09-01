@@ -132,11 +132,11 @@ AFRAME.registerSystem('system', {
       // Add scene screen
       document.querySelector('#main-scene-wrapper').style.zIndex = '10';
 
-      this.startTour();
-    };
+      document.querySelector('#reenter-vr').onclick = () => {
+        document.getElementById('enter-vr').click();
+      };
 
-    document.querySelector('#reenter-vr').onclick = () => {
-      document.getElementById('enter-vr').click();
+      this.startTour();
     };
   },
   startTour() {
@@ -343,7 +343,7 @@ AFRAME.registerSystem('system', {
       })
     );
 
-    // Fix rig height
+    // Fix rig
     if (!loading) {
       this.movesManager.setRigPosition({
         x: this.scenes[this.actuelScene].rigPos

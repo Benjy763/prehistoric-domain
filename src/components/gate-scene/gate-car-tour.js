@@ -266,10 +266,10 @@ AFRAME.registerComponent('gate-car-tour', {
     this.phase = 'animation';
   },
   tick: function () {
-    console.log(
-      this.movesManager.truncMarker(this.carControls.carMarker),
-      this.el.object3D.position
-    );
+    // console.log(
+    //   this.movesManager.truncMarker(this.carControls.carMarker),
+    //   this.el.object3D.position
+    // );
     if (!this.carControls) {
       return;
     }

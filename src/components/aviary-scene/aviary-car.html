@@ -6,10 +6,13 @@
   <!-- <a-entity id="interior-light"
     light="type: directional; intensity: 0.67; distance: 1; decay: 1; angle: 180; penumbra: 0"
     position="4.22538 30.09121 3.52884" visible="" rotation="0 0 0"></a-entity> -->
-  <a-entity id="rig" movement-controls position="4.79496 -0.7 1.0998" rotation="0 -90 0">
+  <a-entity id="rig" movement-controls="speed: 0.1" position="4.79496 -0.7 1.0998" rotation="0 -90 0">
     <a-entity id="hands">
       <a-entity id="aviary-scene-camera" class="camera-entity" camera position="0 0 0" user-height="0"
-        fps-look-controls="user-height: 0" wasd-controls="acceleration:10; enabled: false">
+        fps-look-controls="user-height: 0" simple-navmesh-constraint="navmesh:#aviary-navmesh-el;fall:0.5;height:1.65;">
+        <a-box id="out-of-limit" visible="false" material="blending: none; shader: flat"
+          geometry="depth: 1; height: 1; width: 1; primitive: sphere; segmentsHeight: 10; segmentsWidth: 10; radius: 0.1"
+          color="black" side="back"></a-box>
       </a-entity>
       <a-entity id="leftHand" sphere-collider="objects: a-box" super-hands
         hand-controls="hand: left; handModelStyle: highPoly; color: #ffcccc"></a-entity>
@@ -18,16 +21,21 @@
         hand-controls="hand: right; handModelStyle: highPoly; color: #ffcccc"></a-entity>
     </a-entity>
   </a-entity>
-  <a-entity id="aviary-cage" gltf-model="#dome-asset" position="-0.10422 -5.4571 2.55231" rotation="0 10.42 0"
-    scale="0.48 0.48 0.48">
-  </a-entity>
-  <a-entity id="aviary-door" gltf-model="#door-asset" position="0.2331 -1.06465 2.51217" rotation="0 100 0"
-    scale="1 1 1"></a-entity>
-  <a-entity id="aviary-floor" gltf-model="#floor-asset" position="0.96228 2.50653 2.54083" rotation="90 90 0"
-    scale="0.045 0.045 0.045"></a-entity>
-  <a-entity id="aviary-terminal" gltf-model="#terminal-asset" position="4.54503 -0.60638 3.8871" rotation="0 -100 0"
-    scale="0.027 0.027 0.027">
-    <a-image id="aviary-pres" src="#spino-pres-asset" scale="32 16 10" position="-0.05575 46.56972 -7.50028"
-      rotation="-14.21 3.15 0"></a-image>
+  <a-plane id="aviary-navmesh-el" geometry="primitive: circle; radius: 3" visible="false" position="0.785 0 2.491"
+    rotation="-90 0 0" width="8" height="5.8" color="yellow">
+  </a-plane>
+  <a-entity id="car-env">
+    <a-entity id="aviary-cage" gltf-model="#dome-asset" position="-0.10422 -5.4571 2.55231" rotation="0 10.42 0"
+      scale="0.48 0.48 0.48">
+    </a-entity>
+    <a-entity id="aviary-door" gltf-model="#door-asset" position="0.2331 -1.06465 2.51217" rotation="0 100 0"
+      scale="1 1 1"></a-entity>
+    <a-entity id="aviary-floor" gltf-model="#floor-asset" position="0.96228 2.50653 2.54083" rotation="90 90 0"
+      scale="0.045 0.045 0.045"></a-entity>
+    <a-entity id="aviary-terminal" gltf-model="#terminal-asset" position="4.54503 -0.60638 3.8871" rotation="0 -100 0"
+      scale="0.027 0.027 0.027">
+      <a-image id="aviary-pres" src="#spino-pres-asset" scale="32 16 10" position="-0.05575 46.56972 -7.50028"
+        rotation="-14.21 3.15 0"></a-image>
+    </a-entity>
   </a-entity>
 </a-entity>
