@@ -28,9 +28,6 @@ AFRAME.registerComponent('visitors-car-tour', {
   },
   start: function () {},
   tick: function () {
-    // Walk bound checking
-    this.movesManager.checkBoundLimits(this.cameraPosition);
-
     // Animation phases
     switch (this.phase) {
       case 'start':

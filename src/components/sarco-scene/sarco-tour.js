@@ -111,9 +111,6 @@ AFRAME.registerComponent('sarco-car-tour', {
     this.object.position.y -= this.diveSpeed;
   },
   tick: function () {
-    // Walk bound checking
-    this.movesManager.checkBoundLimits(this.cameraPosition);
-
     // Voice phases
     switch (this.voicePhase) {
       case 'aviary1':

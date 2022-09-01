@@ -195,9 +195,6 @@ AFRAME.registerComponent('spino-car-tour', {
     this.phase = 'exit';
   },
   tick: function () {
-    // Walk bound checking
-    this.movesManager.checkBoundLimits(this.cameraPosition);
-
     // Voice phases
     switch (this.voicePhase) {
       case 'aviary1':

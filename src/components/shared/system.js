@@ -113,13 +113,30 @@ AFRAME.registerSystem('system', {
     };
 
     document.querySelector('#enter-vr').onclick = () => {
+      // Already entered in vr
+      if (this.vr) {
+        return;
+      }
       this.vr = true;
+      // Trigger Vr Enter event
+      const event = new Event('enterVr');
+      window.dispatchEvent(event);
+      // Remove unused wrapper
+      document
+        .querySelector('#click-wrapper')
+        .setAttribute('style', 'display: none');
+      // Display VR button to reenter if needed
+      document.querySelector('#reenter-vr').style.display = 'block';
       // Remove loading interface
       document.querySelector('#static-loading').style.display = 'none';
       // Add scene screen
       document.querySelector('#main-scene-wrapper').style.zIndex = '10';
 
       this.startTour();
+    };
+
+    document.querySelector('#reenter-vr').onclick = () => {
+      document.getElementById('enter-vr').click();
     };
   },
   startTour() {

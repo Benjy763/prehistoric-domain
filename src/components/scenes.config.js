@@ -87,10 +87,6 @@ export const MainScenes = {
     color: '#5e5e5e',
     density: [0.006, 0.006],
     canWalk: true,
-    walkBounds: {
-      x: [-1.54, 2.024],
-      z: [-0.82, 2.35],
-    },
     loading: {
       scene: 'loading-scene',
       camera: 'loading-scene-camera',
@@ -185,10 +181,6 @@ export const MainScenes = {
     color: '#5e5e5e',
     density: [0.05, 0.05],
     canWalk: true,
-    walkBounds: {
-      x: [-2.6, 2.2],
-      z: [-5, 4],
-    },
     loading: {
       scene: 'loading-scene',
       camera: 'loading-scene-camera',
@@ -225,10 +217,6 @@ export const MainScenes = {
     color: '#5e5e5e',
     density: [0.05, 0.05],
     canWalk: true,
-    walkBounds: {
-      x: [-2.6, 2.2],
-      z: [-5, 4],
-    },
     loading: {
       scene: 'loading-scene',
       camera: 'loading-scene-camera',
@@ -265,10 +253,6 @@ export const MainScenes = {
     color: '#5e5e5e',
     density: [0.05, 0.05],
     canWalk: true,
-    walkBounds: {
-      x: [-2.6, 2.2],
-      z: [-5, 4],
-    },
     loading: {
       scene: 'loading-scene',
       camera: 'loading-scene-camera',
@@ -305,10 +289,6 @@ export const MainScenes = {
     color: '#ffddc2',
     density: [0.015, 0.015],
     canWalk: true,
-    walkBounds: {
-      x: [-2.6, 2.2],
-      z: [-5, 4],
-    },
     loading: {
       scene: 'loading-scene',
       camera: 'loading-scene-camera',
@@ -346,10 +326,6 @@ export const MainScenes = {
     density: [0.015, 0.015],
     displayDistance: 400,
     canWalk: true,
-    walkBounds: {
-      x: [-2.6, 2.2],
-      z: [-5, 4],
-    },
     loading: {
       scene: 'loading-scene',
       camera: 'loading-scene-camera',
@@ -384,13 +360,9 @@ export const MainScenes = {
     assetsId: 'trex-assets',
     carMarkerForDebug: 0.32,
     color: '#000',
-    density: [0.007, 0.007],
+    density: [0.005, 0.005],
     displayDistance: 400,
     canWalk: true,
-    walkBounds: {
-      x: [-2.6, 2.2],
-      z: [-5, 4],
-    },
     loading: {
       scene: 'loading-scene',
       camera: 'loading-scene-camera',
@@ -428,10 +400,6 @@ export const MainScenes = {
     density: [0.03, 0.03],
     displayDistance: 400,
     canWalk: true,
-    walkBounds: {
-      x: [-2.6, 2.2],
-      z: [-5, 4],
-    },
     loading: {
       scene: 'loading-scene',
       camera: 'loading-scene-camera',

@@ -34,6 +34,18 @@ body {
   z-index: 999;
 }
 
+#reenter-vr {
+  display: none;
+  position: absolute;
+  cursor: pointer;
+  z-index: 999;
+  bottom: 20px;
+  right: 20px;
+  color: white;
+  padding: 10px;
+  border: 2px solid white;
+}
+
 .click-container {
   padding: 0.5rem;
   border: 1px solid #d4c9ba;
