@@ -39,6 +39,7 @@ AFRAME.registerSystem('system', {
     this.actuelScene = this.firstScene;
     this.tourStarted = false;
     this.vr = false;
+    this.canRecenter = false;
 
     const userAgentDataPlatform = window.navigator.userAgentData
       ? SupportedPlatform.includes(window.navigator.userAgentData.platform)
@@ -278,6 +279,11 @@ AFRAME.registerSystem('system', {
 
       // Delai for tour that is heavy to load
       setTimeout(() => {
+        setTimeout(() => {
+          this.movesManager.fixRigPosition();
+        }, 1500);
+        // Can recenter
+        this.canRecenter = true;
         // Set main scene atmosphere color
         const mainScene = document.querySelector('#main-scene');
         mainScene.setAttribute('background', {
@@ -346,29 +352,14 @@ AFRAME.registerSystem('system', {
     // Fix rig
     if (!loading) {
       this.movesManager.setRigPosition({
-        x: this.scenes[this.actuelScene].rigPos
-          ? this.scenes[this.actuelScene].rigPos.x[0]
+        x: this.scenes[this.actuelScene].rigPos.x
+          ? this.scenes[this.actuelScene].rigPos.x
           : -0.38,
-        y: this.scenes[this.actuelScene].rigPos
-          ? this.scenes[this.actuelScene].rigPos.y[0]
-          : 0.75,
-        z: this.scenes[this.actuelScene].rigPos
-          ? this.scenes[this.actuelScene].rigPos.z[0]
+        y: 0,
+        z: this.scenes[this.actuelScene].rigPos.z
+          ? this.scenes[this.actuelScene].rigPos.z
           : 0.5,
       });
-      if (!this.vr) {
-        this.movesManager.setRigPosition({
-          x: this.scenes[this.actuelScene].rigPos
-            ? this.scenes[this.actuelScene].rigPos.x[1]
-            : -0.38,
-          y: this.scenes[this.actuelScene].rigPos
-            ? this.scenes[this.actuelScene].rigPos.y[1]
-            : 0.5,
-          z: this.scenes[this.actuelScene].rigPos
-            ? this.scenes[this.actuelScene].rigPos.z[1]
-            : 0.54,
-        });
-      }
       return;
     }
     document

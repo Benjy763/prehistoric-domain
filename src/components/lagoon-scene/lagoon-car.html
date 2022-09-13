@@ -8,15 +8,15 @@
   <a-entity id="rig" movement-controls="speed: 0.1" position="4.79496 -0.7 1.0998" rotation="0 90 0">
     <a-entity id="hands">
       <a-entity id="lagoon-scene-camera" class="camera-entity" camera position="0 0 0" user-height="0"
-        fps-look-controls="user-height: 0" simple-navmesh-constraint="navmesh:#lagoon-navmesh-el;fall:0.5;height:1.65;">
+        fps-look-controls="user-height: 0" simple-navmesh-constraint="navmesh:#lagoon-navmesh-el;fall:0;height:1.6;">
         <a-box id="out-of-limit" visible="false" material="blending: none; shader: flat"
           geometry="depth: 1; height: 1; width: 1; primitive: sphere; segmentsHeight: 10; segmentsWidth: 10; radius: 0.1"
           color="black" side="back"></a-box>
       </a-entity>
-      <a-entity id="leftHand" sphere-collider="objects: a-box" super-hands
+      <a-entity id="leftHand" sphere-collider="objects: a-box" custom-hand-control super-hands
         hand-controls="hand: left; handModelStyle: highPoly; color: #ffcccc"></a-entity>
       <a-entity fps-counter="enabled: true; for90fps: true" id="rightHand" rotation="10 0 0"
-        sphere-collider="objects: a-box" super-hands
+        sphere-collider="objects: a-box" custom-hand-control super-hands
         hand-controls="hand: right; handModelStyle: highPoly; color: #ffcccc"></a-entity>
     </a-entity>
   </a-entity>

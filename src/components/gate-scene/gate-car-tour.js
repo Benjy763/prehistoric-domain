@@ -76,7 +76,7 @@ AFRAME.registerComponent('gate-car-tour', {
       // Get car reference
       this.carControls = this.system.carReference;
       // Init tour path for the car
-      this.carControls.initParams(this.curve, 836, 0.0002);
+      this.carControls.initParams(this.curveBack, 836, 0.0002);
     });
 
     // Start tour listeners
@@ -112,7 +112,8 @@ AFRAME.registerComponent('gate-car-tour', {
     this.phase = 'waiting';
     // Start car
     setTimeout(() => {
-      this.phase = 'curve1';
+      console.log('curve3');
+      this.phase = 'curve3';
       this.carControls.changeDrivingState('starting');
     }, 6000);
   },

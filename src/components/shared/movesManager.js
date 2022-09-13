@@ -83,6 +83,23 @@ AFRAME.registerSystem('movesManager', {
       enabled: false,
     });
   },
+  getCameraRotation() {
+    const actualScene = this.getSystem().getActualSceneObject();
+    return document.querySelector('#' + actualScene.camera).object3D.rotation;
+  },
+  setCameraRotation(newRotation, cameraRotation) {
+    if (!cameraRotation) {
+      cameraRotation = this.cameraRotation();
+    }
+    cameraRotation.y = newRotation.y;
+  },
+  getWorldCameraPosition() {
+    const actualScene = this.getSystem().getActualSceneObject();
+    const cameraEl = document.getElementById(actualScene.camera);
+    const worldPos = new THREE.Vector3();
+    worldPos.setFromMatrixPosition(cameraEl.object3D.matrixWorld);
+    return worldPos;
+  },
   getCameraPosition() {
     const actualScene = this.getSystem().getActualSceneObject();
     return document.querySelector('#' + actualScene.camera).object3D.position;
@@ -96,15 +113,42 @@ AFRAME.registerSystem('movesManager', {
   },
   getRigPosition() {
     const actualScene = this.getSystem().getActualSceneObject();
-    return document
-      .querySelector('#' + actualScene.car + ' #rig')
-      .getAttribute('position');
+    return document.querySelector('#' + actualScene.car + ' #rig').object3D
+      .position;
   },
   setRigPosition(position) {
     const actualScene = this.getSystem().getActualSceneObject();
     document
       .querySelector('#' + actualScene.car + ' #rig')
       .setAttribute('position', position);
+  },
+  setRigRotation(rotation) {
+    const actualScene = this.getSystem().getActualSceneObject();
+    document
+      .querySelector('#' + actualScene.car + ' #rig')
+      .setAttribute('rotation', rotation);
+  },
+  fixRigPosition() {
+    if (!this.getSystem().canRecenter) {
+      return;
+    }
+    const actualScene = this.getSystem().getActualSceneObject();
+    const rigPosConfig = actualScene.rigPos;
+    let cameraPos = this.getCameraPosition();
+    const offsetX = rigPosConfig.x - cameraPos.x;
+    const offsetY = rigPosConfig.y - cameraPos.y;
+    const offsetZ = rigPosConfig.z - cameraPos.z;
+
+    //let cameraRot = this.getCameraRotation();
+    //this.setRigRotation({ x: 0, y: -cameraRot.y, z: 0 });
+
+    // Manage x and z for cars (not needed for other cause you can move)
+    if (actualScene.isVehicule) {
+      this.setRigPosition({ x: -offsetX, y: offsetY, z: -offsetZ });
+      return;
+    }
+    const curentRigPos = this.getRigPosition();
+    this.setRigPosition({ ...curentRigPos, y: offsetY });
   },
   // ----- Curve functions --------
   // Move an object on the given curve according to given speed

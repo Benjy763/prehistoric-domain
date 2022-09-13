@@ -128,7 +128,9 @@ AFRAME.registerComponent('simple-navmesh-constraint', {
           tempVec.sub(this.xzOrigin.object3D.position);
           if (this.data.xzOrigin)
             tempVec.y += this.xzOrigin.object3D.position.y;
-          this.el.object3D.position.add(tempVec);
+          if (this.data.fall) {
+            this.el.object3D.position.add(tempVec);
+          }
 
           this.lastPosition.copy(hitPos);
           didHit = true;

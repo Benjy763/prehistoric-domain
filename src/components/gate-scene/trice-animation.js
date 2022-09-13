@@ -50,7 +50,7 @@ AFRAME.registerComponent('trice-animation', {
         clip: 'Triceratops_Attack',
         loop: true,
         crossFadeDuration: 0.4,
-        timeScale: 0.8,
+        timeScale: 0.6,
       });
       this.phase = 'attack';
     }, 3500);
@@ -62,11 +62,11 @@ AFRAME.registerComponent('trice-animation', {
         clip: 'Triceratops_Hit_Left',
         loop: true,
         crossFadeDuration: 0.4,
-        timeScale: 0.4,
+        timeScale: 0.3,
       });
       this.phase = 'receive';
     }
-    this.el.object3D.position.x += 0.5;
+    this.el.object3D.position.x += 0.3;
   },
   receive: function () {
     if (this.trice2.object3D.position.x > 3) {
@@ -88,7 +88,7 @@ AFRAME.registerComponent('trice-animation', {
       }, 1.5);
       this.phase = 'boathRoar';
     }
-    this.trice2.object3D.position.x += 0.1;
+    this.trice2.object3D.position.x += 0.08;
   },
   boathRoar: function () {
     setTimeout(() => {
@@ -109,9 +109,9 @@ AFRAME.registerComponent('trice-animation', {
     this.phase = 'exit';
   },
   stepBack: function () {
-    const triceWalkSpeedMax = 0.08;
+    const triceWalkSpeedMax = 0.06;
     if (this.triceWalkSpeed < triceWalkSpeedMax) {
-      this.triceWalkSpeed += 0.002;
+      this.triceWalkSpeed += 0.001;
     }
     if (this.el.object3D.position.x < -41) {
       this.el.setAttribute('animation-mixer', {
@@ -130,6 +130,7 @@ AFRAME.registerComponent('trice-animation', {
     }
     if (this.trice2.object3D.position.x > -20) {
       this.trice2.object3D.position.x -= this.triceWalkSpeed;
+      this.trice2.object3D.rotation.y += 0.0005;
     } else if (!this.isTrice2Stopped) {
       this.isTrice2Stopped = true;
       this.trice2.setAttribute('animation-mixer', {

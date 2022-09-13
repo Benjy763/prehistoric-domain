@@ -79,7 +79,7 @@ AFRAME.registerComponent('pteranodon-animation', {
   },
   // --- Phase functions ---
   enter: function () {
-    if (this.pteraSpeed < 0.007) {
+    if (this.pteraSpeed < 0.009) {
       this.pteraSpeed += 0.0002;
     }
     if (this.movesManager.truncMarker(this.pteraMarker) > 800) {

@@ -25,9 +25,9 @@ export const MainScenes = {
       carReference: null,
       rigPos: {
         // First in value in VR and second without
-        x: [-21.292, -21.292],
-        y: [-0.7, -0.5],
-        z: [-3.743, -3.743],
+        x: -21.292,
+        y: 1,
+        z: -3.743,
       },
     },
     ending: {
@@ -59,11 +59,11 @@ export const MainScenes = {
       camera: 'gate-scene-camera',
       car: 'gate-car',
       carReference: null,
+      isVehicule: true,
       rigPos: {
-        // First in value in VR and second without
-        x: [-0.427, -0.427],
-        y: [0.4, 0.443],
-        z: [0.587, 0.587],
+        x: 0.38,
+        y: 1.943,
+        z: -0.587,
       },
     },
     ending: {
@@ -98,9 +98,9 @@ export const MainScenes = {
       carReference: null,
       rigPos: {
         // First in value in VR and second without
-        x: [-2, 1],
-        y: [-0.7, -0.5],
-        z: [1, 0],
+        x: 1,
+        y: 1,
+        z: 0,
       },
     },
     ending: {
@@ -192,9 +192,9 @@ export const MainScenes = {
       carReference: null,
       rigPos: {
         // First in value in VR and second without
-        x: [-2, 1],
-        y: [-0.7, -0.5],
-        z: [1, 0],
+        x: 1,
+        y: 1,
+        z: 0,
       },
     },
     ending: {
@@ -228,9 +228,9 @@ export const MainScenes = {
       carReference: null,
       rigPos: {
         // First in value in VR and second without
-        x: [-2, 1],
-        y: [-0.7, -0.5],
-        z: [1, 0],
+        x: 1,
+        y: 1,
+        z: 0,
       },
     },
     ending: {
@@ -264,9 +264,9 @@ export const MainScenes = {
       carReference: null,
       rigPos: {
         // First in value in VR and second without
-        x: [-2, 1],
-        y: [-0.7, -0.5],
-        z: [1, 0],
+        x: 1,
+        y: 1,
+        z: 0,
       },
     },
     ending: {
@@ -300,9 +300,9 @@ export const MainScenes = {
       carReference: null,
       rigPos: {
         // First in value in VR and second without
-        x: [-2, 1],
-        y: [-0.7, -0.5],
-        z: [1, 0],
+        x: 1,
+        y: 1,
+        z: 0,
       },
     },
     ending: {
@@ -337,9 +337,9 @@ export const MainScenes = {
       carReference: null,
       rigPos: {
         // First in value in VR and second without
-        x: [-2, 1],
-        y: [-0.7, -0.5],
-        z: [1, 0],
+        x: 1,
+        y: 1,
+        z: 0,
       },
     },
     ending: {
@@ -374,9 +374,9 @@ export const MainScenes = {
       carReference: null,
       rigPos: {
         // First in value in VR and second without
-        x: [-2, 1],
-        y: [-0.7, -0.5],
-        z: [1, 0],
+        x: 0,
+        y: 1,
+        z: 0,
       },
     },
     ending: {
@@ -411,9 +411,9 @@ export const MainScenes = {
       carReference: null,
       rigPos: {
         // First in value in VR and second without
-        x: [-2, 1],
-        y: [-0.7, -0.5],
-        z: [1, 0],
+        x: 1,
+        y: 1,
+        z: 0,
       },
     },
     ending: {
