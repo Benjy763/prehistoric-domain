@@ -62,7 +62,7 @@ export const MainScenes = {
       isVehicule: true,
       rigPos: {
         x: 0.38,
-        y: 1.943,
+        y: 1.98,
         z: -0.587,
       },
     },

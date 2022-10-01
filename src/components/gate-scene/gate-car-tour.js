@@ -30,6 +30,9 @@ AFRAME.registerComponent('gate-car-tour', {
     // Sound
     this.carTurnOn = document.getElementById('car-turn-on');
     this.gateSound = document.querySelector('#gate-big-door');
+    this.trice2Sound = document.querySelector('#trice-2');
+    this.trice4Sound = document.querySelector('#trice-4');
+    this.fountainSound = document.querySelector('#gate-fountain');
     this.gateSoundPhase = 'open';
 
     // Voice and screen phases
@@ -76,7 +79,7 @@ AFRAME.registerComponent('gate-car-tour', {
       // Get car reference
       this.carControls = this.system.carReference;
       // Init tour path for the car
-      this.carControls.initParams(this.curveBack, 836, 0.0002);
+      this.carControls.initParams(this.curve, 836, 0.0002);
     });
 
     // Start tour listeners
@@ -112,8 +115,8 @@ AFRAME.registerComponent('gate-car-tour', {
     this.phase = 'waiting';
     // Start car
     setTimeout(() => {
-      console.log('curve3');
-      this.phase = 'curve3';
+      this.phase = 'curve1';
+      this.fountainSound.components['sound__fountain'].playSound();
       this.carControls.changeDrivingState('starting');
     }, 6000);
   },
@@ -196,7 +199,7 @@ AFRAME.registerComponent('gate-car-tour', {
       this.phase = 'curve2';
     }
     if (
-      this.movesManager.truncMarker(this.carControls.carMarker) > 450 &&
+      this.movesManager.truncMarker(this.carControls.carMarker) > 470 &&
       !this.brachioSceneEnded
     ) {
       // Trigger Brachio animation
@@ -211,6 +214,7 @@ AFRAME.registerComponent('gate-car-tour', {
       !this.isTriceShows
     ) {
       this.isTriceShows = true;
+      this.trice2Sound.components['sound__blow'].playSound();
       this.trice.setAttribute('visible', true);
       this.trice2.setAttribute('visible', true);
     }
@@ -232,8 +236,8 @@ AFRAME.registerComponent('gate-car-tour', {
       this.carControls.maxDistance
     ) {
       this.carControls.changeCurve(this.curveBack, 830, 0.0002);
-      this.gateSoundPhase === 'open';
-
+      this.gateSoundPhase = 'open';
+      this.trice4Sound.components['sound__snoring'].playSound();
       this.phase = 'curve3';
     }
   },

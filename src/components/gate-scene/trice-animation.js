@@ -24,20 +24,23 @@ AFRAME.registerComponent('trice-animation', {
     ]);
 
     // Sound
-    this.footStepAudio;
-    this.footRoarAudio;
+    this.trice4Sound = document.querySelector('#trice-4');
+    this.trice5Sound = document.querySelector('#trice-5');
 
     // Start tour listener
     this.el.addEventListener(
       'enter',
       () => {
-        console.log('test');
         this.el.setAttribute('animation-mixer', {
           clip: 'Triceratops_Idle_Break',
           loop: true,
           crossFadeDuration: 0.4,
           timeScale: 0.6,
         });
+
+        setTimeout(() => {
+          this.trice4Sound.components['sound__roar'].playSound();
+        }, 2000);
         this.phase = 'roar';
       },
       false
@@ -52,6 +55,7 @@ AFRAME.registerComponent('trice-animation', {
         crossFadeDuration: 0.4,
         timeScale: 0.6,
       });
+      this.trice4Sound.components['sound__run'].playSound();
       this.phase = 'attack';
     }, 3500);
     this.phase = 'exit';
@@ -64,6 +68,8 @@ AFRAME.registerComponent('trice-animation', {
         crossFadeDuration: 0.4,
         timeScale: 0.3,
       });
+      this.trice4Sound.components['sound__impact'].playSound();
+      this.trice4Sound.components['sound__run'].stopSound();
       this.phase = 'receive';
     }
     this.el.object3D.position.x += 0.3;
@@ -104,6 +110,10 @@ AFRAME.registerComponent('trice-animation', {
         crossFadeDuration: 0.8,
         timeScale: 0.6,
       });
+      this.trice4Sound.components['sound__walk'].playSound();
+      setTimeout(() => {
+        this.trice5Sound.components['sound__walk'].playSound();
+      }, 500);
       this.phase = 'stepBack';
     }, 3000);
     this.phase = 'exit';
@@ -126,6 +136,7 @@ AFRAME.registerComponent('trice-animation', {
         crossFadeDuration: 0.4,
         timeScale: 0.6,
       });
+      this.trice5Sound.components['sound__walk'].stopSound();
       this.phase = 'finish';
     }
     if (this.trice2.object3D.position.x > -20) {
@@ -144,6 +155,7 @@ AFRAME.registerComponent('trice-animation', {
   },
   finish: function () {
     if (this.movesManager.truncMarker(this.triceMarker) > 950) {
+      this.trice4Sound.components['sound__walk'].stopSound();
       this.phase = 'exit';
     }
 
