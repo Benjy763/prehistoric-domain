@@ -37,7 +37,7 @@ AFRAME.registerComponent('gate-car-tour', {
 
     // Voice and screen phases
     this.voicePhase = 'gate1';
-    this.screenPhase = 'default';
+    this.screenPhase = 'stop';
 
     // Main control of the car
     this.carControls;

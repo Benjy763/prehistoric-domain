@@ -5,8 +5,8 @@ export const MainScenes = {
     // Starting scene
     name: 'Visitors House',
     loadingScreen: 'deino-illu.jpg',
-    needPerformance: true,
-    needLanguage: true,
+    needPerformance: false,
+    needLanguage: false,
     mobileCompatible: false,
     selection: 'visitors',
     assetsId: 'visitors-assets',
@@ -40,7 +40,7 @@ export const MainScenes = {
   tour: {
     // Starting scene
     name: 'NIGHT TOUR',
-    loadingScreen: 'deino-illu.jpg',
+    loadingScreen: 'brachio-illu.jpg',
     displayDistance: 60,
     needPerformance: true,
     needLanguage: true,

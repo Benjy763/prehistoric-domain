@@ -238,8 +238,9 @@ AFRAME.registerSystem('system', {
           document.querySelector('#menu-language').style.display = 'none';
         }
         // Press start
-        document.querySelector('#loading-logo').style.display = 'none';
-        document.querySelector('#loading-infos').style.display = 'none';
+        //document.querySelector('#loading-logo').style.display = 'none';
+        document.querySelector('#loading-infos .progress-label').style.display =
+          'none';
         document.querySelector('#enter').style.display = 'block';
         if (this.isMobile) {
           document.querySelector('#enter').style.display = 'none';
@@ -380,18 +381,24 @@ AFRAME.registerSystem('system', {
     }
 
     // Default performance
-    qualityEl.style.borderColor = '#ec652b';
+    const performanceColor = '#b39760';
+    qualityEl.style.borderColor = performanceColor;
+    qualityEl.style.opacity = '1';
     this.toggle('performance', true);
 
     perfEl.onclick = () => {
-      perfEl.style.borderColor = '#ec652b';
-      qualityEl.style.borderColor = '#fff';
+      perfEl.style.borderColor = performanceColor;
+      perfEl.style.opacity = '1';
+      qualityEl.style.borderColor = '#d4c9ba';
+      qualityEl.style.opacity = '0.6';
 
       this.toggle('performance', false);
     };
     qualityEl.onclick = () => {
-      qualityEl.style.borderColor = '#ec652b';
-      perfEl.style.borderColor = '#fff';
+      qualityEl.style.borderColor = performanceColor;
+      qualityEl.style.opacity = '1';
+      perfEl.style.borderColor = '#d4c9ba';
+      perfEl.style.opacity = '0.6';
 
       this.toggle('performance', true);
     };
@@ -413,18 +420,24 @@ AFRAME.registerSystem('system', {
     }
 
     // Default en
+    const languageColor = '#b39760';
     this.language = 'en';
-    enEl.style.borderColor = '#ec652b';
+    enEl.style.borderColor = languageColor;
+    enEl.style.opacity = '1';
 
     enEl.onclick = () => {
       this.language = 'en';
-      enEl.style.borderColor = '#ec652b';
-      frEl.style.borderColor = '#fff';
+      enEl.style.borderColor = languageColor;
+      enEl.style.opacity = '1';
+      frEl.style.borderColor = '#d4c9ba';
+      frEl.style.opacity = '0.6';
     };
     frEl.onclick = () => {
       this.language = 'fr';
-      frEl.style.borderColor = '#ec652b';
-      enEl.style.borderColor = '#fff';
+      frEl.style.borderColor = languageColor;
+      frEl.style.opacity = '1';
+      enEl.style.borderColor = '#d4c9ba';
+      enEl.style.opacity = '0.6';
     };
   },
   getVoice(element) {
