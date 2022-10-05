@@ -11,7 +11,7 @@ AFRAME.registerComponent('trex-animation', {
     this.animationChange = 'roar';
     // Trex run Path
     this.trexMarker = 0; // Position on the curve
-    this.trexSpeed = 0.001; // Speed on the curve
+    this.trexSpeed = 0.0015; // Speed on the curve
     this.curve = new THREE.SplineCurve([
       new THREE.Vector2(-2.011, 35.434),
       new THREE.Vector2(-24.995, 24.185),
@@ -89,8 +89,21 @@ AFRAME.registerComponent('trex-animation', {
       this.phase = 'exit';
     }
   },
+  drink: function () {
+    setTimeout(() => {
+      this.el.setAttribute('animation-mixer', {
+        clip: 'T_Rex_Walk_Roar_InPlace',
+        loop: true,
+        crossFadeDuration: 0.8,
+        timeScale: 0.7,
+      });
+      this.trexSpeed = 0;
+      this.phase = 'walkAgain';
+    }, 9000);
+    this.phase = 'exit';
+  },
   walkAgain: function () {
-    if (this.trexSpeed < 0.001) {
+    if (this.trexSpeed < 0.0015) {
       this.trexSpeed += 0.00005;
     }
 
@@ -116,20 +129,55 @@ AFRAME.registerComponent('trex-animation', {
 
     if (this.movesManager.truncMarker(this.trexMarker) > 950) {
       this.phase = 'exit';
+      setTimeout(() => {
+        this.el.setAttribute('position', '-21.695 2 -13');
+        this.el.setAttribute('rotation', '0 4.900 0.000');
+        this.el.setAttribute('scale', '0.024 0.024 0.024');
+        this.el.setAttribute('animation-mixer', {
+          clip: 'T_Rex_Drink_2',
+          loop: true,
+          crossFadeDuration: 0.4,
+          timeScale: 0.3,
+          startFrame: 0,
+        });
+        this.trexSpeed = 0.05;
+        this.phase = 'walkClose';
+      }, 10000);
     }
   },
-  drink: function () {
+  walkClose: function () {
+    this.object.position.z += this.trexSpeed;
+    console.log(this.object.position.x);
+
+    if (this.object.position.z > -5) {
+      this.trexSpeed -= 0.005;
+    }
+    if (this.trexSpeed <= 0) {
+      this.phase = 'showHead';
+    }
+  },
+  showHead: function () {
     setTimeout(() => {
       this.el.setAttribute('animation-mixer', {
         clip: 'T_Rex_Walk_Roar_InPlace',
         loop: true,
-        crossFadeDuration: 0.8,
-        timeScale: 0.7,
+        crossFadeDuration: 4,
+        timeScale: 1,
       });
-      this.trexSpeed = 0;
-      this.phase = 'walkAgain';
-    }, 9000);
+      this.phase = 'walkFar';
+    }, 10000);
     this.phase = 'exit';
+  },
+  walkFar: function () {
+    if (this.trexSpeed < 0.05) {
+      this.trexSpeed += 0.005;
+    }
+
+    this.object.position.z -= this.trexSpeed;
+
+    if (this.object.position.z < -13) {
+      this.phase = 'exit';
+    }
   },
   tick: function () {
     // Animation steps
@@ -145,6 +193,15 @@ AFRAME.registerComponent('trex-animation', {
         break;
       case 'walkAgain':
         this.walkAgain();
+        break;
+      case 'walkClose':
+        this.walkClose();
+        break;
+      case 'showHead':
+        this.showHead();
+        break;
+      case 'walkFar':
+        this.walkFar();
         break;
     }
   },

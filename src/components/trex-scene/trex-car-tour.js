@@ -46,11 +46,12 @@ AFRAME.registerComponent('trex-car-tour', {
   },
   // --- Phase functions ---
   start: function () {
+    document.querySelector('#trex-sky').setAttribute('visible', true);
     setTimeout(() => {
       // Trigger Rabbit animation
       const event = new Event('enterWalk');
       this.trex.dispatchEvent(event);
-    }, 1000);
+    }, 10000);
     this.phase = 'exit';
   },
   tick: function () {
