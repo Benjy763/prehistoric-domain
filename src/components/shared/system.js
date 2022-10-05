@@ -230,7 +230,7 @@ AFRAME.registerSystem('system', {
     document.querySelector('a-assets').addEventListener('loaded', () => {
       // Preloading
       setTimeout(() => {
-        document.querySelector('#menu-wrapper').style.display = 'block';
+        document.querySelector('#menu-wrapper').style.display = 'flex';
         if (!this.scenes.needPerformance) {
           document.querySelector('#menu-performance').style.display = 'none';
         }

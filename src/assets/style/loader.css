@@ -47,8 +47,8 @@ body {
 }
 
 .click-container {
-  padding: 0.5rem;
-  border: 1px solid #d4c9ba;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 0.8rem;
   border-radius: 0.2rem;
   color: #fff;
   text-align: center;
@@ -78,14 +78,14 @@ body {
 }
 
 #static-loading img.loader-logo {
-  width: 40rem;
+  width: 35rem;
   border: solid 0.125rem #d4c9ba;
   border-radius: 0.625rem;
 }
 
 @media screen and (max-width: 800px) {
   #static-loading img.loader-logo {
-    width: 30rem;
+    width: 25rem;
   }
 }
 
@@ -104,7 +104,7 @@ body {
 }
 
 #loading-infos span {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 
 #see-faq {
@@ -125,6 +125,12 @@ body {
 /* VR logo replacement */
 #menu-wrapper {
   display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.8rem;
+  color: #d4c9ba;
 }
 
 .menu {
@@ -133,6 +139,11 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+.bold-infos {
+  font-weight: bold;
+  color: #b39760;
 }
 
 .buttons-item {

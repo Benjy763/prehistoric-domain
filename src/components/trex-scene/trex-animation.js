@@ -127,10 +127,10 @@ AFRAME.registerComponent('trex-animation', {
       this.animationChange = 'exit';
     }
 
-    if (this.movesManager.truncMarker(this.trexMarker) > 950) {
+    if (this.movesManager.truncMarker(this.trexMarker) > 980) {
       this.phase = 'exit';
       setTimeout(() => {
-        this.el.setAttribute('position', '-21.695 2 -13');
+        this.el.setAttribute('position', '-21.695 2 -16');
         this.el.setAttribute('rotation', '0 4.900 0.000');
         this.el.setAttribute('scale', '0.024 0.024 0.024');
         this.el.setAttribute('animation-mixer', {
@@ -175,7 +175,7 @@ AFRAME.registerComponent('trex-animation', {
 
     this.object.position.z -= this.trexSpeed;
 
-    if (this.object.position.z < -13) {
+    if (this.object.position.z < -16) {
       this.phase = 'exit';
     }
   },
