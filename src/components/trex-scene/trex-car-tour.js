@@ -37,6 +37,8 @@ AFRAME.registerComponent('trex-car-tour', {
     this.el.addEventListener(
       'start',
       () => {
+        // Global sound launch
+        document.getElementById('jungle-asset').play();
         this.voiceTrex1Sound = this.system.getVoice('trex1');
         this.voiceTrex2Sound = this.system.getVoice('trex2');
         this.phase = 'start';
@@ -48,10 +50,13 @@ AFRAME.registerComponent('trex-car-tour', {
   start: function () {
     document.querySelector('#trex-sky').setAttribute('visible', true);
     setTimeout(() => {
+      this.soundMixing1Audio.play();
+    }, 25000);
+    setTimeout(() => {
       // Trigger Rabbit animation
       const event = new Event('enterWalk');
       this.trex.dispatchEvent(event);
-    }, 10000);
+    }, 40000);
     this.phase = 'exit';
   },
   tick: function () {

@@ -21,34 +21,31 @@ AFRAME.registerComponent('trex-animation', {
       new THREE.Vector2(-16.326, -28.1),
     ]);
 
-    // Sound
-    this.soundMixing1SoundPlaying = false;
-    this.soundMixing1Audio = document.getElementById('sound-mixing-1');
-    this.trexRoarAudio;
-    this.trexFootStepAudioPlaying = false;
-    this.trexFootStepAudio;
-    this.trexLeaveAudioPlaying = false;
-    this.trexLeaveAudio;
-
     // Start tour listener
     this.el.addEventListener(
       'enterWalk',
       () => {
         // Load sounds
         this.trexRoarAudio = this.el.components['sound__trexroar'];
+        this.trexRoar2Audio = this.el.components['sound__trexroar2'];
         this.trexFootStepAudio = this.el.components['sound__trexfootstep'];
         this.trexDrinkAudio = this.el.components['sound__trexdrink'];
-        this.trexDrinkEndAudio = this.el.components['sound__trexdrinkend'];
+        this.trexHittingAudio = this.el.components['sound__trexhitting'];
+        this.trexEndSnoringAudio = this.el.components['sound__trexendsnoring'];
+
+        setTimeout(() => {
+          this.trexFootStepAudio.playSound();
+        }, 5800);
 
         // Launch animation
         setTimeout(() => {
+          this.phase = 'enterWalk';
           this.el.setAttribute('animation-mixer', {
             clip: 'T_Rex_Walk_InPlace',
             loop: true,
             crossFadeDuration: 0.4,
             timeScale: 0.7,
           });
-          this.phase = 'enterWalk';
         }, 6000);
       },
       false
@@ -64,6 +61,7 @@ AFRAME.registerComponent('trex-animation', {
 
     if (this.movesManager.truncMarker(this.trexMarker) > 400) {
       if (this.trexSpeed > 0) {
+        this.trexRoarAudio.playSound();
         setTimeout(() => {
           this.el.setAttribute('animation-mixer', {
             clip: 'T_Rex_Idle_Roar2',
@@ -77,6 +75,7 @@ AFRAME.registerComponent('trex-animation', {
     }
 
     if (this.trexSpeed < 0.0001) {
+      this.trexFootStepAudio.stopSound();
       setTimeout(() => {
         this.el.setAttribute('animation-mixer', {
           clip: 'T_Rex_Drink_2',
@@ -84,6 +83,7 @@ AFRAME.registerComponent('trex-animation', {
           crossFadeDuration: 4,
           timeScale: 0.7,
         });
+        this.trexDrinkAudio.playSound();
         this.phase = 'drink';
       }, 4500);
       this.phase = 'exit';
@@ -98,6 +98,10 @@ AFRAME.registerComponent('trex-animation', {
         timeScale: 0.7,
       });
       this.trexSpeed = 0;
+      this.trexRoar2Audio.playSound();
+      setTimeout(() => {
+        this.trexFootStepAudio.playSound();
+      }, 1800);
       this.phase = 'walkAgain';
     }, 9000);
     this.phase = 'exit';
@@ -128,11 +132,15 @@ AFRAME.registerComponent('trex-animation', {
     }
 
     if (this.movesManager.truncMarker(this.trexMarker) > 980) {
+      this.trexFootStepAudio.stopSound();
+      setTimeout(() => {
+        this.trexHittingAudio.playSound();
+      }, 5000);
       this.phase = 'exit';
       setTimeout(() => {
         this.el.setAttribute('position', '-21.695 2 -16');
         this.el.setAttribute('rotation', '0 4.900 0.000');
-        this.el.setAttribute('scale', '0.024 0.024 0.024');
+        this.el.setAttribute('scale', '0.025 0.025 0.025');
         this.el.setAttribute('animation-mixer', {
           clip: 'T_Rex_Drink_2',
           loop: true,
@@ -141,13 +149,15 @@ AFRAME.registerComponent('trex-animation', {
           startFrame: 0,
         });
         this.trexSpeed = 0.05;
+        setTimeout(() => {
+          this.trexEndSnoringAudio.playSound();
+        }, 3000);
         this.phase = 'walkClose';
-      }, 10000);
+      }, 15000);
     }
   },
   walkClose: function () {
     this.object.position.z += this.trexSpeed;
-    console.log(this.object.position.x);
 
     if (this.object.position.z > -5) {
       this.trexSpeed -= 0.005;
