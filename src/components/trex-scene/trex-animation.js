@@ -30,22 +30,22 @@ AFRAME.registerComponent('trex-animation', {
         this.trexRoar2Audio = this.el.components['sound__trexroar2'];
         this.trexFootStepAudio = this.el.components['sound__trexfootstep'];
         this.trexDrinkAudio = this.el.components['sound__trexdrink'];
+        this.trexLeavesAudio = this.el.components['sound__trexleaves'];
         this.trexHittingAudio = this.el.components['sound__trexhitting'];
         this.trexEndSnoringAudio = this.el.components['sound__trexendsnoring'];
 
-        setTimeout(() => {
-          this.trexFootStepAudio.playSound();
-        }, 5800);
-
         // Launch animation
         setTimeout(() => {
+          this.trexFootStepAudio.playSound();
           this.phase = 'enterWalk';
-          this.el.setAttribute('animation-mixer', {
-            clip: 'T_Rex_Walk_InPlace',
-            loop: true,
-            crossFadeDuration: 0.4,
-            timeScale: 0.7,
-          });
+          setTimeout(() => {
+            this.el.setAttribute('animation-mixer', {
+              clip: 'T_Rex_Walk_InPlace',
+              loop: true,
+              crossFadeDuration: 0.4,
+              timeScale: 0.7,
+            });
+          }, 500);
         }, 6000);
       },
       false
@@ -132,7 +132,10 @@ AFRAME.registerComponent('trex-animation', {
     }
 
     if (this.movesManager.truncMarker(this.trexMarker) > 980) {
-      this.trexFootStepAudio.stopSound();
+      this.trexLeavesAudio.playSound();
+      setTimeout(() => {
+        this.trexFootStepAudio.stopSound();
+      }, 500);
       setTimeout(() => {
         this.trexHittingAudio.playSound();
       }, 5000);
