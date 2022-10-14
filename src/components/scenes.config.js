@@ -351,9 +351,9 @@ export const MainScenes = {
   },
   trex: {
     // Starting scene
-    name: 'Trex Viewing Gallery',
+    name: 'Tyrannosaurus Rex Viewing Gallery',
     loadingScreen: 'trex-illu.jpg',
-    needPerformance: false,
+    needPerformance: true,
     needLanguage: true,
     mobileCompatible: true,
     selection: 'trex',
