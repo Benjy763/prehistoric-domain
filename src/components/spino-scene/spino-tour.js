@@ -125,7 +125,9 @@ AFRAME.registerComponent('spino-car-tour', {
       // Show all needed elements
       let underwaterEls = document.getElementsByClassName('spino-underwater');
       for (let i = 0; i < underwaterEls.length; i++) {
-        underwaterEls[i].setAttribute('visible', true);
+        if (!underwaterEls[i].classList.contains('performance')) {
+          underwaterEls[i].setAttribute('visible', true);
+        }
       }
       // Set new ground postition
       let ground = document.getElementById('spino-ground');
@@ -159,12 +161,14 @@ AFRAME.registerComponent('spino-car-tour', {
   },
   surface: function () {
     if (this.object.position.y > -5 && !this.isDiveEnvChanged) {
-      // Hide all useless elements
+      // Show all needed elements
       let surfaceEls = document.getElementsByClassName('spino-surface');
       for (let i = 0; i < surfaceEls.length; i++) {
-        surfaceEls[i].setAttribute('visible', true);
+        if (!surfaceEls[i].classList.contains('performance')) {
+          surfaceEls[i].setAttribute('visible', true);
+        }
       }
-      // Show all needed elements
+      // Hide all useless elements
       let underwaterEls = document.getElementsByClassName('spino-underwater');
       for (let i = 0; i < underwaterEls.length; i++) {
         underwaterEls[i].setAttribute('visible', false);

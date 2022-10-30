@@ -77,7 +77,10 @@ AFRAME.registerComponent('sarco-car-tour', {
       // Show all needed elements
       let underwaterEls = document.getElementsByClassName('sarco-underwater');
       for (let i = 0; i < underwaterEls.length; i++) {
-        underwaterEls[i].setAttribute('visible', true);
+        console.log(surfaceEls[i].classList);
+        if (!underwaterEls[i].classList.contains('performance')) {
+          underwaterEls[i].setAttribute('visible', true);
+        }
       }
       // Set new ground postition
       let ground = document.getElementById('sarco-ground');

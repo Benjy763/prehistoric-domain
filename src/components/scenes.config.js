@@ -172,7 +172,7 @@ export const MainScenes = {
     // Starting scene
     name: 'Sarcosuchus Viewing Gallery',
     loadingScreen: 'sarco-illu.jpg',
-    needPerformance: false,
+    needPerformance: true,
     needLanguage: true,
     mobileCompatible: true,
     selection: 'sarco',
