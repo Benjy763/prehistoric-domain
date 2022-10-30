@@ -208,7 +208,7 @@ export const MainScenes = {
     // Starting scene
     name: 'Spinosaurus Viewing Gallery',
     loadingScreen: 'spino-illu.jpg',
-    needPerformance: false,
+    needPerformance: true,
     needLanguage: true,
     mobileCompatible: true,
     selection: 'spino',
