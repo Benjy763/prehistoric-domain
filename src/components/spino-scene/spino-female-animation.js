@@ -17,6 +17,11 @@ AFRAME.registerComponent('spino-female-animation', {
     this.sawFish = document.querySelector('#spino-saw-fish');
     this.sawFishDead = document.querySelector('#spino-saw-fish-dead');
 
+    // Sound markers
+    this.heavyWaterPlayed = false;
+    this.lightWaterPlayed = false;
+    this.attackWaterPlayed = false;
+
     // Spino run Path
     this.spinoMarker = 0; // Position on the curve
     this.spinoWalkSpeed = 0.0008; // Speed on the curve
@@ -83,6 +88,21 @@ AFRAME.registerComponent('spino-female-animation', {
     this.el.addEventListener(
       'enterWalk',
       () => {
+        // Load sounds
+        this.spinoAttackwaterAudio = this.el.components['sound__attackwater'];
+        this.spinoHeavywaterAudio = this.el.components['sound__heavywater'];
+        this.spinoLightwaterAudio =
+          document.getElementById('spino-saw-fish').components[
+            'sound__lightwater'
+          ];
+        this.spinoDrinkAudio = this.el.components['sound__spino2drink'];
+        this.spinoRoarAudio = this.el.components['sound__spino2roar'];
+        this.spinoWalkAudio = this.el.components['sound__walk'];
+        this.spinoWatermoveAudio = this.el.components['sound__watermove'];
+
+        setTimeout(() => {
+          this.spinoWalkAudio.playSound();
+        }, 2500);
         this.phase = 'enterWalk';
         this.el.setAttribute('animation-mixer', {
           clip: 'Spinosaurus_Walk_InPlace',
@@ -113,6 +133,11 @@ AFRAME.registerComponent('spino-female-animation', {
   // --- Phase functions ---
   enterWalk: function () {
     if (this.movesManager.truncMarker(this.spinoMarker) > 400) {
+      this.spinoWatermoveAudio.playSound();
+      this.spinoDrinkAudio.playSound();
+      setTimeout(() => {
+        this.spinoWalkAudio.stopSound();
+      }, 500);
       this.el.setAttribute('animation-mixer', {
         clip: 'Spinosaurus_Idle_Break2',
         loop: true,
@@ -153,6 +178,7 @@ AFRAME.registerComponent('spino-female-animation', {
   },
   roar: function () {
     setTimeout(() => {
+      this.spinoRoarAudio.playSound();
       this.el.setAttribute('animation-mixer', {
         clip: 'Spinosaurus_Roar',
         loop: true,
@@ -168,6 +194,7 @@ AFRAME.registerComponent('spino-female-animation', {
         crossFadeDuration: 0.4,
         timeScale: 0.7,
       });
+      this.spinoWalkAudio.playSound();
       this.phase = 'leave';
     }, 5000);
     this.phase = 'exit';
@@ -183,6 +210,10 @@ AFRAME.registerComponent('spino-female-animation', {
         crossFadeDuration: 0.4,
         timeScale: 0.7,
       });
+      this.spinoWatermoveAudio.playSound();
+      setTimeout(() => {
+        this.spinoWalkAudio.stopSound();
+      }, 500);
       this.phase = 'exit';
     }
     this.spinoMarker = this.movesManager.moveOnCurve(
@@ -199,6 +230,13 @@ AFRAME.registerComponent('spino-female-animation', {
       this.fishMarker,
       this.fishSpeed
     );
+    if (
+      this.movesManager.truncMarker(this.sawFishMarker) > 400 &&
+      !this.lightWaterPlayed
+    ) {
+      this.spinoLightwaterAudio.playSound();
+      this.lightWaterPlayed = true;
+    }
     if (this.movesManager.truncMarker(this.sawFishMarker) < 950) {
       this.sawFishMarker = this.movesManager.moveOnCurve(
         this.sawFish.object3D,
@@ -229,10 +267,27 @@ AFRAME.registerComponent('spino-female-animation', {
         this.spinoSwimSpeed
       );
     }
+    if (
+      this.movesManager.truncMarker(this.spinoMarker) > 300 &&
+      !this.heavyWaterPlayed
+    ) {
+      this.spinoHeavywaterAudio.playSound();
+      this.heavyWaterPlayed = true;
+    }
+    if (
+      this.movesManager.truncMarker(this.spinoMarker) > 800 &&
+      !this.attackWaterPlayed
+    ) {
+      this.spinoAttackwaterAudio.playSound();
+      this.attackWaterPlayed = true;
+    }
     if (this.movesManager.truncMarker(this.spinoMarker) > 950) {
       this.spinoMarker = 0;
       this.sawFishDead.setAttribute('visible', true);
-      this.phase = 'spinoEat';
+      setTimeout(() => {
+        this.phase = 'spinoEat';
+      }, 8000);
+      this.phase = 'exit';
     }
   },
   spinoEat: function () {

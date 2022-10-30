@@ -74,9 +74,10 @@
 <a-entity id="spino-swamp-grass-13" class="spino-surface" gltf-model="#swamp-grass-asset"
   position="-15.77817 -0.08444 5.46476" rotation="0 -59.99999999999999 0" scale="0.01 0.01 0.01"></a-entity>
 <a-entity id="spino-palm-tree-long" class="spino-surface" gltf-model="#palm-tree-long-asset"
-  position="-33.00336 -1.17123 -13.12076" rotation="0 140 0" scale="4 4 4"></a-entity>
-<a-entity id="spino-birds" animation-mixer="clip:  Scene; timeScale: 1" class="spino-surface" gltf-model="#birds-asset"
-  position="-33.83607 12.56465 18.56839" rotation="0 0 0" scale="1 1 1"></a-entity>
+  sound__birds="src: #spino-birds; volume: 20" position="-33.00336 -1.17123 -13.12076" rotation="0 140 0" scale="4 4 4">
+</a-entity>
+<a-entity id="spino-birds-model" animation-mixer="clip:  Scene; timeScale: 1" class="spino-surface"
+  gltf-model="#birds-asset" position="-33.83607 12.56465 18.56839" rotation="0 0 0" scale="1 1 1"></a-entity>
 
 <a-entity id="spino-window-support-3" gltf-model="#window-support-asset" position="-12.15027 0.06225 5.26177"
   rotation="0 -90 0" scale="2.66 -2.56 0.8"></a-entity>
@@ -159,6 +160,7 @@
 <a-entity id="spino-swamp-grass-1013" visible="false" class="spino-underwater" gltf-model="#swamp-grass-asset"
   position="-18.44312 -13.27 -9.71585" visible="false" rotation="0 40 0" scale="0.013 0.013 0.013"></a-entity>
 <a-entity id="spino-swamp-rock-101" class="spino-underwater" gltf-model="#swamp-rock-asset"
-  position="-31.19396 -12.17964 -1.62773" rotation="0 180 0" scale="2 2.4 2"></a-entity>
+  position="-31.19396 -12.17964 -1.62773" rotation="0 180 0" scale="2 2.4 2"
+  sound__spinodive="src: #spino-spino-dive; volume: 20"></a-entity>
 <a-entity id="spino-swamp-rock-102" class="spino-underwater" gltf-model="#swamp-rock-asset"
   position="-28.95515 -12.23414 -7.30706" rotation="0 64.65 0" scale="2 2.4 2"></a-entity>

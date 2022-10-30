@@ -13,7 +13,7 @@ AFRAME.registerComponent('spino-car-tour', {
       document.querySelector('a-scene').systems['movesManager'];
     this.spinoMale = document.querySelector('#spino-male');
     this.spinoFemale = document.querySelector('#spino-female');
-    this.birds = document.querySelector('#spino-birds');
+    this.birds = document.querySelector('#spino-birds-model');
     this.object = this.el.object3D;
     this.mainScene = document.getElementById('main-scene');
 
@@ -46,7 +46,18 @@ AFRAME.registerComponent('spino-car-tour', {
       'start',
       () => {
         // Global sound launch
-        document.getElementById('jungle-asset').play();
+        this.swampAudio = document.getElementById('swamp-asset');
+        this.swampAudio.play();
+        this.underwaterAudio = document.getElementById('underwater-asset');
+        this.underwaterAudio.volume = 0;
+        this.underwaterAudio.play();
+        this.birdsAudio = document.getElementById(
+          'spino-palm-tree-long'
+        ).components['sound__birds'];
+        const nacelle = document.getElementById('spino-wall');
+        this.nacelleStart = nacelle.components['sound__nacellestart'];
+        this.nacelleDown = nacelle.components['sound__nacelledown'];
+        this.nacelleEnd = nacelle.components['sound__nacelleend'];
 
         // Get sounds
         this.ambiant1Sound =
@@ -63,6 +74,8 @@ AFRAME.registerComponent('spino-car-tour', {
     this.el.addEventListener(
       'dive',
       () => {
+        this.nacelleStart.playSound();
+        this.nacelleDown.playSound();
         this.phase = 'dive';
       },
       false
@@ -70,6 +83,8 @@ AFRAME.registerComponent('spino-car-tour', {
     this.el.addEventListener(
       'surface',
       () => {
+        this.nacelleStart.playSound();
+        this.nacelleDown.playSound();
         this.isDiveEnvChanged = false;
         this.phase = 'surface';
       },
@@ -97,6 +112,7 @@ AFRAME.registerComponent('spino-car-tour', {
       const event = new Event('enterWalk');
       this.spinoMale.dispatchEvent(event);
     }, 0);
+    this.birdsAudio.playSound();
     this.phase = 'birdsFly';
   },
   dive: function () {
@@ -135,6 +151,8 @@ AFRAME.registerComponent('spino-car-tour', {
       });
     }
     if (this.object.position.y < -11.017) {
+      this.nacelleEnd.playSound();
+      this.nacelleDown.stopSound();
       this.phase = 'fishHuntUnderwater';
     }
     this.object.position.y -= this.diveSpeed;
@@ -180,6 +198,8 @@ AFRAME.registerComponent('spino-car-tour', {
       });
     }
     if (this.object.position.y > 1.02687) {
+      this.nacelleEnd.playSound();
+      this.nacelleDown.stopSound();
       this.phase = 'fishHuntSurface';
     }
     this.object.position.y += this.diveSpeed;
@@ -193,6 +213,18 @@ AFRAME.registerComponent('spino-car-tour', {
     const event = new Event('fishHunt');
     this.spinoMale.dispatchEvent(event);
     this.phase = 'exit';
+  },
+  pumpUnderwaterAudio: function () {
+    if (this.swampAudio.volume > 0.005 && this.underwaterAudio.volume < 0.995) {
+      this.swampAudio.volume -= 0.005;
+      this.underwaterAudio.volume += 0.005;
+    }
+  },
+  pumpSwampAudio: function () {
+    if (this.underwaterAudio.volume > 0.001 && this.swampAudio.volume < 0.995) {
+      this.underwaterAudio.volume -= 0.005;
+      this.swampAudio.volume += 0.005;
+    }
   },
   tick: function () {
     // Voice phases
@@ -211,9 +243,13 @@ AFRAME.registerComponent('spino-car-tour', {
         this.birdsFly();
         break;
       case 'dive':
+        this.pumpUnderwaterAudio();
         this.dive();
         break;
       case 'surface':
+        if (this.object.position.y > -1) {
+          this.pumpSwampAudio();
+        }
         this.surface();
         break;
       case 'fishHuntUnderwater':
