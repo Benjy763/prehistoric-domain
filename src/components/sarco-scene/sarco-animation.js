@@ -13,6 +13,9 @@ AFRAME.registerComponent('sarco-animation', {
     this.phase = '';
     this.bird = document.querySelector('#sarco-bird');
 
+    // Spund Markers
+    this.sarcoSwimStopAudioPlayed = false;
+
     // Spino run Path
     this.sarcoMarker = 0; // Position on the curve
     this.sarcoWalkSpeed = 0.0015; // Speed on the curve
@@ -44,6 +47,21 @@ AFRAME.registerComponent('sarco-animation', {
     this.el.addEventListener(
       'enter',
       () => {
+        // Load sounds
+        this.sarcoDiveAudio = this.el.components['sound__dive'];
+        this.sarcoOpenMouseAudio = this.el.components['sound__openmouse'];
+        this.sarcoRoarAudio = this.el.components['sound__roar'];
+        this.sarcoSwimRestartAudio = this.el.components['sound__swimrestart'];
+        this.sarcoSwimStopAudio = this.el.components['sound__swimstop'];
+        this.sarcoWalkAudio = this.el.components['sound__walk'];
+
+        const rock = document.getElementById('sarco-swamp-rock');
+        this.sarcoDeepDiveAudio = rock.components['sound__deepdive'];
+
+        const bird = document.getElementById('sarco-bird');
+        this.birdStartAudio = bird.components['sound__birdstart'];
+        this.birdEndAudio = bird.components['sound__birdend'];
+
         this.phase = 'openJaws';
       },
       false
@@ -51,6 +69,9 @@ AFRAME.registerComponent('sarco-animation', {
     this.el.addEventListener(
       'sarcoUnderwater',
       () => {
+        setTimeout(() => {
+          this.sarcoDeepDiveAudio.playSound();
+        }, 3000);
         this.el.setAttribute('animation-mixer', {
           clip: 'Sarcosuchus_Swim_InPlace',
           loop: true,
@@ -70,6 +91,7 @@ AFRAME.registerComponent('sarco-animation', {
   // --- Phase functions ---
   openJaws: function () {
     setTimeout(() => {
+      this.sarcoOpenMouseAudio.playSound();
       this.el.setAttribute('animation-mixer', {
         clip: 'Sarcosuchus_Sneak_Idle_OpenJaws',
         loop: true,
@@ -78,6 +100,7 @@ AFRAME.registerComponent('sarco-animation', {
       });
     }, 0);
     setTimeout(() => {
+      this.birdStartAudio.playSound();
       this.bird.setAttribute('animation-mixer', {
         clip: 'Take 002',
         loop: true,
@@ -112,6 +135,7 @@ AFRAME.registerComponent('sarco-animation', {
           crossFadeDuration: 0,
           timeScale: 1,
         });
+        this.birdEndAudio.playSound();
         this.phase = 'birdLeave';
       }, 8000);
       this.phase = 'exit';
@@ -125,6 +149,9 @@ AFRAME.registerComponent('sarco-animation', {
       this.birdSpeed
     );
     if (this.movesManager.truncMarker(this.birdMarker) > 800) {
+      setTimeout(() => {
+        this.sarcoRoarAudio.playSound();
+      }, 5500);
       setTimeout(() => {
         this.phase = 'sarcoUp';
       }, 8000);
@@ -166,6 +193,7 @@ AFRAME.registerComponent('sarco-animation', {
         timeScale: 0.6,
       });
       setTimeout(() => {
+        this.sarcoWalkAudio.playSound();
         this.phase = 'sarcoLeave';
       }, 400);
     }, 3000);
@@ -179,6 +207,10 @@ AFRAME.registerComponent('sarco-animation', {
       this.sarcoWalkSpeed
     );
     if (this.movesManager.truncMarker(this.sarcoMarker) > 900) {
+      this.sarcoDiveAudio.playSound();
+      setTimeout(() => {
+        this.sarcoWalkAudio.stopSound();
+      }, 500);
       const event = new Event('dive');
       this.car.dispatchEvent(event);
       this.phase = 'exit';
@@ -191,6 +223,14 @@ AFRAME.registerComponent('sarco-animation', {
       this.sarcoMarker,
       this.sarcoSwimSpeed
     );
+
+    if (
+      this.movesManager.truncMarker(this.sarcoMarker) > 150 &&
+      !this.sarcoSwimStopAudioPlayed
+    ) {
+      this.sarcoSwimStopAudioPlayed = true;
+      this.sarcoSwimStopAudio.playSound();
+    }
     if (this.movesManager.truncMarker(this.sarcoMarker) > 350) {
       this.sarcoSwimSpeed -= 0.00002;
     }
@@ -208,6 +248,9 @@ AFRAME.registerComponent('sarco-animation', {
     }
   },
   sarcoLook() {
+    setTimeout(() => {
+      this.sarcoSwimRestartAudio.playSound();
+    }, 7500);
     setTimeout(() => {
       this.el.setAttribute('animation-mixer', {
         clip: 'Sarcosuchus_SwimFast_InPlace',

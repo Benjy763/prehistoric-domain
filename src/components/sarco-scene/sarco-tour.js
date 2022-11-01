@@ -36,9 +36,17 @@ AFRAME.registerComponent('sarco-car-tour', {
       'start',
       () => {
         // Global sound launch
-        document.getElementById('jungle-asset').play();
+        this.swampAudio = document.getElementById('swamp-asset');
+        this.swampAudio.play();
+        this.underwaterAudio = document.getElementById('underwater-asset');
+        this.underwaterAudio.volume = 0;
+        this.underwaterAudio.play();
 
         // Get sounds
+        const nacelle = document.getElementById('sarco-wall');
+        this.nacelleStart = nacelle.components['sound__nacellestart'];
+        this.nacelleDown = nacelle.components['sound__nacelledown'];
+        this.nacelleEnd = nacelle.components['sound__nacelleend'];
         this.ambiant1Sound =
           document.getElementById('sarco-male').components['sound__ambiant1'];
         // Get voice from system when init
@@ -53,6 +61,8 @@ AFRAME.registerComponent('sarco-car-tour', {
     this.el.addEventListener(
       'dive',
       () => {
+        this.nacelleStart.playSound();
+        this.nacelleDown.playSound();
         this.phase = 'dive';
       },
       false
@@ -77,7 +87,6 @@ AFRAME.registerComponent('sarco-car-tour', {
       // Show all needed elements
       let underwaterEls = document.getElementsByClassName('sarco-underwater');
       for (let i = 0; i < underwaterEls.length; i++) {
-        console.log(surfaceEls[i].classList);
         if (!underwaterEls[i].classList.contains('performance')) {
           underwaterEls[i].setAttribute('visible', true);
         }
@@ -106,12 +115,20 @@ AFRAME.registerComponent('sarco-car-tour', {
       });
     }
     if (this.object.position.y < -11.017) {
+      this.nacelleEnd.playSound();
+      this.nacelleDown.stopSound();
       // Trigger Sarco animation
       const event = new Event('sarcoUnderwater');
       this.sarcoMale.dispatchEvent(event);
       this.phase = 'sarcoUnderwater';
     }
     this.object.position.y -= this.diveSpeed;
+  },
+  pumpUnderwaterAudio: function () {
+    if (this.swampAudio.volume > 0.005 && this.underwaterAudio.volume < 0.995) {
+      this.swampAudio.volume -= 0.005;
+      this.underwaterAudio.volume += 0.005;
+    }
   },
   tick: function () {
     // Voice phases
@@ -127,6 +144,7 @@ AFRAME.registerComponent('sarco-car-tour', {
         this.start();
         break;
       case 'dive':
+        this.pumpUnderwaterAudio();
         this.dive();
         break;
       case 'changeScene':
