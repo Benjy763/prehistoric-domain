@@ -29,6 +29,10 @@ AFRAME.registerComponent('edmon-female-animation', {
     this.el.addEventListener(
       'awake',
       () => {
+        // Load sounds
+        this.edmonWakeupAudio = this.el.components['sound__wakeup'];
+        this.edmonWakeupAudio.playSound();
+
         this.phase = 'awake';
       },
       false

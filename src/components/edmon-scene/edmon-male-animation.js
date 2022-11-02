@@ -15,7 +15,7 @@ AFRAME.registerComponent('edmon-male-animation', {
 
     // Edmon run Path
     this.edmonMarker = 0; // Position on the curve
-    this.edmonSpeed = 0.0015; // Speed on the curve
+    this.edmonSpeed = 0.0025; // Speed on the curve
     this.walkCurve1 = new THREE.SplineCurve([
       new THREE.Vector2(-6.156, 24.277),
       new THREE.Vector2(-18.487, 20.465),
@@ -24,7 +24,7 @@ AFRAME.registerComponent('edmon-male-animation', {
     ]);
 
     this.walkCurve2 = new THREE.SplineCurve([
-      new THREE.Vector2(-30.883, 8.422),
+      new THREE.Vector2(-29.127, 11.319),
       new THREE.Vector2(-26.145, 15.743),
     ]);
 
@@ -34,12 +34,24 @@ AFRAME.registerComponent('edmon-male-animation', {
     this.el.addEventListener(
       'enterWalk',
       () => {
+        // Load sounds
+        this.edmonRoar1Audio = this.edmonFemale.components['sound__roar1'];
+        this.edmonRoar2Audio = this.edmonFemale.components['sound__roar2'];
+        this.edmonWalkAudio = this.el.components['sound__walk'];
+        this.edmonWalkBackAudio = this.el.components['sound__walkback'];
+        this.edmonLidownAudio = this.el.components['sound__liedown'];
+        this.edmonFemaleLidownAudio =
+          this.edmonFemale.components['sound__liedown'];
+
         this.el.setAttribute('animation-mixer', {
           clip: 'E_Trot',
           loop: true,
           crossFadeDuration: 0.4,
           timeScale: 0.6,
         });
+        setTimeout(() => {
+          this.edmonWalkAudio.playSound();
+        }, 1000);
         this.phase = 'enterWalk';
       },
       false
@@ -63,13 +75,14 @@ AFRAME.registerComponent('edmon-male-animation', {
       });
     }
 
-    if (this.movesManager.truncMarker(this.edmonMarker) > 900) {
+    if (this.movesManager.truncMarker(this.edmonMarker) > 800) {
       this.el.setAttribute('animation-mixer', {
         clip: 'E_Idle',
         loop: true,
         crossFadeDuration: 1,
         timeScale: 0.7,
       });
+      this.edmonWalkAudio.stopSound();
       setTimeout(() => {
         this.phase = 'touch';
       }, 1300);
@@ -83,6 +96,9 @@ AFRAME.registerComponent('edmon-male-animation', {
       crossFadeDuration: 3,
       timeScale: 0.5,
     });
+    setTimeout(() => {
+      this.edmonRoar1Audio.playSound();
+    }, 500);
     this.edmonFemale.setAttribute('animation-mixer', {
       clip: 'E_Hurt',
       loop: true,
@@ -106,6 +122,7 @@ AFRAME.registerComponent('edmon-male-animation', {
       });
     }, 5000);
     setTimeout(() => {
+      this.edmonRoar2Audio.playSound();
       this.phase = 'roarAndLeave';
     }, 7000);
     this.phase = 'exit';
@@ -140,9 +157,11 @@ AFRAME.registerComponent('edmon-male-animation', {
       });
       this.edmonMarker = 0;
       this.edmonSpeed = 0.003;
+      this.edmonWalkBackAudio.playSound();
       this.phase = 'walkBack';
     }, 7000);
     setTimeout(() => {
+      this.edmonFemaleLidownAudio.playSound();
       this.edmonFemale.setAttribute('animation-mixer', {
         clip: 'E_RestStart',
         loop: true,
@@ -179,6 +198,8 @@ AFRAME.registerComponent('edmon-male-animation', {
     );
 
     if (this.movesManager.truncMarker(this.edmonMarker) > 750) {
+      this.edmonLidownAudio.playSound();
+      this.edmonWalkBackAudio.stopSound();
       this.el.setAttribute('animation-mixer', {
         clip: 'E_RestStart',
         loop: true,

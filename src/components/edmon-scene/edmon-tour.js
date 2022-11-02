@@ -26,7 +26,7 @@ AFRAME.registerComponent('edmon-car-tour', {
       'start',
       () => {
         // Global sound launch
-        document.getElementById('jungle-asset').play();
+        document.getElementById('cold-asset').play();
 
         // Get sounds
         this.ambiant1Sound =
