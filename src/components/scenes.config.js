@@ -280,7 +280,7 @@ export const MainScenes = {
     // Starting scene
     name: 'Dimetrodon Viewing Gallery',
     loadingScreen: 'dimetrodon-illu.jpg',
-    needPerformance: false,
+    needPerformance: true,
     needLanguage: true,
     mobileCompatible: true,
     selection: 'dimetrodon',
