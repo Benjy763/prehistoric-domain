@@ -90,7 +90,7 @@ body {
 }
 
 #static-loading img#loading-logo {
-  width: 11.25rem;
+  width: 9rem;
 }
 
 #see-faq,
@@ -105,6 +105,11 @@ body {
 
 #loading-infos span {
   font-size: 1.5rem;
+}
+
+#loading-infos .infos-annonce {
+  font-style: italic;
+  margin-bottom: 10px;
 }
 
 #see-faq {

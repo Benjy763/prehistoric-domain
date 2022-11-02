@@ -11,6 +11,9 @@ AFRAME.registerComponent('dimetrodon-animation', {
     this.mainScene = document.getElementById('main-scene');
     this.phase = '';
 
+    //Sound markers
+    this.dimeRunAudioPlayed = false;
+
     // Dimetrodon run Path
     this.dimetrodonMarker = 0; // Position on the curve
     this.dimetrodonSpeed = 0.00072; // Speed on the curve
@@ -29,12 +32,22 @@ AFRAME.registerComponent('dimetrodon-animation', {
     this.el.addEventListener(
       'enterWalk',
       () => {
+        // Load sounds
+        this.dimeAttackAudio = this.el.components['sound__dimeattack'];
+        this.dimeRunAudio = this.el.components['sound__dimerun'];
+        this.dimeWalkAudio = this.el.components['sound__dimewalk'];
+        this.dimeRoarAudio = this.el.components['sound__dimeroar'];
+
         this.el.setAttribute('animation-mixer', {
           clip: 'Animation',
           loop: true,
           crossFadeDuration: 0.4,
           timeScale: 0.4,
         });
+        this.dimeWalkAudio.playSound();
+        setTimeout(() => {
+          this.dimeRoarAudio.playSound();
+        }, 5000);
         this.phase = 'enterWalk';
       },
       false
@@ -49,6 +62,8 @@ AFRAME.registerComponent('dimetrodon-animation', {
           crossFadeDuration: 1,
           timeScale: 1.5,
         });
+        this.dimeRunAudio.playSound();
+        this.dimeWalkAudio.stopSound();
         this.phase = 'walkFast';
       },
       false
@@ -77,6 +92,15 @@ AFRAME.registerComponent('dimetrodon-animation', {
 
     if (this.dimetrodonSpeed < 0.003) {
       this.dimetrodonSpeed += 0.0002;
+    }
+
+    if (
+      this.movesManager.truncMarker(this.dimetrodonMarker) > 800 &&
+      !this.dimeRunAudioPlayed
+    ) {
+      this.dimeAttackAudio.playSound();
+      this.dimeRunAudio.stopSound();
+      this.dimeRunAudioPlayed = true;
     }
 
     if (this.movesManager.truncMarker(this.dimetrodonMarker) > 950) {

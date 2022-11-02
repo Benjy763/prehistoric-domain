@@ -238,9 +238,11 @@ AFRAME.registerSystem('system', {
           document.querySelector('#menu-language').style.display = 'none';
         }
         // Press start
-        //document.querySelector('#loading-logo').style.display = 'none';
+        document.querySelector('#loading-logo').style.display = 'none';
         document.querySelector('#loading-infos .progress-label').style.display =
           'none';
+        document.querySelector('#infos-annonce').style.display = 'none';
+        document.querySelector('#loader-logo').style.display = 'block';
         document.querySelector('#enter').style.display = 'block';
         if (this.isMobile) {
           document.querySelector('#enter').style.display = 'none';

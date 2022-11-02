@@ -28,7 +28,7 @@ AFRAME.registerComponent('dimetrodon-car-tour', {
       'start',
       () => {
         // Global sound launch
-        document.getElementById('jungle-asset').play();
+        document.getElementById('desert-asset').play();
 
         // Get sounds
         this.ambiant1Sound =

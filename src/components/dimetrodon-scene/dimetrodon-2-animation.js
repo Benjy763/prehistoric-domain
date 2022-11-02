@@ -31,12 +31,16 @@ AFRAME.registerComponent('dimetrodon-2-animation', {
     this.el.addEventListener(
       'enterWalk',
       () => {
+        // Load sounds
+        this.dimeMoveAudio = this.el.components['sound__dimemove'];
+
         this.el.setAttribute('animation-mixer', {
           clip: 'Animation',
           loop: true,
           crossFadeDuration: 1.5,
           timeScale: 0.3,
         });
+        this.dimeMoveAudio.playSound();
         this.phase = 'enterWalk';
       },
       false

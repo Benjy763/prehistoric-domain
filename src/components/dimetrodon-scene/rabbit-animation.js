@@ -30,12 +30,17 @@ AFRAME.registerComponent('rabbit-animation', {
     this.el.addEventListener(
       'enterWalk',
       () => {
+        // Load sounds
+        this.rabbitWalkAudio = this.el.components['sound__rabbitwalk'];
+        this.rabbitCryAudio = this.el.components['sound__rabbitcry'];
+
         this.el.setAttribute('animation-mixer', {
           clip: 'Run_Fast',
           loop: true,
           crossFadeDuration: 0.4,
           timeScale: 0.7,
         });
+        this.rabbitWalkAudio.playSound();
         this.phase = 'enterWalk';
       },
       false
@@ -57,22 +62,11 @@ AFRAME.registerComponent('rabbit-animation', {
         crossFadeDuration: 0.4,
         timeScale: 1,
       });
+      this.rabbitWalkAudio.stopSound();
       this.phase = 'lookAround';
     }
   },
   lookAround: function () {
-    setTimeout(() => {
-      this.el.setAttribute('animation-mixer', {
-        clip: 'Run_Fast',
-        loop: true,
-        crossFadeDuration: 0.4,
-        timeScale: 1.2,
-      });
-      this.rabbitSpeed = 0.003;
-      this.phase = 'runFast';
-      const event = new Event('walkFast');
-      this.dimetrodon.dispatchEvent(event);
-    }, 30000);
     setTimeout(() => {
       // Trigger Rabbit animation
       const event = new Event('enterWalk');
@@ -83,6 +77,19 @@ AFRAME.registerComponent('rabbit-animation', {
       const event = new Event('enterWalk');
       this.dimetrodon.dispatchEvent(event);
     }, 13000);
+    setTimeout(() => {
+      this.el.setAttribute('animation-mixer', {
+        clip: 'Run_Fast',
+        loop: true,
+        crossFadeDuration: 0.4,
+        timeScale: 1.2,
+      });
+      this.rabbitSpeed = 0.005;
+      this.rabbitCryAudio.playSound();
+      this.phase = 'runFast';
+      const event = new Event('walkFast');
+      this.dimetrodon.dispatchEvent(event);
+    }, 30000);
     this.phase = 'exit';
   },
   runFast: function () {
