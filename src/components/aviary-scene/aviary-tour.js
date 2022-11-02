@@ -36,23 +36,14 @@ AFRAME.registerComponent('aviary-car-tour', {
       'start',
       () => {
         // Global sound launch
-        document.getElementById('jungle-asset').play();
+        document.getElementById('coast-asset').play();
 
-        // Get sounds
-        this.ambiant1Sound =
-          document.getElementById('aviary-cliff-1').components[
-            'sound__ambiant1'
-          ];
-        this.ambiant3Sound =
-          document.getElementById('aviary-cliff-1').components[
-            'sound__ambiant3'
-          ];
         // Get voice from system when init
         this.voiceAviary1Sound = this.system.getVoice('aviary1');
         this.voicePhase = 'exit';
         setTimeout(() => {
           this.phase = 'start';
-        }, 0);
+        }, 20000);
       },
       false
     );
@@ -106,9 +97,6 @@ AFRAME.registerComponent('aviary-car-tour', {
   },
   // --- Phase functions ---
   start: function () {
-    setTimeout(() => {
-      this.ambiant1Sound.playSound();
-    }, 8000);
     setTimeout(() => {
       // Trigger Pteranodon animation
       const event = new Event('enter');

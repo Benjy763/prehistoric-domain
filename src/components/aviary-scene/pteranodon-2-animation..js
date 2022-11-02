@@ -41,6 +41,9 @@ AFRAME.registerComponent('pteranodon-2-animation', {
     this.el.addEventListener(
       'enter',
       () => {
+        // Get sounds
+        this.pteraRoarAudio = this.el.components['sound__roar'];
+
         this.el.setAttribute('animation-mixer', {
           clip: 'Ptera_Walk',
           loop: true,
@@ -79,6 +82,7 @@ AFRAME.registerComponent('pteranodon-2-animation', {
         crossFadeDuration: 0.4,
         timeScale: 0.6,
       });
+      this.pteraRoarAudio.playSound();
       this.phase = 'roar';
     }, 8000);
     this.phase = 'exit';

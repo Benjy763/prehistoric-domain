@@ -12,6 +12,9 @@ AFRAME.registerComponent('pteranodon-animation', {
     this.phase = '';
     this.animationPhase = 'canFly';
 
+    // Audio markers
+    this.pteraPassingAudioPlayed = false;
+
     // Ptera run Path
     this.pteraMarker = 0; // Position on the curve
     this.pteraSpeed = 0; // Speed on the curve
@@ -37,6 +40,10 @@ AFRAME.registerComponent('pteranodon-animation', {
     this.el.addEventListener(
       'enter',
       () => {
+        // Get sounds
+        this.pteraFlyAudio = this.el.components['sound__fly'];
+        this.pteraPassingAudio = this.el.components['sound__passing'];
+
         setTimeout(() => {
           this.el.setAttribute('animation-mixer', {
             clip: 'Ptera_Plane',
@@ -46,6 +53,7 @@ AFRAME.registerComponent('pteranodon-animation', {
           });
         }, 3500);
         setTimeout(() => {
+          this.pteraFlyAudio.playSound();
           this.phase = 'enter';
         }, 2500);
         setTimeout(() => {
@@ -98,6 +106,13 @@ AFRAME.registerComponent('pteranodon-animation', {
   endFly: function () {
     if (this.movesManager.truncMarker(this.pteraMarker) > 800) {
       this.phase = 'finish';
+    }
+    if (
+      this.movesManager.truncMarker(this.pteraMarker) > 300 &&
+      !this.pteraPassingAudioPlayed
+    ) {
+      this.pteraPassingAudio.playSound();
+      this.pteraPassingAudioPlayed = true;
     }
     if (
       this.movesManager.truncMarker(this.pteraMarker) > 300 &&
