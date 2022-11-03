@@ -31,8 +31,8 @@ AFRAME.registerComponent('meg-animation', {
       new THREE.Vector2(-34.327, -6.174),
     ]);
     this.megCurve1 = new THREE.SplineCurve([
-      new THREE.Vector2(11, -80),
-      new THREE.Vector2(11, 50),
+      new THREE.Vector2(11, -70),
+      new THREE.Vector2(11, 60),
     ]);
     this.megCurve2 = new THREE.SplineCurve([
       new THREE.Vector2(-10.932, 50),
@@ -75,7 +75,7 @@ AFRAME.registerComponent('meg-animation', {
       this.megSpeed = 0.3;
       this.el.setAttribute('position', {
         x: -9.966,
-        y: -5.533,
+        y: -8,
         z: -4.989,
       });
       this.el.setAttribute('rotation', {
@@ -83,7 +83,7 @@ AFRAME.registerComponent('meg-animation', {
         y: 180.0,
         z: 0,
       });
-      const event = new Event('hit');
+      const event = new Event('hited');
       this.car.dispatchEvent(event);
       this.phase = 'return';
     }
@@ -130,7 +130,7 @@ AFRAME.registerComponent('meg-animation', {
     }
   },
   megSwim: function () {
-    if (this.movesManager.truncMarker(this.sharkMarker) < 570) {
+    if (this.movesManager.truncMarker(this.sharkMarker) < 565) {
       return;
     }
     if (!this.bitten) {
@@ -162,7 +162,7 @@ AFRAME.registerComponent('meg-animation', {
         z: -80,
       });
       this.megMarker = 0;
-      this.megSpeed = 0.001;
+      this.megSpeed = 0.0012;
       this.isMegPassed = false;
       setTimeout(() => {
         this.phase = 'turnAround';

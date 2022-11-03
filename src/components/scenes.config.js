@@ -24,7 +24,6 @@ export const MainScenes = {
       car: 'visitors-car',
       carReference: null,
       rigPos: {
-        // First in value in VR and second without
         x: -21.292,
         y: 1,
         z: -3.743,
@@ -75,7 +74,7 @@ export const MainScenes = {
   },
   aviary: {
     // Starting scene
-    name: 'FLYING GIANTS',
+    name: 'Pteranodon Aviary',
     loadingScreen: 'aviary-illu.jpg',
     displayDistance: 400,
     needPerformance: false,
@@ -97,7 +96,6 @@ export const MainScenes = {
       car: 'aviary-car',
       carReference: null,
       rigPos: {
-        // First in value in VR and second without
         x: 1,
         y: 1,
         z: 0,
@@ -112,7 +110,7 @@ export const MainScenes = {
   },
   lagoon: {
     // Starting scene
-    name: 'BIG JAWS',
+    name: 'Megalodon Viewing Gallery',
     loadingScreen: 'lagoon-illu.jpg',
     needPerformance: false,
     needLanguage: true,
@@ -131,6 +129,11 @@ export const MainScenes = {
       camera: 'lagoon-scene-camera',
       car: 'lagoon-car',
       carReference: null,
+      rigPos: {
+        x: 1,
+        y: 2.2,
+        z: 0,
+      },
     },
     ending: {
       scene: 'ending-scene',
@@ -191,7 +194,6 @@ export const MainScenes = {
       car: 'sarco-car',
       carReference: null,
       rigPos: {
-        // First in value in VR and second without
         x: 1,
         y: 1,
         z: 0,
@@ -227,7 +229,6 @@ export const MainScenes = {
       car: 'spino-car',
       carReference: null,
       rigPos: {
-        // First in value in VR and second without
         x: 1,
         y: 1,
         z: 0,
@@ -263,7 +264,6 @@ export const MainScenes = {
       car: 'quetza-car',
       carReference: null,
       rigPos: {
-        // First in value in VR and second without
         x: 1,
         y: 1,
         z: 0,
@@ -299,7 +299,6 @@ export const MainScenes = {
       car: 'dimetrodon-car',
       carReference: null,
       rigPos: {
-        // First in value in VR and second without
         x: 1,
         y: 1,
         z: 0,
@@ -336,7 +335,6 @@ export const MainScenes = {
       car: 'edmon-car',
       carReference: null,
       rigPos: {
-        // First in value in VR and second without
         x: 1,
         y: 1,
         z: 0,
@@ -373,7 +371,6 @@ export const MainScenes = {
       car: 'trex-car',
       carReference: null,
       rigPos: {
-        // First in value in VR and second without
         x: 0,
         y: 1,
         z: 0,
@@ -410,7 +407,6 @@ export const MainScenes = {
       car: 'deino-car',
       carReference: null,
       rigPos: {
-        // First in value in VR and second without
         x: 1,
         y: 1,
         z: 0,

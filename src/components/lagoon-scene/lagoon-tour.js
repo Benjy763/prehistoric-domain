@@ -8,7 +8,6 @@ AFRAME.registerComponent('lagoon-car-tour', {
 
     // Sounds
     this.ambiant1Sound;
-    this.hitSound;
 
     // Voice and screen phases
     this.voicePhase = 'stop';
@@ -50,9 +49,9 @@ AFRAME.registerComponent('lagoon-car-tour', {
 
     // Tour listeners
     this.el.addEventListener(
-      'hit',
+      'hited',
       () => {
-        this.phase = 'hit';
+        this.phase = 'hited';
       },
       false
     );
@@ -95,7 +94,7 @@ AFRAME.registerComponent('lagoon-car-tour', {
       case 'start':
         this.start();
         break;
-      case 'hit':
+      case 'hited':
         this.hit();
         break;
       case 'restart':

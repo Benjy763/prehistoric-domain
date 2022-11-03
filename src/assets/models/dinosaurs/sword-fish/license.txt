@@ -1,0 +1,8 @@
+Model Information:
+* title:	Sword Fish
+* source:	https://sketchfab.com/3d-models/sword-fish-13d4c7213033466fb8588e1c566c20f9
+* author:	GoldenZtuff (https://sketchfab.com/dhjwdwd)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works
