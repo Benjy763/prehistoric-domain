@@ -315,7 +315,7 @@ export const MainScenes = {
     // Starting scene
     name: 'Edmontosaurus Viewing Gallery',
     loadingScreen: 'edmon-illu.jpg',
-    needPerformance: false,
+    needPerformance: true,
     needLanguage: true,
     mobileCompatible: true,
     selection: 'edmon',

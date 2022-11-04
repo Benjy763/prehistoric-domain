@@ -85,7 +85,7 @@ body {
 
 @media screen and (max-width: 800px) {
   #static-loading img.loader-logo {
-    width: 25rem;
+    width: 18rem;
   }
 }
 
