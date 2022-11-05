@@ -1,0 +1,11 @@
+Model Information:
+* title:	Modern Office Building
+* source:	https://sketchfab.com/3d-models/modern-office-building-3f54b8d7a7064b0da523c49187efcf60
+* author:	CN Entertainment (https://sketchfab.com/cn-entertainment)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Modern Office Building" (https://sketchfab.com/3d-models/modern-office-building-3f54b8d7a7064b0da523c49187efcf60) by CN Entertainment (https://sketchfab.com/cn-entertainment) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

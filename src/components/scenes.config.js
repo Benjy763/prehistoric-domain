@@ -1,6 +1,41 @@
 export const MainScene = process.env.MAIN_SCENE;
 
 export const MainScenes = {
+  home: {
+    // Starting scene
+    name: 'Main Street',
+    loadingScreen: 'deino-illu.jpg',
+    needPerformance: false,
+    needLanguage: false,
+    mobileCompatible: false,
+    selection: 'home',
+    assetsId: 'home-assets',
+    displayDistance: 10000,
+    carMarkerForDebug: 0.7,
+    color: '#d6d6d6',
+    density: [0.001, 0.001],
+    loading: {
+      scene: 'loading-scene',
+      camera: 'loading-scene-camera',
+    },
+    home: {
+      scene: 'home-scene',
+      camera: 'home-scene-camera',
+      car: 'home-car',
+      carReference: null,
+      rigPos: {
+        x: 0,
+        y: 1,
+        z: 0,
+      },
+    },
+    ending: {
+      scene: 'ending-scene',
+      camera: 'ending-scene-camera',
+      car: 'ending-car',
+      carReference: null,
+    },
+  },
   visitors: {
     // Starting scene
     name: 'Visitors House',

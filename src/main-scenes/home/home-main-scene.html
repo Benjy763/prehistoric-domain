@@ -1,0 +1,33 @@
+<require path="main-scenes/shared/shared-main-scene.html"></require>
+<div id="main-scene-wrapper">
+  <require path="main-scenes/shared/shared-context-scene.html"></require>
+
+  <div class="scene-border-inner">
+    <div id="main-scene-content" class="scene-content">
+      <a-scene preloader renderer="foveationLevel: 3; sortObjects: false; precision: high"
+        background="color: #b3b3b3; transparent: false" embedded="true" vr-mode-ui="enterVRButton: #enter-vr"
+        id="main-scene" fog="type: exponential; color: #b3b3b3;  density: 0.001; far: 1; near: 1.01">
+        <!-- All assets -->
+        <require path="main-scenes/home/home-assets.html"></require>
+
+        <!-- Loading scene -->
+        <a-entity id="loading-scene">
+          <require path="components/loading/loading.html"></require>
+        </a-entity>
+        <a-entity id="ending-scene" visible="false">
+          <require path="components/ending/ending.html"></require>
+        </a-entity>
+
+        <a-entity id="home-scene" visible="false">
+          <!-- Ground environement -->
+          <require path="components/home-scene/home-ground.html"></require>
+          <!-- Lightning -->
+          <require path="components/home-scene/home-lightning.html"></require>
+          <!-- Environment -->
+          <require path="components/home-scene/home-environment.html"></require>
+          <!-- Objects -->
+          <require path="components/home-scene/home-car.html"></require>
+        </a-entity>
+    </div>
+  </div>
+</div>
