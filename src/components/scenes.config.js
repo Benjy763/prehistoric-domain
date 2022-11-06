@@ -24,9 +24,9 @@ export const MainScenes = {
       car: 'home-car',
       carReference: null,
       rigPos: {
-        x: 0,
+        x: 75,
         y: 1,
-        z: 0,
+        z: -3,
       },
     },
     ending: {

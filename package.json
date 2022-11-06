@@ -23,6 +23,7 @@
     "aframe-physics-system": "github:n5ro/aframe-physics-system",
     "aframe-super-hot-html-loader": "*",
     "aframe-super-hot-loader": "*",
+    "aframe-troika-text": "^0.8.0",
     "jquery": "^3.6.0",
     "super-hands": "^3.0.2"
   },

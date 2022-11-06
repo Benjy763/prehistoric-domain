@@ -16,5 +16,6 @@ require('./assets/style/loader.css');
 requireAll(require.context('./components/', true, /\.js$/));
 require('aframe-particle-system-component');
 require('aframe-fps-look-controls-component');
+require('aframe-troika-text');
 
 require(`./main-scenes/${MainScene}/${MainScene}-main-scene.html`);

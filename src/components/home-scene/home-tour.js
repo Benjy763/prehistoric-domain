@@ -13,12 +13,27 @@ AFRAME.registerComponent('home-car-tour', {
     // En scene activation
     this.sceneChanged = false;
 
+    // Sounds
+    this.fountainSound = document.querySelector('#home-fountain');
+
     // Start tour listeners
     this.el.addEventListener(
       'start',
       () => {
+        setTimeout(() => {
+          var videoEl = document
+            .querySelector('#home-movie')
+            .getAttribute('material').src;
+          if (!videoEl) {
+            return;
+          }
+          this.el.object3D.visible = true;
+          videoEl.play();
+        }, 3000);
+
         // Global sound launch
         document.getElementById('jungle-asset').play();
+        this.fountainSound.components['sound__fountain'].playSound();
         setTimeout(() => {
           this.phase = 'start';
         }, 20000);

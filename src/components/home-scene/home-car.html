@@ -10,7 +10,8 @@
   <a-entity id="rig" movement-controls="speed: 0.3" position="-21.292 -0.7 -3.743" rotation="0 90 0">
     <a-entity id="hands">
       <a-entity id="home-scene-camera" class="camera-entity" camera position="0 0 0" user-height="0"
-        fps-look-controls="user-height: 0">
+        fps-look-controls="user-height: 0"
+        simple-navmesh-constraint="navmesh:#home-navmesh-el;fall:0;height:1.25;exclude:.home-exclude-navmesh-el">
         <a-box id="out-of-limit" visible="false" material="blending: none; shader: flat"
           geometry="depth: 1; height: 1; width: 1; primitive: sphere; segmentsHeight: 10; segmentsWidth: 10; radius: 0.1"
           color="black" side="back"></a-box>
@@ -22,11 +23,14 @@
         hand-controls="hand: right; handModelStyle: highPoly; color: #ffcccc"></a-entity>
     </a-entity>
   </a-entity>
-  <a-plane id="home-navmesh-el" geometry="primitive: circle; radius: 27" visible="false" position="-45.32474 0 -2.49421"
-    rotation="-90 0 0" width="8" height="5.8" color="yellow">
+  <a-plane id="home-navmesh-el" geometry="primitive: plane; radius: 27; height: 30; width: 85" visible="false"
+    position="33.77855 0 -3.31126" rotation="-90 0 0" width="8" height="5.8" color="yellow">
   </a-plane>
-  <a-plane id="home-exclude-navmesh-el" geometry="primitive: circle; radius: 16" visible="false"
-    position="-45.44178 0 -2.33939" rotation="-90 0 0" width="8" height="5.8" color="red">
+  <a-plane id="home-exclude-navmesh-el-1" class="home-exclude-navmesh-el" geometry="primitive: circle; radius: 6.52"
+    visible="false" position="52.9485 0 0.95443" rotation="-90 0 0" width="8" height="5.8" color="red">
+  </a-plane>
+  <a-plane id="home-exclude-navmesh-el-2" class="home-exclude-navmesh-el" geometry="primitive: circle; radius: 4.67"
+    visible="false" position="11.96545 0 -1.77118" rotation="-90 0 0" width="8" height="5.8" color="red">
   </a-plane>
   <a-entity id="car-env"></a-entity>
   <!-- <a-entity id="home-terminal-temoin" gltf-model="#terminal-asset" position="11.59694 -0.64266 -1.82065"
