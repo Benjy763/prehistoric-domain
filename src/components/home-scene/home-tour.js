@@ -10,29 +10,38 @@ AFRAME.registerComponent('home-car-tour', {
       document.querySelector('a-scene').systems['movesManager'];
     this.object = this.el.object3D;
 
+    // Video
+    this.videoEl = document
+      .querySelector('#home-movie')
+      .getAttribute('material').src;
+
     // En scene activation
     this.sceneChanged = false;
 
     // Sounds
+    this.backgroundSound = document.getElementById('jungle-asset');
     this.fountainSound = document.querySelector('#home-fountain');
 
     // Start tour listeners
+    window.addEventListener('changeScene', () => {
+      this.backgroundSound.pause();
+      this.videoEl.pause();
+      this.fountainSound.components['sound__fountain'].stopSound();
+    });
+
     this.el.addEventListener(
       'start',
       () => {
         setTimeout(() => {
-          var videoEl = document
-            .querySelector('#home-movie')
-            .getAttribute('material').src;
-          if (!videoEl) {
+          if (!this.videoEl) {
             return;
           }
           this.el.object3D.visible = true;
-          videoEl.play();
+          this.videoEl.play();
         }, 3000);
 
         // Global sound launch
-        document.getElementById('jungle-asset').play();
+        this.backgroundSound.play();
         this.fountainSound.components['sound__fountain'].playSound();
         setTimeout(() => {
           this.phase = 'start';

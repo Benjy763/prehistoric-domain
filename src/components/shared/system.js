@@ -226,6 +226,10 @@ AFRAME.registerSystem('system', {
   },
   // Each time we change scene
   changeScene: function (sceneId, render = true) {
+    // Trigger event
+    const event = new Event('changeScene');
+    window.dispatchEvent(event);
+
     if (!this.actuelScene || this.actuelScene === sceneId) {
       return;
     }
