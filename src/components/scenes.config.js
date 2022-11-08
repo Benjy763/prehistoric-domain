@@ -43,6 +43,17 @@ export const MainScenes = {
         z: -0.6,
       },
     },
+    visitors: {
+      scene: 'visitors-scene',
+      camera: 'visitors-scene-camera',
+      car: 'visitors-car',
+      carReference: null,
+      rigPos: {
+        x: -21.292,
+        y: 1,
+        z: -3.743,
+      },
+    },
     ending: {
       scene: 'ending-scene',
       camera: 'ending-scene-camera',

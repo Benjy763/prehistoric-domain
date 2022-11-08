@@ -7,6 +7,7 @@ AFRAME.registerComponent('custom-hand-control', {
     document.addEventListener('keyup', (e) => {
       if (e.key === 'Enter' || e.keyCode === 13) {
         if (this.movesManager.nextScene) {
+          console.log(this.movesManager.nextScene);
           this.system.changeScene(this.movesManager.nextScene);
           this.movesManager.nextScene = null;
         }

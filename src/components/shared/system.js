@@ -226,13 +226,12 @@ AFRAME.registerSystem('system', {
   },
   // Each time we change scene
   changeScene: function (sceneId, render = true) {
-    // Trigger event
-    const event = new Event('changeScene');
-    window.dispatchEvent(event);
-
     if (!this.actuelScene || this.actuelScene === sceneId) {
       return;
     }
+    // Trigger event
+    const event = new Event('changeScene');
+    window.dispatchEvent(event);
 
     // Set main scene atmosphere color
     this.changeAtmosphere('#262c28', '0.001');
@@ -297,8 +296,6 @@ AFRAME.registerSystem('system', {
       const event = new Event('start');
       cameraScene.dispatchEvent(event);
       this.setCameraPosition();
-      console.log('loading end');
-      this.setLoading(false);
     }, 4000);
   },
   setCameraPosition: function () {
@@ -324,6 +321,7 @@ AFRAME.registerSystem('system', {
 
     setTimeout(() => {
       this.movesManager.fixRigPosition();
+      this.setLoading(false);
     }, 1500);
   },
   // ----- Loading functions --------

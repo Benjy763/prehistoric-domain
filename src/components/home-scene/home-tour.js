@@ -19,7 +19,7 @@ AFRAME.registerComponent('home-car-tour', {
     this.sceneChanged = false;
 
     // Sounds
-    this.backgroundSound = document.getElementById('jungle-asset');
+    this.backgroundSound = document.getElementById('home-asset');
     this.fountainSound = document.querySelector('#home-fountain');
 
     // Start tour listeners
@@ -58,11 +58,26 @@ AFRAME.registerComponent('home-car-tour', {
 
     return Math.sqrt(a * a + b * b);
   },
+  distanceFromVisitorsHouse: function () {
+    const rigPosition = this.movesManager.getWorldCameraPosition();
+    const visitorsCoordinates = { x: -39, z: 13 };
+    const a = rigPosition.x - visitorsCoordinates.x;
+    const b = rigPosition.z - visitorsCoordinates.z;
+
+    return Math.sqrt(a * a + b * b);
+  },
   start: function () {
     if (this.distanceFromCinema() < 11) {
       this.movesManager.nextScene = 'cinema';
     }
-    if (this.distanceFromCinema() >= 11) {
+
+    if (this.distanceFromVisitorsHouse() < 11) {
+      this.movesManager.nextScene = 'visitors';
+    }
+    if (
+      this.distanceFromVisitorsHouse() >= 11 &&
+      this.distanceFromCinema() >= 11
+    ) {
       this.movesManager.nextScene = 'home';
     }
   },
