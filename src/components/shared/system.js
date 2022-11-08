@@ -68,7 +68,9 @@ AFRAME.registerSystem('system', {
       // Unclock debug listener
       this.startDebugListener();
     }
-
+    this.manageGlobalEvents();
+  },
+  manageGlobalEvents: function () {
     // Manage clicks
     document.querySelector('canvas').addEventListener(
       'click',
@@ -102,7 +104,7 @@ AFRAME.registerSystem('system', {
     const event = new Event('carRegistered');
     car.el.dispatchEvent(event);
   },
-  initClickEvents: function () {
+  initStartingEvents: function () {
     document.querySelector('#enter').onclick = () => {
       this.vr = false;
       // Remove loading interface
@@ -147,7 +149,7 @@ AFRAME.registerSystem('system', {
 
     setTimeout(() => {
       // Display scene
-      this.displayScene();
+      this.displayScene(this.firstScene);
       // Rendering scene
       this.renderingScene(this.firstScene);
     }, 1000);
@@ -180,7 +182,7 @@ AFRAME.registerSystem('system', {
           document.querySelector('#enter-vr').style.display = 'block';
         }
 
-        this.initClickEvents();
+        this.initStartingEvents();
       }, 2000);
     });
   },
@@ -197,31 +199,30 @@ AFRAME.registerSystem('system', {
     });
   },
   // Only for the first time
-  displayScene: function () {
-    // Hide vr button and loading static screen
+  displayScene: function (newScene) {
+    // Hide loading static screen
     document.querySelector('#menu-wrapper').style.display = 'none';
+
+    // Display scene
+    document
+      .getElementById(this.scenes[this.actuelScene].scene)
+      .setAttribute('visible', 'false');
+    document
+      .getElementById(this.scenes[newScene].scene)
+      .setAttribute('visible', 'true');
+
     // Display camera
     this.disableAllCameras();
     document
-      .getElementById(this.scenes[this.firstScene].camera)
+      .getElementById(this.scenes[newScene].camera)
       .setAttribute('camera', {
         far: this.displayDistance,
         active: true,
         fov: this.vr ? this.fovVR : this.fov,
       });
 
-    // Display scene
-    document.querySelector('#loading-scene').setAttribute('visible', 'false');
-    document
-      .getElementById(this.scenes[this.firstScene].scene)
-      .setAttribute('visible', 'true');
-  },
-  changeEndingScene: function () {
-    this.changeAtmosphere('#000', 0.1);
-    setTimeout(() => {
-      window.location.href = 'https://map.prehistoricdomain.com/';
-    }, 8000);
-    this.changeScene('ending', false);
+    // Register new scene
+    this.actuelScene = newScene;
   },
   // Each time we change scene
   changeScene: function (sceneId, render = true) {
@@ -229,28 +230,11 @@ AFRAME.registerSystem('system', {
       return;
     }
 
-    document
-      .getElementById(this.scenes[this.actuelScene].scene)
-      .setAttribute('visible', 'false');
-    document
-      .getElementById(this.scenes[sceneId].scene)
-      .setAttribute('visible', 'true');
-
-    // Register new scene
-    this.actuelScene = sceneId;
-
     // Set main scene atmosphere color
     this.changeAtmosphere('#262c28', '0.001');
 
-    // change camera
-    this.disableAllCameras();
-    document
-      .getElementById(this.scenes[sceneId].camera)
-      .setAttribute('camera', {
-        far: this.displayDistance,
-        active: true,
-        fov: this.vr ? this.fovVR : this.fov,
-      });
+    // Display scene
+    this.displayScene(sceneId);
 
     if (!!this.carReference) {
       // Notify car reference to the new scene
@@ -262,10 +246,16 @@ AFRAME.registerSystem('system', {
     }
 
     // Rendering scene
-    if (!render) {
-      return;
+    if (render) {
+      this.renderingScene();
     }
-    this.renderingScene();
+  },
+  changeEndingScene: function () {
+    this.changeAtmosphere('#000', 0.1);
+    setTimeout(() => {
+      window.location.href = 'https://map.prehistoricdomain.com/';
+    }, 8000);
+    this.changeScene('ending', false);
   },
   disableAllCameras: function () {
     Object.keys(this.scenes).forEach((sceneId) => {
@@ -277,20 +267,18 @@ AFRAME.registerSystem('system', {
     });
   },
   renderingScene: function () {
-    this.setLoadingPosition();
-    // Select car to launch event
-    const car = document.getElementById(this.scenes[this.actuelScene].car);
-    if (!car) {
+    console.log('loading start');
+    this.setLoading();
+    // Select camera scene to launch event
+    const cameraScene = document.getElementById(
+      this.scenes[this.actuelScene].car
+    );
+    if (!cameraScene) {
       return;
     }
 
     // Launch the scene after the rendering time
-    car.querySelector('#rendering').setAttribute('visible', 'true');
     setTimeout(() => {
-      car.querySelector('#rendering').setAttribute('visible', 'false');
-
-      const event = new Event('start');
-      car.dispatchEvent(event);
       // Can recenter
       this.canRecenter = true;
       // Set main scene atmosphere color
@@ -302,15 +290,14 @@ AFRAME.registerSystem('system', {
       if (!!this.scenes.canWalk) {
         this.movesManager.enableWalk(this.scenes[this.actuelScene]);
       }
-      this.setLoadingPosition(false);
-
-      setTimeout(() => {
-        this.movesManager.fixRigPosition();
-      }, 1500);
+      const event = new Event('start');
+      cameraScene.dispatchEvent(event);
+      this.setCameraPosition();
+      console.log('loading end');
+      this.setLoading(false);
     }, 4000);
   },
-  // ----- Loading functions --------
-  setLoadingPosition: function (loading = true) {
+  setCameraPosition: function () {
     // Fix to set base camera position depending on device
     const cameraClasses = document.getElementsByClassName('camera-entity');
     [].forEach.call(cameraClasses, (camera) =>
@@ -321,27 +308,27 @@ AFRAME.registerSystem('system', {
       })
     );
 
-    // Fix rig
-    if (!loading) {
-      this.movesManager.setRigPosition({
-        x: this.scenes[this.actuelScene].rigPos.x
-          ? this.scenes[this.actuelScene].rigPos.x
-          : -0.38,
-        y: 0,
-        z: this.scenes[this.actuelScene].rigPos.z
-          ? this.scenes[this.actuelScene].rigPos.z
-          : 0.5,
-      });
-      return;
-    }
-    document
-      .querySelector('#' + this.scenes[this.actuelScene].car + ' #loading-logo')
-      .setAttribute('visible', true);
     this.movesManager.setRigPosition({
-      x: -0.38,
-      y: -80,
-      z: 0.34,
+      x: this.scenes[this.actuelScene].rigPos.x
+        ? this.scenes[this.actuelScene].rigPos.x
+        : -0.38,
+      y: 0,
+      z: this.scenes[this.actuelScene].rigPos.z
+        ? this.scenes[this.actuelScene].rigPos.z
+        : 0.5,
     });
+
+    setTimeout(() => {
+      this.movesManager.fixRigPosition();
+    }, 1500);
+  },
+  // ----- Loading functions --------
+  setLoading: function (loading = true) {
+    document
+      .querySelector(
+        '#' + this.scenes[this.actuelScene].car + ' #loading-sphere'
+      )
+      .setAttribute('visible', loading);
   },
   // Section with debug key
   startDebugListener: function () {
@@ -359,7 +346,7 @@ AFRAME.registerSystem('system', {
           .querySelector('#main-scene-wrapper')
           .classList.remove('scene-wrapper');
         // Display scene
-        this.displayScene();
+        this.displayScene(this.firstScene);
         // Rendering scene
         this.renderingScene(this.firstScene);
       }

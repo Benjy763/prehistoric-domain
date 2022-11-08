@@ -50,7 +50,6 @@ AFRAME.registerComponent('home-car-tour', {
     return Math.sqrt(a * a + b * b);
   },
   start: function () {
-    console.log(this.distanceFromCinema());
     if (this.distanceFromCinema() < 11) {
       this.movesManager.nextScene = 'cinema';
     }
