@@ -1,6 +1,10 @@
 <a-entity id="sarco-car" gltf-model="#swamp-scene-asset" sarco-car-tour position="-5.86958 1.02687 4.472"
   rotation="0 0 0" scale="1 1.2 1">
-  <a-image id="loading-logo" src="#loading-asset" scale="1.25 1 1" position="-4 -78.5 0.34" rotation="0 90 0">
+  <a-box id="loading-sphere" scale="500 500 500" position="-4 -78.5 0.34" material="blending: none; shader: flat"
+    geometry="depth: 1; height: 1; width: 1; primitive: sphere; segmentsHeight: 10; segmentsWidth: 10; radius: 0.1"
+    color="#262c28" side="back">
+  </a-box>
+  <a-image id="loading-logo" src="#loading-asset" scale="0.01 0.01 0.01" position="0 0 0" rotation="0 90 0">
   </a-image>
   <a-image id="rendering" src="#rendering-asset" scale="0.23 0.205 0.25" position="-0.765 1.82434 -0.03445"
     rotation="0 90 0" material="" geometry="" visible="false"></a-image>

@@ -5,7 +5,11 @@
 import { Scenes } from '../scenes.config';
 
 AFRAME.registerSystem('movesManager', {
-  schema: {},
+  schema: {
+    nextScene: {
+      default: null,
+    },
+  },
   init: function () {
     this.scenes = Scenes;
     this.isWalkEnabled = null;
@@ -16,6 +20,8 @@ AFRAME.registerSystem('movesManager', {
     }
     return this.system;
   },
+  // ----- Movement Interactions --------
+
   // ----- Movement functions --------
   checkBoundLimits(cameraPosition) {
     if (this.isWalkEnabled === null) {
@@ -110,6 +116,15 @@ AFRAME.registerSystem('movesManager', {
     }
     cameraPosition.x = newPosition.x;
     cameraPosition.z = newPosition.z;
+  },
+  getWorldRigPosition() {
+    const actualScene = this.getSystem().getActualSceneObject();
+    const rigPos = document.querySelector(
+      '#' + actualScene.car + ' #rig'
+    ).object3D;
+    const worldPos = new THREE.Vector3();
+    worldPos.setFromMatrixPosition(rigPos.matrixWorld);
+    return worldPos;
   },
   getRigPosition() {
     const actualScene = this.getSystem().getActualSceneObject();

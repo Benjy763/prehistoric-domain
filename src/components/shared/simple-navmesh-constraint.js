@@ -24,7 +24,6 @@ AFRAME.registerComponent('simple-navmesh-constraint', {
       default: '',
     },
   },
-
   update: function () {
     this.lastPosition = null;
     this.excludes = this.data.exclude

@@ -19,6 +19,7 @@ export const MainScenes = {
       camera: 'loading-scene-camera',
     },
     home: {
+      loaded: false,
       scene: 'home-scene',
       camera: 'home-scene-camera',
       car: 'home-car',
@@ -27,6 +28,19 @@ export const MainScenes = {
         x: 75,
         y: 1,
         z: -3,
+      },
+    },
+    cinema: {
+      loaded: false,
+      scene: 'cinema-scene',
+      camera: 'cinema-scene-camera',
+      car: 'cinema-car',
+      carReference: null,
+      isVehicule: true,
+      rigPos: {
+        x: 0.5,
+        y: 2,
+        z: -0.6,
       },
     },
     ending: {

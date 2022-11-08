@@ -4,6 +4,8 @@ AFRAME.registerComponent('cinema-car-tour', {
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
 
     this.system = document.querySelector('a-scene').systems['system'];
+    this.movesManager =
+      document.querySelector('a-scene').systems['movesManager'];
 
     // Sounds
     this.ambiant1Sound;
@@ -24,6 +26,7 @@ AFRAME.registerComponent('cinema-car-tour', {
     this.el.addEventListener(
       'start',
       () => {
+        this.movesManager.nextScene = 'home';
         setTimeout(() => {
           var videoEl = document
             .querySelector('#cinema-movie')

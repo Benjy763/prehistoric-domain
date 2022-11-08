@@ -4,6 +4,15 @@ AFRAME.registerComponent('custom-hand-control', {
     this.movesManager =
       document.querySelector('a-scene').systems['movesManager'];
 
+    document.addEventListener('keyup', (e) => {
+      if (e.key === 'Enter' || e.keyCode === 13) {
+        if (this.movesManager.nextScene) {
+          this.system.changeScene(this.movesManager.nextScene);
+          this.movesManager.nextScene = null;
+        }
+      }
+    });
+
     this.el.addEventListener('abuttondown', () => {
       this.movesManager.fixRigPosition();
     });
