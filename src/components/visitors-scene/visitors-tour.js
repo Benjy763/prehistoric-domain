@@ -26,9 +26,7 @@ AFRAME.registerComponent('visitors-car-tour', {
       () => {
         // Global sound launch
         this.backgroundSound.play();
-        setTimeout(() => {
-          this.phase = 'start';
-        }, 20000);
+        this.phase = 'start';
       },
       false
     );
