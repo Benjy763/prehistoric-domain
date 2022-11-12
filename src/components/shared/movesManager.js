@@ -13,6 +13,7 @@ AFRAME.registerSystem('movesManager', {
   init: function () {
     this.scenes = Scenes;
     this.isWalkEnabled = null;
+    this.savedPosition = null;
   },
   getSystem: function () {
     if (!this.system) {

@@ -309,15 +309,27 @@ AFRAME.registerSystem('system', {
       })
     );
 
-    this.movesManager.setRigPosition({
-      x: this.scenes[this.actuelScene].rigPos.x
-        ? this.scenes[this.actuelScene].rigPos.x
-        : -0.38,
-      y: 0,
-      z: this.scenes[this.actuelScene].rigPos.z
-        ? this.scenes[this.actuelScene].rigPos.z
-        : 0.5,
-    });
+    if (
+      this.movesManager.savedPosition &&
+      this.movesManager.savedPosition.scene === this.actuelScene
+    ) {
+      this.movesManager.setRigPosition({
+        x: this.movesManager.savedPosition.x,
+        y: 0,
+        z: this.movesManager.savedPosition.y,
+      });
+      this.movesManager.savedPosition = null;
+    } else {
+      this.movesManager.setRigPosition({
+        x: this.scenes[this.actuelScene].rigPos.x
+          ? this.scenes[this.actuelScene].rigPos.x
+          : -0.38,
+        y: 0,
+        z: this.scenes[this.actuelScene].rigPos.z
+          ? this.scenes[this.actuelScene].rigPos.z
+          : 0.5,
+      });
+    }
 
     setTimeout(() => {
       this.movesManager.fixRigPosition();
