@@ -9,6 +9,7 @@ AFRAME.registerComponent('home-car-tour', {
     this.movesManager =
       document.querySelector('a-scene').systems['movesManager'];
     this.object = this.el.object3D;
+    this.textCar = document.querySelector('#home-camera-text');
 
     // Video
     this.videoEl = document
@@ -27,6 +28,7 @@ AFRAME.registerComponent('home-car-tour', {
       this.backgroundSound.pause();
       this.videoEl.pause();
       this.fountainSound.components['sound__fountain'].stopSound();
+      this.phase = 'exit';
     });
 
     this.el.addEventListener(
@@ -67,17 +69,20 @@ AFRAME.registerComponent('home-car-tour', {
     return Math.sqrt(a * a + b * b);
   },
   start: function () {
-    if (this.distanceFromCinema() < 11) {
+    if (this.distanceFromCinema() < 6) {
+      this.textCar.setAttribute('visible', 'true');
       this.movesManager.nextScene = 'cinema';
     }
 
-    if (this.distanceFromVisitorsHouse() < 11) {
+    if (this.distanceFromVisitorsHouse() < 6) {
+      this.textCar.setAttribute('visible', 'true');
       this.movesManager.nextScene = 'visitors';
     }
     if (
-      this.distanceFromVisitorsHouse() >= 11 &&
-      this.distanceFromCinema() >= 11
+      this.distanceFromVisitorsHouse() >= 6 &&
+      this.distanceFromCinema() >= 6
     ) {
+      this.textCar.setAttribute('visible', 'false');
       this.movesManager.nextScene = 'home';
     }
   },

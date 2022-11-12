@@ -6,6 +6,7 @@ AFRAME.registerComponent('cinema-car-tour', {
     this.system = document.querySelector('a-scene').systems['system'];
     this.movesManager =
       document.querySelector('a-scene').systems['movesManager'];
+    this.textCar = document.querySelector('#cinema-camera-text');
 
     // Video
     this.videoEl = document
@@ -25,11 +26,16 @@ AFRAME.registerComponent('cinema-car-tour', {
     window.addEventListener('changeScene', () => {
       this.videoEl.pause();
       this.videoEl.currentTime = 0;
+      this.phase = 'exit';
     });
 
     this.el.addEventListener(
       'start',
       () => {
+        this.textCar.setAttribute('visible', 'true');
+        setTimeout(() => {
+          this.textCar.setAttribute('visible', 'false');
+        }, 10000);
         this.movesManager.nextScene = 'home';
         setTimeout(() => {
           if (!this.videoEl) {

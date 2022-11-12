@@ -9,6 +9,7 @@ AFRAME.registerComponent('visitors-car-tour', {
     this.movesManager =
       document.querySelector('a-scene').systems['movesManager'];
     this.object = this.el.object3D;
+    this.textCar = document.querySelector('#visitors-camera-text');
 
     // En scene activation
     this.sceneChanged = false;
@@ -19,11 +20,13 @@ AFRAME.registerComponent('visitors-car-tour', {
     // Start tour listeners
     window.addEventListener('changeScene', () => {
       this.backgroundSound.pause();
+      this.phase = 'exit';
     });
 
     this.el.addEventListener(
       'start',
       () => {
+        console.log('start');
         // Global sound launch
         this.backgroundSound.play();
         this.phase = 'start';
@@ -40,10 +43,12 @@ AFRAME.registerComponent('visitors-car-tour', {
     return Math.sqrt(a * a + b * b);
   },
   start: function () {
-    if (this.distanceFromHome() < 8) {
+    if (this.distanceFromHome() < 6) {
+      this.textCar.setAttribute('visible', 'true');
       this.movesManager.nextScene = 'home';
     }
-    if (this.distanceFromHome() >= 8) {
+    if (this.distanceFromHome() >= 6) {
+      this.textCar.setAttribute('visible', 'false');
       this.movesManager.nextScene = 'visitors';
     }
   },

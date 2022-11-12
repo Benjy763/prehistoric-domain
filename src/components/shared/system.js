@@ -331,9 +331,9 @@ AFRAME.registerSystem('system', {
       });
     }
 
+    this.setLoading(false);
     setTimeout(() => {
       this.movesManager.fixRigPosition();
-      this.setLoading(false);
     }, 1500);
   },
   // ----- Loading functions --------

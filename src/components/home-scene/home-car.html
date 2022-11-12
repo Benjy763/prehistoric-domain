@@ -5,6 +5,10 @@
       <a-entity id="home-scene-camera" class="camera-entity" camera position="0 0 0" user-height="0"
         fps-look-controls="user-height: 0"
         simple-navmesh-constraint="navmesh:#home-navmesh-el;fall:0;height:1.25;exclude:.home-exclude-navmesh-el">
+        <a-troika-text id="home-camera-text" visible="false" troika-text="color: #d6d6d6" scale="0.15 0.15 0.15"
+          position="-0.00287 -0.25795 -0.8507" value="Press ENTER or TOP trigger to enter"
+          font="/assets/font/AlfaSlabOne-Regular.ttf">
+        </a-troika-text>
         <a-box id="loading-sphere" visible="false" material="blending: none; shader: flat"
           geometry="depth: 1; height: 1; width: 1; primitive: sphere; segmentsHeight: 10; segmentsWidth: 10; radius: 0.1"
           color="#262c28" side="back">

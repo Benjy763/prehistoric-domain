@@ -15,18 +15,21 @@
   <a-image id="visitors-pres" src="#visitors-pres-asset" scale="32 16 10" position="-0.05575 46.56972 -7.50028"
     rotation="-14.21 3.15 0"></a-image>
 </a-entity>
-<a-entity id="visitors-girl-1" animation-mixer="clip: Idle 3" gltf-model="#girl-1-asset"
+<a-entity id="visitors-checkpoint" animation-mixer="clip: Take 001" gltf-model="#checkpoint-asset"
+  position="-28.13816 0.12292 1.95606" rotation="0 110 0" scale="2 3 2"></a-entity>
+
+<a-entity id="visitors-girl-1" class="performance" animation-mixer="clip: Idle 3" gltf-model="#girl-1-asset"
   position="-53.89385 0.23256 11.70721" rotation="0 200 0" scale="1.7 1.7 1.7"></a-entity>
-<a-entity id="visitors-girl-2" animation-mixer="clip: idle" gltf-model="#girl-2-asset"
+<a-entity id="visitors-girl-2" class="performance" animation-mixer="clip: idle" gltf-model="#girl-2-asset"
   position="-14.16627 0.12602 -11.0875" rotation="0 50 0" scale="0.7 0.7 0.7"></a-entity>
-<a-entity id="visitors-men-1" animation-mixer="clip: Rig|new_man_idle; timeScale: 0.4" gltf-model="#men-1-asset"
-  position="-16.33308 0.21851 7.10641" rotation="0 100 0" scale="1.45 1.45 1.45"></a-entity>
-<a-entity id="visitors-men-2" animation-mixer="clip: Rig|new_man_idle; timeScale: 0.6" gltf-model="#men-2-asset"
-  position="6.94106 0.22932 -21.9194" rotation="0 160 0" scale="1.5 1.5 1.5"></a-entity>
-<a-entity id="visitors-men-3" animation-mixer="clip: Rig|new_man_idle; timeScale: 0.8" gltf-model="#men-2-asset"
-  position="-54.17653 0.21434 10.33873" rotation="0 0 0" scale="1.5 1.5 1.5"></a-entity>
-<a-entity id="visitors-men-4" animation-mixer="clip: Rig|new_man_idle; timeScale: 0.2" gltf-model="#men-3-asset"
-  position="-13.7384 0.21434 -11.7427" rotation="0 50 0" scale="1.5 1.5 1.5"></a-entity>
+<a-entity id="visitors-men-1" class="performance" animation-mixer="clip: Rig|new_man_idle; timeScale: 0.4"
+  gltf-model="#men-1-asset" position="-16.33308 0.21851 7.10641" rotation="0 100 0" scale="1.45 1.45 1.45"></a-entity>
+<a-entity id="visitors-men-2" class="performance" animation-mixer="clip: Rig|new_man_idle; timeScale: 0.6"
+  gltf-model="#men-2-asset" position="6.94106 0.22932 -21.9194" rotation="0 160 0" scale="1.5 1.5 1.5"></a-entity>
+<a-entity id="visitors-men-3" class="performance" animation-mixer="clip: Rig|new_man_idle; timeScale: 0.8"
+  gltf-model="#men-2-asset" position="-54.17653 0.21434 10.33873" rotation="0 0 0" scale="1.5 1.5 1.5"></a-entity>
+<a-entity id="visitors-men-4" class="performance" animation-mixer="clip: Rig|new_man_idle; timeScale: 0.2"
+  gltf-model="#men-3-asset" position="-13.7384 0.21434 -11.7427" rotation="0 50 0" scale="1.5 1.5 1.5"></a-entity>
 
 <a-entity id="visitors-turnstiles" gltf-model="#turnstiles-asset" position="-35.03387 1.68944 14.49901"
   rotation="0 -90 0" scale="0.018 0.018 0.018"></a-entity>
@@ -127,23 +130,23 @@
 <a-entity id="visitors-wait-fence-long-5" gltf-model="#wait-fence-long-asset" position="-53.11368 0.11 17.63848"
   rotation="1.69 90 0" scale="0.015 0.015 0.015"></a-entity>
 
-<a-entity id="visitors-fern-1" gltf-model="#forest-fern-1-asset" position="-5.22447 1.42972 -6.47894"
+<a-entity id="visitors-fern-1" class="performance" gltf-model="#forest-fern-1-asset"
+  position="-5.22447 1.42972 -6.47894" rotation="1.69 90 0" scale="2 2 2"></a-entity>
+<a-entity id="visitors-fern-2" class="performance" gltf-model="#forest-fern-1-asset" position="5.47919 1.42972 3.31831"
   rotation="1.69 90 0" scale="2 2 2"></a-entity>
-<a-entity id="visitors-fern-2" gltf-model="#forest-fern-1-asset" position="5.47919 1.42972 3.31831" rotation="1.69 90 0"
-  scale="2 2 2"></a-entity>
-<a-entity id="visitors-fern-3" gltf-model="#forest-fern-1-asset" position="1.98383 1.42972 -7.7993" rotation="1.69 90 0"
-  scale="2 2 2"></a-entity>
-<a-entity id="visitors-low-grass-1" gltf-model="#low-grass-asset" position="-3.52007 1.50136 -9.29724"
+<a-entity id="visitors-fern-3" class="performance" gltf-model="#forest-fern-1-asset" position="1.98383 1.42972 -7.7993"
+  rotation="1.69 90 0" scale="2 2 2"></a-entity>
+<a-entity id="visitors-low-grass-1" class="performance" gltf-model="#low-grass-asset"
+  position="-3.52007 1.50136 -9.29724" rotation="0 -90 0" scale="1 1 1"></a-entity>
+<a-entity id="visitors-low-grass-2" class="performance" gltf-model="#low-grass-asset" position="1.75251 1.50136 7.09173"
+  rotation="0 90 0" scale="1 1 1"></a-entity>
+<a-entity id="visitors-low-grass-3" class="performance" gltf-model="#low-grass-asset" position="6.47033 1.50136 -6.1666"
   rotation="0 -90 0" scale="1 1 1"></a-entity>
-<a-entity id="visitors-low-grass-2" gltf-model="#low-grass-asset" position="1.75251 1.50136 7.09173" rotation="0 90 0"
-  scale="1 1 1"></a-entity>
-<a-entity id="visitors-low-grass-3" gltf-model="#low-grass-asset" position="6.47033 1.50136 -6.1666" rotation="0 -90 0"
-  scale="1 1 1"></a-entity>
-<a-entity id="visitors-low-grass-4" gltf-model="#low-grass-asset" position="9.45465 1.50136 1.18897" rotation="0 180 0"
-  scale="1 1 1"></a-entity>
-<a-entity id="visitors-low-grass-5" gltf-model="#low-grass-asset" position="-8.08038 1.50136 2.49563" rotation="0 90 0"
-  scale="1 1 1"></a-entity>
+<a-entity id="visitors-low-grass-4" class="performance" gltf-model="#low-grass-asset" position="9.45465 1.50136 1.18897"
+  rotation="0 180 0" scale="1 1 1"></a-entity>
+<a-entity id="visitors-low-grass-5" class="performance" gltf-model="#low-grass-asset"
+  position="-8.08038 1.50136 2.49563" rotation="0 90 0" scale="1 1 1"></a-entity>
 <a-entity id="visitors-forest-rock-1" gltf-model="#forest-rock-1-asset" position="-5.52452 1.43035 6.66685"
   rotation="1.69 90 0" scale="0.5 0.5 0.5"></a-entity>
-<a-entity id="visitors-pine-large-1" gltf-model="#forest-pine-large-asset" position="-1.69685 3.89915 -7.37634"
-  rotation="1.69 90 0" scale="0.03 0.03 0.03"></a-entity>
+<a-entity id="visitors-pine-large-1" class="performance" gltf-model="#forest-pine-large-asset"
+  position="-1.69685 3.89915 -7.37634" rotation="1.69 90 0" scale="0.03 0.03 0.03"></a-entity>
