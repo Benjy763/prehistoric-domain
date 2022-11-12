@@ -331,8 +331,8 @@ AFRAME.registerSystem('system', {
       });
     }
 
-    this.setLoading(false);
     setTimeout(() => {
+      this.setLoading(false);
       this.movesManager.fixRigPosition();
     }, 1500);
   },
