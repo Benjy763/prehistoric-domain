@@ -4,8 +4,8 @@ export const MainScenes = {
   home: {
     // Starting scene
     name: 'Main Street',
-    loadingScreen: 'deino-illu.jpg',
-    needPerformance: false,
+    loadingScreen: 'home-illu.jpg',
+    needPerformance: true,
     needLanguage: false,
     mobileCompatible: false,
     selection: 'home',
