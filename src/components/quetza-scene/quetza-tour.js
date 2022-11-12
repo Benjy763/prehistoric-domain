@@ -14,6 +14,7 @@ AFRAME.registerComponent('quetza-car-tour', {
     this.quetza = document.querySelector('#quetza');
     this.object = this.el.object3D;
     this.mainScene = document.getElementById('main-scene');
+    this.textCar = document.querySelector('#quetza-camera-text');
 
     // Dive params
     this.isDiveEnvChanged = false;
@@ -58,7 +59,19 @@ AFRAME.registerComponent('quetza-car-tour', {
     }, 0);
     this.phase = 'exit';
   },
+  checkpointListener: function () {
+    if (this.movesManager.distanceFromPoint('quetza-checkpoint') < 3) {
+      this.textCar.setAttribute('visible', 'true');
+      this.movesManager.nextScene = 'ending';
+    }
+    if (this.movesManager.distanceFromPoint('quetza-checkpoint') >= 3) {
+      this.textCar.setAttribute('visible', 'false');
+      this.movesManager.nextScene = null;
+    }
+  },
   tick: function () {
+    // Checkpoint listener
+    this.checkpointListener();
     // Voice phases
     switch (this.voicePhase) {
       case 'aviary1':

@@ -27,6 +27,11 @@ AFRAME.registerComponent('custom-hand-control', {
           y: this.movesManager.getRigPosition().y,
         };
       }
+      if (this.movesManager.nextScene === 'ending') {
+        this.system.changeEndingScene();
+        this.movesManager.nextScene = null;
+        return;
+      }
       this.system.changeScene(this.movesManager.nextScene);
       this.movesManager.nextScene = null;
     }

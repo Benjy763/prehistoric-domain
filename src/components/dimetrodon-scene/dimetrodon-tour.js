@@ -13,6 +13,7 @@ AFRAME.registerComponent('dimetrodon-car-tour', {
     this.rabbit = document.querySelector('#rabbit');
     this.object = this.el.object3D;
     this.mainScene = document.getElementById('main-scene');
+    this.textCar = document.querySelector('#dimetrodon-camera-text');
 
     // Sounds
     this.ambiant1Sound;
@@ -51,7 +52,19 @@ AFRAME.registerComponent('dimetrodon-car-tour', {
     }, 1000);
     this.phase = 'exit';
   },
+  checkpointListener: function () {
+    if (this.movesManager.distanceFromPoint('dimetrodon-checkpoint') < 3) {
+      this.textCar.setAttribute('visible', 'true');
+      this.movesManager.nextScene = 'ending';
+    }
+    if (this.movesManager.distanceFromPoint('dimetrodon-checkpoint') >= 3) {
+      this.textCar.setAttribute('visible', 'false');
+      this.movesManager.nextScene = null;
+    }
+  },
   tick: function () {
+    // Checkpoint listener
+    this.checkpointListener();
     // Voice phases
     switch (this.voicePhase) {
       case 'aviary1':

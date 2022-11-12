@@ -16,6 +16,7 @@ AFRAME.registerComponent('spino-car-tour', {
     this.birds = document.querySelector('#spino-birds-model');
     this.object = this.el.object3D;
     this.mainScene = document.getElementById('main-scene');
+    this.textCar = document.querySelector('#spino-camera-text');
 
     // Dive params
     this.isDiveEnvChanged = false;
@@ -234,7 +235,19 @@ AFRAME.registerComponent('spino-car-tour', {
       this.swampAudio.volume += 0.005;
     }
   },
+  checkpointListener: function () {
+    if (this.movesManager.distanceFromPoint('spino-checkpoint') < 3) {
+      this.textCar.setAttribute('visible', 'true');
+      this.movesManager.nextScene = 'ending';
+    }
+    if (this.movesManager.distanceFromPoint('spino-checkpoint') >= 3) {
+      this.textCar.setAttribute('visible', 'false');
+      this.movesManager.nextScene = null;
+    }
+  },
   tick: function () {
+    // Checkpoint listener
+    this.checkpointListener();
     // Voice phases
     switch (this.voicePhase) {
       case 'aviary1':

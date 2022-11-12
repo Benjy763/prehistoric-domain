@@ -14,6 +14,7 @@ AFRAME.registerComponent('sarco-car-tour', {
     this.sarcoMale = document.querySelector('#sarco-male');
     this.object = this.el.object3D;
     this.mainScene = document.getElementById('main-scene');
+    this.textCar = document.querySelector('#sarco-camera-text');
 
     // Dive params
     this.isDiveEnvChanged = false;
@@ -130,7 +131,19 @@ AFRAME.registerComponent('sarco-car-tour', {
       this.underwaterAudio.volume += 0.005;
     }
   },
+  checkpointListener: function () {
+    if (this.movesManager.distanceFromPoint('sarco-checkpoint') < 3) {
+      this.textCar.setAttribute('visible', 'true');
+      this.movesManager.nextScene = 'ending';
+    }
+    if (this.movesManager.distanceFromPoint('sarco-checkpoint') >= 3) {
+      this.textCar.setAttribute('visible', 'false');
+      this.movesManager.nextScene = null;
+    }
+  },
   tick: function () {
+    // Checkpoint listener
+    this.checkpointListener();
     // Voice phases
     switch (this.voicePhase) {
       case 'aviary1':

@@ -52,38 +52,21 @@ AFRAME.registerComponent('home-car-tour', {
       false
     );
   },
-  distanceFromCinema: function () {
-    const rigPosition = this.movesManager.getWorldCameraPosition();
-    const cinemaCoordinates = { x: -69, z: -14 };
-    const a = rigPosition.x - cinemaCoordinates.x;
-    const b = rigPosition.z - cinemaCoordinates.z;
-
-    return Math.sqrt(a * a + b * b);
-  },
-  distanceFromVisitorsHouse: function () {
-    const rigPosition = this.movesManager.getWorldCameraPosition();
-    const visitorsCoordinates = { x: -39, z: 13 };
-    const a = rigPosition.x - visitorsCoordinates.x;
-    const b = rigPosition.z - visitorsCoordinates.z;
-
-    return Math.sqrt(a * a + b * b);
-  },
   start: function () {
-    if (this.distanceFromCinema() < 6) {
+    if (this.movesManager.distanceFromPoint('home-checkpoint-cinema') < 6) {
       this.textCar.setAttribute('visible', 'true');
       this.movesManager.nextScene = 'cinema';
     }
-
-    if (this.distanceFromVisitorsHouse() < 6) {
+    if (this.movesManager.distanceFromPoint('home-checkpoint-visitors') < 6) {
       this.textCar.setAttribute('visible', 'true');
       this.movesManager.nextScene = 'visitors';
     }
     if (
-      this.distanceFromVisitorsHouse() >= 6 &&
-      this.distanceFromCinema() >= 6
+      this.movesManager.distanceFromPoint('home-checkpoint-cinema') >= 6 &&
+      this.movesManager.distanceFromPoint('home-checkpoint-visitors') >= 6
     ) {
       this.textCar.setAttribute('visible', 'false');
-      this.movesManager.nextScene = 'home';
+      this.movesManager.nextScene = null;
     }
   },
   tick: function () {

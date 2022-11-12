@@ -49,9 +49,9 @@ export const MainScenes = {
       car: 'visitors-car',
       carReference: null,
       rigPos: {
-        x: -21.292,
+        x: -24.764,
         y: 1,
-        z: -3.743,
+        z: -1.267,
       },
     },
     ending: {
@@ -156,9 +156,9 @@ export const MainScenes = {
       car: 'aviary-car',
       carReference: null,
       rigPos: {
-        x: 1,
+        x: 1.152,
         y: 1,
-        z: 0,
+        z: 0.934,
       },
     },
     ending: {

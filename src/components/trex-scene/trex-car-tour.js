@@ -14,6 +14,7 @@ AFRAME.registerComponent('trex-car-tour', {
     this.screenDefault = document.getElementById('dilo-screen-default');
     this.screenTrex = document.getElementById('trex-screen-trex');
     this.screenPhase = 'trex';
+    this.textCar = document.querySelector('#trex-camera-text');
 
     // Animation phase
     this.sceneChanged = false;
@@ -59,7 +60,19 @@ AFRAME.registerComponent('trex-car-tour', {
     }, 40000);
     this.phase = 'exit';
   },
+  checkpointListener: function () {
+    if (this.movesManager.distanceFromPoint('trex-checkpoint') < 3) {
+      this.textCar.setAttribute('visible', 'true');
+      this.movesManager.nextScene = 'ending';
+    }
+    if (this.movesManager.distanceFromPoint('trex-checkpoint') >= 3) {
+      this.textCar.setAttribute('visible', 'false');
+      this.movesManager.nextScene = null;
+    }
+  },
   tick: function () {
+    // Checkpoint listener
+    this.checkpointListener();
     // Voice phases
     switch (this.voicePhase) {
       case 'trex1':

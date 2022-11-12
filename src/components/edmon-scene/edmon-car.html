@@ -1,9 +1,13 @@
 <a-entity id="edmon-car" gltf-model="#edmon-scene-asset" edmon-car-tour position="-12.1696 1.27071 2.38706"
   rotation="0 20 0" scale="1 1.2 1">
-  <a-entity id="rig" movement-controls="speed: 0.1" position="4.79496 -0.7 1.0998" rotation="0 90 0">
+  <a-entity id="rig" movement-controls="speed: 0.1" position="1.152 -0.6000000000000001 0.934" rotation="0 90 0">
     <a-entity id="hands">
       <a-entity id="edmon-scene-camera" class="camera-entity" camera position="0 0 0" user-height="0"
         fps-look-controls="user-height: 0" simple-navmesh-constraint="navmesh:#edmon-navmesh-el;fall:0;height:1.25;">
+        <a-troika-text id="edmon-camera-text" visible="false" troika-text="color: #d6d6d6" scale="0.15 0.15 0.15"
+          position="0 -0.25795 -0.8507" value="Press ENTER or TOP trigger to leave"
+          font="/assets/font/AlfaSlabOne-Regular.ttf">
+        </a-troika-text>
         <a-box id="loading-sphere" visible="false" material="blending: none; shader: flat"
           geometry="depth: 1; height: 1; width: 1; primitive: sphere; segmentsHeight: 10; segmentsWidth: 10; radius: 0.1"
           color="#262c28" side="back">
@@ -53,7 +57,10 @@
         rotation="-14.21 3.15 0"></a-image>
     </a-entity>
     <a-entity id="edmon-door" gltf-model="#door-asset" position="5.50369 -0.92257 0.13499" rotation="0 -90 0"
-      scale="0.025 0.025 0.025"></a-entity>
+      scale="0.025 0.025 0.025">
+      <a-entity id="edmon-checkpoint" animation-mixer="clip: Take 001" gltf-model="#checkpoint-asset"
+        position="-2.81157 4.98839 30.57404" rotation="0 110 0" scale="18 23 20"></a-entity>
+    </a-entity>
     <a-entity id="edmon-floor" gltf-model="#floor-asset" position="2.80903 -5.56695 -8.9603" rotation="90 0 0"
       scale="2.1 2.1 1"></a-entity>
     <a-box id="edmon-window-box-1" material="color: #0f0f0f" rotation="0 0 0"

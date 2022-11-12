@@ -5,6 +5,9 @@ AFRAME.registerComponent('lagoon-car-tour', {
 
     this.system = document.querySelector('a-scene').systems['system'];
     this.meg = document.querySelector('#meg');
+    this.movesManager =
+      document.querySelector('a-scene').systems['movesManager'];
+    this.textCar = document.querySelector('#lagoon-camera-text');
 
     // Sounds
     this.ambiant1Sound;
@@ -81,7 +84,19 @@ AFRAME.registerComponent('lagoon-car-tour', {
     }, 3000);
     this.phase = 'exit';
   },
+  checkpointListener: function () {
+    if (this.movesManager.distanceFromPoint('lagoon-checkpoint') < 1) {
+      this.textCar.setAttribute('visible', 'true');
+      this.movesManager.nextScene = 'ending';
+    }
+    if (this.movesManager.distanceFromPoint('lagoon-checkpoint') >= 1) {
+      this.textCar.setAttribute('visible', 'false');
+      this.movesManager.nextScene = null;
+    }
+  },
   tick: function () {
+    // Checkpoint listener
+    this.checkpointListener();
     // Voice phases
     switch (this.voicePhase) {
       case 'lagoon1':
@@ -98,9 +113,6 @@ AFRAME.registerComponent('lagoon-car-tour', {
         this.hit();
         break;
       case 'restart':
-        setTimeout(() => {
-          this.phase = 'changeScene';
-        }, 3000);
         break;
       case 'changeScene':
         // Destroy and detach all unecessary objets

@@ -100,12 +100,18 @@ AFRAME.registerSystem('movesManager', {
     }
     cameraRotation.y = newRotation.y;
   },
+  getWorldPosition(element) {
+    if (!element) {
+      return;
+    }
+    const worldPos = new THREE.Vector3();
+    worldPos.setFromMatrixPosition(element.object3D.matrixWorld);
+    return worldPos;
+  },
   getWorldCameraPosition() {
     const actualScene = this.getSystem().getActualSceneObject();
     const cameraEl = document.getElementById(actualScene.camera);
-    const worldPos = new THREE.Vector3();
-    worldPos.setFromMatrixPosition(cameraEl.object3D.matrixWorld);
-    return worldPos;
+    return this.getWorldPosition(cameraEl);
   },
   getCameraPosition() {
     const actualScene = this.getSystem().getActualSceneObject();
@@ -165,6 +171,14 @@ AFRAME.registerSystem('movesManager', {
     }
     const curentRigPos = this.getRigPosition();
     this.setRigPosition({ ...curentRigPos, y: offsetY });
+  },
+  distanceFromPoint(pointId) {
+    const pointIdPos = this.getWorldPosition(document.getElementById(pointId));
+    const rigPosition = this.getWorldCameraPosition();
+    const a = rigPosition.x - pointIdPos.x;
+    const b = rigPosition.z - pointIdPos.z;
+
+    return Math.sqrt(a * a + b * b);
   },
   // ----- Curve functions --------
   // Move an object on the given curve according to given speed

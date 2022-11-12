@@ -34,22 +34,51 @@ AFRAME.registerComponent('visitors-car-tour', {
       false
     );
   },
-  distanceFromHome: function () {
-    const rigPosition = this.movesManager.getWorldCameraPosition();
-    const homeCoordinates = { x: -26, z: 2.5 };
-    const a = rigPosition.x - homeCoordinates.x;
-    const b = rigPosition.z - homeCoordinates.z;
-
-    return Math.sqrt(a * a + b * b);
-  },
   start: function () {
-    if (this.distanceFromHome() < 6) {
+    if (this.movesManager.distanceFromPoint('visitors-main-checkpoint') < 6) {
       this.textCar.setAttribute('visible', 'true');
       this.movesManager.nextScene = 'home';
     }
-    if (this.distanceFromHome() >= 6) {
+    if (
+      this.movesManager.distanceFromPoint('visitors-door-checkpoint-cm') < 4
+    ) {
+      this.textCar.setAttribute('visible', 'true');
+      this.movesManager.nextScene = 'ending';
+    }
+    if (
+      this.movesManager.distanceFromPoint('visitors-door-checkpoint-as') < 4
+    ) {
+      this.textCar.setAttribute('visible', 'true');
+      this.movesManager.nextScene = 'ending';
+    }
+    if (
+      this.movesManager.distanceFromPoint('visitors-door-checkpoint-gc') < 4
+    ) {
+      this.textCar.setAttribute('visible', 'true');
+      this.movesManager.nextScene = 'ending';
+    }
+    if (
+      this.movesManager.distanceFromPoint('visitors-door-checkpoint-st') < 4
+    ) {
+      this.textCar.setAttribute('visible', 'true');
+      this.movesManager.nextScene = 'ending';
+    }
+    if (
+      this.movesManager.distanceFromPoint('visitors-door-checkpoint-vw') < 4
+    ) {
+      this.textCar.setAttribute('visible', 'true');
+      this.movesManager.nextScene = 'ending';
+    }
+    if (
+      this.movesManager.distanceFromPoint('visitors-main-checkpoint') >= 6 &&
+      this.movesManager.distanceFromPoint('visitors-door-checkpoint-cm') >= 4 &&
+      this.movesManager.distanceFromPoint('visitors-door-checkpoint-as') >= 4 &&
+      this.movesManager.distanceFromPoint('visitors-door-checkpoint-gc') >= 4 &&
+      this.movesManager.distanceFromPoint('visitors-door-checkpoint-st') >= 4 &&
+      this.movesManager.distanceFromPoint('visitors-door-checkpoint-vw') >= 4
+    ) {
       this.textCar.setAttribute('visible', 'false');
-      this.movesManager.nextScene = 'visitors';
+      this.movesManager.nextScene = null;
     }
   },
   tick: function () {

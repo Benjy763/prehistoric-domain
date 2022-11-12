@@ -16,6 +16,7 @@ AFRAME.registerComponent('gate-car-tour', {
     this.bigDoor = document.getElementById('gate-big-door');
     this.directLight1 = document.getElementById('gate-light-2');
     this.directLight2 = document.getElementById('gate-light-3');
+    this.textCar = document.querySelector('#gate-camera-text');
     this.light1Intensity = 2;
     this.light2Intensity = 0;
     this.envLights = document.getElementById('gate-ambiant-light');
@@ -86,6 +87,9 @@ AFRAME.registerComponent('gate-car-tour', {
     this.el.addEventListener(
       'start',
       () => {
+        // Manage changing scene trigger
+        this.movesManager.nextScene = 'ending';
+
         // Global sound launch
         document.getElementById('jungle-asset').play();
         // Get voice from system when init

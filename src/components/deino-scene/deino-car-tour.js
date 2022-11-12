@@ -7,6 +7,7 @@ AFRAME.registerComponent('deino-car-tour', {
     this.movesManager =
       document.querySelector('a-scene').systems['movesManager'];
     this.deino = document.querySelector('#deino');
+    this.textCar = document.querySelector('#deino-camera-text');
 
     // Tour Path
     const curve = new THREE.SplineCurve([
@@ -37,7 +38,19 @@ AFRAME.registerComponent('deino-car-tour', {
     }, 20000);
     this.phase = 'exit';
   },
+  checkpointListener: function () {
+    if (this.movesManager.distanceFromPoint('deino-checkpoint') < 3) {
+      this.textCar.setAttribute('visible', 'true');
+      this.movesManager.nextScene = 'ending';
+    }
+    if (this.movesManager.distanceFromPoint('deino-checkpoint') >= 3) {
+      this.textCar.setAttribute('visible', 'false');
+      this.movesManager.nextScene = null;
+    }
+  },
   tick: function () {
+    // Checkpoint listener
+    this.checkpointListener();
     // Animation phases
     switch (this.phase) {
       case 'start':

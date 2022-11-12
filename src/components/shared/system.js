@@ -255,7 +255,7 @@ AFRAME.registerSystem('system', {
     }
   },
   changeEndingScene: function () {
-    this.changeAtmosphere('#000', 0.1);
+    this.changeAtmosphere('#262c28', 0.1);
     setTimeout(() => {
       window.location.href = 'https://map.prehistoricdomain.com/';
     }, 8000);

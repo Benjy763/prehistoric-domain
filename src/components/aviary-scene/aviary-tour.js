@@ -11,6 +11,7 @@ AFRAME.registerComponent('aviary-car-tour', {
       document.querySelector('a-scene').systems['movesManager'];
     this.ptera = document.querySelector('#pteranodon');
     this.ptera2 = document.querySelector('#pteranodon-2');
+    this.textCar = document.querySelector('#aviary-camera-text');
 
     // Sounds
     this.ambiant1Sound;
@@ -104,7 +105,19 @@ AFRAME.registerComponent('aviary-car-tour', {
     }, 8000);
     this.phase = 'exit';
   },
+  checkpointListener: function () {
+    if (this.movesManager.distanceFromPoint('aviary-checkpoint') < 3) {
+      this.textCar.setAttribute('visible', 'true');
+      this.movesManager.nextScene = 'ending';
+    }
+    if (this.movesManager.distanceFromPoint('aviary-checkpoint') >= 3) {
+      this.textCar.setAttribute('visible', 'false');
+      this.movesManager.nextScene = null;
+    }
+  },
   tick: function () {
+    // Checkpoint listener
+    this.checkpointListener();
     // Voice phases
     switch (this.voicePhase) {
       case 'aviary1':

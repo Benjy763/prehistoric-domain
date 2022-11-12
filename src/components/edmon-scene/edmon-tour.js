@@ -11,6 +11,7 @@ AFRAME.registerComponent('edmon-car-tour', {
     this.edmonMale = document.querySelector('#edmon-male');
     this.edmonFemale = document.querySelector('#edmon-female');
     this.object = this.el.object3D;
+    this.textCar = document.querySelector('#edmon-camera-text');
 
     // Sounds
     this.ambiant1Sound;
@@ -54,7 +55,19 @@ AFRAME.registerComponent('edmon-car-tour', {
     }, 3000);
     this.phase = 'exit';
   },
+  checkpointListener: function () {
+    if (this.movesManager.distanceFromPoint('edmon-checkpoint') < 3) {
+      this.textCar.setAttribute('visible', 'true');
+      this.movesManager.nextScene = 'ending';
+    }
+    if (this.movesManager.distanceFromPoint('edmon-checkpoint') >= 3) {
+      this.textCar.setAttribute('visible', 'false');
+      this.movesManager.nextScene = null;
+    }
+  },
   tick: function () {
+    // Checkpoint listener
+    this.checkpointListener();
     // Voice phases
     switch (this.voicePhase) {
       case 'aviary1':
