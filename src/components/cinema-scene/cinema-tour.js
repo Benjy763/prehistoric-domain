@@ -37,6 +37,7 @@ AFRAME.registerComponent('cinema-car-tour', {
           }
           this.el.object3D.visible = true;
           this.videoEl.play();
+          this.videoEl.volume = 0.7;
         }, 3000);
 
         this.phase = 'start';

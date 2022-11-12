@@ -164,8 +164,12 @@ AFRAME.registerComponent('spino-car-tour', {
       // Show all needed elements
       let surfaceEls = document.getElementsByClassName('spino-surface');
       for (let i = 0; i < surfaceEls.length; i++) {
-        if (!surfaceEls[i].classList.contains('performance')) {
-          surfaceEls[i].setAttribute('visible', true);
+        surfaceEls[i].setAttribute('visible', true);
+        if (
+          this.system.performance &&
+          surfaceEls[i].classList.contains('performance')
+        ) {
+          surfaceEls[i].setAttribute('visible', false);
         }
       }
       // Hide all useless elements

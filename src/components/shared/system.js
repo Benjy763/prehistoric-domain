@@ -40,6 +40,7 @@ AFRAME.registerSystem('system', {
     this.tourStarted = false;
     this.vr = false;
     this.canRecenter = false;
+    this.performance = false;
 
     const userAgentDataPlatform = window.navigator.userAgentData
       ? SupportedPlatform.includes(window.navigator.userAgentData.platform)
@@ -400,6 +401,7 @@ AFRAME.registerSystem('system', {
     this.language = 'en';
   },
   toggle: function (className, displayState) {
+    this.performance = displayState;
     let elements = document.getElementsByClassName(className);
     for (let i = 0; i < elements.length; i++) {
       elements[i].setAttribute('visible', displayState);
