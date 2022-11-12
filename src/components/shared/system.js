@@ -271,7 +271,6 @@ AFRAME.registerSystem('system', {
     });
   },
   renderingScene: function () {
-    console.log('loading start');
     this.setLoading();
     // Select camera scene to launch event
     const cameraScene = document.getElementById(
