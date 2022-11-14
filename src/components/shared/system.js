@@ -412,7 +412,7 @@ AFRAME.registerSystem('system', {
     this.language = 'en';
   },
   toggle: function (className, displayState) {
-    this.performance = displayState;
+    this.performance = !displayState;
     let elements = document.getElementsByClassName(className);
     for (let i = 0; i < elements.length; i++) {
       elements[i].setAttribute('visible', displayState);
