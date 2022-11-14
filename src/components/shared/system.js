@@ -413,6 +413,9 @@ AFRAME.registerSystem('system', {
   },
   toggle: function (className, displayState) {
     this.performance = !displayState;
+    if (!this.performance) {
+      return;
+    }
     let elements = document.getElementsByClassName(className);
     for (let i = 0; i < elements.length; i++) {
       elements[i].setAttribute('visible', displayState);

@@ -53,6 +53,7 @@ AFRAME.registerComponent('sarco-car-tour', {
         // Get voice from system when init
         this.voicesarco1Sound = this.system.getVoice('sarco1');
         this.voicePhase = 'sarco1';
+
         setTimeout(() => {
           this.phase = 'start';
         }, 20000);
@@ -88,7 +89,12 @@ AFRAME.registerComponent('sarco-car-tour', {
       // Show all needed elements
       let underwaterEls = document.getElementsByClassName('sarco-underwater');
       for (let i = 0; i < underwaterEls.length; i++) {
-        if (!underwaterEls[i].classList.contains('performance')) {
+        if (
+          !(
+            this.system.performance &&
+            underwaterEls[i].classList.contains('performance')
+          )
+        ) {
           underwaterEls[i].setAttribute('visible', true);
         }
       }

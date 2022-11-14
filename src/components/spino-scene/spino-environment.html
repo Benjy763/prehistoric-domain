@@ -18,7 +18,8 @@
 <a-entity id="spino-tall-bush-7" class="spino-surface" gltf-model="#tall-bush-asset"
   position="-31.99443 -0.56368 -7.08557" rotation="0 50 0" scale="1 1 1"></a-entity>
 
-<a-entity id="spino-palm-tree-long-2" class="spino-surface" gltf-model="#palm-tree-long-asset"
+<a-entity id="palm-tree-long-mesh" class="spino-surface" gltf-model="#palm-tree-long-asset" instanced-mesh></a-entity>
+<a-entity id="spino-palm-tree-long-2" instanced-mesh-member="mesh:#palm-tree-long-mesh"
   position="-24.14184 -1.17123 5.36494" rotation="0 140 0" scale="4 4 4"></a-entity>
 <a-entity id="spino-tall-bush" class="spino-surface" gltf-model="#tall-bush-asset"
   position="-30.55411 -2.80979 21.52154" rotation="0 50 0" scale="1 1 1"></a-entity>
@@ -33,47 +34,69 @@
 
 <a-entity id="spino-tall-bush-13" class="spino-surface" gltf-model="#tall-bush-asset"
   position="-30.60457 -0.78315 14.88435" rotation="0 -40 0" scale="0.4 0.4 0.4"></a-entity>
-<a-entity id="spino-swamp-rock" class="spino-surface" gltf-model="#swamp-rock-asset" position="-31.4323 -0.3816 11.7756"
+
+<a-entity id="swamp-rock-mesh" class="spino-surface" gltf-model="#swamp-rock-asset" instanced-mesh></a-entity>
+<a-entity id="spino-swamp-rock" instanced-mesh-member="mesh:#swamp-rock-mesh" position="-31.4323 -0.3816 11.7756"
   rotation="0 20 0" scale="1.1 1.1 1.1"></a-entity>
-<a-entity id="spino-swamp-rock-2" class="spino-surface" gltf-model="#swamp-rock-asset"
-  position="-33.02383 0.86462 0.47876" rotation="0 180 0" scale="0.5 1 1"></a-entity>
-<a-entity id="spino-swamp-rock-4" class="spino-surface" gltf-model="#swamp-rock-asset"
-  position="-19.69261 -0.47081 -6.30993" rotation="0 90 0" scale="1 1 1"></a-entity>
-<a-entity id="spino-swamp-dead-tree" class="spino-surface dead-tree" gltf-model="#swamp-dead-tree-asset"
+<a-entity id="spino-swamp-rock-2" instanced-mesh-member="mesh:#swamp-rock-mesh" position="-33.02383 0.86462 0.47876"
+  rotation="0 180 0" scale="0.5 1 1"></a-entity>
+<a-entity id="spino-swamp-rock-4" instanced-mesh-member="mesh:#swamp-rock-mesh" position="-19.69261 -0.47081 -6.30993"
+  rotation="0 90 0" scale="1 1 1"></a-entity>
+
+<a-entity id="swamp-dead-tree-mesh" class="spino-surface dead-tree" gltf-model="#swamp-dead-tree-asset" instanced-mesh>
+</a-entity>
+<a-entity id="spino-swamp-dead-tree" class="spino-surface" instanced-mesh-member="mesh:#swamp-dead-tree-mesh"
   position="-9.80222 0.04744 1.87201" rotation="0 -662.24 0" scale="1 1 -1"></a-entity>
-<a-entity id="spino-swamp-dead-tree-2" class="spino-surface dead-tree" gltf-model="#swamp-dead-tree-asset"
+<a-entity id="spino-swamp-dead-tree-2" class="spino-surface" instanced-mesh-member="mesh:#swamp-dead-tree-mesh"
   position="-9.91254 0.07785 -2.44585" rotation="0 90 0" scale="-1 1 -1"></a-entity>
-<a-entity id="spino-swamp-dead-tree-3" class="spino-surface dead-tree" gltf-model="#swamp-dead-tree-asset"
+<a-entity id="spino-swamp-dead-tree-3" class="spino-surface" instanced-mesh-member="mesh:#swamp-dead-tree-mesh"
   position="-28.51888 0.02918 19.41208" rotation="0.83 -45 6.69" scale="1.5 1.5 -1.5"></a-entity>
-<a-entity id="spino-swamp-grass" class="spino-surface performance" gltf-model="#swamp-grass-asset"
-  position="-26.53887 -0.263 1.07055" rotation="0 90 0" scale="0.013 0.013 0.013"></a-entity>
-<a-entity id="spino-swamp-grass-2" class="spino-surface performance" gltf-model="#swamp-grass-asset"
-  position="-25.85294 -0.263 -2.52977" rotation="0 90 0 performance" scale="0.013 0.013 0.013"></a-entity>
-<a-entity id="spino-swamp-grass-3" class="spino-surface performance" gltf-model="#swamp-grass-asset"
-  position="-25.34252 -0.263 11.59103" rotation="0 -50 0" scale="0.013 0.013 0.013"></a-entity>
-<a-entity id="spino-swamp-grass-4" class="spino-surface performance" gltf-model="#swamp-grass-asset"
-  position="-23.91257 -0.263 10.34187" rotation="0 90 0" scale="0.013 0.013 0.013"></a-entity>
-<a-entity id="spino-swamp-grass-5" class="spino-surface performance" gltf-model="#swamp-grass-asset"
-  position="-26.10484 -0.263 -5.57472" rotation="0 90 0" scale="0.013 0.013 0.013"></a-entity>
-<a-entity id="spino-swamp-grass-6" class="spino-surface performance" gltf-model="#swamp-grass-asset"
-  position="-27.50006 -0.263 8.53288" rotation="0 90 0" scale="0.013 0.013 0.013"></a-entity>
-<a-entity id="spino-swamp-grass-7" class="spino-surface performance" gltf-model="#swamp-grass-asset"
-  position="-27.09318 -0.263 11.4302" rotation="0 90 0" scale="0.013 0.013 0.013"></a-entity>
-<a-entity id="spino-swamp-grass-14" class="spino-surface performance" gltf-model="#swamp-grass-asset"
-  position="-24.70209 -0.08444 3.16733" rotation="0 90 0" scale="0.01 0.01 0.01"></a-entity>
-<a-entity id="spino-swamp-grass-8" class="spino-surface performance" gltf-model="#swamp-grass-asset"
-  position="-12.89409 -0.263 13.01801" rotation="0 0 0" scale="0.013 0.013 0.013"></a-entity>
-<a-entity id="spino-swamp-grass-9" class="spino-surface performance" gltf-model="#swamp-grass-asset"
-  position="-15.87825 -0.263 7.93738" rotation="0 90 0" scale="0.013 0.013 0.013"></a-entity>
-<a-entity id="spino-swamp-grass-10" class="spino-surface performance" gltf-model="#swamp-grass-asset"
-  position="-10.87732 -0.263 -0.88561" rotation="0 20 0" scale="0.013 0.013 0.013"></a-entity>
-<a-entity id="spino-swamp-grass-11" class="spino-surface performance" gltf-model="#swamp-grass-asset"
-  position="-13.819 -0.263 0.58309" rotation="0 0 0" scale="0.013 0.013 0.013"></a-entity>
-<a-entity id="spino-swamp-grass-12" class="spino-surface performance" gltf-model="#swamp-grass-asset"
-  position="-13.86975 -0.08444 4.30233" rotation="0 120 0" scale="0.01 0.01 0.01"></a-entity>
-<a-entity id="spino-swamp-grass-13" class="spino-surface performance" gltf-model="#swamp-grass-asset"
-  position="-15.77817 -0.08444 5.46476" rotation="0 -59.99999999999999 0" scale="0.01 0.01 0.01"></a-entity>
-<a-entity id="spino-palm-tree-long" class="spino-surface" gltf-model="#palm-tree-long-asset"
+
+<a-entity id="swamp-grass-surface-mesh" class="spino-surface performance" gltf-model="#swamp-grass-asset"
+  instanced-mesh></a-entity>
+<a-entity id="spino-swamp-grass" class="spino-surface performance"
+  instanced-mesh-member="mesh:#swamp-grass-surface-mesh" position="-26.53887 -0.263 1.07055" rotation="0 90 0"
+  scale="0.013 0.013 0.013"></a-entity>
+<a-entity id="spino-swamp-grass-2" class="spino-surface performance"
+  instanced-mesh-member="mesh:#swamp-grass-surface-mesh" position="-25.85294 -0.263 -2.52977"
+  rotation="0 90 0 performance" scale="0.013 0.013 0.013"></a-entity>
+<a-entity id="spino-swamp-grass-3" class="spino-surface performance"
+  instanced-mesh-member="mesh:#swamp-grass-surface-mesh" position="-25.34252 -0.263 11.59103" rotation="0 -50 0"
+  scale="0.013 0.013 0.013"></a-entity>
+<a-entity id="spino-swamp-grass-4" class="spino-surface performance"
+  instanced-mesh-member="mesh:#swamp-grass-surface-mesh" position="-23.91257 -0.263 10.34187" rotation="0 90 0"
+  scale="0.013 0.013 0.013"></a-entity>
+<a-entity id="spino-swamp-grass-5" class="spino-surface performance"
+  instanced-mesh-member="mesh:#swamp-grass-surface-mesh" position="-26.10484 -0.263 -5.57472" rotation="0 90 0"
+  scale="0.013 0.013 0.013"></a-entity>
+<a-entity id="spino-swamp-grass-6" class="spino-surface performance"
+  instanced-mesh-member="mesh:#swamp-grass-surface-mesh" position="-27.50006 -0.263 8.53288" rotation="0 90 0"
+  scale="0.013 0.013 0.013"></a-entity>
+<a-entity id="spino-swamp-grass-7" class="spino-surface performance"
+  instanced-mesh-member="mesh:#swamp-grass-surface-mesh" position="-27.09318 -0.263 11.4302" rotation="0 90 0"
+  scale="0.013 0.013 0.013"></a-entity>
+<a-entity id="spino-swamp-grass-14" class="spino-surface performance"
+  instanced-mesh-member="mesh:#swamp-grass-surface-mesh" position="-24.70209 -0.08444 3.16733" rotation="0 90 0"
+  scale="0.01 0.01 0.01"></a-entity>
+<a-entity id="spino-swamp-grass-8" class="spino-surface performance"
+  instanced-mesh-member="mesh:#swamp-grass-surface-mesh" position="-12.89409 -0.263 13.01801" rotation="0 0 0"
+  scale="0.013 0.013 0.013"></a-entity>
+<a-entity id="spino-swamp-grass-9" class="spino-surface performance"
+  instanced-mesh-member="mesh:#swamp-grass-surface-mesh" position="-15.87825 -0.263 7.93738" rotation="0 90 0"
+  scale="0.013 0.013 0.013"></a-entity>
+<a-entity id="spino-swamp-grass-10" class="spino-surface performance"
+  instanced-mesh-member="mesh:#swamp-grass-surface-mesh" position="-10.87732 -0.263 -0.88561" rotation="0 20 0"
+  scale="0.013 0.013 0.013"></a-entity>
+<a-entity id="spino-swamp-grass-11" class="spino-surface performance"
+  instanced-mesh-member="mesh:#swamp-grass-surface-mesh" position="-13.819 -0.263 0.58309" rotation="0 0 0"
+  scale="0.013 0.013 0.013"></a-entity>
+<a-entity id="spino-swamp-grass-12" class="spino-surface performance"
+  instanced-mesh-member="mesh:#swamp-grass-surface-mesh" position="-13.86975 -0.08444 4.30233" rotation="0 120 0"
+  scale="0.01 0.01 0.01"></a-entity>
+<a-entity id="spino-swamp-grass-13" class="spino-surface performance"
+  instanced-mesh-member="mesh:#swamp-grass-surface-mesh" position="-15.77817 -0.08444 5.46476"
+  rotation="0 -59.99999999999999 0" scale="0.01 0.01 0.01"></a-entity>
+<a-entity id="spino-palm-tree-long" instanced-mesh-member="mesh:#palm-tree-long-mesh"
   sound__birds="src: #spino-birds; volume: 20" position="-33.00336 -1.17123 -13.12076" rotation="0 140 0" scale="4 4 4">
 </a-entity>
 <a-entity id="spino-birds-model" animation-mixer="clip:  Scene; timeScale: 1" class="spino-surface"
@@ -83,7 +106,6 @@
   rotation="0 -90 0" scale="2.66 -2.56 0.8"></a-entity>
 <a-entity id="spino-under-wall" gltf-model="#under-wall-asset" position="-12.07627 0.06535 4.78764" rotation="0 0 0"
   scale="0.02 -0.02 0.025"></a-entity>
-
 
 <a-entity id="spino-long-sea-plant-1" animation-mixer="clip:  Take 001; startFrame: 400; timeScale: 0.5"
   class="spino-underwater" visible="false" gltf-model="#long-sea-plant-asset" position="-23.65036 -13.38898 11.39674"
@@ -133,47 +155,52 @@
   class="spino-underwater" visible="false" gltf-model="#small-sea-plant-asset" position="-29.38344 -13.3152 16.69337"
   rotation="0 0 0" scale="1 1 1">
 </a-entity>
+<a-entity id="swamp-grass-underwater-mesh" class="spino-underwater performance" visible="false"
+  gltf-model="#swamp-grass-asset" instanced-mesh></a-entity>
 <a-entity id="spino-swamp-grass-101" visible="false" class="spino-underwater performance"
-  gltf-model="#swamp-grass-asset" position="-23.69649 -13.27 2.07659" visible="false" rotation="0 90 0"
+  instanced-mesh-member="mesh:#swamp-grass-underwater-mesh" position="-23.69649 -13.27 2.07659" rotation="0 90 0"
   scale="0.013 0.013 0.013"></a-entity>
-<a-entity id="spino-swamp-grass-102" visible="false" class="spino-underwater performance"
-  gltf-model="#swamp-grass-asset" position="-21.49778 -13.27 -2.98147" visible="false" rotation="0 90 0"
+<a-entity id="spino-swamp-grass-102" class="spino-underwater performance"
+  instanced-mesh-member="mesh:#swamp-grass-underwater-mesh" position="-21.49778 -13.27 -2.98147" rotation="0 90 0"
   scale="0.013 0.013 0.013"></a-entity>
-<a-entity id="spino-swamp-grass-103" visible="false" class="spino-underwater performance"
-  gltf-model="#swamp-grass-asset" position="-25.14409 -13.27 12.08972" visible="false" rotation="0 -50 0"
+<a-entity id="spino-swamp-grass-103" class="spino-underwater performance"
+  instanced-mesh-member="mesh:#swamp-grass-underwater-mesh" position="-25.14409 -13.27 12.08972" rotation="0 -50 0"
   scale="0.013 0.013 0.013"></a-entity>
-<a-entity id="spino-swamp-grass-104" visible="false" class="spino-underwater performance"
-  gltf-model="#swamp-grass-asset" position="-23.91257 -13.27 10.34187" rotation="0 90 0" scale="0.013 0.013 0.013">
+<a-entity id="spino-swamp-grass-104" class="spino-underwater performance"
+  instanced-mesh-member="mesh:#swamp-grass-underwater-mesh" position="-23.91257 -13.27 10.34187" rotation="0 90 0"
+  scale="0.013 0.013 0.013">
 </a-entity>
-<a-entity id="spino-swamp-grass-105" visible="false" class="spino-underwater performance"
-  gltf-model="#swamp-grass-asset" position="-17.65415 -13.27 -5.49608" visible="false" rotation="0 90 0"
+<a-entity id="spino-swamp-grass-105" class="spino-underwater performance"
+  instanced-mesh-member="mesh:#swamp-grass-underwater-mesh" position="-17.65415 -13.27 -5.49608" rotation="0 90 0"
   scale="0.013 0.013 0.013"></a-entity>
-<a-entity id="spino-swamp-grass-106" visible="false" class="spino-underwater performance"
-  gltf-model="#swamp-grass-asset" position="-21.49981 -13.27 3.02415" visible="false" rotation="0 90 0"
+<a-entity id="spino-swamp-grass-106" class="spino-underwater performance"
+  instanced-mesh-member="mesh:#swamp-grass-underwater-mesh" position="-21.49981 -13.27 3.02415" rotation="0 90 0"
   scale="0.013 0.013 0.013"></a-entity>
-<a-entity id="spino-swamp-grass-107" visible="false" class="spino-underwater performance"
-  gltf-model="#swamp-grass-asset" position="-20.79596 -13.27 11.73475" visible="false" rotation="0 90 0"
+<a-entity id="spino-swamp-grass-107" class="spino-underwater performance"
+  instanced-mesh-member="mesh:#swamp-grass-underwater-mesh" position="-20.79596 -13.27 11.73475" rotation="0 90 0"
   scale="0.013 0.013 0.013"></a-entity>
-<a-entity id="spino-swamp-grass-108" visible="false" class="spino-underwater performance"
-  gltf-model="#swamp-grass-asset" position="-12.89409 -13.27 13.01801" visible="false" rotation="0 0 0"
+<a-entity id="spino-swamp-grass-108" class="spino-underwater performance"
+  instanced-mesh-member="mesh:#swamp-grass-underwater-mesh" position="-12.89409 -13.27 13.01801" rotation="0 0 0"
   scale="0.013 0.013 0.013"></a-entity>
-<a-entity id="spino-swamp-grass-109" visible="false" class="spino-underwater performance"
-  gltf-model="#swamp-grass-asset" position="-15.27293 -13.27 5.3579" visible="false" rotation="0 90 0"
+<a-entity id="spino-swamp-grass-109" class="spino-underwater performance"
+  instanced-mesh-member="mesh:#swamp-grass-underwater-mesh" position="-15.27293 -13.27 5.3579" rotation="0 90 0"
   scale="0.013 0.013 0.013"></a-entity>
-<a-entity id="spino-swamp-grass-1010" visible="false" class="spino-underwater performance"
-  gltf-model="#swamp-grass-asset" position="-15.64495 -13.27 2.65833" visible="false" rotation="0 20 0"
+<a-entity id="spino-swamp-grass-1010" class="spino-underwater performance"
+  instanced-mesh-member="mesh:#swamp-grass-underwater-mesh" position="-15.64495 -13.27 2.65833" rotation="0 20 0"
   scale="0.013 0.013 0.013"></a-entity>
-<a-entity id="spino-swamp-grass-1011" visible="false" class="spino-underwater performance"
-  gltf-model="#swamp-grass-asset" position="-15.67657 -13.27 17.36325" visible="false" rotation="0 20 0"
+<a-entity id="spino-swamp-grass-1011" class="spino-underwater performance"
+  instanced-mesh-member="mesh:#swamp-grass-underwater-mesh" position="-15.67657 -13.27 17.36325" rotation="0 20 0"
   scale="0.013 0.013 0.013"></a-entity>
-<a-entity id="spino-swamp-grass-1012" visible="false" class="spino-underwater performance"
-  gltf-model="#swamp-grass-asset" position="-15.00317 -13.27 -8.15576" visible="false" rotation="0 110 0"
+<a-entity id="spino-swamp-grass-1012" class="spino-underwater performance"
+  instanced-mesh-member="mesh:#swamp-grass-underwater-mesh" position="-15.00317 -13.27 -8.15576" rotation="0 110 0"
   scale="0.013 0.013 0.013"></a-entity>
-<a-entity id="spino-swamp-grass-1013" visible="false" class="spino-underwater performance"
-  gltf-model="#swamp-grass-asset" position="-18.44312 -13.27 -9.71585" visible="false" rotation="0 40 0"
+<a-entity id="spino-swamp-grass-1013" class="spino-underwater performance"
+  instanced-mesh-member="mesh:#swamp-grass-underwater-mesh" position="-18.44312 -13.27 -9.71585" rotation="0 40 0"
   scale="0.013 0.013 0.013"></a-entity>
-<a-entity id="spino-swamp-rock-101" class="spino-underwater" gltf-model="#swamp-rock-asset"
+<a-entity id="swamp-rock-underwater-mesh" class="spino-underwater" gltf-model="#swamp-rock-asset" instanced-mesh>
+</a-entity>
+<a-entity id="spino-swamp-rock-101" instanced-mesh-member="mesh:#swamp-rock-underwater-mesh"
   position="-31.19396 -12.17964 -1.62773" rotation="0 180 0" scale="2 2.4 2"
   sound__spinodive="src: #spino-spino-dive; volume: 20"></a-entity>
-<a-entity id="spino-swamp-rock-102" class="spino-underwater" gltf-model="#swamp-rock-asset"
+<a-entity id="spino-swamp-rock-102" instanced-mesh-member="mesh:#swamp-rock-underwater-mesh"
   position="-28.95515 -12.23414 -7.30706" rotation="0 64.65 0" scale="2 2.4 2"></a-entity>

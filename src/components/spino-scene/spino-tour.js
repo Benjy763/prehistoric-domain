@@ -126,7 +126,12 @@ AFRAME.registerComponent('spino-car-tour', {
       // Show all needed elements
       let underwaterEls = document.getElementsByClassName('spino-underwater');
       for (let i = 0; i < underwaterEls.length; i++) {
-        if (!underwaterEls[i].classList.contains('performance')) {
+        if (
+          !(
+            this.system.performance &&
+            underwaterEls[i].classList.contains('performance')
+          )
+        ) {
           underwaterEls[i].setAttribute('visible', true);
         }
       }
