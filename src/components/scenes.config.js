@@ -3,7 +3,7 @@ export const MainScene = process.env.MAIN_SCENE;
 export const MainScenes = {
   home: {
     // Starting scene
-    name: 'Main Street',
+    name: 'Main Area',
     loadingScreen: 'home-illu.jpg',
     needPerformance: true,
     needLanguage: false,
@@ -98,7 +98,7 @@ export const MainScenes = {
   },
   tour: {
     // Starting scene
-    name: 'NIGHT TOUR',
+    name: 'Night Tour',
     loadingScreen: 'brachio-illu.jpg',
     displayDistance: 70,
     needPerformance: true,
@@ -204,7 +204,7 @@ export const MainScenes = {
   },
   cinema: {
     // Starting scene
-    name: 'CINEMA',
+    name: 'Cinema',
     loadingScreen: 'cinema-illu.jpg',
     needPerformance: false,
     needLanguage: false,
