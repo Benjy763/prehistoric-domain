@@ -1,0 +1,8 @@
+Model Information:
+* title:	CheckPoint for Video Game
+* source:	https://sketchfab.com/3d-models/checkpoint-for-video-game-474bcd8b2b94457fb34a42f93fb5947a
+* author:	Aaron3D (https://sketchfab.com/Aarontresde)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works
