@@ -1,7 +1,7 @@
 Model Information:
-* title:	CheckPoint for Video Game
-* source:	https://sketchfab.com/3d-models/checkpoint-for-video-game-474bcd8b2b94457fb34a42f93fb5947a
-* author:	Aaron3D (https://sketchfab.com/Aarontresde)
+* title:	Arrow 2
+* source:	https://sketchfab.com/3d-models/arrow-2-277e0ab180624665b259a962495eb257
+* author:	plaggy (https://sketchfab.com/plaggy)
 
 Model License:
 * license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
