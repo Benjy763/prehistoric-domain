@@ -362,7 +362,7 @@ AFRAME.registerComponent('gate-car-tour', {
       case 'changeScene':
         // Destroy and detach all unecessary objets
         // Change scene
-        this.system.changeScene('ending');
+        this.system.changeEndingScene('ending');
         this.phase = 'exit';
         break;
     }
