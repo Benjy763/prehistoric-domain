@@ -1,6 +1,7 @@
 <a-entity id="spino-car" gltf-model="#swamp-scene-asset" spino-car-tour position="-5.86958 1.02687 4.472"
   rotation="0 0 0" scale="1 1.2 1">
-  <a-entity id="rig" movement-controls="speed: 0.1" position="1.152 -0.6000000000000001 0.934" rotation="0 90 0">
+  <a-entity id="rig" turn-control="controllerListenerId: #controller-data;" movement-controls="speed: 0.1"
+    position="1.152 -0.6000000000000001 0.934" rotation="0 90 0">
     <a-entity id="hands">
       <a-entity id="spino-scene-camera" class="camera-entity" camera position="0 0 0" user-height="0"
         fps-look-controls="user-height: 0" simple-navmesh-constraint="navmesh:#spino-navmesh-el;fall:0;height:1.25;">
@@ -21,14 +22,16 @@
         <a-box id="out-of-limit" position="0 0 0" visible="false" material="blending: none; shader: flat"
           geometry="depth: 1; height: 1; width: 1; primitive: sphere; segmentsHeight: 10; segmentsWidth: 10; radius: 0.1"
           color="#262c28" side="back">
-          <a-image id="limits-logo-1" src="#limits-asset" scale="0.016 0.015 0.015" position="0 0.00011 -0.057"
+          <a-image id="limits-logo-1" src="#limits-asset" scale="0.017 0.015 0.015" position="0 0.00011 -0.057"
             rotation="0 0 0">
           </a-image>
-          <a-image id="limits-logo-2" src="#limits-asset" scale="0.016 0.015 0.015" position="0.06465 0.00001 -0.057"
+          <a-image id="limits-logo-2" src="#limits-asset" scale="0.017 0.015 0.015" position="0.06465 0.00001 -0.057"
             rotation="0 0 0">
           </a-image>
         </a-box>
       </a-entity>
+      <a-entity id="controller-data" controller-listener="leftControllerId:  #leftHand;
+                                 rightControllerId: #rightHand;"></a-entity>
       <a-entity id="leftHand" sphere-collider="objects: a-box" custom-hand-control super-hands
         hand-controls="hand: left; handModelStyle: highPoly; color: #ffcccc"></a-entity>
       <a-entity fps-counter="enabled: true; for90fps: true" id="rightHand" rotation="10 0 0"

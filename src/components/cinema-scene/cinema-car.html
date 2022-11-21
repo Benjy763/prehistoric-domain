@@ -2,7 +2,8 @@
   <a-entity id="interior-light"
     light="type: directional; intensity: 0.67; distance: 1; decay: 1; angle: 180; penumbra: 0"
     position="4.22538 30.09121 3.52884" visible="" rotation="0 0 0"></a-entity>
-  <a-entity id="rig" position="1.152 -0.6000000000000001 0.934" rotation="0 90 0">
+  <a-entity id="rig" turn-control="controllerListenerId: #controller-data;" position="1.152 -0.6000000000000001 0.934"
+    rotation="0 90 0">
     <a-entity id="hands">
       <a-entity id="cinema-scene-camera" class="camera-entity" camera position="0 0 0" user-height="0"
         fps-look-controls="user-height: 0">
@@ -21,6 +22,8 @@
           </a-image>
         </a-box>
       </a-entity>
+      <a-entity id="controller-data" controller-listener="leftControllerId:  #leftHand;
+                                 rightControllerId: #rightHand;"></a-entity>
       <a-entity id="leftHand" sphere-collider="objects: a-box" custom-hand-control super-hands
         hand-controls="hand: left; handModelStyle: highPoly; color: #ffcccc"></a-entity>
       <a-entity fps-counter="enabled: true; for90fps: true" id="rightHand" rotation="10 0 0"

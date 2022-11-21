@@ -10,7 +10,7 @@
     "deploy": "ghpages -p .ghpages && rm -rf .ghpages",
     "lint": "semistandard -v | snazzy",
     "lint:fix": "semistandard --fix",
-    "start": "cross-env MAIN_SCENE='tour' webpack-dev-server --config webpack-dev.config.js --host 0.0.0.0 --progress --colors --hot-only --inline --port 8080",
+    "start": "cross-env MAIN_SCENE='sarco' webpack-dev-server --config webpack-dev.config.js --host 0.0.0.0 --progress --colors --hot-only --inline --port 8080",
     "start:ws": "webpack-dev-server --config webpack-dev-ws.config.js --host 0.0.0.0 --progress --colors --hot-only --inline --port 8080"
   },
   "dependencies": {
