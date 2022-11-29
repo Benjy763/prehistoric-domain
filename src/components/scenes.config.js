@@ -382,8 +382,8 @@ export const MainScenes = {
     assetsId: 'edmon-assets',
     carMarkerForDebug: 0.32,
     color: '#fff',
-    density: [0.015, 0.015],
-    displayDistance: 400,
+    density: [0.006, 0.006],
+    displayDistance: 5000,
     canWalk: true,
     loading: {
       scene: 'loading-scene',

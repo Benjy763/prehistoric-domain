@@ -24,7 +24,7 @@ AFRAME.registerComponent('edmon-car-tour', {
 
     // Start tour listeners
     this.el.addEventListener(
-      'start',
+      'start2',
       () => {
         // Global sound launch
         document.getElementById('cold-asset').play();
