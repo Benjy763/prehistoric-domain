@@ -143,7 +143,7 @@ AFRAME.registerComponent('trex-animation', {
       setTimeout(() => {
         this.el.setAttribute('position', '-21.695 2 -16');
         this.el.setAttribute('rotation', '0 4.900 0.000');
-        this.el.setAttribute('scale', '0.025 0.025 0.025');
+        this.el.setAttribute('scale', '0.023 0.023 0.023');
         this.el.setAttribute('animation-mixer', {
           clip: 'T_Rex_Drink_2',
           loop: true,

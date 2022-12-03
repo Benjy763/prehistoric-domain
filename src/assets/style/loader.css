@@ -78,7 +78,7 @@ body {
 }
 
 #static-loading img.loader-logo {
-  width: 35rem;
+  width: 30rem;
   border: solid 0.125rem #d4c9ba;
   border-radius: 0.625rem;
 }

@@ -446,7 +446,7 @@ export const MainScenes = {
   deino: {
     // Starting scene
     name: 'Deinonychus Viewing Gallery',
-    loadingScreen: 'trex-illu.jpg',
+    loadingScreen: 'deino-illu.jpg',
     needPerformance: false,
     needLanguage: true,
     mobileCompatible: true,
