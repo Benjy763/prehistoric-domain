@@ -13,6 +13,7 @@ AFRAME.registerComponent('deino-animation', {
     this.plant2 = document.querySelector('#deino-forest-plant-2');
     this.plant1TimeScale = 5;
     this.plant2TimeScale = 5;
+    this.dragonFly = document.querySelector('#deino-dragonfly');
 
     // deino run Path
     this.deinoMarker = 0; // Position on the curve
@@ -45,7 +46,32 @@ AFRAME.registerComponent('deino-animation', {
           clip: 'Deinonychus_Jump_Jump',
           timeScale: 0.5,
         });
+        setTimeout(() => {
+          const event = new Event('enter');
+          this.dragonFly.dispatchEvent(event);
+        }, 10000);
         this.phase = 'hidden';
+      },
+      false
+    );
+
+    this.el.addEventListener(
+      'jump',
+      () => {
+        this.plant1.setAttribute('animation-mixer', {
+          clip: 'Take 001',
+          timeScale: this.plant1TimeScale,
+          loop: false,
+        });
+        setTimeout(() => {
+          this.plant2.setAttribute('animation-mixer', {
+            clip: 'Take 001',
+            timeScale: this.plant2TimeScale,
+            loop: false,
+          });
+        }, 200);
+        this.deinoJumpStartAudio.playSound();
+        this.phase = 'jumpEnter';
       },
       false
     );
@@ -54,32 +80,14 @@ AFRAME.registerComponent('deino-animation', {
   hidden: function () {
     this.deinoIntroAudio.playSound();
     this.phase = 'exit';
-    setTimeout(() => {
-      this.plant1.setAttribute('animation-mixer', {
-        clip: 'Take 001',
-        timeScale: this.plant1TimeScale,
-        loop: false,
-      });
-    }, 10000);
-    setTimeout(() => {
-      this.phase = 'waiting';
-      this.plant2.setAttribute('animation-mixer', {
-        clip: 'Take 001',
-        timeScale: this.plant2TimeScale,
-        loop: false,
-      });
-    }, 10200);
-    setTimeout(() => {
-      this.deinoJumpStartAudio.playSound();
-      this.phase = 'jumpEnter';
-    }, 19000);
   },
   waiting: function () {
+    console.log(this.plant1TimeScale);
     if (this.plant1TimeScale <= 0) {
       return;
     }
-    this.plant1TimeScale -= 0.02;
-    this.plant2TimeScale -= 0.02;
+    this.plant1TimeScale -= 0.04;
+    this.plant2TimeScale -= 0.04;
     this.plant1.setAttribute('animation-mixer', {
       clip: 'Take 001',
       timeScale: this.plant1TimeScale,
@@ -93,6 +101,8 @@ AFRAME.registerComponent('deino-animation', {
   },
   jumpEnter: function () {
     if (this.movesManager.truncMarker(this.deinoMarker) > 400) {
+      const event = new Event('flyAgain');
+      this.dragonFly.dispatchEvent(event);
       this.el.setAttribute('animation-mixer', {
         clip: 'Deinonychus_Jump_Landing',
         timeScale: 0.9,
@@ -166,14 +176,16 @@ AFRAME.registerComponent('deino-animation', {
       case 'hidden':
         this.hidden();
         break;
-      case 'waiting':
-        this.waiting();
-        break;
       case 'jumpEnter':
+        this.waiting();
         this.jumpEnter();
         break;
       case 'roar':
+        this.waiting();
         this.roar();
+        break;
+      case 'roaring':
+        this.waiting();
         break;
       case 'jumpEnd':
         this.jumpEnd();
