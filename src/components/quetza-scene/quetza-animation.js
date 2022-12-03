@@ -15,9 +15,9 @@ AFRAME.registerComponent('quetza-animation', {
 
     // Spino run Path
     this.quetzaMarker = 0; // Position on the curve
-    this.quetzaSpeed = 0.0015; // Speed on the curve
+    this.quetzaSpeed = 0.0017; // Speed on the curve
     this.walkCurve = new THREE.SplineCurve([
-      new THREE.Vector2(-20.869, -29.084),
+      new THREE.Vector2(-20.869, -42),
       new THREE.Vector2(-20.869, 0.667),
     ]);
     this.flyCurve = new THREE.CatmullRomCurve3([
@@ -99,17 +99,17 @@ AFRAME.registerComponent('quetza-animation', {
 
     setTimeout(() => {
       this.el.setAttribute('animation-mixer', {
-        clip: 'Quetzal_FlyJump',
+        clip: 'Quetzal_FlyJump_Idle',
         loop: false,
         crossFadeDuration: 0.4,
-        timeScale: 0.5,
+        timeScale: 0.3,
       });
       this.quetzaSpeed = 0;
       this.quetzaMarker = 0;
-    }, 8000);
+    }, 10000);
     setTimeout(() => {
       this.phase = 'fly';
-    }, 8500);
+    }, 11000);
     setTimeout(() => {
       this.el.setAttribute('animation-mixer', {
         clip: 'Quetzal_FlyWave_High',
@@ -117,7 +117,7 @@ AFRAME.registerComponent('quetza-animation', {
         crossFadeDuration: 0.4,
         timeScale: 0.5,
       });
-    }, 8800);
+    }, 11500);
     this.phase = 'exit';
   },
   fly: function () {
