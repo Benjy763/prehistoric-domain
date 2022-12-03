@@ -132,7 +132,7 @@ AFRAME.registerComponent('deino-animation', {
     setTimeout(() => {
       this.el.setAttribute('animation-mixer', {
         clip: 'Deinonychus_Jump_Jump',
-        timeScale: 0.8,
+        timeScale: 0.7,
         crossFadeDuration: 0.1,
       });
       this.deinoJumpEndAudio.playSound();
