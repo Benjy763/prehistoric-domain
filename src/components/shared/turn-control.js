@@ -49,7 +49,6 @@ AFRAME.registerComponent('turn-control', {
     //  joystick must return to rest/center position before turning again
     this.leftX = this.controllerData.leftAxisX;
     this.rightX = this.controllerData.rightAxisX;
-    console.log(this.leftX, this.rightX);
 
     if (Math.abs(this.leftX) < 0.1 && Math.abs(this.rightX) < 0.1) {
       this.turnReady = true;

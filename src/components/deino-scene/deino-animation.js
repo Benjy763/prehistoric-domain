@@ -9,6 +9,10 @@ AFRAME.registerComponent('deino-animation', {
       document.querySelector('a-scene').systems['movesManager'];
     this.phase = '';
     this.car = document.querySelector('#deino-car');
+    this.plant1 = document.querySelector('#deino-forest-plant-1');
+    this.plant2 = document.querySelector('#deino-forest-plant-2');
+    this.plant1TimeScale = 5;
+    this.plant2TimeScale = 5;
 
     // deino run Path
     this.deinoMarker = 0; // Position on the curve
@@ -20,8 +24,8 @@ AFRAME.registerComponent('deino-animation', {
       new THREE.Vector2(2.4, -6.011),
       new THREE.Vector2(2.1, -7.1),
       new THREE.Vector2(2.717, -8.101),
-      new THREE.Vector2(2.275, -9.477),
-      new THREE.Vector2(-1.8, -13.351),
+      new THREE.Vector2(2.275, -10),
+      new THREE.Vector2(-1.8, -15),
     ]);
 
     // Sound
@@ -51,28 +55,58 @@ AFRAME.registerComponent('deino-animation', {
     this.deinoIntroAudio.playSound();
     this.phase = 'exit';
     setTimeout(() => {
+      this.plant1.setAttribute('animation-mixer', {
+        clip: 'Take 001',
+        timeScale: this.plant1TimeScale,
+        loop: false,
+      });
+    }, 10000);
+    setTimeout(() => {
+      this.phase = 'waiting';
+      this.plant2.setAttribute('animation-mixer', {
+        clip: 'Take 001',
+        timeScale: this.plant2TimeScale,
+        loop: false,
+      });
+    }, 10200);
+    setTimeout(() => {
       this.deinoJumpStartAudio.playSound();
       this.phase = 'jumpEnter';
     }, 19000);
   },
+  waiting: function () {
+    if (this.plant1TimeScale <= 0) {
+      return;
+    }
+    this.plant1TimeScale -= 0.02;
+    this.plant2TimeScale -= 0.02;
+    this.plant1.setAttribute('animation-mixer', {
+      clip: 'Take 001',
+      timeScale: this.plant1TimeScale,
+      loop: false,
+    });
+    this.plant2.setAttribute('animation-mixer', {
+      clip: 'Take 001',
+      timeScale: this.plant2TimeScale,
+      loop: false,
+    });
+  },
   jumpEnter: function () {
-    if (this.movesManager.truncMarker(this.deinoMarker) > 300) {
+    if (this.movesManager.truncMarker(this.deinoMarker) > 400) {
       this.el.setAttribute('animation-mixer', {
         clip: 'Deinonychus_Jump_Landing',
-        timeScale: 0.8,
+        timeScale: 0.9,
         crossFadeDuration: 0.2,
       });
-    }
-    if (this.movesManager.truncMarker(this.deinoMarker) > 410) {
       setTimeout(() => {
         this.el.setAttribute('animation-mixer', {
           clip: 'Deinonychus_Idle_Roar',
           timeScale: 0.9,
-          crossFadeDuration: 0.2,
+          crossFadeDuration: 0.1,
         });
         this.deinoRoarAudio.playSound();
         this.phase = 'roar';
-      }, 400);
+      }, 500);
       this.phase = 'exit';
     }
     this.deinoMarker = this.movesManager.moveOnCurve(
@@ -89,7 +123,7 @@ AFRAME.registerComponent('deino-animation', {
       this.el.setAttribute('animation-mixer', {
         clip: 'Deinonychus_Jump_Jump',
         timeScale: 0.8,
-        crossFadeDuration: 0.2,
+        crossFadeDuration: 0.1,
       });
       this.deinoJumpEndAudio.playSound();
       this.phase = 'jumpEnd';
@@ -131,6 +165,9 @@ AFRAME.registerComponent('deino-animation', {
     switch (this.phase) {
       case 'hidden':
         this.hidden();
+        break;
+      case 'waiting':
+        this.waiting();
         break;
       case 'jumpEnter':
         this.jumpEnter();
