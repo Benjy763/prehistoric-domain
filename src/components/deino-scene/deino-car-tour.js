@@ -24,6 +24,8 @@ AFRAME.registerComponent('deino-car-tour', {
     this.el.addEventListener(
       'start',
       () => {
+        // Global sound launch
+        document.getElementById('jungle-asset').play();
         this.voicedeinoSound = this.system.getVoice('deino');
         this.phase = 'start';
       },
@@ -35,7 +37,7 @@ AFRAME.registerComponent('deino-car-tour', {
     setTimeout(() => {
       const event = new Event('enter');
       this.deino.dispatchEvent(event);
-    }, 5000);
+    }, 12000);
     this.phase = 'exit';
   },
   checkpointListener: function () {

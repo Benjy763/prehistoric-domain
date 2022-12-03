@@ -34,10 +34,12 @@ AFRAME.registerComponent('dragonfly-animation', {
     this.el.addEventListener(
       'enter',
       () => {
+        this.dragonflyAudio = this.el.components['sound__dragonfly'];
         this.el.setAttribute('animation-mixer', {
           clip: 'Armature.001|Take 001|BaseLayer.001',
           timeScale: this.dragonFlyTimeScale,
         });
+        this.dragonflyAudio.playSound();
         this.phase = 'fly';
       },
       false
@@ -50,6 +52,7 @@ AFRAME.registerComponent('dragonfly-animation', {
           clip: 'Armature.001|Take 001|BaseLayer.001',
           timeScale: this.dragonFlyTimeScale,
         });
+        this.dragonflyAudio.playSound();
         this.phase = 'flyAgain';
       },
       false
@@ -72,6 +75,7 @@ AFRAME.registerComponent('dragonfly-animation', {
       }, 8000);
       this.dragonflyMarker = 0;
       this.dragonflySpeed = 0.01;
+      this.dragonflyAudio.stopSound();
       this.phase = 'stopFlying';
     }
   },
@@ -100,6 +104,7 @@ AFRAME.registerComponent('dragonfly-animation', {
     );
 
     if (this.movesManager.truncMarker(this.dragonflyMarker) > 950) {
+      this.dragonflyAudio.stopSound();
       this.phase = 'exit';
     }
   },
