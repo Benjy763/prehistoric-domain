@@ -11,10 +11,10 @@ AFRAME.registerComponent('quetza-car-tour', {
     ).object3D.position;
     this.movesManager =
       document.querySelector('a-scene').systems['movesManager'];
-    this.quetza = document.querySelector('#quetza');
     this.object = this.el.object3D;
     this.mainScene = document.getElementById('main-scene');
     this.textCar = document.querySelector('#quetza-camera-text');
+    this.raptor = document.querySelector('#velociraptor');
 
     // Dive params
     this.isDiveEnvChanged = false;
@@ -55,8 +55,8 @@ AFRAME.registerComponent('quetza-car-tour', {
     setTimeout(() => {
       // Trigger Quetza animation
       const event = new Event('enter');
-      this.quetza.dispatchEvent(event);
-    }, 0);
+      this.raptor.dispatchEvent(event);
+    }, 5000);
     this.phase = 'exit';
   },
   checkpointListener: function () {
