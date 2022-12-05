@@ -60,7 +60,7 @@ AFRAME.registerComponent('dimetrodon-animation', {
           clip: 'Animation',
           loop: true,
           crossFadeDuration: 1,
-          timeScale: 1.5,
+          timeScale: 1.6,
         });
         this.dimeRunAudio.playSound();
         this.dimeWalkAudio.stopSound();
@@ -90,7 +90,7 @@ AFRAME.registerComponent('dimetrodon-animation', {
       this.dimetrodonSpeed
     );
 
-    if (this.dimetrodonSpeed < 0.003) {
+    if (this.dimetrodonSpeed < 0.004) {
       this.dimetrodonSpeed += 0.0002;
     }
 

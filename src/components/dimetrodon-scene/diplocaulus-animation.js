@@ -1,4 +1,4 @@
-AFRAME.registerComponent('rabbit-animation', {
+AFRAME.registerComponent('diplocaulus-animation', {
   schema: {},
   init: function () {
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
@@ -11,10 +11,11 @@ AFRAME.registerComponent('rabbit-animation', {
     this.dimetrodon = document.getElementById('dimetrodon');
     this.dimetrodon2 = document.getElementById('dimetrodon-2');
     this.phase = '';
+    this.dimetrodon2Started = false;
 
     // Rabbit run Path
     this.rabbitMarker = 0; // Position on the curve
-    this.rabbitSpeed = 0.0016; // Speed on the curve
+    this.rabbitSpeed = 0.00025; // Speed on the curve
     this.rabbitCurve = new THREE.SplineCurve([
       new THREE.Vector2(-18.495, -0.607),
       new THREE.Vector2(-22.077, -0.806),
@@ -35,10 +36,10 @@ AFRAME.registerComponent('rabbit-animation', {
         this.rabbitCryAudio = this.el.components['sound__rabbitcry'];
 
         this.el.setAttribute('animation-mixer', {
-          clip: 'Run_Fast',
+          clip: 'Walk',
           loop: true,
           crossFadeDuration: 0.4,
-          timeScale: 0.7,
+          timeScale: 1,
         });
         this.rabbitWalkAudio.playSound();
         this.phase = 'enterWalk';
@@ -55,12 +56,21 @@ AFRAME.registerComponent('rabbit-animation', {
       this.rabbitSpeed
     );
 
+    if (
+      this.movesManager.truncMarker(this.rabbitMarker) > 380 &&
+      !this.dimetrodon2Started
+    ) {
+      const event = new Event('enterWalk');
+      this.dimetrodon2.dispatchEvent(event);
+      this.dimetrodon2Started = true;
+    }
+
     if (this.movesManager.truncMarker(this.rabbitMarker) > 400) {
       this.el.setAttribute('animation-mixer', {
-        clip: 'All',
+        clip: 'LandAction2_Broadcast',
         loop: true,
         crossFadeDuration: 0.4,
-        timeScale: 1,
+        timeScale: 0.2,
       });
       this.rabbitWalkAudio.stopSound();
       this.phase = 'lookAround';
@@ -70,21 +80,16 @@ AFRAME.registerComponent('rabbit-animation', {
     setTimeout(() => {
       // Trigger Rabbit animation
       const event = new Event('enterWalk');
-      this.dimetrodon2.dispatchEvent(event);
-    }, 2000);
-    setTimeout(() => {
-      // Trigger Rabbit animation
-      const event = new Event('enterWalk');
       this.dimetrodon.dispatchEvent(event);
     }, 13000);
     setTimeout(() => {
       this.el.setAttribute('animation-mixer', {
-        clip: 'Run_Fast',
+        clip: 'Run',
         loop: true,
         crossFadeDuration: 0.4,
-        timeScale: 1.2,
+        timeScale: 1,
       });
-      this.rabbitSpeed = 0.005;
+      this.rabbitSpeed = 0.0042;
       this.rabbitCryAudio.playSound();
       this.phase = 'runFast';
       const event = new Event('walkFast');
