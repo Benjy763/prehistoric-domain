@@ -305,7 +305,7 @@ export const MainScenes = {
     // Starting scene
     name: 'Quetzalcoatlus Viewing Gallery',
     loadingScreen: 'quetza-illu.jpg',
-    needPerformance: false,
+    needPerformance: true,
     needLanguage: true,
     mobileCompatible: true,
     selection: 'quetza',

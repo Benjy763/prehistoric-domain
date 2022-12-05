@@ -41,11 +41,11 @@ AFRAME.registerComponent('quetza-car-tour', {
 
         // Get sounds
         // Get voice from system when init
-        this.voicequetza1Sound = this.system.getVoice('quetza1');
-        this.voicePhase = 'quetza1';
+        this.voiceQuetzaSound = this.system.getVoice('quetza');
+        this.voicePhase = 'quetza';
         setTimeout(() => {
           this.phase = 'start';
-        }, 5000);
+        }, 20000);
       },
       false
     );
@@ -74,8 +74,8 @@ AFRAME.registerComponent('quetza-car-tour', {
     this.checkpointListener();
     // Voice phases
     switch (this.voicePhase) {
-      case 'aviary1':
-        this.voiceAviary1Sound.play();
+      case 'quetza':
+        this.voiceQuetzaSound.play();
         this.voicePhase = 'exit';
         break;
     }

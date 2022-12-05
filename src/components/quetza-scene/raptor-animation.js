@@ -13,10 +13,11 @@ AFRAME.registerComponent('raptor-animation', {
     this.phase = '';
     this.animationPhase = '';
     this.quetza = document.querySelector('#quetza');
+    this.roarSoundPlayed = false;
 
     // Raptor run Path
     this.raptorMarker = 0; // Position on the curve
-    this.raptorSpeed = 0.0004; // Speed on the curve
+    this.raptorSpeed = 0.00042; // Speed on the curve
     this.walkCurve = new THREE.SplineCurve([
       new THREE.Vector2(-38.475, 22.371),
       new THREE.Vector2(-24.357, 8.74),
@@ -30,12 +31,18 @@ AFRAME.registerComponent('raptor-animation', {
     this.el.addEventListener(
       'enter',
       () => {
+        // Load sounds
+        this.raptorWalkAudio = this.el.components['sound__raptorwalk'];
+        this.raptorRunAudio = this.el.components['sound__raptorrun'];
+        this.quetzaRoar1Audio = this.quetza.components['sound__quetzaroar1'];
+
         this.el.setAttribute('animation-mixer', {
           clip: 'Walk',
           loop: true,
           crossFadeDuration: 0.4,
           timeScale: this.raptorTimeScale,
         });
+        this.raptorWalkAudio.playSound();
         this.phase = 'walk';
       },
       false
@@ -49,6 +56,14 @@ AFRAME.registerComponent('raptor-animation', {
       this.raptorMarker,
       this.raptorSpeed
     );
+
+    if (
+      this.movesManager.truncMarker(this.raptorMarker) > 380 &&
+      !this.roarSoundPlayed
+    ) {
+      this.quetzaRoar1Audio.playSound();
+      this.roarSoundPlayed = true;
+    }
 
     if (this.movesManager.truncMarker(this.raptorMarker) > 400) {
       this.raptorSpeed -= 0.0001;
@@ -68,6 +83,8 @@ AFRAME.registerComponent('raptor-animation', {
         0.0004
       );
       this.raptorSpeed = 0.004;
+      this.raptorWalkAudio.stopSound();
+      this.raptorRunAudio.playSound();
       this.phase = 'walkAgain';
       // Trigger Quetza animation
       const event = new Event('enter');
@@ -108,6 +125,7 @@ AFRAME.registerComponent('raptor-animation', {
     );
 
     if (this.movesManager.truncMarker(this.raptorMarker) > 900) {
+      this.raptorRunAudio.stopSound();
       this.phase = 'exit';
     }
   },

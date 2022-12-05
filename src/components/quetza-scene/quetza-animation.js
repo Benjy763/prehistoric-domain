@@ -38,12 +38,20 @@ AFRAME.registerComponent('quetza-animation', {
     this.el.addEventListener(
       'enter',
       () => {
+        // Load sounds
+        this.quetzaFlyAudio = this.el.components['sound__quetzafly'];
+        this.quetzaFlyStartAudio = this.el.components['sound__quetzaflystart'];
+        this.quetzaRoar3Audio = this.el.components['sound__quetzaroar3'];
+        this.quetzaSnoring1Audio = this.el.components['sound__quetzasnoring1'];
+        this.quetzaWalkAudio = this.el.components['sound__quetzawalk'];
+
         this.el.setAttribute('animation-mixer', {
           clip: 'Quetzal_Walk_InPlace',
           loop: true,
           crossFadeDuration: 0.4,
           timeScale: 0.8,
         });
+        this.quetzaWalkAudio.playSound();
         this.phase = 'walk';
       },
       false
@@ -62,6 +70,8 @@ AFRAME.registerComponent('quetza-animation', {
       this.quetzaSpeed -= 0.0001;
     }
     if (this.quetzaSpeed <= 0) {
+      this.quetzaWalkAudio.stopSound();
+      this.quetzaRoar3Audio.playSound();
       this.el.setAttribute('animation-mixer', {
         clip: 'Quetzal_Roar',
         loop: true,
@@ -98,6 +108,7 @@ AFRAME.registerComponent('quetza-animation', {
     });
 
     setTimeout(() => {
+      this.quetzaFlyStartAudio.playSound();
       this.el.setAttribute('animation-mixer', {
         clip: 'Quetzal_FlyJump_Idle',
         loop: false,
@@ -115,7 +126,7 @@ AFRAME.registerComponent('quetza-animation', {
         clip: 'Quetzal_FlyWave_High',
         loop: false,
         crossFadeDuration: 0.4,
-        timeScale: 0.5,
+        timeScale: 0.8,
       });
     }, 11500);
     this.phase = 'exit';
@@ -147,6 +158,7 @@ AFRAME.registerComponent('quetza-animation', {
         this.quetzaSpeed = 0.003;
         this.quetzaMarker = 0;
         this.el.setAttribute('scale', '0.017 0.017 0.017');
+        this.quetzaFlyAudio.playSound();
         this.phase = 'flyBack';
       }, 5000);
       this.phase = 'exit';
