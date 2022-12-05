@@ -8,6 +8,7 @@ AFRAME.registerComponent('deino-car-tour', {
       document.querySelector('a-scene').systems['movesManager'];
     this.deino = document.querySelector('#deino');
     this.textCar = document.querySelector('#deino-camera-text');
+    this.voiceDeinoSound = 'stop';
 
     // Tour Path
     const curve = new THREE.SplineCurve([
@@ -24,6 +25,11 @@ AFRAME.registerComponent('deino-car-tour', {
     this.el.addEventListener(
       'start',
       () => {
+        // Get sounds
+        // Get voice from system when init
+        this.voiceDeinoSound = this.system.getVoice('deino');
+        this.voicePhase = 'deino';
+
         // Global sound launch
         document.getElementById('jungle-asset').play();
         this.voicedeinoSound = this.system.getVoice('deino');
@@ -37,7 +43,7 @@ AFRAME.registerComponent('deino-car-tour', {
     setTimeout(() => {
       const event = new Event('enter');
       this.deino.dispatchEvent(event);
-    }, 12000);
+    }, 35000);
     this.phase = 'exit';
   },
   checkpointListener: function () {
@@ -51,6 +57,13 @@ AFRAME.registerComponent('deino-car-tour', {
     }
   },
   tick: function () {
+    // Voice phases
+    switch (this.voicePhase) {
+      case 'deino':
+        this.voiceDeinoSound.play();
+        this.voicePhase = 'exit';
+        break;
+    }
     // Checkpoint listener
     this.checkpointListener();
     // Animation phases

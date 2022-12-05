@@ -2,6 +2,7 @@ export const Languages = {
   selection: 'en',
   en: {
     aviary1: 'voice-aviary1-sound-en',
+    deino: 'voice-deino-sound-en',
     dilo: 'voice-dilo-sound-en',
     cinema1: 'voice-cinema1-sound-en',
     gate1: 'voice-gate1-sound-en',
@@ -18,6 +19,7 @@ export const Languages = {
   },
   fr: {
     aviary1: 'voice-aviary1-sound-fr',
+    deino: 'voice-deino-sound-fr',
     dilo: 'voice-dilo-sound-fr',
     cinema1: 'voice-cinema1-sound-fr',
     gate1: 'voice-gate1-sound-fr',
