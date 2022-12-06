@@ -97,6 +97,7 @@ AFRAME.registerComponent('gate-car-tour', {
         this.voiceGate2Sound = this.system.getVoice('gate2');
         this.voiceGate3Sound = this.system.getVoice('gate3');
         this.voiceGate4Sound = this.system.getVoice('gate4');
+        this.voiceGate5Sound = this.system.getVoice('gate5');
 
         this.phase = 'turnLights';
       },
@@ -328,6 +329,12 @@ AFRAME.registerComponent('gate-car-tour', {
       case 'gate4':
         if (this.movesManager.truncMarker(this.carControls.carMarker) > 555) {
           this.voiceGate4Sound.play();
+          this.voicePhase = 'gate5';
+        }
+        break;
+      case 'gate5':
+        if (this.movesManager.truncMarker(this.carControls.carMarker) > 800) {
+          this.voiceGate5Sound.play();
           this.voicePhase = 'end';
         }
         break;

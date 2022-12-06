@@ -51,12 +51,12 @@ AFRAME.registerComponent('sarco-car-tour', {
         this.ambiant1Sound =
           document.getElementById('sarco-male').components['sound__ambiant1'];
         // Get voice from system when init
-        this.voicesarco1Sound = this.system.getVoice('sarco1');
-        this.voicePhase = 'sarco1';
+        this.voiceSarcoSound = this.system.getVoice('sarco');
+        this.voicePhase = 'sarco';
 
         setTimeout(() => {
           this.phase = 'start';
-        }, 20000);
+        }, 40000);
       },
       false
     );
@@ -152,8 +152,8 @@ AFRAME.registerComponent('sarco-car-tour', {
     this.checkpointListener();
     // Voice phases
     switch (this.voicePhase) {
-      case 'aviary1':
-        this.voiceAviary1Sound.play();
+      case 'sarco':
+        this.voiceSarcoSound.play();
         this.voicePhase = 'exit';
         break;
     }

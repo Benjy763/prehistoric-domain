@@ -307,10 +307,10 @@ AFRAME.registerComponent('spino-female-animation', {
           crossFadeDuration: 0.4,
           timeScale: 1,
         });
-        this.spinoMale.object3D.position.x = -27.473;
+        this.spinoMale.object3D.position.x = -51.189;
         this.spinoMale.object3D.position.y = -1.235;
-        this.spinoMale.object3D.position.z = 8.252;
-        this.spinoMale.object3D.rotation.y = -1.92;
+        this.spinoMale.object3D.position.z = 6.278;
+        this.spinoMale.object3D.rotation.y = 90.0;
         const event = new Event('surface');
         this.spinoCar.dispatchEvent(event);
       }, 3000);

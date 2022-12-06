@@ -26,8 +26,8 @@ AFRAME.registerComponent('spino-car-tour', {
     this.birdsMarker = 0; // Position on the curve
     this.birdsSpeed = 0.003; // Speed on the curve
     this.birdsCurve = new THREE.SplineCurve([
-      new THREE.Vector2(-33.836, 18.578),
-      new THREE.Vector2(-52.504, -40),
+      new THREE.Vector2(-37.29, 23.128),
+      new THREE.Vector2(-67.395, -5.341),
     ]);
 
     // Fog
@@ -64,11 +64,11 @@ AFRAME.registerComponent('spino-car-tour', {
         this.ambiant1Sound =
           document.getElementById('spino-male').components['sound__ambiant1'];
         // Get voice from system when init
-        this.voiceSpino1Sound = this.system.getVoice('spino1');
-        this.voicePhase = 'spino1';
+        this.voiceSpinoSound = this.system.getVoice('spino');
+        this.voicePhase = 'spino';
         setTimeout(() => {
           this.phase = 'start';
-        }, 20000);
+        }, 50000);
       },
       false
     );
@@ -255,8 +255,8 @@ AFRAME.registerComponent('spino-car-tour', {
     this.checkpointListener();
     // Voice phases
     switch (this.voicePhase) {
-      case 'aviary1':
-        this.voiceAviary1Sound.play();
+      case 'spino':
+        this.voiceSpinoSound.play();
         this.voicePhase = 'exit';
         break;
     }

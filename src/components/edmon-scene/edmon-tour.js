@@ -32,12 +32,13 @@ AFRAME.registerComponent('edmon-car-tour', {
         // Get sounds
         this.ambiant1Sound =
           document.getElementById('edmon-male').components['sound__ambiant1'];
+
         // Get voice from system when init
-        this.voiceEdmon1Sound = this.system.getVoice('edmon1');
-        this.voicePhase = 'edmon1';
+        this.voiceEdmonSound = this.system.getVoice('edmon');
+        this.voicePhase = 'edmon';
         setTimeout(() => {
           this.phase = 'start';
-        }, 20000);
+        }, 60000);
       },
       false
     );
@@ -70,8 +71,8 @@ AFRAME.registerComponent('edmon-car-tour', {
     this.checkpointListener();
     // Voice phases
     switch (this.voicePhase) {
-      case 'aviary1':
-        this.voiceEdmon1Sound.play();
+      case 'edmon':
+        this.voiceEdmonSound.play();
         this.voicePhase = 'exit';
         break;
     }

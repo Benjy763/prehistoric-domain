@@ -74,6 +74,7 @@ AFRAME.registerComponent('spino-male-animation', {
     this.el.addEventListener(
       'fishHunt',
       () => {
+        this.spinoHuntlieAudio = this.el.components['sound__huntlie'];
         this.phase = 'fishHunt';
       },
       false

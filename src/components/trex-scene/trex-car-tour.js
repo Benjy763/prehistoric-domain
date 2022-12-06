@@ -20,7 +20,7 @@ AFRAME.registerComponent('trex-car-tour', {
     this.sceneChanged = false;
 
     // Sound
-    this.voicePhase = 'trex1';
+    this.voicePhase = 'sound';
     this.soundMixing1SoundPlaying = false;
     this.leaveSoundPlaying = false;
     this.soundMixing1Audio = document.getElementById('sound-mixing-1');
@@ -38,6 +38,10 @@ AFRAME.registerComponent('trex-car-tour', {
     this.el.addEventListener(
       'start',
       () => {
+        // Get voice from system when init
+        this.voiceTrexSound = this.system.getVoice('trex');
+        this.voicePhase = 'trex';
+
         // Global sound launch
         document.getElementById('jungle-asset').play();
         this.voiceTrex1Sound = this.system.getVoice('trex1');
@@ -75,7 +79,9 @@ AFRAME.registerComponent('trex-car-tour', {
     this.checkpointListener();
     // Voice phases
     switch (this.voicePhase) {
-      case 'trex1':
+      case 'trex':
+        this.voiceTrexSound.play();
+        this.voicePhase = 'exit';
         break;
     }
     // Animation phases

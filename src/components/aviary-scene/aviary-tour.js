@@ -40,11 +40,11 @@ AFRAME.registerComponent('aviary-car-tour', {
         document.getElementById('coast-asset').play();
 
         // Get voice from system when init
-        this.voiceAviary1Sound = this.system.getVoice('aviary1');
-        this.voicePhase = 'exit';
+        this.voicePteraSound = this.system.getVoice('ptera');
+        this.voicePhase = 'ptera';
         setTimeout(() => {
           this.phase = 'start';
-        }, 20000);
+        }, 40000);
       },
       false
     );
@@ -120,8 +120,8 @@ AFRAME.registerComponent('aviary-car-tour', {
     this.checkpointListener();
     // Voice phases
     switch (this.voicePhase) {
-      case 'aviary1':
-        this.voiceAviary1Sound.play();
+      case 'ptera':
+        this.voicePteraSound.play();
         this.voicePhase = 'exit';
         break;
     }
