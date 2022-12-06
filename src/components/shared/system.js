@@ -105,8 +105,24 @@ AFRAME.registerSystem('system', {
     const event = new Event('carRegistered');
     car.el.dispatchEvent(event);
   },
+  openFullscreen: function () {
+    const elem = document.documentElement;
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.mozRequestFullScreen) {
+      /* Firefox */
+      elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) {
+      /* Chrome, Safari & Opera */
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) {
+      /* IE/Edge */
+      elem.msRequestFullscreen();
+    }
+  },
   initStartingEvents: function () {
     document.querySelector('#enter').onclick = () => {
+      this.openFullscreen();
       this.vr = false;
       // Remove loading interface
       document.querySelector('#static-loading').style.display = 'none';
