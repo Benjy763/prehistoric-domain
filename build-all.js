@@ -4,10 +4,14 @@ const mainscenes = [
   'tour',
   'aviary',
   'lagoon',
-  'cinema',
   'sarco',
   'spino',
   'dimetrodon',
+  'quetza',
+  'trex',
+  'edmon',
+  'deino',
+  'home',
 ];
 mainscenes.forEach((mainScene) =>
   exec(`npm run build:scene --mainscene=${mainScene}`)

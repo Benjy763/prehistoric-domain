@@ -120,6 +120,17 @@ AFRAME.registerSystem('system', {
       elem.msRequestFullscreen();
     }
   },
+  exitFullscreen: function () {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+    } else if (document.msExitFullscreen) {
+      document.msExitFullscreen();
+    }
+  },
   initStartingEvents: function () {
     document.querySelector('#enter').onclick = () => {
       this.openFullscreen();
@@ -271,10 +282,11 @@ AFRAME.registerSystem('system', {
     }
   },
   changeEndingScene: function () {
+    this.exitFullscreen();
     this.changeAtmosphere('#262c28', 0.1);
     setTimeout(() => {
-      window.location.href = 'https://map.prehistoricdomain.com/';
-    }, 8000);
+      window.location.href = 'https://map.prehistoricdomain.com/map-dev/';
+    }, 5000);
     this.changeScene('ending', false);
   },
   disableAllCameras: function () {
@@ -402,39 +414,43 @@ AFRAME.registerSystem('system', {
       return;
     }
 
-    // Default performance
-    const performanceColor = '#b39760';
-    qualityEl.style.borderColor = performanceColor;
-    qualityEl.style.opacity = '1';
-    this.toggle('performance', true);
+    // Default quality
+    this.togglePerf(!!this.scenes.isDefaultPerf);
 
     perfEl.onclick = () => {
-      perfEl.style.borderColor = performanceColor;
-      perfEl.style.opacity = '1';
-      qualityEl.style.borderColor = '#d4c9ba';
-      qualityEl.style.opacity = '0.6';
-
-      this.toggle('performance', false);
+      this.togglePerf(true);
     };
     qualityEl.onclick = () => {
-      qualityEl.style.borderColor = performanceColor;
-      qualityEl.style.opacity = '1';
-      perfEl.style.borderColor = '#d4c9ba';
-      perfEl.style.opacity = '0.6';
-
-      this.toggle('performance', true);
+      this.togglePerf(false);
     };
 
     this.language = 'en';
   },
-  toggle: function (className, displayState) {
-    this.performance = !displayState;
-    if (!this.performance) {
+  togglePerf: function (isPerformance) {
+    const selectedColor = '#b39760';
+    const perfEl = document.querySelector('#perf');
+    const qualityEl = document.querySelector('#quality');
+
+    if (!isPerformance) {
+      qualityEl.style.borderColor = selectedColor;
+      qualityEl.style.opacity = '1';
+      perfEl.style.borderColor = '#d4c9ba';
+      perfEl.style.opacity = '0.6';
+
+      let elements = document.getElementsByClassName('performance');
+      for (let i = 0; i < elements.length; i++) {
+        elements[i].setAttribute('visible', true);
+      }
       return;
     }
-    let elements = document.getElementsByClassName(className);
+
+    perfEl.style.borderColor = selectedColor;
+    perfEl.style.opacity = '1';
+    qualityEl.style.borderColor = '#d4c9ba';
+    qualityEl.style.opacity = '0.6';
+    let elements = document.getElementsByClassName('performance');
     for (let i = 0; i < elements.length; i++) {
-      elements[i].setAttribute('visible', displayState);
+      elements[i].setAttribute('visible', false);
     }
   },
   // ----- Languages functions --------

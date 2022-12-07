@@ -6,6 +6,7 @@ export const MainScenes = {
     name: 'Main Area',
     loadingScreen: 'home-illu.jpg',
     needPerformance: true,
+    isDefaultPerf: true,
     needLanguage: false,
     mobileCompatible: false,
     selection: 'home',
