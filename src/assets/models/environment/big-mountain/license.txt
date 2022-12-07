@@ -1,0 +1,11 @@
+Model Information:
+* title:	Snowy Mountain
+* source:	https://sketchfab.com/3d-models/snowy-mountain-fcc2b660776b42e882b46316854f6e80
+* author:	Tarik Takasu (https://sketchfab.com/tarik_takasu)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Snowy Mountain" (https://sketchfab.com/3d-models/snowy-mountain-fcc2b660776b42e882b46316854f6e80) by Tarik Takasu (https://sketchfab.com/tarik_takasu) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
