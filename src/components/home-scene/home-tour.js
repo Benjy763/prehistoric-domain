@@ -61,9 +61,14 @@ AFRAME.registerComponent('home-car-tour', {
       this.textCar.setAttribute('visible', 'true');
       this.movesManager.nextScene = 'visitors';
     }
+    if (this.movesManager.distanceFromPoint('home-checkpoint-shop-md') < 6) {
+      this.textCar.setAttribute('visible', 'true');
+      this.movesManager.nextScene = 'shopmd';
+    }
     if (
       this.movesManager.distanceFromPoint('home-checkpoint-cinema') >= 6 &&
-      this.movesManager.distanceFromPoint('home-checkpoint-visitors') >= 6
+      this.movesManager.distanceFromPoint('home-checkpoint-visitors') >= 6 &&
+      this.movesManager.distanceFromPoint('home-checkpoint-shop-md') >= 6
     ) {
       this.textCar.setAttribute('visible', 'false');
       this.movesManager.nextScene = null;
