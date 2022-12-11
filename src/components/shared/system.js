@@ -56,7 +56,7 @@ AFRAME.registerSystem('system', {
     // Set loading infos
     document
       .querySelector('#loader-logo')
-      .setAttribute('src', `/assets/images/${this.scenes.loadingScreen}`);
+      .setAttribute('src', `/assets/images/open.gif`);
     document.querySelector('#infos-name').innerHTML = this.scenes.name;
 
     // Remove embedded for debug
@@ -366,6 +366,7 @@ AFRAME.registerSystem('system', {
   },
   // ----- Loading functions --------
   setLoading: function (loading = true) {
+    window.sceneIsLoading = loading;
     document
       .querySelector(
         '#' + this.scenes[this.actuelScene].car + ' #loading-sphere'
@@ -415,7 +416,15 @@ AFRAME.registerSystem('system', {
     }
 
     // Default quality
-    this.togglePerf(!!this.scenes.isDefaultPerf);
+    if (AFRAME.utils.device.checkHeadsetConnected()) {
+      this.togglePerf(
+        !!this.scenes.isDefaultPerf && !!this.scenes.isDefaultPerf[0]
+      );
+    } else {
+      this.togglePerf(
+        !!this.scenes.isDefaultPerf && !!this.scenes.isDefaultPerf[1]
+      );
+    }
 
     perfEl.onclick = () => {
       this.togglePerf(true);

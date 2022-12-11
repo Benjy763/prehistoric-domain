@@ -32,6 +32,7 @@ AFRAME.registerComponent('cinema-car-tour', {
     this.el.addEventListener(
       'start',
       () => {
+        document.getElementById('cinema-env').setAttribute('visible', 'true');
         this.textCar.setAttribute('visible', 'true');
         setTimeout(() => {
           this.textCar.setAttribute('visible', 'false');

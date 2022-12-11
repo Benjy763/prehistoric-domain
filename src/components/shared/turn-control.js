@@ -31,7 +31,6 @@ AFRAME.registerComponent('turn-control', {
   },
 
   lerp: function (startValue, endValue, percent) {
-    console.log(startValue, endValue, percent);
     return startValue + (endValue - startValue) * percent;
   },
 
@@ -80,7 +79,6 @@ AFRAME.registerComponent('turn-control', {
         this.endAngle,
         this.turnTime / this.turnDuration
       );
-      console.log(this.rot);
       this.el.setAttribute('rotation', this.rot);
 
       if (this.turnTime >= this.turnDuration) this.turnInProgress = false;

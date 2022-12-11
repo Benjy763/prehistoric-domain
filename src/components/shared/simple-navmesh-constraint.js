@@ -144,10 +144,20 @@ AFRAME.registerComponent('simple-navmesh-constraint', {
       if (!firstTry && !didHit) {
         if (isVr && !isOut) {
           isOut = true;
-          document
-            .querySelector('#out-of-limit')
-            .setAttribute('visible', 'true');
-          document.querySelector('#car-env').setAttribute('visible', 'false');
+          if (window.sceneIsLoading) {
+            return;
+          }
+          const outOf = document.querySelectorAll('#out-of-limit'); // returns NodeList
+          const outOfArray = [...outOf]; // converts NodeList to Array
+          outOfArray.forEach((div) => {
+            div.setAttribute('visible', 'true');
+          });
+
+          const carEnv = document.querySelectorAll('#car-env'); // returns NodeList
+          const carEnvArray = [...carEnv]; // converts NodeList to Array
+          carEnvArray.forEach((div) => {
+            div.setAttribute('visible', 'false');
+          });
         }
         this.el.object3D.position.copy(this.lastPosition);
         this.el.object3D.parent.worldToLocal(this.el.object3D.position);
@@ -156,10 +166,19 @@ AFRAME.registerComponent('simple-navmesh-constraint', {
         setTimeout(() => {
           if (didHit && isOut) {
             isOut = false;
-            document
-              .querySelector('#out-of-limit')
-              .setAttribute('visible', 'false');
-            document.querySelector('#car-env').setAttribute('visible', 'true');
+            if (window.sceneIsLoading) {
+              return;
+            }
+            const div_list = document.querySelectorAll('#out-of-limit'); // returns NodeList
+            const div_array = [...div_list]; // converts NodeList to Array
+            div_array.forEach((div) => {
+              div.setAttribute('visible', 'false');
+            });
+            const carEnv = document.querySelectorAll('#car-env'); // returns NodeList
+            const carEnvArray = [...carEnv]; // converts NodeList to Array
+            carEnvArray.forEach((div) => {
+              div.setAttribute('visible', 'true');
+            });
           }
         }, 300);
       }
