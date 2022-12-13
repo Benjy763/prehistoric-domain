@@ -102,6 +102,7 @@ export const MainScenes = {
     name: 'Night Tour',
     loadingScreen: 'brachio-illu.jpg',
     displayDistance: 70,
+    isDefaultPerf: [true, false], // vr, non vr
     needPerformance: true,
     needLanguage: true,
     mobileCompatible: false,

@@ -18,6 +18,53 @@ AFRAME.registerComponent('custom-hand-control', {
       this.movesManager.fixRigPosition();
     });
   },
+  clearCache: function () {
+    const disposeList = document.querySelectorAll('.dispose');
+    const disposeArray = [...disposeList];
+    disposeArray.forEach((el) => this.disposeObject3D(el.getObject3D('mesh')));
+    AFRAME.scenes[0].systems.material.clearTextureCache();
+    AFRAME.scenes[0].systems.geometry.clearCache();
+  },
+  disposeObject3D: function (object) {
+    object.traverse((obj) => {
+      if (obj.material) {
+        obj.material.dispose();
+        if (obj.material.map) {
+          obj.material.map.dispose();
+        }
+        if (obj.material.lightMap) {
+          obj.material.lightMap.dispose();
+        }
+        if (obj.material.aoMap) {
+          obj.material.aoMap.dispose();
+        }
+        if (obj.material.emissiveMap) {
+          obj.material.emissiveMap.dispose();
+        }
+        if (obj.material.bumpMap) {
+          obj.material.bumpMap.dispose();
+        }
+        if (obj.material.normalMap) {
+          obj.material.normalMap.dispose();
+        }
+        if (obj.material.displacementMap) {
+          obj.material.displacementMap.dispose();
+        }
+        if (obj.material.roughnessMap) {
+          obj.material.roughnessMap.dispose();
+        }
+        if (obj.material.metalnessMap) {
+          obj.material.metalnessMap.dispose();
+        }
+        if (obj.material.alphaMap) {
+          obj.material.alphaMap.dispose();
+        }
+      }
+      if (obj.geometry) {
+        obj.geometry.dispose();
+      }
+    });
+  },
   manageChangingScene() {
     if (this.movesManager.nextScene) {
       if (this.system.actuelScene === 'home') {
@@ -36,6 +83,7 @@ AFRAME.registerComponent('custom-hand-control', {
         this.movesManager.nextScene = null;
         return;
       }
+      this.clearCache();
       this.system.changeScene(this.movesManager.nextScene);
       this.movesManager.nextScene = null;
     }

@@ -26,7 +26,6 @@ AFRAME.registerComponent('visitors-car-tour', {
     this.el.addEventListener(
       'start',
       () => {
-        console.log('start');
         // Global sound launch
         this.backgroundSound.play();
         this.phase = 'start';
