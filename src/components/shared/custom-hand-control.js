@@ -79,15 +79,6 @@ AFRAME.registerComponent('custom-hand-control', {
         return;
       }
 
-      if (
-        this.movesManager.nextScene === 'visitors' &&
-        this.system.performance
-      ) {
-        this.clearCache();
-        this.system.changeEndingScene();
-        this.movesManager.nextScene = null;
-        return;
-      }
       if (this.movesManager.nextScene === 'ending') {
         this.system.changeEndingScene();
         this.movesManager.nextScene = null;

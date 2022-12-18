@@ -49,7 +49,9 @@ AFRAME.registerSystem('system', {
       !SupportedPlatform.includes(window.navigator.platform) &&
       !userAgentDataPlatform;
 
-    this.initPerformances();
+    setTimeout(() => {
+      this.initPerformances();
+    }, 500);
     this.initLanguage();
     this.loadingAssets();
 

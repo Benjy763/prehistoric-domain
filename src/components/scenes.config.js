@@ -6,7 +6,6 @@ export const MainScenes = {
     name: 'Main Area',
     loadingScreen: 'home-illu.jpg',
     needPerformance: true,
-    isDefaultPerf: [true, false], // vr, non vr
     needLanguage: false,
     mobileCompatible: false,
     selection: 'home',
@@ -53,6 +52,55 @@ export const MainScenes = {
         x: -24.764,
         y: 1,
         z: -1.267,
+      },
+    },
+    ending: {
+      scene: 'ending-scene',
+      camera: 'ending-scene-camera',
+      car: 'ending-car',
+      carReference: null,
+    },
+  },
+  homelight: {
+    // Starting scene
+    name: 'Main Area',
+    loadingScreen: 'home-illu.jpg',
+    needPerformance: false,
+    needLanguage: false,
+    mobileCompatible: false,
+    selection: 'home',
+    assetsId: 'home-assets',
+    displayDistance: 10000,
+    carMarkerForDebug: 0.7,
+    color: '#d6d6d6',
+    density: [0.001, 0.001],
+    loading: {
+      scene: 'loading-scene',
+      camera: 'loading-scene-camera',
+    },
+    home: {
+      loaded: false,
+      scene: 'home-scene',
+      camera: 'home-scene-camera',
+      car: 'home-car',
+      carReference: null,
+      rigPos: {
+        x: 68,
+        y: 1,
+        z: -3.2,
+      },
+    },
+    cinema: {
+      loaded: false,
+      scene: 'cinema-scene',
+      camera: 'cinema-scene-camera',
+      car: 'cinema-car',
+      carReference: null,
+      isVehicule: false,
+      rigPos: {
+        x: -0.275,
+        y: 2.05,
+        z: -0.25,
       },
     },
     ending: {
