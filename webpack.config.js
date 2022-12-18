@@ -15,6 +15,8 @@ PLUGINS = [
     <html>
       <head>
         <meta charset="UTF-8" />
+        <meta http-equiv="Cache-control" content="no-cache">
+        <meta http-equiv="Pragma" content="no-cache">
         <title>Prehistoric Domain</title>
         <script src="/vendors/aframe/aframe-v1.3.0.min.js"></script>
         <script src="/vendors/water/refractor.js"></script>

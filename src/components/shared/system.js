@@ -282,12 +282,17 @@ AFRAME.registerSystem('system', {
     }
   },
   changeEndingScene: function () {
-    this.exitFullscreen();
-    this.changeAtmosphere('#262c28', 0.1);
-    setTimeout(() => {
-      window.location.href = 'https://map.prehistoricdomain.com/map-dev/';
-    }, 5000);
     this.changeScene('ending', false);
+    this.changeAtmosphere('#262c28', 0.1);
+    if (!this.vr) {
+      this.exitFullscreen();
+    }
+    setTimeout(() => {
+      const parent = window.parent;
+      if (parent && parent.postMessage) {
+        parent.postMessage('reloadxp', '*');
+      }
+    }, 5000);
   },
   disableAllCameras: function () {
     Object.keys(this.scenes).forEach((sceneId) => {
@@ -436,6 +441,7 @@ AFRAME.registerSystem('system', {
     this.language = 'en';
   },
   togglePerf: function (isPerformance) {
+    this.performance = isPerformance;
     const selectedColor = '#b39760';
     const perfEl = document.querySelector('#perf');
     const qualityEl = document.querySelector('#quality');

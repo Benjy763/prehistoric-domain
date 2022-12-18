@@ -78,6 +78,16 @@ AFRAME.registerComponent('custom-hand-control', {
         window.location.href = 'https://www.mysterydino.com/';
         return;
       }
+
+      if (
+        this.movesManager.nextScene === 'visitors' &&
+        this.system.performance
+      ) {
+        this.clearCache();
+        this.system.changeEndingScene();
+        this.movesManager.nextScene = null;
+        return;
+      }
       if (this.movesManager.nextScene === 'ending') {
         this.system.changeEndingScene();
         this.movesManager.nextScene = null;
