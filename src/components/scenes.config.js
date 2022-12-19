@@ -149,16 +149,15 @@ export const MainScenes = {
     // Starting scene
     name: 'Night Tour',
     loadingScreen: 'brachio-illu.jpg',
-    displayDistance: 70,
-    isDefaultPerf: [true, false], // vr, non vr
-    needPerformance: true,
+    displayDistance: 80,
+    needPerformance: false,
     needLanguage: true,
     mobileCompatible: false,
     selection: 'gate',
     assetsId: 'tour-assets',
     carMarkerForDebug: 0.7,
     color: '#000',
-    density: [0.022, 0.022],
+    density: [0.025, 0.025],
     loading: {
       scene: 'loading-scene',
       camera: 'loading-scene-camera',
