@@ -294,7 +294,7 @@ AFRAME.registerSystem('system', {
       if (parent && parent.postMessage) {
         parent.postMessage('reloadxp', '*');
       }
-    }, 5000);
+    }, 2000);
   },
   disableAllCameras: function () {
     Object.keys(this.scenes).forEach((sceneId) => {
