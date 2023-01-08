@@ -201,6 +201,7 @@ AFRAME.registerComponent('spino-female-animation', {
   },
   leave: function () {
     if (this.movesManager.truncMarker(this.spinoMarker) > 950) {
+      this.object.position.x = -300;
       this.object.position.y = -13.102;
       const event = new Event('dive');
       this.spinoCar.dispatchEvent(event);
@@ -215,6 +216,7 @@ AFRAME.registerComponent('spino-female-animation', {
         this.spinoWalkAudio.stopSound();
       }, 500);
       this.phase = 'exit';
+      return;
     }
     this.spinoMarker = this.movesManager.moveOnCurve(
       this.object,

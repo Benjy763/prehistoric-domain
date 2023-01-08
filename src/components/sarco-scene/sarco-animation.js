@@ -19,14 +19,14 @@ AFRAME.registerComponent('sarco-animation', {
     // Spino run Path
     this.sarcoMarker = 0; // Position on the curve
     this.sarcoWalkSpeed = 0.0015; // Speed on the curve
-    this.sarcoSwimSpeed = 0.0015; // Speed on the curve
+    this.sarcoSwimSpeed = 0.0016; // Speed on the curve
     this.walkCurve1 = new THREE.SplineCurve([
       new THREE.Vector2(-18.969, 0.161),
       new THREE.Vector2(-18.969, 32.365),
     ]);
     this.swimCurve1 = new THREE.SplineCurve([
       new THREE.Vector2(-15.127, -32),
-      new THREE.Vector2(-15.127, 42),
+      new THREE.Vector2(-15.127, 52),
     ]);
 
     // Bird Path
@@ -78,7 +78,7 @@ AFRAME.registerComponent('sarco-animation', {
           crossFadeDuration: 0.4,
           timeScale: 1,
         });
-        this.object.position.z = -30;
+        this.object.position.z = -300;
         this.object.position.y = -11.934;
         setTimeout(() => {
           this.sarcoMarker = 0;
@@ -231,7 +231,7 @@ AFRAME.registerComponent('sarco-animation', {
       this.sarcoSwimStopAudioPlayed = true;
       this.sarcoSwimStopAudio.playSound();
     }
-    if (this.movesManager.truncMarker(this.sarcoMarker) > 350) {
+    if (this.movesManager.truncMarker(this.sarcoMarker) > 280) {
       this.sarcoSwimSpeed -= 0.00002;
     }
     if (this.sarcoSwimSpeed <= 0.0002) {

@@ -4,6 +4,8 @@ AFRAME.registerComponent('trex-animation', {
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
     // Objects shortcut
     this.object = this.el.object3D;
+    this.trexBis = document.querySelector('#trex-bis');
+    this.objectBis = this.trexBis.object3D;
     this.system = document.querySelector('a-scene').systems['system'];
     this.movesManager =
       document.querySelector('a-scene').systems['movesManager'];
@@ -30,9 +32,10 @@ AFRAME.registerComponent('trex-animation', {
         this.trexRoar2Audio = this.el.components['sound__trexroar2'];
         this.trexFootStepAudio = this.el.components['sound__trexfootstep'];
         this.trexDrinkAudio = this.el.components['sound__trexdrink'];
-        this.trexLeavesAudio = this.el.components['sound__trexleaves'];
-        this.trexHittingAudio = this.el.components['sound__trexhitting'];
-        this.trexEndSnoringAudio = this.el.components['sound__trexendsnoring'];
+        this.trexLeavesAudio = this.trexBis.components['sound__trexleaves'];
+        this.trexHittingAudio = this.trexBis.components['sound__trexhitting'];
+        this.trexEndSnoringAudio =
+          this.trexBis.components['sound__trexendsnoring'];
 
         // Launch animation
         setTimeout(() => {
@@ -59,7 +62,7 @@ AFRAME.registerComponent('trex-animation', {
       this.trexSpeed
     );
 
-    if (this.movesManager.truncMarker(this.trexMarker) > 400) {
+    if (this.movesManager.truncMarker(this.trexMarker) > 380) {
       if (this.trexSpeed > 0) {
         this.trexRoarAudio.playSound();
         setTimeout(() => {
@@ -131,7 +134,7 @@ AFRAME.registerComponent('trex-animation', {
       this.animationChange = 'exit';
     }
 
-    if (this.movesManager.truncMarker(this.trexMarker) > 980) {
+    if (this.movesManager.truncMarker(this.trexMarker) > 990) {
       this.trexLeavesAudio.playSound();
       setTimeout(() => {
         this.trexFootStepAudio.stopSound();
@@ -139,12 +142,14 @@ AFRAME.registerComponent('trex-animation', {
       setTimeout(() => {
         this.trexHittingAudio.playSound();
       }, 5000);
+      this.el.setAttribute('visible', false);
       this.phase = 'exit';
       setTimeout(() => {
-        this.el.setAttribute('position', '-21.695 2 -16');
-        this.el.setAttribute('rotation', '0 4.900 0.000');
-        this.el.setAttribute('scale', '0.024 0.024 0.024');
-        this.el.setAttribute('animation-mixer', {
+        this.trexBis.setAttribute('visible', true);
+        this.trexBis.setAttribute('position', '-21.695 2 -16');
+        this.trexBis.setAttribute('rotation', '0 4.900 0.000');
+        this.trexBis.setAttribute('scale', '0.024 0.024 0.024');
+        this.trexBis.setAttribute('animation-mixer', {
           clip: 'T_Rex_Drink_2',
           loop: true,
           crossFadeDuration: 0.4,
@@ -160,9 +165,9 @@ AFRAME.registerComponent('trex-animation', {
     }
   },
   walkClose: function () {
-    this.object.position.z += this.trexSpeed;
+    this.objectBis.position.z += this.trexSpeed;
 
-    if (this.object.position.z > -5) {
+    if (this.objectBis.position.z > -5) {
       this.trexSpeed -= 0.005;
     }
     if (this.trexSpeed <= 0) {
@@ -171,7 +176,7 @@ AFRAME.registerComponent('trex-animation', {
   },
   showHead: function () {
     setTimeout(() => {
-      this.el.setAttribute('animation-mixer', {
+      this.trexBis.setAttribute('animation-mixer', {
         clip: 'T_Rex_Walk_Roar_InPlace',
         loop: true,
         crossFadeDuration: 4,
@@ -186,9 +191,9 @@ AFRAME.registerComponent('trex-animation', {
       this.trexSpeed += 0.005;
     }
 
-    this.object.position.z -= this.trexSpeed;
+    this.objectBis.position.z -= this.trexSpeed;
 
-    if (this.object.position.z < -16) {
+    if (this.objectBis.position.z < -16) {
       this.phase = 'exit';
     }
   },
