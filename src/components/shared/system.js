@@ -247,7 +247,6 @@ AFRAME.registerSystem('system', {
       .getElementById(this.scenes[newScene].camera)
       .setAttribute('camera', {
         far: this.displayDistance,
-        active: true,
         fov: this.vr ? this.fovVR : this.fov,
       });
 
@@ -285,6 +284,9 @@ AFRAME.registerSystem('system', {
   },
   changeEndingScene: function () {
     this.changeScene('ending', false);
+    document
+      .querySelector('#' + this.scenes.ending.camera)
+      .setAttribute('camera', 'active', true);
     this.changeAtmosphere('#262c28', 0.1);
     if (!this.vr) {
       this.exitFullscreen();
@@ -366,19 +368,27 @@ AFRAME.registerSystem('system', {
       });
     }
 
+    this.setLoading(false);
     setTimeout(() => {
-      this.setLoading(false);
       this.movesManager.fixRigPosition();
-    }, 1500);
+    }, 1000);
   },
   // ----- Loading functions --------
   setLoading: function (loading = true) {
     window.sceneIsLoading = loading;
     document
-      .querySelector(
-        '#' + this.scenes[this.actuelScene].car + ' #loading-sphere'
-      )
+      .querySelector('#' + this.scenes.loading.scene)
       .setAttribute('visible', loading);
+    document
+      .querySelector('#' + this.scenes.loading.camera)
+      .setAttribute('camera', 'active', loading);
+
+    document
+      .querySelector('#' + this.scenes[this.actuelScene].scene)
+      .setAttribute('visible', !loading);
+    document
+      .querySelector('#' + this.scenes[this.actuelScene].camera)
+      .setAttribute('camera', 'active', !loading);
   },
   // Section with debug key
   startDebugListener: function () {
