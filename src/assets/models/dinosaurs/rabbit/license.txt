@@ -1,0 +1,8 @@
+Model Information:
+* title:	Wild animals - Rabbit
+* source:	https://sketchfab.com/3d-models/wild-animals-rabbit-65f834f7e5f84f7484d758b13616f6be
+* author:	3DRT.com (https://sketchfab.com/3DRT.com)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

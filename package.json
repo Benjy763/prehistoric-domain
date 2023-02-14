@@ -2,12 +2,15 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack",
+    "copy:assets": "cpx ./src/assets/**/*.* ./dist/assets",
+    "build:scene": "cross-env MAIN_SCENE=$npm_config_mainscene NODE_ENV=production webpack",
+    "build:scene:all": "node build-all.js",
+    "build:all": "npm run copy:assets & npm run build:scene:all",
     "build:ws": "cross-env NODE_ENV=production webpack --config webpack-ws.config.js",
     "deploy": "ghpages -p .ghpages && rm -rf .ghpages",
     "lint": "semistandard -v | snazzy",
     "lint:fix": "semistandard --fix",
-    "start": "webpack-dev-server --config webpack-dev.config.js --host 0.0.0.0 --progress --colors --hot-only --inline --port 8080",
+    "start": "cross-env MAIN_SCENE='dimetrodon' webpack-dev-server --config webpack-dev.config.js --host 0.0.0.0 --progress --colors --hot-only --inline --port 8080",
     "start:ws": "webpack-dev-server --config webpack-dev-ws.config.js --host 0.0.0.0 --progress --colors --hot-only --inline --port 8080"
   },
   "dependencies": {
@@ -20,6 +23,7 @@
     "aframe-physics-system": "github:n5ro/aframe-physics-system",
     "aframe-super-hot-html-loader": "*",
     "aframe-super-hot-loader": "*",
+    "aframe-troika-text": "^0.8.0",
     "jquery": "^3.6.0",
     "super-hands": "^3.0.2"
   },
@@ -56,7 +60,11 @@
     "autoprefixer": "^7.2.3",
     "babel-loader": "^8.0.5",
     "babel-minify-webpack-plugin": "^0.3.1",
+    "child_process": "^1.0.2",
+    "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^5.1.1",
+    "copyfiles": "^2.4.1",
+    "cpx": "^1.5.0",
     "cross-env": "4.0.0",
     "css-loader": "^0.28.7",
     "debug": "^4.1.0",

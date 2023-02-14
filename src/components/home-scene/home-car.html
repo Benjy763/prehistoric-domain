@@ -1,0 +1,53 @@
+<a-entity id="home-car" gltf-model="#home-scene-asset" home-car-tour position="-45.6063 1.27071 -2.53099"
+  rotation="0 180 0" scale="1 1.2 1">
+  <a-entity id="rig" turn-control="controllerListenerId: #controller-data;" movement-controls="speed: 0.3"
+    position="1.152 -0.6000000000000001 0.934" rotation="0 90 0">
+    <a-entity id="hands">
+      <a-entity id="home-scene-camera" class="camera-entity" camera position="0 0 0" user-height="0"
+        fps-look-controls="user-height: 0"
+        simple-navmesh-constraint="navmesh:#home-navmesh-el;fall:0;height:1.25;exclude:.home-exclude-navmesh-el">
+        <a-troika-text id="home-camera-text" visible="false" troika-text="color: #d6d6d6" scale="0.15 0.15 0.15"
+          position="0 -0.25795 -0.8507" value="Press ENTER or TOP trigger to enter"
+          font="/assets/font/AlfaSlabOne-Regular.ttf">
+        </a-troika-text>
+        <a-box id="loading-sphere" visible="false" material="blending: none; shader: flat"
+          geometry="depth: 1; height: 1; width: 1; primitive: sphere; segmentsHeight: 10; segmentsWidth: 10; radius: 0.1"
+          color="#262c28" side="back">
+          <a-image id="loading-logo-1" src="#loading-asset" scale="0.018 0.015 0.015" position="0 0.00011 -0.057"
+            rotation="0 0 0">
+          </a-image>
+          <a-image id="loading-logo-2" src="#loading-asset" scale="0.018 0.015 0.015" position="0.06465 0.00001 -0.057"
+            rotation="0 0 0">
+          </a-image>
+        </a-box>
+        <a-box id="out-of-limit" position="0 0 0" visible="false" material="blending: none; shader: flat"
+          geometry="depth: 1; height: 1; width: 1; primitive: sphere; segmentsHeight: 10; segmentsWidth: 10; radius: 0.1"
+          color="#262c28" side="back">
+          <a-image id="limits-logo-1" src="#limits-asset" scale="0.017 0.015 0.015" position="0 0.00011 -0.057"
+            rotation="0 0 0">
+          </a-image>
+          <a-image id="limits-logo-2" src="#limits-asset" scale="0.017 0.015 0.015" position="0.06465 0.00001 -0.057"
+            rotation="0 0 0">
+          </a-image>
+        </a-box>
+      </a-entity>
+      <a-entity id="controller-data" controller-listener="leftControllerId:  #leftHand;
+                                 rightControllerId: #rightHand;"></a-entity>
+      <a-entity id="leftHand" sphere-collider="objects: a-box" custom-hand-control super-hands
+        hand-controls="hand: left; handModelStyle: highPoly; color: #ffcccc"></a-entity>
+      <a-entity fps-counter="enabled: true; for90fps: true" id="rightHand" rotation="10 0 0"
+        sphere-collider="objects: a-box" custom-hand-control super-hands
+        hand-controls="hand: right; handModelStyle: highPoly; color: #ffcccc"></a-entity>
+    </a-entity>
+  </a-entity>
+  <a-plane id="home-navmesh-el" geometry="primitive: plane; radius: 27; height: 30; width: 85" visible="false"
+    position="33.77855 0 -3.31126" rotation="-90 0 0" width="8" height="5.8" color="yellow">
+  </a-plane>
+  <a-plane id="home-exclude-navmesh-el-1" class="home-exclude-navmesh-el" geometry="primitive: circle; radius: 6.52"
+    visible="false" position="52.9485 0 0.95443" rotation="-90 0 0" width="8" height="5.8" color="red">
+  </a-plane>
+  <a-plane id="home-exclude-navmesh-el-2" class="home-exclude-navmesh-el" geometry="primitive: circle; radius: 4.67"
+    visible="false" position="11.96545 0 -1.77118" rotation="-90 0 0" width="8" height="5.8" color="red">
+  </a-plane>
+  <a-entity id="car-env"></a-entity>
+</a-entity>

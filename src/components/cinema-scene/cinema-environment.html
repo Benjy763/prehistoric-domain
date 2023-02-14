@@ -1,0 +1,16 @@
+<a-entity id="cinema-env" class="dispose" visible="false" gltf-model="#cinema-asset" position="0 3.12915 0"
+  rotation="0 0 0" scale="1.5 1.5 1.5">
+</a-entity>
+<a-entity id="cinema-movie" class="dispose" scale="0.01 0.01 0.01" material="shader: flat; src: #cinema"
+  geometry="primitive: plane; width: 1280; height: 720;" position="14.31586 2.36132 2.37727" rotation="0 -90 0">
+</a-entity>
+<a-box id="screen-box" class="dispose" geometry="depth: 12.39; height: 5.24; width: 0.25" scale="1 1 1"
+  position="14.5367 2.08636 2.40925" color="#000" depth="20" height="20" width="20"></a-box>
+
+
+<a-entity id="cinema-men-1" class="dispose" animation-mixer="clip: Rig|new_sit_idle; timeScale: 0.3"
+  gltf-model="#men-1-asset" position="3.95036 0.32473 -0.18323" rotation="0 90 0" scale="1.1 1.1 1.1"></a-entity>
+<a-entity id="cinema-men-2" class="dispose" animation-mixer="clip: Rig|new_sit_idle; timeScale: 0.3"
+  gltf-model="#men-2-asset" position="5.43945 -0.21831 3.90438" rotation="0 90 0" scale="1.1 1.1 1.1"></a-entity>
+<a-entity id="cinema-men-3" class="dispose" animation-mixer="clip: Rig|new_sit_idle; timeScale: 0.3"
+  gltf-model="#men-3-asset" position="2.57213 0.74524 4.66318" rotation="0 90 0" scale="1.1 1.1 1.1"></a-entity>

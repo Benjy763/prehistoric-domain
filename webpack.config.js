@@ -5,6 +5,7 @@ const path = require('path');
 const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const hash = Math.random() * 100000 + 1000;
 
 PLUGINS = [
@@ -14,12 +15,17 @@ PLUGINS = [
     <html>
       <head>
         <meta charset="UTF-8" />
+        <meta http-equiv="Cache-control" content="no-cache">
+        <meta http-equiv="Pragma" content="no-cache">
         <title>Prehistoric Domain</title>
-        <script src="./build/vendors/aframe/aframe-v1.3.0.min.js"></script>
+        <script src="/vendors/aframe/aframe-v1.3.0.min.js"></script>
+        <script src="/vendors/water/refractor.js"></script>
+        <script src="/vendors/water/reflector.js"></script>
+        <script src="/vendors/water/water2.js"></script>
         <style type="text/css">
           @font-face {
             font-family: 'Exo';
-            src: url('./build/font/Exo-Regular.ttf') format('truetype');
+            src: url('/assets/font/Exo-Regular.ttf') format('truetype');
           }
         </style>
       </head>
@@ -29,15 +35,9 @@ PLUGINS = [
     </html>
   `,
   }),
-  new webpack.EnvironmentPlugin(['NODE_ENV']),
+  new webpack.EnvironmentPlugin(['NODE_ENV', 'MAIN_SCENE']),
   new webpack.HotModuleReplacementPlugin(),
-  new CopyPlugin([
-    { from: './src/models', to: 'build/models' },
-    { from: './src/images', to: 'build/images' },
-    { from: './src/sounds', to: 'build/sounds' },
-    { from: './src/font', to: 'build/font' },
-    { from: './src/vendors', to: 'build/vendors' },
-  ]),
+  new CleanWebpackPlugin(),
 ];
 
 module.exports = {
@@ -49,7 +49,7 @@ module.exports = {
     build: './src/index.js',
   },
   output: {
-    path: __dirname + '/dist',
+    path: __dirname + '/dist/' + process.env.MAIN_SCENE,
     filename: 'build.[hash].js',
   },
   plugins: PLUGINS,

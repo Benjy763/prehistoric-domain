@@ -1,0 +1,27 @@
+<a-entity id="spino-male" class="spino-surface" spino-male-animation gltf-model="#spino-male-asset"
+  animation-mixer="clip: Spinosaurus_Idle" position="-37.867 -12 65.66981" rotation="0 0 0" scale="0.019 0.019 0.019"
+  sound__drinklie="src: #spino-drink-lie; volume: 20" sound__huntlie="src: #spino-hunt-lie; volume: 20"
+  sound__snoring="src: #spino-snoring; volume: 20" sound__spino1roar="src: #spino-spino1roar; volume: 20"
+  sound__walk="src: #spino-walk; volume: 20; loop: true" sound__waterout="src: #spino-water-out; volume: 20"
+  sound__watermove="src: #spino-water-move; volume: 20" sound__swim="src: #spino-swim; volume: 20">
+</a-entity>
+<a-entity id="spino-female" spino-female-animation gltf-model="#spino-female-asset"
+  animation-mixer="clip: Spinosaurus_Swim_InPlace" position="-45.549 -0.91907 -18" rotation="0 0 0"
+  scale="0.018 0.018 0.018" sound__attackwater="src: #spino-attack-water; volume: 20"
+  sound__heavywater="src: #spino-heavy-water; volume: 20" sound__spino2drink="src: #spino-spino2drink; volume: 20"
+  sound__spino2roar="src: #spino-spino2roar; volume: 20" sound__walk="src: #spino-walk; volume: 20; loop: true"
+  sound__watermove="src: #spino-water-move; volume: 20">
+  <a-entity visible="false" id="spino-saw-fish-dead" gltf-model="#saw-fish-asset"
+    animation-mixer="clip: Death; timeScale: 0;startFrame: 3000" position="25.43455 388.59921 637.48623"
+    rotation="0 90 160" scale="2.5 2.5 2.5">
+  </a-entity>
+</a-entity>
+
+
+<a-entity id="spino-fish" gltf-model="#fish-asset" animation-mixer="clip: Take 001"
+  position="-11.62593 -12.17427 -7.8875" rotation="0 0 0" scale="0.002 0.002 0.002">
+</a-entity>
+<a-entity id="spino-saw-fish" gltf-model="#saw-fish-asset" animation-mixer="clip: Swim; timeScale: 0.3"
+  position="-5.30232 -10.87298 23.08227" rotation="0 0 0" scale="0.04 0.04 0.04"
+  sound__lightwater="src: #spino-light-water; volume: 20">
+</a-entity>

@@ -1,0 +1,83 @@
+<a-entity id="sarco-car" gltf-model="#swamp-scene-asset" sarco-car-tour position="-5.86958 1.02687 4.472"
+  rotation="0 0 0" scale="1 1.2 1">
+  <a-entity id="rig" turn-control="controllerListenerId: #controller-data;" movement-controls="speed: 0.1"
+    position="1.152 -0.6000000000000001 0.934" rotation="0 90 0">
+    <a-entity id="hands">
+      <a-entity id="sarco-scene-camera" class="camera-entity" camera position="0 0 0" user-height="0"
+        fps-look-controls="user-height: 0" simple-navmesh-constraint="navmesh:#sarco-navmesh-el;fall:0;height:1.25;">
+        <a-troika-text id="sarco-camera-text" visible="false" troika-text="color: #d6d6d6" scale="0.15 0.15 0.15"
+          position="0 -0.25795 -0.8507" value="Press ENTER or TOP trigger to leave"
+          font="/assets/font/AlfaSlabOne-Regular.ttf">
+        </a-troika-text>
+        <a-box id="loading-sphere" visible="false" material="blending: none; shader: flat"
+          geometry="depth: 1; height: 1; width: 1; primitive: sphere; segmentsHeight: 10; segmentsWidth: 10; radius: 0.1"
+          color="#262c28" side="back">
+          <a-image id="loading-logo-1" src="#loading-asset" scale="0.018 0.015 0.015" position="0 0.00011 -0.057"
+            rotation="0 0 0">
+          </a-image>
+          <a-image id="loading-logo-2" src="#loading-asset" scale="0.018 0.015 0.015" position="0.06465 0.00001 -0.057"
+            rotation="0 0 0">
+          </a-image>
+        </a-box>
+        <a-box id="out-of-limit" position="0 0 0" visible="false" material="blending: none; shader: flat"
+          geometry="depth: 1; height: 1; width: 1; primitive: sphere; segmentsHeight: 10; segmentsWidth: 10; radius: 0.1"
+          color="#262c28" side="back">
+          <a-image id="limits-logo-1" src="#limits-asset" scale="0.017 0.015 0.015" position="0 0.00011 -0.057"
+            rotation="0 0 0">
+          </a-image>
+          <a-image id="limits-logo-2" src="#limits-asset" scale="0.017 0.015 0.015" position="0.06465 0.00001 -0.057"
+            rotation="0 0 0">
+          </a-image>
+        </a-box>
+      </a-entity>
+      <a-entity id="controller-data" controller-listener="leftControllerId:  #leftHand;
+                                 rightControllerId: #rightHand;"></a-entity>
+      <a-entity id="leftHand" sphere-collider="objects: a-box" custom-hand-control super-hands
+        hand-controls="hand: left; handModelStyle: highPoly; color: #ffcccc"></a-entity>
+      <a-entity fps-counter="enabled: true; for90fps: true" id="rightHand" rotation="10 0 0"
+        sphere-collider="objects: a-box" custom-hand-control super-hands
+        hand-controls="hand: right; handModelStyle: highPoly; color: #ffcccc"></a-entity>
+    </a-entity>
+  </a-entity>
+  <a-plane id="sarco-navmesh-el" geometry="width: 8.73" visible="false" position="-0.46865 -0.0363 0.08816"
+    rotation="-90 0 0" width="8" height="5.5" color="yellow">
+  </a-plane>
+  <a-entity id="car-env">
+    <!-- <a-entity id="sarco-window" gltf-model="#window-asset" position="-0.20335 0.62774 -3.92827" rotation="0 0 0"
+  scale="0.05 0.02 0.01"></a-entity> -->
+    <a-entity id="sarco-window-support" gltf-model="#window-support-asset" position="-5.86444 -0.88693 0.642"
+      rotation="0 -90 0" scale="1.56 1.29 0.88">
+      <a-image id="sarco-dont-touch" src="#dont-touch-asset" scale="0.45 0.3 0.3" position="-2.22482 0.97435 -0.23991"
+        rotation="0 0 0"></a-image>
+    </a-entity>
+    <a-entity id="sarco-wall" gltf-model="#wall-asset" position="5.58477 0.81313 0.03597" rotation="90 90 0"
+      scale="1.8 1.5 1.5" sound__nacelledown="src: #sarco-nacelle-down; volume: 8; loop: true"
+      sound__nacellestart="src: #sarco-nacelle-start; volume: 20"
+      sound__nacelleend="src: #sarco-nacelle-end; volume: 20"></a-entity>
+    <a-entity id="sarco-terminal" gltf-model="#terminal-asset" position="-3.10689 -0.64266 1.21953"
+      rotation="0 107.76 0" scale="0.027 0.027 0.027">
+      <a-image id="sarco-pres" src="#sarco-pres-asset" scale="32 16 10" position="-0.05575 46.56972 -7.50028"
+        rotation="-14.21 3.15 0"></a-image>
+    </a-entity>
+    <a-entity id="sarco-door" gltf-model="#door-asset" position="5.50369 -0.92257 0.13499" rotation="0 -90 0"
+      scale="0.025 0.025 0.025">
+      <a-entity id="sarco-checkpoint" checkpoint-animation animation-mixer="clip: Take 001"
+        gltf-model="#checkpoint-asset" position="-2.81157 22 30.57404" rotation="0 110 0" scale="80 80 80">
+      </a-entity>
+    </a-entity>
+    <a-entity id="sarco-floor" gltf-model="#floor-asset" position="2.80903 -5.56695 -8.9603" rotation="90 0 0"
+      scale="2.1 2.1 1"></a-entity>
+    <a-box id="sarco-window-box-1" material="color: #0f0f0f" rotation="0 0 0"
+      geometry="depth: 0.7; height: 0.43; width: 0.09; segmentsHeight: 1" scale="1.2 1.2 1.2"
+      position="-5.75081 2.87545 3.68408" color="#000" depth="20" height="20" width="20"></a-box>
+    <a-box id="sarco-window-box-2" material="color: #0f0f0f" rotation="0 0 0"
+      geometry="depth: 0.7; height: 0.43; width: 0.09; segmentsHeight: 1" scale="1.2 1.2 1.2"
+      position="-5.8282 2.88439 -3.54213" color="#000" depth="20" height="20" width="20"></a-box>
+    <a-box id="sarco-window-box-3" material="color: #0f0f0f" rotation="0 0 0"
+      geometry="depth: 0.7; height: 0.43; width: 0.09; segmentsHeight: 1" scale="1.2 1.2 1.2"
+      position="-5.766 -0.764 4.094" color="#000" depth="20" height="20" width="20"></a-box>
+    <a-box id="sarco-window-box-4" material="color: #0f0f0f" rotation="0 0 0"
+      geometry="depth: 0.7; height: 0.43; width: 0.09; segmentsHeight: 1" scale="1.2 1.2 1.2"
+      position="-5.766 -0.764 -3.96052" color="#000" depth="20" height="20" width="20"></a-box>
+  </a-entity>
+</a-entity>

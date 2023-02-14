@@ -3,7 +3,15 @@ AFRAME.registerComponent('cinema-car-tour', {
     this.scene = 'cinema';
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
 
-    this.system = document.querySelector('a-scene').systems['game'];
+    this.system = document.querySelector('a-scene').systems['system'];
+    this.movesManager =
+      document.querySelector('a-scene').systems['movesManager'];
+    this.textCar = document.querySelector('#cinema-camera-text');
+
+    // Video
+    this.videoEl = document
+      .querySelector('#cinema-movie')
+      .getAttribute('material').src;
 
     // Sounds
     this.ambiant1Sound;
@@ -11,28 +19,32 @@ AFRAME.registerComponent('cinema-car-tour', {
     // Voice and screen phases
     this.voicePhase = 'cinema1';
 
-    // Tour Path
-    const curve = new THREE.SplineCurve([
-      new THREE.Vector2(7.988, 81.899),
-      new THREE.Vector2(9.7, -174.7),
-    ]);
-
     // En scene activation
     this.sceneChanged = false;
 
     // Start tour listeners
+    window.addEventListener('changeScene', () => {
+      this.videoEl.pause();
+      this.videoEl.currentTime = 0;
+      this.phase = 'exit';
+    });
+
     this.el.addEventListener(
       'start',
       () => {
+        document.getElementById('cinema-env').setAttribute('visible', 'true');
+        this.textCar.setAttribute('visible', 'true');
         setTimeout(() => {
-          var videoEl = document
-            .querySelector('#cinema-movie')
-            .getAttribute('material').src;
-          if (!videoEl) {
+          this.textCar.setAttribute('visible', 'false');
+        }, 10000);
+        this.movesManager.nextScene = 'home';
+        setTimeout(() => {
+          if (!this.videoEl) {
             return;
           }
           this.el.object3D.visible = true;
-          videoEl.play();
+          this.videoEl.play();
+          this.videoEl.volume = 0.7;
         }, 3000);
 
         this.phase = 'start';
@@ -56,24 +68,10 @@ AFRAME.registerComponent('cinema-car-tour', {
         this.start();
         break;
       case 'changeScene':
-        if (!this.sceneChanged) {
-          // Destroy and detach all unecessary objets
-          //Change scene
-          const mainScene = document.getElementById('main-scene');
-          mainScene.setAttribute('background', {
-            color: '#000', //#00496c
-          });
-          mainScene.setAttribute('fog', {
-            type: 'exponential',
-            color: '#000',
-            density: 0.1,
-          });
-          setTimeout(() => {
-            window.location.href = 'https://map.prehistoricdomain.com/';
-          }, 8000);
-          this.system.changeScene('ending', false);
-          this.sceneChanged = true;
-        }
+        // Destroy and detach all unecessary objets
+        // Change scene
+        this.system.changeEndingScene('ending');
+        this.phase = 'exit';
         break;
     }
   },

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Dune branch
+* source:	https://sketchfab.com/3d-models/dune-branch-a0da75f304a74797b7df074f8956abe3
+* author:	marijnwillemse (https://sketchfab.com/marijnwillemse)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Dune branch" (https://sketchfab.com/3d-models/dune-branch-a0da75f304a74797b7df074f8956abe3) by marijnwillemse (https://sketchfab.com/marijnwillemse) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

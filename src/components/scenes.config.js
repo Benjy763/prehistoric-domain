@@ -1,147 +1,534 @@
-export const MainScene = 'tour';
+export const MainScene = process.env.MAIN_SCENE;
 
-export const TourScenes = {
-  // Starting scene
-  mobileCompatible: false,
-  selection: 'gate',
-  assetsId: 'tour-assets',
-  carMarkerForDebug: 0.7,
-  color: '#000',
-  density: 0.025,
-  loading: {
-    scene: 'loading-scene',
-    camera: 'loading-scene-camera',
+export const MainScenes = {
+  home: {
+    // Starting scene
+    name: 'Main Area',
+    loadingScreen: 'home-illu.jpg',
+    needPerformance: true,
+    needLanguage: false,
+    mobileCompatible: false,
+    selection: 'home',
+    assetsId: 'home-assets',
+    displayDistance: 10000,
+    carMarkerForDebug: 0.7,
+    color: '#d6d6d6',
+    density: [0.001, 0.001],
+    loading: {
+      scene: 'loading-scene',
+      camera: 'loading-scene-camera',
+    },
+    home: {
+      loaded: false,
+      scene: 'home-scene',
+      camera: 'home-scene-camera',
+      car: 'home-car',
+      carReference: null,
+      rigPos: {
+        x: 68,
+        y: 1,
+        z: -3.2,
+      },
+    },
+    cinema: {
+      loaded: false,
+      scene: 'cinema-scene',
+      camera: 'cinema-scene-camera',
+      car: 'cinema-car',
+      carReference: null,
+      isVehicule: false,
+      rigPos: {
+        x: -0.275,
+        y: 2.05,
+        z: -0.25,
+      },
+    },
+    visitors: {
+      scene: 'visitors-scene',
+      camera: 'visitors-scene-camera',
+      car: 'visitors-car',
+      carReference: null,
+      rigPos: {
+        x: -24.764,
+        y: 1,
+        z: -1.267,
+      },
+    },
+    ending: {
+      scene: 'ending-scene',
+      camera: 'ending-scene-camera',
+      car: 'ending-car',
+      carReference: null,
+    },
   },
-  gate: {
-    scene: 'gate-scene',
-    camera: 'gate-scene-camera',
-    car: 'gate-car',
-    carReference: null,
+  homelight: {
+    // Starting scene
+    name: 'Main Area',
+    loadingScreen: 'home-illu.jpg',
+    needPerformance: false,
+    needLanguage: false,
+    mobileCompatible: false,
+    selection: 'home',
+    assetsId: 'home-assets',
+    displayDistance: 10000,
+    carMarkerForDebug: 0.7,
+    color: '#d6d6d6',
+    density: [0.001, 0.001],
+    loading: {
+      scene: 'loading-scene',
+      camera: 'loading-scene-camera',
+    },
+    home: {
+      loaded: false,
+      scene: 'home-scene',
+      camera: 'home-scene-camera',
+      car: 'home-car',
+      carReference: null,
+      rigPos: {
+        x: 68,
+        y: 1,
+        z: -3.2,
+      },
+    },
+    cinema: {
+      loaded: false,
+      scene: 'cinema-scene',
+      camera: 'cinema-scene-camera',
+      car: 'cinema-car',
+      carReference: null,
+      isVehicule: false,
+      rigPos: {
+        x: -0.275,
+        y: 2.05,
+        z: -0.25,
+      },
+    },
+    ending: {
+      scene: 'ending-scene',
+      camera: 'ending-scene-camera',
+      car: 'ending-car',
+      carReference: null,
+    },
   },
-  dilo: {
-    scene: 'dilo-scene',
-    camera: 'dilo-scene-camera',
-    car: 'dilo-car',
-    carReference: null,
+  visitors: {
+    // Starting scene
+    name: 'Visitors House',
+    loadingScreen: 'deino-illu.jpg',
+    needPerformance: false,
+    needLanguage: false,
+    mobileCompatible: false,
+    selection: 'visitors',
+    assetsId: 'visitors-assets',
+    displayDistance: 200,
+    carMarkerForDebug: 0.7,
+    color: '#fff',
+    density: [0, 0],
+    loading: {
+      scene: 'loading-scene',
+      camera: 'loading-scene-camera',
+    },
+    visitors: {
+      scene: 'visitors-scene',
+      camera: 'visitors-scene-camera',
+      car: 'visitors-car',
+      carReference: null,
+      rigPos: {
+        x: -21.292,
+        y: 1,
+        z: -3.743,
+      },
+    },
+    ending: {
+      scene: 'ending-scene',
+      camera: 'ending-scene-camera',
+      car: 'ending-car',
+      carReference: null,
+    },
   },
-  trex: {
-    scene: 'trex-scene',
-    camera: 'trex-scene-camera',
-    car: 'trex-car',
-    carReference: null,
-  },
-  raptor: {
-    scene: 'raptor-scene',
-    camera: 'raptor-scene-camera',
-    car: 'raptor-car',
-    carReference: null,
-  },
-  trice: {
-    scene: 'trice-scene',
-    camera: 'trice-scene-camera',
-    car: 'trice-car',
-    carReference: null,
-  },
-  ending: {
-    scene: 'ending-scene',
-    camera: 'ending-scene-camera',
-    car: 'ending-car',
-    carReference: null,
-  },
-};
-
-export const AviaryScenes = {
-  // Starting scene
-  mobileCompatible: true,
-  selection: 'aviary',
-  assetsId: 'aviary-assets',
-  carMarkerForDebug: 0.32,
-  color: '#5e5e5e',
-  density: 0.065,
-  loading: {
-    scene: 'loading-scene',
-    camera: 'loading-scene-camera',
+  tour: {
+    // Starting scene
+    name: 'Night Tour',
+    loadingScreen: 'brachio-illu.jpg',
+    displayDistance: 80,
+    needPerformance: false,
+    needLanguage: true,
+    mobileCompatible: false,
+    selection: 'gate',
+    assetsId: 'tour-assets',
+    carMarkerForDebug: 0.7,
+    color: '#000',
+    density: [0.025, 0.025],
+    loading: {
+      scene: 'loading-scene',
+      camera: 'loading-scene-camera',
+    },
+    gate: {
+      scene: 'gate-scene',
+      camera: 'gate-scene-camera',
+      car: 'gate-car',
+      carReference: null,
+      isVehicule: true,
+      rigPos: {
+        x: 0.38,
+        y: 1.98,
+        z: -0.587,
+      },
+    },
+    ending: {
+      scene: 'ending-scene',
+      camera: 'ending-scene-camera',
+      car: 'ending-car',
+      carReference: null,
+    },
   },
   aviary: {
-    scene: 'aviary-scene',
-    camera: 'aviary-scene-camera',
-    car: 'aviary-car',
-    carReference: null,
-  },
-  ending: {
-    scene: 'ending-scene',
-    camera: 'ending-scene-camera',
-    car: 'ending-car',
-    carReference: null,
-  },
-};
-
-export const LagoonScenes = {
-  // Starting scene
-  mobileCompatible: true,
-  selection: 'lagoon',
-  assetsId: 'lagoon-assets',
-  carMarkerForDebug: 0.32,
-  color: '#26537a',
-  density: 0.1,
-  loading: {
-    scene: 'loading-scene',
-    camera: 'loading-scene-camera',
+    // Starting scene
+    name: 'Pteranodon Aviary',
+    loadingScreen: 'aviary-illu.jpg',
+    displayDistance: 400,
+    needPerformance: false,
+    needLanguage: true,
+    mobileCompatible: true,
+    selection: 'aviary',
+    assetsId: 'aviary-assets',
+    carMarkerForDebug: 0.32,
+    color: '#5e5e5e',
+    density: [0.006, 0.006],
+    canWalk: true,
+    loading: {
+      scene: 'loading-scene',
+      camera: 'loading-scene-camera',
+    },
+    aviary: {
+      scene: 'aviary-scene',
+      camera: 'aviary-scene-camera',
+      car: 'aviary-car',
+      carReference: null,
+      rigPos: {
+        x: 1.152,
+        y: 1,
+        z: 0.934,
+      },
+    },
+    ending: {
+      scene: 'ending-scene',
+      camera: 'ending-scene-camera',
+      car: 'ending-car',
+      carReference: null,
+    },
   },
   lagoon: {
-    scene: 'lagoon-scene',
-    camera: 'lagoon-scene-camera',
-    car: 'lagoon-car',
-    carReference: null,
-  },
-  ending: {
-    scene: 'ending-scene',
-    camera: 'ending-scene-camera',
-    car: 'ending-car',
-    carReference: null,
-  },
-};
-
-export const CinemaScenes = {
-  // Starting scene
-  mobileCompatible: true,
-  selection: 'cinema',
-  assetsId: 'cinema-assets',
-  carMarkerForDebug: 0.32,
-  color: '#000',
-  density: 0.03,
-  loading: {
-    scene: 'loading-scene',
-    camera: 'loading-scene-camera',
+    // Starting scene
+    name: 'Megalodon Viewing Gallery',
+    loadingScreen: 'lagoon-illu.jpg',
+    needPerformance: false,
+    needLanguage: true,
+    mobileCompatible: true,
+    selection: 'lagoon',
+    assetsId: 'lagoon-assets',
+    carMarkerForDebug: 0.32,
+    color: '#26537a',
+    density: [0.1, 0.1],
+    loading: {
+      scene: 'loading-scene',
+      camera: 'loading-scene-camera',
+    },
+    lagoon: {
+      scene: 'lagoon-scene',
+      camera: 'lagoon-scene-camera',
+      car: 'lagoon-car',
+      carReference: null,
+      rigPos: {
+        x: 1,
+        y: 2.2,
+        z: 0,
+      },
+    },
+    ending: {
+      scene: 'ending-scene',
+      camera: 'ending-scene-camera',
+      car: 'ending-car',
+      carReference: null,
+    },
   },
   cinema: {
-    scene: 'cinema-scene',
-    camera: 'cinema-scene-camera',
-    car: 'cinema-car',
-    carReference: null,
+    // Starting scene
+    name: 'Cinema',
+    loadingScreen: 'cinema-illu.jpg',
+    needPerformance: false,
+    needLanguage: false,
+    mobileCompatible: true,
+    selection: 'cinema',
+    assetsId: 'cinema-assets',
+    carMarkerForDebug: 0.32,
+    color: '#000',
+    density: [0.03, 0.03],
+    loading: {
+      scene: 'loading-scene',
+      camera: 'loading-scene-camera',
+    },
+    cinema: {
+      scene: 'cinema-scene',
+      camera: 'cinema-scene-camera',
+      car: 'cinema-car',
+      carReference: null,
+    },
+    ending: {
+      scene: 'ending-scene',
+      camera: 'ending-scene-camera',
+      car: 'ending-car',
+      carReference: null,
+    },
   },
-  ending: {
-    scene: 'ending-scene',
-    camera: 'ending-scene-camera',
-    car: 'ending-car',
-    carReference: null,
+  sarco: {
+    // Starting scene
+    name: 'Sarcosuchus Viewing Gallery',
+    loadingScreen: 'sarco-illu.jpg',
+    needPerformance: true,
+    needLanguage: true,
+    mobileCompatible: true,
+    selection: 'sarco',
+    assetsId: 'swamp-assets',
+    carMarkerForDebug: 0.32,
+    color: '#5e5e5e',
+    density: [0.05, 0.05],
+    canWalk: true,
+    loading: {
+      scene: 'loading-scene',
+      camera: 'loading-scene-camera',
+    },
+    sarco: {
+      scene: 'sarco-scene',
+      camera: 'sarco-scene-camera',
+      car: 'sarco-car',
+      carReference: null,
+      rigPos: {
+        x: 1,
+        y: 1,
+        z: 0,
+      },
+    },
+    ending: {
+      scene: 'ending-scene',
+      camera: 'ending-scene-camera',
+      car: 'ending-car',
+      carReference: null,
+    },
+  },
+  spino: {
+    // Starting scene
+    name: 'Spinosaurus Viewing Gallery',
+    loadingScreen: 'spino-illu.jpg',
+    needPerformance: true,
+    needLanguage: true,
+    mobileCompatible: true,
+    selection: 'spino',
+    assetsId: 'swamp-assets',
+    carMarkerForDebug: 0.32,
+    color: '#5e5e5e',
+    density: [0.05, 0.05],
+    canWalk: true,
+    loading: {
+      scene: 'loading-scene',
+      camera: 'loading-scene-camera',
+    },
+    spino: {
+      scene: 'spino-scene',
+      camera: 'spino-scene-camera',
+      car: 'spino-car',
+      carReference: null,
+      rigPos: {
+        x: 1,
+        y: 1,
+        z: 0,
+      },
+    },
+    ending: {
+      scene: 'ending-scene',
+      camera: 'ending-scene-camera',
+      car: 'ending-car',
+      carReference: null,
+    },
+  },
+  quetza: {
+    // Starting scene
+    name: 'Quetzalcoatlus Viewing Gallery',
+    loadingScreen: 'quetza-illu.jpg',
+    needPerformance: true,
+    needLanguage: true,
+    mobileCompatible: true,
+    selection: 'quetza',
+    assetsId: 'swamp-assets',
+    carMarkerForDebug: 0.32,
+    color: '#5e5e5e',
+    density: [0.05, 0.05],
+    canWalk: true,
+    loading: {
+      scene: 'loading-scene',
+      camera: 'loading-scene-camera',
+    },
+    quetza: {
+      scene: 'quetza-scene',
+      camera: 'quetza-scene-camera',
+      car: 'quetza-car',
+      carReference: null,
+      rigPos: {
+        x: 1,
+        y: 1,
+        z: 0,
+      },
+    },
+    ending: {
+      scene: 'ending-scene',
+      camera: 'ending-scene-camera',
+      car: 'ending-car',
+      carReference: null,
+    },
+  },
+  dimetrodon: {
+    // Starting scene
+    name: 'Dimetrodon Viewing Gallery',
+    loadingScreen: 'dimetrodon-illu.jpg',
+    needPerformance: true,
+    needLanguage: true,
+    mobileCompatible: true,
+    selection: 'dimetrodon',
+    assetsId: 'dimetrodon-assets',
+    carMarkerForDebug: 0.32,
+    color: '#ffddc2',
+    density: [0.015, 0.015],
+    canWalk: true,
+    loading: {
+      scene: 'loading-scene',
+      camera: 'loading-scene-camera',
+    },
+    dimetrodon: {
+      scene: 'dimetrodon-scene',
+      camera: 'dimetrodon-scene-camera',
+      car: 'dimetrodon-car',
+      carReference: null,
+      rigPos: {
+        x: 1,
+        y: 1,
+        z: 0,
+      },
+    },
+    ending: {
+      scene: 'ending-scene',
+      camera: 'ending-scene-camera',
+      car: 'ending-car',
+      carReference: null,
+    },
+  },
+  edmon: {
+    // Starting scene
+    name: 'Edmontosaurus Viewing Gallery',
+    loadingScreen: 'edmon-illu.jpg',
+    needPerformance: true,
+    needLanguage: true,
+    mobileCompatible: true,
+    selection: 'edmon',
+    assetsId: 'edmon-assets',
+    carMarkerForDebug: 0.32,
+    color: '#fff',
+    density: [0.015, 0.015],
+    displayDistance: 400,
+    canWalk: true,
+    loading: {
+      scene: 'loading-scene',
+      camera: 'loading-scene-camera',
+    },
+    edmon: {
+      scene: 'edmon-scene',
+      camera: 'edmon-scene-camera',
+      car: 'edmon-car',
+      carReference: null,
+      rigPos: {
+        x: 1,
+        y: 1,
+        z: 0,
+      },
+    },
+    ending: {
+      scene: 'ending-scene',
+      camera: 'ending-scene-camera',
+      car: 'ending-car',
+      carReference: null,
+    },
+  },
+  trex: {
+    // Starting scene
+    name: 'Tyrannosaurus Rex Viewing Gallery',
+    loadingScreen: 'trex-illu.jpg',
+    needPerformance: true,
+    needLanguage: true,
+    mobileCompatible: true,
+    selection: 'trex',
+    assetsId: 'trex-assets',
+    carMarkerForDebug: 0.32,
+    color: '#000',
+    density: [0.005, 0.005],
+    displayDistance: 400,
+    canWalk: true,
+    loading: {
+      scene: 'loading-scene',
+      camera: 'loading-scene-camera',
+    },
+    trex: {
+      scene: 'trex-scene',
+      camera: 'trex-scene-camera',
+      car: 'trex-car',
+      carReference: null,
+      rigPos: {
+        x: 0,
+        y: 1,
+        z: 0,
+      },
+    },
+    ending: {
+      scene: 'ending-scene',
+      camera: 'ending-scene-camera',
+      car: 'ending-car',
+      carReference: null,
+    },
+  },
+  deino: {
+    // Starting scene
+    name: 'Deinonychus Viewing Gallery',
+    loadingScreen: 'deino-illu.jpg',
+    needPerformance: false,
+    needLanguage: true,
+    mobileCompatible: true,
+    selection: 'deino',
+    assetsId: 'deino-assets',
+    carMarkerForDebug: 0.32,
+    color: '#000',
+    density: [0.025, 0.025],
+    displayDistance: 400,
+    canWalk: true,
+    loading: {
+      scene: 'loading-scene',
+      camera: 'loading-scene-camera',
+    },
+    deino: {
+      scene: 'deino-scene',
+      camera: 'deino-scene-camera',
+      car: 'deino-car',
+      carReference: null,
+      rigPos: {
+        x: 1,
+        y: 1,
+        z: 0,
+      },
+    },
+    ending: {
+      scene: 'ending-scene',
+      camera: 'ending-scene-camera',
+      car: 'ending-car',
+      carReference: null,
+    },
   },
 };
 
-// Main Scenes
-let selectedScenes;
-switch (MainScene) {
-  case 'tour':
-    selectedScenes = TourScenes;
-    break;
-  case 'aviary':
-    selectedScenes = AviaryScenes;
-    break;
-  case 'lagoon':
-    selectedScenes = LagoonScenes;
-    break;
-  case 'cinema':
-    selectedScenes = CinemaScenes;
-    break;
-}
-export const Scenes = selectedScenes;
+// Scenes from main one selected
+export const Scenes = MainScenes[MainScene];

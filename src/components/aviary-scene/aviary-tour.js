@@ -3,9 +3,15 @@ AFRAME.registerComponent('aviary-car-tour', {
     this.scene = 'aviary';
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
 
-    this.system = document.querySelector('a-scene').systems['game'];
+    this.system = document.querySelector('a-scene').systems['system'];
+    this.cameraPosition = document.querySelector(
+      '#' + this.system.getActualSceneObject().camera
+    ).object3D.position;
+    this.movesManager =
+      document.querySelector('a-scene').systems['movesManager'];
     this.ptera = document.querySelector('#pteranodon');
-    this.quetza = document.querySelector('#quetza');
+    this.ptera2 = document.querySelector('#pteranodon-2');
+    this.textCar = document.querySelector('#aviary-camera-text');
 
     // Sounds
     this.ambiant1Sound;
@@ -23,96 +29,99 @@ AFRAME.registerComponent('aviary-car-tour', {
     // En scene activation
     this.sceneChanged = false;
 
+    // Inits
+    this.initPteraAnimation();
+
     // Start tour listeners
     this.el.addEventListener(
       'start',
       () => {
         // Global sound launch
-        document.getElementById('jungle-asset').play();
+        document.getElementById('coast-asset').play();
 
-        // Get sounds
-        this.ambiant1Sound =
-          document.getElementById('aviary-cliff-1').components[
-            'sound__ambiant1'
-          ];
-        this.ambiant3Sound =
-          document.getElementById('aviary-cliff-1').components[
-            'sound__ambiant3'
-          ];
         // Get voice from system when init
-        this.voiceAviary1Sound = this.system.getVoice('aviary1');
-        this.voicePhase = 'aviary1';
+        this.voicePteraSound = this.system.getVoice('ptera');
+        this.voicePhase = 'ptera';
         setTimeout(() => {
           this.phase = 'start';
-        }, 20000);
+        }, 40000);
       },
       false
     );
 
-    // Restart tour listeners
     this.el.addEventListener(
-      'restartPtera',
-      () => {
-        this.phase = 'restartPtera';
-      },
-      false
-    );
-    this.el.addEventListener(
-      'restartQuetzaWalk',
+      'secondPtera',
       () => {
         setTimeout(() => {
-          this.ambiant3Sound.playSound();
-        }, 5000);
-        this.phase = 'restartQuetzaWalk';
+          // Trigger Pteranodon animation
+          const event = new Event('enter');
+          this.ptera2.dispatchEvent(event);
+        }, 8000);
       },
       false
     );
+
     this.el.addEventListener(
-      'restartQuetzaFly',
+      'lastPtera',
       () => {
-        this.phase = 'restartQuetzaFly';
+        setTimeout(() => {
+          // Trigger Pteranodon animation
+          const event = new Event('endFly');
+          this.ptera.dispatchEvent(event);
+        }, 8000);
       },
       false
     );
+  },
+  initPteraAnimation: function () {
+    const pteras = [
+      'pteranodon',
+      'pteranodon-2',
+      'pteranodon-3',
+      'pteranodon-4',
+      'pteranodon-5',
+      'pteranodon-6',
+      'pteranodon-7',
+    ];
+    let timeout = 200;
+    pteras.forEach((ptera) => {
+      timeout += 4000;
+      setTimeout(() => {
+        document.querySelector('#' + ptera).setAttribute('animation-mixer', {
+          clip: 'Ptera_Full_Break',
+          loop: true,
+          timeScale: 0.6,
+          crossFadeDuration: 0.5,
+        });
+      }, timeout);
+    });
   },
   // --- Phase functions ---
   start: function () {
     setTimeout(() => {
-      this.ambiant1Sound.playSound();
-    }, 20000);
-    setTimeout(() => {
       // Trigger Pteranodon animation
       const event = new Event('enter');
       this.ptera.dispatchEvent(event);
-    }, 45000);
+    }, 8000);
     this.phase = 'exit';
   },
-  restartPtera: function () {
-    setTimeout(() => {
-      // Trigger Pteranodon animation
-      const event = new Event('enterWalk');
-      this.quetza.dispatchEvent(event);
-    }, 6000);
-    this.phase = 'exit';
-  },
-  restartQuetzaWalk: function () {
-    setTimeout(() => {
-      // Trigger Pteranodon animation
-      const event = new Event('enterFly');
-      this.quetza.dispatchEvent(event);
-    }, 6000);
-    this.phase = 'exit';
-  },
-  restartQuetzaFly: function () {
-    setTimeout(() => {
-      this.phase = 'changeScene';
-    }, 3000);
+  checkpointListener: function () {
+    if (this.movesManager.distanceFromPoint('aviary-checkpoint') < 3) {
+      this.textCar.setAttribute('visible', 'true');
+      this.movesManager.nextScene = 'ending';
+    }
+    if (this.movesManager.distanceFromPoint('aviary-checkpoint') >= 3) {
+      this.textCar.setAttribute('visible', 'false');
+      this.movesManager.nextScene = null;
+    }
   },
   tick: function () {
+    // Checkpoint listener
+    this.checkpointListener();
     // Voice phases
     switch (this.voicePhase) {
-      case 'aviary1':
-        this.voiceAviary1Sound.play();
+      case 'ptera':
+        this.voicePteraSound.play();
         this.voicePhase = 'exit';
         break;
     }
@@ -121,34 +130,11 @@ AFRAME.registerComponent('aviary-car-tour', {
       case 'start':
         this.start();
         break;
-      case 'restartPtera':
-        this.restartPtera();
-        break;
-      case 'restartQuetzaWalk':
-        this.restartQuetzaWalk();
-        break;
-      case 'restartQuetzaFly':
-        this.restartQuetzaFly();
-        break;
       case 'changeScene':
-        if (!this.sceneChanged) {
-          // Destroy and detach all unecessary objets
-          //Change scene
-          const mainScene = document.getElementById('main-scene');
-          mainScene.setAttribute('background', {
-            color: '#000', //#00496c
-          });
-          mainScene.setAttribute('fog', {
-            type: 'exponential',
-            color: '#000',
-            density: 0.1,
-          });
-          setTimeout(() => {
-            window.location.href = 'https://map.prehistoricdomain.com/';
-          }, 8000);
-          this.system.changeScene('ending', false);
-          this.sceneChanged = true;
-        }
+        // Destroy and detach all unecessary objets
+        // Change scene
+        this.system.changeEndingScene('ending');
+        this.phase = 'exit';
         break;
     }
   },

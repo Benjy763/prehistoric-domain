@@ -1,0 +1,35 @@
+<require path="main-scenes/shared/shared-main-scene.html"></require>
+<div id="main-scene-wrapper">
+  <require path="main-scenes/shared/shared-context-scene.html"></require>
+
+  <div class="scene-border-inner">
+    <div id="main-scene-content" class="scene-content">
+      <a-scene preloader renderer="foveationLevel: 3; antialias = true; sortObjects: true; precision: high"
+        background="color: #262c28; transparent: false" embedded="true" vr-mode-ui="enterVRButton: #enter-vr"
+        id="main-scene" fog="type: exponential; color: #262c28;  density: 0; far: 1.03; near: 1.01">
+        <!-- All assets -->
+        <require path="main-scenes/dimetrodon/dimetrodon-assets.html"></require>
+
+        <!-- Loading scene -->
+        <a-entity id="loading-scene">
+          <require path="components/loading/loading.html"></require>
+        </a-entity>
+        <a-entity id="ending-scene" visible="false">
+          <require path="components/ending/ending.html"></require>
+        </a-entity>
+
+        <a-entity id="dimetrodon-scene" visible="false">
+          <!-- Ground environement -->
+          <require path="components/dimetrodon-scene/dimetrodon-ground.html"></require>
+          <!-- Lightning -->
+          <require path="components/dimetrodon-scene/dimetrodon-lightning.html"></require>
+          <!-- Dinosaurs -->
+          <require path="components/dimetrodon-scene/dimetrodon-dinosaurs.html"></require>
+          <!-- Environment -->
+          <require path="components/dimetrodon-scene/dimetrodon-environment.html"></require>
+          <!-- Objects -->
+          <require path="components/dimetrodon-scene/dimetrodon-car.html"></require>
+        </a-entity>
+    </div>
+  </div>
+</div>

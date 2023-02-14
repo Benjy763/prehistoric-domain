@@ -1,8 +1,0 @@
-Model Information:
-* title:	Quetzalcoatlus pterosaur
-* source:	https://sketchfab.com/3d-models/quetzalcoatlus-pterosaur-b24471222511413aac60f76f964183f7
-* author:	pxltiger (https://sketchfab.com/pxltiger)
-
-Model License:
-* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
-* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

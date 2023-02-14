@@ -3,28 +3,24 @@ AFRAME.registerComponent('trex-car-tour', {
     this.scene = 'trex';
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
 
-    this.system = document.querySelector('a-scene').systems['game'];
+    this.system = document.querySelector('a-scene').systems['system'];
+    this.cameraPosition = document.querySelector(
+      '#' + this.system.getActualSceneObject().camera
+    ).object3D.position;
+    this.movesManager =
+      document.querySelector('a-scene').systems['movesManager'];
     this.carControls;
     this.trex = document.querySelector('#trex');
     this.screenDefault = document.getElementById('dilo-screen-default');
     this.screenTrex = document.getElementById('trex-screen-trex');
     this.screenPhase = 'trex';
-
-    // Tour Path
-    const curve = new THREE.SplineCurve([
-      new THREE.Vector2(18.6, 85),
-      new THREE.Vector2(4.6, 47),
-      new THREE.Vector2(-4.7, 12.8),
-      new THREE.Vector2(-4.7, -18),
-      new THREE.Vector2(2.8, -41),
-      new THREE.Vector2(32, -94),
-    ]);
+    this.textCar = document.querySelector('#trex-camera-text');
 
     // Animation phase
     this.sceneChanged = false;
 
     // Sound
-    this.voicePhase = 'trex1';
+    this.voicePhase = 'sound';
     this.soundMixing1SoundPlaying = false;
     this.leaveSoundPlaying = false;
     this.soundMixing1Audio = document.getElementById('sound-mixing-1');
@@ -42,77 +38,50 @@ AFRAME.registerComponent('trex-car-tour', {
     this.el.addEventListener(
       'start',
       () => {
+        // Get voice from system when init
+        this.voiceTrexSound = this.system.getVoice('trex');
+        this.voicePhase = 'trex';
+
+        // Global sound launch
+        document.getElementById('jungle-asset').play();
         this.voiceTrex1Sound = this.system.getVoice('trex1');
         this.voiceTrex2Sound = this.system.getVoice('trex2');
         this.phase = 'start';
-        this.carControls.changeDrivingState('starting');
-      },
-      false
-    );
-
-    // Restart tour listener, trigger by trex controler
-    this.el.addEventListener(
-      'restart',
-      () => {
-        this.phase = 'restart';
       },
       false
     );
   },
   // --- Phase functions ---
   start: function () {
-    if (this.system.truncMarker(this.carControls.carMarker) > 540) {
-      this.phase = 'stop';
+    document.querySelector('#trex-sky').setAttribute('visible', true);
+    setTimeout(() => {
+      this.soundMixing1Audio.play();
+    }, 25000);
+    setTimeout(() => {
+      // Trigger Rabbit animation
+      const event = new Event('enterWalk');
+      this.trex.dispatchEvent(event);
+    }, 40000);
+    this.phase = 'exit';
+  },
+  checkpointListener: function () {
+    if (this.movesManager.distanceFromPoint('trex-checkpoint') < 3) {
+      this.textCar.setAttribute('visible', 'true');
+      this.movesManager.nextScene = 'ending';
     }
-  },
-  stop: function () {
-    this.carControls.changeDrivingState('stopping');
-    if (this.carControls.carSpeed <= 0) {
-      this.phase = 'stay';
-    }
-  },
-  stay: function () {
-    const event = new Event('enter');
-    this.trex.dispatchEvent(event);
-    this.phase = 'trex';
-  },
-  restart: function () {
-    this.carControls.changeDrivingState('starting');
-    this.phase = 'finish';
-  },
-  finish: function () {
-    if (
-      this.system.truncMarker(this.carControls.carMarker) >
-      this.carControls.maxDistance
-    ) {
-      this.phase = 'changeScene';
+    if (this.movesManager.distanceFromPoint('trex-checkpoint') >= 3) {
+      this.textCar.setAttribute('visible', 'false');
+      this.movesManager.nextScene = null;
     }
   },
   tick: function () {
-    if (!this.carControls) {
-      return;
-    }
-    // Screen phases
-    switch (this.screenPhase) {
-      case 'trex':
-        if (this.system.truncMarker(this.carControls.carMarker) > 0) {
-          this.screenDefault.setAttribute('visible', 'false');
-          this.screenTrex.setAttribute('visible', 'true');
-          this.screenPhase = 'default';
-        }
-        break;
-      case 'default':
-        this.screenDefault.setAttribute('visible', 'true');
-        this.screenPhase = 'end';
-        break;
-    }
+    // Checkpoint listener
+    this.checkpointListener();
     // Voice phases
     switch (this.voicePhase) {
-      case 'trex1':
-        if (this.system.truncMarker(this.carControls.carMarker) > 70) {
-          this.voiceTrex1Sound.play();
-          this.voicePhase = 'trex2';
-        }
+      case 'trex':
+        this.voiceTrexSound.play();
+        this.voicePhase = 'exit';
         break;
     }
     // Animation phases
@@ -120,25 +89,11 @@ AFRAME.registerComponent('trex-car-tour', {
       case 'start':
         this.start();
         break;
-      case 'stop':
-        this.stop();
-        break;
-      case 'stay':
-        this.stay();
-        break;
-      case 'restart':
-        this.restart();
-        break;
-      case 'finish':
-        this.finish();
-        break;
       case 'changeScene':
-        if (!this.sceneChanged) {
-          // Destroy and detach all unecessary objets
-          // Change scene
-          this.system.changeScene('raptor');
-          this.sceneChanged = true;
-        }
+        // Destroy and detach all unecessary objets
+        // Change scene
+        this.system.changeScene('raptor');
+        this.phase = 'exit';
         break;
     }
   },

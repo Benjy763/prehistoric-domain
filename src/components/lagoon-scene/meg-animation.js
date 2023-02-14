@@ -5,7 +5,9 @@ AFRAME.registerComponent('meg-animation', {
 
     // Objects shortcut
     this.object = this.el.object3D;
-    this.system = document.querySelector('a-scene').systems['game'];
+    this.system = document.querySelector('a-scene').systems['system'];
+    this.movesManager =
+      document.querySelector('a-scene').systems['movesManager'];
     this.car = document.querySelector('#lagoon-car');
     this.mainScene = document.getElementById('main-scene');
     this.shark = document.querySelector('#shark');
@@ -29,8 +31,8 @@ AFRAME.registerComponent('meg-animation', {
       new THREE.Vector2(-34.327, -6.174),
     ]);
     this.megCurve1 = new THREE.SplineCurve([
-      new THREE.Vector2(11, -80),
-      new THREE.Vector2(11, 50),
+      new THREE.Vector2(11, -70),
+      new THREE.Vector2(11, 60),
     ]);
     this.megCurve2 = new THREE.SplineCurve([
       new THREE.Vector2(-10.932, 50),
@@ -66,14 +68,14 @@ AFRAME.registerComponent('meg-animation', {
   },
   // --- Phase functions ---
   enterShark: function () {
-    if (this.system.truncMarker(this.sharkMarker) > 900) {
+    if (this.movesManager.truncMarker(this.sharkMarker) > 900) {
       this.megMarker = 0;
       this.sharkMarker = 0;
       // Reset default meg position and rotation
       this.megSpeed = 0.3;
       this.el.setAttribute('position', {
         x: -9.966,
-        y: -5.533,
+        y: -8,
         z: -4.989,
       });
       this.el.setAttribute('rotation', {
@@ -81,43 +83,31 @@ AFRAME.registerComponent('meg-animation', {
         y: 180.0,
         z: 0,
       });
-      const event = new Event('hit');
+      const event = new Event('hited');
       this.car.dispatchEvent(event);
       this.phase = 'return';
     }
 
-    this.sharkMarker = this.system.moveOnCurve(
+    this.sharkMarker = this.movesManager.moveOnCurve(
       this.sharkObject,
       this.sharkCurve1,
       this.sharkMarker,
       this.sharkSpeed
     );
-    this.system.updateRotation(
-      this.shark,
-      this.sharkObject,
-      this.sharkCurve1,
-      this.sharkMarker,
-      this.sharkSpeed,
-      90
-    );
   },
   enterMeg: function () {
-    if (this.system.truncMarker(this.megMarker) > 430 && !this.isMegPassed) {
+    if (
+      this.movesManager.truncMarker(this.megMarker) > 430 &&
+      !this.isMegPassed
+    ) {
       this.megPassingAudio.playSound();
       this.isMegPassed = true;
       return;
     }
-    if (this.system.truncMarker(this.megMarker) > 900) {
+    if (this.movesManager.truncMarker(this.megMarker) > 900) {
       return;
     }
-    this.megMarker = this.system.moveOnCurve(
-      this.object,
-      this.megCurve1,
-      this.megMarker,
-      this.megSpeed
-    );
-    this.system.updateRotation(
-      this.el,
+    this.megMarker = this.movesManager.moveOnCurve(
       this.object,
       this.megCurve1,
       this.megMarker,
@@ -125,30 +115,22 @@ AFRAME.registerComponent('meg-animation', {
     );
   },
   sharkReturn: function () {
-    if (this.system.truncMarker(this.sharkMarker) > 580) {
+    if (this.movesManager.truncMarker(this.sharkMarker) > 580) {
       this.sharkSpeed = 0.3;
       const sharkPosition = this.shark.getAttribute('position');
       sharkPosition.y += this.sharkSpeed;
       this.shark.setAttribute('position', sharkPosition);
     } else {
-      this.sharkMarker = this.system.moveOnCurve(
+      this.sharkMarker = this.movesManager.moveOnCurve(
         this.sharkObject,
         this.sharkCurve2,
         this.sharkMarker,
         this.sharkSpeed
       );
-      this.system.updateRotation(
-        this.shark,
-        this.sharkObject,
-        this.sharkCurve2,
-        this.sharkMarker,
-        this.sharkSpeed,
-        90
-      );
     }
   },
   megSwim: function () {
-    if (this.system.truncMarker(this.sharkMarker) < 570) {
+    if (this.movesManager.truncMarker(this.sharkMarker) < 565) {
       return;
     }
     if (!this.bitten) {
@@ -180,7 +162,7 @@ AFRAME.registerComponent('meg-animation', {
         z: -80,
       });
       this.megMarker = 0;
-      this.megSpeed = 0.001;
+      this.megSpeed = 0.0012;
       this.isMegPassed = false;
       setTimeout(() => {
         this.phase = 'turnAround';
@@ -191,25 +173,21 @@ AFRAME.registerComponent('meg-animation', {
     this.el.setAttribute('position', megPosition);
   },
   turnAround: function () {
-    if (this.system.truncMarker(this.megMarker) > 250 && !this.isMegPassed) {
+    if (
+      this.movesManager.truncMarker(this.megMarker) > 250 &&
+      !this.isMegPassed
+    ) {
       this.megPassingAudio.playSound();
       this.isMegPassed = true;
       return;
     }
-    if (this.system.truncMarker(this.megMarker) > 900) {
+    if (this.movesManager.truncMarker(this.megMarker) > 900) {
       const event = new Event('restart');
       this.car.dispatchEvent(event);
       this.phase = 'exit';
     }
 
-    this.megMarker = this.system.moveOnCurve(
-      this.object,
-      this.megCurve3,
-      this.megMarker,
-      this.megSpeed
-    );
-    this.system.updateRotation(
-      this.el,
+    this.megMarker = this.movesManager.moveOnCurve(
       this.object,
       this.megCurve3,
       this.megMarker,

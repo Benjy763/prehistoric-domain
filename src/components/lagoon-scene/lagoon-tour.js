@@ -3,12 +3,14 @@ AFRAME.registerComponent('lagoon-car-tour', {
     this.scene = 'aviary';
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
 
-    this.system = document.querySelector('a-scene').systems['game'];
+    this.system = document.querySelector('a-scene').systems['system'];
     this.meg = document.querySelector('#meg');
+    this.movesManager =
+      document.querySelector('a-scene').systems['movesManager'];
+    this.textCar = document.querySelector('#lagoon-camera-text');
 
     // Sounds
     this.ambiant1Sound;
-    this.hitSound;
 
     // Voice and screen phases
     this.voicePhase = 'stop';
@@ -50,9 +52,9 @@ AFRAME.registerComponent('lagoon-car-tour', {
 
     // Tour listeners
     this.el.addEventListener(
-      'hit',
+      'hited',
       () => {
-        this.phase = 'hit';
+        this.phase = 'hited';
       },
       false
     );
@@ -82,7 +84,19 @@ AFRAME.registerComponent('lagoon-car-tour', {
     }, 3000);
     this.phase = 'exit';
   },
+  checkpointListener: function () {
+    if (this.movesManager.distanceFromPoint('lagoon-checkpoint') < 1) {
+      this.textCar.setAttribute('visible', 'true');
+      this.movesManager.nextScene = 'ending';
+    }
+    if (this.movesManager.distanceFromPoint('lagoon-checkpoint') >= 1) {
+      this.textCar.setAttribute('visible', 'false');
+      this.movesManager.nextScene = null;
+    }
+  },
   tick: function () {
+    // Checkpoint listener
+    this.checkpointListener();
     // Voice phases
     switch (this.voicePhase) {
       case 'lagoon1':
@@ -95,33 +109,16 @@ AFRAME.registerComponent('lagoon-car-tour', {
       case 'start':
         this.start();
         break;
-      case 'hit':
+      case 'hited':
         this.hit();
         break;
       case 'restart':
-        setTimeout(() => {
-          this.phase = 'changeScene';
-        }, 3000);
         break;
       case 'changeScene':
-        if (!this.sceneChanged) {
-          // Destroy and detach all unecessary objets
-          //Change scene
-          const mainScene = document.getElementById('main-scene');
-          mainScene.setAttribute('background', {
-            color: '#000', //#00496c
-          });
-          mainScene.setAttribute('fog', {
-            type: 'exponential',
-            color: '#000',
-            density: 0.1,
-          });
-          setTimeout(() => {
-            window.location.href = 'https://map.prehistoricdomain.com/';
-          }, 8000);
-          this.system.changeScene('ending', false);
-          this.sceneChanged = true;
-        }
+        // Destroy and detach all unecessary objets
+        // Change scene
+        this.system.changeEndingScene('ending');
+        this.phase = 'exit';
         break;
     }
   },

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Terminal
+* source:	https://sketchfab.com/3d-models/terminal-ea775c5fc2bc4055ae4ca2654f9a9b6e
+* author:	AnnikaRuppert (https://sketchfab.com/AnnikaRuppert)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Terminal" (https://sketchfab.com/3d-models/terminal-ea775c5fc2bc4055ae4ca2654f9a9b6e) by AnnikaRuppert (https://sketchfab.com/AnnikaRuppert) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

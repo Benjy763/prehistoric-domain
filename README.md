@@ -8,6 +8,12 @@
 - NodeJS and NPM <https://nodejs.org/en/>
 - Read A-Frame docs <https://aframe.io/docs/1.0.0/introduction/> & <https://aframe.io/aframe-school/#/>
 
+### Scenes
+
+The `main-scenes` folder contains all independants VR experiences.
+Each one may launch one or multiples `scenes`. each scenes are in the `components` folder.
+It is possible to display only one scene or to chain them one after the other .
+
 ### Installation
 
 ```
@@ -44,13 +50,47 @@ And visit the url **localhost:8080/website**
 
 Build process to add files in production.
 
-To build the VR experience run:
+### Build a specific scene
+
+To build a specific scene run:
 
 ```
-npm run build
+npm run build:scene --mainscene=aviary
 ```
 
 All files are exported in the **dist** folder
+
+### Build assets
+
+To build the VR experience run:
+
+```
+npm run copy:assets
+```
+
+All files are exported in the **dist** folder
+
+### Build all scenes
+
+To build the VR experience run:
+
+```
+npm run build:scene:all
+```
+
+All files are exported in the **dist** folder
+
+### Build all scenes and assets
+
+To build the VR experience run:
+
+```
+npm run build:all
+```
+
+All files are exported in the **dist** folder
+
+### Build the website
 
 To build the website run:
 

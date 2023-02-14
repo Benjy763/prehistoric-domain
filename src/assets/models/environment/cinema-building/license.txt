@@ -1,0 +1,8 @@
+Model Information:
+* title:	Outback Restaurant
+* source:	https://sketchfab.com/3d-models/outback-restaurant-d93b0435bd5f46ba878451cb350d22e9
+* author:	luminou_CS (https://sketchfab.com/luminou)
+
+Model License:
+* license type:	SKETCHFAB Editorial (https://sketchfab.com/licenses)
+* requirements:	Use only in connection with events that are newsworthy or of public interest

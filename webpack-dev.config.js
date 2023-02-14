@@ -1,19 +1,17 @@
-const MinifyPlugin = require('babel-minify-webpack-plugin');
-const fs = require('fs');
 const ip = require('ip');
 const path = require('path');
 const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
 
 PLUGINS = [
-  new webpack.EnvironmentPlugin(['NODE_ENV']),
+  new webpack.EnvironmentPlugin(['NODE_ENV', 'MAIN_SCENE']),
   new webpack.HotModuleReplacementPlugin(),
   new CopyPlugin([
-    { from: './src/models', to: 'build/models' },
-    { from: './src/images', to: 'build/images' },
-    { from: './src/sounds', to: 'build/sounds' },
-    { from: './src/font', to: 'build/font' },
-    { from: './src/vendors', to: 'build/vendors' },
+    { from: './src/assets/models', to: 'assets/models' },
+    { from: './src/assets/images', to: 'assets/images' },
+    { from: './src/assets/sounds', to: 'assets/sounds' },
+    { from: './src/assets/font', to: 'assets/font' },
+    { from: './src/vendors', to: 'vendors' },
   ]),
 ];
 

@@ -1,0 +1,575 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 3444,
+      "max": [
+        383.4546203613281,
+        381.5233154296875,
+        92.46599578857422
+      ],
+      "min": [
+        -383.45465087890625,
+        -381.5233459472656,
+        -19.972366333007813
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 41328,
+      "componentType": 5126,
+      "count": 3444,
+      "max": [
+        0.999873697757721,
+        0.9999015927314758,
+        0.08963879942893982
+      ],
+      "min": [
+        -0.9999604821205139,
+        -0.9999607801437378,
+        -0.9531464576721191
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 3444,
+      "max": [
+        0.9999922513961792,
+        0.9999815821647644,
+        0.3665641248226166,
+        1.0
+      ],
+      "min": [
+        -0.999984860420227,
+        -0.9999670386314392,
+        -0.19332915544509888,
+        1.0
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 3444,
+      "max": [
+        0.44187599420547485,
+        0.9994999766349792
+      ],
+      "min": [
+        -0.0023819999769330025,
+        0.0004990000161342323
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 27552,
+      "componentType": 5126,
+      "count": 3444,
+      "max": [
+        0.9956521987915039,
+        0.9000000357627869
+      ],
+      "min": [
+        0.004347826354205608,
+        0.09999997168779373
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 6888,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 82656,
+      "componentType": 5126,
+      "count": 1230,
+      "max": [
+        232.89321899414063,
+        250.209228515625,
+        96.11141967773438
+      ],
+      "min": [
+        -232.8988494873047,
+        -250.2091827392578,
+        -16.321149826049805
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 97416,
+      "componentType": 5126,
+      "count": 1230,
+      "max": [
+        0.9978426098823547,
+        0.9997797608375549,
+        0.08956003189086914
+      ],
+      "min": [
+        -0.9995918273925781,
+        -0.9999608397483826,
+        -0.953102171421051
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "byteOffset": 55104,
+      "componentType": 5126,
+      "count": 1230,
+      "max": [
+        0.9999675750732422,
+        0.9999260902404785,
+        0.3664660155773163,
+        1.0
+      ],
+      "min": [
+        -0.9998880624771118,
+        -0.9998822808265686,
+        -0.19332435727119446,
+        1.0
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 55104,
+      "componentType": 5126,
+      "count": 1230,
+      "max": [
+        0.44187599420547485,
+        0.9994999766349792
+      ],
+      "min": [
+        -0.0023819999769330025,
+        0.0004990000161342323
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 64944,
+      "componentType": 5126,
+      "count": 1230,
+      "max": [
+        0.9951456785202026,
+        0.7500000596046448
+      ],
+      "min": [
+        0.004854369442909956,
+        0.25
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 27552,
+      "componentType": 5125,
+      "count": 2460,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 112176,
+      "componentType": 5126,
+      "count": 246,
+      "max": [
+        117.8779296875,
+        119.92063903808594,
+        92.08882904052734
+      ],
+      "min": [
+        -117.87789916992188,
+        -119.92064666748047,
+        -20.349483489990234
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 115128,
+      "componentType": 5126,
+      "count": 246,
+      "max": [
+        0.9978411793708801,
+        0.9986544251441956,
+        0.08956136554479599
+      ],
+      "min": [
+        -0.9865548014640808,
+        -0.9999608993530273,
+        -0.9531278610229492
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "byteOffset": 74784,
+      "componentType": 5126,
+      "count": 246,
+      "max": [
+        0.9999675750732422,
+        0.9998037219047546,
+        0.36645469069480896,
+        1.0
+      ],
+      "min": [
+        -0.9997997879981995,
+        -0.9893141388893127,
+        -0.19331873953342438,
+        1.0
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 74784,
+      "componentType": 5126,
+      "count": 246,
+      "max": [
+        0.44187599420547485,
+        0.9994999766349792
+      ],
+      "min": [
+        -0.0023819999769330025,
+        0.0004990000161342323
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 76752,
+      "componentType": 5126,
+      "count": 246,
+      "max": [
+        0.9761905670166016,
+        0.7500000596046448
+      ],
+      "min": [
+        0.0238095261156559,
+        0.25
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 37392,
+      "componentType": 5125,
+      "count": 492,
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "studio lab (https://sketchfab.com/leonlabyk)",
+      "license": "SKETCHFAB Standard (https://sketchfab.com/licenses)",
+      "source": "https://sketchfab.com/3d-models/s-swamp-grass-patch-b02f537d9f0f44d48b6d3d395679b1ab",
+      "title": "S Swamp Grass Patch"
+    },
+    "generator": "Sketchfab-13.58.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 39360,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 78720,
+      "byteOffset": 39360,
+      "byteStride": 8,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 118080,
+      "byteOffset": 118080,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 78720,
+      "byteOffset": 236160,
+      "byteStride": 16,
+      "name": "floatBufferViews",
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 314880,
+      "uri": "scene.bin"
+    }
+  ],
+  "images": [
+    {
+      "uri": "textures/M_SwampGrass_baseColor.png"
+    },
+    {
+      "uri": "textures/M_SwampGrass_metallicRoughness.png"
+    },
+    {
+      "uri": "textures/M_SwampGrass_normal.png"
+    }
+  ],
+  "materials": [
+    {
+      "alphaCutoff": 0.23009593934000558,
+      "alphaMode": "MASK",
+      "doubleSided": true,
+      "name": "M_SwampGrass",
+      "normalTexture": {
+        "index": 2
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicFactor": 0.0,
+        "metallicRoughnessTexture": {
+          "index": 1
+        }
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "A01_M_SwampGrass_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TANGENT": 2,
+            "TEXCOORD_0": 3,
+            "TEXCOORD_1": 4
+          },
+          "indices": 5,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "A02_M_SwampGrass_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 7,
+            "POSITION": 6,
+            "TANGENT": 8,
+            "TEXCOORD_0": 9,
+            "TEXCOORD_1": 10
+          },
+          "indices": 11,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "A03_M_SwampGrass_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 13,
+            "POSITION": 12,
+            "TANGENT": 14,
+            "TEXCOORD_0": 15,
+            "TEXCOORD_1": 16
+          },
+          "indices": 17,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.220446049250313e-16,
+        -1.0,
+        0.0,
+        0.0,
+        1.0,
+        2.220446049250313e-16,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Sketchfab_model"
+    },
+    {
+      "children": [
+        2
+      ],
+      "matrix": [
+        0.009999999776482582,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.009999999776482582,
+        0.0,
+        0.0,
+        -0.009999999776482582,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "6e0334318e594aa4ac326987b659db20.fbx"
+    },
+    {
+      "children": [
+        3,
+        5,
+        7
+      ],
+      "name": "RootNode"
+    },
+    {
+      "children": [
+        4
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.220446049250313e-16,
+        -1.0,
+        0.0,
+        0.0,
+        1.0,
+        2.220446049250313e-16,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "A01"
+    },
+    {
+      "mesh": 0,
+      "name": "A01_M_SwampGrass_0"
+    },
+    {
+      "children": [
+        6
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.220446049250313e-16,
+        -1.0,
+        0.0,
+        0.0,
+        1.0,
+        2.220446049250313e-16,
+        0.0,
+        650.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "A02"
+    },
+    {
+      "mesh": 1,
+      "name": "A02_M_SwampGrass_0"
+    },
+    {
+      "children": [
+        8
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.220446049250313e-16,
+        -1.0,
+        0.0,
+        0.0,
+        1.0,
+        2.220446049250313e-16,
+        0.0,
+        1100.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "A03"
+    },
+    {
+      "mesh": 2,
+      "name": "A03_M_SwampGrass_0"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Sketchfab_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
+    },
+    {
+      "sampler": 0,
+      "source": 2
+    }
+  ]
+}
