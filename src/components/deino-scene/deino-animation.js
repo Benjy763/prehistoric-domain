@@ -155,10 +155,7 @@ AFRAME.registerComponent('deino-animation', {
   },
   end: function () {
     if (this.movesManager.truncMarker(this.deinoMarker) > 950) {
-      setTimeout(() => {
-        const event = new Event('turnOnLight');
-        this.car.dispatchEvent(event);
-      }, 5000);
+      this.el.setAttribute('visible', 'false');
       this.phase = 'exit';
     }
     this.deinoMarker = this.movesManager.moveOnCurve(
