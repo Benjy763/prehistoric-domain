@@ -8,6 +8,10 @@ body {
   font-size: clamp(16px, 1vw, 40px);
 }
 
+.a-enter-ar-button {
+  display: none !important;
+}
+
 #main-icon {
   z-index: 999;
   position: absolute;
