@@ -13,14 +13,17 @@ AFRAME.registerComponent('trex-animation', {
     this.animationChange = 'roar';
     // Trex run Path
     this.trexMarker = 0; // Position on the curve
-    this.trexSpeed = 0.0015; // Speed on the curve
-    this.curve = new THREE.SplineCurve([
-      new THREE.Vector2(-2.011, 35.434),
-      new THREE.Vector2(-24.995, 24.185),
-      new THREE.Vector2(-31.018, 15.563),
-      new THREE.Vector2(-34.615, 3.228),
-      new THREE.Vector2(-27.402, -9.057),
-      new THREE.Vector2(-16.326, -28.1),
+    this.trexSpeed = 0.036;
+    this.trexChangingSpeed = 0.0012;
+    this.trexMaxDeceleration = 0.0024;
+    this.trexMaxAcceleration = 0.036;
+    this.curve = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-2.011, 0, 35.434),
+      new THREE.Vector3(-24.995, 0, 24.185),
+      new THREE.Vector3(-31.018, 0, 15.563),
+      new THREE.Vector3(-34.615, 0, 3.228),
+      new THREE.Vector3(-27.402, 0, -9.057),
+      new THREE.Vector3(-16.326, 0, -28.1),
     ]);
 
     // Start tour listener
@@ -59,7 +62,8 @@ AFRAME.registerComponent('trex-animation', {
       this.el.object3D,
       this.curve,
       this.trexMarker,
-      this.trexSpeed
+      this.trexSpeed,
+      true
     );
 
     if (this.movesManager.truncMarker(this.trexMarker) > 380) {
@@ -73,11 +77,11 @@ AFRAME.registerComponent('trex-animation', {
             timeScale: 0.7,
           });
         }, 0);
-        this.trexSpeed -= 0.00005;
+        this.trexSpeed -= this.trexChangingSpeed;
       }
     }
 
-    if (this.trexSpeed < 0.0001) {
+    if (this.trexSpeed < this.trexMaxDeceleration) {
       this.trexFootStepAudio.stopSound();
       setTimeout(() => {
         this.el.setAttribute('animation-mixer', {
@@ -110,15 +114,16 @@ AFRAME.registerComponent('trex-animation', {
     this.phase = 'exit';
   },
   walkAgain: function () {
-    if (this.trexSpeed < 0.0015) {
-      this.trexSpeed += 0.00005;
+    if (this.trexSpeed < this.trexMaxAcceleration) {
+      this.trexSpeed += this.trexChangingSpeed;
     }
 
     this.trexMarker = this.movesManager.moveOnCurve(
       this.el.object3D,
       this.curve,
       this.trexMarker,
-      this.trexSpeed
+      this.trexSpeed,
+      true
     );
 
     if (
@@ -156,7 +161,7 @@ AFRAME.registerComponent('trex-animation', {
           timeScale: 0.3,
           startFrame: 0,
         });
-        this.trexSpeed = 0.05;
+        this.trexSpeed = 1;
         setTimeout(() => {
           this.trexEndSnoringAudio.playSound();
         }, 3000);
@@ -168,7 +173,7 @@ AFRAME.registerComponent('trex-animation', {
     this.objectBis.position.z += this.trexSpeed;
 
     if (this.objectBis.position.z > -5) {
-      this.trexSpeed -= 0.005;
+      this.trexSpeed -= 0.1;
     }
     if (this.trexSpeed <= 0) {
       this.phase = 'showHead';
@@ -187,8 +192,8 @@ AFRAME.registerComponent('trex-animation', {
     this.phase = 'exit';
   },
   walkFar: function () {
-    if (this.trexSpeed < 0.05) {
-      this.trexSpeed += 0.005;
+    if (this.trexSpeed < 1) {
+      this.trexSpeed += 0.1;
     }
 
     this.objectBis.position.z -= this.trexSpeed;
@@ -202,6 +207,7 @@ AFRAME.registerComponent('trex-animation', {
     switch (this.phase) {
       case 'enter':
         this.enter();
+        // Something else with another function if needed in each step
         break;
       case 'enterWalk':
         this.enterWalk();
