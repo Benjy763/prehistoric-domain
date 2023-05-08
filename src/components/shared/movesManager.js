@@ -183,7 +183,14 @@ AFRAME.registerSystem('movesManager', {
   },
   // ----- Curve functions --------
   // Move an object on the given curve according to given speed
-  moveOnCurve: function (object, curve, marker, speed, useDeltaTime = false) {
+  moveOnCurve: function (
+    object,
+    curve,
+    marker,
+    speed,
+    turn180 = false,
+    useDeltaTime = false
+  ) {
     if (marker === 0) {
       this.lastUpdateTime = performance.now();
     }
@@ -197,8 +204,6 @@ AFRAME.registerSystem('movesManager', {
     }
     this.lastUpdateTime = time;
 
-    console.log(deltaTime);
-
     // Update marker on curve
     marker = marker + speed * deltaTime;
     if (marker > curve.getLength()) {
@@ -210,6 +215,9 @@ AFRAME.registerSystem('movesManager', {
     // Update object position and orientation
     object.position.copy(position);
     const tangent = curve.getTangentAt(marker).normalize();
+    if (turn180) {
+      tangent.negate();
+    }
     object.lookAt(position.clone().add(tangent));
 
     return marker;

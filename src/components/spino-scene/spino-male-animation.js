@@ -16,17 +16,17 @@ AFRAME.registerComponent('spino-male-animation', {
     // Spino run Path
     this.spinoMarker = 0; // Position on the curve
     this.spinoWalkSpeed = 0.0008; // Speed on the curve
-    this.walkCurve1 = new THREE.SplineCurve([
-      new THREE.Vector2(-37.867, -15),
-      new THREE.Vector2(-37.867, 55),
+    this.walkCurve1 = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-37.867, 0, -15),
+      new THREE.Vector3(-37.867, 0, 55),
     ]);
-    this.walkCurve2 = new THREE.SplineCurve([
-      new THREE.Vector2(-22.824, 55.687),
-      new THREE.Vector2(-22.824, 18.887),
+    this.walkCurve2 = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-22.824, 0, 55.687),
+      new THREE.Vector3(-22.824, 0, 18.887),
     ]);
-    this.walkCurve3 = new THREE.SplineCurve([
-      new THREE.Vector2(-22.824, 20.58),
-      new THREE.Vector2(-23.747, -49.624),
+    this.walkCurve3 = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-22.824, 0, 20.58),
+      new THREE.Vector3(-23.747, 0, -49.624),
     ]);
 
     // Enablers

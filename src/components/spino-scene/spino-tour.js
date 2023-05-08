@@ -25,9 +25,9 @@ AFRAME.registerComponent('spino-car-tour', {
     // Birds curve
     this.birdsMarker = 0; // Position on the curve
     this.birdsSpeed = 0.003; // Speed on the curve
-    this.birdsCurve = new THREE.SplineCurve([
-      new THREE.Vector2(-37.29, 23.128),
-      new THREE.Vector2(-67.395, -5.341),
+    this.birdsCurve = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-37.29, 0, 23.128),
+      new THREE.Vector3(-67.395, 0, -5.341),
     ]);
 
     // Fog

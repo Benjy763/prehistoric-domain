@@ -17,11 +17,11 @@ AFRAME.registerComponent('dimetrodon-animation', {
     // Dimetrodon run Path
     this.dimetrodonMarker = 0; // Position on the curve
     this.dimetrodonSpeed = 0.00072; // Speed on the curve
-    this.dimetrodonCurve = new THREE.SplineCurve([
-      new THREE.Vector2(-17.023, 15.229),
-      new THREE.Vector2(-26.376, 1.881),
-      new THREE.Vector2(-30.837, -11.567),
-      new THREE.Vector2(-25.591, -20.955),
+    this.dimetrodonCurve = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-17.023, 0, 15.229),
+      new THREE.Vector3(-26.376, 0, 1.881),
+      new THREE.Vector3(-30.837, 0, -11.567),
+      new THREE.Vector3(-25.591, 0, -20.955),
     ]);
 
     this.isAcceleration = false;

@@ -20,25 +20,25 @@ AFRAME.registerComponent('sarco-animation', {
     this.sarcoMarker = 0; // Position on the curve
     this.sarcoWalkSpeed = 0.0015; // Speed on the curve
     this.sarcoSwimSpeed = 0.0016; // Speed on the curve
-    this.walkCurve1 = new THREE.SplineCurve([
-      new THREE.Vector2(-18.969, 0.161),
-      new THREE.Vector2(-18.969, 32.365),
+    this.walkCurve1 = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-18.969, 0, 0.161),
+      new THREE.Vector3(-18.969, 0, 32.365),
     ]);
-    this.swimCurve1 = new THREE.SplineCurve([
-      new THREE.Vector2(-15.127, -32),
-      new THREE.Vector2(-15.127, 52),
+    this.swimCurve1 = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-15.127, 0, -32),
+      new THREE.Vector3(-15.127, 0, 52),
     ]);
 
     // Bird Path
     this.birdMarker = 0; // Position on the curve
     this.birdSpeed = 0.05; // Speed on the curve
-    this.birdCurve = new THREE.SplineCurve([
-      new THREE.Vector2(-18.96, 14.287),
-      new THREE.Vector2(-18.96, 4),
+    this.birdCurve = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-18.96, 0, 14.287),
+      new THREE.Vector3(-18.96, 0, 4),
     ]);
-    this.birdCurve2 = new THREE.SplineCurve([
-      new THREE.Vector2(-18.96, 6.057),
-      new THREE.Vector2(-33.901, -8.755),
+    this.birdCurve2 = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-18.96, 0, 6.057),
+      new THREE.Vector3(-33.901, 0, -8.755),
     ]);
 
     // Sound

@@ -16,11 +16,11 @@ AFRAME.registerComponent('trice-animation', {
     // Trice run Path
     this.triceMarker = 0; // Position on the curve
     this.triceSpeed = 0.001; // Speed on the curve
-    this.curve = new THREE.SplineCurve([
-      new THREE.Vector2(-20.091, -96.075),
-      new THREE.Vector2(-23.278, -95),
-      new THREE.Vector2(-35.73, -89.99),
-      new THREE.Vector2(-65.463, -84.939),
+    this.curve = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-20.091, 0, -96.075),
+      new THREE.Vector3(-23.278, 0, -95),
+      new THREE.Vector3(-35.73, 0, -89.99),
+      new THREE.Vector3(-65.463, 0, -84.939),
     ]);
 
     // Sound

@@ -16,16 +16,16 @@ AFRAME.registerComponent('edmon-male-animation', {
     // Edmon run Path
     this.edmonMarker = 0; // Position on the curve
     this.edmonSpeed = 0.0025; // Speed on the curve
-    this.walkCurve1 = new THREE.SplineCurve([
-      new THREE.Vector2(-6.156, 24.277),
-      new THREE.Vector2(-18.487, 20.465),
-      new THREE.Vector2(-25.143, 16.964),
-      new THREE.Vector2(-32.632, 5.541),
+    this.walkCurve1 = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-6.156, 0, 24.277),
+      new THREE.Vector3(-18.487, 0, 20.465),
+      new THREE.Vector3(-25.143, 0, 16.964),
+      new THREE.Vector3(-32.632, 0, 5.541),
     ]);
 
-    this.walkCurve2 = new THREE.SplineCurve([
-      new THREE.Vector2(-29.127, 11.319),
-      new THREE.Vector2(-26.145, 15.743),
+    this.walkCurve2 = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-29.127, 0, 11.319),
+      new THREE.Vector3(-26.145, 0, 15.743),
     ]);
 
     // Sound
@@ -193,8 +193,7 @@ AFRAME.registerComponent('edmon-male-animation', {
       this.walkCurve2,
       this.edmonMarker,
       this.edmonSpeed,
-      'xz',
-      false
+      true
     );
 
     if (this.movesManager.truncMarker(this.edmonMarker) > 750) {
