@@ -13,10 +13,10 @@ AFRAME.registerComponent('trex-animation', {
     this.animationChange = 'roar';
     // Trex run Path
     this.trexMarker = 0; // Position on the curve
-    this.trexSpeed = 0.036;
-    this.trexChangingSpeed = 0.0012;
-    this.trexMaxDeceleration = 0.0024;
-    this.trexMaxAcceleration = 0.036;
+    this.trexSpeed = 0.0015;
+    this.trexChangingSpeed = 0.00005;
+    this.trexMaxDeceleration = 0.0001;
+    this.trexMaxAcceleration = 0.0015;
     this.curve = new THREE.CatmullRomCurve3([
       new THREE.Vector3(-2.011, 0, 35.434),
       new THREE.Vector3(-24.995, 0, 24.185),
@@ -62,8 +62,7 @@ AFRAME.registerComponent('trex-animation', {
       this.el.object3D,
       this.curve,
       this.trexMarker,
-      this.trexSpeed,
-      true
+      this.trexSpeed
     );
 
     if (this.movesManager.truncMarker(this.trexMarker) > 380) {
@@ -122,8 +121,7 @@ AFRAME.registerComponent('trex-animation', {
       this.el.object3D,
       this.curve,
       this.trexMarker,
-      this.trexSpeed,
-      true
+      this.trexSpeed
     );
 
     if (
@@ -161,7 +159,7 @@ AFRAME.registerComponent('trex-animation', {
           timeScale: 0.3,
           startFrame: 0,
         });
-        this.trexSpeed = 1;
+        this.trexSpeed = 0.05;
         setTimeout(() => {
           this.trexEndSnoringAudio.playSound();
         }, 3000);
@@ -173,7 +171,7 @@ AFRAME.registerComponent('trex-animation', {
     this.objectBis.position.z += this.trexSpeed;
 
     if (this.objectBis.position.z > -5) {
-      this.trexSpeed -= 0.1;
+      this.trexSpeed -= 0.005;
     }
     if (this.trexSpeed <= 0) {
       this.phase = 'showHead';
@@ -192,8 +190,8 @@ AFRAME.registerComponent('trex-animation', {
     this.phase = 'exit';
   },
   walkFar: function () {
-    if (this.trexSpeed < 1) {
-      this.trexSpeed += 0.1;
+    if (this.trexSpeed < 0.05) {
+      this.trexSpeed += 0.005;
     }
 
     this.objectBis.position.z -= this.trexSpeed;
