@@ -148,9 +148,7 @@ AFRAME.registerComponent('quetza-animation', {
       this.object,
       this.flyCurve,
       this.quetzaMarker,
-      this.quetzaSpeed,
-      '3d',
-      false
+      this.quetzaSpeed
     );
 
     if (this.movesManager.truncMarker(this.quetzaMarker) > 900) {
@@ -181,8 +179,7 @@ AFRAME.registerComponent('quetza-animation', {
       this.object,
       this.flyBackCurve,
       this.quetzaMarker,
-      this.quetzaSpeed,
-      '3d'
+      this.quetzaSpeed
     );
 
     if (this.movesManager.truncMarker(this.quetzaMarker) > 900) {

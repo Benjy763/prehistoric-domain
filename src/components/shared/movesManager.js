@@ -188,7 +188,8 @@ AFRAME.registerSystem('movesManager', {
       turn180 = false,
       useDeltaTime = false,
       needUpdateTime = false,
-    } = options;
+      needLookAt = true,
+    } = options || {};
 
     if (marker === 0 || needUpdateTime) {
       this.lastUpdateTime = performance.now();
@@ -217,7 +218,9 @@ AFRAME.registerSystem('movesManager', {
     if (turn180) {
       tangent.negate();
     }
-    object.lookAt(position.clone().add(tangent));
+    if (needLookAt) {
+      object.lookAt(position.clone().add(tangent));
+    }
 
     return marker;
   },

@@ -64,8 +64,7 @@ AFRAME.registerComponent('dragonfly-animation', {
       this.object,
       this.curveFly,
       this.dragonflyMarker,
-      this.dragonflySpeed,
-      '3d'
+      this.dragonflySpeed
     );
 
     if (this.movesManager.truncMarker(this.dragonflyMarker) > 885) {
@@ -99,8 +98,7 @@ AFRAME.registerComponent('dragonfly-animation', {
       this.object,
       this.curveFly2,
       this.dragonflyMarker,
-      this.dragonflySpeed,
-      '3d'
+      this.dragonflySpeed
     );
 
     if (this.movesManager.truncMarker(this.dragonflyMarker) > 950) {

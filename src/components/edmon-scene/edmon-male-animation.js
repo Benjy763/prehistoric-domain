@@ -193,7 +193,7 @@ AFRAME.registerComponent('edmon-male-animation', {
       this.walkCurve2,
       this.edmonMarker,
       this.edmonSpeed,
-      true
+      { turn180: true }
     );
 
     if (this.movesManager.truncMarker(this.edmonMarker) > 750) {

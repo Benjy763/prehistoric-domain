@@ -70,8 +70,7 @@ AFRAME.registerComponent('pteranodon-2-animation', {
       this.object,
       this.curveWalk,
       this.pteraMarker,
-      this.pteraSpeed,
-      '3d'
+      this.pteraSpeed
     );
   },
   idle: function () {
@@ -133,8 +132,7 @@ AFRAME.registerComponent('pteranodon-2-animation', {
       this.object,
       this.curveFly,
       this.pteraMarker,
-      this.pteraSpeed,
-      '3d'
+      this.pteraSpeed
     );
   },
   land: function () {
@@ -151,8 +149,7 @@ AFRAME.registerComponent('pteranodon-2-animation', {
       this.object,
       this.curveLand,
       this.pteraMarker,
-      this.pteraSpeed,
-      '3d'
+      this.pteraSpeed
     );
   },
   eat: function () {

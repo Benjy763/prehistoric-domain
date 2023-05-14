@@ -19,14 +19,14 @@ AFRAME.registerComponent('deino-animation', {
     this.deinoMarker = 0; // Position on the curve
     this.deinoSpeed = 0.016; // Speed on the curve
     this.jumpcurve = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(-1.8, 0, -3.208),
-      new THREE.Vector3(0.974, 0, -3.656),
-      new THREE.Vector3(2.2, 0, -4.487),
-      new THREE.Vector3(2.4, 0, -6.011),
-      new THREE.Vector3(2.1, 0, -7.1),
-      new THREE.Vector3(2.717, 0, -8.101),
-      new THREE.Vector3(2.275, 0, -10),
-      new THREE.Vector3(-1.8, 0, -15),
+      new THREE.Vector3(-3.6, -1.8, -3.208),
+      new THREE.Vector3(-3.6, 0.974, -3.656),
+      new THREE.Vector3(-3.6, 2.2, -4.487),
+      new THREE.Vector3(-3.6, 2.4, -6.011),
+      new THREE.Vector3(-3.6, 2.1, -7.1),
+      new THREE.Vector3(-3.6, 2.717, -8.101),
+      new THREE.Vector3(-3.6, 2.275, -10),
+      new THREE.Vector3(-3.6, -1.8, -15),
     ]);
 
     // Sound
@@ -123,8 +123,7 @@ AFRAME.registerComponent('deino-animation', {
       this.jumpcurve,
       this.deinoMarker,
       this.deinoSpeed,
-      'yz',
-      false
+      { needLookAt: false }
     );
   },
   roar: function () {
@@ -148,8 +147,7 @@ AFRAME.registerComponent('deino-animation', {
       this.jumpcurve,
       this.deinoMarker,
       this.deinoSpeed,
-      'yz',
-      false
+      { needLookAt: false }
     );
   },
   end: function () {
@@ -162,8 +160,7 @@ AFRAME.registerComponent('deino-animation', {
       this.jumpcurve,
       this.deinoMarker,
       this.deinoSpeed,
-      'yz',
-      false
+      { needLookAt: false }
     );
   },
   tick: function () {

@@ -54,8 +54,7 @@ AFRAME.registerComponent('brachio-animation', {
       this.curve,
       this.brachioMarker,
       this.brachioSpeed,
-      true,
-      true
+      { turn180: true, useDeltaTime: true }
     );
   },
   finish: function () {
@@ -69,7 +68,8 @@ AFRAME.registerComponent('brachio-animation', {
       this.object,
       this.curve,
       this.brachioMarker,
-      this.brachioSpeed
+      this.brachioSpeed,
+      { turn180: true, useDeltaTime: true }
     );
   },
   tick: function () {

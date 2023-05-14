@@ -43,8 +43,7 @@ AFRAME.registerComponent('car-controls', {
       this.curve,
       this.carMarker,
       this.carSpeed,
-      false,
-      true
+      { turn180: true }
     );
     if (this.carSpeed <= 0) {
       this.carSpeed = 0;
@@ -60,8 +59,7 @@ AFRAME.registerComponent('car-controls', {
       this.curve,
       this.carMarker,
       this.carSpeed,
-      false,
-      true
+      { turn180: true }
     );
     if (this.carSpeed >= this.defaultSpeed) {
       this.carSpeed = this.defaultSpeed;
@@ -77,8 +75,7 @@ AFRAME.registerComponent('car-controls', {
       this.curve,
       this.carMarker,
       this.carSpeed,
-      false,
-      true
+      { turn180: true }
     );
   },
   changeDrivingState(state) {
