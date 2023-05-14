@@ -68,6 +68,7 @@ AFRAME.registerComponent('trex-animation', {
     if (this.movesManager.truncMarker(this.trexMarker) > 380) {
       if (this.trexSpeed > 0) {
         this.trexRoarAudio.playSound();
+        // TODO Multiple calls here
         setTimeout(() => {
           this.el.setAttribute('animation-mixer', {
             clip: 'T_Rex_Idle_Roar2',

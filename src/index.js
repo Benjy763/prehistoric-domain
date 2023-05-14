@@ -7,7 +7,7 @@ function requireAll(req) {
 // Require libs
 require('aframe-extras');
 require('aframe-curve-component');
-//require('aframe-fps-counter-component');
+require('aframe-fps-counter-component');
 //require('super-hands');
 //require('./vendors/aframe-gif-shader/dist/aframe-gif-component.js');
 

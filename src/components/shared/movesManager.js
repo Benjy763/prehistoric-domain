@@ -183,15 +183,14 @@ AFRAME.registerSystem('movesManager', {
   },
   // ----- Curve functions --------
   // Move an object on the given curve according to given speed
-  moveOnCurve: function (
-    object,
-    curve,
-    marker,
-    speed,
-    turn180 = false,
-    useDeltaTime = false
-  ) {
-    if (marker === 0) {
+  moveOnCurve: function (object, curve, marker, speed, options) {
+    const {
+      turn180 = false,
+      useDeltaTime = false,
+      needUpdateTime = false,
+    } = options;
+
+    if (marker === 0 || needUpdateTime) {
       this.lastUpdateTime = performance.now();
     }
     // Calculate delta time

@@ -1,0 +1,11 @@
+Model Information:
+* title:	deinocheirus mirificus
+* source:	https://sketchfab.com/3d-models/deinocheirus-mirificus-7f378570e0ea48d8bcc3be8dba7fcfbc
+* author:	robertfabiani (https://sketchfab.com/robertfabiani)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "deinocheirus mirificus" (https://sketchfab.com/3d-models/deinocheirus-mirificus-7f378570e0ea48d8bcc3be8dba7fcfbc) by robertfabiani (https://sketchfab.com/robertfabiani) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
