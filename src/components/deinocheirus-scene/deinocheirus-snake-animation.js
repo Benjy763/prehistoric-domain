@@ -30,7 +30,7 @@ AFRAME.registerComponent('deinocheirus-snake-animation', {
             clip: 'Snake Armature|Walk',
             loop: true,
             crossFadeDuration: 0.4,
-            timeScale: 0.8,
+            timeScale: 1.2,
           });
         }, 6000);
       },
@@ -47,7 +47,7 @@ AFRAME.registerComponent('deinocheirus-snake-animation', {
           clip: 'Snake Armature|Walk',
           loop: true,
           crossFadeDuration: 0.4,
-          timeScale: 0.8,
+          timeScale: 1.2,
         });
       },
       false
