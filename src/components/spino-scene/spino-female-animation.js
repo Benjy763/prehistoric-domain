@@ -156,6 +156,7 @@ AFRAME.registerComponent('spino-female-animation', {
       this.phase = 'exit';
     }
     this.spinoMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.walkCurve1,
       this.spinoMarker,
@@ -219,6 +220,7 @@ AFRAME.registerComponent('spino-female-animation', {
       return;
     }
     this.spinoMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.walkCurve1,
       this.spinoMarker,
@@ -227,6 +229,7 @@ AFRAME.registerComponent('spino-female-animation', {
   },
   fishHunt: function () {
     this.fishMarker = this.movesManager.moveOnCurve(
+      this,
       this.fish.object3D,
       this.fishCurve,
       this.fishMarker,
@@ -241,6 +244,7 @@ AFRAME.registerComponent('spino-female-animation', {
     }
     if (this.movesManager.truncMarker(this.sawFishMarker) < 950) {
       this.sawFishMarker = this.movesManager.moveOnCurve(
+        this,
         this.sawFish.object3D,
         this.sawFishCurve1,
         this.sawFishMarker,
@@ -255,6 +259,7 @@ AFRAME.registerComponent('spino-female-animation', {
   spinoHunt: function () {
     if (this.movesManager.truncMarker(this.sawFishMarker) < 950) {
       this.sawFishMarker = this.movesManager.moveOnCurve(
+        this,
         this.sawFish.object3D,
         this.sawFishCurve2,
         this.sawFishMarker,
@@ -263,6 +268,7 @@ AFRAME.registerComponent('spino-female-animation', {
     }
     if (this.movesManager.truncMarker(this.sawFishMarker) > 700) {
       this.spinoMarker = this.movesManager.moveOnCurve(
+        this,
         this.object,
         this.swimCurve1,
         this.spinoMarker,
@@ -294,6 +300,7 @@ AFRAME.registerComponent('spino-female-animation', {
   },
   spinoEat: function () {
     this.spinoMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.swimCurve2,
       this.spinoMarker,

@@ -44,6 +44,7 @@ AFRAME.registerComponent('deinocheirus-animation', {
   },
   enterWalk: function () {
     this.deinocheirusMarker = this.movesManager.moveOnCurve(
+      this,
       this.el.object3D,
       this.curve,
       this.deinocheirusMarker,
@@ -93,6 +94,7 @@ AFRAME.registerComponent('deinocheirus-animation', {
     }
 
     this.deinocheirusMarker = this.movesManager.moveOnCurve(
+      this,
       this.el.object3D,
       this.curve,
       this.deinocheirusMarker,

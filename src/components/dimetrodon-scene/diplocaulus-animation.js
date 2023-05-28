@@ -50,6 +50,7 @@ AFRAME.registerComponent('diplocaulus-animation', {
   // --- Phase functions ---
   enterWalk: function () {
     this.rabbitMarker = this.movesManager.moveOnCurve(
+      this,
       this.el.object3D,
       this.rabbitCurve,
       this.rabbitMarker,
@@ -99,6 +100,7 @@ AFRAME.registerComponent('diplocaulus-animation', {
   },
   runFast: function () {
     this.rabbitMarker = this.movesManager.moveOnCurve(
+      this,
       this.el.object3D,
       this.rabbitCurve,
       this.rabbitMarker,

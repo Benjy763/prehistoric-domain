@@ -51,6 +51,7 @@ AFRAME.registerComponent('raptor-animation', {
   // --- Phase functions ---
   walk: function () {
     this.raptorMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.walkCurve,
       this.raptorMarker,
@@ -77,6 +78,7 @@ AFRAME.registerComponent('raptor-animation', {
         timeScale: 1,
       });
       this.raptorMarker = this.movesManager.moveOnCurve(
+        this,
         this.object,
         this.walkCurve,
         this.raptorMarker,
@@ -97,7 +99,7 @@ AFRAME.registerComponent('raptor-animation', {
       //   crossFadeDuration: 0.4,
       //   timeScale: 1,
       // });
-      // this.raptorMarker = this.movesManager.moveOnCurve(
+      // this.raptorMarker = this.movesManager.moveOnCurve(this,
       //   this.object,
       //   this.walkCurve,
       //   this.raptorMarker,
@@ -118,6 +120,7 @@ AFRAME.registerComponent('raptor-animation', {
   },
   walkAgain: function () {
     this.raptorMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.walkCurve,
       this.raptorMarker,

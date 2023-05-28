@@ -61,6 +61,7 @@ AFRAME.registerComponent('dragonfly-animation', {
   // --- Phase functions ---
   fly: function () {
     this.dragonflyMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.curveFly,
       this.dragonflyMarker,
@@ -95,6 +96,7 @@ AFRAME.registerComponent('dragonfly-animation', {
   },
   flyAgain: function () {
     this.dragonflyMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.curveFly2,
       this.dragonflyMarker,

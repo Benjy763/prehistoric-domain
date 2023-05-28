@@ -119,6 +119,7 @@ AFRAME.registerComponent('deino-animation', {
       this.phase = 'exit';
     }
     this.deinoMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.jumpcurve,
       this.deinoMarker,
@@ -143,6 +144,7 @@ AFRAME.registerComponent('deino-animation', {
       this.phase = 'end';
     }
     this.deinoMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.jumpcurve,
       this.deinoMarker,
@@ -156,6 +158,7 @@ AFRAME.registerComponent('deino-animation', {
       this.phase = 'exit';
     }
     this.deinoMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.jumpcurve,
       this.deinoMarker,

@@ -89,6 +89,7 @@ AFRAME.registerComponent('meg-animation', {
     }
 
     this.sharkMarker = this.movesManager.moveOnCurve(
+      this,
       this.sharkObject,
       this.sharkCurve1,
       this.sharkMarker,
@@ -108,6 +109,7 @@ AFRAME.registerComponent('meg-animation', {
       return;
     }
     this.megMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.megCurve1,
       this.megMarker,
@@ -122,6 +124,7 @@ AFRAME.registerComponent('meg-animation', {
       this.shark.setAttribute('position', sharkPosition);
     } else {
       this.sharkMarker = this.movesManager.moveOnCurve(
+        this,
         this.sharkObject,
         this.sharkCurve2,
         this.sharkMarker,
@@ -188,6 +191,7 @@ AFRAME.registerComponent('meg-animation', {
     }
 
     this.megMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.megCurve3,
       this.megMarker,

@@ -50,6 +50,7 @@ AFRAME.registerComponent('brachio-animation', {
       this.phase = 'finish';
     }
     this.brachioMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.curve,
       this.brachioMarker,
@@ -65,6 +66,7 @@ AFRAME.registerComponent('brachio-animation', {
       this.phase = 'exit';
     }
     this.brachioMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.curve,
       this.brachioMarker,

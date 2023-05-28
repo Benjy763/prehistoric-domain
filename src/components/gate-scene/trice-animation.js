@@ -160,6 +160,7 @@ AFRAME.registerComponent('trice-animation', {
     }
 
     this.triceMarker = this.movesManager.moveOnCurve(
+      this,
       this.trice2.object3D,
       this.curve,
       this.triceMarker,

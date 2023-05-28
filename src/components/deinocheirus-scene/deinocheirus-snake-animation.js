@@ -55,6 +55,7 @@ AFRAME.registerComponent('deinocheirus-snake-animation', {
   },
   enterWalk: function () {
     this.snakeMarker = this.movesManager.moveOnCurve(
+      this,
       this.el.object3D,
       this.curve,
       this.snakeMarker,
@@ -71,11 +72,12 @@ AFRAME.registerComponent('deinocheirus-snake-animation', {
   },
   walkAgain: function () {
     this.snakeMarker = this.movesManager.moveOnCurve(
+      this,
       this.el.object3D,
       this.curve,
       this.snakeMarker,
       this.snakeSpeed,
-      { useDeltaTime: true }
+      { useDeltaTime: true, needUpdateTime: true }
     );
 
     if (this.movesManager.truncMarker(this.snakeMarker) > 900) {

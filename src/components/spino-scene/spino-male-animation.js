@@ -103,6 +103,7 @@ AFRAME.registerComponent('spino-male-animation', {
       this.waterExitEnabed = true;
     }
     this.spinoMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.walkCurve1,
       this.spinoMarker,
@@ -151,6 +152,7 @@ AFRAME.registerComponent('spino-male-animation', {
       this.phase = 'fish';
     }
     this.spinoMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.walkCurve2,
       this.spinoMarker,

@@ -60,6 +60,7 @@ AFRAME.registerComponent('edmon-male-animation', {
   // --- Phase functions ---
   enterWalk: function () {
     this.edmonMarker = this.movesManager.moveOnCurve(
+      this,
       this.el.object3D,
       this.walkCurve1,
       this.edmonMarker,
@@ -189,6 +190,7 @@ AFRAME.registerComponent('edmon-male-animation', {
   },
   walkBack: function () {
     this.edmonMarker = this.movesManager.moveOnCurve(
+      this,
       this.el.object3D,
       this.walkCurve2,
       this.edmonMarker,

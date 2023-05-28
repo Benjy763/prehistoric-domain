@@ -59,6 +59,7 @@ AFRAME.registerComponent('trex-animation', {
   },
   enterWalk: function () {
     this.trexMarker = this.movesManager.moveOnCurve(
+      this,
       this.el.object3D,
       this.curve,
       this.trexMarker,
@@ -119,6 +120,7 @@ AFRAME.registerComponent('trex-animation', {
     }
 
     this.trexMarker = this.movesManager.moveOnCurve(
+      this,
       this.el.object3D,
       this.curve,
       this.trexMarker,

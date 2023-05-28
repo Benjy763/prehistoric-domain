@@ -60,6 +60,7 @@ AFRAME.registerComponent('quetza-animation', {
   // --- Phase functions ---
   walk: function () {
     this.quetzaMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.walkCurve,
       this.quetzaMarker,
@@ -145,6 +146,7 @@ AFRAME.registerComponent('quetza-animation', {
       this.quetzaSpeed -= 0.0005;
     }
     this.quetzaMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.flyCurve,
       this.quetzaMarker,
@@ -176,6 +178,7 @@ AFRAME.registerComponent('quetza-animation', {
       });
     }
     this.quetzaMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.flyBackCurve,
       this.quetzaMarker,

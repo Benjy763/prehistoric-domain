@@ -47,29 +47,6 @@ AFRAME.registerComponent('spino-car-tour', {
       'start',
       () => {
         return;
-        // Global sound launch
-        this.swampAudio = document.getElementById('swamp-asset');
-        this.swampAudio.play();
-        this.underwaterAudio = document.getElementById('underwater-asset');
-        this.underwaterAudio.volume = 0;
-        this.underwaterAudio.play();
-        this.birdsAudio = document.getElementById(
-          'spino-palm-tree-long'
-        ).components['sound__birds'];
-        const nacelle = document.getElementById('spino-wall');
-        this.nacelleStart = nacelle.components['sound__nacellestart'];
-        this.nacelleDown = nacelle.components['sound__nacelledown'];
-        this.nacelleEnd = nacelle.components['sound__nacelleend'];
-
-        // Get sounds
-        this.ambiant1Sound =
-          document.getElementById('spino-male').components['sound__ambiant1'];
-        // Get voice from system when init
-        this.voiceSpinoSound = this.system.getVoice('spino');
-        this.voicePhase = 'spino';
-        setTimeout(() => {
-          this.phase = 'start';
-        }, 50000);
       },
       false
     );
@@ -96,6 +73,7 @@ AFRAME.registerComponent('spino-car-tour', {
   // --- Phase functions ---
   birdsFly: function () {
     this.birdsMarker = this.movesManager.moveOnCurve(
+      this,
       this.birds.object3D,
       this.birdsCurve,
       this.birdsMarker,

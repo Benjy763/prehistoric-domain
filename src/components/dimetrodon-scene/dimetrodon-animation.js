@@ -72,6 +72,7 @@ AFRAME.registerComponent('dimetrodon-animation', {
   // --- Phase functions ---
   enterWalk: function () {
     this.dimetrodonMarker = this.movesManager.moveOnCurve(
+      this,
       this.el.object3D,
       this.dimetrodonCurve,
       this.dimetrodonMarker,
@@ -84,6 +85,7 @@ AFRAME.registerComponent('dimetrodon-animation', {
   },
   walkFast: function () {
     this.dimetrodonMarker = this.movesManager.moveOnCurve(
+      this,
       this.el.object3D,
       this.dimetrodonCurve,
       this.dimetrodonMarker,

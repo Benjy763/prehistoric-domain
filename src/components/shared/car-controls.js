@@ -39,11 +39,12 @@ AFRAME.registerComponent('car-controls', {
     // Animation
     this.carSpeed -= 0.0005;
     this.carMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.curve,
       this.carMarker,
       this.carSpeed,
-      { turn180: true }
+      { useDeltaTime: true }
     );
     if (this.carSpeed <= 0) {
       this.carSpeed = 0;
@@ -55,11 +56,12 @@ AFRAME.registerComponent('car-controls', {
     console.log('startCar');
     this.carSpeed += 0.0005;
     this.carMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.curve,
       this.carMarker,
       this.carSpeed,
-      { turn180: true }
+      { useDeltaTime: true }
     );
     if (this.carSpeed >= this.defaultSpeed) {
       this.carSpeed = this.defaultSpeed;
@@ -71,11 +73,12 @@ AFRAME.registerComponent('car-controls', {
       return;
     }
     this.carMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.curve,
       this.carMarker,
       this.carSpeed,
-      { turn180: true }
+      { useDeltaTime: true }
     );
   },
   changeDrivingState(state) {

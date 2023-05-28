@@ -113,6 +113,7 @@ AFRAME.registerComponent('sarco-animation', {
   },
   birdFly: function () {
     this.birdMarker = this.movesManager.moveOnCurve(
+      this,
       this.bird.object3D,
       this.birdCurve,
       this.birdMarker,
@@ -143,6 +144,7 @@ AFRAME.registerComponent('sarco-animation', {
   },
   birdLeave: function () {
     this.birdMarker = this.movesManager.moveOnCurve(
+      this,
       this.bird.object3D,
       this.birdCurve2,
       this.birdMarker,
@@ -201,6 +203,7 @@ AFRAME.registerComponent('sarco-animation', {
   },
   sarcoLeave: function () {
     this.sarcoMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.walkCurve1,
       this.sarcoMarker,
@@ -218,6 +221,7 @@ AFRAME.registerComponent('sarco-animation', {
   },
   sarcoSwim: function () {
     this.sarcoMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.swimCurve1,
       this.sarcoMarker,
@@ -264,6 +268,7 @@ AFRAME.registerComponent('sarco-animation', {
   },
   sarcoStay: function () {
     this.sarcoMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.swimCurve1,
       this.sarcoMarker,
@@ -272,6 +277,7 @@ AFRAME.registerComponent('sarco-animation', {
   },
   sarcoSwimFast: function () {
     this.sarcoMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.swimCurve1,
       this.sarcoMarker,
