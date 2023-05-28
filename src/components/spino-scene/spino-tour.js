@@ -46,6 +46,7 @@ AFRAME.registerComponent('spino-car-tour', {
     this.el.addEventListener(
       'start',
       () => {
+        return;
         // Global sound launch
         this.swampAudio = document.getElementById('swamp-asset');
         this.swampAudio.play();

@@ -17,6 +17,16 @@ AFRAME.registerComponent('deinocheirus-car-tour', {
     this.screenPhase = 'deinocheirus';
     this.textCar = document.querySelector('#deinocheirus-camera-text');
 
+    // Tree falling animaiton
+    // Get the tree entity
+    this.treeObject = document.querySelector(
+      '#deinocheirus-swamp-dead-tree-3'
+    ).object3D;
+    this.treeRotationStep = 0.008;
+
+    // Snake animation
+    this.snake = document.querySelector('#deinocheirus-snake');
+
     // Animation phase
     this.sceneChanged = false;
 
@@ -51,9 +61,35 @@ AFRAME.registerComponent('deinocheirus-car-tour', {
       },
       false
     );
+    this.el.addEventListener(
+      'snakePause',
+      () => {
+        this.phase = 'treeFall';
+      },
+      false
+    );
   },
   // --- Phase functions ---
   start: function () {
+    this.phase = 'exit';
+    setTimeout(() => {
+      this.phase = 'snakeEnter';
+    }, 3000);
+  },
+  snakeEnter: function () {
+    this.phase = 'exit';
+    // Trigger Rabbit animation
+    const event = new Event('enterWalk');
+    this.snake.dispatchEvent(event);
+  },
+  treeFall: function () {
+    this.treeRotationStep += 0.0001;
+    this.treeObject.rotation.x -= this.treeRotationStep;
+    if (this.treeObject.rotation.x < -2) {
+      this.phase = 'deinoStart';
+    }
+  },
+  deinoStart: function () {
     document.querySelector('#deinocheirus-sky').setAttribute('visible', true);
     setTimeout(() => {
       // Trigger Rabbit animation
@@ -86,6 +122,15 @@ AFRAME.registerComponent('deinocheirus-car-tour', {
     switch (this.phase) {
       case 'start':
         this.start();
+        break;
+      case 'snakeEnter':
+        this.snakeEnter();
+        break;
+      case 'treeFall':
+        this.treeFall();
+        break;
+      case 'deinoStart':
+        this.deinoStart();
         break;
       case 'changeScene':
         // Destroy and detach all unecessary objets

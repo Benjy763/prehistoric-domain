@@ -17,9 +17,12 @@ AFRAME.registerComponent('deinocheirus-animation', {
     this.deinocheirusMaxAcceleration = 0.015;
     this.curve = new THREE.CatmullRomCurve3([
       new THREE.Vector3(-33.689, -10, 58.795),
-      new THREE.Vector3(-33.689, -2.2, 35.66),
-      new THREE.Vector3(-33.689, 0, -82.936),
+      new THREE.Vector3(-33.689, -2.5, 35.66),
+      new THREE.Vector3(-33.689, -0.85, -82.936),
     ]);
+
+    // Snake animation
+    this.snake = document.querySelector('#deinocheirus-snake');
 
     // Start tour listener
     this.el.addEventListener(
@@ -45,7 +48,7 @@ AFRAME.registerComponent('deinocheirus-animation', {
       this.curve,
       this.deinocheirusMarker,
       this.deinocheirusSpeed,
-      { turn180: false, useDeltaTime: true }
+      { useDeltaTime: true }
     );
 
     // if (this.object.position.y < 0) {
@@ -65,6 +68,8 @@ AFRAME.registerComponent('deinocheirus-animation', {
         this.deinocheirusSpeed -= this.deinocheirusChangingSpeed;
       }
       if (this.deinocheirusSpeed < this.deinocheirusMaxDeceleration) {
+        const event = new Event('walkAgain');
+        this.snake.dispatchEvent(event);
         this.phase = 'moveAround';
       }
     }
@@ -92,7 +97,7 @@ AFRAME.registerComponent('deinocheirus-animation', {
       this.curve,
       this.deinocheirusMarker,
       this.deinocheirusSpeed,
-      { turn180: false, useDeltaTime: true, needUpdateTime: true }
+      { useDeltaTime: true, needUpdateTime: true }
     );
 
     if (this.movesManager.truncMarker(this.deinocheirusMarker) > 990) {
