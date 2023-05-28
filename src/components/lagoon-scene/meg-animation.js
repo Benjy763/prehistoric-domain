@@ -22,17 +22,17 @@ AFRAME.registerComponent('meg-animation', {
     this.sharkMarker = 0; // Position on the curve
     this.sharkSpeed = 0.0005; // Speed on the curve
     this.sharkCurve1 = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(-10.942, 0, -50),
-      new THREE.Vector3(-10.932, 0, 50),
+      new THREE.Vector3(-10.942, 5, -50),
+      new THREE.Vector3(-10.932, 5, 50),
     ]);
     this.sharkCurve2 = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(23.166, 0, 18),
-      new THREE.Vector3(-10.063, 0, -1.822),
-      new THREE.Vector3(-34.327, 0, -6.174),
+      new THREE.Vector3(23.166, 5, 18),
+      new THREE.Vector3(-10.063, 5, -1.822),
+      new THREE.Vector3(-34.327, 5, -6.174),
     ]);
     this.megCurve1 = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(11, 0, -70),
-      new THREE.Vector3(11, 0, 60),
+      new THREE.Vector3(11, -8, -70),
+      new THREE.Vector3(11, -8, 60),
     ]);
     this.megCurve2 = new THREE.CatmullRomCurve3([
       new THREE.Vector3(-10.932, 0, 50),
@@ -40,9 +40,9 @@ AFRAME.registerComponent('meg-animation', {
       new THREE.Vector3(0, 0, -70),
     ]);
     this.megCurve3 = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(11.284, 0, -50.129),
-      new THREE.Vector3(17, 0, -6.252),
-      new THREE.Vector3(70, 0, 10.654),
+      new THREE.Vector3(11.284, 1.6821, -50.129),
+      new THREE.Vector3(17, 1.6821, -6.252),
+      new THREE.Vector3(70, 1.6821, 10.654),
     ]);
 
     // Sound

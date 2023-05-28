@@ -18,12 +18,12 @@ AFRAME.registerComponent('trex-animation', {
     this.trexMaxDeceleration = 0.0001;
     this.trexMaxAcceleration = 0.0015;
     this.curve = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(-2.011, 0, 35.434),
-      new THREE.Vector3(-24.995, 0, 24.185),
-      new THREE.Vector3(-31.018, 0, 15.563),
-      new THREE.Vector3(-34.615, 0, 3.228),
-      new THREE.Vector3(-27.402, 0, -9.057),
-      new THREE.Vector3(-16.326, 0, -28.1),
+      new THREE.Vector3(-2.011, -0.2, 35.434),
+      new THREE.Vector3(-24.995, -0.2, 24.185),
+      new THREE.Vector3(-31.018, -0.2, 15.563),
+      new THREE.Vector3(-34.615, -0.2, 3.228),
+      new THREE.Vector3(-27.402, -0.2, -9.057),
+      new THREE.Vector3(-16.326, -0.2, -28.1),
     ]);
 
     // Start tour listener

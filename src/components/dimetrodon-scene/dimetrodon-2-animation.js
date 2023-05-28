@@ -15,8 +15,8 @@ AFRAME.registerComponent('dimetrodon-2-animation', {
     this.dimetrodonMarker = 0; // Position on the curve
     this.dimetrodonSpeed = 0.004; // Speed on the curve
     this.dimetrodonCurve = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(-42.875, 0, -21.32),
-      new THREE.Vector3(-49.144, 0, -21.689),
+      new THREE.Vector3(-42.875, 2, -21.32),
+      new THREE.Vector3(-49.144, 2, -21.689),
     ]);
     this.dimetrodonMarker = this.movesManager.moveOnCurve(
       this,

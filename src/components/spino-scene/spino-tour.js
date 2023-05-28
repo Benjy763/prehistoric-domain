@@ -26,8 +26,8 @@ AFRAME.registerComponent('spino-car-tour', {
     this.birdsMarker = 0; // Position on the curve
     this.birdsSpeed = 0.003; // Speed on the curve
     this.birdsCurve = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(-37.29, 0, 23.128),
-      new THREE.Vector3(-67.395, 0, -5.341),
+      new THREE.Vector3(-37.29, 19.172, 23.128),
+      new THREE.Vector3(-67.395, 19.172, -5.341),
     ]);
 
     // Fog
@@ -46,7 +46,29 @@ AFRAME.registerComponent('spino-car-tour', {
     this.el.addEventListener(
       'start',
       () => {
-        return;
+        // Global sound launch
+        this.swampAudio = document.getElementById('swamp-asset');
+        this.swampAudio.play();
+        this.underwaterAudio = document.getElementById('underwater-asset');
+        this.underwaterAudio.volume = 0;
+        this.underwaterAudio.play();
+        this.birdsAudio = document.getElementById(
+          'spino-palm-tree-long'
+        ).components['sound__birds'];
+        const nacelle = document.getElementById('spino-wall');
+        this.nacelleStart = nacelle.components['sound__nacellestart'];
+        this.nacelleDown = nacelle.components['sound__nacelledown'];
+        this.nacelleEnd = nacelle.components['sound__nacelleend'];
+
+        // Get sounds
+        this.ambiant1Sound =
+          document.getElementById('spino-male').components['sound__ambiant1'];
+        // Get voice from system when init
+        this.voiceSpinoSound = this.system.getVoice('spino');
+        this.voicePhase = 'spino';
+        setTimeout(() => {
+          this.phase = 'start';
+        }, 5000);
       },
       false
     );
@@ -84,9 +106,6 @@ AFRAME.registerComponent('spino-car-tour', {
     }
   },
   start: function () {
-    // setTimeout(() => {
-    //   this.ambiant1Sound.playSound();
-    // }, 20000);
     setTimeout(() => {
       // Trigger Spino animation
       const event = new Event('enterWalk');

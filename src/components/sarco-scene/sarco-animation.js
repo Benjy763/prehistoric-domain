@@ -21,24 +21,24 @@ AFRAME.registerComponent('sarco-animation', {
     this.sarcoWalkSpeed = 0.0015; // Speed on the curve
     this.sarcoSwimSpeed = 0.0016; // Speed on the curve
     this.walkCurve1 = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(-18.969, 0, 0.161),
-      new THREE.Vector3(-18.969, 0, 32.365),
+      new THREE.Vector3(-18.969, -0.23326, 0.161),
+      new THREE.Vector3(-18.969, -0.23326, 32.365),
     ]);
     this.swimCurve1 = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(-15.127, 0, -32),
-      new THREE.Vector3(-15.127, 0, 52),
+      new THREE.Vector3(-15.127, -11.934, -32),
+      new THREE.Vector3(-15.127, -11.934, 52),
     ]);
 
     // Bird Path
     this.birdMarker = 0; // Position on the curve
     this.birdSpeed = 0.05; // Speed on the curve
     this.birdCurve = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(-18.96, 0, 14.287),
-      new THREE.Vector3(-18.96, 0, 4),
+      new THREE.Vector3(-18.96, 0.307, 14.287),
+      new THREE.Vector3(-18.96, 0.307, 4),
     ]);
     this.birdCurve2 = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(-18.96, 0, 6.057),
-      new THREE.Vector3(-33.901, 0, -8.755),
+      new THREE.Vector3(-18.96, 0.307, 6.057),
+      new THREE.Vector3(-33.901, 0.307, -8.755),
     ]);
 
     // Sound

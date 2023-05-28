@@ -17,12 +17,12 @@ AFRAME.registerComponent('diplocaulus-animation', {
     this.rabbitMarker = 0; // Position on the curve
     this.rabbitSpeed = 0.00025; // Speed on the curve
     this.rabbitCurve = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(-18.495, 0, -0.607),
-      new THREE.Vector3(-22.077, 0, -0.806),
-      new THREE.Vector3(-26.389, 0, -2.209),
-      new THREE.Vector3(-30.758, 0, -5.863),
-      new THREE.Vector3(-32.198, 0, -14.883),
-      new THREE.Vector3(-25.586, 0, -22.008),
+      new THREE.Vector3(-18.495, -0.30206, -0.607),
+      new THREE.Vector3(-22.077, -0.30206, -0.806),
+      new THREE.Vector3(-26.389, -0.30206, -2.209),
+      new THREE.Vector3(-30.758, -0.30206, -5.863),
+      new THREE.Vector3(-32.198, -0.30206, -14.883),
+      new THREE.Vector3(-25.586, -0.30206, -22.008),
     ]);
 
     // Sound

@@ -17,10 +17,10 @@ AFRAME.registerComponent('edmon-male-animation', {
     this.edmonMarker = 0; // Position on the curve
     this.edmonSpeed = 0.0025; // Speed on the curve
     this.walkCurve1 = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(-6.156, 0, 24.277),
-      new THREE.Vector3(-18.487, 0, 20.465),
-      new THREE.Vector3(-25.143, 0, 16.964),
-      new THREE.Vector3(-32.632, 0, 5.541),
+      new THREE.Vector3(-6.156, -0.4, 24.277),
+      new THREE.Vector3(-18.487, -0.4, 20.465),
+      new THREE.Vector3(-25.143, -0.4, 16.964),
+      new THREE.Vector3(-32.632, -0.4, 5.541),
     ]);
 
     this.walkCurve2 = new THREE.CatmullRomCurve3([
