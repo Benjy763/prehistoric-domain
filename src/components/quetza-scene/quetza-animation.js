@@ -16,9 +16,9 @@ AFRAME.registerComponent('quetza-animation', {
     // Spino run Path
     this.quetzaMarker = 0; // Position on the curve
     this.quetzaSpeed = 0.0017; // Speed on the curve
-    this.walkCurve = new THREE.SplineCurve([
-      new THREE.Vector2(-20.869, -42),
-      new THREE.Vector2(-20.869, 0.667),
+    this.walkCurve = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-20.869, 0, -42),
+      new THREE.Vector3(-20.869, 0, 0.667),
     ]);
     this.flyCurve = new THREE.CatmullRomCurve3([
       new THREE.Vector3(-20.869, -0.237, -1.867),
@@ -60,6 +60,7 @@ AFRAME.registerComponent('quetza-animation', {
   // --- Phase functions ---
   walk: function () {
     this.quetzaMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.walkCurve,
       this.quetzaMarker,
@@ -145,12 +146,12 @@ AFRAME.registerComponent('quetza-animation', {
       this.quetzaSpeed -= 0.0005;
     }
     this.quetzaMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.flyCurve,
       this.quetzaMarker,
       this.quetzaSpeed,
-      '3d',
-      false
+      { needLookAt: false }
     );
 
     if (this.movesManager.truncMarker(this.quetzaMarker) > 900) {
@@ -178,11 +179,11 @@ AFRAME.registerComponent('quetza-animation', {
       });
     }
     this.quetzaMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.flyBackCurve,
       this.quetzaMarker,
-      this.quetzaSpeed,
-      '3d'
+      this.quetzaSpeed
     );
 
     if (this.movesManager.truncMarker(this.quetzaMarker) > 900) {

@@ -16,11 +16,11 @@ AFRAME.registerComponent('edmon-female-animation', {
     // Edmon run Path
     this.edmonMarker = 0; // Position on the curve
     this.edmonSpeed = 0.0022; // Speed on the curve
-    this.walkCurve1 = new THREE.SplineCurve([
-      new THREE.Vector2(-28.408, -40.973),
-      new THREE.Vector2(-24.678, -10.058),
-      new THREE.Vector2(-21.574, 0.238),
-      new THREE.Vector2(-3.314, 31.921),
+    this.walkCurve1 = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-28.408, 0, -40.973),
+      new THREE.Vector3(-24.678, 0, -10.058),
+      new THREE.Vector3(-21.574, 0, 0.238),
+      new THREE.Vector3(-3.314, 0, 31.921),
     ]);
 
     // Sound

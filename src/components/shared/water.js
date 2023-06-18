@@ -14,7 +14,7 @@ AFRAME.registerComponent('water', {
         {
           color: '#aaa',
           scale: this.data.scale,
-          flowDirection: new THREE.Vector2(-1, 0),
+          flowDirection: new THREE.Vector3(-1, 0),
           flowSpeed: this.data.flowspeed,
           textureWidth: 1024,
           textureHeight: 1024,

@@ -16,13 +16,13 @@ AFRAME.registerComponent('diplocaulus-animation', {
     // Rabbit run Path
     this.rabbitMarker = 0; // Position on the curve
     this.rabbitSpeed = 0.00025; // Speed on the curve
-    this.rabbitCurve = new THREE.SplineCurve([
-      new THREE.Vector2(-18.495, -0.607),
-      new THREE.Vector2(-22.077, -0.806),
-      new THREE.Vector2(-26.389, -2.209),
-      new THREE.Vector2(-30.758, -5.863),
-      new THREE.Vector2(-32.198, -14.883),
-      new THREE.Vector2(-25.586, -22.008),
+    this.rabbitCurve = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-18.495, -0.30206, -0.607),
+      new THREE.Vector3(-22.077, -0.30206, -0.806),
+      new THREE.Vector3(-26.389, -0.30206, -2.209),
+      new THREE.Vector3(-30.758, -0.30206, -5.863),
+      new THREE.Vector3(-32.198, -0.30206, -14.883),
+      new THREE.Vector3(-25.586, -0.30206, -22.008),
     ]);
 
     // Sound
@@ -50,6 +50,7 @@ AFRAME.registerComponent('diplocaulus-animation', {
   // --- Phase functions ---
   enterWalk: function () {
     this.rabbitMarker = this.movesManager.moveOnCurve(
+      this,
       this.el.object3D,
       this.rabbitCurve,
       this.rabbitMarker,
@@ -99,6 +100,7 @@ AFRAME.registerComponent('diplocaulus-animation', {
   },
   runFast: function () {
     this.rabbitMarker = this.movesManager.moveOnCurve(
+      this,
       this.el.object3D,
       this.rabbitCurve,
       this.rabbitMarker,

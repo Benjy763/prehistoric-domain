@@ -21,28 +21,28 @@ AFRAME.registerComponent('meg-animation', {
     this.megSpeed = 0.001; // Speed on the curve
     this.sharkMarker = 0; // Position on the curve
     this.sharkSpeed = 0.0005; // Speed on the curve
-    this.sharkCurve1 = new THREE.SplineCurve([
-      new THREE.Vector2(-10.942, -50),
-      new THREE.Vector2(-10.932, 50),
+    this.sharkCurve1 = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-10.942, 5, -50),
+      new THREE.Vector3(-10.932, 5, 50),
     ]);
-    this.sharkCurve2 = new THREE.SplineCurve([
-      new THREE.Vector2(23.166, 18),
-      new THREE.Vector2(-10.063, -1.822),
-      new THREE.Vector2(-34.327, -6.174),
+    this.sharkCurve2 = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(23.166, 5, 18),
+      new THREE.Vector3(-10.063, 5, -1.822),
+      new THREE.Vector3(-34.327, 5, -6.174),
     ]);
-    this.megCurve1 = new THREE.SplineCurve([
-      new THREE.Vector2(11, -70),
-      new THREE.Vector2(11, 60),
+    this.megCurve1 = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(11, -8, -70),
+      new THREE.Vector3(11, -8, 60),
     ]);
-    this.megCurve2 = new THREE.SplineCurve([
-      new THREE.Vector2(-10.932, 50),
-      new THREE.Vector2(-9.5, -20),
-      new THREE.Vector2(0, -70),
+    this.megCurve2 = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-10.932, 0, 50),
+      new THREE.Vector3(-9.5, 0, -20),
+      new THREE.Vector3(0, 0, -70),
     ]);
-    this.megCurve3 = new THREE.SplineCurve([
-      new THREE.Vector2(11.284, -50.129),
-      new THREE.Vector2(17, -6.252),
-      new THREE.Vector2(70, 10.654),
+    this.megCurve3 = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(11.284, 1.6821, -50.129),
+      new THREE.Vector3(17, 1.6821, -6.252),
+      new THREE.Vector3(70, 1.6821, 10.654),
     ]);
 
     // Sound
@@ -89,6 +89,7 @@ AFRAME.registerComponent('meg-animation', {
     }
 
     this.sharkMarker = this.movesManager.moveOnCurve(
+      this,
       this.sharkObject,
       this.sharkCurve1,
       this.sharkMarker,
@@ -108,6 +109,7 @@ AFRAME.registerComponent('meg-animation', {
       return;
     }
     this.megMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.megCurve1,
       this.megMarker,
@@ -122,6 +124,7 @@ AFRAME.registerComponent('meg-animation', {
       this.shark.setAttribute('position', sharkPosition);
     } else {
       this.sharkMarker = this.movesManager.moveOnCurve(
+        this,
         this.sharkObject,
         this.sharkCurve2,
         this.sharkMarker,
@@ -188,6 +191,7 @@ AFRAME.registerComponent('meg-animation', {
     }
 
     this.megMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.megCurve3,
       this.megMarker,

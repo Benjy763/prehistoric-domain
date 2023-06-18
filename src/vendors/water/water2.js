@@ -19,7 +19,7 @@
       const textureWidth = options.textureWidth || 512;
       const textureHeight = options.textureHeight || 512;
       const clipBias = options.clipBias || 0;
-      const flowDirection = options.flowDirection || new THREE.Vector2(1, 0);
+      const flowDirection = options.flowDirection || new THREE.Vector3(1, 0);
       const flowSpeed = options.flowSpeed || 0.03;
       const reflectivity = options.reflectivity || 0.02;
       const scale = options.scale || 1;

@@ -13,10 +13,10 @@ AFRAME.registerComponent('brachio-animation', {
 
     // Brachio run Path
     this.brachioMarker = 0; // Position on the curve
-    this.brachioSpeed = 0.00036; // Speed on the curve
-    this.curve = new THREE.SplineCurve([
-      new THREE.Vector2(-67.74806, -75.678),
-      new THREE.Vector2(86.72, -75.678),
+    this.brachioSpeed = 0.011; // Speed on the curve
+    this.curve = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-67.74806, 0, -75.678),
+      new THREE.Vector3(86.72, 0, -75.678),
     ]);
 
     // Sound
@@ -50,12 +50,12 @@ AFRAME.registerComponent('brachio-animation', {
       this.phase = 'finish';
     }
     this.brachioMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.curve,
       this.brachioMarker,
       this.brachioSpeed,
-      'xz',
-      false
+      { turn180: true, useDeltaTime: true }
     );
   },
   finish: function () {
@@ -66,12 +66,12 @@ AFRAME.registerComponent('brachio-animation', {
       this.phase = 'exit';
     }
     this.brachioMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.curve,
       this.brachioMarker,
       this.brachioSpeed,
-      'xz',
-      false
+      { turn180: true, useDeltaTime: true }
     );
   },
   tick: function () {

@@ -96,11 +96,11 @@ AFRAME.registerComponent('pteranodon-animation', {
       this.phase = 'finish';
     }
     this.pteraMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.curve,
       this.pteraMarker,
-      this.pteraSpeed,
-      '3d'
+      this.pteraSpeed
     );
   },
   endFly: function () {
@@ -135,11 +135,11 @@ AFRAME.registerComponent('pteranodon-animation', {
       this.animationPhase = 'planing';
     }
     this.pteraMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.curveEndFly,
       this.pteraMarker,
-      this.pteraSpeed,
-      '3d'
+      this.pteraSpeed
     );
   },
   tick: function () {

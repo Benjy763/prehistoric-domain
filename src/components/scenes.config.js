@@ -492,6 +492,42 @@ export const MainScenes = {
       carReference: null,
     },
   },
+  deinocheirus: {
+    // Starting scene
+    name: 'Deinocheirus Viewing Gallery',
+    loadingScreen: 'trex-illu.jpg',
+    needPerformance: true,
+    needLanguage: true,
+    mobileCompatible: true,
+    selection: 'deinocheirus',
+    assetsId: 'deinocheirus-assets',
+    carMarkerForDebug: 0.32,
+    color: '#000',
+    density: [0.005, 0.005],
+    displayDistance: 400,
+    canWalk: true,
+    loading: {
+      scene: 'loading-scene',
+      camera: 'loading-scene-camera',
+    },
+    deinocheirus: {
+      scene: 'deinocheirus-scene',
+      camera: 'deinocheirus-scene-camera',
+      car: 'deinocheirus-car',
+      carReference: null,
+      rigPos: {
+        x: 0,
+        y: 1,
+        z: 0,
+      },
+    },
+    ending: {
+      scene: 'ending-scene',
+      camera: 'ending-scene-camera',
+      car: 'ending-car',
+      carReference: null,
+    },
+  },
   deino: {
     // Starting scene
     name: 'Deinonychus Viewing Gallery',
