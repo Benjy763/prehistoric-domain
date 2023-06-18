@@ -82,7 +82,9 @@ AFRAME.registerComponent('spino-male-animation', {
     if (this.movesManager.truncMarker(this.spinoMarker) > 950) {
       this.spinoMarker = 0;
       this.spinoWalkSpeed = 0.04;
-      this.spinoWalkAudio.playSound();
+      setTimeout(() => {
+        this.spinoWalkAudio.playSound();
+      }, 1000);
       this.phase = 'walk2';
     }
     if (

@@ -263,7 +263,7 @@ AFRAME.registerSystem('system', {
     window.dispatchEvent(event);
 
     // Set main scene atmosphere color
-    this.changeAtmosphere('#262c28', '0.001');
+    this.changeAtmosphere('#2f5b45', '0.001');
 
     // Display scene
     this.displayScene(sceneId);
@@ -287,7 +287,7 @@ AFRAME.registerSystem('system', {
     document
       .querySelector('#' + this.scenes.ending.camera)
       .setAttribute('camera', 'active', true);
-    this.changeAtmosphere('#262c28', 0.1);
+    this.changeAtmosphere('#2f5b45', 0.1);
     if (!this.vr) {
       this.exitFullscreen();
     }

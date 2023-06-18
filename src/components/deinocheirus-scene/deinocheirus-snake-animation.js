@@ -14,7 +14,7 @@ AFRAME.registerComponent('deinocheirus-snake-animation', {
     this.snakeMarker = 0; // Position on the curve
     this.snakeSpeed = 0.018;
     this.curve = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(-17.743, -0.16, -7.127),
+      new THREE.Vector3(-18.096, -0.16, -2.647),
       new THREE.Vector3(-31.492, -0.16, 10.162),
       new THREE.Vector3(-6.232, -0.16, 13.607),
     ]);
@@ -23,6 +23,9 @@ AFRAME.registerComponent('deinocheirus-snake-animation', {
     this.el.addEventListener(
       'enterWalk',
       () => {
+        // Load sounds
+        this.snakeEnterSound = this.el.components['sound__enter'];
+        this.snakeEnterSound.playSound();
         // Launch animation
         setTimeout(() => {
           this.phase = 'enterWalk';
@@ -32,7 +35,7 @@ AFRAME.registerComponent('deinocheirus-snake-animation', {
             crossFadeDuration: 0.4,
             timeScale: 1.2,
           });
-        }, 6000);
+        }, 1000);
       },
       false
     );
@@ -42,6 +45,7 @@ AFRAME.registerComponent('deinocheirus-snake-animation', {
       () => {
         // Launch animation
         this.snakeSpeed = 0.018;
+        this.lastUpdateTime = performance.now();
         this.phase = 'walkAgain';
         this.el.setAttribute('animation-mixer', {
           clip: 'Snake Armature|Walk',
@@ -77,7 +81,7 @@ AFRAME.registerComponent('deinocheirus-snake-animation', {
       this.curve,
       this.snakeMarker,
       this.snakeSpeed,
-      { useDeltaTime: true, needUpdateTime: true }
+      { useDeltaTime: true }
     );
 
     if (this.movesManager.truncMarker(this.snakeMarker) > 900) {

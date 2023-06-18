@@ -196,6 +196,7 @@ AFRAME.registerComponent('spino-female-animation', {
         timeScale: 0.7,
       });
       this.spinoWalkAudio.playSound();
+      this.lastUpdateTime = performance.now();
       this.phase = 'leave';
     }, 5000);
     this.phase = 'exit';
@@ -225,7 +226,7 @@ AFRAME.registerComponent('spino-female-animation', {
       this.walkCurve1,
       this.spinoMarker,
       this.spinoWalkSpeed,
-      { useDeltaTime: true, needUpdateTime: true }
+      { useDeltaTime: true }
     );
   },
   fishHunt: function () {

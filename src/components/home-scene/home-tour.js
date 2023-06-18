@@ -34,6 +34,18 @@ AFRAME.registerComponent('home-car-tour', {
     this.el.addEventListener(
       'start',
       () => {
+        // Init perf for quest
+        const isQuest =
+          window.navigator.userAgent &&
+          (window.navigator.userAgent.includes('Quest 2') ||
+            window.navigator.userAgent.includes('OculusBrowser'));
+        if (isQuest) {
+          let elements = document.getElementsByClassName('performance');
+          for (let i = 0; i < elements.length; i++) {
+            elements[i].setAttribute('visible', false);
+          }
+        }
+
         setTimeout(() => {
           if (!this.videoEl) {
             return;
@@ -53,13 +65,22 @@ AFRAME.registerComponent('home-car-tour', {
     );
   },
   start: function () {
+    const isQuest =
+      window.navigator.userAgent &&
+      (window.navigator.userAgent.includes('Quest 2') ||
+        window.navigator.userAgent.includes('OculusBrowser'));
+
     if (this.movesManager.distanceFromPoint('home-checkpoint-cinema') < 6) {
       this.textCar.setAttribute('visible', 'true');
       this.movesManager.nextScene = 'cinema';
     }
     if (this.movesManager.distanceFromPoint('home-checkpoint-visitors') < 6) {
       this.textCar.setAttribute('visible', 'true');
-      this.movesManager.nextScene = 'visitors';
+      if (isQuest) {
+        this.movesManager.nextScene = 'ending';
+      } else {
+        this.movesManager.nextScene = 'visitors';
+      }
     }
     if (this.movesManager.distanceFromPoint('home-checkpoint-shop-md') < 6) {
       this.textCar.setAttribute('visible', 'true');

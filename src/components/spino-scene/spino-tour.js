@@ -68,7 +68,7 @@ AFRAME.registerComponent('spino-car-tour', {
         this.voicePhase = 'spino';
         setTimeout(() => {
           this.phase = 'start';
-        }, 5000);
+        }, 50000);
       },
       false
     );
