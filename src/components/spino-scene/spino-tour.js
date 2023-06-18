@@ -25,9 +25,9 @@ AFRAME.registerComponent('spino-car-tour', {
     // Birds curve
     this.birdsMarker = 0; // Position on the curve
     this.birdsSpeed = 0.003; // Speed on the curve
-    this.birdsCurve = new THREE.SplineCurve([
-      new THREE.Vector2(-37.29, 23.128),
-      new THREE.Vector2(-67.395, -5.341),
+    this.birdsCurve = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-37.29, 19.172, 23.128),
+      new THREE.Vector3(-67.395, 19.172, -5.341),
     ]);
 
     // Fog
@@ -68,7 +68,7 @@ AFRAME.registerComponent('spino-car-tour', {
         this.voicePhase = 'spino';
         setTimeout(() => {
           this.phase = 'start';
-        }, 50000);
+        }, 5000);
       },
       false
     );
@@ -95,6 +95,7 @@ AFRAME.registerComponent('spino-car-tour', {
   // --- Phase functions ---
   birdsFly: function () {
     this.birdsMarker = this.movesManager.moveOnCurve(
+      this,
       this.birds.object3D,
       this.birdsCurve,
       this.birdsMarker,
@@ -105,9 +106,6 @@ AFRAME.registerComponent('spino-car-tour', {
     }
   },
   start: function () {
-    // setTimeout(() => {
-    //   this.ambiant1Sound.playSound();
-    // }, 20000);
     setTimeout(() => {
       // Trigger Spino animation
       const event = new Event('enterWalk');

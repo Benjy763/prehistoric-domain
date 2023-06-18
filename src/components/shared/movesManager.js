@@ -182,14 +182,45 @@ AFRAME.registerSystem('movesManager', {
   },
   // ----- Curve functions --------
   // Move an object on the given curve according to given speed
-  moveOnCurve(object, curve, marker, speed, axe = 'xz', updateRotation = true) {
-    marker += speed;
-    object.position.copy(
-      this.convertPosition(curve.getPointAt(marker), object, axe)
-    );
-    if (updateRotation) {
-      this.updateRotation(object, curve, marker, speed, axe);
+  moveOnCurve: function (instance, object, curve, marker, speed, options) {
+    const {
+      turn180 = false,
+      useDeltaTime = false,
+      needUpdateTime = false,
+      needLookAt = true,
+    } = options || {};
+
+    if (marker === 0 || needUpdateTime) {
+      instance.lastUpdateTime = performance.now();
     }
+    // Calculate delta time
+    const time = performance.now();
+    const timeDelta = time - instance.lastUpdateTime;
+    // useDeltaTime for legacy compatibility
+    let deltaTime = useDeltaTime ? timeDelta / 1000 : 1;
+    if (!deltaTime) {
+      deltaTime = 0.033; // 30fps on first round
+    }
+    instance.lastUpdateTime = time;
+
+    // Update marker on curve
+    marker = marker + speed * deltaTime;
+    if (marker > curve.getLength()) {
+      marker = marker - curve.getLength();
+    }
+    const position = curve.getPointAt(marker);
+    if (!position) return marker; // Vérifier si position est undefined
+
+    // Update object position and orientation
+    object.position.copy(position);
+    const tangent = curve.getTangentAt(marker).normalize();
+    if (turn180) {
+      tangent.negate();
+    }
+    if (needLookAt) {
+      object.lookAt(position.clone().add(tangent));
+    }
+
     return marker;
   },
   // Give to the given object the new rotation position after moving on the curve

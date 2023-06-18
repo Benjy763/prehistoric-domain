@@ -10,13 +10,13 @@
     "deploy": "ghpages -p .ghpages && rm -rf .ghpages",
     "lint": "semistandard -v | snazzy",
     "lint:fix": "semistandard --fix",
-    "start": "cross-env MAIN_SCENE='deino' webpack-dev-server --config webpack-dev.config.js --host 0.0.0.0 --progress --colors --hot-only --inline --port 8080",
+    "start": "cross-env MAIN_SCENE='deinocheirus' webpack-dev-server --config webpack-dev.config.js --host 0.0.0.0 --progress --colors --hot-only --inline --port 8080",
     "start:ws": "webpack-dev-server --config webpack-dev-ws.config.js --host 0.0.0.0 --progress --colors --hot-only --inline --port 8080"
   },
   "dependencies": {
-    "aframe": "^1.3.0",
+    "aframe": "^1.4.2",
     "aframe-curve-component": "^0.1.3",
-    "aframe-extras": "^6.1.1",
+    "aframe-extras": "^7.0.0",
     "aframe-fps-counter-component": "^1.0.1",
     "aframe-fps-look-controls-component": "^1.1.0",
     "aframe-particle-system-component": "^1.1.3",

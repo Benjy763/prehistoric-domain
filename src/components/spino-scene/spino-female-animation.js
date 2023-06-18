@@ -24,62 +24,62 @@ AFRAME.registerComponent('spino-female-animation', {
 
     // Spino run Path
     this.spinoMarker = 0; // Position on the curve
-    this.spinoWalkSpeed = 0.0008; // Speed on the curve
+    this.spinoWalkSpeed = 0.03; // Speed on the curve
     this.spinoSwimSpeed = 0.0022; // Speed on the curve
     this.spinoSwimSpeed2 = 0.0035; // Speed on the curve
-    this.walkCurve1 = new THREE.SplineCurve([
-      new THREE.Vector2(-28.408, -40.973),
-      new THREE.Vector2(-24.678, -10.058),
-      new THREE.Vector2(-21.574, 0.238),
-      new THREE.Vector2(-3.314, 31.921),
+    this.walkCurve1 = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-28.408, -0.758, -40.973),
+      new THREE.Vector3(-24.678, -0.758, -10.058),
+      new THREE.Vector3(-21.574, -0.758, 0.238),
+      new THREE.Vector3(-3.314, -0.758, 31.921),
     ]);
-    this.walkCurve2 = new THREE.SplineCurve([
-      new THREE.Vector2(-23.791, -11.48),
-      new THREE.Vector2(-23.791, -7),
-      new THREE.Vector2(-20, 1),
-      new THREE.Vector2(2.66, 38),
+    this.walkCurve2 = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-23.791, -0.758, -11.48),
+      new THREE.Vector3(-23.791, -0.758, -7),
+      new THREE.Vector3(-20, -0.758, 1),
+      new THREE.Vector3(2.66, -0.758, 38),
     ]);
-    this.swimCurve1 = new THREE.SplineCurve([
-      new THREE.Vector2(-44.111, 40.486),
-      new THREE.Vector2(-33.35, 29.313),
-      new THREE.Vector2(-22.73, 13.792),
-      new THREE.Vector2(-21.9, -3.527),
-      new THREE.Vector2(-15, -45.775),
+    this.swimCurve1 = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-44.111, -13.102, 40.486),
+      new THREE.Vector3(-33.35, -13.102, 29.313),
+      new THREE.Vector3(-22.73, -13.102, 13.792),
+      new THREE.Vector3(-21.9, -13.102, -3.527),
+      new THREE.Vector3(-15, -13.102, -45.775),
     ]);
-    this.swimCurve2 = new THREE.SplineCurve([
-      new THREE.Vector2(-41.057, -28.491),
-      new THREE.Vector2(-38.471, -18.809),
-      new THREE.Vector2(-35.549, -3.511),
-      new THREE.Vector2(-35.549, 10.424),
-      new THREE.Vector2(-40, 44.26),
+    this.swimCurve2 = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-41.057, -13.102, -28.491),
+      new THREE.Vector3(-38.471, -13.102, -18.809),
+      new THREE.Vector3(-35.549, -13.102, -3.511),
+      new THREE.Vector3(-35.549, -13.102, 10.424),
+      new THREE.Vector3(-40, -13.102, 44.26),
     ]);
 
     // Fish Path
     this.fishMarker = 0; // Position on the curve
     this.fishSpeed = 0.0008; // Speed on the curve
-    this.fishCurve = new THREE.SplineCurve([
-      new THREE.Vector2(-10.508, -9.171),
-      new THREE.Vector2(-19.703, -3.136),
-      new THREE.Vector2(-20.977, 3.892),
-      new THREE.Vector2(-24.716, 6.492),
-      new THREE.Vector2(-32.015, 6.218),
-      new THREE.Vector2(-76.883, 3.19),
+    this.fishCurve = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-10.508, -12.17427, -9.171),
+      new THREE.Vector3(-19.703, -12.17427, -3.136),
+      new THREE.Vector3(-20.977, -12.17427, 3.892),
+      new THREE.Vector3(-24.716, -12.17427, 6.492),
+      new THREE.Vector3(-32.015, -12.17427, 6.218),
+      new THREE.Vector3(-76.883, -12.17427, 3.19),
     ]);
 
     //Saw Fish Path
     this.sawFishMarker = 0; // Position on the curve
     this.sawFishSpeed = 0.0015; // Speed on the curve
-    this.sawFishCurve1 = new THREE.SplineCurve([
-      new THREE.Vector2(-17.728, -26.941),
-      new THREE.Vector2(-21.238, -16.459),
-      new THREE.Vector2(-20.378, -1.195),
-      new THREE.Vector2(-5.596, 33.163),
+    this.sawFishCurve1 = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-17.728, -10.87298, -26.941),
+      new THREE.Vector3(-21.238, -10.87298, -16.459),
+      new THREE.Vector3(-20.378, -10.87298, -1.195),
+      new THREE.Vector3(-5.596, -10.87298, 33.163),
     ]);
-    this.sawFishCurve2 = new THREE.SplineCurve([
-      new THREE.Vector2(-50.525, 32.801),
-      new THREE.Vector2(-39.857, 16.569),
-      new THREE.Vector2(-28.62, 5.253),
-      new THREE.Vector2(-3.602, -22.739),
+    this.sawFishCurve2 = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-50.525, -10.87298, 32.801),
+      new THREE.Vector3(-39.857, -10.87298, 16.569),
+      new THREE.Vector3(-28.62, -10.87298, 5.253),
+      new THREE.Vector3(-3.602, -10.87298, -22.739),
     ]);
 
     // Sound
@@ -123,7 +123,6 @@ AFRAME.registerComponent('spino-female-animation', {
     this.el.addEventListener(
       'fishHunt',
       () => {
-        this.object.position.y = -13.102;
         this.spinoMarker = 0;
         this.phase = 'fishHunt';
       },
@@ -156,10 +155,12 @@ AFRAME.registerComponent('spino-female-animation', {
       this.phase = 'exit';
     }
     this.spinoMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.walkCurve1,
       this.spinoMarker,
-      this.spinoWalkSpeed
+      this.spinoWalkSpeed,
+      { useDeltaTime: true }
     );
   },
   drink: function () {
@@ -219,14 +220,17 @@ AFRAME.registerComponent('spino-female-animation', {
       return;
     }
     this.spinoMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.walkCurve1,
       this.spinoMarker,
-      this.spinoWalkSpeed
+      this.spinoWalkSpeed,
+      { useDeltaTime: true, needUpdateTime: true }
     );
   },
   fishHunt: function () {
     this.fishMarker = this.movesManager.moveOnCurve(
+      this,
       this.fish.object3D,
       this.fishCurve,
       this.fishMarker,
@@ -241,6 +245,7 @@ AFRAME.registerComponent('spino-female-animation', {
     }
     if (this.movesManager.truncMarker(this.sawFishMarker) < 950) {
       this.sawFishMarker = this.movesManager.moveOnCurve(
+        this,
         this.sawFish.object3D,
         this.sawFishCurve1,
         this.sawFishMarker,
@@ -255,6 +260,7 @@ AFRAME.registerComponent('spino-female-animation', {
   spinoHunt: function () {
     if (this.movesManager.truncMarker(this.sawFishMarker) < 950) {
       this.sawFishMarker = this.movesManager.moveOnCurve(
+        this,
         this.sawFish.object3D,
         this.sawFishCurve2,
         this.sawFishMarker,
@@ -263,6 +269,7 @@ AFRAME.registerComponent('spino-female-animation', {
     }
     if (this.movesManager.truncMarker(this.sawFishMarker) > 700) {
       this.spinoMarker = this.movesManager.moveOnCurve(
+        this,
         this.object,
         this.swimCurve1,
         this.spinoMarker,
@@ -294,6 +301,7 @@ AFRAME.registerComponent('spino-female-animation', {
   },
   spinoEat: function () {
     this.spinoMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.swimCurve2,
       this.spinoMarker,

@@ -50,25 +50,25 @@ AFRAME.registerComponent('gate-car-tour', {
     };
 
     // Tour Path
-    this.curve = new THREE.SplineCurve([
-      new THREE.Vector2(7.988, 81.899),
-      new THREE.Vector2(8.557, -54.744),
-      new THREE.Vector2(7.81, -200.305),
+    this.curve = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(7.988, 0, 81.899),
+      new THREE.Vector3(8.557, 0, -54.744),
+      new THREE.Vector3(7.81, 0, -200.305),
     ]);
-    this.curveTurn = new THREE.SplineCurve([
-      new THREE.Vector2(8.106, -154.025),
-      new THREE.Vector2(8.399, -170.891),
-      new THREE.Vector2(-0.218, -190.982),
-      new THREE.Vector2(5.347, -200.496),
-      new THREE.Vector2(19.822, -194.518),
-      new THREE.Vector2(17.203, -180.089),
-      new THREE.Vector2(10.805, -168.758),
-      new THREE.Vector2(10.685, -162.186),
+    this.curveTurn = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(8.106, 0, -154.025),
+      new THREE.Vector3(8.399, 0, -170.891),
+      new THREE.Vector3(-0.218, 0, -190.982),
+      new THREE.Vector3(5.347, 0, -200.496),
+      new THREE.Vector3(19.822, 0, -194.518),
+      new THREE.Vector3(17.203, 0, -180.089),
+      new THREE.Vector3(10.805, 0, -168.758),
+      new THREE.Vector3(10.685, 0, -162.186),
     ]);
-    this.curveBack = new THREE.SplineCurve([
-      new THREE.Vector2(10.423, -164.116),
-      new THREE.Vector2(10.891, -44.742),
-      new THREE.Vector2(10.808, 77.255),
+    this.curveBack = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(10.423, 0, -164.116),
+      new THREE.Vector3(10.891, 0, -44.742),
+      new THREE.Vector3(10.808, 0, 77.255),
     ]);
 
     // En scene activation
@@ -80,7 +80,7 @@ AFRAME.registerComponent('gate-car-tour', {
       // Get car reference
       this.carControls = this.system.carReference;
       // Init tour path for the car
-      this.carControls.initParams(this.curve, 836, 0.0002);
+      this.carControls.initParams(this.curve, 836);
     });
 
     // Start tour listeners

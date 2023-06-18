@@ -15,22 +15,19 @@ AFRAME.registerComponent('spino-male-animation', {
 
     // Spino run Path
     this.spinoMarker = 0; // Position on the curve
-    this.spinoWalkSpeed = 0.0008; // Speed on the curve
-    this.walkCurve1 = new THREE.SplineCurve([
-      new THREE.Vector2(-37.867, -15),
-      new THREE.Vector2(-37.867, 55),
+    this.spinoWalkSpeed = 0.02; // Speed on the curve
+    this.walkCurve1 = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-37.867, -8.657, -30),
+      new THREE.Vector3(-37.867, -8.657, 12),
+      new THREE.Vector3(-37.867, -0.758, 20),
+      new THREE.Vector3(-37.867, -0.758, 55),
     ]);
-    this.walkCurve2 = new THREE.SplineCurve([
-      new THREE.Vector2(-22.824, 55.687),
-      new THREE.Vector2(-22.824, 18.887),
-    ]);
-    this.walkCurve3 = new THREE.SplineCurve([
-      new THREE.Vector2(-22.824, 20.58),
-      new THREE.Vector2(-23.747, -49.624),
+    this.walkCurve2 = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-22.824, -0.758, 55.687),
+      new THREE.Vector3(-22.824, -0.758, 18.887),
     ]);
 
     // Enablers
-    this.waterExitSpeed = 0.014;
     this.waterExitEnabed = false;
 
     // Sound
@@ -84,16 +81,15 @@ AFRAME.registerComponent('spino-male-animation', {
   enterWalk: function () {
     if (this.movesManager.truncMarker(this.spinoMarker) > 950) {
       this.spinoMarker = 0;
-      this.spinoWalkSpeed = 0.002;
+      this.spinoWalkSpeed = 0.04;
       this.spinoWalkAudio.playSound();
       this.phase = 'walk2';
     }
     if (
-      this.movesManager.truncMarker(this.spinoMarker) > 320 &&
+      this.movesManager.truncMarker(this.spinoMarker) > 480 &&
       !this.waterExitEnabed
     ) {
       this.spinoWateroutAudio.playSound();
-      this.waterExitSpeed = 0.04;
       this.el.setAttribute('animation-mixer', {
         clip: 'Spinosaurus_Walk_InPlace',
         loop: true,
@@ -103,14 +99,13 @@ AFRAME.registerComponent('spino-male-animation', {
       this.waterExitEnabed = true;
     }
     this.spinoMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.walkCurve1,
       this.spinoMarker,
-      this.spinoWalkSpeed
+      this.spinoWalkSpeed,
+      { useDeltaTime: true, needLookAt: false }
     );
-    if (this.object.position.y < -0.758) {
-      this.object.position.y += this.waterExitSpeed;
-    }
   },
   walk2: function () {
     if (this.movesManager.truncMarker(this.spinoMarker) > 950) {
@@ -151,10 +146,12 @@ AFRAME.registerComponent('spino-male-animation', {
       this.phase = 'fish';
     }
     this.spinoMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.walkCurve2,
       this.spinoMarker,
-      this.spinoWalkSpeed
+      this.spinoWalkSpeed,
+      { useDeltaTime: true }
     );
   },
   roar: function () {

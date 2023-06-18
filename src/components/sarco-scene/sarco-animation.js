@@ -20,25 +20,25 @@ AFRAME.registerComponent('sarco-animation', {
     this.sarcoMarker = 0; // Position on the curve
     this.sarcoWalkSpeed = 0.0015; // Speed on the curve
     this.sarcoSwimSpeed = 0.0016; // Speed on the curve
-    this.walkCurve1 = new THREE.SplineCurve([
-      new THREE.Vector2(-18.969, 0.161),
-      new THREE.Vector2(-18.969, 32.365),
+    this.walkCurve1 = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-18.969, -0.23326, 0.161),
+      new THREE.Vector3(-18.969, -0.23326, 32.365),
     ]);
-    this.swimCurve1 = new THREE.SplineCurve([
-      new THREE.Vector2(-15.127, -32),
-      new THREE.Vector2(-15.127, 52),
+    this.swimCurve1 = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-15.127, -11.934, -32),
+      new THREE.Vector3(-15.127, -11.934, 52),
     ]);
 
     // Bird Path
     this.birdMarker = 0; // Position on the curve
     this.birdSpeed = 0.05; // Speed on the curve
-    this.birdCurve = new THREE.SplineCurve([
-      new THREE.Vector2(-18.96, 14.287),
-      new THREE.Vector2(-18.96, 4),
+    this.birdCurve = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-18.96, 0.307, 14.287),
+      new THREE.Vector3(-18.96, 0.307, 4),
     ]);
-    this.birdCurve2 = new THREE.SplineCurve([
-      new THREE.Vector2(-18.96, 6.057),
-      new THREE.Vector2(-33.901, -8.755),
+    this.birdCurve2 = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-18.96, 0.307, 6.057),
+      new THREE.Vector3(-33.901, 0.307, -8.755),
     ]);
 
     // Sound
@@ -113,6 +113,7 @@ AFRAME.registerComponent('sarco-animation', {
   },
   birdFly: function () {
     this.birdMarker = this.movesManager.moveOnCurve(
+      this,
       this.bird.object3D,
       this.birdCurve,
       this.birdMarker,
@@ -143,6 +144,7 @@ AFRAME.registerComponent('sarco-animation', {
   },
   birdLeave: function () {
     this.birdMarker = this.movesManager.moveOnCurve(
+      this,
       this.bird.object3D,
       this.birdCurve2,
       this.birdMarker,
@@ -201,6 +203,7 @@ AFRAME.registerComponent('sarco-animation', {
   },
   sarcoLeave: function () {
     this.sarcoMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.walkCurve1,
       this.sarcoMarker,
@@ -218,6 +221,7 @@ AFRAME.registerComponent('sarco-animation', {
   },
   sarcoSwim: function () {
     this.sarcoMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.swimCurve1,
       this.sarcoMarker,
@@ -264,6 +268,7 @@ AFRAME.registerComponent('sarco-animation', {
   },
   sarcoStay: function () {
     this.sarcoMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.swimCurve1,
       this.sarcoMarker,
@@ -272,6 +277,7 @@ AFRAME.registerComponent('sarco-animation', {
   },
   sarcoSwimFast: function () {
     this.sarcoMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.swimCurve1,
       this.sarcoMarker,

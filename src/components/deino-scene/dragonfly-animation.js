@@ -61,11 +61,11 @@ AFRAME.registerComponent('dragonfly-animation', {
   // --- Phase functions ---
   fly: function () {
     this.dragonflyMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.curveFly,
       this.dragonflyMarker,
-      this.dragonflySpeed,
-      '3d'
+      this.dragonflySpeed
     );
 
     if (this.movesManager.truncMarker(this.dragonflyMarker) > 885) {
@@ -96,11 +96,11 @@ AFRAME.registerComponent('dragonfly-animation', {
   },
   flyAgain: function () {
     this.dragonflyMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.curveFly2,
       this.dragonflyMarker,
-      this.dragonflySpeed,
-      '3d'
+      this.dragonflySpeed
     );
 
     if (this.movesManager.truncMarker(this.dragonflyMarker) > 950) {

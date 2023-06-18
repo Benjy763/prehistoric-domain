@@ -11,9 +11,9 @@ AFRAME.registerComponent('deino-car-tour', {
     this.voiceDeinoSound = 'stop';
 
     // Tour Path
-    const curve = new THREE.SplineCurve([
-      new THREE.Vector2(4.535, 81.899),
-      new THREE.Vector2(4.535, -174.7),
+    const curve = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(4.535, 0, 81.899),
+      new THREE.Vector3(4.535, 0, -174.7),
     ]);
 
     // Sounds

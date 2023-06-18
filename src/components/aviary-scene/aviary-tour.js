@@ -21,9 +21,9 @@ AFRAME.registerComponent('aviary-car-tour', {
     this.voicePhase = 'stop';
 
     // Tour Path
-    const curve = new THREE.SplineCurve([
-      new THREE.Vector2(7.988, 81.899),
-      new THREE.Vector2(9.7, -174.7),
+    const curve = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(7.988, 0, 81.899),
+      new THREE.Vector3(9.7, 0, -174.7),
     ]);
 
     // En scene activation

@@ -4,7 +4,7 @@ AFRAME.registerComponent('car-controls', {
     this.object = this.el.object3D;
     this.carMarker = 0;
     this.carSpeed = 0;
-    this.defaultSpeed = 0.00018;
+    this.defaultSpeed = 0.00025;
     this.curve;
     this.maxDistance = 900;
     this.drivingState = 'stopped'; // stopped, starting, driving, stopping
@@ -22,7 +22,7 @@ AFRAME.registerComponent('car-controls', {
     this.carDriveAudio = document.getElementById('car-drive-asset');
     this.carStopAudio = document.getElementById('car-stop-asset');
   },
-  initParams: function (curve, maxDistance, speed = 0.00018) {
+  initParams: function (curve, maxDistance, speed = 0.00025) {
     this.curve = curve;
     this.maxDistance = maxDistance;
     this.defaultSpeed = speed;
@@ -38,6 +38,13 @@ AFRAME.registerComponent('car-controls', {
   stopCar: function () {
     // Animation
     this.carSpeed -= 0.000005;
+    this.carMarker = this.movesManager.moveOnCurve(
+      this,
+      this.object,
+      this.curve,
+      this.carMarker,
+      this.carSpeed
+    );
     if (this.carSpeed <= 0) {
       this.carSpeed = 0;
       this.drivingState = 'stopped';
@@ -46,6 +53,13 @@ AFRAME.registerComponent('car-controls', {
   startCar: function () {
     // Animation
     this.carSpeed += 0.000005;
+    this.carMarker = this.movesManager.moveOnCurve(
+      this,
+      this.object,
+      this.curve,
+      this.carMarker,
+      this.carSpeed
+    );
     if (this.carSpeed >= this.defaultSpeed) {
       this.carSpeed = this.defaultSpeed;
       this.drivingState = 'driving';
@@ -56,6 +70,7 @@ AFRAME.registerComponent('car-controls', {
       return;
     }
     this.carMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.curve,
       this.carMarker,

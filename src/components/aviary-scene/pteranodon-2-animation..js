@@ -67,11 +67,11 @@ AFRAME.registerComponent('pteranodon-2-animation', {
       this.phase = 'idle';
     }
     this.pteraMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.curveWalk,
       this.pteraMarker,
-      this.pteraSpeed,
-      '3d'
+      this.pteraSpeed
     );
   },
   idle: function () {
@@ -130,11 +130,11 @@ AFRAME.registerComponent('pteranodon-2-animation', {
       this.phase = 'exit';
     }
     this.pteraMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.curveFly,
       this.pteraMarker,
-      this.pteraSpeed,
-      '3d'
+      this.pteraSpeed
     );
   },
   land: function () {
@@ -148,11 +148,11 @@ AFRAME.registerComponent('pteranodon-2-animation', {
       this.phase = 'eat';
     }
     this.pteraMarker = this.movesManager.moveOnCurve(
+      this,
       this.object,
       this.curveLand,
       this.pteraMarker,
-      this.pteraSpeed,
-      '3d'
+      this.pteraSpeed
     );
   },
   eat: function () {
