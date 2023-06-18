@@ -11,6 +11,7 @@ AFRAME.registerComponent('deinocheirus-car-tour', {
       document.querySelector('a-scene').systems['movesManager'];
     this.carControls;
     this.deinocheirus = document.querySelector('#deinocheirus');
+    this.tree = document.querySelector('#deinocheirus-swamp-dead-tree-3');
     this.screenDeinocheirus = document.getElementById(
       'deinocheirus-screen-deinocheirus'
     );
@@ -54,27 +55,48 @@ AFRAME.registerComponent('deinocheirus-car-tour', {
         this.voicePhase = 'deinocheirus1';
 
         // Global sound launch
-        //document.getElementById('swamp-2-asset').play();
+        document.getElementById('swamp-3-asset').play();
         this.voiceDeinocheirus1Sound = this.system.getVoice('deinocheirus1');
         this.voiceDeinocheirus2Sound = this.system.getVoice('deinocheirus2');
+        this.deinoEatSound = this.deinocheirus.components['sound__eat'];
+        this.treeFallSound = this.tree.components['sound__fall'];
         this.phase = 'start';
+      },
+      false
+    );
+    this.el.addEventListener(
+      'snakeEnter',
+      () => {
+        setTimeout(() => {
+          this.phase = 'snakeEnter';
+        }, 3000);
       },
       false
     );
     this.el.addEventListener(
       'snakePause',
       () => {
-        this.phase = 'treeFall';
+        this.phase = 'exit';
+        this.treeFallSound.playSound();
+        setTimeout(() => {
+          this.phase = 'treeFall';
+        }, 13000);
       },
       false
     );
   },
   // --- Phase functions ---
   start: function () {
-    this.phase = 'exit';
     setTimeout(() => {
-      this.phase = 'snakeEnter';
-    }, 3000);
+      this.deinoEatSound.playSound();
+    }, 1000);
+    this.phase = 'deinoLeaveEat';
+  },
+  deinoLeaveEat: function () {
+    this.phase = 'exit';
+    // Trigger Rabbit animation
+    const event = new Event('leaveEat');
+    this.deinocheirus.dispatchEvent(event);
   },
   snakeEnter: function () {
     this.phase = 'exit';
@@ -86,7 +108,9 @@ AFRAME.registerComponent('deinocheirus-car-tour', {
     this.treeRotationStep += 0.0001;
     this.treeObject.rotation.x -= this.treeRotationStep;
     if (this.treeObject.rotation.x < -2) {
-      this.phase = 'deinoStart';
+      setTimeout(() => {
+        this.phase = 'deinoStart';
+      }, 3000);
     }
   },
   deinoStart: function () {
@@ -122,6 +146,9 @@ AFRAME.registerComponent('deinocheirus-car-tour', {
     switch (this.phase) {
       case 'start':
         this.start();
+        break;
+      case 'deinoLeaveEat':
+        this.deinoLeaveEat();
         break;
       case 'snakeEnter':
         this.snakeEnter();

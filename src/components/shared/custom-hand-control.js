@@ -26,6 +26,9 @@ AFRAME.registerComponent('custom-hand-control', {
     AFRAME.scenes[0].systems.geometry.clearCache();
   },
   disposeObject3D: function (object) {
+    if (!object) {
+      return;
+    }
     object.traverse((obj) => {
       if (obj.material) {
         obj.material.dispose();

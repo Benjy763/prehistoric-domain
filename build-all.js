@@ -11,6 +11,7 @@ const mainscenes = [
   'trex',
   'edmon',
   'deino',
+  'deinocheirus',
   'home',
   'homelight',
 ];

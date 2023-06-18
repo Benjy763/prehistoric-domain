@@ -1,67 +1,79 @@
 <a-assets id="deinocheirus-assets" timeout="60000">
   <!-- Audio -->
-  <audio id="voice-deinocheirus-sound-en" response-type="arraybuffer" src="/assets/sounds/voice/en/trex.mp3"
+  <audio id="voice-deinocheirus-sound-en" response-type="arraybuffer" src="/assets/sounds/voice/en/deinocheirus.mp3"
     preload="auto" volume="1"></audio>
-  <audio id="voice-deinocheirus-sound-fr" response-type="arraybuffer" src="/assets/sounds/voice/fr/trex.mp3"
+  <audio id="voice-deinocheirus-sound-fr" response-type="arraybuffer" src="/assets/sounds/voice/fr/deinocheirus.mp3"
     preload="auto" volume="1"></audio>
 
   <!-- Environement -->
-  <audio id="swamp-2-asset" response-type="arraybuffer" src="/assets/sounds/environement/swamp-2.webm" preload="auto"
+  <audio id="swamp-3-asset" response-type="arraybuffer" src="/assets/sounds/environement/swamp-3.webm" preload="auto"
     loop="true" volume="1"></audio>
 
-  <!-- deinocheirus -->
+  <!-- sounds -->
+  <a-asset-item id="deinocheirus-check" src="/assets/sounds/deinocheirus/check.mp3" preload="auto"
+    response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="deinocheirus-eat" src="/assets/sounds/deinocheirus/eat.mp3" preload="auto"
+    response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="deinocheirus-leave-far" src="/assets/sounds/deinocheirus/leave-far.mp3" preload="auto"
+    response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="deinocheirus-snake-enter" src="/assets/sounds/deinocheirus/snake-enter.mp3" preload="auto"
+    response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="deinocheirus-tree-fall" src="/assets/sounds/deinocheirus/tree-fall.mp3" preload="auto"
+    response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="deinocheirus-walk" src="/assets/sounds/deinocheirus/walk.webm" preload="auto"
+    response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
 
   <!-- Images -->
 
 
-  <img id="loading-asset" src="/assets/images/loader.png?lastmod=8" />
-  <img id="limits-asset" src="/assets/images/limits.png?lastmod=8" />
-  <img id="credits-asset" src="/assets/images/credits.png?lastmod=8" />
-  <img id="rendering-asset" src="/assets/images/rendering.png?lastmod=8" />
-  <img id="ground-texture-grass-asset" src="/assets/images/floor-grass.jpg?lastmod=8" />
+  <img id="loading-asset" src="/assets/images/loader.png?lastmod=9" />
+  <img id="limits-asset" src="/assets/images/limits.png?lastmod=9" />
+  <img id="credits-asset" src="/assets/images/credits.png?lastmod=9" />
+  <img id="rendering-asset" src="/assets/images/rendering.png?lastmod=9" />
+  <img id="ground-texture-grass-asset" src="/assets/images/floor-grass.jpg?lastmod=9" />
   <img id="dont-touch-asset" src="/assets/images/dont-touch.jpg" />
-  <img id="deinocheirus-pres-asset" src="/assets/images/deinocheirus-pres.png?lastmod=8" />
+  <img id="deinocheirus-pres-asset" src="/assets/images/deinocheirus-pres.png?lastmod=9" />
   <img id="360-pane-asset" src="/assets/images/deinocheirus/360-pane.jpg">
   </img>
 
   <!-- 3D -->
   <!-- Objects -->
-  <a-asset-item id="deinocheirus-scene-asset" src="/assets/models/objects/viewing-gallery/scene.glb?lastmod=8">
+  <a-asset-item id="deinocheirus-scene-asset" src="/assets/models/objects/viewing-gallery/scene.glb?lastmod=9">
   </a-asset-item>
-  <a-asset-item id="window-asset" src="/assets/models/objects/window/scene.glb?lastmod=8">
+  <a-asset-item id="window-asset" src="/assets/models/objects/window/scene.glb?lastmod=9">
   </a-asset-item>
-  <a-asset-item id="window-support-asset" src="/assets/models/objects/window-support/scene2.glb?lastmod=8">
+  <a-asset-item id="window-support-asset" src="/assets/models/objects/window-support/scene2.glb?lastmod=9">
   </a-asset-item>
-  <a-asset-item id="wall-asset" src="/assets/models/objects/door-2/scene.glb?lastmod=8">
+  <a-asset-item id="wall-asset" src="/assets/models/objects/door-2/scene.glb?lastmod=9">
   </a-asset-item>
-  <a-asset-item id="terminal-asset" src="/assets/models/objects/terminal/scene.glb?lastmod=8">
+  <a-asset-item id="terminal-asset" src="/assets/models/objects/terminal/scene.glb?lastmod=9">
   </a-asset-item>
-  <a-asset-item id="door-asset" src="/assets/models/objects/door-underwater/scene.glb?lastmod=8">
+  <a-asset-item id="door-asset" src="/assets/models/objects/door-underwater/scene.glb?lastmod=9">
   </a-asset-item>
-  <a-asset-item id="floor-asset" src="/assets/models/objects/floor/scene.glb?lastmod=8">
+  <a-asset-item id="floor-asset" src="/assets/models/objects/floor/scene.glb?lastmod=9">
   </a-asset-item>
-  <a-asset-item id="checkpoint-asset" src="/assets/models/objects/checkpoint/scene.glb?lastmod=8">
+  <a-asset-item id="checkpoint-asset" src="/assets/models/objects/checkpoint/scene.glb?lastmod=9">
   </a-asset-item>
 
 
   <!-- Environment -->
-  <a-asset-item id="mud-asset" src="/assets/models/environment/swamp/swamp-mud/scene.glb?lastmod=8">
+  <a-asset-item id="mud-asset" src="/assets/models/environment/swamp/swamp-mud/scene.glb?lastmod=9">
   </a-asset-item>
   <a-asset-item id="swamp-grass-asset" src="/assets/models/environment/swamp/swamp-grass/scene.gltf">
   </a-asset-item>
-  <a-asset-item id="swamp-dead-tree-asset" src="/assets/models/environment/swamp/swamp-dead-tree/scene.glb?lastmod=8">
+  <a-asset-item id="swamp-dead-tree-asset" src="/assets/models/environment/swamp/swamp-dead-tree/scene.glb?lastmod=9">
   </a-asset-item>
 
   <a-asset-item id="swamp-dead-tree-2-asset"
-    src="/assets/models/environment/swamp/swamp-dead-tree-2/scene.glb?lastmod=8">
+    src="/assets/models/environment/swamp/swamp-dead-tree-2/scene.glb?lastmod=9">
   </a-asset-item>
   <a-asset-item id="swamp-dead-tree-3-asset"
-    src="/assets/models/environment/swamp/swamp-dead-tree-3/scene.glb?lastmod=8">
+    src="/assets/models/environment/swamp/swamp-dead-tree-3/scene.glb?lastmod=9">
   </a-asset-item>
 
   <!-- Dinosaurs -->
-  <a-asset-item id="snake-asset" src="/assets/models/dinosaurs/snake/scene.glb?lastmod=8"></a-asset-item>
-  <a-asset-item id="deinocheirus-asset" src="/assets/models/dinosaurs/deinocheirus/scene.glb?lastmod=8"></a-asset-item>
+  <a-asset-item id="snake-asset" src="/assets/models/dinosaurs/snake/scene.glb?lastmod=9"></a-asset-item>
+  <a-asset-item id="deinocheirus-asset" src="/assets/models/dinosaurs/deinocheirus/scene.glb?lastmod=9"></a-asset-item>
 
 
 </a-assets>
