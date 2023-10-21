@@ -98,11 +98,13 @@ AFRAME.registerComponent('lagoon-car-tour', {
     // Checkpoint listener
     this.checkpointListener();
     // Voice phases
-    switch (this.voicePhase) {
-      case 'lagoon1':
-        this.voiceLagoon1Sound.play();
-        this.voicePhase = 'exit';
-        break;
+    if (this.voiceLagoon1Sound) {
+      switch (this.voicePhase) {
+        case 'lagoon1':
+          this.voiceLagoon1Sound.play();
+          this.voicePhase = 'exit';
+          break;
+      }
     }
     // Animation phases
     switch (this.phase) {

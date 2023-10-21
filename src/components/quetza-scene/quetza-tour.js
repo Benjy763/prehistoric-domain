@@ -73,11 +73,13 @@ AFRAME.registerComponent('quetza-car-tour', {
     // Checkpoint listener
     this.checkpointListener();
     // Voice phases
-    switch (this.voicePhase) {
-      case 'quetza':
-        this.voiceQuetzaSound.play();
-        this.voicePhase = 'exit';
-        break;
+    if (this.voiceQuetzaSound) {
+      switch (this.voicePhase) {
+        case 'quetza':
+          this.voiceQuetzaSound.play();
+          this.voicePhase = 'exit';
+          break;
+      }
     }
     // Animation phases
     switch (this.phase) {

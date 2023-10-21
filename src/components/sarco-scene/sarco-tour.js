@@ -151,11 +151,13 @@ AFRAME.registerComponent('sarco-car-tour', {
     // Checkpoint listener
     this.checkpointListener();
     // Voice phases
-    switch (this.voicePhase) {
-      case 'sarco':
-        this.voiceSarcoSound.play();
-        this.voicePhase = 'exit';
-        break;
+    if (this.voiceSarcoSound) {
+      switch (this.voicePhase) {
+        case 'sarco':
+          this.voiceSarcoSound.play();
+          this.voicePhase = 'exit';
+          break;
+      }
     }
     // Animation phases
     switch (this.phase) {

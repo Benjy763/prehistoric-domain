@@ -49,9 +49,9 @@ AFRAME.registerSystem('system', {
       !SupportedPlatform.includes(window.navigator.platform) &&
       !userAgentDataPlatform;
 
-    setTimeout(() => {
-      this.initPerformances();
-    }, 500);
+    // setTimeout(() => {
+    //   this.initPerformances();
+    // }, 500);
     this.initLanguage();
     this.loadingAssets();
 
@@ -192,9 +192,9 @@ AFRAME.registerSystem('system', {
       // Preloading
       setTimeout(() => {
         document.querySelector('#menu-wrapper').style.display = 'flex';
-        if (!this.scenes.needPerformance) {
-          document.querySelector('#menu-performance').style.display = 'none';
-        }
+        // if (!this.scenes.needPerformance) {
+        //   document.querySelector('#menu-performance').style.display = 'none';
+        // }
         if (!this.scenes.needLanguage) {
           document.querySelector('#menu-language').style.display = 'none';
         }
@@ -455,13 +455,14 @@ AFRAME.registerSystem('system', {
   togglePerf: function (isPerformance) {
     this.performance = isPerformance;
     const selectedColor = '#b39760';
+    const defaultColor = '#d4c9ba';
     const perfEl = document.querySelector('#perf');
     const qualityEl = document.querySelector('#quality');
 
     if (!isPerformance) {
       qualityEl.style.borderColor = selectedColor;
       qualityEl.style.opacity = '1';
-      perfEl.style.borderColor = '#d4c9ba';
+      perfEl.style.borderColor = defaultColor;
       perfEl.style.opacity = '0.6';
 
       let elements = document.getElementsByClassName('performance');
@@ -473,7 +474,7 @@ AFRAME.registerSystem('system', {
 
     perfEl.style.borderColor = selectedColor;
     perfEl.style.opacity = '1';
-    qualityEl.style.borderColor = '#d4c9ba';
+    qualityEl.style.borderColor = defaultColor;
     qualityEl.style.opacity = '0.6';
     let elements = document.getElementsByClassName('performance');
     for (let i = 0; i < elements.length; i++) {
@@ -484,32 +485,52 @@ AFRAME.registerSystem('system', {
   initLanguage: function () {
     const enEl = document.querySelector('#language-en');
     const frEl = document.querySelector('#language-fr');
+    const offEl = document.querySelector('#language-off');
     if (!enEl || !frEl) {
       return;
     }
 
     // Default en
-    const languageColor = '#b39760';
+    const selectedColor = '#b39760';
+    const defaultColor = 'transparent';
+    const selectedOpacity = 1;
+    const defaultOpacity = 1;
     this.language = 'en';
-    enEl.style.borderColor = languageColor;
+    enEl.style.backgroundColor = selectedColor;
     enEl.style.opacity = '1';
 
     enEl.onclick = () => {
       this.language = 'en';
-      enEl.style.borderColor = languageColor;
-      enEl.style.opacity = '1';
-      frEl.style.borderColor = '#d4c9ba';
-      frEl.style.opacity = '0.6';
+      enEl.style.backgroundColor = selectedColor;
+      enEl.style.opacity = selectedOpacity;
+      frEl.style.backgroundColor = defaultColor;
+      frEl.style.opacity = defaultOpacity;
+      offEl.style.backgroundColor = defaultColor;
+      offEl.style.opacity = defaultOpacity;
     };
     frEl.onclick = () => {
       this.language = 'fr';
-      frEl.style.borderColor = languageColor;
-      frEl.style.opacity = '1';
-      enEl.style.borderColor = '#d4c9ba';
-      enEl.style.opacity = '0.6';
+      frEl.style.backgroundColor = selectedColor;
+      frEl.style.opacity = selectedOpacity;
+      enEl.style.backgroundColor = defaultColor;
+      enEl.style.opacity = defaultOpacity;
+      offEl.style.backgroundColor = defaultColor;
+      offEl.style.opacity = defaultOpacity;
+    };
+    offEl.onclick = () => {
+      this.language = 'off';
+      offEl.style.backgroundColor = selectedColor;
+      offEl.style.opacity = selectedOpacity;
+      frEl.style.backgroundColor = defaultColor;
+      frEl.style.opacity = defaultOpacity;
+      enEl.style.backgroundColor = defaultColor;
+      enEl.style.opacity = defaultOpacity;
     };
   },
   getVoice(element) {
+    if (this.language === 'off') {
+      return false;
+    }
     return document.getElementById(this.languages[this.language][element]);
   },
 });

@@ -136,11 +136,13 @@ AFRAME.registerComponent('deinocheirus-car-tour', {
     // Checkpoint listener
     this.checkpointListener();
     // Voice phases
-    switch (this.voicePhase) {
-      case 'deinocheirus':
-        this.voiceDeinocheirusSound.play();
-        this.voicePhase = 'exit';
-        break;
+    if (this.voiceDeinocheirusSound) {
+      switch (this.voicePhase) {
+        case 'deinocheirus':
+          this.voiceDeinocheirusSound.play();
+          this.voicePhase = 'exit';
+          break;
+      }
     }
     // Animation phases
     switch (this.phase) {

@@ -252,11 +252,13 @@ AFRAME.registerComponent('spino-car-tour', {
     // Checkpoint listener
     this.checkpointListener();
     // Voice phases
-    switch (this.voicePhase) {
-      case 'spino':
-        this.voiceSpinoSound.play();
-        this.voicePhase = 'exit';
-        break;
+    if (this.voiceSpinoSound) {
+      switch (this.voicePhase) {
+        case 'spino':
+          this.voiceSpinoSound.play();
+          this.voicePhase = 'exit';
+          break;
+      }
     }
     // Animation phases
     switch (this.phase) {

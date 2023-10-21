@@ -66,11 +66,13 @@ AFRAME.registerComponent('dimetrodon-car-tour', {
     // Checkpoint listener
     this.checkpointListener();
     // Voice phases
-    switch (this.voicePhase) {
-      case 'dimetrodon':
-        this.voiceDimetrodon1Sound.play();
-        this.voicePhase = 'exit';
-        break;
+    if (this.voiceDimetrodon1Sound) {
+      switch (this.voicePhase) {
+        case 'dimetrodon':
+          this.voiceDimetrodon1Sound.play();
+          this.voicePhase = 'exit';
+          break;
+      }
     }
     // Animation phases
     switch (this.phase) {

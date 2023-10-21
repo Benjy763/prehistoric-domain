@@ -9,14 +9,8 @@ AFRAME.registerComponent('trex-animation', {
     this.system = document.querySelector('a-scene').systems['system'];
     this.movesManager =
       document.querySelector('a-scene').systems['movesManager'];
+    this.car = document.querySelector('#trex-car');
     this.phase = '';
-    this.animationChange = 'roar';
-    // Trex run Path
-    this.trexMarker = 0; // Position on the curve
-    this.trexSpeed = 0.0015;
-    this.trexChangingSpeed = 0.00005;
-    this.trexMaxDeceleration = 0.0001;
-    this.trexMaxAcceleration = 0.0015;
     this.curve = new THREE.CatmullRomCurve3([
       new THREE.Vector3(-2.011, -0.2, 35.434),
       new THREE.Vector3(-24.995, -0.2, 24.185),
@@ -30,6 +24,16 @@ AFRAME.registerComponent('trex-animation', {
     this.el.addEventListener(
       'enterWalk',
       () => {
+        // Trex run Path
+        this.animationChange = 'roar';
+        this.el.setAttribute('visible', true);
+        this.trexBis.setAttribute('visible', false);
+        this.trexMarker = 0; // Position on the curve
+        this.trexSpeed = 0.0015;
+        this.trexChangingSpeed = 0.00005;
+        this.trexMaxDeceleration = 0.0001;
+        this.trexMaxAcceleration = 0.0015;
+
         // Load sounds
         this.trexRoarAudio = this.el.components['sound__trexroar'];
         this.trexRoar2Audio = this.el.components['sound__trexroar2'];
@@ -48,6 +52,7 @@ AFRAME.registerComponent('trex-animation', {
             this.el.setAttribute('animation-mixer', {
               clip: 'T_Rex_Walk_InPlace',
               loop: true,
+              loop: false,
               crossFadeDuration: 0.4,
               timeScale: 0.7,
             });
@@ -74,6 +79,7 @@ AFRAME.registerComponent('trex-animation', {
           this.el.setAttribute('animation-mixer', {
             clip: 'T_Rex_Idle_Roar2',
             loop: true,
+            loop: false,
             crossFadeDuration: 1.5,
             timeScale: 0.7,
           });
@@ -88,6 +94,7 @@ AFRAME.registerComponent('trex-animation', {
         this.el.setAttribute('animation-mixer', {
           clip: 'T_Rex_Drink_2',
           loop: true,
+          loop: false,
           crossFadeDuration: 4,
           timeScale: 0.7,
         });
@@ -102,6 +109,7 @@ AFRAME.registerComponent('trex-animation', {
       this.el.setAttribute('animation-mixer', {
         clip: 'T_Rex_Walk_Roar_InPlace',
         loop: true,
+        loop: false,
         crossFadeDuration: 0.8,
         timeScale: 0.7,
       });
@@ -134,6 +142,7 @@ AFRAME.registerComponent('trex-animation', {
       this.el.setAttribute('animation-mixer', {
         clip: 'T_Rex_Walk_Roar_InPlace',
         loop: true,
+        loop: false,
         crossFadeDuration: 0.5,
         timeScale: 0.6,
       });
@@ -158,6 +167,7 @@ AFRAME.registerComponent('trex-animation', {
         this.trexBis.setAttribute('animation-mixer', {
           clip: 'T_Rex_Drink_2',
           loop: true,
+          loop: false,
           crossFadeDuration: 0.4,
           timeScale: 0.3,
           startFrame: 0,
@@ -185,6 +195,7 @@ AFRAME.registerComponent('trex-animation', {
       this.trexBis.setAttribute('animation-mixer', {
         clip: 'T_Rex_Walk_Roar_InPlace',
         loop: true,
+        loop: false,
         crossFadeDuration: 4,
         timeScale: 1,
       });
@@ -200,6 +211,12 @@ AFRAME.registerComponent('trex-animation', {
     this.objectBis.position.z -= this.trexSpeed;
 
     if (this.objectBis.position.z < -16) {
+      if (this.system.loop) {
+        setTimeout(() => {
+          this.car.dispatchEvent(new Event('start'));
+        }, 20000);
+      }
+
       this.phase = 'exit';
     }
   },

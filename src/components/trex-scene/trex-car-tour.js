@@ -78,11 +78,13 @@ AFRAME.registerComponent('trex-car-tour', {
     // Checkpoint listener
     this.checkpointListener();
     // Voice phases
-    switch (this.voicePhase) {
-      case 'trex':
-        this.voiceTrexSound.play();
-        this.voicePhase = 'exit';
-        break;
+    if (this.voiceTrexSound) {
+      switch (this.voicePhase) {
+        case 'trex':
+          this.voiceTrexSound.play();
+          this.voicePhase = 'exit';
+          break;
+      }
     }
     // Animation phases
     switch (this.phase) {
