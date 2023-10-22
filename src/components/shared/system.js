@@ -52,6 +52,13 @@ AFRAME.registerSystem('system', {
     // setTimeout(() => {
     //   this.initPerformances();
     // }, 500);
+    // Ask parent for selected langage
+    window.parent.postMessage('getLang', '*');
+    window.addEventListener('message', ({ data }) => {
+      if (data && typeof data === 'string' && data.startsWith('lang')) {
+        this.initLanguage(data.replace('lang', ''));
+      }
+    });
     this.initLanguage();
     this.loadingAssets();
 
@@ -482,24 +489,20 @@ AFRAME.registerSystem('system', {
     }
   },
   // ----- Languages functions --------
-  initLanguage: function () {
+  initLanguage: function (lang = 'en') {
     const enEl = document.querySelector('#language-en');
     const frEl = document.querySelector('#language-fr');
     const offEl = document.querySelector('#language-off');
     if (!enEl || !frEl) {
       return;
     }
-
-    // Default en
     const selectedColor = '#b39760';
     const defaultColor = 'transparent';
     const selectedOpacity = 1;
     const defaultOpacity = 1;
-    this.language = 'en';
-    enEl.style.backgroundColor = selectedColor;
-    enEl.style.opacity = '1';
-
-    enEl.onclick = () => {
+    this.language = lang;
+    const selectEn = () => {
+      console.log('en');
       this.language = 'en';
       enEl.style.backgroundColor = selectedColor;
       enEl.style.opacity = selectedOpacity;
@@ -508,7 +511,8 @@ AFRAME.registerSystem('system', {
       offEl.style.backgroundColor = defaultColor;
       offEl.style.opacity = defaultOpacity;
     };
-    frEl.onclick = () => {
+    const selectFr = () => {
+      console.log('fr');
       this.language = 'fr';
       frEl.style.backgroundColor = selectedColor;
       frEl.style.opacity = selectedOpacity;
@@ -517,7 +521,7 @@ AFRAME.registerSystem('system', {
       offEl.style.backgroundColor = defaultColor;
       offEl.style.opacity = defaultOpacity;
     };
-    offEl.onclick = () => {
+    const selectOff = () => {
       this.language = 'off';
       offEl.style.backgroundColor = selectedColor;
       offEl.style.opacity = selectedOpacity;
@@ -525,6 +529,22 @@ AFRAME.registerSystem('system', {
       frEl.style.opacity = defaultOpacity;
       enEl.style.backgroundColor = defaultColor;
       enEl.style.opacity = defaultOpacity;
+    };
+
+    if (this.language === 'fr') {
+      selectFr();
+    } else {
+      selectEn();
+    }
+
+    enEl.onclick = () => {
+      selectEn();
+    };
+    frEl.onclick = () => {
+      selectFr();
+    };
+    offEl.onclick = () => {
+      selectOff();
     };
   },
   getVoice(element) {
