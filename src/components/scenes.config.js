@@ -394,6 +394,7 @@ export const MainScenes = {
     mobileCompatible: true,
     selection: 'dimetrodon',
     assetsId: 'dimetrodon-assets',
+    displayDistance: 10000,
     carMarkerForDebug: 0.32,
     color: '#ffddc2',
     density: [0.015, 0.015],
