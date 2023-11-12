@@ -7,6 +7,8 @@ AFRAME.registerComponent('trex-animation', {
     this.trexBis = document.querySelector('#trex-bis');
     this.objectBis = this.trexBis.object3D;
     this.system = document.querySelector('a-scene').systems['system'];
+    this.audioControl =
+      document.querySelector('a-scene').systems['audioControl'];
     this.movesManager =
       document.querySelector('a-scene').systems['movesManager'];
     this.car = document.querySelector('#trex-car');
@@ -30,7 +32,7 @@ AFRAME.registerComponent('trex-animation', {
         this.trexBis.setAttribute('visible', false);
         this.trexMarker = 0; // Position on the curve
         this.trexSpeed = 0.05;
-        this.trexChangingSpeed = 0.003;
+        this.trexChangingSpeed = 0.002;
         this.trexMaxDeceleration = 0.001;
         this.trexMaxAcceleration = 0.04;
 
@@ -86,7 +88,7 @@ AFRAME.registerComponent('trex-animation', {
     }
 
     if (this.trexSpeed < this.trexMaxDeceleration) {
-      this.trexFootStepAudio.stopSound();
+      this.audioControl.fade({ audio: this.trexFootStepAudio });
       setTimeout(() => {
         this.el.setAttribute('animation-mixer', {
           clip: 'T_Rex_Drink_2',
@@ -146,7 +148,7 @@ AFRAME.registerComponent('trex-animation', {
     if (this.movesManager.truncMarker(this.trexMarker) > 990) {
       this.trexLeavesAudio.playSound();
       setTimeout(() => {
-        this.trexFootStepAudio.stopSound();
+        this.audioControl.fade({ audio: this.trexFootStepAudio });
       }, 500);
       setTimeout(() => {
         this.trexHittingAudio.playSound();

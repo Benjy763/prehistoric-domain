@@ -6,6 +6,8 @@ AFRAME.registerComponent('deinocheirus-animation', {
     this.object = this.el.object3D;
     this.system = document.querySelector('a-scene').systems['system'];
     this.car = document.querySelector('#deinocheirus-car');
+    this.audioControl =
+      document.querySelector('a-scene').systems['audioControl'];
     this.movesManager =
       document.querySelector('a-scene').systems['movesManager'];
     this.phase = '';
@@ -129,7 +131,7 @@ AFRAME.registerComponent('deinocheirus-animation', {
 
         this.deinoCheckSound.playSound();
         setTimeout(() => {
-          this.deinoWalkSound.stopSound();
+          this.audioControl.fade({ audio: this.deinoWalkSound });
         }, 500);
         this.phase = 'moveAround';
       }
@@ -169,7 +171,7 @@ AFRAME.registerComponent('deinocheirus-animation', {
     if (this.movesManager.truncMarker(this.deinocheirusMarker) > 990) {
       this.deinoLeaveFarSound.playSound();
       setTimeout(() => {
-        this.deinoWalkSound.stopSound();
+        this.audioControl.fade({ audio: this.deinoWalkSound });
       }, 500);
       this.phase = 'exit';
     }
