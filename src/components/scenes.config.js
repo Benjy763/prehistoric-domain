@@ -227,7 +227,7 @@ export const MainScenes = {
     selection: 'lagoon',
     assetsId: 'lagoon-assets',
     carMarkerForDebug: 0.32,
-    color: '#1074b2',
+    color: '#1079b2',
     density: [0.1, 0.1],
     loading: {
       scene: 'loading-scene',
