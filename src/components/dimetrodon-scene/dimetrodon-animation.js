@@ -18,10 +18,10 @@ AFRAME.registerComponent('dimetrodon-animation', {
     this.dimetrodonMarker = 0; // Position on the curve
     this.dimetrodonSpeed = 0.00072; // Speed on the curve
     this.dimetrodonCurve = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(-17.023, 1.357, 15.229),
-      new THREE.Vector3(-26.376, 1.357, 1.881),
-      new THREE.Vector3(-30.837, 1.357, -11.567),
-      new THREE.Vector3(-25.591, 1.357, -20.955),
+      new THREE.Vector3(-17.023, -0.466, 15.229),
+      new THREE.Vector3(-26.376, -0.466, 1.881),
+      new THREE.Vector3(-30.837, -0.466, -11.567),
+      new THREE.Vector3(-25.591, -0.466, -20.955),
     ]);
 
     this.isAcceleration = false;
@@ -39,10 +39,10 @@ AFRAME.registerComponent('dimetrodon-animation', {
         this.dimeRoarAudio = this.el.components['sound__dimeroar'];
 
         this.el.setAttribute('animation-mixer', {
-          clip: 'Animation',
+          clip: 'Walk',
           loop: true,
           crossFadeDuration: 0.4,
-          timeScale: 0.4,
+          timeScale: 1,
         });
         this.dimeWalkAudio.playSound();
         setTimeout(() => {
@@ -57,7 +57,7 @@ AFRAME.registerComponent('dimetrodon-animation', {
       'walkFast',
       () => {
         this.el.setAttribute('animation-mixer', {
-          clip: 'Animation',
+          clip: 'Run',
           loop: true,
           crossFadeDuration: 1,
           timeScale: 1.6,
