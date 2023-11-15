@@ -52,12 +52,10 @@ AFRAME.registerComponent('deinocheirus-car-tour', {
       () => {
         // Get voice from system when init
         this.voiceDeinocheirusSound = this.system.getVoice('deinocheirus');
-        this.voicePhase = 'deinocheirus1';
+        this.voicePhase = 'deinocheirus';
 
         // Global sound launch
         document.getElementById('swamp-3-asset').play();
-        this.voiceDeinocheirus1Sound = this.system.getVoice('deinocheirus1');
-        this.voiceDeinocheirus2Sound = this.system.getVoice('deinocheirus2');
         this.deinoEatSound = this.deinocheirus.components['sound__eat'];
         this.treeFallSound = this.tree.components['sound__fall'];
         this.phase = 'start';
