@@ -16,12 +16,12 @@ AFRAME.registerComponent('dimetrodon-animation', {
 
     // Dimetrodon run Path
     this.dimetrodonMarker = 0; // Position on the curve
-    this.dimetrodonSpeed = 0.0007; // Speed on the curve
+    this.dimetrodonSpeed = 0.02; // Speed on the curve
     this.dimetrodonCurve = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(-17.023, -0.466, 15.229),
+      new THREE.Vector3(-16, -0.466, 17),
       new THREE.Vector3(-26.376, -0.466, 1.881),
       new THREE.Vector3(-30.837, -0.466, -11.567),
-      new THREE.Vector3(-25.591, -0.466, -22),
+      new THREE.Vector3(-26, -0.466, -23),
     ]);
 
     this.isAcceleration = false;
@@ -60,7 +60,7 @@ AFRAME.registerComponent('dimetrodon-animation', {
           clip: 'Run',
           loop: true,
           crossFadeDuration: 1,
-          timeScale: 1.6,
+          timeScale: 1.5,
         });
         this.dimeRunAudio.playSound();
         this.dimeWalkAudio.stopSound();
@@ -76,7 +76,8 @@ AFRAME.registerComponent('dimetrodon-animation', {
       this.el.object3D,
       this.dimetrodonCurve,
       this.dimetrodonMarker,
-      this.dimetrodonSpeed
+      this.dimetrodonSpeed,
+      { useDeltaTime: true }
     );
 
     if (this.movesManager.truncMarker(this.dimetrodonMarker) > 950) {
@@ -89,11 +90,12 @@ AFRAME.registerComponent('dimetrodon-animation', {
       this.el.object3D,
       this.dimetrodonCurve,
       this.dimetrodonMarker,
-      this.dimetrodonSpeed
+      this.dimetrodonSpeed,
+      { useDeltaTime: true }
     );
 
-    if (this.dimetrodonSpeed < 0.004) {
-      this.dimetrodonSpeed += 0.0002;
+    if (this.dimetrodonSpeed < 0.1) {
+      this.dimetrodonSpeed += 0.002;
     }
 
     if (

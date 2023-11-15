@@ -95,7 +95,7 @@ AFRAME.registerComponent('diplocaulus-animation', {
       this.phase = 'runFast';
       const event = new Event('walkFast');
       this.dimetrodon.dispatchEvent(event);
-    }, 30000);
+    }, 32000);
     this.phase = 'exit';
   },
   runFast: function () {
