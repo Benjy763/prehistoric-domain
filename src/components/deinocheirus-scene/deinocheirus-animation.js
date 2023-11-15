@@ -146,7 +146,9 @@ AFRAME.registerComponent('deinocheirus-animation', {
       });
       this.deinocheirusSpeed = 0;
       this.lastUpdateTime = performance.now();
-      this.deinoWalkSound.playSound();
+      setTimeout(() => {
+        this.deinoWalkSound.playSound();
+      }, 1400);
       setTimeout(() => {
         this.phase = 'walkAgain';
       }, 100);
