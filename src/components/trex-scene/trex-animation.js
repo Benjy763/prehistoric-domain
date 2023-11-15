@@ -115,6 +115,7 @@ AFRAME.registerComponent('trex-animation', {
       setTimeout(() => {
         this.trexFootStepAudio.playSound();
       }, 1800);
+      this.lastUpdateTime = performance.now();
       this.phase = 'walkAgain';
     }, 8800);
     this.phase = 'exit';
@@ -130,7 +131,7 @@ AFRAME.registerComponent('trex-animation', {
       this.curve,
       this.trexMarker,
       this.trexSpeed,
-      { useDeltaTime: true, needUpdateTime: true }
+      { useDeltaTime: true }
     );
 
     if (

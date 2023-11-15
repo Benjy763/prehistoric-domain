@@ -40,9 +40,6 @@ AFRAME.registerComponent('deinocheirus-animation', {
         this.deinoWalkSound = this.el.components['sound__walk'];
         this.deinoCheckSound = this.el.components['sound__check'];
         this.deinoLeaveFarSound = this.el.components['sound__leavefar'];
-        // Get voice from system when init
-        this.voiceDeinoSound = this.system.getVoice('deinocheirus');
-        this.voicePhase = 'deino';
 
         this.deinocheirusMarker = this.movesManager.moveOnCurve(
           this,
@@ -73,7 +70,9 @@ AFRAME.registerComponent('deinocheirus-animation', {
       () => {
         // Launch animation
         setTimeout(() => {
-          this.deinoWalkSound.playSound();
+          setTimeout(() => {
+            this.deinoWalkSound.playSound();
+          }, 1000);
           this.phase = 'enterWalk';
           this.el.setAttribute('animation-mixer', {
             clip: 'Walk',
@@ -177,14 +176,6 @@ AFRAME.registerComponent('deinocheirus-animation', {
     }
   },
   tick: function () {
-    // Voice phases
-    switch (this.voicePhase) {
-      case 'deino':
-        this.voiceDeinoSound.play();
-        this.voicePhase = 'exit';
-        break;
-    }
-
     // Animation steps
     switch (this.phase) {
       case 'enter':
