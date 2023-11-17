@@ -217,6 +217,40 @@ export const MainScenes = {
       carReference: null,
     },
   },
+  cretaceousLagoon: {
+    // Starting scene
+    name: 'Cretaceous Lagoon',
+    loadingScreen: 'lagoon-illu.jpg',
+    needPerformance: false,
+    needLanguage: true,
+    mobileCompatible: true,
+    selection: 'cretaceousLagoon',
+    assetsId: 'cretaceous-lagoon-assets',
+    carMarkerForDebug: 0.32,
+    color: '#0a678f',
+    density: [0.1, 0.1],
+    loading: {
+      scene: 'loading-scene',
+      camera: 'loading-scene-camera',
+    },
+    cretaceousLagoon: {
+      scene: 'cretaceous-lagoon-scene',
+      camera: 'cretaceous-lagoon-scene-camera',
+      car: 'cretaceous-lagoon-car',
+      carReference: null,
+      rigPos: {
+        x: 1,
+        y: 2.2,
+        z: 0,
+      },
+    },
+    ending: {
+      scene: 'ending-scene',
+      camera: 'ending-scene-camera',
+      car: 'ending-car',
+      carReference: null,
+    },
+  },
   lagoon: {
     // Starting scene
     name: 'Megalodon Viewing Gallery',
@@ -227,7 +261,7 @@ export const MainScenes = {
     selection: 'lagoon',
     assetsId: 'lagoon-assets',
     carMarkerForDebug: 0.32,
-    color: '#1079b2',
+    color: '#0a678f',
     density: [0.1, 0.1],
     loading: {
       scene: 'loading-scene',

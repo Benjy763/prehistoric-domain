@@ -7,7 +7,7 @@ function requireAll(req) {
 // Require libs
 require('aframe-extras');
 require('aframe-curve-component');
-//require('aframe-fps-counter-component');
+require('aframe-fps-counter-component');
 //require('super-hands');
 //require('./vendors/aframe-gif-shader/dist/aframe-gif-component.js');
 
@@ -18,4 +18,8 @@ require('aframe-particle-system-component');
 require('aframe-fps-look-controls-component');
 require('aframe-troika-text');
 
-require(`./main-scenes/${MainScene}/${MainScene}-main-scene.html`);
+const transformedString = (inputString) =>
+  inputString.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+require(`./main-scenes/${transformedString(MainScene)}/${transformedString(
+  MainScene
+)}-main-scene.html`);
