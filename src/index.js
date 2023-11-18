@@ -12,7 +12,7 @@ require('aframe-fps-counter-component');
 //require('./vendors/aframe-gif-shader/dist/aframe-gif-component.js');
 
 // Require all components
-require('./assets/style/loader.css');
+require('./assets/style/styles.css');
 requireAll(require.context('./components/', true, /\.js$/));
 require('aframe-particle-system-component');
 require('aframe-fps-look-controls-component');

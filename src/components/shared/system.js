@@ -488,47 +488,43 @@ AFRAME.registerSystem('system', {
       elements[i].setAttribute('visible', false);
     }
   },
+  applyStyle: ({ selectedKey, elements }) => {
+    const selectedColor = '#b39760';
+    const selectedTextColor = '#2f5b45';
+    const defaultColor = 'transparent';
+    const defaultTextColor = '#d4c9ba';
+    const selectedOpacity = 1;
+    const defaultOpacity = 1;
+    Object.entries(elements).forEach(([key, element]) => {
+      const isSelected = key === selectedKey;
+      element.style.backgroundColor = isSelected ? selectedColor : defaultColor;
+      element.style.opacity = isSelected ? selectedOpacity : defaultOpacity;
+      element.style.color = isSelected ? selectedTextColor : defaultTextColor;
+    });
+  },
   // ----- Languages functions --------
   initLanguage: function (lang = 'en') {
-    const enEl = document.querySelector('#language-en');
-    const frEl = document.querySelector('#language-fr');
-    const offEl = document.querySelector('#language-off');
+    const elements = {
+      enEl: document.querySelector('#language-en'),
+      frEl: document.querySelector('#language-fr'),
+      offEl: document.querySelector('#language-off'),
+    };
+    const { enEl, frEl, offEl } = elements;
     if (!enEl || !frEl) {
       return;
     }
-    const selectedColor = '#b39760';
-    const defaultColor = 'transparent';
-    const selectedOpacity = 1;
-    const defaultOpacity = 1;
     this.language = lang;
     const selectEn = () => {
-      console.log('en');
       this.language = 'en';
-      enEl.style.backgroundColor = selectedColor;
-      enEl.style.opacity = selectedOpacity;
-      frEl.style.backgroundColor = defaultColor;
-      frEl.style.opacity = defaultOpacity;
-      offEl.style.backgroundColor = defaultColor;
-      offEl.style.opacity = defaultOpacity;
+      this.applyStyle({ selectedKey: 'enEl', elements });
     };
     const selectFr = () => {
-      console.log('fr');
       this.language = 'fr';
-      frEl.style.backgroundColor = selectedColor;
-      frEl.style.opacity = selectedOpacity;
-      enEl.style.backgroundColor = defaultColor;
-      enEl.style.opacity = defaultOpacity;
-      offEl.style.backgroundColor = defaultColor;
-      offEl.style.opacity = defaultOpacity;
+      this.applyStyle({ selectedKey: 'frEl', elements });
     };
     const selectOff = () => {
       this.language = 'off';
-      offEl.style.backgroundColor = selectedColor;
-      offEl.style.opacity = selectedOpacity;
-      frEl.style.backgroundColor = defaultColor;
-      frEl.style.opacity = defaultOpacity;
-      enEl.style.backgroundColor = defaultColor;
-      enEl.style.opacity = defaultOpacity;
+      this.applyStyle({ selectedKey: 'offEl', elements });
     };
 
     if (this.language === 'fr') {
