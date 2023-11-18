@@ -17,7 +17,6 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
     this.plesiosaur2Config = {};
     this.mosasaurConfig = {};
     this.mosasaurAttacked = false;
-    this.mosasaurUp = false;
 
     // Voice and screen phases
     this.voicePhase = 'stop';
@@ -55,10 +54,17 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
       new THREE.Vector3(9.602, 4, -1.617),
       new THREE.Vector3(-11.261, 4, 45.145),
     ]);
+    this.plesiosaur2curve4 = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(8.001, 4, 0.544),
+      new THREE.Vector3(8.001, 3.45, 4),
+      new THREE.Vector3(8.001, 3.7, 7),
+      new THREE.Vector3(8.001, 3.75, 10),
+      new THREE.Vector3(8.001, 3.75, 150),
+    ]);
 
     this.mosasaurCurve1 = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(9, 4.638, -117.8),
-      new THREE.Vector3(9, 4.638, 80.032),
+      new THREE.Vector3(9, 4.639, -117.8),
+      new THREE.Vector3(9, 4.639, 80.032),
     ]);
 
     // En scene activation
@@ -189,17 +195,27 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
       setTimeout(() => {
         this.mosasaur.setAttribute('animation-mixer', {
           clip: 'Swim',
-          crossFadeDuration: 2,
+          crossFadeDuration: 1,
           timeScale: 1,
         });
       }, 2000);
       setTimeout(() => {
         this.mosasaurUp = true;
       }, 600);
+      this.plesiosaur2Marker = 0;
+      this.plesiosaur2Speed = 0.055;
       this.phase = 'mosasaurHit';
     }
   },
   mosasaurHit: function () {
+    this.plesiosaur2Marker = this.movesManager.moveOnCurve(
+      this.plesiosaur2Config,
+      this.plesiosaur2.object3D,
+      this.plesiosaur2curve4,
+      this.plesiosaur2Marker,
+      this.plesiosaur2Speed,
+      { useDeltaTime: true, needLookAt: false }
+    );
     this.mosasaurMarker = this.movesManager.moveOnCurve(
       this.mosasaurConfig,
       this.mosasaur.object3D,
@@ -208,13 +224,6 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
       this.mosasaurSpeed,
       { useDeltaTime: true }
     );
-    if (!this.mosasaurUp && this.plesiosaur2.object3D.position.y > 3.6) {
-      this.plesiosaur2.object3D.position.y -= 0.03;
-    }
-    if (this.mosasaurUp && this.plesiosaur2.object3D.position.y < 3.8) {
-      this.plesiosaur2.object3D.position.y += 0.035;
-    }
-    this.plesiosaur2.object3D.position.z += 0.26;
     if (this.movesManager.truncMarker(this.mosasaurMarker) > 800) {
       this.phase = 'exit';
     }
