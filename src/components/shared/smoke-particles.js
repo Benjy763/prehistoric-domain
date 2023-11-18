@@ -42,11 +42,11 @@ AFRAME.registerComponent('smoke-effect', {
       this.smokeCloud.push(particle);
     }
 
-    setTimeout(() => {
-      if (!this.isBlowing) {
-        this.isBlowing = true;
-      }
-    }, 10000);
+    // setTimeout(() => {
+    //   if (!this.isBlowing) {
+    //     this.isBlowing = true;
+    //   }
+    // }, 15000);
   },
 
   tick: function () {
