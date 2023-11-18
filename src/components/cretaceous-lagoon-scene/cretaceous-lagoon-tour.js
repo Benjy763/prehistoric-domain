@@ -12,11 +12,12 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
     this.plesiosaur1 = document.querySelector('#plesiosaur-1');
     this.plesiosaur2 = document.querySelector('#plesiosaur-2');
     this.ichthyosaur = document.querySelector('#ichthyosaur');
+    this.mosasaur = document.querySelector('#mosasaur');
     this.plesiosaur1Config = {};
     this.plesiosaur2Config = {};
-
-    // Sounds
-    this.ambiant1Sound;
+    this.mosasaurConfig = {};
+    this.mosasaurAttacked = false;
+    this.mosasaurUp = false;
 
     // Voice and screen phases
     this.voicePhase = 'stop';
@@ -27,6 +28,9 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
     // Plesiosaur 2 path config
     this.plesiosaur2Marker = 0; // Position on the curve
     this.plesiosaur2Speed = 0.03;
+    // Mosasaur path config
+    this.mosasaurMarker = 0; // Position on the curve
+    this.mosasaurSpeed = 0.04;
 
     // Tour Path
     this.plesiosaur1curve1 = new THREE.CatmullRomCurve3([
@@ -45,6 +49,16 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
       new THREE.Vector3(-40.374, 2, -9.398),
       new THREE.Vector3(3.391, 7.47, -9.398),
       new THREE.Vector3(22.655, 40.349, -9.398),
+    ]);
+    this.plesiosaur2curve3 = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(34.556, 4, -20.461),
+      new THREE.Vector3(9.602, 4, -1.617),
+      new THREE.Vector3(-11.261, 4, 45.145),
+    ]);
+
+    this.mosasaurCurve1 = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(9, 4.638, -117.8),
+      new THREE.Vector3(9, 4.638, 80.032),
     ]);
 
     // En scene activation
@@ -80,7 +94,7 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
 
         setTimeout(() => {
           this.phase = 'start';
-        }, 10000);
+        }, 1000);
       },
       false
     );
@@ -89,10 +103,7 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
   },
   // --- Phase functions ---
   start: function () {
-    setTimeout(() => {
-      this.ambiant1Sound.playSound();
-    }, 10000);
-    this.phase = 'plesiosaurFirstMove';
+    this.phase = 'mosasaurHunt';
   },
   plesiosaurFirstMove: function () {
     this.plesiosaur1Marker = this.movesManager.moveOnCurve(
@@ -119,7 +130,7 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
   },
   plesiosaurSecondMove: function () {
     this.plesiosaur2Marker = this.movesManager.moveOnCurve(
-      this,
+      this.plesiosaur2Config,
       this.plesiosaur2.object3D,
       this.plesiosaur2curve2,
       this.plesiosaur2Marker,
@@ -127,6 +138,84 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
       { useDeltaTime: true }
     );
     if (this.movesManager.truncMarker(this.plesiosaur2Marker) > 900) {
+      this.plesiosaur2Marker = 0;
+      this.plesiosaur2Speed = 0.04;
+      this.phase = 'mosasaurHunt';
+    }
+  },
+  mosasaurHunt: function () {
+    this.plesiosaur2Marker = this.movesManager.moveOnCurve(
+      this.plesiosaur2Config,
+      this.plesiosaur2.object3D,
+      this.plesiosaur2curve3,
+      this.plesiosaur2Marker,
+      this.plesiosaur2Speed,
+      { useDeltaTime: true }
+    );
+    this.mosasaurMarker = this.movesManager.moveOnCurve(
+      this.mosasaurConfig,
+      this.mosasaur.object3D,
+      this.mosasaurCurve1,
+      this.mosasaurMarker,
+      this.mosasaurSpeed,
+      { useDeltaTime: true }
+    );
+    if (
+      this.movesManager.truncMarker(this.plesiosaur2Marker) > 340 &&
+      !this.mosasaurAttacked
+    ) {
+      this.mosasaurAttacked = true;
+      this.mosasaur.setAttribute('animation-mixer', {
+        clip: 'Attack',
+        crossFadeDuration: 1,
+        timeScale: 0.3,
+      });
+    }
+    if (this.movesManager.truncMarker(this.plesiosaur2Marker) > 410) {
+      this.plesiosaur2.setAttribute('animation-mixer', {
+        clip: 'Hit',
+        crossFadeDuration: 0.2,
+        timeScale: 4,
+        clampWhenFinished: true,
+        loop: false,
+      });
+      setTimeout(() => {
+        this.plesiosaur2.setAttribute('animation-mixer', {
+          clip: 'Take 001',
+          crossFadeDuration: 1,
+          timeScale: 0.2,
+        });
+      }, 500);
+      setTimeout(() => {
+        this.mosasaur.setAttribute('animation-mixer', {
+          clip: 'Swim',
+          crossFadeDuration: 2,
+          timeScale: 1,
+        });
+      }, 2000);
+      setTimeout(() => {
+        this.mosasaurUp = true;
+      }, 600);
+      this.phase = 'mosasaurHit';
+    }
+  },
+  mosasaurHit: function () {
+    this.mosasaurMarker = this.movesManager.moveOnCurve(
+      this.mosasaurConfig,
+      this.mosasaur.object3D,
+      this.mosasaurCurve1,
+      this.mosasaurMarker,
+      this.mosasaurSpeed,
+      { useDeltaTime: true }
+    );
+    if (!this.mosasaurUp && this.plesiosaur2.object3D.position.y > 3.6) {
+      this.plesiosaur2.object3D.position.y -= 0.03;
+    }
+    if (this.mosasaurUp && this.plesiosaur2.object3D.position.y < 3.8) {
+      this.plesiosaur2.object3D.position.y += 0.035;
+    }
+    this.plesiosaur2.object3D.position.z += 0.26;
+    if (this.movesManager.truncMarker(this.mosasaurMarker) > 800) {
       this.phase = 'exit';
     }
   },
@@ -166,6 +255,12 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
         break;
       case 'plesiosaurSecondMove':
         this.plesiosaurSecondMove();
+        break;
+      case 'mosasaurHunt':
+        this.mosasaurHunt();
+        break;
+      case 'mosasaurHit':
+        this.mosasaurHit();
         break;
       case 'changeScene':
         // Destroy and detach all unecessary objets
