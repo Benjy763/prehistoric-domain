@@ -12,11 +12,14 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
     this.plesiosaur1 = document.querySelector('#plesiosaur-1');
     this.plesiosaur2 = document.querySelector('#plesiosaur-2');
     this.ichthyosaur = document.querySelector('#ichthyosaur');
+    this.smoke = document.querySelector('#smoke-effect');
+
     this.mosasaur = document.querySelector('#mosasaur');
     this.plesiosaur1Config = {};
     this.plesiosaur2Config = {};
     this.mosasaurConfig = {};
     this.mosasaurAttacked = false;
+    this.isBlowing = false;
 
     // Voice and screen phases
     this.voicePhase = 'stop';
@@ -57,14 +60,13 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
     this.plesiosaur2curve4 = new THREE.CatmullRomCurve3([
       new THREE.Vector3(8.001, 4, 0.544),
       new THREE.Vector3(8.001, 3.45, 4),
-      new THREE.Vector3(8.001, 3.7, 7),
-      new THREE.Vector3(8.001, 3.75, 10),
-      new THREE.Vector3(8.001, 3.75, 150),
+      new THREE.Vector3(8.001, 3.8, 8),
+      new THREE.Vector3(8.001, 4, 150),
     ]);
 
     this.mosasaurCurve1 = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(9, 4.639, -117.8),
-      new THREE.Vector3(9, 4.639, 80.032),
+      new THREE.Vector3(9, 4.3, -117.8),
+      new THREE.Vector3(9, 4.3, 80.032),
     ]);
 
     // En scene activation
@@ -96,7 +98,7 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
             crossFadeDuration: 1,
             timeScale: 1.5,
           });
-        }, 2000);
+        }, 3000);
 
         setTimeout(() => {
           this.phase = 'start';
@@ -224,6 +226,15 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
       this.mosasaurSpeed,
       { useDeltaTime: true }
     );
+    if (
+      !this.isBlowing &&
+      this.movesManager.truncMarker(this.plesiosaur2Marker) > 60
+    ) {
+      this.isBlowing = true;
+      this.smoke.setAttribute('visible', 'true');
+      this.smoke.dispatchEvent(new Event('isBlowing'));
+    }
+
     if (this.movesManager.truncMarker(this.mosasaurMarker) > 800) {
       this.phase = 'exit';
     }

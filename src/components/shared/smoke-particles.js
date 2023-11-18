@@ -4,6 +4,7 @@ AFRAME.registerComponent('smoke-effect', {
     this.clock = new THREE.Clock();
     this.smokeCloud = [];
     this.numParticles = 20;
+    this.isMoving = false;
     this.isBlowing = false;
     this.delta = 0;
 
@@ -42,18 +43,26 @@ AFRAME.registerComponent('smoke-effect', {
       this.smokeCloud.push(particle);
     }
 
-    // setTimeout(() => {
-    //   if (!this.isBlowing) {
-    //     this.isBlowing = true;
-    //   }
-    // }, 15000);
+    this.el.addEventListener('isBlowing', () => {
+      this.isMoving = true;
+      setTimeout(() => {
+        if (!this.isBlowing) {
+          this.isBlowing = true;
+        }
+      }, 2000);
+    });
   },
 
   tick: function () {
     this.delta = this.clock.getDelta();
 
-    if (this.isBlowing) {
-      this.el.object3D.position.x -= 0.005;
+    if (this.isMoving) {
+      const { position, scale } = this.el.object3D;
+      position.x -= 0.003;
+      position.z += 0.001;
+      scale.x += 0.005;
+      scale.y += 0.005;
+      scale.z += 0.005;
     }
 
     // Rotate Smoke
