@@ -12,14 +12,8 @@ AFRAME.registerComponent('smoke-effect', {
 
     // Smoke Texture
     THREE.ImageUtils.crossOrigin = '';
-    const smokeImages = [
-      'https://i.imgur.com/EtMcQ33.png',
-      'https://i.imgur.com/6Z1clIX.png',
-      'https://i.imgur.com/YmcB0HL.png',
-      'https://s3-us-west-2.amazonaws.com/s.cdpn.io/95637/Smoke-Element.png',
-      'https://qassets.netlify.com/images/smoke1.png',
-    ];
-    const smokeTexture = THREE.ImageUtils.loadTexture(smokeImages[3]);
+    const smokeImages = '/assets/image/smoke-element.png';
+    const smokeTexture = THREE.ImageUtils.loadTexture(smokeImages);
     const smokeMaterial = new THREE.MeshLambertMaterial({
       color: 0x8c2323,
       emissive: 0x000000,
