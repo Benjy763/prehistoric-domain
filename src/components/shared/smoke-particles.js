@@ -12,7 +12,7 @@ AFRAME.registerComponent('smoke-effect', {
 
     // Smoke Texture
     THREE.ImageUtils.crossOrigin = '';
-    const smokeImages = '/assets/image/smoke-element.png';
+    const smokeImages = '/assets/images/smoke-element.png';
     const smokeTexture = THREE.ImageUtils.loadTexture(smokeImages);
     const smokeMaterial = new THREE.MeshLambertMaterial({
       color: 0x8c2323,
@@ -61,7 +61,6 @@ AFRAME.registerComponent('smoke-effect', {
       const smoke = this.smokeCloud[i];
       smoke.rotation.z -= this.delta * 0.4;
       if (this.isBlowing) {
-        console.log(smoke.material.opacity);
         if (smoke.material.opacity > 0) {
           smoke.material.opacity -= 0.00005;
         }
