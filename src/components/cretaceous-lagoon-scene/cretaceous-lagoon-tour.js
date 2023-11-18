@@ -59,14 +59,20 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
     ]);
     this.plesiosaur2curve4 = new THREE.CatmullRomCurve3([
       new THREE.Vector3(8.001, 4, 0.544),
-      new THREE.Vector3(8.001, 3.45, 4),
-      new THREE.Vector3(8.001, 3.8, 8),
-      new THREE.Vector3(8.001, 4, 150),
+      new THREE.Vector3(8.001, 3.4, 3),
+      new THREE.Vector3(8.001, 3.6, 7.5),
+      new THREE.Vector3(8.001, 3.7, 150),
     ]);
 
     this.mosasaurCurve1 = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(9, 4.3, -117.8),
-      new THREE.Vector3(9, 4.3, 80.032),
+      new THREE.Vector3(9, 3.98, -117.8),
+      new THREE.Vector3(9, 3.98, 80.032),
+    ]);
+    this.mosasaurCurve2 = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(13.306, 4.3, 41.001),
+      new THREE.Vector3(10, 4.3, -5.122),
+      new THREE.Vector3(4, 4.3, -13.966),
+      new THREE.Vector3(-80.749, 4.3, -17.046),
     ]);
 
     // En scene activation
@@ -83,6 +89,8 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
         document.getElementById('jungle-asset').play();
 
         // Get sounds
+        this.mosasaurPassingAudio = this.mosasaur.components['sound__passing'];
+        this.mosasaurBiteAudio = this.mosasaur.components['sound__bite'];
 
         // Get voice from system when init
         this.voiceLagoon1Sound = this.system.getVoice('cretaceousLagoon');
@@ -101,8 +109,8 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
         }, 3000);
 
         setTimeout(() => {
-          this.phase = 'start';
-        }, 1000);
+          this.phase = 'plesiosaurFirstMove';
+        }, 60000);
       },
       false
     );
@@ -111,7 +119,7 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
   },
   // --- Phase functions ---
   start: function () {
-    this.phase = 'mosasaurHunt';
+    this.phase = 'plesiosaurFirstMove';
   },
   plesiosaurFirstMove: function () {
     this.plesiosaur1Marker = this.movesManager.moveOnCurve(
@@ -147,7 +155,7 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
     );
     if (this.movesManager.truncMarker(this.plesiosaur2Marker) > 900) {
       this.plesiosaur2Marker = 0;
-      this.plesiosaur2Speed = 0.04;
+      this.plesiosaur2Speed = 0.03;
       this.phase = 'mosasaurHunt';
     }
   },
@@ -173,6 +181,9 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
       !this.mosasaurAttacked
     ) {
       this.mosasaurAttacked = true;
+      setTimeout(() => {
+        this.mosasaurBiteAudio.playSound();
+      }, 1000);
       this.mosasaur.setAttribute('animation-mixer', {
         clip: 'Attack',
         crossFadeDuration: 1,
@@ -200,7 +211,7 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
           crossFadeDuration: 1,
           timeScale: 1,
         });
-      }, 2000);
+      }, 2800);
       setTimeout(() => {
         this.mosasaurUp = true;
       }, 600);
@@ -236,6 +247,28 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
     }
 
     if (this.movesManager.truncMarker(this.mosasaurMarker) > 800) {
+      this.mosasaurMarker = 0;
+      this.mosasaurSpeed = 0.025;
+      this.phase = 'exit';
+      setTimeout(() => {
+        setTimeout(() => {
+          this.mosasaurPassingAudio.playSound();
+        }, 3000);
+        this.phase = 'mosasaurPass';
+      }, 8000);
+    }
+  },
+  mosasaurPass: function () {
+    this.mosasaurMarker = this.movesManager.moveOnCurve(
+      this.mosasaurConfig,
+      this.mosasaur.object3D,
+      this.mosasaurCurve2,
+      this.mosasaurMarker,
+      this.mosasaurSpeed,
+      { useDeltaTime: true }
+    );
+
+    if (this.movesManager.truncMarker(this.mosasaurMarker) > 900) {
       this.phase = 'exit';
     }
   },
@@ -281,6 +314,9 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
         break;
       case 'mosasaurHit':
         this.mosasaurHit();
+        break;
+      case 'mosasaurPass':
+        this.mosasaurPass();
         break;
       case 'changeScene':
         // Destroy and detach all unecessary objets

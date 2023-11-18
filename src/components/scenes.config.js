@@ -227,7 +227,7 @@ export const MainScenes = {
     selection: 'cretaceousLagoon',
     assetsId: 'cretaceous-lagoon-assets',
     carMarkerForDebug: 0.32,
-    color: '#0a678f',
+    color: '#097295',
     density: [0.1, 0.1],
     loading: {
       scene: 'loading-scene',
