@@ -38,6 +38,10 @@ AFRAME.registerComponent('trex-car-tour', {
     this.el.addEventListener(
       'start',
       () => {
+        // specific VR animation
+        if (!this.system.vr) {
+          this.launchAnimationMixer();
+        }
         // Get voice from system when init
         this.voiceTrexSound = this.system.getVoice('trex');
         this.voicePhase = 'trex';
@@ -63,6 +67,21 @@ AFRAME.registerComponent('trex-car-tour', {
       this.trex.dispatchEvent(event);
     }, 40000);
     this.phase = 'exit';
+  },
+  launchAnimationMixer: function () {
+    // Find all elements with IDs starting with "trex-forest-fern"
+    const fernElements = document.querySelectorAll('[id^="trex-forest-fern"]');
+
+    const timeScaleValues = [0.8, 0.5, 0.2, 0.4, 0.7]; // You can adjust these values as needed
+
+    fernElements.forEach((fernElement, index) => {
+      const timeScale = timeScaleValues[index % timeScaleValues.length];
+      console.log(timeScale);
+      fernElement.setAttribute(
+        'animation-mixer',
+        `clip: KeyAction.001; startFrame: 200; timeScale: ${timeScale}`
+      );
+    });
   },
   checkpointListener: function () {
     if (this.movesManager.distanceFromPoint('trex-checkpoint') < 3) {
