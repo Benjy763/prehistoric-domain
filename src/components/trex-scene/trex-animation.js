@@ -110,14 +110,17 @@ AFRAME.registerComponent('trex-animation', {
         crossFadeDuration: 2,
         timeScale: 0.7,
       });
-      this.trexSpeed = 0;
       this.trexRoar2Audio.playSound();
       setTimeout(() => {
         this.trexFootStepAudio.playSound();
       }, 1800);
+    }, 8800);
+    setTimeout(() => {
+      this.trexSpeed = 0;
+
       this.lastUpdateTime = performance.now();
       this.phase = 'walkAgain';
-    }, 8800);
+    }, 9500);
     this.phase = 'exit';
   },
   walkAgain: function () {
