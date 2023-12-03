@@ -85,6 +85,10 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
         // Start the light animation
         this.light.emit('startAnimation');
 
+        // Amonites and Ichtyosaur
+
+        this.startAmonitesAnimations();
+
         // Global sound launch
         document.getElementById('jungle-asset').play();
 
@@ -120,6 +124,32 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
   // --- Phase functions ---
   start: function () {
     this.phase = 'plesiosaurFirstMove';
+  },
+  startAmonitesAnimations: function () {
+    const amoniteEntity = document.querySelector('#amonite');
+    const amonite2Entity = document.querySelector('#amonite-2');
+    const ichthyosaurEntity = document.querySelector('#ichthyosaur');
+
+    amoniteEntity.setAttribute('animation', {
+      property: 'position',
+      to: '45 20 -35',
+      dur: 120000,
+      loop: false,
+    });
+
+    amonite2Entity.setAttribute('animation', {
+      property: 'position',
+      to: '42 19 -37',
+      dur: 120000,
+      loop: false,
+    });
+
+    ichthyosaurEntity.setAttribute('animation', {
+      property: 'position',
+      to: '-54.417 4.180 18.853',
+      dur: 60000,
+      loop: false,
+    });
   },
   plesiosaurFirstMove: function () {
     this.plesiosaur1Marker = this.movesManager.moveOnCurve(
