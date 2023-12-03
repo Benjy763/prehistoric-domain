@@ -6,6 +6,7 @@ const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const hash = Math.random() * 100000 + 1000;
 
 function generateUniqueID() {
   const currentDate = new Date();
