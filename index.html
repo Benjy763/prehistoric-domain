@@ -6,6 +6,13 @@
   <meta http-equiv="Cache-control" content="no-cache">
   <meta http-equiv="Pragma" content="no-cache">
   <title>Prehistoric Domain</title>
+  <script>
+    function generateUniqueID() {
+      const currentDate = new Date();
+      return currentDate.getTime();
+    }
+    const uniqueAssetsId = JSON.stringify(generateUniqueID());
+  </script>
   <script src="/vendors/aframe/aframe-v1.3.0.min.js"></script>
   <script src="/vendors/water/refractor.js"></script>
   <script src="/vendors/water/reflector.js"></script>

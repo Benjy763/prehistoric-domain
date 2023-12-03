@@ -6,7 +6,12 @@ const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const hash = Math.random() * 100000 + 1000;
+
+function generateUniqueID() {
+  const currentDate = new Date();
+  return currentDate.getTime();
+}
+const uniqueID = generateUniqueID();
 
 PLUGINS = [
   new HtmlWebpackPlugin({
@@ -18,6 +23,9 @@ PLUGINS = [
         <meta http-equiv="Cache-control" content="no-cache">
         <meta http-equiv="Pragma" content="no-cache">
         <title>Prehistoric Domain</title>
+        <script>
+        const uniqueAssetsId = ${JSON.stringify(uniqueID)};
+      </script>
         <script src="/vendors/aframe/aframe-v1.3.0.min.js"></script>
         <script src="/vendors/water/refractor.js"></script>
         <script src="/vendors/water/reflector.js"></script>
