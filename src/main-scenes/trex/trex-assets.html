@@ -1,63 +1,69 @@
 <a-assets id="trex-assets" timeout="60000">
   <!-- Audio -->
-  <audio id="voice-trex-sound-en" response-type="arraybuffer" src="/assets/sounds/voice/en/trex.mp3" preload="auto"
-    volume="1"></audio>
-  <audio id="voice-trex-sound-fr" response-type="arraybuffer" src="/assets/sounds/voice/fr/trex.mp3" preload="auto"
-    volume="1"></audio>
+  <audio id="voice-trex-sound-en" response-type="arraybuffer"
+    src="/assets/sounds/voice/en/trex.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto" volume="1"></audio>
+  <audio id="voice-trex-sound-fr" response-type="arraybuffer"
+    src="/assets/sounds/voice/fr/trex.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto" volume="1"></audio>
 
   <!-- Environement -->
-  <audio id="jungle-asset" response-type="arraybuffer" src="/assets/sounds/environement/hights.webm" preload="auto"
-    loop="true" volume="1"></audio>
+  <audio id="jungle-asset" response-type="arraybuffer"
+    src="/assets/sounds/environement/hights.webm?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto" loop="true"
+    volume="1"></audio>
 
   <!-- Trex -->
   <audio id="sound-mixing-1" response-type="arraybuffer" crossorigin="anonymous"
-    src="/assets/sounds/trex/sound-mixing-1.mp3" preload="auto" volume="1"></audio>
-  <a-asset-item id="trex-roar" src="/assets/sounds/trex/roar.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="trex-roar2" src="/assets/sounds/trex/roar2.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="trex-foot-step" src="/assets/sounds/trex/foot-step.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="trex-drink" src="/assets/sounds/trex/drink.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="trex-leaves" src="/assets/sounds/trex/leaves.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="trex-hitting" src="/assets/sounds/trex/hitting.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="trex-end-snoring" src="/assets/sounds/trex/end-snoring.mp3" preload="auto"
+    src="/assets/sounds/trex/sound-mixing-1.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto"
+    volume="1"></audio>
+  <a-asset-item id="trex-roar" src="/assets/sounds/trex/roar.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto"
     response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="trex-roar2" src="/assets/sounds/trex/roar2.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="trex-foot-step" src="/assets/sounds/trex/foot-step.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="trex-drink" src="/assets/sounds/trex/drink.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="trex-leaves" src="/assets/sounds/trex/leaves.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="trex-hitting" src="/assets/sounds/trex/hitting.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="trex-end-snoring" src="/assets/sounds/trex/end-snoring.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
 
   <!-- Images -->
 
 
-  <img id="loading-asset" src="/assets/images/loader.png?lastmod=${uniqueAssetsId}" />
-  <img id="limits-asset" src="/assets/images/limits.png?lastmod=${uniqueAssetsId}" />
-  <img id="credits-asset" src="/assets/images/credits.png?lastmod=${uniqueAssetsId}" />
-  <img id="rendering-asset" src="/assets/images/rendering.png?lastmod=${uniqueAssetsId}" />
-  <img id="ground-texture-grass-asset" src="/assets/images/floor-grass.jpg?lastmod=${uniqueAssetsId}" />
+  <img id="loading-asset" src="/assets/images/loader.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="limits-asset" src="/assets/images/limits.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="credits-asset" src="/assets/images/credits.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="rendering-asset" src="/assets/images/rendering.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="ground-texture-grass-asset" src="/assets/images/floor-grass.jpg?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
   <img id="dont-touch-asset" src="/assets/images/dont-touch.jpg" />
-  <img id="trex-pres-asset" src="/assets/images/trex-pres.png?lastmod=${uniqueAssetsId}" />
+  <img id="trex-pres-asset" src="/assets/images/trex-pres.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
   <img id="trex-360-pane-asset" src="/assets/images/trex/360-pane.jpg">
   </img>
 
   <!-- 3D -->
   <!-- Objects -->
-  <a-asset-item id="trex-scene-asset" src="/assets/models/objects/viewing-gallery/scene.glb?lastmod=${uniqueAssetsId}">
+  <a-asset-item id="trex-scene-asset"
+    src="/assets/models/objects/viewing-gallery/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="window-asset" src="/assets/models/objects/window/scene.glb?lastmod=${uniqueAssetsId}">
+  <a-asset-item id="window-asset" src="/assets/models/objects/window/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
   <a-asset-item id="window-support-asset"
-    src="/assets/models/objects/window-support/scene2.glb?lastmod=${uniqueAssetsId}">
+    src="/assets/models/objects/window-support/scene2.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="wall-asset" src="/assets/models/objects/door-2/scene.glb?lastmod=${uniqueAssetsId}">
+  <a-asset-item id="wall-asset" src="/assets/models/objects/door-2/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="terminal-asset" src="/assets/models/objects/terminal/scene.glb?lastmod=${uniqueAssetsId}">
+  <a-asset-item id="terminal-asset"
+    src="/assets/models/objects/terminal/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="door-asset" src="/assets/models/objects/door-underwater/scene.glb?lastmod=${uniqueAssetsId}">
+  <a-asset-item id="door-asset"
+    src="/assets/models/objects/door-underwater/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="floor-asset" src="/assets/models/objects/floor/scene.glb?lastmod=${uniqueAssetsId}">
+  <a-asset-item id="floor-asset" src="/assets/models/objects/floor/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="checkpoint-asset" src="/assets/models/objects/checkpoint/scene.glb?lastmod=${uniqueAssetsId}">
+  <a-asset-item id="checkpoint-asset"
+    src="/assets/models/objects/checkpoint/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
 
 
@@ -66,36 +72,36 @@
 
   <!-- Vegetation -->
   <a-asset-item id="swamp-dead-tree-asset"
-    src="/assets/models/environment/swamp/swamp-dead-tree/scene.glb?lastmod=${uniqueAssetsId}">
+    src="/assets/models/environment/swamp/swamp-dead-tree/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
   <a-asset-item id="forest-rock-1-asset"
-    src="/assets/models/environment/forest/forest-rock-1/scene-2.glb?lastmod=${uniqueAssetsId}">
+    src="/assets/models/environment/forest/forest-rock-1/scene-2.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
   <a-asset-item id="forest-rock-2-asset"
-    src="/assets/models/environment/forest/forest-rock-2/scene.glb?lastmod=${uniqueAssetsId}">
+    src="/assets/models/environment/forest/forest-rock-2/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <!-- <a-asset-item id="forest-rock-4-asset" src="/assets/models/environment/forest/forest-rock-4/scene-2.glb?lastmod=${uniqueAssetsId}">
+  <!-- <a-asset-item id="forest-rock-4-asset" src="/assets/models/environment/forest/forest-rock-4/scene-2.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item> -->
   <a-asset-item id="forest-fern-1-asset"
-    src="/assets/models/environment/forest/forest-fern-1/scene.glb?lastmod=${uniqueAssetsId}">
+    src="/assets/models/environment/forest/forest-fern-1/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
   <a-asset-item id="forest-ground-asset"
-    src="/assets/models/environment/forest/forest-ground/scene-2.glb?lastmod=${uniqueAssetsId}">
+    src="/assets/models/environment/forest/forest-ground/scene-2.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
   <a-asset-item id="forest-fern-4-asset"
-    src="/assets/models/environment/forest/forest-fern-4/scene.glb?lastmod=${uniqueAssetsId}">
+    src="/assets/models/environment/forest/forest-fern-4/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
   <a-asset-item id="forest-pine-2-asset"
-    src="/assets/models/environment/forest/forest-pine-2/scene.glb?lastmod=${uniqueAssetsId}">
+    src="/assets/models/environment/forest/forest-pine-2/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
 
   <a-asset-item id="forest-pine-3-asset"
-    src="/assets/models/environment/forest/forest-pine-3/scene.glb?lastmod=${uniqueAssetsId}">
+    src="/assets/models/environment/forest/forest-pine-3/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
 
   <!-- Dinosaurs -->
   <a-asset-item id="trex-asset"
-    src="/assets/models/dinosaurs/trex/T_Rex_gltf3.glb?lastmod=${uniqueAssetsId}"></a-asset-item>
+    src="/assets/models/dinosaurs/trex/T_Rex_gltf3.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"></a-asset-item>
   <a-asset-item id="trex-bis-asset"
-    src="/assets/models/dinosaurs/trex/T_Rex_gltf3_bis.glb?lastmod=${uniqueAssetsId}"></a-asset-item>
+    src="/assets/models/dinosaurs/trex/T_Rex_gltf3_bis.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"></a-asset-item>
 </a-assets>

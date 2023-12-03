@@ -15,6 +15,9 @@ function generateUniqueID() {
 const uniqueID = generateUniqueID();
 
 PLUGINS = [
+  new webpack.DefinePlugin({
+    'process.env.UNIQUE_ASSETS_ID': JSON.stringify(uniqueID),
+  }),
   new HtmlWebpackPlugin({
     filename: './index.html',
     templateContent: `
@@ -24,9 +27,6 @@ PLUGINS = [
         <meta http-equiv="Cache-control" content="no-cache">
         <meta http-equiv="Pragma" content="no-cache">
         <title>Prehistoric Domain</title>
-        <script>
-        const uniqueAssetsId = ${JSON.stringify(uniqueID)};
-      </script>
         <script src="/vendors/aframe/aframe-v1.3.0.min.js"></script>
         <script src="/vendors/water/refractor.js"></script>
         <script src="/vendors/water/reflector.js"></script>

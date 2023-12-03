@@ -1,102 +1,110 @@
 <a-assets id="swamp-assets" timeout="60000">
   <!-- Audio -->
   <!-- Voice -->
-  <audio id="voice-quetza-sound-en" response-type="arraybuffer" src="/assets/sounds/voice/en/quetza.mp3" preload="auto"
-    volume="1"></audio>
-  <audio id="voice-quetza-sound-fr" response-type="arraybuffer" src="/assets/sounds/voice/fr/quetza.mp3" preload="auto"
-    volume="1"></audio>
+  <audio id="voice-quetza-sound-en" response-type="arraybuffer"
+    src="/assets/sounds/voice/en/quetza.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto" volume="1"></audio>
+  <audio id="voice-quetza-sound-fr" response-type="arraybuffer"
+    src="/assets/sounds/voice/fr/quetza.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto" volume="1"></audio>
 
   <!-- Environement -->
-  <audio id="jungle-asset" response-type="arraybuffer" src="/assets/sounds/environement/swamp-2.webm" preload="auto"
-    loop="true" volume="1"></audio>
+  <audio id="jungle-asset" response-type="arraybuffer"
+    src="/assets/sounds/environement/swamp-2.webm?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto" loop="true"
+    volume="1"></audio>
 
   <!-- Sounds -->
-  <a-asset-item id="quetza-fly" src="/assets/sounds/quetza/fly.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="quetza-fly-start" src="/assets/sounds/quetza/fly-start.mp3" preload="auto"
-    response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="raptor-run" src="/assets/sounds/quetza/raptor-run.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="raptor-walk" src="/assets/sounds/quetza/raptor-walk.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="quetza-roar1" src="/assets/sounds/quetza/roar1.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="quetza-roar3" src="/assets/sounds/quetza/roar3.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="quetza-snoring1" src="/assets/sounds/quetza/snoring1.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="quetza-walk" src="/assets/sounds/quetza/walk.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="quetza-fly" src="/assets/sounds/quetza/fly.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="quetza-fly-start" src="/assets/sounds/quetza/fly-start.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="raptor-run" src="/assets/sounds/quetza/raptor-run.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="raptor-walk" src="/assets/sounds/quetza/raptor-walk.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="quetza-roar1" src="/assets/sounds/quetza/roar1.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="quetza-roar3" src="/assets/sounds/quetza/roar3.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="quetza-snoring1" src="/assets/sounds/quetza/snoring1.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="quetza-walk" src="/assets/sounds/quetza/walk.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
 
   <!-- Images -->
 
 
-  <img id="loading-asset" src="/assets/images/loader.png?lastmod=${uniqueAssetsId}" />
-  <img id="limits-asset" src="/assets/images/limits.png?lastmod=${uniqueAssetsId}" />
-  <img id="credits-asset" src="/assets/images/credits.png?lastmod=${uniqueAssetsId}" />
-  <img id="rendering-asset" src="/assets/images/rendering.png?lastmod=${uniqueAssetsId}" />
+  <img id="loading-asset" src="/assets/images/loader.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="limits-asset" src="/assets/images/limits.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="credits-asset" src="/assets/images/credits.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="rendering-asset" src="/assets/images/rendering.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
   <img id="dont-touch-asset" src="/assets/images/dont-touch.jpg" />
-  <img id="ground-texture-grass-asset" src="/assets/images/floor-grass.jpg?lastmod=${uniqueAssetsId}" />
+  <img id="ground-texture-grass-asset" src="/assets/images/floor-grass.jpg?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
 
   <!-- 3D -->
   <!-- Objects -->
-  <a-asset-item id="swamp-scene-asset" src="/assets/models/objects/viewing-gallery/scene.glb?lastmod=${uniqueAssetsId}">
+  <a-asset-item id="swamp-scene-asset"
+    src="/assets/models/objects/viewing-gallery/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="window-asset" src="/assets/models/objects/window/scene.glb?lastmod=${uniqueAssetsId}">
+  <a-asset-item id="window-asset" src="/assets/models/objects/window/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
   <a-asset-item id="window-support-asset"
-    src="/assets/models/objects/window-support/scene2.glb?lastmod=${uniqueAssetsId}">
+    src="/assets/models/objects/window-support/scene2.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="wall-asset" src="/assets/models/objects/door-2/scene.glb?lastmod=${uniqueAssetsId}">
+  <a-asset-item id="wall-asset" src="/assets/models/objects/door-2/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="terminal-asset" src="/assets/models/objects/terminal/scene.glb?lastmod=${uniqueAssetsId}">
+  <a-asset-item id="terminal-asset"
+    src="/assets/models/objects/terminal/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="door-asset" src="/assets/models/objects/door-underwater/scene.glb?lastmod=${uniqueAssetsId}">
+  <a-asset-item id="door-asset"
+    src="/assets/models/objects/door-underwater/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="floor-asset" src="/assets/models/objects/floor/scene.glb?lastmod=${uniqueAssetsId}">
+  <a-asset-item id="floor-asset" src="/assets/models/objects/floor/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="egg-asset" src="/assets/models/objects/egg/scene.glb?lastmod=${uniqueAssetsId}">
+  <a-asset-item id="egg-asset" src="/assets/models/objects/egg/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="dirt-pile-asset" src="/assets/models/objects/dirt-pile/scene.glb?lastmod=${uniqueAssetsId}">
+  <a-asset-item id="dirt-pile-asset"
+    src="/assets/models/objects/dirt-pile/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
   <a-asset-item id="under-wall-asset"
-    src="/assets/models/environment/concrete-wall/scene.glb?lastmod=${uniqueAssetsId}"></a-asset-item>
-  <a-asset-item id="checkpoint-asset" src="/assets/models/objects/checkpoint/scene.glb?lastmod=${uniqueAssetsId}">
+    src="/assets/models/environment/concrete-wall/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"></a-asset-item>
+  <a-asset-item id="checkpoint-asset"
+    src="/assets/models/objects/checkpoint/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
 
   <!-- Environment -->
   <a-asset-item id="forest-fern-1-asset"
-    src="/assets/models/environment/forest/forest-fern-1/scene.glb?lastmod=${uniqueAssetsId}">
+    src="/assets/models/environment/forest/forest-fern-1/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="tall-bush-asset" src="/assets/models/environment/tall-bush/scene.glb?lastmod=${uniqueAssetsId}">
+  <a-asset-item id="tall-bush-asset"
+    src="/assets/models/environment/tall-bush/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
   <a-asset-item id="swamp-rock-asset"
-    src="/assets/models/environment/swamp/swamp-rock/scene.glb?lastmod=${uniqueAssetsId}">
+    src="/assets/models/environment/swamp/swamp-rock/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
   <a-asset-item id="swamp-dead-tree-asset"
-    src="/assets/models/environment/swamp/swamp-dead-tree/scene.glb?lastmod=${uniqueAssetsId}">
+    src="/assets/models/environment/swamp/swamp-dead-tree/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
   <a-asset-item id="swamp-grass-asset" src="/assets/models/environment/swamp/swamp-grass/scene.gltf">
   </a-asset-item>
   <a-asset-item id="long-sea-plant-asset"
-    src="/assets/models/environment/underwater/long-sea-plant/scene.glb?lastmod=${uniqueAssetsId}">
+    src="/assets/models/environment/underwater/long-sea-plant/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
   <a-asset-item id="small-sea-plant-asset"
-    src="/assets/models/environment/underwater/small-sea-plant/scene.glb?lastmod=${uniqueAssetsId}">
+    src="/assets/models/environment/underwater/small-sea-plant/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
   <a-asset-item id="palm-tree-long-asset"
-    src="/assets/models/environment/palm-tree-long/scene.glb?lastmod=${uniqueAssetsId}">
+    src="/assets/models/environment/palm-tree-long/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
 
 
   <!-- Dinosaurs -->
-  <a-asset-item id="quetza-asset" src="/assets/models/dinosaurs/quetzalcoatlus/scene.glb?lastmod=${uniqueAssetsId}">
+  <a-asset-item id="quetza-asset"
+    src="/assets/models/dinosaurs/quetzalcoatlus/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
   <a-asset-item id="velociraptor-asset"
-    src="/assets/models/dinosaurs/velociraptor/velociraptor.glb?lastmod=${uniqueAssetsId}">
+    src="/assets/models/dinosaurs/velociraptor/velociraptor.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
 
   <!-- Images -->
-  <img id="quetza-pres-asset" src="/assets/images/quetza-pres.png?lastmod=${uniqueAssetsId}" />
+  <img id="quetza-pres-asset" src="/assets/images/quetza-pres.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
 
 </a-assets>

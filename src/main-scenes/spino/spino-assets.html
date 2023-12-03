@@ -1,124 +1,140 @@
 <a-assets id="swamp-assets" timeout="60000">
   <!-- Audio -->
   <!-- Voice -->
-  <audio id="voice-spino-sound-en" response-type="arraybuffer" src="/assets/sounds/voice/en/spino.mp3" preload="auto"
-    volume="1"></audio>
-  <audio id="voice-spino-sound-fr" response-type="arraybuffer" src="/assets/sounds/voice/fr/spino.mp3" preload="auto"
-    volume="1"></audio>
+  <audio id="voice-spino-sound-en" response-type="arraybuffer"
+    src="/assets/sounds/voice/en/spino.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto" volume="1"></audio>
+  <audio id="voice-spino-sound-fr" response-type="arraybuffer"
+    src="/assets/sounds/voice/fr/spino.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto" volume="1"></audio>
 
   <!-- Environement -->
-  <audio id="swamp-asset" response-type="arraybuffer" src="/assets/sounds/environement/swamp.webm" preload="auto"
+  <audio id="swamp-asset" response-type="arraybuffer"
+    src="/assets/sounds/environement/swamp.webm?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto" loop="true"
+    volume="1"></audio>
+  <audio id="underwater-asset" response-type="arraybuffer"
+    src="/assets/sounds/environement/underwater2.webm?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto"
     loop="true" volume="1"></audio>
-  <audio id="underwater-asset" response-type="arraybuffer" src="/assets/sounds/environement/underwater2.webm"
-    preload="auto" loop="true" volume="1"></audio>
 
   <!-- Sounds -->
-  <a-asset-item id="spino-attack-water" src="/assets/sounds/spino/attack-water.mp3" preload="auto"
+  <a-asset-item id="spino-attack-water"
+    src="/assets/sounds/spino/attack-water.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto"
     response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="spino-birds" src="/assets/sounds/spino/birds.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="spino-drink-lie" src="/assets/sounds/spino/drink-lie.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="spino-heavy-water" src="/assets/sounds/spino/heavy-water.mp3" preload="auto"
+  <a-asset-item id="spino-birds" src="/assets/sounds/spino/birds.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="spino-drink-lie" src="/assets/sounds/spino/drink-lie.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="spino-heavy-water"
+    src="/assets/sounds/spino/heavy-water.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto"
     response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="spino-hunt-lie" src="/assets/sounds/spino/hunt-lie.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="spino-light-water" src="/assets/sounds/spino/light-water.mp3" preload="auto"
+  <a-asset-item id="spino-hunt-lie" src="/assets/sounds/spino/hunt-lie.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="spino-light-water"
+    src="/assets/sounds/spino/light-water.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto"
     response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="spino-nacelle-down" src="/assets/sounds/spino/nacelle-down.mp3" preload="auto"
+  <a-asset-item id="spino-nacelle-down"
+    src="/assets/sounds/spino/nacelle-down.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto"
     response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="spino-nacelle-end" src="/assets/sounds/spino/nacelle-end.mp3" preload="auto"
+  <a-asset-item id="spino-nacelle-end"
+    src="/assets/sounds/spino/nacelle-end.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto"
     response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="spino-nacelle-start" src="/assets/sounds/spino/nacelle-start.mp3" preload="auto"
+  <a-asset-item id="spino-nacelle-start"
+    src="/assets/sounds/spino/nacelle-start.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto"
     response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="spino-snoring" src="/assets/sounds/spino/snoring.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="spino-spino1roar" src="/assets/sounds/spino/spino1roar.mp3" preload="auto"
+  <a-asset-item id="spino-snoring" src="/assets/sounds/spino/snoring.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="spino-spino1roar" src="/assets/sounds/spino/spino1roar.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="spino-spino2drink"
+    src="/assets/sounds/spino/spino2drink.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto"
     response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="spino-spino2drink" src="/assets/sounds/spino/spino2drink.mp3" preload="auto"
-    response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="spino-spino2roar" src="/assets/sounds/spino/spino2roar.mp3" preload="auto"
-    response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="spino-spino-dive" src="/assets/sounds/spino/spino-dive.mp3" preload="auto"
-    response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="spino-swim" src="/assets/sounds/spino/swim.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="spino-walk" src="/assets/sounds/spino/walk.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="spino-water-out" src="/assets/sounds/spino/water-out.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="spino-water-move" src="/assets/sounds/spino/water-move.mp3" preload="auto"
-    response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="spino-spino2roar" src="/assets/sounds/spino/spino2roar.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="spino-spino-dive" src="/assets/sounds/spino/spino-dive.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="spino-swim" src="/assets/sounds/spino/swim.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="spino-walk" src="/assets/sounds/spino/walk.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="spino-water-out" src="/assets/sounds/spino/water-out.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="spino-water-move" src="/assets/sounds/spino/water-move.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
 
   <!-- Images -->
 
 
-  <img id="loading-asset" src="/assets/images/loader.png?lastmod=${uniqueAssetsId}" />
-  <img id="limits-asset" src="/assets/images/limits.png?lastmod=${uniqueAssetsId}" />
-  <img id="credits-asset" src="/assets/images/credits.png?lastmod=${uniqueAssetsId}" />
-  <img id="rendering-asset" src="/assets/images/rendering.png?lastmod=${uniqueAssetsId}" />
+  <img id="loading-asset" src="/assets/images/loader.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="limits-asset" src="/assets/images/limits.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="credits-asset" src="/assets/images/credits.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="rendering-asset" src="/assets/images/rendering.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
   <img id="dont-touch-asset" src="/assets/images/dont-touch.jpg" />
-  <img id="ground-texture-grass-asset" src="/assets/images/floor-grass.jpg?lastmod=${uniqueAssetsId}" />
+  <img id="ground-texture-grass-asset" src="/assets/images/floor-grass.jpg?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
 
   <!-- 3D -->
   <!-- Objects -->
-  <a-asset-item id="swamp-scene-asset" src="/assets/models/objects/viewing-gallery/scene.glb?lastmod=${uniqueAssetsId}">
+  <a-asset-item id="swamp-scene-asset"
+    src="/assets/models/objects/viewing-gallery/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="window-asset" src="/assets/models/objects/window/scene.glb?lastmod=${uniqueAssetsId}">
+  <a-asset-item id="window-asset" src="/assets/models/objects/window/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
   <a-asset-item id="window-support-asset"
-    src="/assets/models/objects/window-support/scene2.glb?lastmod=${uniqueAssetsId}">
+    src="/assets/models/objects/window-support/scene2.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="wall-asset" src="/assets/models/objects/door-2/scene.glb?lastmod=${uniqueAssetsId}">
+  <a-asset-item id="wall-asset" src="/assets/models/objects/door-2/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="terminal-asset" src="/assets/models/objects/terminal/scene.glb?lastmod=${uniqueAssetsId}">
+  <a-asset-item id="terminal-asset"
+    src="/assets/models/objects/terminal/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="door-asset" src="/assets/models/objects/door-underwater/scene.glb?lastmod=${uniqueAssetsId}">
+  <a-asset-item id="door-asset"
+    src="/assets/models/objects/door-underwater/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="floor-asset" src="/assets/models/objects/floor/scene.glb?lastmod=${uniqueAssetsId}">
+  <a-asset-item id="floor-asset" src="/assets/models/objects/floor/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
   <a-asset-item id="under-wall-asset"
-    src="/assets/models/environment/concrete-wall/scene.glb?lastmod=${uniqueAssetsId}"></a-asset-item>
-  <a-asset-item id="checkpoint-asset" src="/assets/models/objects/checkpoint/scene.glb?lastmod=${uniqueAssetsId}">
+    src="/assets/models/environment/concrete-wall/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"></a-asset-item>
+  <a-asset-item id="checkpoint-asset"
+    src="/assets/models/objects/checkpoint/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
 
   <!-- Environment -->
-  <a-asset-item id="tall-bush-asset" src="/assets/models/environment/tall-bush/scene.glb?lastmod=${uniqueAssetsId}">
+  <a-asset-item id="tall-bush-asset"
+    src="/assets/models/environment/tall-bush/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
   <a-asset-item id="swamp-rock-asset"
-    src="/assets/models/environment/swamp/swamp-rock/scene.glb?lastmod=${uniqueAssetsId}">
+    src="/assets/models/environment/swamp/swamp-rock/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
   <a-asset-item id="swamp-dead-tree-asset"
-    src="/assets/models/environment/swamp/swamp-dead-tree/scene.glb?lastmod=${uniqueAssetsId}">
+    src="/assets/models/environment/swamp/swamp-dead-tree/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
   <a-asset-item id="swamp-grass-asset" src="/assets/models/environment/swamp/swamp-grass/scene.gltf">
   </a-asset-item>
   <a-asset-item id="long-sea-plant-asset"
-    src="/assets/models/environment/underwater/long-sea-plant/scene.glb?lastmod=${uniqueAssetsId}">
+    src="/assets/models/environment/underwater/long-sea-plant/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
   <a-asset-item id="small-sea-plant-asset"
-    src="/assets/models/environment/underwater/small-sea-plant/scene.glb?lastmod=${uniqueAssetsId}">
+    src="/assets/models/environment/underwater/small-sea-plant/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
   <a-asset-item id="palm-tree-long-asset"
-    src="/assets/models/environment/palm-tree-long/scene.glb?lastmod=${uniqueAssetsId}">
+    src="/assets/models/environment/palm-tree-long/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="birds-asset" src="/assets/models/environment/birds/scene.glb?lastmod=${uniqueAssetsId}">
+  <a-asset-item id="birds-asset"
+    src="/assets/models/environment/birds/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
 
 
   <!-- Dinosaurs -->
   <a-asset-item id="spino-male-asset"
-    src="/assets/models/dinosaurs/spino-male/Spinosaurus_gltf.glb?lastmod=${uniqueAssetsId}">
+    src="/assets/models/dinosaurs/spino-male/Spinosaurus_gltf.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
   <a-asset-item id="spino-female-asset"
-    src="/assets/models/dinosaurs/spino-female/Spinosaurus_gltf.glb?lastmod=${uniqueAssetsId}">
+    src="/assets/models/dinosaurs/spino-female/Spinosaurus_gltf.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="saw-fish-asset" src="/assets/models/dinosaurs/saw-fish/scene.glb?lastmod=${uniqueAssetsId}">
+  <a-asset-item id="saw-fish-asset"
+    src="/assets/models/dinosaurs/saw-fish/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="fish-asset" src="/assets/models/dinosaurs/fish/scene.glb?lastmod=${uniqueAssetsId}">
+  <a-asset-item id="fish-asset" src="/assets/models/dinosaurs/fish/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
 
   <!-- Images -->
-  <img id="spino-pres-asset" src="/assets/images/spino-pres.png?lastmod=${uniqueAssetsId}" />
+  <img id="spino-pres-asset" src="/assets/images/spino-pres.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
 
 </a-assets>
