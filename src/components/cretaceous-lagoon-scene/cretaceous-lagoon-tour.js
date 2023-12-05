@@ -20,6 +20,7 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
     this.mosasaurConfig = {};
     this.mosasaurAttacked = false;
     this.isBlowing = false;
+    this.plesiosaurSoundEnabled = false;
 
     // Voice and screen phases
     this.voicePhase = 'stop';
@@ -95,6 +96,8 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
         // Get sounds
         this.mosasaurPassingAudio = this.mosasaur.components['sound__passing'];
         this.mosasaurBiteAudio = this.mosasaur.components['sound__bite'];
+        this.plesiosaurBubbleAudio =
+          this.plesiosaur2.components['sound__bubble'];
 
         // Get voice from system when init
         this.voiceLagoon1Sound = this.system.getVoice('cretaceousLagoon');
@@ -206,6 +209,14 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
       this.mosasaurSpeed,
       { useDeltaTime: true }
     );
+
+    if (
+      !this.plesiosaurSoundEnabled &&
+      this.movesManager.truncMarker(this.plesiosaur2Marker) > 240
+    ) {
+      this.plesiosaurSoundEnabled = true;
+      this.plesiosaurBubbleAudio.playSound();
+    }
     if (
       this.movesManager.truncMarker(this.plesiosaur2Marker) > 340 &&
       !this.mosasaurAttacked
@@ -239,12 +250,9 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
         this.mosasaur.setAttribute('animation-mixer', {
           clip: 'Swim Fast',
           crossFadeDuration: 1,
-          timeScale: 0.8,
+          timeScale: 0.3,
         });
       }, 2800);
-      setTimeout(() => {
-        this.mosasaurUp = true;
-      }, 600);
       this.plesiosaur2Marker = 0;
       this.plesiosaur2Speed = 0.055;
       this.phase = 'mosasaurHit';

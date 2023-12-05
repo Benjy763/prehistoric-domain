@@ -4,4 +4,4 @@ dist-ws
 node_modules
 *.ttf
 *.mp4
-.DS_Store
+**/*.DS_Store

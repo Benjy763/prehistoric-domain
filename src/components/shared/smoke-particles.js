@@ -14,7 +14,7 @@ AFRAME.registerComponent('smoke-effect', {
     // Smoke Texture
     THREE.ImageUtils.crossOrigin = '';
     const smokeImages = '/assets/images/smoke-element.png';
-    const smokeTexture = THREE.ImageUtils.loadTexture(smokeImages);
+    const smokeTexture = new THREE.TextureLoader().load(smokeImages);
     const smokeMaterial = new THREE.MeshLambertMaterial({
       color: 0xc92222,
       emissive: 0x000000,
