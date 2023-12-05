@@ -38,7 +38,7 @@ AFRAME.registerComponent('turn-control', {
     // always update deltaTime!
     this.deltaTime = this.clock.getDelta();
 
-    if (!this.enabled) return;
+    if (!this.enabled || !this.controllerData) return;
     // =====================================================================
     // turning in horizontal (XZ) plane
     // =====================================================================

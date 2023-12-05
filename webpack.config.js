@@ -27,10 +27,6 @@ PLUGINS = [
         <meta http-equiv="Cache-control" content="no-cache">
         <meta http-equiv="Pragma" content="no-cache">
         <title>Prehistoric Domain</title>
-        <script src="/vendors/aframe/aframe-v1.3.0.min.js"></script>
-        <script src="/vendors/water/refractor.js"></script>
-        <script src="/vendors/water/reflector.js"></script>
-        <script src="/vendors/water/water2.js"></script>
         <style type="text/css">
           @font-face {
             font-family: 'Exo';
