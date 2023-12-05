@@ -237,9 +237,9 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
       }, 500);
       setTimeout(() => {
         this.mosasaur.setAttribute('animation-mixer', {
-          clip: 'Swim',
+          clip: 'Swim Fast',
           crossFadeDuration: 1,
-          timeScale: 1,
+          timeScale: 0.8,
         });
       }, 2800);
       setTimeout(() => {
