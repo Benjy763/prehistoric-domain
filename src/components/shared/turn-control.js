@@ -3,7 +3,7 @@ AFRAME.registerComponent('turn-control', {
     // the id of the element with constroller listener component attached
     controllerListenerId: { type: 'string', default: '#controller-data' },
     // the id of the element with raycaster attached, for teleport movement
-    motionEnabled: { type: 'boolean', default: true },
+    motionEnabled: { type: 'boolean', default: false },
   },
 
   init: function () {

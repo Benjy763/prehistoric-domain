@@ -84,7 +84,7 @@ AFRAME.registerSystem('preloader', {
     }
 
     if (this.data.disableVRModeUI) {
-      this.el.setAttribute('vr-mode-ui', 'enabled', 'false');
+      this.el.setAttribute('xr-mode-ui', 'enabled', 'false');
     }
   },
 
@@ -359,7 +359,7 @@ AFRAME.registerSystem('preloader', {
       console.info('Preloading complete');
     }
     if (this.data.disableVRModeUI) {
-      this.el.setAttribute('vr-mode-ui', 'enabled', 'true');
+      this.el.setAttribute('xr-mode-ui', 'enabled', 'true');
     }
     this.el.emit('preloading-complete');
   },
