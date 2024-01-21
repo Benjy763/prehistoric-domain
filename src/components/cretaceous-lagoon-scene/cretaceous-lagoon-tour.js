@@ -66,8 +66,8 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
     ]);
 
     this.mosasaurCurve1 = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(9, 3.98, -117.8),
-      new THREE.Vector3(9, 3.98, 80.032),
+      new THREE.Vector3(9, 4.2, -117.8),
+      new THREE.Vector3(9, 4.2, 80.032),
     ]);
     this.mosasaurCurve2 = new THREE.CatmullRomCurve3([
       new THREE.Vector3(13.306, 4.3, 41.001),
@@ -277,7 +277,7 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
     );
     if (
       !this.isBlowing &&
-      this.movesManager.truncMarker(this.plesiosaur2Marker) > 60
+      this.movesManager.truncMarker(this.plesiosaur2Marker) > 80
     ) {
       this.isBlowing = true;
       this.smoke.setAttribute('visible', 'true');

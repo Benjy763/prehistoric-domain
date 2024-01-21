@@ -547,6 +547,10 @@ AFRAME.registerSystem('system', {
     if (this.language === 'off') {
       return false;
     }
-    return document.getElementById(this.languages[this.language][element]);
+    const voiceSound = document.getElementById(
+      this.languages[this.language][element]
+    );
+    voiceSound.volume = 0.8;
+    return voiceSound;
   },
 });
