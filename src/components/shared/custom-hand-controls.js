@@ -154,12 +154,10 @@ AFRAME.registerComponent('custom-hand-controls', {
   },
 
   onControllerConnected: function () {
-    console.log('true');
     this.el.object3D.visible = true;
   },
 
   onControllerDisconnected: function () {
-    console.log('false');
     this.el.object3D.visible = false;
   },
 
@@ -244,7 +242,6 @@ AFRAME.registerComponent('custom-hand-controls', {
           handModelStyle + hand.charAt(0).toUpperCase() + hand.slice(1)
         ];
       this.loader.load(handmodelUrl, function (gltf) {
-        console.log(handmodelUrl);
         var mesh = gltf.scene.children[0];
         var handModelOrientationZ = hand === 'left' ? Math.PI : Math.PI;
         // The WebXR standard defines the grip space such that a cylinder held in a closed hand points
@@ -256,7 +253,6 @@ AFRAME.registerComponent('custom-hand-controls', {
           : 0;
         mesh.mixer = new THREE.AnimationMixer(mesh);
         self.clips = gltf.animations;
-        console.log(mesh);
         el.setObject3D('mesh', mesh);
         mesh.traverse(function (object) {
           if (!object.isMesh) {
