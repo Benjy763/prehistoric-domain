@@ -1,4 +1,4 @@
-AFRAME.registerComponent('custom-hand-control', {
+AFRAME.registerComponent('poi-control', {
   init: function () {
     this.system = document.querySelector('a-scene').systems['system'];
     this.movesManager =
@@ -16,6 +16,10 @@ AFRAME.registerComponent('custom-hand-control', {
 
     this.el.addEventListener('abuttondown', () => {
       this.movesManager.fixRigPosition();
+    });
+    this.el.addEventListener('ybuttondown', () => {
+      this.movesManager.nextScene = 'ending';
+      this.manageChangingScene();
     });
   },
   clearCache: function () {

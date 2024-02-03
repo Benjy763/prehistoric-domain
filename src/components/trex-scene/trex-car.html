@@ -22,11 +22,11 @@
       </a-entity>
       <a-entity id="controller-data" controller-listener="leftControllerId:  #leftHand;
                                  rightControllerId: #rightHand;"></a-entity>
-      <a-entity id="leftHand" sphere-collider="objects: a-box" custom-hand-control super-hands
-        hand-controls="hand: left; handModelStyle: highPoly; color: #ffcccc"></a-entity>
+      <a-entity id="leftHand" sphere-collider="objects: a-box" poi-control super-hands
+        custom-hand-controls="hand: left; handModelStyle: highPoly; color: #ffcccc"></a-entity>
       <a-entity fps-counter="enabled: true; for90fps: true" id="rightHand" rotation="10 0 0"
-        sphere-collider="objects: a-box" custom-hand-control super-hands
-        hand-controls="hand: right; handModelStyle: highPoly; color: #ffcccc"></a-entity>
+        sphere-collider="objects: a-box" poi-control super-hands
+        custom-hand-controls="hand: right; handModelStyle: highPoly; color: #ffcccc"></a-entity>
     </a-entity>
   </a-entity>
   <a-plane id="trex-navmesh-el" geometry="width: 9.5" visible="false" position="-0.46865 -0.0363 0.08816"

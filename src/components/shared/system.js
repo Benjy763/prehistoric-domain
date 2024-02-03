@@ -550,7 +550,9 @@ AFRAME.registerSystem('system', {
     const voiceSound = document.getElementById(
       this.languages[this.language][element]
     );
-    voiceSound.volume = 0.8;
+    if (voiceSound && voiceSound.volume) {
+      voiceSound.volume = 0.8;
+    }
     return voiceSound;
   },
 });
