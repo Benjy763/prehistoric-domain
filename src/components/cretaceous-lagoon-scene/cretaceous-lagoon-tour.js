@@ -246,13 +246,6 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
           timeScale: 0.2,
         });
       }, 500);
-      setTimeout(() => {
-        this.mosasaur.setAttribute('animation-mixer', {
-          clip: 'Swim Fast',
-          crossFadeDuration: 1,
-          timeScale: 0.3,
-        });
-      }, 2800);
       this.plesiosaur2Marker = 0;
       this.plesiosaur2Speed = 0.055;
       this.phase = 'mosasaurHit';
@@ -279,6 +272,11 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
       !this.isBlowing &&
       this.movesManager.truncMarker(this.plesiosaur2Marker) > 80
     ) {
+      this.mosasaur.setAttribute('animation-mixer', {
+        clip: 'Attack',
+        crossFadeDuration: 1,
+        timeScale: 0.1,
+      });
       this.isBlowing = true;
       this.smoke.setAttribute('visible', 'true');
       this.smoke.dispatchEvent(new Event('isBlowing'));
@@ -292,6 +290,11 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
         setTimeout(() => {
           this.mosasaurPassingAudio.playSound();
         }, 3000);
+        this.mosasaur.setAttribute('animation-mixer', {
+          clip: 'Swim Fast',
+          crossFadeDuration: 1,
+          timeScale: 0.3,
+        });
         this.phase = 'mosasaurPass';
       }, 8000);
     }
