@@ -23,7 +23,7 @@ AFRAME.registerComponent('pteranodon-animation', {
       new THREE.Vector3(48.066, 79.077, -47.373),
       new THREE.Vector3(68.016, 25.763, -27.155),
       new THREE.Vector3(44.23, 8.509, 2.444),
-      new THREE.Vector3(30.917, 8.509, 13.796),
+      new THREE.Vector3(0, 8.509, 0),
     ]);
     this.curveEndFly = new THREE.CatmullRomCurve3([
       new THREE.Vector3(-321.779, 98.779, -131.492),
@@ -90,7 +90,7 @@ AFRAME.registerComponent('pteranodon-animation', {
     if (this.pteraSpeed < 0.009) {
       this.pteraSpeed += 0.0002;
     }
-    if (this.movesManager.truncMarker(this.pteraMarker) > 800) {
+    if (this.movesManager.truncMarker(this.pteraMarker) > 900) {
       const event = new Event('secondPtera');
       this.car.dispatchEvent(event);
       this.phase = 'finish';
