@@ -66,8 +66,8 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
     ]);
 
     this.mosasaurCurve1 = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(9, 4.1, -117.8),
-      new THREE.Vector3(9, 4.1, 80.032),
+      new THREE.Vector3(9, 3.9, -117.8),
+      new THREE.Vector3(9, 3.9, 80.032),
     ]);
     this.mosasaurCurve2 = new THREE.CatmullRomCurve3([
       new THREE.Vector3(13.306, 4.7, 41.001),
@@ -96,8 +96,13 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
         // Get sounds
         this.mosasaurPassingAudio = this.mosasaur.components['sound__passing'];
         this.mosasaurBiteAudio = this.mosasaur.components['sound__bite'];
+        this.mosasaurRoarAudio = this.mosasaur.components['sound__roar'];
         this.plesiosaurBubbleAudio =
           this.plesiosaur2.components['sound__bubble'];
+        this.plesiosaurPassingAudio =
+          this.plesiosaur2.components['sound__passing'];
+        this.plesiosaurPassing2Audio =
+          this.plesiosaur2.components['sound__passing2'];
 
         // Get voice from system when init
         this.voiceLagoon1Sound = this.system.getVoice('cretaceousLagoon');
@@ -116,6 +121,9 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
         }, 3000);
 
         setTimeout(() => {
+          setTimeout(() => {
+            this.plesiosaurPassingAudio.playSound();
+          }, 10000);
           this.phase = 'plesiosaurFirstMove';
         }, 60000);
       },
@@ -175,6 +183,9 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
       this.plesiosaur2Marker = 0;
       this.plesiosaur2Speed = 0.06;
       this.phase = 'plesiosaurSecondMove';
+      setTimeout(() => {
+        this.plesiosaurPassing2Audio.playSound();
+      }, 5000);
     }
   },
   plesiosaurSecondMove: function () {
@@ -296,6 +307,9 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
           timeScale: 0.3,
         });
         this.phase = 'mosasaurPass';
+        setTimeout(() => {
+          this.mosasaurRoarAudio.playSound();
+        }, 5000);
       }, 8000);
     }
   },
