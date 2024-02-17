@@ -66,14 +66,14 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
     ]);
 
     this.mosasaurCurve1 = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(9, 4.2, -117.8),
-      new THREE.Vector3(9, 4.2, 80.032),
+      new THREE.Vector3(9, 4.1, -117.8),
+      new THREE.Vector3(9, 4.1, 80.032),
     ]);
     this.mosasaurCurve2 = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(13.306, 4.3, 41.001),
-      new THREE.Vector3(10, 4.3, -5.122),
-      new THREE.Vector3(4, 4.3, -13.966),
-      new THREE.Vector3(-80.749, 4.3, -17.046),
+      new THREE.Vector3(13.306, 4.7, 41.001),
+      new THREE.Vector3(10, 4.7, -5.122),
+      new THREE.Vector3(4, 4.7, -13.966),
+      new THREE.Vector3(-80.749, 4.7, -17.046),
     ]);
 
     // En scene activation
