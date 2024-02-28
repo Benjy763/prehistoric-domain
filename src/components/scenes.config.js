@@ -388,6 +388,7 @@ export const MainScenes = {
     // Starting scene
     name: 'Quetzalcoatlus Viewing Gallery',
     loadingScreen: 'quetza-illu.jpg',
+    displayDistance: 10000,
     needPerformance: true,
     needLanguage: true,
     mobileCompatible: true,
@@ -395,7 +396,7 @@ export const MainScenes = {
     assetsId: 'swamp-assets',
     carMarkerForDebug: 0.32,
     color: '#5e5e5e',
-    density: [0.05, 0.05],
+    density: [0, 0],
     canWalk: true,
     loading: {
       scene: 'loading-scene',
