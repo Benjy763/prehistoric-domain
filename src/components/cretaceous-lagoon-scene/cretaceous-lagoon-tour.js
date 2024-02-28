@@ -138,7 +138,7 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
   },
   startAmonitesAnimations: function () {
     const amoniteEntity = document.querySelector('#amonite');
-    const amonite2Entity = document.querySelector('#amonite-2');
+    // const amonite2Entity = document.querySelector('#amonite-2');
     const ichthyosaurEntity = document.querySelector('#ichthyosaur');
 
     amoniteEntity.setAttribute('animation', {
@@ -148,12 +148,12 @@ AFRAME.registerComponent('cretaceous-lagoon-car-tour', {
       loop: false,
     });
 
-    amonite2Entity.setAttribute('animation', {
-      property: 'position',
-      to: '42 19 -37',
-      dur: 120000,
-      loop: false,
-    });
+    // amonite2Entity.setAttribute('animation', {
+    //   property: 'position',
+    //   to: '42 19 -37',
+    //   dur: 120000,
+    //   loop: false,
+    // });
 
     ichthyosaurEntity.setAttribute('animation', {
       property: 'position',
