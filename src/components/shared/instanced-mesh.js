@@ -6,6 +6,13 @@ AFRAME.registerComponent('instanced-mesh', {
     positioning: { type: 'string', default: 'local' },
     debug: { type: 'boolean', default: false },
     layers: { type: 'string', default: '' },
+    updateMode: {
+      type: 'string',
+      default: 'manual',
+      oneOf: ['auto', 'manual'],
+    },
+    decompose: { type: 'boolean', default: false },
+    drainColor: { type: 'boolean', default: false },
   },
 
   init: function () {
@@ -16,7 +23,7 @@ AFRAME.registerComponent('instanced-mesh', {
     this.texturesLoaded = 0;
     this.eventQueue = [];
 
-    // Bounding sphere used for frustrum culling
+    // Bounding sphere used for frustum culling
     this.boundingSphere = new THREE.Sphere(new THREE.Vector3(0, 0, 0), 0);
 
     // Other objects used in frame of reference calculations.
@@ -28,6 +35,10 @@ AFRAME.registerComponent('instanced-mesh', {
     // List of members flagged for removal.  Used to efficiently delete
     // multiple entries.
     this.membersToRemove = [];
+
+    // List of members that need matrix/color updates.  These updates are deferred to
+    // the rendering stage, to avoid unecessary re-computations of matrices.
+    this.membersToUpdate = new Set();
 
     // Ordered list of member entity IDs.  This matches order in the Instanced
     // Mesh matrix list.  Needed so that we can delete elements on request.
@@ -53,8 +64,19 @@ AFRAME.registerComponent('instanced-mesh', {
 
     // Used for working, to save re-allocations.
     this.matrix = new THREE.Matrix4();
+    this.inverseMatrix = new THREE.Matrix4();
     this.debugMatrix = new THREE.Matrix4();
     this.componentMatrix = new THREE.Matrix4();
+
+    // stored inverse of the parent's matrixWorld (to save re-calculations)
+    // code that uses this should intelligently update it when necessary.
+    this.parentWorldMatrixInverse = this.el.object3D.parent.matrixWorld.clone();
+    this.parentWorldMatrixInverse.invert();
+
+    // Used when setting color attributes in instanced meshes.
+    this.color = new THREE.Color();
+
+    this.addOnBeforeRenderToScene();
   },
 
   attachEventListeners: function () {
@@ -91,13 +113,16 @@ AFRAME.registerComponent('instanced-mesh', {
         break;
     }
 
+    // store off whether we are in auto mode, for fast checking.
+    this.autoMode = this.data.updateMode === 'auto';
+
     // Possible we are waiting for a GLTF model to load.  If so, defer processing...
     // !! We have a bug where using a geometry where that is specified on the
     // object *after* instanced-mesh.  This component gets initialized first but there
     // is no "model-loaded" event.  What's the equivalent?
     // For now, solution is to always specify instanced-mesh *after* geometry.
-    var originalMesh = this.el.getObject3D('mesh');
-    if (!originalMesh) {
+    var previousMesh = this.el.getObject3D('mesh');
+    if (!previousMesh) {
       this.el.addEventListener('model-loaded', (e) => {
         this.update.call(this, this.data);
       });
@@ -126,12 +151,12 @@ AFRAME.registerComponent('instanced-mesh', {
       }
     }
 
-    if (originalMesh.count > 0) {
+    if (previousMesh.count > 0) {
       // we already have a set of instanced meshes in place.
-      console.assert(originalMesh === this.instancedMeshes[0]);
+      console.assert(previousMesh === this.instancedMeshes[0]);
 
       // but do they have enough capacity?
-      if (originalMesh.instanceMatrix.count < this.data.capacity) {
+      if (previousMesh.instanceMatrix.count < this.data.capacity) {
         // resize instanced meshes
         this.increaseInstancedMeshCapacity();
       } else {
@@ -140,10 +165,33 @@ AFRAME.registerComponent('instanced-mesh', {
     } else {
       // No instanced Meshes yet in place.  Analyze original mesh to see how to
       // build the instanced Meshes.
-      this.meshNodes = this.constructMeshNodes(originalMesh);
 
+      this.meshNodes = this.constructMeshNodes(previousMesh);
+
+      // An array of instanced meshes used to render the instanced entity.
+      // There may be more then one of these:
+      // - rendering multi-part GLTFs requires multiple InstancedMesh objects.
+      // - if a multi-material geometry is decomposed into its groups to allow variable per-member coloring
+      //   of each material, this also requires multiple InstancedMesh objects.
       this.instancedMeshes = [];
+
+      // The matrix adjustment required for each instanced mesh.
+      // This is needed for multi-part GLTFs, where each part needs adjustment to the correct
+      // position, scale and orientation
       this.componentMatrices = [];
+
+      // An array of indices to be used for indxeing materials.  This is used to look up which color
+      // to use for each member, where colors are per-member.
+      // For decomposed multi-material geometries, this is the materialIndex set for each group in the geometry.
+      // For multi-part GLTFs, there is simply one material index per-part.
+      this.componentMaterialIndices = [];
+
+      // A record of the original color of each material used in the mesh.
+      // This is used when colors have been drained, but a member of the instance mesh does not
+      // explicitly specify a color.  In this case we fall back to a default of the coloring from the original mesh.
+      // We do also have a copy of the original mesh stored at this.originalMesh, but we keep this array so that we
+      // have a uniform way to easily access the color info we need.
+      this.componentOriginalColors = [];
 
       this.meshNodes.forEach((node, index) => {
         var instancedMesh = new THREE.InstancedMesh(
@@ -157,22 +205,36 @@ AFRAME.registerComponent('instanced-mesh', {
         // it represents.
         this.instancedMeshes.push(instancedMesh);
         this.componentMatrices.push(node.matrixWorld);
+        this.componentMaterialIndices.push(node.materialIndex);
+        this.componentOriginalColors.push(node.originalColor);
       });
+
+      // Add all the instanced meshes as children of the object3D, and hide
+      // the original mesh.
+      this.instancedMeshes.forEach((mesh) => {
+        this.el.object3D.add(mesh);
+      });
+
+      // Keep the original mesh, but make invisible.
+      // Useful for generating per-member meshes for physics/raycasting.
+      // (see instanced-mesh-member 'memberMesh' option)
+      this.originalMesh = previousMesh;
+      this.el.emit('original-mesh-ready');
+      previousMesh.visible = false;
     }
 
     // some other details that may need to be updated on the instanced meshes...
-    this.updateFrustrumCulling();
+    this.updateFrustumCulling();
     this.updateLayers();
 
-    // Add all the instanced meshes as children of the object3D, and remove
-    // the original mesh.
-    this.instancedMeshes.forEach((mesh) => {
-      this.el.object3D.add(mesh);
-    });
-    this.el.object3D.remove(originalMesh);
-
     // set the Object3D Map to point to the first instanced mesh.
-    this.el.setObject3D('mesh', this.instancedMeshes[0]);
+    if (this.instancedMeshes.length > 0) {
+      this.el.setObject3D('mesh', this.instancedMeshes[0]);
+    } else {
+      console.warn(
+        `Instanced Mesh ${this.el.id} includes no component Mesh that can be rendered.`
+      );
+    }
 
     this.meshLoaded = true;
 
@@ -206,10 +268,18 @@ AFRAME.registerComponent('instanced-mesh', {
         node.material,
         this.data.capacity
       );
+      newMesh.count = this.members;
       newMeshes.push(newMesh);
+
       for (ii = 0; ii < Math.min(oldMesh.count, this.data.capacity); ii++) {
         oldMesh.getMatrixAt(ii, this.matrix);
         newMesh.setMatrixAt(ii, this.matrix);
+      }
+      if (oldMesh.instanceColor) {
+        for (ii = 0; ii < Math.min(oldMesh.count, this.data.capacity); ii++) {
+          oldMesh.getColorAt(ii, this.color);
+          newMesh.setColorAt(ii, this.color);
+        }
       }
 
       this.el.object3D.add(newMesh);
@@ -225,17 +295,27 @@ AFRAME.registerComponent('instanced-mesh', {
     this.el.setObject3D('mesh', this.instancedMeshes[0]);
   },
 
-  updateFrustrumCulling: function () {
-    // Set up frustrum culling if configured.
+  updateFrustumCulling: function () {
+    // Set up frustum culling if configured.
     // This uses a separate "boundingSphere" object that represents the
     // maximum extent of all members of the mesh.
-    // If one is specified, we us this for frustrum culling.  If not, we don't
-    // use frustrum culling at all for this mesh.
+    // If one is specified, we us this for frustum culling.  If not, we don't
+    // use frustum culling at all for this mesh.
     if (this.data.fcradius > 0) {
       this.boundingSphere.center.copy(this.data.fccenter);
       this.boundingSphere.radius = this.data.fcradius;
       this.instancedMeshes.forEach((mesh) => {
-        mesh.geometry.boundingSphere = this.boundingSphere;
+        // We mustn't overwrite the boundingSphere of a shared geometry.
+        // Doing so could have various unpredictable effects.
+        // We need a private copy of each geometry used by this Instanced Mesh.
+        // If we already have a private geometry, we can just update it
+        if (mesh.geometry.userData.instancedMeshPrivateGeometry === this) {
+          mesh.geometry.boundingSphere = this.boundingSphere;
+        } else {
+          mesh.geometry = mesh.geometry.clone();
+          mesh.geometry.userData.instancedMeshPrivateGeometry = this;
+          mesh.geometry.boundingSphere = this.boundingSphere;
+        }
         mesh.frustumCulled = true;
       });
     } else {
@@ -271,38 +351,158 @@ AFRAME.registerComponent('instanced-mesh', {
     meshNodes = [];
 
     originalMesh.updateMatrixWorld();
-    originalMesh.traverse(function (node) {
-      var material;
-      var geometry;
+    this.inverseMatrix.copy(originalMesh.matrixWorld);
+    this.inverseMatrix.invert();
+    const inverseMatrix = this.inverseMatrix;
 
+    originalMesh.traverse((node) => {
+      let material;
+      let geometry;
+
+      if (node.type === 'SkinnedMesh') {
+        console.warn(
+          `Instanced Mesh ${this.el.id} includes a skinnedMesh ${node.name}.  Skinned Meshes are not supported with instancing and will not be rendered.`
+        );
+      }
       if (node.type != 'Mesh') return;
       geometry = node.geometry;
 
-      // material can be an array of materials.  We want the whole array.
-      // Why clone?  AFrame-InstancedMesh says:
-      // this component creates a .clone() of parent material because of a known
-      // threejs limitation.
-      // I don't yet have a reference for what that threejs limittation is, and
-      // whether it still applies.
-      if (Array.isArray(node.material)) {
-        material = [];
-        node.material.forEach((item) => material.push(item.clone()));
+      if (
+        this.data.decompose &&
+        geometry.groups &&
+        geometry.groups.length > 1
+      ) {
+        // geometry consists of multiple groups, to decompose.
+
+        const materialIndices = new Set();
+        geometry.groups.forEach((group) => {
+          materialIndices.add(group.materialIndex);
+        });
+
+        materialIndices.forEach((index) => {
+          const partGeometries = this.constructPartGeometries(geometry, index);
+
+          partGeometries.forEach((partGeometry) => {
+            // Use specified material; or default if none specified for this index
+            const material = this.cloneMaterial(node.material, index);
+            let color;
+            if (this.data.drainColor) {
+              color = this.drainColor(material);
+            } else {
+              console.warn('Decomposing Instanced Mesh without draining color');
+              console.warn(
+                'If your intention is to re-color individual mesh members, you should'
+              );
+              console.warn(
+                'drain colors using drainColors: true, to allow individual mesh members to be re-colored correctly'
+              );
+            }
+
+            node.updateMatrixWorld();
+            const matrix = node.matrixWorld.clone();
+            matrix.premultiply(inverseMatrix);
+
+            meshNodes.push({
+              geometry: partGeometry,
+              material: material,
+              originalColor: color,
+              materialIndex: index,
+              matrixWorld: matrix,
+            });
+          });
+        });
       } else {
-        material = node.material.clone();
+        // Why clone?  AFrame-InstancedMesh says:
+        // this component creates a .clone() of parent material because of a known
+        // threejs limitation.
+        // I don't yet have a reference for what that threejs limittation is, and
+        // whether it still applies.
+        const material = this.cloneMaterial(node.material);
+        let color;
+        if (this.data.drainColor) {
+          color = this.drainColor(material);
+        }
+
+        node.updateMatrixWorld();
+        const matrix = node.matrixWorld.clone();
+        matrix.premultiply(inverseMatrix);
+
+        meshNodes.push({
+          geometry: geometry,
+          material: material,
+          originalColor: color,
+          materialIndex: meshNodes.length,
+          matrixWorld: matrix,
+        });
       }
-
-      node.updateMatrixWorld();
-      this.matrix = node.matrixWorld.clone();
-      this.matrix.premultiply(originalMesh.matrixWorld.invert());
-
-      meshNodes.push({
-        geometry: geometry,
-        material: material,
-        matrixWorld: this.matrix,
-      });
     });
 
     return meshNodes;
+  },
+
+  // clone a material.  If index is specified, just clone that index from an array of materials.
+
+  cloneMaterial(material, index) {
+    let newMaterial;
+    let color;
+
+    if (Array.isArray(material)) {
+      if (index === undefined) {
+        newMaterial = [];
+        material.forEach((item) => newMaterial.push(item.clone()));
+      } else if (material.length > index) {
+        newMaterial = material[index].clone();
+      } else {
+        newMaterial = material[0].clone();
+      }
+    } else {
+      newMaterial = material.clone();
+    }
+
+    return newMaterial;
+  },
+
+  // Set material color to white, and return old color so that it can be stored off.
+  drainColor(material) {
+    let color;
+
+    if (Array.isArray(material)) {
+      material.forEach((m) => {
+        this.drainColor(m);
+      });
+      console.warn(
+        'Draining colors from multi-material non-decomposed instanced mesh'
+      );
+      console.warn(
+        "Multiple colors can't be set at the member level unless the mesh is decomposed"
+      );
+      console.warn(
+        "To avoid color loss, either decompose the instanced mesh (decompose: true), or don't drain colors (drainColor: false)"
+      );
+      color = new THREE.Color('grey');
+    } else {
+      color = material.color.clone();
+      material.color.set('white');
+    }
+
+    return color;
+  },
+
+  constructPartGeometries(geometry, materialIndex) {
+    // construct an array of partial geometries that will render the
+    // parts of a geometry that match a given materialIndex.
+    const partGeometries = [];
+
+    geometry.groups.forEach((group) => {
+      if (group.materialIndex === materialIndex) {
+        const partGeometry = geometry.clone();
+        partGeometry.setDrawRange(group.start, group.count);
+        partGeometries.push(partGeometry);
+        partGeometry.clearGroups();
+      }
+    });
+
+    return partGeometries;
   },
 
   memberAdded: function (event) {
@@ -313,7 +513,11 @@ AFRAME.registerComponent('instanced-mesh', {
       return;
     }
 
-    const memberID = event.detail.member.id;
+    if (this.debug) {
+      console.log(`Member ${event.detail.member.id} to be added`);
+    }
+
+    const member = event.detail.member;
     var index;
 
     // First, choose the index for the new member.
@@ -321,13 +525,13 @@ AFRAME.registerComponent('instanced-mesh', {
     // 1. If there are members pending deletion, just overwrite one of them.
     if (this.membersToRemove.length > 0) {
       // Grab the index, and remove this index from the list of pending deletions.
-      const id = this.membersToRemove[0];
-      index = this.orderedMembersList.findIndex((x) => x == id);
+      const memberToRemove = this.membersToRemove[0];
+      index = this.orderedMembersList.findIndex((x) => x == memberToRemove);
 
       this.membersToRemove.splice(0, 1);
-      this.orderedMembersList[index] = memberID;
+      this.orderedMembersList[index] = member;
     }
-    // 2. If nothing is  pending deletion, so just add to the end of the list as
+    // 2. If nothing is pending deletion, so just add to the end of the list as
     //    a new member.
     else {
       if (this.members > this.capacity) {
@@ -335,15 +539,19 @@ AFRAME.registerComponent('instanced-mesh', {
         console.warn(
           `Member not added to mesh ${this.el.id}.  Exceeded configured capacity of ${this.capacity}`
         );
+        console.warn(
+          `To fix, set 'capacity' property on instanced-mesh attribute on entity:${this.el.id} (default is 100)`
+        );
         return;
       }
 
       index = this.members;
       this.members++;
-      this.orderedMembersList.push(memberID);
+      this.orderedMembersList.push(member);
     }
 
-    this.updateMatricesFromMemberObject(event.detail.member.object3D, index);
+    // flag this member as needing an update.
+    this.membersToUpdate.add(member);
 
     // Diags: Dump full matrix of x/y positions:
     //for (var jj = 0; jj < this.members; jj++) {
@@ -353,6 +561,9 @@ AFRAME.registerComponent('instanced-mesh', {
     this.instancedMeshes.forEach((mesh) => {
       mesh.count = this.members;
       mesh.instanceMatrix.needsUpdate = true;
+      if (mesh.instanceColor) {
+        mesh.instanceColor.needsUpdate = true;
+      }
     });
   },
 
@@ -360,10 +571,13 @@ AFRAME.registerComponent('instanced-mesh', {
   // matrices to match the transform of the member object
   // (provided in the object3D)
   updateMatricesFromMemberObject(object3D, index) {
-    this.matrix = this.matrixFromMemberObject(object3D);
+    const matrix = this.matrixFromMemberObject(object3D);
 
+    // don't output console logs for matrix updates in auto mode - too verbose.
+    const debug = this.debug && !this.autoMode;
+    const componentMatrix = this.componentMatrix;
     this.instancedMeshes.forEach((mesh, componentIndex) => {
-      if (this.debug) {
+      if (debug) {
         //console.log(`Modifying member ${id} at position ${index}`);
         console.log(`Setting matrix for component index ${componentIndex}`);
 
@@ -376,50 +590,77 @@ AFRAME.registerComponent('instanced-mesh', {
         console.log(`New position:${position.x} ${position.y} ${position.z}`);
       }
 
-      this.componentMatrix = this.matrix.clone();
+      componentMatrix.multiplyMatrices(
+        matrix,
+        this.componentMatrices[componentIndex]
+      );
+      mesh.setMatrixAt(index, componentMatrix);
 
-      this.componentMatrix.multiply(this.componentMatrices[componentIndex]);
-      mesh.setMatrixAt(index, this.componentMatrix);
+      const gotColor = this.getColorForComponent(
+        object3D,
+        componentIndex,
+        this.color
+      );
+      if (gotColor) {
+        // Prior to A-Frame 1.5.0, must call applyColorCorrection to cover case where
+        // colorManagement s set to true.
+        // Should not be required after 1.5.0 due to A-Frame PR 5210.
+        // https://github.com/aframevr/aframe/pull/5210
+        const renderer = this.el.sceneEl.systems.renderer;
+        renderer.applyColorCorrection(this.color);
+
+        mesh.setColorAt(index, this.color);
+        mesh.instanceColor.needsUpdate = true;
+      }
 
       mesh.instanceMatrix.needsUpdate = true;
     });
   },
 
-  // Get the matrix to add to an instanced mesh from an object 3D
-  // allowing for positioning style (local or world)
-  matrixFromMemberObject: function (object3D) {
-    // matrix used for working...
-    const matrix = this.matrix;
+  // Get the color for a particular component, based on:
+  // The member (this may have explicit color config)
+  // The original mesh (use this by default if the member doesn't specify any colors)
+  getColorForComponent(member, componentIndex, color) {
+    let gotColor = true;
 
-    if (this.localPositioning) {
-      // Pull object3D details to construct matrix.  Note that the
-      // matrix itself can't be relied upon to have been correctly intialized,
-      // which is why we don't use it directly.
-      // !! 24/7/21 - I'd like to understand this better...
-      //              could be a lot slicker if we could assume object3D matrix
-      //              is fully initialized...
-      matrix.compose(object3D.position, object3D.quaternion, object3D.scale);
-    } else {
-      object3D.getWorldPosition(this.position);
-      object3D.getWorldQuaternion(this.quaternion);
-      object3D.getWorldScale(this.scale);
+    // the color index to look up on the mesh member.
+    const colorIndex = this.componentMaterialIndices[componentIndex];
 
-      // We now have world co-ordinates of the mesh member.
-      // Just need to transform into the frame of reference of the instanced
-      // mesh itself.
-      // As follows:
-      // Make sure parent MatrixWorld is up to date.
-      // Take it's inverse, and pre-multiply by it.
-      // This way, when the parent MatrixWorld is applied to the object
-      // it will end up back where we wanted it.
-      this.el.object3D.parent.updateMatrixWorld();
-      var parentMatrix = this.el.object3D.parent.matrixWorld.invert();
-
-      matrix.compose(this.position, this.quaternion, this.scale);
-      matrix.premultiply(parentMatrix);
+    // ?. operator guards for race conditions around deletion of members.
+    let colors = undefined;
+    if (member.el && member.el.components['instanced-mesh-member']) {
+      colors = member.el.components['instanced-mesh-member'].data.colors;
     }
 
-    return matrix;
+    if (colors && colors.length > colorIndex) {
+      // member has specified a color for the relevant index.
+      color.set(colors[colorIndex]);
+    } else if (this.componentOriginalColors[componentIndex]) {
+      color.copy(this.componentOriginalColors[componentIndex]);
+    } else {
+      gotColor = false;
+    }
+
+    return gotColor;
+  },
+
+  // Get the matrix to add to an instanced mesh from an object 3D
+  // allowing for positioning style (local or world)
+  // This version assumes that object3D matrices are all up-to-date, and
+  // this.parentWorldMatrixInverse is set to the inverse of the world matrix of the parent of
+  // this instanced mesh.
+  // Hence this should only be invoked on an onBeforeRender() callback, and not at other times.
+  matrixFromMemberObject: function (object3D) {
+    if (this.localPositioning) {
+      return object3D.matrix;
+    } else {
+      const matrix = this.matrix;
+      matrix.multiplyMatrices(
+        this.parentWorldMatrixInverse,
+        object3D.matrixWorld
+      );
+      return matrix;
+    }
   },
 
   memberModified: function (event) {
@@ -430,19 +671,15 @@ AFRAME.registerComponent('instanced-mesh', {
       return;
     }
 
-    // Not yet thought about transitations between frames of reference
-    // Just assume all in same FOR for now..
-    const id = event.detail.member.id;
-    const index = this.orderedMembersList.findIndex((x) => x == id);
-
-    if (index == -1) {
-      console.error(`Member ${id} not found for modification`);
-    }
-
-    this.updateMatricesFromMemberObject(event.detail.member.object3D, index);
+    const member = event.detail.member;
+    this.membersToUpdate.add(member);
   },
 
   memberRemoved: function (event) {
+    if (this.debug) {
+      console.log(`Member ${event.detail.member.id} to be removed`);
+    }
+
     if (!this.meshLoaded) {
       // Mesh not yet loaded, so instanced mesh not yet created.
       // Queue this event up for later processing.
@@ -457,7 +694,7 @@ AFRAME.registerComponent('instanced-mesh', {
     // at the next tick, by which time we may have collected a number of
     // deletions to handle all together.
     //console.log("Removing mesh member with ID:" + event.detail.member.id);
-    this.membersToRemove.push(event.detail.member.id);
+    this.membersToRemove.push(event.detail.member);
     if (this.debug) {
       console.log(`Member ${event.detail.member.id} queued up for removal`);
     }
@@ -531,6 +768,11 @@ AFRAME.registerComponent('instanced-mesh', {
             this.instancedMeshes.forEach((mesh) => {
               mesh.getMatrixAt(matrixCursor + 1, this.matrix);
               mesh.setMatrixAt(matrixCursor - removed + 1, this.matrix);
+
+              if (mesh.instanceColor) {
+                mesh.getColorAt(matrixCursor + 1, this.color);
+                mesh.setColorAt(matrixCursor - removed + 1, this.color);
+              }
             });
           }
         }
@@ -540,18 +782,73 @@ AFRAME.registerComponent('instanced-mesh', {
       this.instancedMeshes.forEach((mesh) => {
         mesh.count = this.members;
         mesh.instanceMatrix.needsUpdate = true;
+        if (mesh.instanceColor) {
+          mesh.instanceColor.needsUpdate = true;
+        }
       });
 
       // No further pending removals.
       this.membersToRemove = [];
 
-      // Diags: Dump full matrix of x/y positions:
-      //for (var jj = 0; jj < this.members; jj++) {
-      //console.log(`x: ${this.instancedMesh.instanceMatrix.array[jj * 16 + 12]}, y: ${this.instancedMesh.instanceMatrix.array[jj * 16 + 13]}`);
-      //}
-
-      console.log('Removals done');
+      //console.log("Removals done");
     }
+  },
+
+  // perform any updates needed ahead of rendering
+  // - in auto update mode, update all matrices
+  // - (TO DO) manual update mode, update those
+  // Because this is called via scene.onBeforeRender(), all object3D matrices can be assumed
+  // to be up-to-date.
+  prerender() {
+    if (!this.autoMode && this.membersToUpdate.size === 0) return;
+
+    // update this.parentWorldMatrixInverse, which will be used in matrix calculations.
+    const parent = this.el.object3D.parent;
+    const parentInverse = this.parentWorldMatrixInverse;
+    parentInverse.copy(parent.matrixWorld);
+    parentInverse.invert();
+
+    if (this.autoMode) {
+      const list = this.orderedMembersList;
+      const members = this.members;
+      for (let ii = 0; ii < members; ii++) {
+        const object = list[ii].object3D;
+
+        if (object) {
+          this.updateMatricesFromMemberObject(object, ii);
+        }
+      }
+    } else {
+      this.membersToUpdate.forEach((member) => {
+        const index = this.orderedMembersList.findIndex((x) => x === member);
+        if (index == -1) {
+          console.error(`Member ${member.id} not found for modification`);
+        }
+        this.updateMatricesFromMemberObject(member.object3D, index);
+      });
+      this.membersToUpdate.clear();
+    }
+  },
+
+  addOnBeforeRenderToScene() {
+    const scene = this.el.sceneEl.object3D;
+    this.oldOnBeforeRender = scene.onBeforeRender;
+    scene.onBeforeRender = this.onBeforeRender.bind(this);
+  },
+
+  onBeforeRender(renderer, scene, camera, geometry, material, group) {
+    if (this.oldOnBeforeRender) {
+      this.oldOnBeforeRender(
+        renderer,
+        scene,
+        camera,
+        geometry,
+        material,
+        group
+      );
+    }
+
+    this.prerender();
   },
 });
 
@@ -559,6 +856,8 @@ AFRAME.registerComponent('instanced-mesh-member', {
   schema: {
     mesh: { type: 'selector' },
     debug: { type: 'boolean', default: false },
+    memberMesh: { type: 'boolean', default: false },
+    colors: { type: 'array' },
   },
 
   init: function () {
@@ -572,7 +871,7 @@ AFRAME.registerComponent('instanced-mesh-member', {
 
     // Some state we track, to help make the right updates to the Instanced Mesh.
     this.visible = this.el.object3D.visible;
-    this.matrix = this.el.object3D.matrix.clone();
+    this.colors = this.data.colors;
   },
 
   update: function () {
@@ -585,20 +884,13 @@ AFRAME.registerComponent('instanced-mesh-member', {
         }
         this.data.mesh.emit('memberRemoved', { member: this.el });
         this.visible = false;
-      } else {
-        // Object was & is visible.  Check for other updates that need to be
+      } else if (this.added) {
+        // Object was & is visible.  There may be other updates that need to be
         // mirrored to the Mesh.
-        // Basically just the localMatrix at this stage...
-        // (we'll need to revisit when we support multiple frames of reference...)
-        if (!this.matrix.equals(this.el.object3D.matrix)) {
-          // there's been some change to position, orientation or scale, so
-          // mirror it.
-          if (this.debug) {
-            console.log('Modified:' + this.el.id);
-          }
-          this.data.mesh.emit('memberModified', { member: this.el });
-          this.matrix.copy(this.el.object3D.matrix);
-        }
+        // E.g. local matrix, some ancestor matrix, colors etc.
+        // Checking for all possible changes gets too complicated
+        // so just push through an update.
+        this.data.mesh.emit('memberModified', { member: this.el });
       }
     } else {
       // Object not previously visible.  But might have just become...
@@ -607,10 +899,32 @@ AFRAME.registerComponent('instanced-mesh-member', {
           console.log('Added (v):' + this.el.id);
         }
         this.data.mesh.emit('memberAdded', { member: this.el });
-        this.matrix.copy(this.el.object3D.matrix);
         this.visible = true;
         this.added = true;
       }
+    }
+
+    // create/remove invisible member mesh from the instanced mesh if needed.
+    if (this.data.memberMesh && !this.el.getObject3D('mesh')) {
+      const originalMesh =
+        this.data.mesh.components['instanced-mesh'].originalMesh;
+      const el = this.el;
+
+      function setMesh(mesh) {
+        const newMesh = mesh.clone();
+        newMesh.visible = false;
+        el.setObject3D('mesh', newMesh);
+      }
+
+      if (originalMesh) {
+        setMesh(originalMesh);
+      } else {
+        this.data.mesh.addEventListener('original-mesh-ready', (e) => {
+          setMesh(this.data.mesh.components['instanced-mesh'].originalMesh);
+        });
+      }
+    } else if (!this.data.memberMesh && this.el.getObject3D('mesh')) {
+      this.el.removeObject3D('mesh');
     }
   },
 
@@ -624,7 +938,6 @@ AFRAME.registerComponent('instanced-mesh-member', {
         console.log('Added:' + this.el.id);
       }
       this.data.mesh.emit('memberAdded', { member: this.el });
-      this.matrix.copy(this.el.object3D.matrix);
       this.added = true;
     }
   },

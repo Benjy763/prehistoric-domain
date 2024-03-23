@@ -1,0 +1,11 @@
+Model Information:
+* title:	Fern bush
+* source:	https://sketchfab.com/3d-models/fern-bush-864be1101df6491e8f11549dec007f0a
+* author:	n-malmberg (https://sketchfab.com/n-malmberg)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Fern bush" (https://sketchfab.com/3d-models/fern-bush-864be1101df6491e8f11549dec007f0a) by n-malmberg (https://sketchfab.com/n-malmberg) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

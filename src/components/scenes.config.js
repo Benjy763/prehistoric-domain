@@ -217,6 +217,40 @@ export const MainScenes = {
       carReference: null,
     },
   },
+  cretaceousLagoon: {
+    // Starting scene
+    name: 'Cretaceous Lagoon',
+    loadingScreen: 'lagoon-illu.jpg',
+    needPerformance: false,
+    needLanguage: true,
+    mobileCompatible: true,
+    selection: 'cretaceousLagoon',
+    assetsId: 'cretaceous-lagoon-assets',
+    carMarkerForDebug: 0.32,
+    color: '#04719f',
+    density: [0.1, 0.1],
+    loading: {
+      scene: 'loading-scene',
+      camera: 'loading-scene-camera',
+    },
+    cretaceousLagoon: {
+      scene: 'cretaceous-lagoon-scene',
+      camera: 'cretaceous-lagoon-scene-camera',
+      car: 'cretaceous-lagoon-car',
+      carReference: null,
+      rigPos: {
+        x: 1,
+        y: 2.2,
+        z: 0,
+      },
+    },
+    ending: {
+      scene: 'ending-scene',
+      camera: 'ending-scene-camera',
+      car: 'ending-car',
+      carReference: null,
+    },
+  },
   lagoon: {
     // Starting scene
     name: 'Megalodon Viewing Gallery',
@@ -227,7 +261,7 @@ export const MainScenes = {
     selection: 'lagoon',
     assetsId: 'lagoon-assets',
     carMarkerForDebug: 0.32,
-    color: '#1074b2',
+    color: '#04719f',
     density: [0.1, 0.1],
     loading: {
       scene: 'loading-scene',
@@ -354,6 +388,7 @@ export const MainScenes = {
     // Starting scene
     name: 'Quetzalcoatlus Viewing Gallery',
     loadingScreen: 'quetza-illu.jpg',
+    displayDistance: 10000,
     needPerformance: true,
     needLanguage: true,
     mobileCompatible: true,
@@ -361,7 +396,7 @@ export const MainScenes = {
     assetsId: 'swamp-assets',
     carMarkerForDebug: 0.32,
     color: '#5e5e5e',
-    density: [0.05, 0.05],
+    density: [0, 0],
     canWalk: true,
     loading: {
       scene: 'loading-scene',
@@ -394,6 +429,7 @@ export const MainScenes = {
     mobileCompatible: true,
     selection: 'dimetrodon',
     assetsId: 'dimetrodon-assets',
+    displayDistance: 10000,
     carMarkerForDebug: 0.32,
     color: '#ffddc2',
     density: [0.015, 0.015],

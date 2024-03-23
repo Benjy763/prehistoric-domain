@@ -1,86 +1,101 @@
 <a-assets id="deino-assets" timeout="60000">
   <!-- Audio -->
   <!-- Voice -->
-  <audio id="voice-deino-sound-en" response-type="arraybuffer" src="/assets/sounds/voice/en/deino.mp3" preload="auto"
-    volume="1"></audio>
-  <audio id="voice-deino-sound-fr" response-type="arraybuffer" src="/assets/sounds/voice/fr/deino.mp3" preload="auto"
-    volume="1"></audio>
+  <audio id="voice-deino-sound-en" response-type="arraybuffer"
+    src="/assets/sounds/voice/en/deino.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto" volume="1"></audio>
+  <audio id="voice-deino-sound-fr" response-type="arraybuffer"
+    src="/assets/sounds/voice/fr/deino.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto" volume="1"></audio>
 
   <!-- Environement -->
-  <audio id="jungle-asset" response-type="arraybuffer" src="/assets/sounds/environement/swamp-forest.webm"
-    preload="auto" loop="true" volume="1"></audio>
+  <audio id="jungle-asset" response-type="arraybuffer"
+    src="/assets/sounds/environement/swamp-forest.webm?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto"
+    loop="true" volume="1"></audio>
 
   <!-- deino -->
-  <a-asset-item id="deino-intro" src="/assets/sounds/deino/intro.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="deino-jump-start" src="/assets/sounds/deino/jump-start.mp3" preload="auto"
-    response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="deino-roar" src="/assets/sounds/deino/roar.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="deino-jump-end" src="/assets/sounds/deino/jump-end.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="deino-dragonfly-sound" src="/assets/sounds/deino/dragonfly.mp3" preload="auto"
+  <a-asset-item id="deino-intro" src="/assets/sounds/deino/intro.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="deino-jump-start" src="/assets/sounds/deino/jump-start.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="deino-roar" src="/assets/sounds/deino/roar.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="deino-jump-end" src="/assets/sounds/deino/jump-end.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="deino-dragonfly-sound"
+    src="/assets/sounds/deino/dragonfly.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto"
     response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
 
   <!-- Images -->
 
 
-  <img id="loading-asset" src="/assets/images/loader.png?lastmod=9" />
-  <img id="limits-asset" src="/assets/images/limits.png?lastmod=9" />
-  <img id="credits-asset" src="/assets/images/credits.png?lastmod=9" />
-  <img id="rendering-asset" src="/assets/images/rendering.png?lastmod=9" />
-  <img id="ground-texture-grass-asset" src="/assets/images/floor-grass.jpg?lastmod=9" />
+  <img id="loading-asset" src="/assets/images/loader.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="limits-asset" src="/assets/images/limits.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="credits-asset" src="/assets/images/credits.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="rendering-asset" src="/assets/images/rendering.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="ground-texture-grass-asset" src="/assets/images/floor-grass.jpg?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
   <img id="dont-touch-asset" src="/assets/images/dont-touch.jpg" />
-  <img id="deino-pres-asset" src="/assets/images/deino-pres.png?lastmod=9" />
-  <img id="360-pane-asset" src="/assets/images/trex/360-pane.jpg">
+  <img id="deino-pres-asset" src="/assets/images/deino-pres.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
   </img>
 
   <!-- 3D -->
   <!-- Objects -->
-  <a-asset-item id="deino-scene-asset" src="/assets/models/objects/viewing-gallery/scene.glb?lastmod=9">
+  <a-asset-item id="deino-scene-asset"
+    src="/assets/models/objects/viewing-gallery/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="window-asset" src="/assets/models/objects/window/scene.glb?lastmod=9">
+  <a-asset-item id="window-asset" src="/assets/models/objects/window/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="window-support-asset" src="/assets/models/objects/window-support/scene2.glb?lastmod=9">
+  <a-asset-item id="window-support-asset"
+    src="/assets/models/objects/window-support/scene2.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="wall-asset" src="/assets/models/objects/door-2/scene.glb?lastmod=9">
+  <a-asset-item id="wall-asset" src="/assets/models/objects/door-2/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="terminal-asset" src="/assets/models/objects/terminal/scene.glb?lastmod=9">
+  <a-asset-item id="terminal-asset"
+    src="/assets/models/objects/terminal/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="door-asset" src="/assets/models/objects/door-underwater/scene.glb?lastmod=9">
+  <a-asset-item id="door-asset"
+    src="/assets/models/objects/door-underwater/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="floor-asset" src="/assets/models/objects/floor/scene.glb?lastmod=9">
+  <a-asset-item id="floor-asset" src="/assets/models/objects/floor/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="checkpoint-asset" src="/assets/models/objects/checkpoint/scene.glb?lastmod=9">
+  <a-asset-item id="checkpoint-asset"
+    src="/assets/models/objects/checkpoint/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
 
 
   <!-- Vegetation -->
-  <a-asset-item id="forest-rock-1-asset" src="/assets/models/environment/forest/forest-rock-1/scene.glb?lastmod=9">
+  <a-asset-item id="forest-rock-1-asset"
+    src="/assets/models/environment/forest/forest-rock-1/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="forest-fern-1-asset" src="/assets/models/environment/forest/forest-fern-1/scene.glb?lastmod=9">
+  <a-asset-item id="forest-fern-1-asset"
+    src="/assets/models/environment/forest/forest-fern-1/scene-nomorph.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="forest-fern-3-asset" src="/assets/models/environment/forest/forest-fern-3/scene.glb?lastmod=9">
+  <a-asset-item id="forest-fern-3-asset"
+    src="/assets/models/environment/forest/forest-fern-3/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="forest-plant-2-asset" src="/assets/models/environment/forest/forest-plant-2/scene.glb?lastmod=9">
+  <a-asset-item id="forest-plant-2-asset"
+    src="/assets/models/environment/forest/forest-plant-2/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="ground-mud-asset" src="/assets/models/environment/ground-mud/scene.glb?lastmod=9">
+  <a-asset-item id="ground-mud-asset"
+    src="/assets/models/environment/ground-mud/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="forest-rock-2-asset" src="/assets/models/environment/forest/forest-rock-2/scene.glb?lastmod=9">
+  <a-asset-item id="forest-rock-2-asset"
+    src="/assets/models/environment/forest/forest-rock-2/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
   <a-asset-item id="forest-pine-large-asset"
-    src="/assets/models/environment/forest/forest-fir-large/fire-large-4.glb?lastmod=9">
+    src="/assets/models/environment/forest/forest-fir-large/fire-large-4.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="swamp-mangrove-asset" src="/assets/models/environment/swamp/swamp-mangrove/scene.glb?lastmod=9">
+  <a-asset-item id="swamp-mangrove-asset"
+    src="/assets/models/environment/swamp/swamp-mangrove/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="swamp-mangrove-2-asset" src="/assets/models/environment/swamp/swamp-mangrove/scene-2.glb?lastmod=9">
+  <a-asset-item id="swamp-mangrove-2-asset"
+    src="/assets/models/environment/swamp/swamp-mangrove/scene-2.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
 
-  <!-- <a-asset-item id="rain-asset" src="/assets/models/environment/rain/scene.glb?lastmod=9">
+  <!-- <a-asset-item id="rain-asset" src="/assets/models/environment/rain/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item> -->
 
   <!-- Dinosaurs -->
-  <a-asset-item id="deino-asset" src="/assets/models/dinosaurs/deino/deino.glb?lastmod=9"></a-asset-item>
+  <a-asset-item id="deino-asset"
+    src="/assets/models/dinosaurs/deino/deino.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"></a-asset-item>
   <a-asset-item id="dragonfly-asset" src="/assets/models/dinosaurs/dragonfly/scene.gltf"></a-asset-item>
 
 </a-assets>

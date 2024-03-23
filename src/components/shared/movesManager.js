@@ -182,7 +182,7 @@ AFRAME.registerSystem('movesManager', {
   },
   // ----- Curve functions --------
   // Move an object on the given curve according to given speed
-  moveOnCurve: function (instance, object, curve, marker, speed, options) {
+  moveOnCurve: function (objectConfig, object, curve, marker, speed, options) {
     const {
       turn180 = false,
       useDeltaTime = false,
@@ -191,17 +191,17 @@ AFRAME.registerSystem('movesManager', {
     } = options || {};
 
     if (marker === 0 || needUpdateTime) {
-      instance.lastUpdateTime = performance.now();
+      objectConfig.lastUpdateTime = performance.now();
     }
     // Calculate delta time
     const time = performance.now();
-    const timeDelta = time - instance.lastUpdateTime;
+    const timeDelta = time - objectConfig.lastUpdateTime;
     // useDeltaTime for legacy compatibility
     let deltaTime = useDeltaTime ? timeDelta / 1000 : 1;
     if (!deltaTime) {
       deltaTime = 0.033; // 30fps on first round
     }
-    instance.lastUpdateTime = time;
+    objectConfig.lastUpdateTime = time;
 
     // Update marker on curve
     marker = marker + speed * deltaTime;

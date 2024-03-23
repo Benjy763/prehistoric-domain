@@ -11,6 +11,7 @@ AFRAME.registerComponent('dimetrodon-car-tour', {
       document.querySelector('a-scene').systems['movesManager'];
     this.dimetrodon = document.querySelector('#dimetrodon');
     this.rabbit = document.querySelector('#diplocaulus');
+    this.amorosa = document.querySelector('#dimetrodon-desert-amorosa-1');
     this.object = this.el.object3D;
     this.mainScene = document.getElementById('main-scene');
     this.textCar = document.querySelector('#dimetrodon-camera-text');
@@ -34,9 +35,13 @@ AFRAME.registerComponent('dimetrodon-car-tour', {
         // Get sounds
         this.ambiant1Sound =
           document.getElementById('dimetrodon').components['sound__ambiant1'];
+        this.amorosaSound = this.amorosa.components['sound__dimewater'];
         // Get voice from system when init
         this.voiceDimetrodon1Sound = this.system.getVoice('dimetrodon');
         this.voicePhase = 'dimetrodon';
+        setTimeout(() => {
+          this.amorosaSound.playSound();
+        }, 10000);
         setTimeout(() => {
           this.phase = 'start';
         }, 30000);
@@ -66,11 +71,13 @@ AFRAME.registerComponent('dimetrodon-car-tour', {
     // Checkpoint listener
     this.checkpointListener();
     // Voice phases
-    switch (this.voicePhase) {
-      case 'dimetrodon':
-        this.voiceDimetrodon1Sound.play();
-        this.voicePhase = 'exit';
-        break;
+    if (this.voiceDimetrodon1Sound) {
+      switch (this.voicePhase) {
+        case 'dimetrodon':
+          this.voiceDimetrodon1Sound.play();
+          this.voicePhase = 'exit';
+          break;
+      }
     }
     // Animation phases
     switch (this.phase) {

@@ -4,6 +4,7 @@ const mainscenes = [
   'tour',
   'aviary',
   'lagoon',
+  'cretaceousLagoon',
   'sarco',
   'spino',
   'dimetrodon',

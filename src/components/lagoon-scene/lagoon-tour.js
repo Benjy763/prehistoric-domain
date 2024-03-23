@@ -8,6 +8,7 @@ AFRAME.registerComponent('lagoon-car-tour', {
     this.movesManager =
       document.querySelector('a-scene').systems['movesManager'];
     this.textCar = document.querySelector('#lagoon-camera-text');
+    this.light = document.querySelector('#lagoon-directionaltarget');
 
     // Sounds
     this.ambiant1Sound;
@@ -28,6 +29,9 @@ AFRAME.registerComponent('lagoon-car-tour', {
     this.el.addEventListener(
       'start',
       () => {
+        // Start the light animation
+        this.light.emit('startAnimation');
+
         // Global sound launch
         document.getElementById('jungle-asset').play();
 
@@ -98,11 +102,13 @@ AFRAME.registerComponent('lagoon-car-tour', {
     // Checkpoint listener
     this.checkpointListener();
     // Voice phases
-    switch (this.voicePhase) {
-      case 'lagoon1':
-        this.voiceLagoon1Sound.play();
-        this.voicePhase = 'exit';
-        break;
+    if (this.voiceLagoon1Sound) {
+      switch (this.voicePhase) {
+        case 'lagoon1':
+          this.voiceLagoon1Sound.play();
+          this.voicePhase = 'exit';
+          break;
+      }
     }
     // Animation phases
     switch (this.phase) {

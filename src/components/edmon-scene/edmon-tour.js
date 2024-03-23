@@ -70,11 +70,13 @@ AFRAME.registerComponent('edmon-car-tour', {
     // Checkpoint listener
     this.checkpointListener();
     // Voice phases
-    switch (this.voicePhase) {
-      case 'edmon':
-        this.voiceEdmonSound.play();
-        this.voicePhase = 'exit';
-        break;
+    if (this.voiceEdmonSound) {
+      switch (this.voicePhase) {
+        case 'edmon':
+          this.voiceEdmonSound.play();
+          this.voicePhase = 'exit';
+          break;
+      }
     }
     // Animation phases
     switch (this.phase) {

@@ -1,103 +1,121 @@
 <a-assets id="swamp-assets" timeout="60000">
   <!-- Audio -->
   <!-- Voice -->
-  <audio id="voice-sarco-sound-en" response-type="arraybuffer" src="/assets/sounds/voice/en/sarco.mp3" preload="auto"
-    volume="1"></audio>
-  <audio id="voice-sarco-sound-fr" response-type="arraybuffer" src="/assets/sounds/voice/fr/sarco.mp3" preload="auto"
-    volume="1"></audio>
+  <audio id="voice-sarco-sound-en" response-type="arraybuffer"
+    src="/assets/sounds/voice/en/sarco.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto" volume="1"></audio>
+  <audio id="voice-sarco-sound-fr" response-type="arraybuffer"
+    src="/assets/sounds/voice/fr/sarco.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto" volume="1"></audio>
 
   <!-- Environement -->
-  <audio id="swamp-asset" response-type="arraybuffer" src="/assets/sounds/environement/swamp.webm" preload="auto"
+  <audio id="swamp-asset" response-type="arraybuffer"
+    src="/assets/sounds/environement/swamp.webm?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto" loop="true"
+    volume="1"></audio>
+  <audio id="underwater-asset" response-type="arraybuffer"
+    src="/assets/sounds/environement/underwater2.webm?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto"
     loop="true" volume="1"></audio>
-  <audio id="underwater-asset" response-type="arraybuffer" src="/assets/sounds/environement/underwater2.webm"
-    preload="auto" loop="true" volume="1"></audio>
 
   <!-- Sounds -->
-  <a-asset-item id="sarco-bird-end" src="/assets/sounds/sarco/bird-end.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="sarco-bird-start" src="/assets/sounds/sarco/bird-start.mp3" preload="auto"
+  <a-asset-item id="sarco-bird-end" src="/assets/sounds/sarco/bird-end.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="sarco-bird-start" src="/assets/sounds/sarco/bird-start.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="sarco-deep-dive" src="/assets/sounds/sarco/deep-dive.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="sarco-dive" src="/assets/sounds/sarco/dive.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="sarco-open-mouse" src="/assets/sounds/sarco/open-mouse.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="sarco-roar" src="/assets/sounds/sarco/roar.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="sarco-swim-restart"
+    src="/assets/sounds/sarco/swim-restart.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto"
     response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="sarco-deep-dive" src="/assets/sounds/sarco/deep-dive.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="sarco-dive" src="/assets/sounds/sarco/dive.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="sarco-open-mouse" src="/assets/sounds/sarco/open-mouse.mp3" preload="auto"
+  <a-asset-item id="sarco-swim-stop" src="/assets/sounds/sarco/swim-stop.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="sarco-walk" src="/assets/sounds/sarco/walk.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="sarco-nacelle-down"
+    src="/assets/sounds/sarco/nacelle-down.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto"
     response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="sarco-roar" src="/assets/sounds/sarco/roar.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="sarco-swim-restart" src="/assets/sounds/sarco/swim-restart.mp3" preload="auto"
+  <a-asset-item id="sarco-nacelle-end"
+    src="/assets/sounds/sarco/nacelle-end.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto"
     response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="sarco-swim-stop" src="/assets/sounds/sarco/swim-stop.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="sarco-walk" src="/assets/sounds/sarco/walk.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="sarco-nacelle-down" src="/assets/sounds/sarco/nacelle-down.mp3" preload="auto"
-    response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="sarco-nacelle-end" src="/assets/sounds/sarco/nacelle-end.mp3" preload="auto"
-    response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="sarco-nacelle-start" src="/assets/sounds/sarco/nacelle-start.mp3" preload="auto"
+  <a-asset-item id="sarco-nacelle-start"
+    src="/assets/sounds/sarco/nacelle-start.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto"
     response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
 
   <!-- Images -->
 
 
-  <img id="loading-asset" src="/assets/images/loader.png?lastmod=9" />
-  <img id="limits-asset" src="/assets/images/limits.png?lastmod=9" />
-  <img id="credits-asset" src="/assets/images/credits.png?lastmod=9" />
-  <img id="rendering-asset" src="/assets/images/rendering.png?lastmod=9" />
+  <img id="loading-asset" src="/assets/images/loader.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="limits-asset" src="/assets/images/limits.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="credits-asset" src="/assets/images/credits.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="rendering-asset" src="/assets/images/rendering.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
   <img id="dont-touch-asset" src="/assets/images/dont-touch.jpg" />
-  <img id="ground-texture-grass-asset" src="/assets/images/floor-grass.jpg?lastmod=9" />
+  <img id="ground-texture-grass-asset" src="/assets/images/floor-grass.jpg?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
 
   <!-- 3D -->
   <!-- Objects -->
-  <a-asset-item id="swamp-scene-asset" src="/assets/models/objects/viewing-gallery/scene.glb?lastmod=9">
+  <a-asset-item id="swamp-scene-asset"
+    src="/assets/models/objects/viewing-gallery/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="window-asset" src="/assets/models/objects/window/scene.glb?lastmod=9">
+  <a-asset-item id="window-asset" src="/assets/models/objects/window/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="window-support-asset" src="/assets/models/objects/window-support/scene2.glb?lastmod=9">
+  <a-asset-item id="window-support-asset"
+    src="/assets/models/objects/window-support/scene2.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="wall-asset" src="/assets/models/objects/door-2/scene.glb?lastmod=9">
+  <a-asset-item id="wall-asset" src="/assets/models/objects/door-2/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="terminal-asset" src="/assets/models/objects/terminal/scene.glb?lastmod=9">
+  <a-asset-item id="terminal-asset"
+    src="/assets/models/objects/terminal/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="door-asset" src="/assets/models/objects/door-underwater/scene.glb?lastmod=9">
+  <a-asset-item id="door-asset"
+    src="/assets/models/objects/door-underwater/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="floor-asset" src="/assets/models/objects/floor/scene.glb?lastmod=9">
+  <a-asset-item id="floor-asset" src="/assets/models/objects/floor/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="under-wall-asset" src="/assets/models/environment/concrete-wall/scene.glb?lastmod=9"></a-asset-item>
-  <a-asset-item id="checkpoint-asset" src="/assets/models/objects/checkpoint/scene.glb?lastmod=9">
+  <a-asset-item id="under-wall-asset"
+    src="/assets/models/environment/concrete-wall/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"></a-asset-item>
+  <a-asset-item id="checkpoint-asset"
+    src="/assets/models/objects/checkpoint/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
 
   <!-- Environment -->
-  <a-asset-item id="tall-bush-asset" src="/assets/models/environment/tall-bush/scene.glb?lastmod=9">
+  <a-asset-item id="tall-bush-asset"
+    src="/assets/models/environment/tall-bush/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="swamp-rock-asset" src="/assets/models/environment/swamp/swamp-rock/scene.glb?lastmod=9">
+  <a-asset-item id="swamp-rock-asset"
+    src="/assets/models/environment/swamp/swamp-rock/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="swamp-dead-tree-asset" src="/assets/models/environment/swamp/swamp-dead-tree/scene.glb?lastmod=9">
+  <a-asset-item id="swamp-dead-tree-asset"
+    src="/assets/models/environment/swamp/swamp-dead-tree/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="swamp-grass-asset" src="/assets/models/environment/swamp/swamp-grass/scene.gltf">
+  <a-asset-item id="swamp-grass-asset" src="/assets/models/environment/swamp/swamp-grass/scene.glb">
   </a-asset-item>
   <a-asset-item id="long-sea-plant-asset"
-    src="/assets/models/environment/underwater/long-sea-plant/scene.glb?lastmod=9">
+    src="/assets/models/environment/underwater/long-sea-plant/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
   <a-asset-item id="small-sea-plant-asset"
-    src="/assets/models/environment/underwater/small-sea-plant/scene.glb?lastmod=9">
+    src="/assets/models/environment/underwater/small-sea-plant/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="palm-tree-long-asset" src="/assets/models/environment/palm-tree-long/scene.glb?lastmod=9">
+  <a-asset-item id="palm-tree-long-asset"
+    src="/assets/models/environment/palm-tree-long/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="birds-asset" src="/assets/models/environment/birds/scene.glb?lastmod=9">
+  <a-asset-item id="birds-asset"
+    src="/assets/models/environment/birds/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
 
 
   <!-- Dinosaurs -->
-  <a-asset-item id="fish-asset" src="/assets/models/dinosaurs/fish/scene.glb?lastmod=9">
+  <a-asset-item id="fish-asset" src="/assets/models/dinosaurs/fish/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="sarco-asset" src="/assets/models/dinosaurs/sarco/Sarcosuchus_gltf.glb?lastmod=9">
+  <a-asset-item id="sarco-asset"
+    src="/assets/models/dinosaurs/sarco/Sarcosuchus_gltf.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="bird-asset" src="/assets/models/dinosaurs/bird/scene.glb?lastmod=9">
+  <a-asset-item id="bird-asset" src="/assets/models/dinosaurs/bird/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
 
   <!-- Images -->
-  <img id="sarco-pres-asset" src="/assets/images/sarco-pres.png?lastmod=9" />
+  <img id="sarco-pres-asset" src="/assets/images/sarco-pres.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
 
 </a-assets>

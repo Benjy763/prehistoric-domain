@@ -49,9 +49,16 @@ AFRAME.registerSystem('system', {
       !SupportedPlatform.includes(window.navigator.platform) &&
       !userAgentDataPlatform;
 
-    setTimeout(() => {
-      this.initPerformances();
-    }, 500);
+    // setTimeout(() => {
+    //   this.initPerformances();
+    // }, 500);
+    // Ask parent for selected langage
+    window.parent.postMessage('getLang', '*');
+    window.addEventListener('message', ({ data }) => {
+      if (data && typeof data === 'string' && data.startsWith('lang')) {
+        this.initLanguage(data.replace('lang', ''));
+      }
+    });
     this.initLanguage();
     this.loadingAssets();
 
@@ -192,9 +199,9 @@ AFRAME.registerSystem('system', {
       // Preloading
       setTimeout(() => {
         document.querySelector('#menu-wrapper').style.display = 'flex';
-        if (!this.scenes.needPerformance) {
-          document.querySelector('#menu-performance').style.display = 'none';
-        }
+        // if (!this.scenes.needPerformance) {
+        //   document.querySelector('#menu-performance').style.display = 'none';
+        // }
         if (!this.scenes.needLanguage) {
           document.querySelector('#menu-language').style.display = 'none';
         }
@@ -455,13 +462,14 @@ AFRAME.registerSystem('system', {
   togglePerf: function (isPerformance) {
     this.performance = isPerformance;
     const selectedColor = '#b39760';
+    const defaultColor = '#d4c9ba';
     const perfEl = document.querySelector('#perf');
     const qualityEl = document.querySelector('#quality');
 
     if (!isPerformance) {
       qualityEl.style.borderColor = selectedColor;
       qualityEl.style.opacity = '1';
-      perfEl.style.borderColor = '#d4c9ba';
+      perfEl.style.borderColor = defaultColor;
       perfEl.style.opacity = '0.6';
 
       let elements = document.getElementsByClassName('performance');
@@ -473,43 +481,78 @@ AFRAME.registerSystem('system', {
 
     perfEl.style.borderColor = selectedColor;
     perfEl.style.opacity = '1';
-    qualityEl.style.borderColor = '#d4c9ba';
+    qualityEl.style.borderColor = defaultColor;
     qualityEl.style.opacity = '0.6';
     let elements = document.getElementsByClassName('performance');
     for (let i = 0; i < elements.length; i++) {
       elements[i].setAttribute('visible', false);
     }
   },
+  applyStyle: ({ selectedKey, elements }) => {
+    const selectedColor = '#b39760';
+    const selectedTextColor = '#2f5b45';
+    const defaultColor = 'transparent';
+    const defaultTextColor = '#d4c9ba';
+    const selectedOpacity = 1;
+    const defaultOpacity = 1;
+    Object.entries(elements).forEach(([key, element]) => {
+      const isSelected = key === selectedKey;
+      element.style.backgroundColor = isSelected ? selectedColor : defaultColor;
+      element.style.opacity = isSelected ? selectedOpacity : defaultOpacity;
+      element.style.color = isSelected ? selectedTextColor : defaultTextColor;
+    });
+  },
   // ----- Languages functions --------
-  initLanguage: function () {
-    const enEl = document.querySelector('#language-en');
-    const frEl = document.querySelector('#language-fr');
+  initLanguage: function (lang = 'en') {
+    const elements = {
+      enEl: document.querySelector('#language-en'),
+      frEl: document.querySelector('#language-fr'),
+      offEl: document.querySelector('#language-off'),
+    };
+    const { enEl, frEl, offEl } = elements;
     if (!enEl || !frEl) {
       return;
     }
+    this.language = lang;
+    const selectEn = () => {
+      this.language = 'en';
+      this.applyStyle({ selectedKey: 'enEl', elements });
+    };
+    const selectFr = () => {
+      this.language = 'fr';
+      this.applyStyle({ selectedKey: 'frEl', elements });
+    };
+    const selectOff = () => {
+      this.language = 'off';
+      this.applyStyle({ selectedKey: 'offEl', elements });
+    };
 
-    // Default en
-    const languageColor = '#b39760';
-    this.language = 'en';
-    enEl.style.borderColor = languageColor;
-    enEl.style.opacity = '1';
+    if (this.language === 'fr') {
+      selectFr();
+    } else {
+      selectEn();
+    }
 
     enEl.onclick = () => {
-      this.language = 'en';
-      enEl.style.borderColor = languageColor;
-      enEl.style.opacity = '1';
-      frEl.style.borderColor = '#d4c9ba';
-      frEl.style.opacity = '0.6';
+      selectEn();
     };
     frEl.onclick = () => {
-      this.language = 'fr';
-      frEl.style.borderColor = languageColor;
-      frEl.style.opacity = '1';
-      enEl.style.borderColor = '#d4c9ba';
-      enEl.style.opacity = '0.6';
+      selectFr();
+    };
+    offEl.onclick = () => {
+      selectOff();
     };
   },
   getVoice(element) {
-    return document.getElementById(this.languages[this.language][element]);
+    if (this.language === 'off') {
+      return false;
+    }
+    const voiceSound = document.getElementById(
+      this.languages[this.language][element]
+    );
+    if (voiceSound && voiceSound.volume) {
+      voiceSound.volume = 0.8;
+    }
+    return voiceSound;
   },
 });
