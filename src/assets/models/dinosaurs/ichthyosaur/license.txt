@@ -1,0 +1,8 @@
+Model Information:
+* title:	Ichthyosaurs
+* source:	https://sketchfab.com/3d-models/ichthyosaurs-ba69c853ba5b418f8e9d15f74f1aaf79
+* author:	BlueMesh (https://sketchfab.com/VapTor)
+
+Model License:
+* license type:	SKETCHFAB Editorial (https://sketchfab.com/licenses)
+* requirements:	Use only in connection with events that are newsworthy or of public interest

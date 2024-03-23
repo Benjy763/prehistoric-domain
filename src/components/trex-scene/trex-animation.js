@@ -7,29 +7,35 @@ AFRAME.registerComponent('trex-animation', {
     this.trexBis = document.querySelector('#trex-bis');
     this.objectBis = this.trexBis.object3D;
     this.system = document.querySelector('a-scene').systems['system'];
+    this.audioControl =
+      document.querySelector('a-scene').systems['audioControl'];
     this.movesManager =
       document.querySelector('a-scene').systems['movesManager'];
+    this.car = document.querySelector('#trex-car');
     this.phase = '';
-    this.animationChange = 'roar';
-    // Trex run Path
-    this.trexMarker = 0; // Position on the curve
-    this.trexSpeed = 0.0015;
-    this.trexChangingSpeed = 0.00005;
-    this.trexMaxDeceleration = 0.0001;
-    this.trexMaxAcceleration = 0.0015;
     this.curve = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(-2.011, -0.2, 35.434),
-      new THREE.Vector3(-24.995, -0.2, 24.185),
-      new THREE.Vector3(-31.018, -0.2, 15.563),
-      new THREE.Vector3(-34.615, -0.2, 3.228),
-      new THREE.Vector3(-27.402, -0.2, -9.057),
-      new THREE.Vector3(-16.326, -0.2, -28.1),
+      new THREE.Vector3(3, -0.3, 35.434),
+      new THREE.Vector3(-24.995, -0.3, 24.185),
+      new THREE.Vector3(-31.018, -0.7, 15.563),
+      new THREE.Vector3(-34.615, -0.7, 3.228),
+      new THREE.Vector3(-27.402, -0.3, -9.057),
+      new THREE.Vector3(-16.326, -0.3, -28.1),
     ]);
 
     // Start tour listener
     this.el.addEventListener(
       'enterWalk',
       () => {
+        // Trex run Path
+        this.animationChange = 'roar';
+        this.el.setAttribute('visible', true);
+        this.trexBis.setAttribute('visible', false);
+        this.trexMarker = 0; // Position on the curve
+        this.trexSpeed = 0.05;
+        this.trexChangingSpeed = 0.002;
+        this.trexMaxDeceleration = 0.001;
+        this.trexMaxAcceleration = 0.04;
+
         // Load sounds
         this.trexRoarAudio = this.el.components['sound__trexroar'];
         this.trexRoar2Audio = this.el.components['sound__trexroar2'];
@@ -47,7 +53,6 @@ AFRAME.registerComponent('trex-animation', {
           setTimeout(() => {
             this.el.setAttribute('animation-mixer', {
               clip: 'T_Rex_Walk_InPlace',
-              loop: true,
               crossFadeDuration: 0.4,
               timeScale: 0.7,
             });
@@ -63,17 +68,17 @@ AFRAME.registerComponent('trex-animation', {
       this.el.object3D,
       this.curve,
       this.trexMarker,
-      this.trexSpeed
+      this.trexSpeed,
+      { useDeltaTime: true }
     );
 
-    if (this.movesManager.truncMarker(this.trexMarker) > 380) {
+    if (this.movesManager.truncMarker(this.trexMarker) > 410) {
       if (this.trexSpeed > 0) {
         this.trexRoarAudio.playSound();
         // TODO Multiple calls here
         setTimeout(() => {
           this.el.setAttribute('animation-mixer', {
             clip: 'T_Rex_Idle_Roar2',
-            loop: true,
             crossFadeDuration: 1.5,
             timeScale: 0.7,
           });
@@ -83,15 +88,16 @@ AFRAME.registerComponent('trex-animation', {
     }
 
     if (this.trexSpeed < this.trexMaxDeceleration) {
-      this.trexFootStepAudio.stopSound();
+      this.audioControl.fade({ audio: this.trexFootStepAudio });
       setTimeout(() => {
         this.el.setAttribute('animation-mixer', {
           clip: 'T_Rex_Drink_2',
-          loop: true,
-          crossFadeDuration: 4,
-          timeScale: 0.7,
+          crossFadeDuration: 3,
+          timeScale: 0.5,
         });
-        this.trexDrinkAudio.playSound();
+        setTimeout(() => {
+          this.trexDrinkAudio.playSound();
+        }, 1000);
         this.phase = 'drink';
       }, 4500);
       this.phase = 'exit';
@@ -101,17 +107,20 @@ AFRAME.registerComponent('trex-animation', {
     setTimeout(() => {
       this.el.setAttribute('animation-mixer', {
         clip: 'T_Rex_Walk_Roar_InPlace',
-        loop: true,
-        crossFadeDuration: 0.8,
+        crossFadeDuration: 2,
         timeScale: 0.7,
       });
-      this.trexSpeed = 0;
       this.trexRoar2Audio.playSound();
       setTimeout(() => {
         this.trexFootStepAudio.playSound();
       }, 1800);
+    }, 8800);
+    setTimeout(() => {
+      this.trexSpeed = 0;
+
+      this.lastUpdateTime = performance.now();
       this.phase = 'walkAgain';
-    }, 9000);
+    }, 9500);
     this.phase = 'exit';
   },
   walkAgain: function () {
@@ -124,7 +133,8 @@ AFRAME.registerComponent('trex-animation', {
       this.el.object3D,
       this.curve,
       this.trexMarker,
-      this.trexSpeed
+      this.trexSpeed,
+      { useDeltaTime: true }
     );
 
     if (
@@ -133,7 +143,6 @@ AFRAME.registerComponent('trex-animation', {
     ) {
       this.el.setAttribute('animation-mixer', {
         clip: 'T_Rex_Walk_Roar_InPlace',
-        loop: true,
         crossFadeDuration: 0.5,
         timeScale: 0.6,
       });
@@ -143,7 +152,7 @@ AFRAME.registerComponent('trex-animation', {
     if (this.movesManager.truncMarker(this.trexMarker) > 990) {
       this.trexLeavesAudio.playSound();
       setTimeout(() => {
-        this.trexFootStepAudio.stopSound();
+        this.audioControl.fade({ audio: this.trexFootStepAudio });
       }, 500);
       setTimeout(() => {
         this.trexHittingAudio.playSound();
@@ -157,7 +166,6 @@ AFRAME.registerComponent('trex-animation', {
         this.trexBis.setAttribute('scale', '0.024 0.024 0.024');
         this.trexBis.setAttribute('animation-mixer', {
           clip: 'T_Rex_Drink_2',
-          loop: true,
           crossFadeDuration: 0.4,
           timeScale: 0.3,
           startFrame: 0,
@@ -184,7 +192,6 @@ AFRAME.registerComponent('trex-animation', {
     setTimeout(() => {
       this.trexBis.setAttribute('animation-mixer', {
         clip: 'T_Rex_Walk_Roar_InPlace',
-        loop: true,
         crossFadeDuration: 4,
         timeScale: 1,
       });
@@ -200,6 +207,12 @@ AFRAME.registerComponent('trex-animation', {
     this.objectBis.position.z -= this.trexSpeed;
 
     if (this.objectBis.position.z < -16) {
+      if (this.system.loop) {
+        setTimeout(() => {
+          this.car.dispatchEvent(new Event('start'));
+        }, 20000);
+      }
+
       this.phase = 'exit';
     }
   },

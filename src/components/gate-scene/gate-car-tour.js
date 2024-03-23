@@ -307,37 +307,39 @@ AFRAME.registerComponent('gate-car-tour', {
         break;
     }
     // Voice phases
-    switch (this.voicePhase) {
-      case 'gate1':
-        if (this.movesManager.truncMarker(this.carControls.carMarker) > 40) {
-          this.voiceGate1Sound.play();
-          this.voicePhase = 'gate2';
-        }
-        break;
-      case 'gate2':
-        if (this.movesManager.truncMarker(this.carControls.carMarker) > 300) {
-          this.voiceGate2Sound.play();
-          this.voicePhase = 'gate3';
-        }
-        break;
-      case 'gate3':
-        if (this.movesManager.truncMarker(this.carControls.carMarker) > 450) {
-          this.voiceGate3Sound.play();
-          this.voicePhase = 'gate4';
-        }
-        break;
-      case 'gate4':
-        if (this.movesManager.truncMarker(this.carControls.carMarker) > 555) {
-          this.voiceGate4Sound.play();
-          this.voicePhase = 'gate5';
-        }
-        break;
-      case 'gate5':
-        if (this.movesManager.truncMarker(this.carControls.carMarker) > 800) {
-          this.voiceGate5Sound.play();
-          this.voicePhase = 'end';
-        }
-        break;
+    if (this.voiceGate1Sound) {
+      switch (this.voicePhase) {
+        case 'gate1':
+          if (this.movesManager.truncMarker(this.carControls.carMarker) > 40) {
+            this.voiceGate1Sound.play();
+            this.voicePhase = 'gate2';
+          }
+          break;
+        case 'gate2':
+          if (this.movesManager.truncMarker(this.carControls.carMarker) > 300) {
+            this.voiceGate2Sound.play();
+            this.voicePhase = 'gate3';
+          }
+          break;
+        case 'gate3':
+          if (this.movesManager.truncMarker(this.carControls.carMarker) > 450) {
+            this.voiceGate3Sound.play();
+            this.voicePhase = 'gate4';
+          }
+          break;
+        case 'gate4':
+          if (this.movesManager.truncMarker(this.carControls.carMarker) > 555) {
+            this.voiceGate4Sound.play();
+            this.voicePhase = 'gate5';
+          }
+          break;
+        case 'gate5':
+          if (this.movesManager.truncMarker(this.carControls.carMarker) > 800) {
+            this.voiceGate5Sound.play();
+            this.voicePhase = 'end';
+          }
+          break;
+      }
     }
     // Animation phases
     switch (this.phase) {

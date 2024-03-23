@@ -58,11 +58,13 @@ AFRAME.registerComponent('deino-car-tour', {
   },
   tick: function () {
     // Voice phases
-    switch (this.voicePhase) {
-      case 'deino':
-        this.voiceDeinoSound.play();
-        this.voicePhase = 'exit';
-        break;
+    if (this.voiceDeinoSound) {
+      switch (this.voicePhase) {
+        case 'deino':
+          this.voiceDeinoSound.play();
+          this.voicePhase = 'exit';
+          break;
+      }
     }
     // Checkpoint listener
     this.checkpointListener();

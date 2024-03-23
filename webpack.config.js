@@ -8,7 +8,16 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const hash = Math.random() * 100000 + 1000;
 
+function generateUniqueID() {
+  const currentDate = new Date();
+  return currentDate.getTime();
+}
+const uniqueID = generateUniqueID();
+
 PLUGINS = [
+  new webpack.DefinePlugin({
+    'process.env.UNIQUE_ASSETS_ID': JSON.stringify(uniqueID),
+  }),
   new HtmlWebpackPlugin({
     filename: './index.html',
     templateContent: `
@@ -18,10 +27,6 @@ PLUGINS = [
         <meta http-equiv="Cache-control" content="no-cache">
         <meta http-equiv="Pragma" content="no-cache">
         <title>Prehistoric Domain</title>
-        <script src="/vendors/aframe/aframe-v1.3.0.min.js"></script>
-        <script src="/vendors/water/refractor.js"></script>
-        <script src="/vendors/water/reflector.js"></script>
-        <script src="/vendors/water/water2.js"></script>
         <style type="text/css">
           @font-face {
             font-family: 'Exo';

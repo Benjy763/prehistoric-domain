@@ -6,8 +6,7 @@
       <a-entity id="edmon-scene-camera" class="camera-entity" camera position="0 0 0" user-height="0"
         fps-look-controls="user-height: 0" simple-navmesh-constraint="navmesh:#edmon-navmesh-el;fall:0;height:1.25;">
         <a-troika-text id="edmon-camera-text" visible="false" troika-text="color: #d6d6d6" scale="0.15 0.15 0.15"
-          position="0 -0.25795 -0.8507" value="Press ENTER or TOP trigger to leave"
-          font="/assets/font/AlfaSlabOne-Regular.ttf">
+          position="0 -0.25795 -0.8507" value="press ENTER or TRIGGER to leave" font="/assets/font/Exo-Regular.ttf">
         </a-troika-text>
         <a-box id="out-of-limit" position="0 0 0" visible="false" material="blending: none; shader: flat"
           geometry="depth: 1; height: 1; width: 1; primitive: sphere; segmentsHeight: 10; segmentsWidth: 10; radius: 0.1"
@@ -22,11 +21,11 @@
       </a-entity>
       <a-entity id="controller-data" controller-listener="leftControllerId:  #leftHand;
                                  rightControllerId: #rightHand;"></a-entity>
-      <a-entity id="leftHand" sphere-collider="objects: a-box" custom-hand-control super-hands
-        hand-controls="hand: left; handModelStyle: highPoly; color: #ffcccc"></a-entity>
+      <a-entity id="leftHand" sphere-collider="objects: a-box" poi-control super-hands
+        custom-hand-controls="hand: left; handModelStyle: highPoly; color: #ffcccc"></a-entity>
       <a-entity fps-counter="enabled: true; for90fps: true" id="rightHand" rotation="10 0 0"
-        sphere-collider="objects: a-box" custom-hand-control super-hands
-        hand-controls="hand: right; handModelStyle: highPoly; color: #ffcccc"></a-entity>
+        sphere-collider="objects: a-box" poi-control super-hands
+        custom-hand-controls="hand: right; handModelStyle: highPoly; color: #ffcccc"></a-entity>
     </a-entity>
   </a-entity>
   <a-plane id="edmon-navmesh-el" geometry="width: 9.5" visible="false" position="-0.46865 -0.0363 0.08816"

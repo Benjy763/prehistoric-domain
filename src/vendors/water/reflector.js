@@ -126,7 +126,7 @@
         projectionMatrix.elements[10] = clipPlane.z + 1.0 - clipBias;
         projectionMatrix.elements[14] = clipPlane.w; // Render
 
-        renderTarget.texture.encoding = renderer.outputEncoding;
+        renderTarget.texture.colorSpace = renderer.outputEncoding;
         scope.visible = false;
         const currentRenderTarget = renderer.getRenderTarget();
         const currentXrEnabled = renderer.xr.enabled;
@@ -222,7 +222,7 @@
 			vec4 base = texture2DProj( tDiffuse, vUv );
 			gl_FragColor = vec4( blendOverlay( base.rgb, color ), 1.0 );
 
-			#include <encodings_fragment>
+			#include <colorspace_fragment>
 
 		}`,
   };

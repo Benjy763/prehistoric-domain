@@ -175,7 +175,7 @@
 
       this.onBeforeRender = function (renderer, scene, camera) {
         // Render
-        renderTarget.texture.encoding = renderer.outputEncoding; // ensure refractors are rendered only once per frame
+        renderTarget.texture.colorSpace = renderer.outputColorSpace; // ensure refractors are rendered only once per frame
 
         if (camera.userData.refractor === true) return; // avoid rendering when the refractor is viewed from behind
 
@@ -250,7 +250,7 @@
 			vec4 base = texture2DProj( tDiffuse, vUv );
 			gl_FragColor = vec4( blendOverlay( base.rgb, color ), 1.0 );
 
-			#include <encodings_fragment>
+			#include <colorspace_fragment>
 
 		}`,
   };

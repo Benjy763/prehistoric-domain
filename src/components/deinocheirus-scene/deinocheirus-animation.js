@@ -6,6 +6,8 @@ AFRAME.registerComponent('deinocheirus-animation', {
     this.object = this.el.object3D;
     this.system = document.querySelector('a-scene').systems['system'];
     this.car = document.querySelector('#deinocheirus-car');
+    this.audioControl =
+      document.querySelector('a-scene').systems['audioControl'];
     this.movesManager =
       document.querySelector('a-scene').systems['movesManager'];
     this.phase = '';
@@ -38,9 +40,6 @@ AFRAME.registerComponent('deinocheirus-animation', {
         this.deinoWalkSound = this.el.components['sound__walk'];
         this.deinoCheckSound = this.el.components['sound__check'];
         this.deinoLeaveFarSound = this.el.components['sound__leavefar'];
-        // Get voice from system when init
-        this.voiceDeinoSound = this.system.getVoice('deinocheirus');
-        this.voicePhase = 'deino';
 
         this.deinocheirusMarker = this.movesManager.moveOnCurve(
           this,
@@ -71,7 +70,9 @@ AFRAME.registerComponent('deinocheirus-animation', {
       () => {
         // Launch animation
         setTimeout(() => {
-          this.deinoWalkSound.playSound();
+          setTimeout(() => {
+            this.deinoWalkSound.playSound();
+          }, 1000);
           this.phase = 'enterWalk';
           this.el.setAttribute('animation-mixer', {
             clip: 'Walk',
@@ -129,7 +130,7 @@ AFRAME.registerComponent('deinocheirus-animation', {
 
         this.deinoCheckSound.playSound();
         setTimeout(() => {
-          this.deinoWalkSound.stopSound();
+          this.audioControl.fade({ audio: this.deinoWalkSound });
         }, 500);
         this.phase = 'moveAround';
       }
@@ -145,7 +146,9 @@ AFRAME.registerComponent('deinocheirus-animation', {
       });
       this.deinocheirusSpeed = 0;
       this.lastUpdateTime = performance.now();
-      this.deinoWalkSound.playSound();
+      setTimeout(() => {
+        this.deinoWalkSound.playSound();
+      }, 1400);
       setTimeout(() => {
         this.phase = 'walkAgain';
       }, 100);
@@ -169,20 +172,12 @@ AFRAME.registerComponent('deinocheirus-animation', {
     if (this.movesManager.truncMarker(this.deinocheirusMarker) > 990) {
       this.deinoLeaveFarSound.playSound();
       setTimeout(() => {
-        this.deinoWalkSound.stopSound();
+        this.audioControl.fade({ audio: this.deinoWalkSound });
       }, 500);
       this.phase = 'exit';
     }
   },
   tick: function () {
-    // Voice phases
-    switch (this.voicePhase) {
-      case 'deino':
-        this.voiceDeinoSound.play();
-        this.voicePhase = 'exit';
-        break;
-    }
-
     // Animation steps
     switch (this.phase) {
       case 'enter':

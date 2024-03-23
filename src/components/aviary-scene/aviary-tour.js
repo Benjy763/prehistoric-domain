@@ -119,11 +119,13 @@ AFRAME.registerComponent('aviary-car-tour', {
     // Checkpoint listener
     this.checkpointListener();
     // Voice phases
-    switch (this.voicePhase) {
-      case 'ptera':
-        this.voicePteraSound.play();
-        this.voicePhase = 'exit';
-        break;
+    if (this.voicePteraSound) {
+      switch (this.voicePhase) {
+        case 'ptera':
+          this.voicePteraSound.play();
+          this.voicePhase = 'exit';
+          break;
+      }
     }
     // Animation phases
     switch (this.phase) {

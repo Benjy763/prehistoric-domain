@@ -2,8 +2,17 @@ const ip = require('ip');
 const path = require('path');
 const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
+function generateUniqueID() {
+  const currentDate = new Date();
+  return currentDate.getTime();
+}
+const uniqueID = generateUniqueID();
 PLUGINS = [
+  new webpack.DefinePlugin({
+    'process.env.UNIQUE_ASSETS_ID': JSON.stringify(uniqueID),
+  }),
   new webpack.EnvironmentPlugin(['NODE_ENV', 'MAIN_SCENE']),
   new webpack.HotModuleReplacementPlugin(),
   new CopyPlugin([

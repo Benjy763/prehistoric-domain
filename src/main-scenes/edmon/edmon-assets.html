@@ -1,74 +1,84 @@
 <a-assets id="edmon-assets" timeout="60000">
   <!-- Audio -->
   <!-- Voice -->
-  <audio id="voice-edmon-sound-en" response-type="arraybuffer" src="/assets/sounds/voice/en/edmon.mp3" preload="auto"
-    volume="1"></audio>
-  <audio id="voice-edmon-sound-fr" response-type="arraybuffer" src="/assets/sounds/voice/fr/edmon.mp3" preload="auto"
-    volume="1"></audio>
+  <audio id="voice-edmon-sound-en" response-type="arraybuffer"
+    src="/assets/sounds/voice/en/edmon.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto" volume="1"></audio>
+  <audio id="voice-edmon-sound-fr" response-type="arraybuffer"
+    src="/assets/sounds/voice/fr/edmon.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto" volume="1"></audio>
 
   <!-- Environement -->
-  <audio id="cold-asset" response-type="arraybuffer" src="/assets/sounds/environement/cold.webm" preload="auto"
-    loop="true" volume="1"></audio>
+  <audio id="cold-asset" response-type="arraybuffer"
+    src="/assets/sounds/environement/cold.webm?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto" loop="true"
+    volume="1"></audio>
 
   <!-- Sounds -->
-  <a-asset-item id="edmon-liedown" src="/assets/sounds/edmon/liedown.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="edmon-roar1" src="/assets/sounds/edmon/roar1.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="edmon-roar2" src="/assets/sounds/edmon/roar2.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="edmon-wakeup" src="/assets/sounds/edmon/wakeup.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="edmon-walk" src="/assets/sounds/edmon/walk.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="edmon-walk-back" src="/assets/sounds/edmon/walk-back.mp3" preload="auto" response-type="arraybuffer"
-    crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="edmon-liedown" src="/assets/sounds/edmon/liedown.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="edmon-roar1" src="/assets/sounds/edmon/roar1.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="edmon-roar2" src="/assets/sounds/edmon/roar2.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="edmon-wakeup" src="/assets/sounds/edmon/wakeup.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="edmon-walk" src="/assets/sounds/edmon/walk.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="edmon-walk-back" src="/assets/sounds/edmon/walk-back.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
 
   <!-- Images -->
-  <img id="loading-asset" src="/assets/images/loader.png?lastmod=9" />
-  <img id="limits-asset" src="/assets/images/limits.png?lastmod=9" />
-  <img id="credits-asset" src="/assets/images/credits.png?lastmod=9" />
-  <img id="rendering-asset" src="/assets/images/rendering.png?lastmod=9" />
+  <img id="loading-asset" src="/assets/images/loader.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="limits-asset" src="/assets/images/limits.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="credits-asset" src="/assets/images/credits.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="rendering-asset" src="/assets/images/rendering.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
   <img id="dont-touch-asset" src="/assets/images/dont-touch.jpg" />
-  <img id="ground-texture-grass-asset" src="/assets/images/floor-grass.jpg?lastmod=9" />
+  <img id="ground-texture-grass-asset" src="/assets/images/floor-grass.jpg?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
 
   <!-- 3D -->
   <!-- Objects -->
-  <a-asset-item id="edmon-scene-asset" src="/assets/models/objects/viewing-gallery/scene.glb?lastmod=9">
+  <a-asset-item id="edmon-scene-asset"
+    src="/assets/models/objects/viewing-gallery/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="window-asset" src="/assets/models/objects/window/scene.glb?lastmod=9">
+  <a-asset-item id="window-asset" src="/assets/models/objects/window/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="window-support-asset" src="/assets/models/objects/window-support/scene2.glb?lastmod=9">
+  <a-asset-item id="window-support-asset"
+    src="/assets/models/objects/window-support/scene2.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="wall-asset" src="/assets/models/objects/door-2/scene.glb?lastmod=9">
+  <a-asset-item id="wall-asset" src="/assets/models/objects/door-2/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="terminal-asset" src="/assets/models/objects/terminal/scene.glb?lastmod=9">
+  <a-asset-item id="terminal-asset"
+    src="/assets/models/objects/terminal/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="door-asset" src="/assets/models/objects/door-underwater/scene.glb?lastmod=9">
+  <a-asset-item id="door-asset"
+    src="/assets/models/objects/door-underwater/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="floor-asset" src="/assets/models/objects/floor/scene.glb?lastmod=9">
+  <a-asset-item id="floor-asset" src="/assets/models/objects/floor/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="checkpoint-asset" src="/assets/models/objects/checkpoint/scene.glb?lastmod=9">
+  <a-asset-item id="checkpoint-asset"
+    src="/assets/models/objects/checkpoint/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
 
   <!-- Environment -->
-  <a-asset-item id="waterfall-asset" src="/assets/models/environment/waterfall/scene.glb?lastmod=9">
+  <a-asset-item id="waterfall-asset"
+    src="/assets/models/environment/waterfall/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="snow-rock-1-asset" src="/assets/models/environment/snow/snow-rock-1/scene.gltf">
+  <a-asset-item id="snow-rock-1-asset" src="/assets/models/environment/snow/snow-rock-1/scene.glb">
   </a-asset-item>
-  <a-asset-item id="snow-rock-2-asset" src="/assets/models/environment/snow/snow-rock-2/scene.gltf">
+  <a-asset-item id="snow-rock-2-asset" src="/assets/models/environment/snow/snow-rock-2/scene.glb">
   </a-asset-item>
-  <a-asset-item id="snow-scene-1-asset" src="/assets/models/environment/snow/snow-scene-1/scene.glb?lastmod=9">
+  <a-asset-item id="snow-scene-1-asset"
+    src="/assets/models/environment/snow/snow-scene-1/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
 
 
   <!-- Dinosaurs -->
-  <a-asset-item id="edmon-male-asset" src="/assets/models/dinosaurs/edmon-male/edmontosaurus.glb?lastmod=9">
+  <a-asset-item id="edmon-male-asset"
+    src="/assets/models/dinosaurs/edmon-male/edmontosaurus.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="edmon-female-asset" src="/assets/models/dinosaurs/edmon-female/edmontosaurus.glb?lastmod=9">
+  <a-asset-item id="edmon-female-asset"
+    src="/assets/models/dinosaurs/edmon-female/edmontosaurus.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
 
   <!-- Images -->
-  <img id="edmon-pres-asset" src="/assets/images/edmon-pres.png?lastmod=9" />
+  <img id="edmon-pres-asset" src="/assets/images/edmon-pres.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
 
 </a-assets>

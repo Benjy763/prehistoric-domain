@@ -1,6 +1,7 @@
 export const Languages = {
   selection: 'en',
   en: {
+    cretaceousLagoon: 'voice-lagoon1-sound-en',
     deino: 'voice-deino-sound-en',
     deinocheirus: 'voice-deinocheirus-sound-en',
     dimetrodon: 'voice-dimetrodon-sound-en',
@@ -20,6 +21,7 @@ export const Languages = {
   },
   fr: {
     aviary1: 'voice-aviary1-sound-fr',
+    cretaceousLagoon: 'voice-lagoon1-sound-fr',
     deino: 'voice-deino-sound-fr',
     deinocheirus: 'voice-deinocheirus-sound-fr',
     dimetrodon: 'voice-dimetrodon-sound-fr',

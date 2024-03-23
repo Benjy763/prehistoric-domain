@@ -1,94 +1,118 @@
 <a-assets id="dimetrodon-assets" timeout="60000">
   <!-- Audio -->
   <!-- Voice -->
-  <audio id="voice-dimetrodon-sound-en" response-type="arraybuffer" src="/assets/sounds/voice/en/dimetrodon.mp3"
-    preload="auto" volume="1"></audio>
-  <audio id="voice-dimetrodon-sound-fr" response-type="arraybuffer" src="/assets/sounds/voice/fr/dimetrodon.mp3"
-    preload="auto" volume="1"></audio>
+  <audio id="voice-dimetrodon-sound-en" response-type="arraybuffer"
+    src="/assets/sounds/voice/en/dimetrodon.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto"
+    volume="1"></audio>
+  <audio id="voice-dimetrodon-sound-fr" response-type="arraybuffer"
+    src="/assets/sounds/voice/fr/dimetrodon.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto"
+    volume="1"></audio>
 
   <!-- Environement -->
-  <audio id="desert-asset" response-type="arraybuffer" src="/assets/sounds/environement/desert.webm" preload="auto"
-    loop="true" volume="1"></audio>
+  <audio id="desert-asset" response-type="arraybuffer"
+    src="/assets/sounds/environement/desert.webm?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto" loop="true"
+    volume="1"></audio>
 
   <!-- Sounds -->
-  <a-asset-item id="dimetrodon-dime-attack" src="/assets/sounds/dimetrodon/dime-attack.mp3" preload="auto"
+  <a-asset-item id="dimetrodon-dime-attack"
+    src="/assets/sounds/dimetrodon/dime-attack.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto"
     response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="dimetrodon-dime-move" src="/assets/sounds/dimetrodon/dime-move.mp3" preload="auto"
+  <a-asset-item id="dimetrodon-dime-move"
+    src="/assets/sounds/dimetrodon/dime-move.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto"
     response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="dimetrodon-dime-run" src="/assets/sounds/dimetrodon/dime-run.mp3" preload="auto"
+  <a-asset-item id="dimetrodon-dime-run"
+    src="/assets/sounds/dimetrodon/dime-run.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto"
     response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="dimetrodon-dime-walk" src="/assets/sounds/dimetrodon/dime-walk.mp3" preload="auto"
+  <a-asset-item id="dimetrodon-dime-walk"
+    src="/assets/sounds/dimetrodon/dime-walk.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto"
     response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="dimetrodon-dime-roar" src="/assets/sounds/dimetrodon/dime-roar.mp3" preload="auto"
+  <a-asset-item id="dimetrodon-dime-roar"
+    src="/assets/sounds/dimetrodon/dime-roar.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto"
     response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="dimetrodon-rabbit-cry" src="/assets/sounds/dimetrodon/rabbit-cry.mp3" preload="auto"
+  <a-asset-item id="dimetrodon-rabbit-cry"
+    src="/assets/sounds/dimetrodon/rabbit-cry.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto"
     response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
-  <a-asset-item id="dimetrodon-rabbit-walk" src="/assets/sounds/dimetrodon/rabbit-walk.mp3" preload="auto"
+  <a-asset-item id="dimetrodon-rabbit-walk"
+    src="/assets/sounds/dimetrodon/rabbit-walk.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto"
     response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
+  <a-asset-item id="dimetrodon-water" src="/assets/sounds/dimetrodon/water.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
 
   <!-- Images -->
 
 
-  <img id="loading-asset" src="/assets/images/loader.png?lastmod=9" />
-  <img id="limits-asset" src="/assets/images/limits.png?lastmod=9" />
-  <img id="credits-asset" src="/assets/images/credits.png?lastmod=9" />
-  <img id="rendering-asset" src="/assets/images/rendering.png?lastmod=9" />
+  <img id="loading-asset" src="/assets/images/loader.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="limits-asset" src="/assets/images/limits.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="credits-asset" src="/assets/images/credits.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="rendering-asset" src="/assets/images/rendering.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
   <img id="dont-touch-asset" src="/assets/images/dont-touch.jpg" />
-  <img id="ground-texture-grass-asset" src="/assets/images/floor-grass.jpg?lastmod=9" />
+  <img id="ground-texture-grass-asset" src="/assets/images/floor-grass.jpg?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="dimetrodon-360-pane-asset" src="/assets/images/dimetrodon/360-pane.jpg">
 
   <!-- 3D -->
   <!-- Objects -->
-  <a-asset-item id="dimetrodon-scene-asset" src="/assets/models/objects/viewing-gallery/scene.glb?lastmod=9">
+  <a-asset-item id="dimetrodon-scene-asset"
+    src="/assets/models/objects/viewing-gallery/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="window-asset" src="/assets/models/objects/window/scene.glb?lastmod=9">
+  <a-asset-item id="window-asset" src="/assets/models/objects/window/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="window-support-asset" src="/assets/models/objects/window-support/scene2.glb?lastmod=9">
+  <a-asset-item id="window-support-asset"
+    src="/assets/models/objects/window-support/scene2.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="wall-asset" src="/assets/models/objects/door-2/scene.glb?lastmod=9">
+  <a-asset-item id="wall-asset" src="/assets/models/objects/door-2/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="terminal-asset" src="/assets/models/objects/terminal/scene.glb?lastmod=9">
+  <a-asset-item id="terminal-asset"
+    src="/assets/models/objects/terminal/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="door-asset" src="/assets/models/objects/door-underwater/scene.glb?lastmod=9">
+  <a-asset-item id="door-asset"
+    src="/assets/models/objects/door-underwater/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="floor-asset" src="/assets/models/objects/floor/scene.glb?lastmod=9">
+  <a-asset-item id="floor-asset" src="/assets/models/objects/floor/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="checkpoint-asset" src="/assets/models/objects/checkpoint/scene.glb?lastmod=9">
+  <a-asset-item id="checkpoint-asset"
+    src="/assets/models/objects/checkpoint/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
 
   <!-- Environment -->
   <a-asset-item id="desert-scene-asset"
-    src="/assets/models/environment/desert/desert-scene/scene2.glb?lastmod=9"></a-asset-item>
+    src="/assets/models/environment/desert/desert-scene/scene2.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"></a-asset-item>
   </a-asset-item>
-  <a-asset-item id="desert-scene-bis-asset"
-    src="/assets/models/environment/desert/desert-scene/scene2-bis.glb?lastmod=9"></a-asset-item>
+  <a-asset-item id=" desert-plant-asset"
+    src="/assets/models/environment/desert/desert-plant/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id=" desert-plant-asset" src="/assets/models/environment/desert/desert-plant/scene.glb?lastmod=9">
+  <a-asset-item id="desert-branch-asset"
+    src="/assets/models/environment/desert/desert-branch/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="desert-branch-asset" src="/assets/models/environment/desert/desert-branch/scene.glb?lastmod=9">
-  </a-asset-item>
-  <a-asset-item id="desert-rock-asset" src="/assets/models/environment/desert/desert-rock/scene-cut.glb?lastmod=9">
+  <a-asset-item id="desert-rock-asset"
+    src="/assets/models/environment/desert/desert-rock/scene-cut.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
   <a-asset-item id="desert-rock-small-asset"
-    src="/assets/models/environment/desert/desert-rock/scene-small-cut.glb?lastmod=9">
+    src="/assets/models/environment/desert/desert-rock/scene-small-cut.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
 
-  <a-asset-item id="desert-amorosa-asset" src="/assets/models/environment/desert/desert-amorosa/scene.glb?lastmod=9">
+  <a-asset-item id="desert-amorosa-asset"
+    src="/assets/models/environment/desert/desert-amorosa/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
 
 
   <!-- Dinosaurs -->
-  <a-asset-item id="dimetrodon-asset" src="/assets/models/dinosaurs/dimetrodon/scene-scale.glb?lastmod=9">
+  <a-asset-item id="dimetrodon-asset"
+    src="/assets/models/dinosaurs/dimetrodon/dimetrodon.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="dimetrodon-2-asset" src="/assets/models/dinosaurs/dimetrodon/scene-scale-2.glb?lastmod=9">
+  <a-asset-item id="dimetrodon-2-asset"
+    src="/assets/models/dinosaurs/dimetrodon/scene-scale-2.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="dimetrodon-sail-asset" src="/assets/models/dinosaurs/dimetrodon/scene2.glb?lastmod=9">
+  <a-asset-item id="dimetrodon-sail-asset"
+    src="/assets/models/dinosaurs/dimetrodon/scene2.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="dimetrodon-female-asset" src="/assets/models/dinosaurs/dimetrodon-female/scene.glb?lastmod=9">
+  <a-asset-item id="dimetrodon-female-asset"
+    src="/assets/models/dinosaurs/dimetrodon-female/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item id="diplocaulus-asset" src="/assets/models/dinosaurs/diplocaulus/scene.glb?lastmod=9">
+  <a-asset-item id="diplocaulus-asset"
+    src="/assets/models/dinosaurs/diplocaulus/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
 
   <!-- Images -->
-  <img id="dimetrodon-pres-asset" src="/assets/images/dimetrodon-pres.png?lastmod=9" />
+  <img id="dimetrodon-pres-asset" src="/assets/images/dimetrodon-pres.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
 
 </a-assets>

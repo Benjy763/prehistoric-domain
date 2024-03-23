@@ -7,8 +7,7 @@
         fps-look-controls="user-height: 0"
         simple-navmesh-constraint="navmesh:#home-navmesh-el;fall:0;height:1.25;exclude:.home-exclude-navmesh-el">
         <a-troika-text id="home-camera-text" visible="false" troika-text="color: #d6d6d6" scale="0.15 0.15 0.15"
-          position="0 -0.25795 -0.8507" value="Press ENTER or TOP trigger to enter"
-          font="/assets/font/AlfaSlabOne-Regular.ttf">
+          position="0 -0.25795 -0.8507" value="Press ENTER or TOP trigger to enter" font="/assets/font/Exo-Regular.ttf">
         </a-troika-text>
         <a-box id="out-of-limit" position="0 0 0" visible="false" material="blending: none; shader: flat"
           geometry="depth: 1; height: 1; width: 1; primitive: sphere; segmentsHeight: 10; segmentsWidth: 10; radius: 0.1"
@@ -23,21 +22,21 @@
       </a-entity>
       <a-entity id="controller-data" controller-listener="leftControllerId:  #leftHand;
                                  rightControllerId: #rightHand;"></a-entity>
-      <a-entity id="leftHand" sphere-collider="objects: a-box" custom-hand-control super-hands
-        hand-controls="hand: left; handModelStyle: highPoly; color: #ffcccc"></a-entity>
+      <a-entity id="leftHand" sphere-collider="objects: a-box" poi-control super-hands
+        custom-hand-controls="hand: left; handModelStyle: highPoly; color: #ffcccc"></a-entity>
       <a-entity fps-counter="enabled: true; for90fps: true" id="rightHand" rotation="10 0 0"
-        sphere-collider="objects: a-box" custom-hand-control super-hands
-        hand-controls="hand: right; handModelStyle: highPoly; color: #ffcccc"></a-entity>
+        sphere-collider="objects: a-box" poi-control super-hands
+        custom-hand-controls="hand: right; handModelStyle: highPoly; color: #ffcccc"></a-entity>
     </a-entity>
   </a-entity>
-  <a-plane id="home-navmesh-el" geometry="primitive: plane; radius: 27; height: 30; width: 85" visible="false"
-    position="33.77855 0 -3.31126" rotation="-90 0 0" width="8" height="5.8" color="yellow">
+  <a-plane id="home-navmesh-el" geometry="primitive: plane; radius: 27; height: 31.07; width: 85.44" visible="false"
+    position="29.94421 0 -3.31126" rotation="-90 0 0" width="8" height="5.8" color="yellow">
   </a-plane>
   <a-plane id="home-exclude-navmesh-el-1" class="home-exclude-navmesh-el" geometry="primitive: circle; radius: 6.52"
-    visible="false" position="52.9485 0 0.95443" rotation="-90 0 0" width="8" height="5.8" color="red">
+    visible="false" position="53.55549 0 0.06171" rotation="-90 0 0" width="8" height="5.8" color="red">
   </a-plane>
-  <a-plane id="home-exclude-navmesh-el-2" class="home-exclude-navmesh-el" geometry="primitive: circle; radius: 4.67"
-    visible="false" position="11.96545 0 -1.77118" rotation="-90 0 0" width="8" height="5.8" color="red">
+  <a-plane id="home-exclude-navmesh-el-2" class="home-exclude-navmesh-el" geometry="primitive: circle; radius: 3.52"
+    visible="false" position="3.15246 0 -7.20261" rotation="-90 0 0" width="8" height="5.8" color="red">
   </a-plane>
   <a-entity id="car-env"></a-entity>
 </a-entity>

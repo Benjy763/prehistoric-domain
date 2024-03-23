@@ -15,21 +15,21 @@ AFRAME.registerComponent('quetza-animation', {
 
     // Spino run Path
     this.quetzaMarker = 0; // Position on the curve
-    this.quetzaSpeed = 0.0017; // Speed on the curve
+    this.quetzaSpeed = 0.0015; // Speed on the curve
     this.walkCurve = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(-20.869, 0, -42),
-      new THREE.Vector3(-20.869, 0, 0.667),
+      new THREE.Vector3(-20.869, -0.4, -42),
+      new THREE.Vector3(-20.869, -0.4, 0.667),
     ]);
     this.flyCurve = new THREE.CatmullRomCurve3([
       new THREE.Vector3(-20.869, -0.237, -1.867),
       new THREE.Vector3(-20.869, 2, 3.407),
-      new THREE.Vector3(-20.869, 10, 81.888),
+      new THREE.Vector3(0.048, 10, 58.076),
     ]);
     this.flyBackCurve = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(-31.945, 5.829, 48.167),
-      new THREE.Vector3(-34.378, 6, 9.864),
-      new THREE.Vector3(-39.464, 6.5, -4.918),
-      new THREE.Vector3(-51.426, 8, -42.236),
+      new THREE.Vector3(-0.502, 5.829, 54.574),
+      new THREE.Vector3(-27.638, 6, 22.439),
+      new THREE.Vector3(-29.904, 6.5, -25.735),
+      new THREE.Vector3(-5.821, 8, -73.481),
     ]);
 
     // Sound
