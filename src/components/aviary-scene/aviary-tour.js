@@ -1,6 +1,5 @@
 AFRAME.registerComponent('aviary-car-tour', {
   init: function () {
-    const test = !!true;
     this.scene = 'aviary';
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
 
@@ -24,7 +23,7 @@ AFRAME.registerComponent('aviary-car-tour', {
     // Tour Path
     const curve = new THREE.CatmullRomCurve3([
       new THREE.Vector3(7.988, 0, 81.899),
-      new THREE.Vector3(9.7, 0, -174.7),
+      new THREE.Vector3(9.7, 0, -174.7)
     ]);
 
     // En scene activation
@@ -82,7 +81,7 @@ AFRAME.registerComponent('aviary-car-tour', {
       'pteranodon-4',
       'pteranodon-5',
       'pteranodon-6',
-      'pteranodon-7',
+      'pteranodon-7'
     ];
     let timeout = 200;
     pteras.forEach((ptera) => {
@@ -92,7 +91,7 @@ AFRAME.registerComponent('aviary-car-tour', {
           clip: 'Ptera_Full_Break',
           loop: true,
           timeScale: 0.6,
-          crossFadeDuration: 0.5,
+          crossFadeDuration: 0.5
         });
       }, timeout);
     });
@@ -140,5 +139,5 @@ AFRAME.registerComponent('aviary-car-tour', {
         this.phase = 'exit';
         break;
     }
-  },
+  }
 });
