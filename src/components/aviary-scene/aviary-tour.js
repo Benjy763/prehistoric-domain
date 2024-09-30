@@ -1,6 +1,5 @@
 AFRAME.registerComponent('aviary-car-tour', {
   init: function () {
-    const test = !!true;
     this.scene = 'aviary';
     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
 
