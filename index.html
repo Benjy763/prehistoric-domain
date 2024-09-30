@@ -1,29 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Cache-control" content="no-cache" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <title>Prehistoric Domain</title>
+    <script>
+      function generateUniqueID() {
+        const currentDate = new Date();
+        return currentDate.getTime();
+      }
+      const uniqueAssetsId = JSON.stringify(generateUniqueID());
+    </script>
+    <script src="build/build.js"></script>
+    <style type="text/css">
+      @font-face {
+        font-family: 'Exo';
+        src: url('/assets/font/Exo-Regular.ttf') format('truetype');
+      }
+    </style>
+  </head>
 
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="Cache-control" content="no-cache">
-  <meta http-equiv="Pragma" content="no-cache">
-  <title>Prehistoric Domain</title>
-  <script>
-    function generateUniqueID() {
-      const currentDate = new Date();
-      return currentDate.getTime();
-    }
-    const uniqueAssetsId = JSON.stringify(generateUniqueID());
-  </script>
-  <script src="build/build.js"></script>
-  <style type="text/css">
-    @font-face {
-      font-family: 'Exo';
-      src: url('/assets/font/Exo-Regular.ttf') format('truetype');
-    }
-  </style>
-</head>
-
-<body>
-  <div id="app"></div>
-</body>
-
+  <body>
+    <div id="app"></div>
+  </body>
 </html>
