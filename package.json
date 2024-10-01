@@ -3,10 +3,8 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "copy:assets": "cpx ./src/assets/**/*.* ./dist/assets",
-    "build:scene": "cross-env MAIN_SCENE=$npm_config_mainscene NODE_ENV=production webpack --config webpack.prod.config.js",
-    "build:scene:all": "node build-all.js",
-    "build:all": "npm run copy:assets & npm run build:scene:all",
+    "build": "cross-env MAIN_SCENE=$npm_config_mainscene NODE_ENV=production webpack --config webpack.prod.config.js",
+    "build:all": "node build-all.js",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "npm:audit": "npm audit",
