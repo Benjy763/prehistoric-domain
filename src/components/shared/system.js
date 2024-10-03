@@ -130,6 +130,9 @@ AFRAME.registerSystem('system', {
     }
   },
   exitFullscreen: function () {
+    if (!document.fullscreenElement) {
+      return;
+    }
     if (document.exitFullscreen) {
       document.exitFullscreen();
     } else if (document.webkitExitFullscreen) {
