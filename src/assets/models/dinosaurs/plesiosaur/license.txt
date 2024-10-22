@@ -1,8 +1,0 @@
-Model Information:
-* title:	Ocean Plesiosaur Pack
-* source:	https://sketchfab.com/3d-models/ocean-plesiosaur-pack-87ef96b102aa4f4781ee2acc8de004d6
-* author:	Davis3D (https://sketchfab.com/davis3d)
-
-Model License:
-* license type:	SKETCHFAB Editorial (https://sketchfab.com/licenses)
-* requirements:	Use only in connection with events that are newsworthy or of public interest

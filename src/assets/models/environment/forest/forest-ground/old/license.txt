@@ -1,8 +1,0 @@
-Model Information:
-* title:	Forest ground soil spruce
-* source:	https://sketchfab.com/3d-models/forest-ground-soil-spruce-9efd530afddf471b804db74750a8173b
-* author:	matousekfoto (https://sketchfab.com/matousekfoto)
-
-Model License:
-* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
-* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

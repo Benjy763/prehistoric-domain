@@ -1,8 +1,0 @@
-Model Information:
-* title:	Arrow 2
-* source:	https://sketchfab.com/3d-models/arrow-2-277e0ab180624665b259a962495eb257
-* author:	plaggy (https://sketchfab.com/plaggy)
-
-Model License:
-* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
-* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

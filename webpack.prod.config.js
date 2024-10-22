@@ -1,0 +1,100 @@
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin'); // Import TerserPlugin
+
+function generateUniqueID() {
+  const currentDate = new Date();
+  return currentDate.getTime();
+}
+const uniqueID = generateUniqueID();
+
+module.exports = {
+  entry: {
+    build: './src/index.js'
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist', process.env.MAIN_SCENE), // Use path.resolve for better compatibility
+    filename: 'build.[contenthash].js'
+  },
+  mode: 'production',
+  devtool: false,
+  optimization: {
+    // Enable minimization
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          compress: {
+            drop_console: true
+          }
+        }
+      })
+    ]
+  },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      templateContent: `
+      <html>
+        <head>
+          <meta charset="UTF-8" />
+          <meta http-equiv="Cache-control" content="no-cache">
+          <meta http-equiv="Pragma" content="no-cache">
+          <title>Prehistoric Domain</title>
+          <style type="text/css">
+            @font-face {
+              font-family: 'Exo';
+              src: url('/assets/font/Exo-Regular.ttf') format('truetype');
+            }
+          </style>
+        </head>
+        <body>
+          <div id="app"></div>
+        </body>
+      </html>
+    `,
+      inject: true
+    }),
+    new webpack.DefinePlugin({
+      'process.env.MAIN_SCENE': JSON.stringify(process.env.MAIN_SCENE),
+      'process.env.UNIQUE_ASSETS_ID': JSON.stringify(uniqueID)
+    })
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.js/,
+        exclude: /node_modules/,
+        use: ['babel-loader']
+      },
+      {
+        test: /\.html$/,
+        exclude: /node_modules/,
+        use: [
+          'aframe-super-hot-html-loader',
+          {
+            loader: path.resolve(__dirname, './loaders/html-require-loader.js'),
+            options: {
+              root: path.resolve(__dirname, 'src')
+            }
+          }
+        ]
+      },
+      {
+        test: /\.glsl/,
+        exclude: /node_modules/,
+        loader: 'webpack-glsl-loader'
+      },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: ['style-loader', 'css-loader']
+      }
+    ]
+  },
+  resolve: {
+    modules: [path.join(__dirname, 'node_modules')]
+  }
+};

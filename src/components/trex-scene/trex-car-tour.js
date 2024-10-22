@@ -76,7 +76,6 @@ AFRAME.registerComponent('trex-car-tour', {
 
     fernElements.forEach((fernElement, index) => {
       const timeScale = timeScaleValues[index % timeScaleValues.length];
-      console.log(timeScale);
       fernElement.setAttribute(
         'animation-mixer',
         `clip: KeyAction.001; startFrame: 200; timeScale: ${timeScale}`
@@ -117,5 +116,5 @@ AFRAME.registerComponent('trex-car-tour', {
         this.phase = 'exit';
         break;
     }
-  },
+  }
 });

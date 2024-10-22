@@ -1,0 +1,8 @@
+Model Information:
+* title:	Utahraptor - low poly animated model
+* source:	https://sketchfab.com/3d-models/utahraptor-low-poly-animated-model-1c04938f74ec4081bbbf83aa00824af0
+* author:	WobblyG (https://sketchfab.com/WobblyG)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

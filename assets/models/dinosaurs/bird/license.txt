@@ -1,0 +1,8 @@
+Model Information:
+* title:	3DRT - birds and critters - sparrow
+* source:	https://sketchfab.com/3d-models/3drt-birds-and-critters-sparrow-f9598d7354cc4d109df607e8650b6608
+* author:	3DRT.com (https://sketchfab.com/3DRT.com)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

@@ -1,8 +1,0 @@
-Model Information:
-* title:	Desert Cliff 11
-* source:	https://sketchfab.com/3d-models/desert-cliff-11-42363f6d8f1d4ddab69066064404d62e
-* author:	WireframeArt (https://sketchfab.com/WireframeArt)
-
-Model License:
-* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
-* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

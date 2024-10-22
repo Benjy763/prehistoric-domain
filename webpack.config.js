@@ -1,12 +1,6 @@
-const MinifyPlugin = require('babel-minify-webpack-plugin');
-const fs = require('fs');
-const ip = require('ip');
 const path = require('path');
+const fs = require('fs');
 const webpack = require('webpack');
-const CopyPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const hash = Math.random() * 100000 + 1000;
 
 function generateUniqueID() {
   const currentDate = new Date();
@@ -14,98 +8,64 @@ function generateUniqueID() {
 }
 const uniqueID = generateUniqueID();
 
-PLUGINS = [
-  new webpack.DefinePlugin({
-    'process.env.UNIQUE_ASSETS_ID': JSON.stringify(uniqueID),
-  }),
-  new HtmlWebpackPlugin({
-    filename: './index.html',
-    templateContent: `
-    <html>
-      <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="Cache-control" content="no-cache">
-        <meta http-equiv="Pragma" content="no-cache">
-        <title>Prehistoric Domain</title>
-        <style type="text/css">
-          @font-face {
-            font-family: 'Exo';
-            src: url('/assets/font/Exo-Regular.ttf') format('truetype');
-          }
-        </style>
-      </head>
-      <body>
-        <div id="app"></div>
-      </body>
-    </html>
-  `,
-  }),
-  new webpack.EnvironmentPlugin(['NODE_ENV', 'MAIN_SCENE']),
-  new webpack.HotModuleReplacementPlugin(),
-  new CleanWebpackPlugin(),
-];
-
 module.exports = {
-  devServer: {
-    disableHostCheck: true,
-    hotOnly: true,
-  },
-  entry: {
-    build: './src/index.js',
-  },
+  entry: './src/index.js',
   output: {
-    path: __dirname + '/dist/' + process.env.MAIN_SCENE,
-    filename: 'build.[hash].js',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: 'auto',
+    filename: 'bundle.js'
   },
-  plugins: PLUGINS,
+  devtool: 'source-map',
+  mode: 'development',
+  devServer: {
+    port: process.env.PORT || 8080,
+    hot: true,
+    liveReload: true,
+    server: 'https',
+    static: {
+      directory: path.join(__dirname, '/')
+    }
+    // https: {
+    //   key: fs.readFileSync(path.resolve(__dirname, 'certs/server.key')),
+    //   cert: fs.readFileSync(path.resolve(__dirname, 'certs/server.crt'))
+    // }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.MAIN_SCENE': JSON.stringify(process.env.MAIN_SCENE),
+      'process.env.UNIQUE_ASSETS_ID': JSON.stringify(uniqueID)
+    })
+  ],
   module: {
     rules: [
       {
         test: /\.js/,
-        exclude: [/(node_modules)/, /vendors/],
-        use: ['babel-loader', 'aframe-super-hot-loader'],
+        exclude: [/(node_modules)/],
+        use: ['babel-loader']
       },
       {
-        test: /\.html/,
+        test: /\.html$/,
         exclude: /(node_modules)/,
         use: [
           'aframe-super-hot-html-loader',
           {
-            loader: 'super-nunjucks-loader',
+            loader: path.resolve(__dirname, './loaders/html-require-loader.js'),
             options: {
-              globals: {
-                HOST: ip.address(),
-                IS_PRODUCTION: process.env.NODE_ENV === 'production',
-              },
-              path: process.env.NUNJUCKS_PATH || path.join(__dirname, 'src'),
-            },
-          },
-          {
-            loader: 'html-require-loader',
-            options: {
-              root: path.resolve(__dirname, 'src'),
-            },
-          },
-        ],
+              root: path.resolve(__dirname, 'src')
+            }
+          }
+        ]
       },
       {
         test: /\.glsl/,
         exclude: /(node_modules)/,
-        loader: 'webpack-glsl-loader',
+        loader: 'webpack-glsl-loader'
       },
       {
         test: /\.css$/,
         exclude: /(node_modules)/,
-        use: ['style-loader', 'css-loader'],
-      },
-      {
-        test: /\.png|\.jpg|\.gif|\.mp4/,
-        exclude: /(node_modules)/,
-        use: ['url-loader'],
-      },
-    ],
-  },
-  resolve: {
-    modules: [path.join(__dirname, 'node_modules')],
-  },
+        use: ['style-loader', 'css-loader']
+      }
+    ]
+  }
 };

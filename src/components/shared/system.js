@@ -16,7 +16,7 @@ const SupportedPlatform = [
   'Win16',
   'Linux i686',
   'Linux x86_64',
-  'Windows',
+  'Windows'
 ];
 
 AFRAME.registerSystem('system', {
@@ -130,6 +130,9 @@ AFRAME.registerSystem('system', {
     }
   },
   exitFullscreen: function () {
+    if (!document.fullscreenElement) {
+      return;
+    }
     if (document.exitFullscreen) {
       document.exitFullscreen();
     } else if (document.webkitExitFullscreen) {
@@ -227,12 +230,12 @@ AFRAME.registerSystem('system', {
     // Set main scene atmosphere color
     const mainScene = document.querySelector('#main-scene');
     mainScene.setAttribute('background', {
-      color: color,
+      color: color
     });
     mainScene.setAttribute('fog', {
       type: 'exponential',
       color: color,
-      density: density,
+      density: density
     });
   },
   // Only for the first time
@@ -254,7 +257,7 @@ AFRAME.registerSystem('system', {
       .getElementById(this.scenes[newScene].camera)
       .setAttribute('camera', {
         far: this.displayDistance,
-        fov: this.vr ? this.fovVR : this.fov,
+        fov: this.vr ? this.fovVR : this.fov
       });
 
     // Register new scene
@@ -275,11 +278,11 @@ AFRAME.registerSystem('system', {
     // Display scene
     this.displayScene(sceneId);
 
-    if (!!this.carReference) {
+    if (this.carReference) {
       // Notify car reference to the new scene
       this.carReference.stopTrackingCar();
       this.carReference = this.scenes[this.actuelScene].carReference;
-      if (!!this.carReference) {
+      if (this.carReference) {
         this.sendCarReference(this.carReference);
       }
     }
@@ -334,7 +337,7 @@ AFRAME.registerSystem('system', {
         this.vr ? this.scenes.density[0] : this.scenes.density[1]
       );
       // Set main scene ability to walk
-      if (!!this.scenes.canWalk) {
+      if (this.scenes.canWalk) {
         this.movesManager.enableWalk(this.scenes[this.actuelScene]);
       }
       const event = new Event('start');
@@ -349,7 +352,7 @@ AFRAME.registerSystem('system', {
       camera.setAttribute('position', {
         x: 0,
         y: this.vr ? 0 : 1.6,
-        z: 0,
+        z: 0
       })
     );
 
@@ -360,7 +363,7 @@ AFRAME.registerSystem('system', {
       this.movesManager.setRigPosition({
         x: this.movesManager.savedPosition.x,
         y: 0,
-        z: this.movesManager.savedPosition.y,
+        z: this.movesManager.savedPosition.y
       });
       this.movesManager.savedPosition = null;
     } else {
@@ -371,7 +374,7 @@ AFRAME.registerSystem('system', {
         y: 0,
         z: this.scenes[this.actuelScene].rigPos.z
           ? this.scenes[this.actuelScene].rigPos.z
-          : 0.5,
+          : 0.5
       });
     }
 
@@ -507,7 +510,7 @@ AFRAME.registerSystem('system', {
     const elements = {
       enEl: document.querySelector('#language-en'),
       frEl: document.querySelector('#language-fr'),
-      offEl: document.querySelector('#language-off'),
+      offEl: document.querySelector('#language-off')
     };
     const { enEl, frEl, offEl } = elements;
     if (!enEl || !frEl) {
@@ -554,5 +557,5 @@ AFRAME.registerSystem('system', {
       voiceSound.volume = 0.8;
     }
     return voiceSound;
-  },
+  }
 });

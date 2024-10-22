@@ -1,0 +1,11 @@
+Model Information:
+* title:	PALM TREE 001
+* source:	https://sketchfab.com/3d-models/palm-tree-001-161c0623834347baa75237e16b4ad330
+* author:	instaxr (https://sketchfab.com/instaxr)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "PALM TREE 001" (https://sketchfab.com/3d-models/palm-tree-001-161c0623834347baa75237e16b4ad330) by instaxr (https://sketchfab.com/instaxr) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)

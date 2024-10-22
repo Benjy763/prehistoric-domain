@@ -15,17 +15,17 @@ AFRAME.registerComponent('edmon-male-animation', {
 
     // Edmon run Path
     this.edmonMarker = 0; // Position on the curve
-    this.edmonSpeed = 0.0025; // Speed on the curve
+    this.edmonSpeed = 0.0027; // Speed on the curve
     this.walkCurve1 = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(-6.156, -0.4, 24.277),
-      new THREE.Vector3(-18.487, -0.4, 20.465),
-      new THREE.Vector3(-25.143, -0.4, 16.964),
-      new THREE.Vector3(-32.632, -0.4, 5.541),
+      new THREE.Vector3(-6.156, -0.8, 24.277),
+      new THREE.Vector3(-18.487, -0.8, 20.465),
+      new THREE.Vector3(-25.143, -0.6, 16.964),
+      new THREE.Vector3(-32.632, -0.4, 5.541)
     ]);
 
     this.walkCurve2 = new THREE.CatmullRomCurve3([
       new THREE.Vector3(-29.127, 0, 11.319),
-      new THREE.Vector3(-26.145, 0, 15.743),
+      new THREE.Vector3(-25.4, 0, 15.743)
     ]);
 
     // Sound
@@ -47,7 +47,7 @@ AFRAME.registerComponent('edmon-male-animation', {
           clip: 'E_Trot',
           loop: true,
           crossFadeDuration: 0.4,
-          timeScale: 0.6,
+          timeScale: 0.6
         });
         setTimeout(() => {
           this.edmonWalkAudio.playSound();
@@ -72,7 +72,7 @@ AFRAME.registerComponent('edmon-male-animation', {
         clip: 'E_Idle',
         loop: true,
         crossFadeDuration: 1.5,
-        timeScale: 1,
+        timeScale: 1
       });
     }
 
@@ -81,7 +81,7 @@ AFRAME.registerComponent('edmon-male-animation', {
         clip: 'E_Idle',
         loop: true,
         crossFadeDuration: 1,
-        timeScale: 0.7,
+        timeScale: 0.7
       });
       this.edmonWalkAudio.stopSound();
       setTimeout(() => {
@@ -95,7 +95,7 @@ AFRAME.registerComponent('edmon-male-animation', {
       clip: 'Aim_Right',
       loop: true,
       crossFadeDuration: 3,
-      timeScale: 0.5,
+      timeScale: 0.5
     });
     setTimeout(() => {
       this.edmonRoar1Audio.playSound();
@@ -104,14 +104,14 @@ AFRAME.registerComponent('edmon-male-animation', {
       clip: 'E_Hurt',
       loop: true,
       crossFadeDuration: 3,
-      timeScale: 0.3,
+      timeScale: 0.3
     });
     setTimeout(() => {
       this.el.setAttribute('animation-mixer', {
         clip: 'E_Idle',
         loop: true,
         crossFadeDuration: 2,
-        timeScale: 1,
+        timeScale: 1
       });
     }, 3000);
     setTimeout(() => {
@@ -119,7 +119,7 @@ AFRAME.registerComponent('edmon-male-animation', {
         clip: 'E_Idle',
         loop: true,
         crossFadeDuration: 2,
-        timeScale: 1,
+        timeScale: 1
       });
     }, 5000);
     setTimeout(() => {
@@ -133,20 +133,20 @@ AFRAME.registerComponent('edmon-male-animation', {
       clip: 'E_Call',
       loop: true,
       crossFadeDuration: 0.4,
-      timeScale: 0.9,
+      timeScale: 0.9
     });
     this.edmonFemale.setAttribute('animation-mixer', {
       clip: 'E_Action2_Yawn',
       loop: true,
       crossFadeDuration: 0.4,
-      timeScale: 0.7,
+      timeScale: 0.7
     });
     setTimeout(() => {
       this.edmonFemale.setAttribute('animation-mixer', {
         clip: 'E_Action4_Groom',
         loop: true,
         crossFadeDuration: 0.4,
-        timeScale: 0.6,
+        timeScale: 0.6
       });
     }, 5000);
     setTimeout(() => {
@@ -154,7 +154,7 @@ AFRAME.registerComponent('edmon-male-animation', {
         clip: 'E_Trot_Back',
         loop: true,
         crossFadeDuration: 1.5,
-        timeScale: 0.6,
+        timeScale: 0.6
       });
       this.edmonMarker = 0;
       this.edmonSpeed = 0.003;
@@ -167,7 +167,7 @@ AFRAME.registerComponent('edmon-male-animation', {
         clip: 'E_RestStart',
         loop: true,
         crossFadeDuration: 1.5,
-        timeScale: 0.7,
+        timeScale: 0.7
       });
     }, 8000);
     setTimeout(() => {
@@ -175,7 +175,7 @@ AFRAME.registerComponent('edmon-male-animation', {
         clip: 'E_Sleep_Start',
         loop: true,
         crossFadeDuration: 1.5,
-        timeScale: 0.7,
+        timeScale: 0.7
       });
     }, 9000);
     setTimeout(() => {
@@ -183,7 +183,7 @@ AFRAME.registerComponent('edmon-male-animation', {
         clip: 'E_Sleep_End',
         loop: true,
         startFrame: 10,
-        timeScale: 0,
+        timeScale: 0
       });
     }, 9800);
     this.phase = 'exit';
@@ -205,7 +205,7 @@ AFRAME.registerComponent('edmon-male-animation', {
         clip: 'E_RestStart',
         loop: true,
         crossFadeDuration: 1.5,
-        timeScale: 0.7,
+        timeScale: 0.7
       });
       setTimeout(() => {
         this.el.setAttribute('animation-mixer', {
@@ -213,7 +213,7 @@ AFRAME.registerComponent('edmon-male-animation', {
           loop: true,
           startFrame: 10,
           crossFadeDuration: 0.4,
-          timeScale: 0,
+          timeScale: 0
         });
       }, 2500);
       this.phase = 'exit';
@@ -235,5 +235,5 @@ AFRAME.registerComponent('edmon-male-animation', {
         this.walkBack();
         break;
     }
-  },
+  }
 });

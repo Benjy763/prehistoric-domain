@@ -1,8 +1,0 @@
-Model Information:
-* title:	Megalodon
-* source:	https://sketchfab.com/3d-models/megalodon-71633d42acf14e6b92fde55652e837d1
-* author:	pxltiger (https://sketchfab.com/pxltiger)
-
-Model License:
-* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
-* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

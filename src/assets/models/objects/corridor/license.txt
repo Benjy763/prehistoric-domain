@@ -1,8 +1,0 @@
-Model Information:
-* title:	Sci-fi Spaceship Corridor
-* source:	https://sketchfab.com/3d-models/sci-fi-spaceship-corridor-15e8037e99f24176b7a325cb115e5df0
-* author:	dalien (https://sketchfab.com/Ebbombe)
-
-Model License:
-* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
-* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

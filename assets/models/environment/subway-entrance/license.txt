@@ -1,0 +1,11 @@
+Model Information:
+* title:	Subway Entrance  [Street Assets Vol. 01]
+* source:	https://sketchfab.com/3d-models/subway-entrance-street-assets-vol-01-35c02eee93ea4a2f80af8acb84351d8c
+* author:	Alt (https://sketchfab.com/whisper.alt)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Subway Entrance  [Street Assets Vol. 01]" (https://sketchfab.com/3d-models/subway-entrance-street-assets-vol-01-35c02eee93ea4a2f80af8acb84351d8c) by Alt (https://sketchfab.com/whisper.alt) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

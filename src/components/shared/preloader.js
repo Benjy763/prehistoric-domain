@@ -22,7 +22,7 @@ AFRAME.registerSystem('preloader', {
     debug: { type: 'boolean', default: false }, //whether or not to enable logging to console
     disableVRModeUI: { type: 'boolean', default: true }, //whether or not to disable VR Mode UI when preloading
     slowLoad: { type: 'boolean', default: false }, //deliberately slow down the load progress by adding 2 second delays before updating progress - used to showcase loader on fast connections and should not be enabled in production
-    doneLabelText: { type: 'string', default: '100%' }, //text to set on label when loading is complete
+    doneLabelText: { type: 'string', default: '100%' } //text to set on label when loading is complete
   },
 
   /**
@@ -111,6 +111,7 @@ AFRAME.registerSystem('preloader', {
           break;
         case 'audio':
           eventName = 'loadeddata';
+        // eslint-disable-next-line no-fallthrough
         case 'video':
           eventName = 'loadeddata';
           break;
@@ -261,6 +262,7 @@ AFRAME.registerSystem('preloader', {
       );
     } else {
       //regular modal
+      // eslint-disable-next-line no-redeclare
       var $modal = $(
         '' +
           '<div id="' +
@@ -306,7 +308,7 @@ AFRAME.registerSystem('preloader', {
   initBootstrapModal: function ($modal) {
     $modal.modal({
       backdrop: 'static',
-      keyboard: false,
+      keyboard: false
     });
 
     if (!this.data.title) {
@@ -373,5 +375,5 @@ AFRAME.registerSystem('preloader', {
         //do nothing
         break;
     }
-  },
+  }
 });

@@ -1,8 +1,0 @@
-Model Information:
-* title:	Dimetrodon Grandis
-* source:	https://sketchfab.com/3d-models/dimetrodon-grandis-21c7948d4d1e4c219ff6af19f71c8088
-* author:	Kyan0s (https://sketchfab.com/kyan0s)
-
-Model License:
-* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
-* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

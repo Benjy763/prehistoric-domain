@@ -1,0 +1,8 @@
+Model Information:
+* title:	One simple plant call - "Amorosa"
+* source:	https://sketchfab.com/3d-models/one-simple-plant-call-amorosa-db117925a552419a8f3b9136eae1e436
+* author:	BIOFILMES (https://sketchfab.com/BIOFILMES)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

@@ -14,7 +14,7 @@ const mainscenes = [
   'deino',
   'deinocheirus',
   'home',
-  'homelight',
+  'homelight'
 ];
 mainscenes.forEach((mainScene) =>
   exec(`npm run build:scene --mainscene=${mainScene}`)

@@ -1,8 +1,0 @@
-Model Information:
-* title:	Scifi Corridor
-* source:	https://sketchfab.com/3d-models/scifi-corridor-7c9e83d962674b029f3cac69ddddba71
-* author:	Simon T Griffiths (https://sketchfab.com/RubberMan)
-
-Model License:
-* license type:	SKETCHFAB Editorial (https://sketchfab.com/licenses)
-* requirements:	Use only in connection with events that are newsworthy or of public interest
