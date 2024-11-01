@@ -13,10 +13,10 @@ export const MainScenes = {
     displayDistance: 10000,
     carMarkerForDebug: 0.7,
     color: '#d6d6d6',
-    density: [0.001, 0.001],
+    density: [0.0004, 0.0004],
     loading: {
       scene: 'loading-scene',
-      camera: 'loading-scene-camera',
+      camera: 'loading-scene-camera'
     },
     home: {
       loaded: false,
@@ -27,8 +27,8 @@ export const MainScenes = {
       rigPos: {
         x: 68,
         y: 1,
-        z: -3.2,
-      },
+        z: -3.2
+      }
     },
     cinema: {
       loaded: false,
@@ -40,8 +40,8 @@ export const MainScenes = {
       rigPos: {
         x: -0.275,
         y: 2.05,
-        z: -0.25,
-      },
+        z: -0.25
+      }
     },
     visitors: {
       scene: 'visitors-scene',
@@ -51,15 +51,15 @@ export const MainScenes = {
       rigPos: {
         x: -24.764,
         y: 1,
-        z: -1.267,
-      },
+        z: -1.267
+      }
     },
     ending: {
       scene: 'ending-scene',
       camera: 'ending-scene-camera',
       car: 'ending-car',
-      carReference: null,
-    },
+      carReference: null
+    }
   },
   homelight: {
     // Starting scene
@@ -76,7 +76,7 @@ export const MainScenes = {
     density: [0.001, 0.001],
     loading: {
       scene: 'loading-scene',
-      camera: 'loading-scene-camera',
+      camera: 'loading-scene-camera'
     },
     home: {
       loaded: false,
@@ -87,8 +87,8 @@ export const MainScenes = {
       rigPos: {
         x: 68,
         y: 1,
-        z: -3.2,
-      },
+        z: -3.2
+      }
     },
     cinema: {
       loaded: false,
@@ -100,15 +100,15 @@ export const MainScenes = {
       rigPos: {
         x: -0.275,
         y: 2.05,
-        z: -0.25,
-      },
+        z: -0.25
+      }
     },
     ending: {
       scene: 'ending-scene',
       camera: 'ending-scene-camera',
       car: 'ending-car',
-      carReference: null,
-    },
+      carReference: null
+    }
   },
   visitors: {
     // Starting scene
@@ -125,7 +125,7 @@ export const MainScenes = {
     density: [0, 0],
     loading: {
       scene: 'loading-scene',
-      camera: 'loading-scene-camera',
+      camera: 'loading-scene-camera'
     },
     visitors: {
       scene: 'visitors-scene',
@@ -135,15 +135,15 @@ export const MainScenes = {
       rigPos: {
         x: -21.292,
         y: 1,
-        z: -3.743,
-      },
+        z: -3.743
+      }
     },
     ending: {
       scene: 'ending-scene',
       camera: 'ending-scene-camera',
       car: 'ending-car',
-      carReference: null,
-    },
+      carReference: null
+    }
   },
   tour: {
     // Starting scene
@@ -160,7 +160,7 @@ export const MainScenes = {
     density: [0.025, 0.025],
     loading: {
       scene: 'loading-scene',
-      camera: 'loading-scene-camera',
+      camera: 'loading-scene-camera'
     },
     gate: {
       scene: 'gate-scene',
@@ -171,15 +171,15 @@ export const MainScenes = {
       rigPos: {
         x: 0.38,
         y: 1.98,
-        z: -0.587,
-      },
+        z: -0.587
+      }
     },
     ending: {
       scene: 'ending-scene',
       camera: 'ending-scene-camera',
       car: 'ending-car',
-      carReference: null,
-    },
+      carReference: null
+    }
   },
   aviary: {
     // Starting scene
@@ -197,7 +197,7 @@ export const MainScenes = {
     canWalk: true,
     loading: {
       scene: 'loading-scene',
-      camera: 'loading-scene-camera',
+      camera: 'loading-scene-camera'
     },
     aviary: {
       scene: 'aviary-scene',
@@ -207,15 +207,15 @@ export const MainScenes = {
       rigPos: {
         x: 1.152,
         y: 1,
-        z: 0.934,
-      },
+        z: 0.934
+      }
     },
     ending: {
       scene: 'ending-scene',
       camera: 'ending-scene-camera',
       car: 'ending-car',
-      carReference: null,
-    },
+      carReference: null
+    }
   },
   cretaceousLagoon: {
     // Starting scene
@@ -231,7 +231,7 @@ export const MainScenes = {
     density: [0.1, 0.1],
     loading: {
       scene: 'loading-scene',
-      camera: 'loading-scene-camera',
+      camera: 'loading-scene-camera'
     },
     cretaceousLagoon: {
       scene: 'cretaceous-lagoon-scene',
@@ -241,15 +241,15 @@ export const MainScenes = {
       rigPos: {
         x: 1,
         y: 2.2,
-        z: 0,
-      },
+        z: 0
+      }
     },
     ending: {
       scene: 'ending-scene',
       camera: 'ending-scene-camera',
       car: 'ending-car',
-      carReference: null,
-    },
+      carReference: null
+    }
   },
   lagoon: {
     // Starting scene
@@ -265,7 +265,7 @@ export const MainScenes = {
     density: [0.1, 0.1],
     loading: {
       scene: 'loading-scene',
-      camera: 'loading-scene-camera',
+      camera: 'loading-scene-camera'
     },
     lagoon: {
       scene: 'lagoon-scene',
@@ -275,15 +275,15 @@ export const MainScenes = {
       rigPos: {
         x: 1,
         y: 2.2,
-        z: 0,
-      },
+        z: 0
+      }
     },
     ending: {
       scene: 'ending-scene',
       camera: 'ending-scene-camera',
       car: 'ending-car',
-      carReference: null,
-    },
+      carReference: null
+    }
   },
   cinema: {
     // Starting scene
@@ -299,20 +299,20 @@ export const MainScenes = {
     density: [0.03, 0.03],
     loading: {
       scene: 'loading-scene',
-      camera: 'loading-scene-camera',
+      camera: 'loading-scene-camera'
     },
     cinema: {
       scene: 'cinema-scene',
       camera: 'cinema-scene-camera',
       car: 'cinema-car',
-      carReference: null,
+      carReference: null
     },
     ending: {
       scene: 'ending-scene',
       camera: 'ending-scene-camera',
       car: 'ending-car',
-      carReference: null,
-    },
+      carReference: null
+    }
   },
   sarco: {
     // Starting scene
@@ -329,7 +329,7 @@ export const MainScenes = {
     canWalk: true,
     loading: {
       scene: 'loading-scene',
-      camera: 'loading-scene-camera',
+      camera: 'loading-scene-camera'
     },
     sarco: {
       scene: 'sarco-scene',
@@ -339,15 +339,15 @@ export const MainScenes = {
       rigPos: {
         x: 1,
         y: 1,
-        z: 0,
-      },
+        z: 0
+      }
     },
     ending: {
       scene: 'ending-scene',
       camera: 'ending-scene-camera',
       car: 'ending-car',
-      carReference: null,
-    },
+      carReference: null
+    }
   },
   spino: {
     // Starting scene
@@ -364,7 +364,7 @@ export const MainScenes = {
     canWalk: true,
     loading: {
       scene: 'loading-scene',
-      camera: 'loading-scene-camera',
+      camera: 'loading-scene-camera'
     },
     spino: {
       scene: 'spino-scene',
@@ -374,15 +374,15 @@ export const MainScenes = {
       rigPos: {
         x: 1,
         y: 1,
-        z: 0,
-      },
+        z: 0
+      }
     },
     ending: {
       scene: 'ending-scene',
       camera: 'ending-scene-camera',
       car: 'ending-car',
-      carReference: null,
-    },
+      carReference: null
+    }
   },
   quetza: {
     // Starting scene
@@ -400,7 +400,7 @@ export const MainScenes = {
     canWalk: true,
     loading: {
       scene: 'loading-scene',
-      camera: 'loading-scene-camera',
+      camera: 'loading-scene-camera'
     },
     quetza: {
       scene: 'quetza-scene',
@@ -410,15 +410,15 @@ export const MainScenes = {
       rigPos: {
         x: 1,
         y: 1,
-        z: 0,
-      },
+        z: 0
+      }
     },
     ending: {
       scene: 'ending-scene',
       camera: 'ending-scene-camera',
       car: 'ending-car',
-      carReference: null,
-    },
+      carReference: null
+    }
   },
   dimetrodon: {
     // Starting scene
@@ -436,7 +436,7 @@ export const MainScenes = {
     canWalk: true,
     loading: {
       scene: 'loading-scene',
-      camera: 'loading-scene-camera',
+      camera: 'loading-scene-camera'
     },
     dimetrodon: {
       scene: 'dimetrodon-scene',
@@ -446,15 +446,15 @@ export const MainScenes = {
       rigPos: {
         x: 1,
         y: 1,
-        z: 0,
-      },
+        z: 0
+      }
     },
     ending: {
       scene: 'ending-scene',
       camera: 'ending-scene-camera',
       car: 'ending-car',
-      carReference: null,
-    },
+      carReference: null
+    }
   },
   edmon: {
     // Starting scene
@@ -472,7 +472,7 @@ export const MainScenes = {
     canWalk: true,
     loading: {
       scene: 'loading-scene',
-      camera: 'loading-scene-camera',
+      camera: 'loading-scene-camera'
     },
     edmon: {
       scene: 'edmon-scene',
@@ -482,15 +482,15 @@ export const MainScenes = {
       rigPos: {
         x: 1,
         y: 1,
-        z: 0,
-      },
+        z: 0
+      }
     },
     ending: {
       scene: 'ending-scene',
       camera: 'ending-scene-camera',
       car: 'ending-car',
-      carReference: null,
-    },
+      carReference: null
+    }
   },
   trex: {
     // Starting scene
@@ -508,7 +508,7 @@ export const MainScenes = {
     canWalk: true,
     loading: {
       scene: 'loading-scene',
-      camera: 'loading-scene-camera',
+      camera: 'loading-scene-camera'
     },
     trex: {
       scene: 'trex-scene',
@@ -518,15 +518,15 @@ export const MainScenes = {
       rigPos: {
         x: 0,
         y: 1,
-        z: 0,
-      },
+        z: 0
+      }
     },
     ending: {
       scene: 'ending-scene',
       camera: 'ending-scene-camera',
       car: 'ending-car',
-      carReference: null,
-    },
+      carReference: null
+    }
   },
   deinocheirus: {
     // Starting scene
@@ -544,7 +544,7 @@ export const MainScenes = {
     canWalk: true,
     loading: {
       scene: 'loading-scene',
-      camera: 'loading-scene-camera',
+      camera: 'loading-scene-camera'
     },
     deinocheirus: {
       scene: 'deinocheirus-scene',
@@ -554,15 +554,15 @@ export const MainScenes = {
       rigPos: {
         x: 0,
         y: 1,
-        z: 0,
-      },
+        z: 0
+      }
     },
     ending: {
       scene: 'ending-scene',
       camera: 'ending-scene-camera',
       car: 'ending-car',
-      carReference: null,
-    },
+      carReference: null
+    }
   },
   deino: {
     // Starting scene
@@ -580,7 +580,7 @@ export const MainScenes = {
     canWalk: true,
     loading: {
       scene: 'loading-scene',
-      camera: 'loading-scene-camera',
+      camera: 'loading-scene-camera'
     },
     deino: {
       scene: 'deino-scene',
@@ -590,16 +590,16 @@ export const MainScenes = {
       rigPos: {
         x: 1,
         y: 1,
-        z: 0,
-      },
+        z: 0
+      }
     },
     ending: {
       scene: 'ending-scene',
       camera: 'ending-scene-camera',
       car: 'ending-car',
-      carReference: null,
-    },
-  },
+      carReference: null
+    }
+  }
 };
 
 // Scenes from main one selected

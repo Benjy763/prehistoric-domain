@@ -1,270 +1,131 @@
 <a-assets id="home-assets" timeout="60000">
   <!-- Video -->
-  <video
-    id="pub"
-    src="/assets/images/pub.mp4"
-    width="1280"
-    height="720"
-    loop="true"
-    crossorigin="anonymous"
-  ></video>
-  <video
-    id="cinema"
-    src="/assets/images/pub.mp4"
-    width="1280"
-    height="720"
-    loop="false"
-    crossorigin="anonymous"
-  ></video>
+  <video id="pub" src="/assets/images/pub.mp4" width="1280" height="720" loop="true" crossorigin="anonymous"></video>
+  <video id="cinema" src="/assets/images/pub.mp4" width="1280" height="720" loop="false"
+    crossorigin="anonymous"></video>
 
   <!-- Audio -->
   <!-- Voice -->
 
   <!-- Environement -->
-  <audio
-    id="home-asset"
-    response-type="arraybuffer"
-    src="/assets/sounds/environement/home.webm?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-    preload="auto"
-    loop="true"
-    volume="1"
-  ></audio>
-  <audio
-    id="visitors-asset"
-    response-type="arraybuffer"
-    src="/assets/sounds/environement/visitors.webm?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-    preload="auto"
-    loop="true"
-    volume="1"
-  ></audio>
+  <audio id="home-asset" response-type="arraybuffer"
+    src="/assets/sounds/environement/home.webm?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto" loop="true"
+    volume="1"></audio>
+  <audio id="visitors-asset" response-type="arraybuffer"
+    src="/assets/sounds/environement/visitors.webm?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto" loop="true"
+    volume="1"></audio>
 
   <!-- Sounds -->
-  <a-asset-item
-    id="home-fountain-asset"
-    src="/assets/sounds/trice/fountain.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-    preload="auto"
-    response-type="arraybuffer"
-    crossorigin="anonymous"
-  ></a-asset-item>
+  <a-asset-item id="home-fountain-asset" src="/assets/sounds/trice/fountain.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
+    preload="auto" response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
 
   <!-- Images -->
-  <img
-    id="loading-asset"
-    src="/assets/images/loader.png?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  />
-  <img
-    id="limits-asset"
-    src="/assets/images/limits.png?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  />
-  <img
-    id="credits-asset"
-    src="/assets/images/credits.png?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  />
-  <img
-    id="rendering-asset"
-    src="/assets/images/rendering.png?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  />
-  <img
-    id="home-pres-asset"
-    src="/assets/images/home-pres.png?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  />
-  <img
-    id="home-expo-1-asset"
-    src="/assets/images/expo-1.jpg?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  />
-  <img
-    id="home-expo-2-asset"
-    src="/assets/images/expo-2.jpg?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  />
-  <img
-    id="home-expo-3-asset"
-    src="/assets/images/expo-3.jpg?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  />
-  <img
-    id="home-expo-4-asset"
-    src="/assets/images/expo-4.jpg?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  />
-  <img
-    id="home-cinema-poster-asset"
-    src="/assets/images/cinema-poster.png?lastmod=10"
-  />
+  <img id="loading-asset" src="/assets/images/loader.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="limits-asset" src="/assets/images/limits.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="credits-asset" src="/assets/images/credits.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="rendering-asset" src="/assets/images/rendering.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="home-pres-asset" src="/assets/images/home-pres.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="home-expo-1-asset" src="/assets/images/expo-1.jpg?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="home-360-asset" src="/assets/images/home/home-360.jpg?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="home-expo-2-asset" src="/assets/images/expo-2.jpg?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="home-expo-3-asset" src="/assets/images/expo-3.jpg?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="home-expo-4-asset" src="/assets/images/expo-4.jpg?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="home-cinema-poster-asset" src="/assets/images/cinema-poster.png?lastmod=10" />
   <img id="gallery-1-asset" src="/assets/images/visitors/gallery-1.png" />
-  <img
-    id="gallery-1-cm-asset"
-    src="/assets/images/visitors/visitors-gallerie-naming-cm.png"
-  />
-  <img
-    id="gallery-1-as-asset"
-    src="/assets/images/visitors/visitors-gallerie-naming-as.png"
-  />
-  <img
-    id="gallery-1-gc-asset"
-    src="/assets/images/visitors/visitors-gallerie-naming-gc.png"
-  />
-  <img
-    id="gallery-1-st-asset"
-    src="/assets/images/visitors/visitors-gallerie-naming-st.png"
-  />
-  <img
-    id="gallery-1-vw-asset"
-    src="/assets/images/visitors/visitors-gallerie-naming-vw.png"
-  />
-  <img
-    id="visitors-pres-asset"
-    src="/assets/images/visitors-pres.png?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  />
+  <img id="gallery-1-cm-asset" src="/assets/images/visitors/visitors-gallerie-naming-cm.png" />
+  <img id="gallery-1-as-asset" src="/assets/images/visitors/visitors-gallerie-naming-as.png" />
+  <img id="gallery-1-gc-asset" src="/assets/images/visitors/visitors-gallerie-naming-gc.png" />
+  <img id="gallery-1-st-asset" src="/assets/images/visitors/visitors-gallerie-naming-st.png" />
+  <img id="gallery-1-vw-asset" src="/assets/images/visitors/visitors-gallerie-naming-vw.png" />
+  <img id="visitors-pres-asset" src="/assets/images/visitors-pres.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+
 
   <!-- 3D -->
   <!-- Objects -->
-  <a-asset-item
-    id="checkpoint-asset"
-    src="/assets/models/objects/checkpoint/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  >
+  <a-asset-item id="checkpoint-asset"
+    src="/assets/models/objects/checkpoint/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item
-    id="fountain-asset"
-    src="/assets/models/objects/fountain/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  >
+  <a-asset-item id="fountain-asset"
+    src="/assets/models/objects/fountain/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item
-    id="men-1-asset"
-    src="/assets/models/objects/characters/caract-men-1/scene.gltf"
-  >
+  <a-asset-item id="men-1-asset" src="/assets/models/objects/characters/caract-men-1/scene.gltf">
   </a-asset-item>
-  <a-asset-item
-    id="men-2-asset"
-    src="/assets/models/objects/characters/caract-men-2/scene.gltf"
-  >
+  <a-asset-item id="men-2-asset" src="/assets/models/objects/characters/caract-men-2/scene.gltf">
   </a-asset-item>
-  <a-asset-item
-    id="men-3-asset"
-    src="/assets/models/objects/characters/caract-men-3/scene.gltf"
-  >
+  <a-asset-item id="men-3-asset" src="/assets/models/objects/characters/caract-men-3/scene.gltf">
   </a-asset-item>
-  <a-asset-item
-    id="billboard-asset"
-    src="/assets/models/objects/billboard/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  >
+  <a-asset-item id="billboard-asset"
+    src="/assets/models/objects/billboard/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item
-    id="billboard-2-asset"
-    src="/assets/models/objects/billboard/scene3.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  >
+  <a-asset-item id="billboard-2-asset"
+    src="/assets/models/objects/billboard/scene3.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item
-    id="terminal-asset"
-    src="/assets/models/objects/terminal/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  >
+  <a-asset-item id="terminal-asset"
+    src="/assets/models/objects/terminal/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
 
-  <a-asset-item
-    id="girl-1-asset"
-    src="/assets/models/objects/characters/caract-girl-1/scene.gltf"
-  >
+  <a-asset-item id="girl-1-asset" src="/assets/models/objects/characters/caract-girl-1/scene.gltf">
   </a-asset-item>
-  <a-asset-item
-    id="girl-2-asset"
-    src="/assets/models/objects/characters/caract-girl-2/scene.gltf"
-  >
+  <a-asset-item id="girl-2-asset" src="/assets/models/objects/characters/caract-girl-2/scene.gltf">
   </a-asset-item>
-  <a-asset-item
-    id="turnstiles-big-asset"
-    src="/assets/models/objects/turnstiles/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  >
+  <a-asset-item id="turnstiles-big-asset"
+    src="/assets/models/objects/turnstiles/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item
-    id="turnstiles-asset"
-    src="/assets/models/objects/turnstiles-2/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  >
+  <a-asset-item id="turnstiles-asset"
+    src="/assets/models/objects/turnstiles-2/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item
-    id="door-asset"
-    src="/assets/models/objects/door-underwater/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  >
+  <a-asset-item id="door-asset"
+    src="/assets/models/objects/door-underwater/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item
-    id="door-2-asset"
-    src="/assets/models/objects/door-underwater/scene-2.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  >
+  <a-asset-item id="door-2-asset"
+    src="/assets/models/objects/door-underwater/scene-2.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item
-    id="wait-fence-long-asset"
-    src="/assets/models/objects/wait-fence/scene-2.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  >
+  <a-asset-item id="wait-fence-long-asset"
+    src="/assets/models/objects/wait-fence/scene-2.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item
-    id="stego-skeleton-asset"
-    src="/assets/models/objects/stego-skeleton/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  >
+  <a-asset-item id="stego-skeleton-asset"
+    src="/assets/models/objects/stego-skeleton/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item
-    id="allo-skeleton-asset"
-    src="/assets/models/objects/allo-skeleton/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  >
+  <a-asset-item id="allo-skeleton-asset"
+    src="/assets/models/objects/allo-skeleton/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
     <!-- Environment -->
-    <a-asset-item
-      id="ground-asset"
-      src="/assets/models/environment/ground/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-    >
+    <a-asset-item id="ground-asset"
+      src="/assets/models/environment/ground/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
     </a-asset-item>
-    <a-asset-item
-      id="hotel-asset"
-      src="/assets/models/environment/hotel/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-    >
+    <a-asset-item id="hotel-asset"
+      src="/assets/models/environment/hotel/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
     </a-asset-item>
-    <a-asset-item
-      id="big-mountain-asset"
-      src="/assets/models/environment/big-mountain/scene2.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-    >
+    <a-asset-item id="big-mountain-asset"
+      src="/assets/models/environment/big-mountain/scene2.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
     </a-asset-item>
   </a-asset-item>
-  <a-asset-item
-    id="main-scene-asset"
-    src="/assets/models/environment/main-scene/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  >
+  <a-asset-item id="main-scene-asset"
+    src="/assets/models/environment/main-scene/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item
-    id="waterfall-asset"
-    src="/assets/models/environment/waterfall/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  >
+  <a-asset-item id="waterfall-asset"
+    src="/assets/models/environment/waterfall/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item
-    id="big-wall-asset"
-    src="/assets/models/environment/big-wall/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  >
+  <a-asset-item id="big-wall-asset"
+    src="/assets/models/environment/big-wall/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item
-    id="visitors-house-asset"
-    src="/assets/models/environment/visitors-house/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  >
+  <a-asset-item id="visitors-house-asset"
+    src="/assets/models/environment/visitors-house/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item
-    id="forest-fern-1-asset"
-    src="/assets/models/environment/forest/forest-fern-1/scene-nomorph.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  >
+  <a-asset-item id="forest-fern-1-asset"
+    src="/assets/models/environment/forest/forest-fern-1/scene-nomorph.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item
-    id="ground-mud-asset"
-    src="/assets/models/environment/ground-mud/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  >
+  <a-asset-item id="ground-mud-asset"
+    src="/assets/models/environment/ground-mud/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item
-    id="forest-rock-1-asset"
-    src="/assets/models/environment/forest/forest-rock-1/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  >
+  <a-asset-item id="forest-rock-1-asset"
+    src="/assets/models/environment/forest/forest-rock-1/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item
-    id="forest-pine-large-asset"
-    src="/assets/models/environment/forest/forest-fir-large/fire-large-4.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  >
+  <a-asset-item id="forest-pine-large-asset"
+    src="/assets/models/environment/forest/forest-fir-large/fire-large-4.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item
-    id="low-grass-asset"
-    src="/assets/models/environment/low-grass-2/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  >
+  <a-asset-item id="low-grass-asset"
+    src="/assets/models/environment/low-grass-2/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
-  <a-asset-item
-    id="cinema-asset"
-    src="/assets/models/environment/cinema/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  ></a-asset-item>
+  <a-asset-item id="cinema-asset"
+    src="/assets/models/environment/cinema/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"></a-asset-item>
 </a-assets>
