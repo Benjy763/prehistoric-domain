@@ -37,8 +37,7 @@ AFRAME.registerComponent('home-car-tour', {
         // Init perf for quest
         const isQuest =
           window.navigator.userAgent &&
-          (window.navigator.userAgent.includes('Quest 2') ||
-            window.navigator.userAgent.includes('OculusBrowser'));
+          window.navigator.userAgent.includes('Quest 2');
         if (isQuest) {
           let elements = document.getElementsByClassName('performance');
           for (let i = 0; i < elements.length; i++) {
@@ -114,5 +113,5 @@ AFRAME.registerComponent('home-car-tour', {
         this.phase = 'exit';
         break;
     }
-  },
+  }
 });

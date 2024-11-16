@@ -14,31 +14,36 @@
   rotation="0 180 0" scale="1 1 1"></a-entity>
 <a-entity id="home-resto-building" class="dispose" position="-64.21771 0.08582 35.93985" rotation="0 0 0"
   scale="0.1 0.1 0.1">
+  <a-entity id="home-paleo-billboard" visible="true" class="dispose" gltf-model="#billboard-asset"
+    position="-43.79276 14.20489 -158.30244" rotation="0 -90 0" scale="0.11 0.21 0.15">
+    <a-image id="home-paleo-poster" src="#home-cinema-poster-asset" scale="265 119.5 10"
+      position="-16.21838 58.52372 -0.14743" rotation="0 -90 0"></a-image>
+  </a-entity>
   <a-box id="home-resto-text-box-2" class="dispose" rotation="0 180 0" scale="80 20 5"
-    position="-15.96899 52.30024 -161.43257" material="blending: none; shader: flat; color: #141414"
+    position="-42.46256 52.3 -160.83195" material="blending: none; shader: flat; color: #172040"
     geometry="depth: 1; height: 1; width: 1; primitive: box; segmentsHeight: 10; segmentsWidth: 10; radius: 0.1"
     color="black" side="back">
-    <a-troika-text id="home-resto-text" troika-text="color: #d6d6d6" scale="0.66 1.9 1" position="-0.00156 -0.00996 0"
-      value="STEG HOUSE" font="/assets/font/AlfaSlabOne-Regular.ttf">
+    <a-troika-text id="home-resto-text" troika-text="color: #e0dec9" scale="0.52 1.9 1" position="-0.002 -0.01 0"
+      value="PALEO GALLERY" font="/assets/font/AlfaSlabOne-Regular.ttf">
     </a-troika-text>
   </a-box>
 </a-entity>
 <a-entity id="home-cinema-2-building" class="dispose" position="-70.32454 0.17537 -26.90656" rotation="0 0 0"
   scale="0.1 0.1 0.1">
   <a-entity id="home-cinema-billboard" visible="true" class="dispose" gltf-model="#billboard-asset"
-    position="41.41326 40.86577 100.86565" rotation="0 90 0" scale="0.11 0.2 0.13">
+    position="41.41326 40.86577 100.86565" rotation="0 90 0" scale="0.11 0.21 0.15">
     <a-image id="home-cinema-poster" src="#home-cinema-poster-asset" scale="265 119.5 10"
       position="-16.21838 58.52372 -0.14743" rotation="0 -90 0"></a-image>
   </a-entity>
   <a-box id="home-cinema-text-box-2" scale="100 20 5" position="141.75053 52.66941 72.71094"
-    material="blending: none; shader: flat; color: #141414"
+    material="blending: none; shader: flat; color: #172040"
     geometry="depth: 1; height: 1; width: 1; primitive: box; segmentsHeight: 10; segmentsWidth: 10; radius: 0.1"
     color="black" side="back">
-    <a-troika-text id="home-cinema-text" position="0 -0.03466 0" scale="0.93 3.13 1" troika-text="color: #d6d6d6"
+    <a-troika-text id="home-cinema-text" position="0 -0.03466 0" scale="0.93 3.13 1" troika-text="color: #e0dec9"
       value="CINEMA" font="/assets/font/AlfaSlabOne-Regular.ttf"></a-troika-text>
   </a-box>
 </a-entity>
-<a-entity id="home-terminal" class="dispose" gltf-model="#terminal-asset" position="-98.6204 0.46849 -1.48242"
+<a-entity id="home-terminal" class="dispose" gltf-model="#terminal-asset" position="-95.08929 0.46849 -1.48242"
   rotation="0 -90 0" scale="0.032 0.032 0.032">
   <a-image id="home-pres" src="#home-pres-asset" scale="32 16 10" position="-0.05575 46.56972 -7.50028"
     rotation="-14.210000000000003 3.15 0"></a-image>
@@ -53,8 +58,8 @@
   gltf-model="#checkpoint-asset" position="-98.1842 1.1 -15.8633" rotation="0 110 0" scale="4 4 4"></a-entity>
 
 
-<a-entity id="home-billboard-1" gltf-model="#billboard-asset" position="-17.11748 16.92951 4.3023" rotation="0 0 0"
-  scale="0.05 0.09 0.08">
+<a-entity id="home-billboard-1" gltf-model="#billboard-asset" position="-30.863 8.94 4.01131" rotation="0 0 0"
+  scale="0.05 0.06 0.05">
   <a-entity id="home-movie" scale="0.2 0.165 0.5" material="shader: flat; src: #pub"
     geometry="primitive: plane; width: 1280; height: 720;" position="-16.66368 58.25622 0.08577" rotation="0 -90 0">
   </a-entity>
@@ -80,19 +85,17 @@
     rotation="0 0 0"></a-image>
 </a-entity>
 <a-entity id="home-fountain" sound__fountain="src: #home-fountain-asset; volume: 15; loop: true"
-  position="-57.63201 0.57967 -0.84053" rotation="0 180 0" scale="50 50 50">
+  position="-61.73683 0.57967 -2.00052" rotation="0 180 0" scale="50 50 50">
   <a-entity id="home-waterfall" class="dispose" animation-mixer="clip: Animation" gltf-model="#waterfall-asset"
-    position="-0.18399 -0.10028 -0.102" rotation="0 0 0" scale="0.002 0.005 0.0025"></a-entity>
+    position="-0.11573 -0.077 -0.10472" rotation="0 0 0" scale="0.002 0.005 0.002"></a-entity>
 </a-entity>
-<a-entity id="home-men-1" class="dispose" animation-mixer="clip: Rig|new_man_idle; timeScale: 0.8"
-  gltf-model="#men-1-asset" position="-71.185 0.219 18.39638" rotation="0 180 0" scale="1.45 1.45 1.45"></a-entity>
-<a-entity id="home-men-2" class="performance dispose" animation-mixer="clip: Rig|new_man_idle; timeScale: 0.8"
+<a-entity id="home-men-2" class="dispose" animation-mixer="clip: Rig|new_man_idle; timeScale: 0.8"
   gltf-model="#men-2-asset" position="-102.04974 0.21851 26.018" rotation="0 180 0" scale="1.45 1.45 1.45"></a-entity>
-<a-entity id="home-men-3" class="performance dispose" animation-mixer="clip: Rig|new_man_idle; timeScale: 0.8"
+<a-entity id="home-men-3" class="dispose" animation-mixer="clip: Rig|new_man_idle; timeScale: 0.8"
   gltf-model="#men-1-asset" position="-86.6851 0.21851 26.48676" rotation="0 180 0" scale="1.45 1.45 1.45"></a-entity>
-<a-entity id="home-men-4" class="performance dispose" animation-mixer="clip: Rig|new_man_idle; timeScale: 0.8"
+<a-entity id="home-men-4" class="dispose" animation-mixer="clip: Rig|new_man_idle; timeScale: 0.8"
   gltf-model="#men-2-asset" position="-95.58537 0.219 -26.20193" rotation="0 0 0" scale="1.45 1.45 1.45"></a-entity>
-<a-entity id="home-men-5" class="performance dispose" animation-mixer="clip: Rig|new_sit_idle; timeScale: 0.8"
-  gltf-model="#men-2-asset" position="-72.68469 0.20075 7.02921" rotation="-5.97 0 0" scale="1.3 1.3 1.3"></a-entity>
-<a-entity id="home-men-6" class="performance dispose" animation-mixer="clip: Rig|new_sit_idle; timeScale: 0.8"
-  gltf-model="#men-3-asset" position="-72.80851 0.30081 12.1306" rotation="0 180 0" scale="1.3 1.3 1.3"></a-entity>
+<a-entity id="home-men-5" class="dispose" animation-mixer="clip: Rig|new_sit_idle; timeScale: 0.8"
+  gltf-model="#men-2-asset" position="-91.52157 0.27265 10.99151" rotation="-5.97 0 0" scale="1.3 1.3 1.3"></a-entity>
+<a-entity id="home-men-6" class="dispose" animation-mixer="clip: Rig|new_sit_idle; timeScale: 0.8"
+  gltf-model="#men-3-asset" position="-81.73397 0.28369 15.53119" rotation="0 180 0" scale="1.3 1.3 1.3"></a-entity>
