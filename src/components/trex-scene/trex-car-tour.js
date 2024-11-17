@@ -83,11 +83,11 @@ AFRAME.registerComponent('trex-car-tour', {
     });
   },
   checkpointListener: function () {
-    if (this.movesManager.distanceFromPoint('trex-checkpoint') < 3) {
+    if (this.movesManager.distanceFromPoint('trex-checkpoint') < 1.3) {
       this.textCar.setAttribute('visible', 'true');
       this.movesManager.nextScene = 'ending';
     }
-    if (this.movesManager.distanceFromPoint('trex-checkpoint') >= 3) {
+    if (this.movesManager.distanceFromPoint('trex-checkpoint') >= 1.3) {
       this.textCar.setAttribute('visible', 'false');
       this.movesManager.nextScene = null;
     }

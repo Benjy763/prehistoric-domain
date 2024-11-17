@@ -516,9 +516,9 @@ export const MainScenes = {
       car: 'trex-car',
       carReference: null,
       rigPos: {
-        x: 0,
+        x: 1.5,
         y: 1,
-        z: 0
+        z: 0.2
       }
     },
     ending: {

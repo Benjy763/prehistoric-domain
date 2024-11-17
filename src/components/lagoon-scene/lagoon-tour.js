@@ -19,7 +19,7 @@ AFRAME.registerComponent('lagoon-car-tour', {
     // Tour Path
     const curve = new THREE.CatmullRomCurve3([
       new THREE.Vector3(7.988, 0, 81.899),
-      new THREE.Vector3(9.7, 0, -174.7),
+      new THREE.Vector3(9.7, 0, -174.7)
     ]);
 
     // En scene activation
@@ -89,11 +89,11 @@ AFRAME.registerComponent('lagoon-car-tour', {
     this.phase = 'exit';
   },
   checkpointListener: function () {
-    if (this.movesManager.distanceFromPoint('lagoon-checkpoint') < 1) {
+    if (this.movesManager.distanceFromPoint('lagoon-checkpoint') < 1.3) {
       this.textCar.setAttribute('visible', 'true');
       this.movesManager.nextScene = 'ending';
     }
-    if (this.movesManager.distanceFromPoint('lagoon-checkpoint') >= 1) {
+    if (this.movesManager.distanceFromPoint('lagoon-checkpoint') >= 1.3) {
       this.textCar.setAttribute('visible', 'false');
       this.movesManager.nextScene = null;
     }
@@ -127,5 +127,5 @@ AFRAME.registerComponent('lagoon-car-tour', {
         this.phase = 'exit';
         break;
     }
-  },
+  }
 });

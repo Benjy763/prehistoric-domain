@@ -60,11 +60,11 @@ AFRAME.registerComponent('quetza-car-tour', {
     this.phase = 'exit';
   },
   checkpointListener: function () {
-    if (this.movesManager.distanceFromPoint('quetza-checkpoint') < 3) {
+    if (this.movesManager.distanceFromPoint('quetza-checkpoint') < 1.3) {
       this.textCar.setAttribute('visible', 'true');
       this.movesManager.nextScene = 'ending';
     }
-    if (this.movesManager.distanceFromPoint('quetza-checkpoint') >= 3) {
+    if (this.movesManager.distanceFromPoint('quetza-checkpoint') >= 1.3) {
       this.textCar.setAttribute('visible', 'false');
       this.movesManager.nextScene = null;
     }
@@ -93,5 +93,5 @@ AFRAME.registerComponent('quetza-car-tour', {
         this.phase = 'exit';
         break;
     }
-  },
+  }
 });
