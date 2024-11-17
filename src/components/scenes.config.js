@@ -408,7 +408,7 @@ export const MainScenes = {
       car: 'quetza-car',
       carReference: null,
       rigPos: {
-        x: 1,
+        x: 2.3,
         y: 1,
         z: 0
       }
@@ -480,7 +480,7 @@ export const MainScenes = {
       car: 'edmon-car',
       carReference: null,
       rigPos: {
-        x: 1,
+        x: 2,
         y: 1,
         z: 0
       }
@@ -588,7 +588,7 @@ export const MainScenes = {
       car: 'deino-car',
       carReference: null,
       rigPos: {
-        x: 1,
+        x: 2,
         y: 1,
         z: 0
       }
