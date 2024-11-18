@@ -1,7 +1,6 @@
 <a-entity id="deino-car" gltf-model="#deino-scene-asset" deino-car-tour position="8.78671 1.49998 -8.33833"
   rotation="0 6.17 0" scale="1 1.2 1">
-  <a-entity id="rig" turn-control="controllerListenerId: #controller-data;" movement-controls="speed: 0.1"
-    position="1.152 -0.6000000000000001 0.934" rotation="0 90 0">
+  <a-entity id="rig" custom-movement-controls="speed: 0.1" position="1.152 -0.6000000000000001 0.934" rotation="0 90 0">
     <a-entity id="hands">
       <a-entity id="deino-scene-camera" class="camera-entity" camera position="0 0 0" user-height="0"
         fps-look-controls="user-height: 0" simple-navmesh-constraint="navmesh:#deino-navmesh-el;fall:0;height:1.25;">

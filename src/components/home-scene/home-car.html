@@ -1,7 +1,6 @@
 <a-entity id="home-car" gltf-model="#home-scene-asset" home-car-tour position="-45.6063 1.27071 -2.53099"
   rotation="0 180 0" scale="1 1.2 1">
-  <a-entity id="rig" turn-control="controllerListenerId: #controller-data;" movement-controls="speed: 0.3"
-    position="1.152 -0.6000000000000001 0.934" rotation="0 90 0">
+  <a-entity id="rig" custom-movement-controls="speed: 0.3" position="1.152 -0.6000000000000001 0.934" rotation="0 90 0">
     <a-entity id="hands">
       <a-entity id="home-scene-camera" class="camera-entity" camera position="0 0 0" user-height="0"
         fps-look-controls="user-height: 0"
@@ -35,8 +34,9 @@
   <a-plane id="home-exclude-navmesh-el-1" class="home-exclude-navmesh-el" geometry="primitive: circle; radius: 6.52"
     visible="false" position="42.18554 0 0.06171" rotation="-90 0 0" width="8" height="5.8" color="red">
   </a-plane>
-  <a-plane id="home-exclude-navmesh-el-2" scale="1.2 1.2 1.2" class="home-exclude-navmesh-el" geometry="primitive: circle; radius: 3.52"
-    visible="false" position="11.10157 0.26383 -5.51315" rotation="-90 0 0" width="8" height="5.8" color="red">
+  <a-plane id="home-exclude-navmesh-el-2" scale="1.2 1.2 1.2" class="home-exclude-navmesh-el"
+    geometry="primitive: circle; radius: 3.52" visible="false" position="11.10157 0.26383 -5.51315" rotation="-90 0 0"
+    width="8" height="5.8" color="red">
   </a-plane>
   <a-entity id="car-env" position="-5.72859 0.39706 -2.76052" rotation="0 90 0" scale="1 1 1"></a-entity>
 </a-entity>
