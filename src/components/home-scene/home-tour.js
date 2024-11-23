@@ -75,11 +75,11 @@ AFRAME.registerComponent('home-car-tour', {
     }
     if (this.movesManager.distanceFromPoint('home-checkpoint-visitors') < 6) {
       this.textCar.setAttribute('visible', 'true');
-      if (isQuest) {
-        this.movesManager.nextScene = 'ending';
-      } else {
-        this.movesManager.nextScene = 'visitors';
-      }
+      this.movesManager.nextScene = 'visitors';
+    }
+    if (this.movesManager.distanceFromPoint('home-checkpoint-gallery') < 6) {
+      this.textCar.setAttribute('visible', 'true');
+      this.movesManager.nextScene = 'gallery';
     }
     if (this.movesManager.distanceFromPoint('home-checkpoint-shop-md') < 6) {
       this.textCar.setAttribute('visible', 'true');
@@ -88,6 +88,7 @@ AFRAME.registerComponent('home-car-tour', {
     if (
       this.movesManager.distanceFromPoint('home-checkpoint-cinema') >= 6 &&
       this.movesManager.distanceFromPoint('home-checkpoint-visitors') >= 6 &&
+      this.movesManager.distanceFromPoint('home-checkpoint-gallery') >= 6 &&
       this.movesManager.distanceFromPoint('home-checkpoint-shop-md') >= 6
     ) {
       this.textCar.setAttribute('visible', 'false');

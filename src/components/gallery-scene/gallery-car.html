@@ -1,12 +1,13 @@
-<a-entity id="home-car" gltf-model="#home-scene-asset" home-car-tour position="-45.6063 1.27071 -2.53099"
+<a-entity id="gallery-car" gltf-model="#gallery-scene-asset" gallery-car-tour position="-29.896 1.271 -2.53099"
   rotation="0 180 0" scale="1 1.2 1">
-  <a-entity id="rig" custom-movement-controls="speed: 0.3" position="1.152 -0.6000000000000001 0.934" rotation="0 90 0">
+  <a-entity id="rig" custom-movement-controls="speed: 0.3; camera: [camera-gallery]"
+    position="1.152 -0.6000000000000001 0.934" rotation="0 180 0">
     <a-entity id="hands">
-      <a-entity id="home-scene-camera" class="camera-entity" camera position="0 0 0" user-height="0"
+      <a-entity id="gallery-scene-camera" class="camera-entity" camera camera-gallery position="0 0 0" user-height="0"
         fps-look-controls="user-height: 0"
-        simple-navmesh-constraint="navmesh:#home-navmesh-el;fall:0;height:1.25;exclude:.home-exclude-navmesh-el">
-        <a-troika-text id="home-camera-text" visible="false" troika-text="color: #d6d6d6" scale="0.15 0.15 0.15"
-          position="0 -0.25795 -0.8507" value="Press ENTER or TOP trigger to enter" font="/assets/font/Exo-Regular.ttf">
+        simple-navmesh-constraint="navmesh:#gallery-navmesh-el;fall:0;height:1.25;exclude:#gallery-exclude-navmesh-el">
+        <a-troika-text id="gallery-camera-text" visible="false" troika-text="color: #d6d6d6" scale="0.15 0.15 0.15"
+          position="0 -0.25795 -0.8507" value="press ENTER or TRIGGER to leave" font="/assets/font/Exo-Regular.ttf">
         </a-troika-text>
         <a-box id="out-of-limit" position="0 0 0" visible="false" material="blending: none; shader: flat"
           geometry="depth: 1; height: 1; width: 1; primitive: sphere; segmentsHeight: 10; segmentsWidth: 10; radius: 0.1"
@@ -28,15 +29,12 @@
         custom-hand-controls="hand: right; handModelStyle: highPoly; color: #ffcccc"></a-entity>
     </a-entity>
   </a-entity>
-  <a-plane id="home-navmesh-el" geometry="primitive: plane; radius: 27; height: 35.59; width: 85.4" visible="false"
-    position="29.90421 0 -4.001" rotation="-90 0 0" width="8" height="5.8" color="yellow">
+  <a-plane id="gallery-navmesh-el" geometry="primitive: box; radius: 27; height: 25.25; width: 9.76; depth: 0.16"
+    visible="false" position="-26.85323 0 -2.52889" rotation="-90 0 0" width="8" height="5.8" color="yellow">
   </a-plane>
-  <a-plane id="home-exclude-navmesh-el-1" class="home-exclude-navmesh-el" geometry="primitive: circle; radius: 6.52"
-    visible="false" position="42.18554 0 0.06171" rotation="-90 0 0" width="8" height="5.8" color="red">
-  </a-plane>
-  <a-plane id="home-exclude-navmesh-el-2" scale="1.2 1.2 1.2" class="home-exclude-navmesh-el"
-    geometry="primitive: circle; radius: 3.52" visible="false" position="11.10157 0.26383 -5.51315" rotation="-90 0 0"
-    width="8" height="5.8" color="red">
+  <a-plane id="gallery-exclude-navmesh-el"
+    geometry="primitive: box; radius: 16; height: 18.65; width: 3.02; depth: 0.16" visible="false"
+    position="-26.94652 0 -2.52868" rotation="-90 0 0" width="8" height="5.8" color="red">
   </a-plane>
   <a-entity id="car-env" position="-5.72859 0.39706 -2.76052" rotation="0 90 0" scale="1 1 1"></a-entity>
 </a-entity>
