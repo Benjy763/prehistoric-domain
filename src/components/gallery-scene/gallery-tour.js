@@ -15,7 +15,7 @@ AFRAME.registerComponent('gallery-car-tour', {
     this.sceneChanged = false;
 
     // Sounds
-    this.backgroundSound = document.getElementById('visitors-asset');
+    this.backgroundSound = document.getElementById('gallery-asset');
 
     // Start tour listeners
     window.addEventListener('changeScene', () => {
