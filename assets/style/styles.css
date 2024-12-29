@@ -51,7 +51,7 @@ body {
   top: 5rem;
   left: 0;
   width: 100%;
-  display: flex;
+  display: none;
   justify-content: center;
   z-index: 999;
 }

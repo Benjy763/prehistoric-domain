@@ -3,7 +3,8 @@
   <a-entity id="rig" custom-movement-controls="speed: 0.1" position="1.152 -0.6000000000000001 0.934" rotation="0 90 0">
     <a-entity id="hands">
       <a-entity id="spino-scene-camera" class="camera-entity" camera position="0 0 0" user-height="0"
-        fps-look-controls="user-height: 0" simple-navmesh-constraint="navmesh:#spino-navmesh-el;fall:0;height:1.25;">
+        look-controls="pointerLockEnabled: true"
+        simple-navmesh-constraint="navmesh:#spino-navmesh-el;fall:0;height:1.25;">
         <a-troika-text id="spino-camera-text" visible="false" troika-text="color: #d6d6d6" scale="0.15 0.15 0.15"
           position="0 -0.25795 -0.8507" value="press ENTER or TRIGGER to leave" font="/assets/font/Exo-Regular.ttf">
         </a-troika-text>

@@ -4,7 +4,7 @@
   Also there are utility functions that help making scenes (ex move object on curves, logs...)
 */
 
-import { Debug } from '../debug.const';
+import { DEBUG } from '../debug.const';
 import { Languages } from '../languages.config';
 import { Scenes } from '../scenes.config';
 
@@ -74,14 +74,16 @@ AFRAME.registerSystem('system', {
     document.querySelector('#main-scene-content').classList.add('fullscreen');
 
     // Debug events
-    if (Debug) {
+    if (DEBUG) {
       // Unclock debug listener
       this.startDebugListener();
     }
-    this.manageGlobalEvents();
   },
-  manageGlobalEvents: function () {
-    // Manage clicks
+  manageLookControls: function () {
+    // Manage 2D look controls
+    document
+      .querySelector('#click-wrapper')
+      .setAttribute('style', 'display: flex');
     document.querySelector('canvas').addEventListener(
       'click',
       () => {
@@ -351,6 +353,7 @@ AFRAME.registerSystem('system', {
       const event = new Event('start');
       cameraScene.dispatchEvent(event);
       this.setCameraPosition();
+      this.manageLookControls();
     }, 4000);
   },
   setCameraPosition: function () {
