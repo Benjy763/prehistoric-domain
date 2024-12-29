@@ -1,20 +1,10 @@
 <a-assets id="cinema-assets" timeout="60000">
   <!-- Audio -->
   <!-- Voice -->
-  <audio
-    id="voice-cinema1-sound-en"
-    response-type="arraybuffer"
-    src="/assets/sounds/voice/fr/gate1.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-    preload="auto"
-    volume="1"
-  ></audio>
-  <audio
-    id="voice-cinema1-sound-fr"
-    response-type="arraybuffer"
-    src="/assets/sounds/voice/fr/gate1.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-    preload="auto"
-    volume="1"
-  ></audio>
+  <audio id="voice-cinema1-sound-en" response-type="arraybuffer"
+    src="/assets/sounds/voice/fr/gate1.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto" volume="1"></audio>
+  <audio id="voice-cinema1-sound-fr" response-type="arraybuffer"
+    src="/assets/sounds/voice/fr/gate1.mp3?lastmod=${process.env.UNIQUE_ASSETS_ID}" preload="auto" volume="1"></audio>
 
   <!-- Environement -->
 
@@ -22,50 +12,23 @@
 
   <!-- Images -->
 
-  <img
-    id="loading-asset"
-    src="/assets/images/loader.png?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  />
-  <img
-    id="limits-asset"
-    src="/assets/images/limits.png?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  />
-  <img
-    id="credits-asset"
-    src="/assets/images/credits.png?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  />
-  <img
-    id="rendering-asset"
-    src="/assets/images/rendering.png?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  />
+  <img id="loading-asset" src="/assets/images/loader.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="limits-asset" src="/assets/images/limits.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="credits-asset" src="/assets/images/credits.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="rendering-asset" src="/assets/images/rendering.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
   <img id="ground-texture-rock-asset" src="/assets/images/floor-rock.jpg" />
-  <img
-    id="ground-texture-grass-asset"
-    src="/assets/images/floor-grass.jpg?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  />
+  <img id="ground-texture-grass-asset" src="/assets/images/floor-grass.jpg?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
   <img id="ground-road-texture-asset" src="/assets/images/ground-road.jpg" />
-  <img
-    id="nopics-asset"
-    src="/assets/images/nopics.jpg?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  />
+  <img id="nopics-asset" src="/assets/images/nopics.jpg?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
 
   <!-- 3D -->
   <!-- Objects -->
   <!-- Environment -->
-  <a-asset-item
-    id="cinema-asset"
-    src="/assets/models/environment/cinema/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"
-  ></a-asset-item>
+  <a-asset-item id="cinema-asset"
+    src="/assets/models/environment/cinema/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"></a-asset-item>
   <!-- Vegetation -->
   <!-- Dinosaurs -->
   <!-- Video -->
-  <video
-    id="cinema"
-    preload="auto"
-    src="/assets/images/pub.mp4"
-    width="1280"
-    height="720"
-    loop="false"
-    crossorigin="anonymous"
-  ></video>
+  <video id="cinema" preload="auto" src="/assets/images/movie.mp4" width="1280" height="720" loop="false"
+    crossorigin="anonymous"></video>
 </a-assets>

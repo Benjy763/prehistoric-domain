@@ -13,7 +13,7 @@ AFRAME.registerComponent('deino-car-tour', {
     // Tour Path
     const curve = new THREE.CatmullRomCurve3([
       new THREE.Vector3(4.535, 0, 81.899),
-      new THREE.Vector3(4.535, 0, -174.7),
+      new THREE.Vector3(4.535, 0, -174.7)
     ]);
 
     // Sounds
@@ -47,11 +47,11 @@ AFRAME.registerComponent('deino-car-tour', {
     this.phase = 'exit';
   },
   checkpointListener: function () {
-    if (this.movesManager.distanceFromPoint('deino-checkpoint') < 3) {
+    if (this.movesManager.distanceFromPoint('deino-checkpoint') < 1.3) {
       this.textCar.setAttribute('visible', 'true');
       this.movesManager.nextScene = 'ending';
     }
-    if (this.movesManager.distanceFromPoint('deino-checkpoint') >= 3) {
+    if (this.movesManager.distanceFromPoint('deino-checkpoint') >= 1.3) {
       this.textCar.setAttribute('visible', 'false');
       this.movesManager.nextScene = null;
     }
@@ -80,5 +80,5 @@ AFRAME.registerComponent('deino-car-tour', {
         this.phase = 'exit';
         break;
     }
-  },
+  }
 });

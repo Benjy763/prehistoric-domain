@@ -9,10 +9,8 @@ require('aframe');
 
 //require vendors
 require('/vendors/aframe-troika-text/aframe-troika-text.min.js');
-
 // Require libs
 require('aframe-extras');
-//require('aframe-fps-counter-component');
 
 // Require all components
 require('/assets/style/styles.css');

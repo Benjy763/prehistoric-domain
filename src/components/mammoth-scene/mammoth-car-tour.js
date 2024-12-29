@@ -1,0 +1,77 @@
+AFRAME.registerComponent('mammoth-car-tour', {
+  init: function () {
+    this.scene = 'mammoth';
+    this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
+
+    this.system = document.querySelector('a-scene').systems['system'];
+    this.cameraPosition = document.querySelector(
+      '#' + this.system.getActualSceneObject().camera
+    ).object3D.position;
+    this.movesManager =
+      document.querySelector('a-scene').systems['movesManager'];
+    this.carControls;
+    this.mammoth = document.querySelector('#mammoth');
+    this.screenDefault = document.getElementById('dilo-screen-default');
+    this.textCar = document.querySelector('#mammoth-camera-text');
+
+    // Animation phase
+    this.sceneChanged = false;
+
+    // Sound
+    this.voicePhase = 'sound';
+    this.soundMixing1SoundPlaying = false;
+    this.leaveSoundPlaying = false;
+    this.soundMixing1Audio = document.getElementById('sound-mixing-1');
+    this.leaveAudio = document.getElementById('leave');
+
+    // Start tour listeners
+    this.el.addEventListener(
+      'start',
+      () => {
+        // Get voice from system when init
+        this.voicemammothSound = this.system.getVoice('mammoth');
+        this.voicePhase = 'mammoth';
+
+        // Global sound launch
+        document.getElementById('jungle-asset').play();
+        this.voicemammoth1Sound = this.system.getVoice('mammoth1');
+        this.voicemammoth2Sound = this.system.getVoice('mammoth2');
+        this.phase = 'start';
+      },
+      false
+    );
+  },
+  // --- Phase functions ---
+  start: function () {
+    this.phase = 'exit';
+  },
+  checkpointListener: function () {
+    if (this.movesManager.distanceFromPoint('mammoth-checkpoint') < 1.3) {
+      this.textCar.setAttribute('visible', 'true');
+      this.movesManager.nextScene = 'ending';
+    }
+    if (this.movesManager.distanceFromPoint('mammoth-checkpoint') >= 1.3) {
+      this.textCar.setAttribute('visible', 'false');
+      this.movesManager.nextScene = null;
+    }
+  },
+  tick: function () {
+    // Checkpoint listener
+    this.checkpointListener();
+    // Voice phases
+    if (this.voicemammothSound) {
+      switch (this.voicePhase) {
+        case 'mammoth':
+          this.voicemammothSound.play();
+          this.voicePhase = 'exit';
+          break;
+      }
+    }
+    // Animation phases
+    switch (this.phase) {
+      case 'start':
+        this.start();
+        break;
+    }
+  }
+});

@@ -72,22 +72,22 @@ AFRAME.registerComponent('trex-car-tour', {
     // Find all elements with IDs starting with "trex-forest-fern"
     const fernElements = document.querySelectorAll('[id^="trex-forest-fern"]');
 
-    const timeScaleValues = [0.8, 0.5, 0.2, 0.4, 0.7]; // You can adjust these values as needed
+    const timeScaleValues = [0.8, 1, 0.7, 0.6, 0.7]; // You can adjust these values as needed
 
     fernElements.forEach((fernElement, index) => {
       const timeScale = timeScaleValues[index % timeScaleValues.length];
       fernElement.setAttribute(
         'animation-mixer',
-        `clip: KeyAction.001; startFrame: 200; timeScale: ${timeScale}`
+        `clip: Scene; startFrame: 200; timeScale: ${timeScale}`
       );
     });
   },
   checkpointListener: function () {
-    if (this.movesManager.distanceFromPoint('trex-checkpoint') < 3) {
+    if (this.movesManager.distanceFromPoint('trex-checkpoint') < 1.3) {
       this.textCar.setAttribute('visible', 'true');
       this.movesManager.nextScene = 'ending';
     }
-    if (this.movesManager.distanceFromPoint('trex-checkpoint') >= 3) {
+    if (this.movesManager.distanceFromPoint('trex-checkpoint') >= 1.3) {
       this.textCar.setAttribute('visible', 'false');
       this.movesManager.nextScene = null;
     }

@@ -3,7 +3,7 @@ AFRAME.registerComponent('turn-control', {
     // the id of the element with constroller listener component attached
     controllerListenerId: { type: 'string', default: '#controller-data' },
     // the id of the element with raycaster attached, for teleport movement
-    motionEnabled: { type: 'boolean', default: false },
+    motionEnabled: { type: 'boolean', default: false }
   },
 
   init: function () {
@@ -50,6 +50,8 @@ AFRAME.registerComponent('turn-control', {
     this.rightX = this.controllerData.rightAxisX;
 
     if (Math.abs(this.leftX) < 0.1 && Math.abs(this.rightX) < 0.1) {
+      console.log(this.controllerData.leftGrip.pressing);
+
       this.turnReady = true;
     }
 
@@ -83,5 +85,5 @@ AFRAME.registerComponent('turn-control', {
 
       if (this.turnTime >= this.turnDuration) this.turnInProgress = false;
     }
-  },
+  }
 });

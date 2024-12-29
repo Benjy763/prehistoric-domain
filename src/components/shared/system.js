@@ -226,16 +226,26 @@ AFRAME.registerSystem('system', {
       }, 2000);
     });
   },
-  changeAtmosphere: function (color, density) {
+  changeAtmosphere: function (fogParams) {
     // Set main scene atmosphere color
     const mainScene = document.querySelector('#main-scene');
     mainScene.setAttribute('background', {
-      color: color
+      color: fogParams.color
     });
     mainScene.setAttribute('fog', {
-      type: 'exponential',
-      color: color,
-      density: density
+      ...fogParams,
+      type: fogParams.type ?? 'exponential',
+      density: fogParams.density
+        ? this.vr
+          ? fogParams.density[0]
+          : fogParams.density[1]
+        : 0,
+      near: fogParams.near
+        ? this.vr
+          ? fogParams.near[0]
+          : fogParams.near[1]
+        : 0,
+      far: fogParams.far ? (this.vr ? fogParams.far[0] : fogParams.far[1]) : 0
     });
   },
   // Only for the first time
@@ -273,7 +283,7 @@ AFRAME.registerSystem('system', {
     window.dispatchEvent(event);
 
     // Set main scene atmosphere color
-    this.changeAtmosphere('#2f5b45', '0.001');
+    this.changeAtmosphere({ color: '#2f5b45', density: '0.001' });
 
     // Display scene
     this.displayScene(sceneId);
@@ -297,7 +307,7 @@ AFRAME.registerSystem('system', {
     document
       .querySelector('#' + this.scenes.ending.camera)
       .setAttribute('camera', 'active', true);
-    this.changeAtmosphere('#2f5b45', 0.1);
+    this.changeAtmosphere({ color: '#2f5b45', density: '0.1' });
     if (!this.vr) {
       this.exitFullscreen();
     }
@@ -332,10 +342,8 @@ AFRAME.registerSystem('system', {
       // Can recenter
       this.canRecenter = true;
       // Set main scene atmosphere color
-      this.changeAtmosphere(
-        this.scenes.color,
-        this.vr ? this.scenes.density[0] : this.scenes.density[1]
-      );
+      this.changeAtmosphere(this.scenes.fog);
+
       // Set main scene ability to walk
       if (this.scenes.canWalk) {
         this.movesManager.enableWalk(this.scenes[this.actuelScene]);

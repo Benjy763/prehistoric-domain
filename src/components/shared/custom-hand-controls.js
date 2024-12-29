@@ -4,7 +4,7 @@ var MODEL_URLS = {
   lowPolyLeft: '/assets/models/objects/controllers/hands/leftHand.glb',
   lowPolyRight: '/assets/models/objects/controllers/hands/rightHand.glb',
   highPolyLeft: '/assets/models/objects/controllers/hands/leftHand.glb',
-  highPolyRight: '/assets/models/objects/controllers/hands/rightHand.glb',
+  highPolyRight: '/assets/models/objects/controllers/hands/rightHand.glb'
 };
 
 // Poses.
@@ -19,7 +19,7 @@ var ANIMATIONS = {
   // hold: trigger active, grip inactive.
   hold: 'Hold',
   // thumbUp: grip active, trigger active, trackpad surface inactive.
-  thumbUp: 'Thumb Up',
+  thumbUp: 'Thumb Up'
 };
 
 // Map animation to public events for the API.
@@ -49,8 +49,8 @@ AFRAME.registerComponent('custom-hand-controls', {
     hand: { default: 'left' },
     handModelStyle: {
       default: 'lowPoly',
-      oneOf: ['lowPoly', 'highPoly', 'toon'],
-    },
+      oneOf: ['lowPoly', 'highPoly', 'toon']
+    }
   },
 
   init: function () {
@@ -232,7 +232,7 @@ AFRAME.registerComponent('custom-hand-controls', {
     // Get common configuration to abstract different vendor controls.
     controlConfiguration = {
       hand: hand,
-      model: false,
+      model: false
     };
 
     // Set model.
@@ -316,7 +316,7 @@ AFRAME.registerComponent('custom-hand-controls', {
       return;
     }
     // Animate gesture.
-    this.animateGesture(this.gesture, lastGesture);
+    // this.animateGesture(this.gesture, lastGesture);
 
     // Emit events.
     this.emitGestureEvents(this.gesture, lastGesture);
@@ -465,7 +465,7 @@ AFRAME.registerComponent('custom-hand-controls', {
     toAction.play();
     fromAction = mesh.mixer.clipAction(clip);
     fromAction.crossFadeTo(toAction, 0.15, true);
-  },
+  }
 });
 
 /**

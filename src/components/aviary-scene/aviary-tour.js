@@ -106,11 +106,11 @@ AFRAME.registerComponent('aviary-car-tour', {
     this.phase = 'exit';
   },
   checkpointListener: function () {
-    if (this.movesManager.distanceFromPoint('aviary-checkpoint') < 3) {
+    if (this.movesManager.distanceFromPoint('aviary-checkpoint') < 1.3) {
       this.textCar.setAttribute('visible', 'true');
       this.movesManager.nextScene = 'ending';
     }
-    if (this.movesManager.distanceFromPoint('aviary-checkpoint') >= 3) {
+    if (this.movesManager.distanceFromPoint('aviary-checkpoint') >= 1.3) {
       this.textCar.setAttribute('visible', 'false');
       this.movesManager.nextScene = null;
     }

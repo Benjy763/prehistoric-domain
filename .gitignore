@@ -5,3 +5,4 @@ node_modules
 *.ttf
 *.mp4
 **/*.DS_Store
+**/movie.mp4
