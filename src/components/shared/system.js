@@ -80,6 +80,7 @@ AFRAME.registerSystem('system', {
     }
   },
   manageLookControls: function () {
+    if (this.isMobile) return;
     // Manage 2D look controls
     document
       .querySelector('#click-wrapper')
@@ -146,7 +147,9 @@ AFRAME.registerSystem('system', {
     }
   },
   initStartingEvents: function () {
-    document.querySelector('#enter').onclick = () => {
+    let myEvent =
+      'ontouchstart' in document.documentElement ? 'touchend' : 'click';
+    document.querySelector('#enter').addEventListener(myEvent, () => {
       this.openFullscreen();
       this.vr = false;
       // Remove loading interface
@@ -155,7 +158,7 @@ AFRAME.registerSystem('system', {
       document.querySelector('#main-scene-wrapper').style.zIndex = '10';
 
       this.startTour();
-    };
+    });
 
     document.querySelector('#enter-vr').onclick = () => {
       // Already entered in vr
@@ -217,10 +220,11 @@ AFRAME.registerSystem('system', {
         document.querySelector('#infos-annonce').style.display = 'none';
         document.querySelector('#loader-logo').style.display = 'block';
         document.querySelector('#enter').style.display = 'block';
-        if (this.isMobile) {
-          document.querySelector('#enter').style.display = 'none';
-        }
+        // if (this.isMobile) {
+        //   document.querySelector('#enter').style.display = 'none';
+        // }
         if (AFRAME.utils.device.checkHeadsetConnected()) {
+          document.querySelector('#enter').style.display = 'none';
           document.querySelector('#enter-vr').style.display = 'block';
         }
 

@@ -22,6 +22,9 @@ module.exports = {
     hot: true,
     liveReload: true,
     server: 'https',
+    client: {
+      overlay: false
+    },
     static: {
       directory: path.join(__dirname, '/')
     }
