@@ -224,8 +224,6 @@ AFRAME.registerSystem('system', {
         // if (this.isMobile) {
         //   document.querySelector('#enter').style.display = 'none';
         // }
-        console.log(AFRAME.utils.device.checkHeadsetConnected());
-
         if (AFRAME.utils.device.checkHeadsetConnected()) {
           document.querySelector('#enter').style.display = 'none';
           document.querySelector('#enter-vr').style.display = 'block';
