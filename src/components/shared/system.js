@@ -45,9 +45,10 @@ AFRAME.registerSystem('system', {
     const userAgentDataPlatform = window.navigator.userAgentData
       ? SupportedPlatform.includes(window.navigator.userAgentData.platform)
       : false;
-    this.isMobile =
-      !SupportedPlatform.includes(window.navigator.platform) &&
-      !userAgentDataPlatform;
+    // this.isMobile =
+    //   !SupportedPlatform.includes(window.navigator.platform) &&
+    //   !userAgentDataPlatform;
+    this.isMobile = AFRAME.utils.device.isMobile();
 
     // setTimeout(() => {
     //   this.initPerformances();
@@ -223,6 +224,8 @@ AFRAME.registerSystem('system', {
         // if (this.isMobile) {
         //   document.querySelector('#enter').style.display = 'none';
         // }
+        console.log(AFRAME.utils.device.checkHeadsetConnected());
+
         if (AFRAME.utils.device.checkHeadsetConnected()) {
           document.querySelector('#enter').style.display = 'none';
           document.querySelector('#enter-vr').style.display = 'block';
