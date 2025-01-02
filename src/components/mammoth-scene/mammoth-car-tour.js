@@ -13,6 +13,8 @@ AFRAME.registerComponent('mammoth-car-tour', {
     this.screenDefault = document.getElementById('dilo-screen-default');
     this.textCar = document.querySelector('#mammoth-camera-text');
     this.eagle = document.querySelector('#eagle');
+    this.wolf = document.querySelector('#wolf');
+    this.mammoth = document.querySelector('#mammoth');
 
     // Animation phase
     this.sceneChanged = false;
@@ -46,6 +48,8 @@ AFRAME.registerComponent('mammoth-car-tour', {
     setTimeout(() => {
       // Trigger eagle animation
       this.eagle.dispatchEvent(new Event('enterFly'));
+      // this.wolf.dispatchEvent(new Event('enterRun'));
+      // this.mammoth.dispatchEvent(new Event('enterWalk'));
     }, 5000);
     this.phase = 'exit';
   },
