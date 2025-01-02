@@ -13,7 +13,7 @@ AFRAME.registerComponent('wolf-animation', {
 
     this.phase = '';
     this.curve = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(15.443, 0.4, 24.82),
+      new THREE.Vector3(14.443, 0, 24.82),
       new THREE.Vector3(5, 0.6, 24.82),
       new THREE.Vector3(-20, -3.5, 24.82)
     ]);
@@ -74,7 +74,7 @@ AFRAME.registerComponent('wolf-animation', {
       });
       setTimeout(() => {
         this.phase = 'walk';
-      }, 2000);
+      }, 5000);
       this.phase = 'exit';
     }
   },

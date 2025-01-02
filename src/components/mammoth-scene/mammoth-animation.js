@@ -10,9 +10,10 @@ AFRAME.registerComponent('mammoth-animation', {
     this.movesManager =
       document.querySelector('a-scene').systems['movesManager'];
     this.mammoth1 = this.el;
-    this.mammoth2 = document.querySelector('#mammoth2');
-    this.mammoth3 = document.querySelector('#mammoth3');
-    this.mammoth4 = document.querySelector('#mammoth4');
+    this.mammoth2 = document.querySelector('#mammoth-2');
+    this.mammoth3 = document.querySelector('#mammoth-3');
+    this.mammoth4 = document.querySelector('#mammoth-4');
+    this.glacier = document.querySelector('#mammoth-glacier-1');
     this.phase = '';
     this.curve = new THREE.CatmullRomCurve3([
       new THREE.Vector3(56, -1, -60.972),
@@ -58,6 +59,7 @@ AFRAME.registerComponent('mammoth-animation', {
             mammoth4Speed: 0.012
           }
         };
+        this.glacierSpeed = 0.3;
         this.mammoth1.setAttribute('visible', 'true');
         this.mammoth2.setAttribute('visible', 'true');
         this.mammoth3.setAttribute('visible', 'true');
@@ -118,6 +120,53 @@ AFRAME.registerComponent('mammoth-animation', {
         this.mammoth4State.marker,
         this.phaseConfig[this.phase].mammoth4Speed,
         { useDeltaTime: true }
+      );
+    }
+
+    if (
+      this.movesManager.truncMarker(this.mammoth1State.marker) > 700 &&
+      this.mammoth1State.enabled
+    ) {
+      setTimeout(() => {
+        this.mammoth1.setAttribute('animation-mixer', {
+          clip: 'Run',
+          crossFadeDuration: 0.5,
+          timeScale: 1
+        });
+        this.phaseConfig[this.phase].mammoth1Speed = 0.06;
+      }, 5500);
+      setTimeout(() => {
+        this.mammoth2.setAttribute('animation-mixer', {
+          clip: 'Run',
+          crossFadeDuration: 0.5,
+          timeScale: 1
+        });
+        this.phaseConfig[this.phase].mammoth2Speed = 0.06;
+      }, 6000);
+      setTimeout(() => {
+        this.mammoth3.setAttribute('animation-mixer', {
+          clip: 'Run',
+          crossFadeDuration: 0.5,
+          timeScale: 1
+        });
+        this.phaseConfig[this.phase].mammoth3Speed = 0.06;
+      }, 6000);
+      setTimeout(() => {
+        this.mammoth4.setAttribute('animation-mixer', {
+          clip: 'Run',
+          crossFadeDuration: 0.5,
+          timeScale: 1
+        });
+        this.phaseConfig[this.phase].mammoth4Speed = 0.06;
+      }, 6500);
+
+      const currentGlacierPosition = this.glacier.object3D.position;
+      currentGlacierPosition.y -= this.glacierSpeed;
+      this.glacierSpeed += 0.01;
+      this.glacier.object3D.position.set(
+        currentGlacierPosition.x,
+        currentGlacierPosition.y,
+        currentGlacierPosition.z
       );
     }
 

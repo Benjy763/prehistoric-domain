@@ -73,7 +73,9 @@ AFRAME.registerComponent('eagle-animation', {
     );
 
     if (this.movesManager.truncMarker(this.eagleMarker) > 800) {
-      this.wolf.dispatchEvent(new Event('enterRun'));
+      setTimeout(() => {
+        this.wolf.dispatchEvent(new Event('enterRun'));
+      }, 15000);
       this.el.setAttribute('visible', 'false');
       this.phase = 'exit';
     }
