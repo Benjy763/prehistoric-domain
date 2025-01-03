@@ -47,10 +47,11 @@ AFRAME.registerComponent('mammoth-animation', {
       () => {
         // Load sounds
         // Launch animation
-        this.mammoth1State = { marker: 0, enabled: true };
-        this.mammoth2State = { marker: 0, enabled: false };
-        this.mammoth3State = { marker: 0, enabled: false };
-        this.mammoth4State = { marker: 0, enabled: false };
+        this.mammoth1State = { marker: 0, enabled: true, running: false };
+        this.mammoth2State = { marker: 0, enabled: false, running: false };
+        this.mammoth3State = { marker: 0, enabled: false, running: false };
+        this.mammoth4State = { marker: 0, enabled: false, running: false };
+        this.glacierStateFalling = false;
         this.phaseConfig = {
           enterWalk: {
             mammoth1Speed: 0.013,
@@ -59,6 +60,7 @@ AFRAME.registerComponent('mammoth-animation', {
             mammoth4Speed: 0.012
           }
         };
+        this.mammothSpeed = 0.003;
         this.glacierSpeed = 0.3;
         this.mammoth1.setAttribute('visible', 'true');
         this.mammoth2.setAttribute('visible', 'true');
@@ -79,6 +81,7 @@ AFRAME.registerComponent('mammoth-animation', {
     );
   },
   enterWalk: function () {
+    // Mammoth moving
     if (this.mammoth1State.enabled) {
       this.mammoth1State.marker = this.movesManager.moveOnCurve(
         this.mammoth1State,
@@ -123,17 +126,24 @@ AFRAME.registerComponent('mammoth-animation', {
       );
     }
 
+    // Glacier is falling
     if (
       this.movesManager.truncMarker(this.mammoth1State.marker) > 700 &&
-      this.mammoth1State.enabled
+      !this.glacierStateFalling
     ) {
+      this.glacierStateFalling = true;
       setTimeout(() => {
         this.mammoth1.setAttribute('animation-mixer', {
           clip: 'Run',
           crossFadeDuration: 0.5,
           timeScale: 1
         });
-        this.phaseConfig[this.phase].mammoth1Speed = 0.06;
+        this.mammoth1State.running = true;
+
+        this.phaseConfig[this.phase].mammoth1Speed =
+          this.phaseConfig[this.phase].mammoth1Speed > 0.06
+            ? this.phaseConfig[this.phase].mammoth1Speed
+            : this.phaseConfig[this.phase].mammoth1Speed + this.mammothSpeed;
       }, 5500);
       setTimeout(() => {
         this.mammoth2.setAttribute('animation-mixer', {
@@ -141,7 +151,11 @@ AFRAME.registerComponent('mammoth-animation', {
           crossFadeDuration: 0.5,
           timeScale: 1
         });
-        this.phaseConfig[this.phase].mammoth2Speed = 0.06;
+        this.mammoth2State.running = true;
+        this.phaseConfig[this.phase].mammoth2Speed =
+          this.phaseConfig[this.phase].mammoth2Speed > 0.06
+            ? this.phaseConfig[this.phase].mammoth2Speed
+            : this.phaseConfig[this.phase].mammoth2Speed + this.mammothSpeed;
       }, 6000);
       setTimeout(() => {
         this.mammoth3.setAttribute('animation-mixer', {
@@ -149,7 +163,11 @@ AFRAME.registerComponent('mammoth-animation', {
           crossFadeDuration: 0.5,
           timeScale: 1
         });
-        this.phaseConfig[this.phase].mammoth3Speed = 0.06;
+        this.mammoth3State.running = true;
+        this.phaseConfig[this.phase].mammoth3Speed =
+          this.phaseConfig[this.phase].mammoth3Speed > 0.06
+            ? this.phaseConfig[this.phase].mammoth3Speed
+            : this.phaseConfig[this.phase].mammoth3Speed + this.mammothSpeed;
       }, 6000);
       setTimeout(() => {
         this.mammoth4.setAttribute('animation-mixer', {
@@ -157,9 +175,19 @@ AFRAME.registerComponent('mammoth-animation', {
           crossFadeDuration: 0.5,
           timeScale: 1
         });
-        this.phaseConfig[this.phase].mammoth4Speed = 0.06;
+        this.mammoth4State.running = true;
+        this.phaseConfig[this.phase].mammoth4Speed =
+          this.phaseConfig[this.phase].mammoth4Speed > 0.06
+            ? this.phaseConfig[this.phase].mammoth4Speed
+            : this.phaseConfig[this.phase].mammoth4Speed + this.mammothSpeed;
       }, 6500);
+    }
 
+    // Mammoth running away
+    if (
+      this.movesManager.truncMarker(this.mammoth1State.marker) > 700 &&
+      this.glacierStateFalling
+    ) {
       const currentGlacierPosition = this.glacier.object3D.position;
       currentGlacierPosition.y -= this.glacierSpeed;
       this.glacierSpeed += 0.01;
@@ -168,8 +196,31 @@ AFRAME.registerComponent('mammoth-animation', {
         currentGlacierPosition.y,
         currentGlacierPosition.z
       );
+      if (this.mammoth1State.running) {
+        this.phaseConfig[this.phase].mammoth1Speed =
+          this.phaseConfig[this.phase].mammoth1Speed > 0.06
+            ? this.phaseConfig[this.phase].mammoth1Speed
+            : this.phaseConfig[this.phase].mammoth1Speed + this.mammothSpeed;
+      }
+      if (this.mammoth2State.running) {
+        this.phaseConfig[this.phase].mammoth2Speed =
+          this.phaseConfig[this.phase].mammoth2Speed > 0.06
+            ? this.phaseConfig[this.phase].mammoth2Speed
+            : this.phaseConfig[this.phase].mammoth2Speed + this.mammothSpeed;
+      }
+      if (this.mammoth3State.running) {
+        this.phaseConfig[this.phase].mammoth3Speed =
+          this.phaseConfig[this.phase].mammoth3Speed > 0.06
+            ? this.phaseConfig[this.phase].mammoth3Speed
+            : this.phaseConfig[this.phase].mammoth3Speed + this.mammothSpeed;
+      }
+      if (this.mammoth4State.running) {
+        this.phaseConfig[this.phase].mammoth4Speed =
+          this.phaseConfig[this.phase].mammoth4Speed > 0.06
+            ? this.phaseConfig[this.phase].mammoth4Speed
+            : this.phaseConfig[this.phase].mammoth4Speed + this.mammothSpeed;
+      }
     }
-
     if (
       this.movesManager.truncMarker(this.mammoth1State.marker) > 950 &&
       this.mammoth1State.enabled
@@ -192,6 +243,9 @@ AFRAME.registerComponent('mammoth-animation', {
     switch (this.phase) {
       case 'enterWalk':
         this.enterWalk();
+        break;
+      case 'runAway':
+        this.runAway();
         break;
     }
   }
