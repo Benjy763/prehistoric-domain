@@ -4,6 +4,8 @@ function requireAll(req) {
   req.keys().forEach(req);
 }
 
+require('/src/components/shared/dynamic-src.js');
+
 // require aframe
 require('aframe');
 
