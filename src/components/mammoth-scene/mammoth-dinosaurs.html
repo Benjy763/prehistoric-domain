@@ -1,5 +1,9 @@
-<a-entity id="mammoth" visible="false" mammoth-animation animation-mixer="clip: Walk; timeScale: 0.7"
-  gltf-model="#mammoth-asset" position="41.191 -5.26286 3.839" rotation="0 0 0" scale="1.7 1.7 1.7">
+<a-entity id="mammoth" sound__mammoth1="src: #mammoth1-audio-asset; volume: 30"
+  sound__mammoth2="src: #mammoth2-audio-asset; volume: 30" sound__mammoth3="src: #mammoth3-audio-asset; volume: 30"
+  sound__mammoth4="src: #mammoth4-audio-asset; volume: 30"
+  sound__mammoth5="src: #mammoth5-audio-asset; volume: 30;rolloffFactor: 0.5" visible="false" mammoth-animation
+  animation-mixer="clip: Walk; timeScale: 0.7" gltf-model="#mammoth-asset" position="41.191 -5.26286 3.839"
+  rotation="0 0 0" scale="1.7 1.7 1.7">
 </a-entity>
 <a-entity id="mammoth-2" visible="false" animation-mixer="clip: Walk; timeScale: 0.65" gltf-model="#mammoth-asset"
   position="46.29877 -5.69559 -7.41597" rotation="0 0 0" scale="1.6 1.6 1.6">
@@ -7,14 +11,19 @@
 <a-entity id="mammoth-3" visible="false" animation-mixer="clip: Walk; timeScale: 0.6" gltf-model="#mammoth-asset"
   position="40.76549 -5.74397 -11.54814" rotation="0 0 0" scale="1.6 1.6 1.6">
 </a-entity>
-<a-entity id="mammoth-4" visible="false" animation-mixer="clip: Walk; timeScale: 0.65" gltf-model="#mammoth-asset"
-  position="-21.55 1.056 -42.912" rotation="0 70 0" scale="1.8 1.8 1.8">
+<a-entity id="mammoth-4" sound__mammothenter="src: #mammoth-enter-audio-asset; volume: 30" visible="false"
+  animation-mixer="clip: Walk; timeScale: 0.65" gltf-model="#mammoth-asset" position="-21.55 1.056 -42.912"
+  rotation="0 70 0" scale="1.8 1.8 1.8">
 </a-entity>
 
-<a-entity id="wolf" wolf-animation visible="true" animation-mixer="clip: Run; timeScale: 1" gltf-model="#wolf-asset"
-  position="16 -1 24.82" rotation="0 110 0" scale="0.035 0.035 0.035">
+<a-entity id="wolf" sound__wolf1="src: #wolf1-audio-asset; volume: 30"
+  sound__wolf2="src: #wolf2-audio-asset; volume: 15" wolf-animation visible="true"
+  animation-mixer="clip: Run; timeScale: 1" gltf-model="#wolf-asset" position="16 -1 24.82" rotation="0 110 0"
+  scale="0.035 0.035 0.035">
 </a-entity>
 
-<a-entity id="eagle" disable-fog eagle-animation animation-mixer="clip: Armature|EagleA_Fly4; timeScale: 0.9"
-  gltf-model="#eagle-asset" position="6.061 149.341 -325.983" rotation="50 -50 0" scale="0.02 0.02 0.02">
+<a-entity id="eagle" sound__eagle1="src: #eagle1-audio-asset; volume: 30"
+  sound__eagle2="src: #eagle2-audio-asset; volume: 40" disable-fog eagle-animation
+  animation-mixer="clip: Armature|EagleA_Fly4; timeScale: 0.9" gltf-model="#eagle-asset"
+  position="6.061 149.341 -325.983" rotation="50 -50 0" scale="0.02 0.02 0.02">
 </a-entity>

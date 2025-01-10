@@ -10,7 +10,6 @@ AFRAME.registerComponent('wolf-animation', {
     this.movesManager =
       document.querySelector('a-scene').systems['movesManager'];
     this.mammoth = document.querySelector('#mammoth');
-
     this.phase = '';
     this.curve = new THREE.CatmullRomCurve3([
       new THREE.Vector3(14.443, 0, 24.82),
@@ -29,7 +28,7 @@ AFRAME.registerComponent('wolf-animation', {
       new THREE.Vector3(53.512, 3, -60.972),
       new THREE.Vector3(53.512, 5.8, -40),
       new THREE.Vector3(53.512, 5.8, 9),
-      new THREE.Vector3(53.512, 3, 70)
+      new THREE.Vector3(53.512, 0, 70)
     ]);
 
     // Start tour listener
@@ -37,6 +36,11 @@ AFRAME.registerComponent('wolf-animation', {
       'enterRun',
       () => {
         // Load sounds
+        this.wolfAudio1 = this.el.components['sound__wolf1'];
+        this.wolfAudio2 = this.el.components['sound__wolf2'];
+        this.mammothAudio1 = this.mammoth.components['sound__mammoth1'];
+        this.mammothAudio2 = this.mammoth.components['sound__mammoth2'];
+
         // Launch animation
         this.wolfMarker = 0;
         this.phaseConfig = {
@@ -50,7 +54,18 @@ AFRAME.registerComponent('wolf-animation', {
             speed: 0.108
           }
         };
-        this.phase = 'enterRun';
+        this.wolfAudio1.playSound();
+
+        setTimeout(() => {
+          this.mammothAudio1.playSound();
+        }, 5000);
+
+        setTimeout(() => {
+          this.wolfAudio2.playSound();
+        }, 8000);
+        setTimeout(() => {
+          this.phase = 'enterRun';
+        }, 9000);
       },
       false
     );
@@ -95,6 +110,7 @@ AFRAME.registerComponent('wolf-animation', {
         crossFadeDuration: 2,
         timeScale: 1
       });
+      this.mammothAudio2.playSound();
       setTimeout(() => {
         this.phase = 'runBack';
       }, 4000);

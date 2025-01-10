@@ -151,6 +151,9 @@ AFRAME.registerSystem('system', {
     let myEvent =
       'ontouchstart' in document.documentElement ? 'touchend' : 'click';
     document.querySelector('#enter').addEventListener(myEvent, () => {
+      if (this.isMobile) {
+        document.getElementById('full-audio-asset').play();
+      }
       this.openFullscreen();
       this.vr = false;
       // Remove loading interface

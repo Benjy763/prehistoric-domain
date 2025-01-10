@@ -35,9 +35,9 @@ AFRAME.registerComponent('mammoth-animation', {
     ]);
     this.curve4 = new THREE.CatmullRomCurve3([
       new THREE.Vector3(-21.55, -10, -42.912),
-      new THREE.Vector3(14.608, 2.2, -32.406),
-      new THREE.Vector3(28, 4, -19.408),
-      new THREE.Vector3(51.336, 5.7, -1.23),
+      new THREE.Vector3(14.608, 2.1, -32.406),
+      new THREE.Vector3(28, 3.9, -19.408),
+      new THREE.Vector3(51.336, 5.6, -1.23),
       new THREE.Vector3(70, -2.575, 50)
     ]);
 
@@ -46,6 +46,12 @@ AFRAME.registerComponent('mammoth-animation', {
       'enterWalk',
       () => {
         // Load sounds
+        this.glacierAudio = this.glacier.components['sound__glacier'];
+        this.mammothEnterAudio =
+          this.mammoth4.components['sound__mammothenter'];
+        this.mammothAudio3 = this.el.components['sound__mammoth3'];
+        this.mammothAudio4 = this.el.components['sound__mammoth4'];
+        this.mammothAudio5 = this.el.components['sound__mammoth5'];
         // Launch animation
         this.mammoth1State = { marker: 0, enabled: true, running: false };
         this.mammoth2State = { marker: 0, enabled: false, running: false };
@@ -66,6 +72,8 @@ AFRAME.registerComponent('mammoth-animation', {
         this.mammoth2.setAttribute('visible', 'true');
         this.mammoth3.setAttribute('visible', 'true');
         this.mammoth4.setAttribute('visible', 'true');
+
+        this.mammothAudio5.playSound();
         setTimeout(() => {
           this.mammoth2State.enabled = true;
         }, 8000);
@@ -73,8 +81,15 @@ AFRAME.registerComponent('mammoth-animation', {
           this.mammoth3State.enabled = true;
         }, 12000);
         setTimeout(() => {
+          this.mammothAudio3.playSound();
+        }, 18000);
+        setTimeout(() => {
           this.mammoth4State.enabled = true;
         }, 25000);
+        setTimeout(() => {
+          this.mammothEnterAudio.playSound();
+        }, 32000);
+
         this.phase = 'enterWalk';
       },
       false
@@ -128,9 +143,18 @@ AFRAME.registerComponent('mammoth-animation', {
 
     // Glacier is falling
     if (
+      this.movesManager.truncMarker(this.mammoth1State.marker) > 600 &&
+      !this.glacierStateFalling
+    ) {
+      this.glacierAudio.playSound();
+    }
+    if (
       this.movesManager.truncMarker(this.mammoth1State.marker) > 700 &&
       !this.glacierStateFalling
     ) {
+      setTimeout(() => {
+        this.mammothAudio4.playSound();
+      }, 2000);
       this.glacierStateFalling = true;
       setTimeout(() => {
         this.mammoth1.setAttribute('animation-mixer', {
@@ -190,7 +214,7 @@ AFRAME.registerComponent('mammoth-animation', {
     ) {
       const currentGlacierPosition = this.glacier.object3D.position;
       currentGlacierPosition.y -= this.glacierSpeed;
-      this.glacierSpeed += 0.01;
+      this.glacierSpeed += 0.007;
       this.glacier.object3D.position.set(
         currentGlacierPosition.x,
         currentGlacierPosition.y,

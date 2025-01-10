@@ -4,8 +4,11 @@
 <a-entity id="mammoth-env" disable-fog anisotropy="16" rotation="0 0 2" gltf-model="#mammoth-scene-asset"
   position="1.336 -0.945 -1.22" scale="1 1 1"></a-entity>
 
-<a-entity id="mammoth-glacier-1" disable-fog anisotropy="16" rotation="3.22 0 2" gltf-model="#glacier-1-asset"
-  position="424.5301 198.9643 -239.33362" scale="160 160 -160"></a-entity>
+<a-entity id="mammoth-glacier-1" sound__glacier="src: #glacier-audio-asset; volume: 30; rolloffFactor: 0.05" disable-fog
+  anisotropy="16" rotation="3.22 0 2" gltf-model="#glacier-1-asset" position="424.5301 198.9643 -239.33362"
+  scale="160 160 -160"></a-entity>
 
 <a-entity id="mammoth-glacier-2" disable-fog anisotropy="16" rotation="0 0 2" gltf-model="#glacier-2-asset"
   position="406.47584 192.09058 -228.67512" scale="150 150 -150"></a-entity>
+
+<a-entity snow-effect></a-entity>

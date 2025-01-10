@@ -23,7 +23,6 @@ AFRAME.registerComponent('mammoth-car-tour', {
     this.voicePhase = 'sound';
     this.soundMixing1SoundPlaying = false;
     this.leaveSoundPlaying = false;
-    this.soundMixing1Audio = document.getElementById('sound-mixing-1');
     this.leaveAudio = document.getElementById('leave');
 
     // Start tour listeners
@@ -35,7 +34,7 @@ AFRAME.registerComponent('mammoth-car-tour', {
         this.voicePhase = 'mammoth';
 
         // Global sound launch
-        document.getElementById('jungle-asset').play();
+        document.getElementById('env-sound-asset').play();
         this.voicemammoth1Sound = this.system.getVoice('mammoth1');
         this.voicemammoth2Sound = this.system.getVoice('mammoth2');
         this.phase = 'start';
@@ -48,8 +47,8 @@ AFRAME.registerComponent('mammoth-car-tour', {
     setTimeout(() => {
       // Trigger eagle animation
       this.eagle.dispatchEvent(new Event('enterFly'));
-      // this.wolf.dispatchEvent(new Event('enterRun'));
-      // this.mammoth.dispatchEvent(new Event('enterWalk'));
+      //this.wolf.dispatchEvent(new Event('enterRun'));
+      //this.mammoth.dispatchEvent(new Event('enterWalk'));
     }, 5000);
     this.phase = 'exit';
   },

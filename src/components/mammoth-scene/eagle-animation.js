@@ -23,12 +23,15 @@ AFRAME.registerComponent('eagle-animation', {
       new THREE.Vector3(54.325, 38, 31.028),
       new THREE.Vector3(-47.86, 45, 31.028)
     ]);
+    this.eagle2AudioPlayed = false;
 
     // Start tour listener
     this.el.addEventListener(
       'enterFly',
       () => {
         // Load sounds
+        this.eagleAudio1 = this.el.components['sound__eagle1'];
+        this.eagleAudio2 = this.el.components['sound__eagle2'];
         // Launch animation
         this.eagleMarker = 0;
         this.phaseConfig = {
@@ -39,6 +42,9 @@ AFRAME.registerComponent('eagle-animation', {
             speed: 0.05
           }
         };
+        setTimeout(() => {
+          this.eagleAudio1.playSound();
+        }, 6000);
         this.phase = 'enterFly';
       },
       false
@@ -71,6 +77,14 @@ AFRAME.registerComponent('eagle-animation', {
       this.phaseConfig[this.phase].speed,
       { useDeltaTime: true }
     );
+
+    if (
+      this.movesManager.truncMarker(this.eagleMarker) > 500 &&
+      !this.eagle2AudioPlayed
+    ) {
+      this.eagle2AudioPlayed = true;
+      this.eagleAudio2.playSound();
+    }
 
     if (this.movesManager.truncMarker(this.eagleMarker) > 800) {
       setTimeout(() => {
