@@ -38,6 +38,8 @@ AFRAME.registerComponent('mammoth-car-tour', {
         this.voicemammoth1Sound = this.system.getVoice('mammoth1');
         this.voicemammoth2Sound = this.system.getVoice('mammoth2');
         this.phase = 'start';
+
+        this.mammoth.dispatchEvent(new Event('displayMammoths'));
       },
       false
     );

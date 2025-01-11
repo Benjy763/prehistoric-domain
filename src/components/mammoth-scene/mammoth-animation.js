@@ -48,6 +48,14 @@ AFRAME.registerComponent('mammoth-animation', {
       new THREE.Vector3(56, -10, 50)
     ]);
 
+    this.el.addEventListener('displayMammoths', () => {
+      this.mammoth1.setAttribute('visible', 'true');
+      this.mammothBaby.setAttribute('visible', 'true');
+      this.mammoth2.setAttribute('visible', 'true');
+      this.mammoth3.setAttribute('visible', 'true');
+      this.mammoth4.setAttribute('visible', 'true');
+    });
+
     // Start tour listener
     this.el.addEventListener(
       'enterWalk',
@@ -77,26 +85,21 @@ AFRAME.registerComponent('mammoth-animation', {
         };
         this.mammothSpeed = 0.003;
         this.glacierSpeed = 0.3;
-        this.mammoth1.setAttribute('visible', 'true');
 
         this.mammothAudio5.playSound();
         setTimeout(() => {
-          this.mammothBaby.setAttribute('visible', 'true');
           this.mammothBabyState.enabled = true;
         }, 2000);
         setTimeout(() => {
-          this.mammoth2.setAttribute('visible', 'true');
           this.mammoth2State.enabled = true;
         }, 10000);
         setTimeout(() => {
-          this.mammoth3.setAttribute('visible', 'true');
           this.mammoth3State.enabled = true;
         }, 14000);
         setTimeout(() => {
           this.mammothAudio3.playSound();
         }, 18000);
         setTimeout(() => {
-          this.mammoth4.setAttribute('visible', 'true');
           this.mammoth4State.enabled = true;
         }, 25000);
         setTimeout(() => {
