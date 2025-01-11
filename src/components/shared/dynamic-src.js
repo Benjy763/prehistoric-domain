@@ -11,11 +11,22 @@ function isMobileDevice() {
     'Windows'
   ];
 
+  const userAgent = window.navigator.userAgent || '';
+
+  // Check for VR devices like Oculus Quest, which we do not want to be considered as mobile
+  const isVRDevice =
+    userAgent.includes('Oculus') ||
+    userAgent.includes('Pico') ||
+    userAgent.includes('VR') ||
+    userAgent.includes('HTC Vive') ||
+    userAgent.includes('Windows Phone');
+
   const userAgentDataPlatform = window.navigator.userAgentData
     ? SupportedPlatform.includes(window.navigator.userAgentData.platform)
     : false;
 
   return (
+    !isVRDevice && // Exclude VR devices from being considered mobile
     !SupportedPlatform.includes(window.navigator.platform) &&
     !userAgentDataPlatform
   );
@@ -38,7 +49,6 @@ function updateAssetSources() {
 }
 
 // Ensure this runs before assets load
-// document.addEventListener('DOMContentLoaded', updateAssetSources);
 window.onload = function () {
   updateAssetSources();
 };

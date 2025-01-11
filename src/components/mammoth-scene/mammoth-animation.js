@@ -29,8 +29,8 @@ AFRAME.registerComponent('mammoth-animation', {
     ]);
     this.curve3 = new THREE.CatmullRomCurve3([
       new THREE.Vector3(49, -1, -60.972),
-      new THREE.Vector3(49, 4.9, -30),
-      new THREE.Vector3(49, 4.9, 10),
+      new THREE.Vector3(49, 4.7, -30),
+      new THREE.Vector3(49, 4.7, 10),
       new THREE.Vector3(49, -10, 50)
     ]);
     this.curve4 = new THREE.CatmullRomCurve3([
