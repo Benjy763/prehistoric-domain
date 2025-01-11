@@ -83,7 +83,7 @@ AFRAME.registerComponent('mammoth-animation', {
         setTimeout(() => {
           this.mammothBaby.setAttribute('visible', 'true');
           this.mammothBabyState.enabled = true;
-        }, 7000);
+        }, 2000);
         setTimeout(() => {
           this.mammoth2.setAttribute('visible', 'true');
           this.mammoth2State.enabled = true;
@@ -294,7 +294,17 @@ AFRAME.registerComponent('mammoth-animation', {
       this.mammoth1State.enabled
     ) {
       this.mammoth1State.enabled = false;
+    }
+    if (
+      this.movesManager.truncMarker(this.mammoth2State.marker) > 950 &&
+      this.mammoth2State.enabled
+    ) {
       this.mammoth2State.enabled = false;
+    }
+    if (
+      this.movesManager.truncMarker(this.mammoth3State.marker) > 950 &&
+      this.mammoth3State.enabled
+    ) {
       this.mammoth3State.enabled = false;
       this.mammothBabyState.enabled = false;
     }
