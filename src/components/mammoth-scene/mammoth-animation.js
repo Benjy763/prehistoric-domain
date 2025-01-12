@@ -79,8 +79,8 @@ AFRAME.registerComponent('mammoth-animation', {
             mammoth1Speed: 0.013,
             mammoth2Speed: 0.013,
             mammoth3Speed: 0.0135,
-            mammoth4Speed: 0.012,
-            mammothBabySpeed: 0.013
+            mammoth4Speed: 0.0128,
+            mammothBabySpeed: 0.0128
           }
         };
         this.mammothSpeed = 0.003;
@@ -89,7 +89,7 @@ AFRAME.registerComponent('mammoth-animation', {
         this.mammothAudio5.playSound();
         setTimeout(() => {
           this.mammothBabyState.enabled = true;
-        }, 2000);
+        }, 7000);
         setTimeout(() => {
           this.mammoth2State.enabled = true;
         }, 10000);
