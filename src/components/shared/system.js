@@ -49,6 +49,9 @@ AFRAME.registerSystem('system', {
     //   !SupportedPlatform.includes(window.navigator.platform) &&
     //   !userAgentDataPlatform;
     this.isMobile = AFRAME.utils.device.isMobile();
+    this.isAppleMobile =
+      AFRAME.utils.device.isMobile() &&
+      /iPhone|iPad|iPod/.test(navigator.userAgent);
 
     // setTimeout(() => {
     //   this.initPerformances();
@@ -151,7 +154,7 @@ AFRAME.registerSystem('system', {
     let myEvent =
       'ontouchstart' in document.documentElement ? 'touchend' : 'click';
     document.querySelector('#enter').addEventListener(myEvent, () => {
-      if (this.isMobile) {
+      if (this.isAppleMobile) {
         document.getElementById('full-audio-asset').play();
       }
       this.openFullscreen();

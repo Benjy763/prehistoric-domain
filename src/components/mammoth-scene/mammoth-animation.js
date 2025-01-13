@@ -104,7 +104,7 @@ AFRAME.registerComponent('mammoth-animation', {
         }, 25000);
         setTimeout(() => {
           this.mammothEnterAudio.playSound();
-        }, 32000);
+        }, 35000);
 
         this.phase = 'enterWalk';
       },
@@ -293,28 +293,32 @@ AFRAME.registerComponent('mammoth-animation', {
 
     // End of mammoth animations
     if (
-      this.movesManager.truncMarker(this.mammoth1State.marker) > 950 &&
+      this.movesManager.truncMarker(this.mammoth1State.marker) > 900 &&
       this.mammoth1State.enabled
     ) {
       this.mammoth1State.enabled = false;
     }
     if (
-      this.movesManager.truncMarker(this.mammoth2State.marker) > 950 &&
+      this.movesManager.truncMarker(this.mammoth2State.marker) > 900 &&
       this.mammoth2State.enabled
     ) {
       this.mammoth2State.enabled = false;
     }
     if (
-      this.movesManager.truncMarker(this.mammoth3State.marker) > 950 &&
+      this.movesManager.truncMarker(this.mammoth3State.marker) > 900 &&
       this.mammoth3State.enabled
     ) {
       this.mammoth3State.enabled = false;
+    }
+    if (
+      this.movesManager.truncMarker(this.mammothBabyState.marker) > 900 &&
+      this.mammothBabyState.enabled
+    ) {
       this.mammothBabyState.enabled = false;
     }
 
-    if (this.movesManager.truncMarker(this.mammoth4State.marker) > 950) {
+    if (this.movesManager.truncMarker(this.mammoth4State.marker) > 900) {
       this.phase = 'exit';
-      this.mammoth4.setAttribute('visible', 'false');
     }
   },
   tick: function () {

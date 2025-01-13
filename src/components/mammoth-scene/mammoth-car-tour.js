@@ -35,6 +35,7 @@ AFRAME.registerComponent('mammoth-car-tour', {
 
         // Global sound launch
         document.getElementById('env-sound-asset').play();
+        document.getElementById('env-sound-switch-asset').play();
         this.voicemammoth1Sound = this.system.getVoice('mammoth1');
         this.voicemammoth2Sound = this.system.getVoice('mammoth2');
         this.phase = 'start';
