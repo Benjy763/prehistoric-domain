@@ -1,7 +1,12 @@
 <!-- Plants and trees-->
-<a-sky id="trex-sky" visible="false" position="-50 7 0" material="color: #ffffff; fog: true; opacity: 1"
+<a-sky id="trex-sky" visible="false" position="-50 6 0" material="color: #ffffff; fog: true; opacity: 1"
   rotation="0 130 0" scale="-1 1 1" geometry="radius: 200" src="#trex-360-asset"></a-sky>
-
+<a-entity id="trex-forest-pine-25"
+  animation="property: rotation; to: 0 50 0.6; delay: 300; loop: true; dur: 3000; easing: easeInQuad; dir: alternate;"
+  class="performance" gltf-model="#forest-pine-3-asset" position="-72.95089 -4.226 -43.91109" rotation="0 50 0.198"
+  scale="130 130 130"></a-entity>
+<a-entity id="trex-hill" gltf-model="#hill-asset" position="-125.74535 -18.36338 87.67835" rotation="0 50 0"
+  scale="1 180 180"></a-entity>
 <a-entity id="trex-swamp-dead-tree-1" gltf-model="#swamp-dead-tree-asset" position="-40.26908 0.16775 -14.64314"
   rotation="0 50 5" scale="2.9 2 2"></a-entity>
 
@@ -26,7 +31,7 @@
 
 <a-entity id="trex-forest-pine-11" class="performance"
   animation="property: rotation; to: 1 50 0; delay: delay: 200; loop: true; dur: 3000; easing: easeInQuad; dir: alternate;"
-  gltf-model="#forest-pine-2-asset" position="-20.05611 -1.12991 18.29673" rotation="0 50 0"
+  gltf-model="#forest-pine-2-asset" position="-20.05611 -1.19436 18.29673" rotation="0 50 0"
   scale="130 130 130"></a-entity>
 <a-entity id="trex-forest-pine-12"
   animation="property: rotation; to: -5.16 0 0.6; delay: delay: 200; loop: true; dur: 3000; easing: easeInQuad; dir: alternate;"
@@ -52,10 +57,6 @@
 <a-entity id="trex-forest-pine-24"
   animation="property: rotation; to: 0 -272.44 0.6; delay: 700; loop: true; dur: 3000; easing: easeInQuad; dir: alternate;"
   class="performance" gltf-model="#forest-pine-2-asset" position="-38.45533 -1.17118 -12.82903" rotation="0 -272.44 0"
-  scale="130 130 130"></a-entity>
-<a-entity id="trex-forest-pine-25"
-  animation="property: rotation; to: 0 50 0.6; delay: 300; loop: true; dur: 3000; easing: easeInQuad; dir: alternate;"
-  class="performance" gltf-model="#forest-pine-3-asset" position="-51.87789 -4.22647 40.96046" rotation="0 50 0"
   scale="130 130 130"></a-entity>
 <a-entity id="trex-forest-pine-26"
   animation="property: rotation; to: -7.31 180 0.6; delay: 200; loop: true; dur: 3000; easing: easeInQuad; dir: alternate;"
