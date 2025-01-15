@@ -18,18 +18,18 @@ AFRAME.registerComponent('quetza-animation', {
     this.quetzaSpeed = 0.0015; // Speed on the curve
     this.walkCurve = new THREE.CatmullRomCurve3([
       new THREE.Vector3(-20.869, -0.4, -42),
-      new THREE.Vector3(-20.869, -0.4, 0.667),
+      new THREE.Vector3(-20.869, -0.4, 0.667)
     ]);
     this.flyCurve = new THREE.CatmullRomCurve3([
       new THREE.Vector3(-20.869, -0.237, -1.867),
-      new THREE.Vector3(-20.869, 2, 3.407),
-      new THREE.Vector3(0.048, 10, 58.076),
+      new THREE.Vector3(-20.869, 4, 3.407),
+      new THREE.Vector3(0.048, 14, 58.076)
     ]);
     this.flyBackCurve = new THREE.CatmullRomCurve3([
       new THREE.Vector3(-0.502, 5.829, 54.574),
       new THREE.Vector3(-27.638, 6, 22.439),
       new THREE.Vector3(-29.904, 6.5, -25.735),
-      new THREE.Vector3(-5.821, 8, -73.481),
+      new THREE.Vector3(-5.821, 8, -73.481)
     ]);
 
     // Sound
@@ -49,7 +49,7 @@ AFRAME.registerComponent('quetza-animation', {
           clip: 'Quetzal_Walk_InPlace',
           loop: true,
           crossFadeDuration: 0.4,
-          timeScale: 0.8,
+          timeScale: 0.8
         });
         this.quetzaWalkAudio.playSound();
         this.phase = 'walk';
@@ -77,7 +77,7 @@ AFRAME.registerComponent('quetza-animation', {
         clip: 'Quetzal_Roar',
         loop: true,
         crossFadeDuration: 1,
-        timeScale: 0.6,
+        timeScale: 0.6
       });
       this.phase = 'roar';
     }
@@ -96,7 +96,7 @@ AFRAME.registerComponent('quetza-animation', {
       clip: 'Quetzal_Roar',
       loop: true,
       crossFadeDuration: 0.4,
-      timeScale: 0.5,
+      timeScale: 0.5
     });
     this.phase = 'exit';
   },
@@ -105,7 +105,7 @@ AFRAME.registerComponent('quetza-animation', {
       clip: 'Quetzal_Idle',
       loop: true,
       crossFadeDuration: 0.8,
-      timeScale: 0.6,
+      timeScale: 0.6
     });
 
     setTimeout(() => {
@@ -114,7 +114,7 @@ AFRAME.registerComponent('quetza-animation', {
         clip: 'Quetzal_FlyJump_Idle',
         loop: false,
         crossFadeDuration: 0.4,
-        timeScale: 0.3,
+        timeScale: 0.3
       });
       this.quetzaSpeed = 0;
       this.quetzaMarker = 0;
@@ -127,7 +127,7 @@ AFRAME.registerComponent('quetza-animation', {
         clip: 'Quetzal_FlyWave_High',
         loop: false,
         crossFadeDuration: 0.4,
-        timeScale: 0.8,
+        timeScale: 0.8
       });
     }, 11500);
     this.phase = 'exit';
@@ -175,7 +175,7 @@ AFRAME.registerComponent('quetza-animation', {
         clip: 'Quetzal_Fly_High',
         loop: false,
         crossFadeDuration: 0.8,
-        timeScale: 0.7,
+        timeScale: 0.7
       });
     }
     this.quetzaMarker = this.movesManager.moveOnCurve(
@@ -212,5 +212,5 @@ AFRAME.registerComponent('quetza-animation', {
         this.flyBack();
         break;
     }
-  },
+  }
 });
