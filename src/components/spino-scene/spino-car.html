@@ -1,4 +1,4 @@
-<a-entity id="spino-car" gltf-model="#swamp-scene-asset" spino-car-tour position="-5.86958 1.02687 4.472"
+<a-entity id="spino-car" disable-fog gltf-model="#swamp-scene-asset" spino-car-tour position="-5.86958 1.02687 4.472"
   rotation="0 0 0" scale="1 1.2 1">
   <a-entity id="rig" custom-movement-controls="speed: 0.1" position="1.152 -0.6000000000000001 0.934" rotation="0 90 0">
     <a-entity id="hands">
@@ -34,10 +34,13 @@
   <a-entity id="car-env" scale="1 1 1" position="-5.72859 0.39706 -2.76052" rotation="0 90 0">
     <a-image id="spino-dont-touch" src="#dont-touch-asset" scale="0.45 0.3 0.3" position="0 0 0"
       rotation="0 0 0"></a-image>
+    <a-box id="spino-sound-wall" sound__nacelledown="src: #spino-nacelle-down; volume: 8; loop: true"
+      sound__nacellestart="src: #spino-nacelle-start; volume: 4" sound__nacelleend="src: #spino-nacelle-end; volume: 4"
+      scale="0.001 0.001 0.001" position="-2.17656 -1.18292 0.34921" color="#000" depth="400" height="220" width="200">
+    </a-box>
   </a-entity>
-  <a-entity id="spino-terminal" sound__nacelledown="src: #spino-nacelle-down; volume: 8; loop: true"
-    sound__nacellestart="src: #spino-nacelle-start; volume: 8" sound__nacelleend="src: #spino-nacelle-end; volume: 8"
-    gltf-model="#terminal-asset" position="-3.10689 -0.64266 1.21953" rotation="0 107.76 0" scale="0.027 0.027 0.027">
+  <a-entity id="spino-terminal" gltf-model="#terminal-asset" position="-3.10689 -0.64266 1.21953" rotation="0 107.76 0"
+    scale="0.027 0.027 0.027">
     <a-image id="spino-pres" src="#spino-pres-asset" scale="32 16 10" position="-0.05575 46.56972 -7.50028"
       rotation="-14.21 3.15 0"></a-image>
   </a-entity>

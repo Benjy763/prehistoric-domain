@@ -44,7 +44,7 @@ AFRAME.registerComponent('sarco-car-tour', {
         this.underwaterAudio.play();
 
         // Get sounds
-        const nacelle = document.getElementById('sarco-wall');
+        const nacelle = document.getElementById('sarco-sound-wall');
         this.nacelleStart = nacelle.components['sound__nacellestart'];
         this.nacelleDown = nacelle.components['sound__nacelledown'];
         this.nacelleEnd = nacelle.components['sound__nacelleend'];

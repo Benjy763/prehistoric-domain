@@ -55,7 +55,7 @@ AFRAME.registerComponent('spino-car-tour', {
         this.birdsAudio = document.getElementById(
           'spino-palm-tree-long'
         ).components['sound__birds'];
-        const nacelle = document.getElementById('spino-terminal');
+        const nacelle = document.getElementById('spino-sound-wall');
         this.nacelleStart = nacelle.components['sound__nacellestart'];
         this.nacelleDown = nacelle.components['sound__nacelledown'];
         this.nacelleEnd = nacelle.components['sound__nacelleend'];
