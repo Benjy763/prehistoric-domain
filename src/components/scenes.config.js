@@ -315,9 +315,9 @@ export const MainScenes = {
       car: 'sarco-car',
       carReference: null,
       rigPos: {
-        x: 1,
+        x: 1.5,
         y: 1,
-        z: 0
+        z: 0.2
       }
     },
     ending: {
@@ -352,9 +352,9 @@ export const MainScenes = {
       car: 'spino-car',
       carReference: null,
       rigPos: {
-        x: 1,
+        x: 1.5,
         y: 1,
-        z: 0
+        z: 0.2
       }
     },
     ending: {
@@ -390,9 +390,9 @@ export const MainScenes = {
       car: 'quetza-car',
       carReference: null,
       rigPos: {
-        x: 2.3,
+        x: 1.5,
         y: 1,
-        z: 0
+        z: 0.2
       }
     },
     ending: {
@@ -428,9 +428,9 @@ export const MainScenes = {
       car: 'dimetrodon-car',
       carReference: null,
       rigPos: {
-        x: 1,
+        x: 1.5,
         y: 1,
-        z: 0
+        z: 0.2
       }
     },
     ending: {
@@ -466,9 +466,9 @@ export const MainScenes = {
       car: 'edmon-car',
       carReference: null,
       rigPos: {
-        x: 2,
+        x: 1.5,
         y: 1,
-        z: 0
+        z: 0.2
       }
     },
     ending: {
@@ -580,9 +580,9 @@ export const MainScenes = {
       car: 'deinocheirus-car',
       carReference: null,
       rigPos: {
-        x: 0,
+        x: 1.5,
         y: 1,
-        z: 0
+        z: 0.2
       }
     },
     ending: {
@@ -618,9 +618,9 @@ export const MainScenes = {
       car: 'deino-car',
       carReference: null,
       rigPos: {
-        x: 2,
+        x: 1.5,
         y: 1,
-        z: 0
+        z: 0.2
       }
     },
     ending: {
