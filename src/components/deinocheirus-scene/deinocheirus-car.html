@@ -31,40 +31,16 @@
   <a-plane id="deinocheirus-navmesh-el" geometry="width: 9.5" visible="false" position="-0.46865 -0.0363 0.08816"
     rotation="-90 0 0" width="9.5" height="5.5" color="yellow">
   </a-plane>
-  <a-entity id="car-env" position="-5.72859 0.39706 -2.76052" rotation="0 90 0" scale="1 1 1">
-    <!-- <a-entity id="deinocheirus-window" gltf-model="#window-asset" position="-0.20335 0.62774 -3.92827" rotation="0 0 0"
-    scale="0.05 0.02 0.01"></a-entity> -->
-    <a-entity id="deinocheirus-window-support" gltf-model="#window-support-asset" position="-5.86444 -0.88693 0.642"
-      rotation="0 -90 0" scale="1.56 1.29 0.88">
-      <a-image id="deinocheirus-dont-touch" src="#dont-touch-asset" scale="0.45 0.3 0.3"
-        position="-2.22482 0.97435 -0.23991" rotation="0 0 0"></a-image>
-    </a-entity>
-    <a-entity id="deinocheirus-wall" gltf-model="#wall-asset" position="5.58477 0.81313 0.03597" rotation="90 90 0"
-      scale="1.8 1.5 1.5"></a-entity>
-    <a-entity id="deinocheirus-terminal" gltf-model="#terminal-asset" position="-3.10689 -0.64266 1.21953"
-      rotation="0 107.76 0" scale="0.027 0.027 0.027">
-      <a-image id="deinocheirus-pres" src="#deinocheirus-pres-asset" scale="32 16 10"
-        position="-0.05575 46.56972 -7.50028" rotation="-14.21 3.15 0"></a-image>
-    </a-entity>
-    <a-entity id="deinocheirus-door" gltf-model="#door-asset" position="5.50369 -0.92257 0.13499" rotation="0 -90 0"
-      scale="0.025 0.025 0.025">
-      <a-entity id="deinocheirus-checkpoint" checkpoint-animation animation-mixer="clip: Take 001"
-        gltf-model="#checkpoint-asset" position="-2.81157 22 30.57404" rotation="0 110 0" scale="80 80 80">
-      </a-entity>
-    </a-entity>
-    <a-entity id="deinocheirus-floor" gltf-model="#floor-asset" position="2.80903 -5.56695 -8.9603" rotation="90 0 0"
-      scale="2.1 2.1 1"></a-entity>
-    <a-box id="deinocheirus-window-box-1" material="color: #0f0f0f" rotation="0 0 0"
-      geometry="depth: 0.7; height: 0.43; width: 0.09; segmentsHeight: 1" scale="1.2 1.2 1.2"
-      position="-5.75081 2.87545 3.68408" color="#000" depth="20" height="20" width="20"></a-box>
-    <a-box id="deinocheirus-window-box-2" material="color: #0f0f0f" rotation="0 0 0"
-      geometry="depth: 0.7; height: 0.43; width: 0.09; segmentsHeight: 1" scale="1.2 1.2 1.2"
-      position="-5.8282 2.88439 -3.54213" color="#000" depth="20" height="20" width="20"></a-box>
-    <a-box id="deinocheirus-window-box-3" material="color: #0f0f0f" rotation="0 0 0"
-      geometry="depth: 0.7; height: 0.43; width: 0.09; segmentsHeight: 1" scale="1.2 1.2 1.2"
-      position="-5.766 -0.764 4.094" color="#000" depth="20" height="20" width="20"></a-box>
-    <a-box id="deinocheirus-window-box-4" material="color: #0f0f0f" rotation="0 0 0"
-      geometry="depth: 0.7; height: 0.43; width: 0.09; segmentsHeight: 1" scale="1.2 1.2 1.2"
-      position="-5.766 -0.764 -3.96052" color="#000" depth="20" height="20" width="20"></a-box>
+  <a-entity id="car-env" scale="1 1 1" position="-5.72859 0.39706 -2.76052" rotation="0 90 0">
+    <a-image id="deinocheirus-dont-touch" src="#dont-touch-asset" scale="0.45 0.3 0.3" position="0 0 0"
+      rotation="0 0 0"></a-image>
+  </a-entity>
+  <a-entity id="deinocheirus-terminal" gltf-model="#terminal-asset" position="-3.10689 -0.64266 1.21953"
+    rotation="0 107.76 0" scale="0.027 0.027 0.027">
+    <a-image id="deinocheirus-pres" src="#deinocheirus-pres-asset" scale="32 16 10"
+      position="-0.05575 46.56972 -7.50028" rotation="-14.21 3.15 0"></a-image>
+  </a-entity>
+  <a-entity id="deinocheirus-checkpoint" checkpoint-animation animation-mixer="clip: Take 001"
+    gltf-model="#checkpoint-asset" position="3.60476 -0.35944 0.18374" rotation="0 11993.287 0" scale="2 2 2">
   </a-entity>
 </a-entity>
