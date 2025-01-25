@@ -13,22 +13,22 @@ AFRAME.registerComponent('wolf-animation', {
     this.phase = '';
     this.curve = new THREE.CatmullRomCurve3([
       new THREE.Vector3(14.443, 0, 24.82),
-      new THREE.Vector3(5, 0.6, 24.82),
+      new THREE.Vector3(5, 0.4, 24.82),
       new THREE.Vector3(-20, -3.5, 24.82)
     ]);
 
     this.curve2 = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(53.512, 3, 70),
-      new THREE.Vector3(53.512, 5.8, 9),
-      new THREE.Vector3(53.512, 5.8, -40),
-      new THREE.Vector3(53.512, 3, -60.972)
+      new THREE.Vector3(53.512, 2.8, 70),
+      new THREE.Vector3(53.512, 5.5, 9),
+      new THREE.Vector3(53.512, 5.5, -40),
+      new THREE.Vector3(53.512, 2.8, -60.972)
     ]);
 
     this.curve3 = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(53.512, 3, -60.972),
-      new THREE.Vector3(53.512, 5.8, -40),
-      new THREE.Vector3(53.512, 5.8, 9),
-      new THREE.Vector3(53.512, 0, 70)
+      new THREE.Vector3(70, 3, -60.972),
+      new THREE.Vector3(53.512, 5.8, -24),
+      new THREE.Vector3(23.608, 3.2, -19.306),
+      new THREE.Vector3(-54.965, -8, -13)
     ]);
 
     // Start tour listener
@@ -38,6 +38,7 @@ AFRAME.registerComponent('wolf-animation', {
         // Load sounds
         this.wolfAudio1 = this.el.components['sound__wolf1'];
         this.wolfAudio2 = this.el.components['sound__wolf2'];
+        this.wolfRunAudio = this.el.components['sound__wolfrun'];
         this.mammothAudio1 = this.mammoth.components['sound__mammoth1'];
         this.mammothAudio2 = this.mammoth.components['sound__mammoth2'];
 
@@ -113,6 +114,7 @@ AFRAME.registerComponent('wolf-animation', {
       this.mammothAudio2.playSound();
       setTimeout(() => {
         this.phase = 'runBack';
+        this.wolfRunAudio.playSound();
       }, 4000);
       this.phase = 'exit';
     }
@@ -130,6 +132,7 @@ AFRAME.registerComponent('wolf-animation', {
     if (this.movesManager.truncMarker(this.wolfMarker) > 850) {
       this.mammoth.dispatchEvent(new Event('enterWalk'));
       this.el.setAttribute('visible', 'false');
+      this.wolfRunAudio.stopSound();
       this.phase = 'exit';
     }
   },

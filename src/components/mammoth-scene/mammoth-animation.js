@@ -35,11 +35,10 @@ AFRAME.registerComponent('mammoth-animation', {
       new THREE.Vector3(49, -10, 50)
     ]);
     this.curve4 = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(-21.55, -10, -42.912),
-      new THREE.Vector3(14.608, 2.1, -32.406),
-      new THREE.Vector3(28, 3.9, -19.408),
-      new THREE.Vector3(51.336, 5.6, -1.23),
-      new THREE.Vector3(70, -2.575, 50)
+      new THREE.Vector3(50, -1, -60.972),
+      new THREE.Vector3(50, 4.7, -30),
+      new THREE.Vector3(50, 4.7, 10),
+      new THREE.Vector3(50, -10, 50)
     ]);
     this.curveBaby = new THREE.CatmullRomCurve3([
       new THREE.Vector3(56, -1, -60.972),
@@ -89,7 +88,7 @@ AFRAME.registerComponent('mammoth-animation', {
         this.mammothAudio5.playSound();
         setTimeout(() => {
           this.mammothBabyState.enabled = true;
-        }, 7000);
+        }, 5000);
         setTimeout(() => {
           this.mammoth2State.enabled = true;
         }, 10000);
