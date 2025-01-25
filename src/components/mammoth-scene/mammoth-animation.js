@@ -136,7 +136,7 @@ AFRAME.registerComponent('mammoth-animation', {
 
     if (this.mammothBabyState.enabled) {
       this.mammothBabyState.marker = this.movesManager.moveOnCurve(
-        this.mammoth2State,
+        this.mammothBabyState,
         this.mammothBaby.object3D,
         this.curveBaby,
         this.mammothBabyState.marker,

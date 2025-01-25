@@ -1,5 +1,5 @@
-// Detect mobile or desktop device
-function isMobileDevice() {
+// Detect device type
+function getDeviceType() {
   const SupportedPlatform = [
     'Win32',
     'MacIntel',
@@ -13,7 +13,7 @@ function isMobileDevice() {
 
   const userAgent = window.navigator.userAgent || '';
 
-  // Check for VR devices like Oculus Quest, which we do not want to be considered as mobile
+  // Check for VR devices like Oculus Quest
   const isVRDevice =
     userAgent.includes('Oculus') ||
     userAgent.includes('Pico') ||
@@ -25,24 +25,35 @@ function isMobileDevice() {
     ? SupportedPlatform.includes(window.navigator.userAgentData.platform)
     : false;
 
-  return (
-    !isVRDevice && // Exclude VR devices from being considered mobile
+  if (isVRDevice) {
+    return 'vr';
+  } else if (
     !SupportedPlatform.includes(window.navigator.platform) &&
     !userAgentDataPlatform
-  );
+  ) {
+    return 'mobile';
+  } else {
+    return 'desktop';
+  }
 }
 
+// Update asset sources based on device type
 function updateAssetSources() {
   const assetItems = document.querySelectorAll('a-asset-item');
-  const isMobile = isMobileDevice();
+  const deviceType = getDeviceType();
 
   assetItems.forEach((asset) => {
     const defaultSrc = asset.getAttribute('src');
     const mobileSrc = asset.getAttribute('data-mobile');
+    const vrSrc = asset.getAttribute('data-vr');
 
-    if (isMobile && mobileSrc) {
+    if (deviceType === 'mobile' && mobileSrc) {
       asset.setAttribute('src', mobileSrc);
+    } else if (deviceType === 'vr' && vrSrc) {
+      // Use mobile-quality assets for VR devices
+      asset.setAttribute('src', vrSrc);
     } else if (defaultSrc) {
+      // Default to desktop-quality assets
       asset.setAttribute('src', defaultSrc);
     }
   });
