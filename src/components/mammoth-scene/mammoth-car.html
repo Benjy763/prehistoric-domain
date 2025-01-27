@@ -1,4 +1,4 @@
-<a-entity id="mammoth-car" gltf-model="#mammoth-car-asset" mammoth-car-tour position="-12.17 1.40048 2.387"
+<a-entity id="mammoth-car" gltf-model="#mammoth-car-asset" mammoth-car-tour position="-12.17 1.4 2.387"
   rotation="0 180 0" scale="1 1.2 1">
   <a-entity id="rig" custom-movement-controls="speed: 0.1" position="1.152 -0.6000000000000001 0.934" rotation="0 90 0">
     <a-entity id="hands">
@@ -36,10 +36,13 @@
   </a-plane>
   <a-entity id="car-env" scale="1 1 1" position="-5.72859 0.39706 -2.76052" rotation="0 90 0">
   </a-entity>
-  <a-entity id="mammoth-terminal" gltf-model="#terminal-asset" position="-3.10689 -0.64266 1.21953"
-    rotation="0 107.76 0" scale="0.027 0.027 0.027">
+  <a-entity id="mammoth-terminal" class="ambiant-mode-hide" gltf-model="#terminal-asset"
+    position="-3.10689 -0.64266 1.21953" rotation="0 107.76 0" scale="0.027 0.027 0.027">
     <a-image id="mammoth-pres" src="#mammoth-pres-asset" scale="32 16 10" position="-0.05575 46.56972 -7.50028"
       rotation="-14.21 3.15 0"></a-image>
+  </a-entity>
+  <a-entity id="mammoth-bench" class="ambiant-mode-show" gltf-model="#bench-asset" position="-8.832 -0.85845 -0.114"
+    rotation="0 -90 0" scale="0.016 0.016 0.016">
   </a-entity>
   <a-entity id="mammoth-checkpoint" checkpoint-animation animation-mixer="clip: Take 001" gltf-model="#checkpoint-asset"
     position="3.60476 -0.35944 0.18374" rotation="0 11993.287 0" scale="2 2 2">

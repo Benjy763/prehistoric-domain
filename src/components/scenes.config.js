@@ -522,6 +522,7 @@ export const MainScenes = {
     loadingScreen: 'trex-illu.jpg',
     needPerformance: true,
     needLanguage: true,
+    needAmbiantMode: true,
     mobileCompatible: true,
     selection: 'mammoth',
     assetsId: 'mammoth-assets',

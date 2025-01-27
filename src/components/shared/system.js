@@ -34,6 +34,7 @@ AFRAME.registerSystem('system', {
     this.fov = 45;
     this.fovVR = 45;
     this.language = Languages.selection;
+    this.ambiantMode = false;
     this.languages = Languages;
     this.carReference;
     this.actuelScene = this.firstScene;
@@ -64,6 +65,7 @@ AFRAME.registerSystem('system', {
       }
     });
     this.initLanguage();
+    this.initAmbiantMode();
     this.loadingAssets();
 
     // Set loading infos
@@ -219,6 +221,9 @@ AFRAME.registerSystem('system', {
         // }
         if (!this.scenes.needLanguage) {
           document.querySelector('#menu-language').style.display = 'none';
+        }
+        if (!this.scenes.needAmbiantMode) {
+          document.querySelector('#menu-ambiant-mode').style.display = 'none';
         }
         // Press start
         document.querySelector('#loading-logo').style.display = 'none';
@@ -554,8 +559,10 @@ AFRAME.registerSystem('system', {
 
     if (this.language === 'fr') {
       selectFr();
-    } else {
+    } else if (this.language === 'en') {
       selectEn();
+    } else {
+      selectOff();
     }
 
     enEl.onclick = () => {
@@ -565,6 +572,57 @@ AFRAME.registerSystem('system', {
       selectFr();
     };
     offEl.onclick = () => {
+      selectOff();
+    };
+  },
+  switchAmbiantElements: function (enabled) {
+    let ambiantOnElements =
+      document.getElementsByClassName('ambiant-mode-show');
+    for (let i = 0; i < ambiantOnElements.length; i++) {
+      ambiantOnElements[i].setAttribute('visible', enabled);
+    }
+
+    let ambiantOffElements =
+      document.getElementsByClassName('ambiant-mode-hide');
+    for (let i = 0; i < ambiantOffElements.length; i++) {
+      ambiantOffElements[i].setAttribute('visible', !enabled);
+    }
+  },
+  initAmbiantMode: function (mode = false) {
+    const elements = {
+      ambiantOnEl: document.querySelector('#ambiant-on'),
+      ambiantOffEl: document.querySelector('#ambiant-off')
+    };
+    const { ambiantOnEl, ambiantOffEl } = elements;
+    if (!ambiantOnEl || !ambiantOffEl) {
+      return;
+    }
+    this.ambiantMode = mode;
+    const selectOn = () => {
+      this.ambiantMode = true;
+      this.applyStyle({ selectedKey: 'ambiantOnEl', elements });
+      this.switchAmbiantElements(true);
+      document.querySelector('#menu-language').style.display = 'none';
+      this.initLanguage('off');
+    };
+    const selectOff = () => {
+      this.ambiantMode = false;
+      this.applyStyle({ selectedKey: 'ambiantOffEl', elements });
+      this.switchAmbiantElements(false);
+      document.querySelector('#menu-language').style.display = 'flex';
+      this.initLanguage('en');
+    };
+
+    if (this.ambiantMode) {
+      selectOn();
+    } else {
+      selectOff();
+    }
+
+    ambiantOnEl.onclick = () => {
+      selectOn();
+    };
+    ambiantOffEl.onclick = () => {
       selectOff();
     };
   },

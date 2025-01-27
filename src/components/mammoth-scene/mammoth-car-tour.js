@@ -7,6 +7,7 @@ AFRAME.registerComponent('mammoth-car-tour', {
     this.cameraPosition = document.querySelector(
       '#' + this.system.getActualSceneObject().camera
     ).object3D.position;
+
     this.movesManager =
       document.querySelector('a-scene').systems['movesManager'];
     this.carControls;
@@ -38,9 +39,13 @@ AFRAME.registerComponent('mammoth-car-tour', {
         document.getElementById('env-sound-switch-asset').play();
         this.voicemammoth1Sound = this.system.getVoice('mammoth1');
         this.voicemammoth2Sound = this.system.getVoice('mammoth2');
-        this.phase = 'start';
 
-        this.mammoth.dispatchEvent(new Event('displayMammoths'));
+        if (this.system.ambiantMode) {
+          this.phase = 'exit';
+        } else {
+          this.phase = 'start';
+          this.mammoth.dispatchEvent(new Event('displayMammoths'));
+        }
       },
       false
     );

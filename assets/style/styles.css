@@ -140,7 +140,6 @@ body {
 }
 
 .menu {
-  width: 12rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
