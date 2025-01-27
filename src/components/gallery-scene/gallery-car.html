@@ -1,11 +1,11 @@
 <a-entity id="gallery-car" gltf-model="#gallery-scene-asset" gallery-car-tour position="-29.896 1.271 -2.53099"
   rotation="0 180 0" scale="1 1.2 1">
   <a-entity id="rig" custom-movement-controls="speed: 0.3; camera: [camera-gallery]"
-    position="1.152 -0.6000000000000001 0.934" rotation="0 180 0">
+    position="1.152 -0.6000000000000001 0.934" rotation="0 -20 0">
     <a-entity id="hands">
       <a-entity id="gallery-scene-camera" class="camera-entity" camera camera-gallery position="0 0 0" user-height="0"
         look-controls="pointerLockEnabled: true"
-        simple-navmesh-constraint="navmesh:#gallery-navmesh-el;fall:0;height:1.25;exclude:#gallery-exclude-navmesh-el">
+        simple-navmesh-constraint="navmesh:#gallery-navmesh-el;fall:0;height:1.25;exclude:.gallery-exclude-navmesh-el">
         <a-troika-text id="gallery-camera-text" visible="false" troika-text="color: #d6d6d6" scale="0.15 0.15 0.15"
           position="0 -0.25795 -0.8507" value="press ENTER or TRIGGER to leave" font="/assets/font/Exo-Regular.ttf">
         </a-troika-text>
@@ -29,12 +29,34 @@
         custom-hand-controls="hand: right; handModelStyle: highPoly; color: #ffcccc"></a-entity>
     </a-entity>
   </a-entity>
-  <a-plane id="gallery-navmesh-el" geometry="primitive: box; radius: 27; height: 25.25; width: 9.76; depth: 0.16"
-    visible="false" position="-26.85323 0 -2.52889" rotation="-90 0 0" width="8" height="5.8" color="yellow">
+  <a-plane id="gallery-navmesh-el" scale="1.91 1.63 1"
+    geometry="primitive: box; radius: 27; height: 25.25; width: 9.76; depth: 0.16" visible="false"
+    position="-30.57044 0 -12.34462" rotation="-90 0 0" width="8" height="5.8" color="yellow">
   </a-plane>
-  <a-plane id="gallery-exclude-navmesh-el"
+  <a-plane id="gallery-exclude-navmesh-el-1" class="gallery-exclude-navmesh-el" scale="0.4 0.42 1"
     geometry="primitive: box; radius: 16; height: 18.65; width: 3.02; depth: 0.16" visible="false"
-    position="-26.94652 0 -2.52868" rotation="-90 0 0" width="8" height="5.8" color="red">
+    position="-27.06151 0 -1.71009" rotation="-90 0 0" width="8" height="5.8" color="red">
   </a-plane>
+  <a-plane id="gallery-exclude-navmesh-el-2" class="gallery-exclude-navmesh-el" scale="0.4 0.42 1"
+    geometry="primitive: box; radius: 16; height: 18.65; width: 3.02; depth: 0.16" visible="false"
+    position="-37.60353 0 -5.30761" rotation="-90 90 0" width="8" height="5.8" color="red">
+  </a-plane>
+  <a-plane id="gallery-exclude-navmesh-el-3" class="gallery-exclude-navmesh-el" scale="0.4 0.39 1"
+    geometry="primitive: box; radius: 16; height: 18.65; width: 3.02; depth: 0.16" visible="false"
+    position="-27.06151 0 -5.03248" rotation="-90 90 0" width="8" height="5.8" color="red">
+  </a-plane>
+  <a-plane id="gallery-exclude-navmesh-el-4" class="gallery-exclude-navmesh-el" scale="0.4 0.42 1"
+    geometry="primitive: box; radius: 16; height: 18.65; width: 3.02; depth: 0.16" visible="false"
+    position="-34.03576 0 -22.98433" rotation="-90 0 0" width="8" height="5.8" color="red">
+  </a-plane>
+  <a-plane id="gallery-exclude-navmesh-el-5" class="gallery-exclude-navmesh-el" scale="0.4 0.42 1"
+    geometry="primitive: box; radius: 16; height: 18.65; width: 3.02; depth: 0.16" visible="false"
+    position="-23.51334 0 -19.32502" rotation="-90 90 0" width="8" height="5.8" color="red">
+  </a-plane>
+  <a-plane id="gallery-exclude-navmesh-el-6" class="gallery-exclude-navmesh-el" scale="0.4 0.38 1"
+    geometry="primitive: box; radius: 16; height: 18.65; width: 3.02; depth: 0.16" visible="false"
+    position="-34.01165 0 -19.39164" rotation="-90 90 0" width="8" height="5.8" color="red">
+  </a-plane>
+
   <a-entity id="car-env" position="-5.72859 0.39706 -2.76052" rotation="0 90 0" scale="1 1 1"></a-entity>
 </a-entity>

@@ -62,9 +62,9 @@ export const MainScenes = {
       car: 'gallery-car',
       carReference: null,
       rigPos: {
-        x: -22.843,
+        x: -36,
         y: 1,
-        z: -12.542
+        z: 4
       }
     },
     ending: {

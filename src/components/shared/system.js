@@ -390,7 +390,7 @@ AFRAME.registerSystem('system', {
       this.movesManager.setRigPosition({
         x: this.movesManager.savedPosition.x,
         y: 0,
-        z: this.movesManager.savedPosition.y
+        z: this.movesManager.savedPosition.z
       });
       this.movesManager.savedPosition = null;
     } else {

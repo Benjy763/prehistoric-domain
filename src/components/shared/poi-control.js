@@ -66,7 +66,7 @@ AFRAME.registerComponent('poi-control', {
         this.movesManager.savedPosition = {
           scene: this.system.actuelScene,
           x: this.movesManager.getRigPosition().x,
-          y: this.movesManager.getRigPosition().y
+          z: this.movesManager.getRigPosition().z
         };
       }
       if (this.movesManager.nextScene === 'shopmd') {
