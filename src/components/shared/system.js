@@ -300,9 +300,6 @@ AFRAME.registerSystem('system', {
     const event = new Event('changeScene');
     window.dispatchEvent(event);
 
-    // Set main scene atmosphere color
-    this.changeAtmosphere({ color: '#2f5b45', density: '0.001' });
-
     // Display scene
     this.displayScene(sceneId);
 
@@ -325,7 +322,6 @@ AFRAME.registerSystem('system', {
     document
       .querySelector('#' + this.scenes.ending.camera)
       .setAttribute('camera', 'active', true);
-    this.changeAtmosphere({ color: '#2f5b45', density: '0.1' });
     if (!this.vr) {
       this.exitFullscreen();
     }
@@ -519,10 +515,10 @@ AFRAME.registerSystem('system', {
     }
   },
   applyStyle: ({ selectedKey, elements }) => {
-    const selectedColor = '#b39760';
-    const selectedTextColor = '#2f5b45';
+    const selectedColor = '#f9f9f9';
+    const selectedTextColor = '#191f29';
     const defaultColor = 'transparent';
-    const defaultTextColor = '#d4c9ba';
+    const defaultTextColor = '#f9f9f9';
     const selectedOpacity = 1;
     const defaultOpacity = 1;
     Object.entries(elements).forEach(([key, element]) => {

@@ -1,21 +1,24 @@
 @import url(//fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap);
 
+/* Design Colors */
 :root {
   --main-font-family: 'Exo', Verdana, Tahoma;
   --default-font-size: clamp(16px, 1vw, 40px);
   --background-color-transparent: rgba(0, 0, 0, 0.5);
   --color-white: #fff;
   --color-black: #000;
-  --default-text-color: #d4c9ba;
-  --highlight-color: #b39760;
-  --accent-color: #2f5b45;
+  --default-text-color: #f9f9f9;
+  --highlight-color: #f9f9f9;
+  --highlight-bluegreen-color: #127878;
+  --highlight-blue-color: #0082be;
+  --accent-color: #191f29;
   --loader-logo-size: 10rem;
   --loading-logo-size: 9rem;
   --menu-font-size: 0.8rem;
-  --button-text-color: #d4c9ba;
-  --button-border-color: #d4c9ba;
-  --hover-background-color: #b39760;
-  --hover-text-color: #2f5b45;
+  --button-text-color: #f9f9f9;
+  --button-border-color: #f9f9f9;
+  --hover-background-color: #f9f9f9;
+  --hover-text-color: #191f29;
 }
 
 html,
@@ -116,7 +119,8 @@ body {
   text-align: center;
 }
 
-#loading-infos span {
+#loading-infos .infos-name {
+  font-weight: 700;
   font-size: 1.5rem;
 }
 
@@ -169,6 +173,16 @@ body {
 .buttons-item:hover {
   color: var(--hover-text-color) !important;
   background-color: var(--hover-background-color) !important;
+}
+
+.buttons-item:first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.buttons-item:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 #menu-language .buttons-item:first-child {
