@@ -36,13 +36,13 @@
       rotation="0 0 0"></a-image> -->
     <a-box id="sarco-sound-wall" sound__nacelledown="src: #sarco-nacelle-down; volume: 8; loop: true"
       sound__nacellestart="src: #sarco-nacelle-start; volume: 4" sound__nacelleend="src: #sarco-nacelle-end; volume: 4"
-      scale="0.001 0.001 0.001" position="-2.17656 -1.18292 0.34921" color="#000" depth="400" height="220" width="200">
+      scale="0.001 0.001 0.001" position="-2.177 -1.69963 0.349" color="#000" depth="400" height="220" width="200">
     </a-box>
   </a-entity>
   <a-entity id="sarco-terminal" gltf-model="#terminal-asset" position="-3.10689 -0.64266 1.21953" rotation="0 107.76 0"
     scale="0.027 0.027 0.027">
-    <!-- <a-image id="sarco-pres" src="#sarco-pres-asset" scale="32 16 10" position="-0.05575 46.56972 -7.50028"
-      rotation="-14.21 3.15 0"></a-image> -->
+    <a-image id="sarco-pres" src="#sarco-pres-asset" material="shader: flat;encoding: sRGBEncoding;" scale="32 16 10"
+      position="-0.05575 46.56972 -7.50028" rotation="-14.21 3.15 0"></a-image>
   </a-entity>
   <a-entity id="sarco-checkpoint" checkpoint-animation animation-mixer="clip: Take 001" gltf-model="#checkpoint-asset"
     position="3.60476 -0.35944 0.18374" rotation="0 11993.287 0" scale="2 2 2">

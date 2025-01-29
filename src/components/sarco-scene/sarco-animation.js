@@ -26,7 +26,7 @@ AFRAME.registerComponent('sarco-animation', {
     ]);
     this.swimCurve1 = new THREE.CatmullRomCurve3([
       new THREE.Vector3(-15.127, -11.934, -32),
-      new THREE.Vector3(-15.127, -11.934, 52)
+      new THREE.Vector3(-15.127, -11.934, 62)
     ]);
 
     // Bird Path
@@ -235,7 +235,7 @@ AFRAME.registerComponent('sarco-animation', {
       this.sarcoSwimStopAudioPlayed = true;
       this.sarcoSwimStopAudio.playSound();
     }
-    if (this.movesManager.truncMarker(this.sarcoMarker) > 280) {
+    if (this.movesManager.truncMarker(this.sarcoMarker) > 270) {
       this.sarcoSwimSpeed -= 0.00002;
     }
     if (this.sarcoSwimSpeed <= 0.0002) {
