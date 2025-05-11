@@ -124,6 +124,10 @@ body {
   margin-bottom: 10px;
 }
 
+#loading-infos #infos-name {
+  font-size: 1.8rem;
+}
+
 #loading-infos {
   display: block;
 }

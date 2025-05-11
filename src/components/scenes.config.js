@@ -518,7 +518,7 @@ export const MainScenes = {
   },
   mammoth: {
     // Starting scene
-    name: 'Mammoth Viewing Gallery',
+    name: 'Siberian Steppe, 15,000 Years Ago',
     loadingScreen: 'trex-illu.jpg',
     needPerformance: true,
     needLanguage: true,

@@ -42,6 +42,7 @@ AFRAME.registerSystem('system', {
     this.vr = false;
     this.canRecenter = false;
     this.performance = false;
+    this.hasAccess = false;
 
     const userAgentDataPlatform = window.navigator.userAgentData
       ? SupportedPlatform.includes(window.navigator.userAgentData.platform)
@@ -58,6 +59,16 @@ AFRAME.registerSystem('system', {
     //   this.initPerformances();
     // }, 500);
     // Ask parent for selected langage
+
+    // Check authorization
+    this.checkAccess();
+    setTimeout(() => {
+      if (this.hasAccess !== true) {
+        window.location.href = 'https://prehistoricdomain.com';
+      }
+    }, 5000);
+
+    // Check language
     window.parent.postMessage('getLang', '*');
     window.addEventListener('message', ({ data }) => {
       if (data && typeof data === 'string' && data.startsWith('lang')) {
@@ -83,6 +94,20 @@ AFRAME.registerSystem('system', {
     if (DEBUG) {
       // Unclock debug listener
       this.startDebugListener();
+    }
+  },
+  checkAccess: function () {
+    const isProd = window.location.hostname === 'tour.prehistoricdomain.com';
+    const isLocalhost = window.location.hostname === 'localhost';
+    if (isProd) {
+      window.parent.postMessage('getAccess', '*');
+      window.addEventListener('message', (event) => {
+        if (event.data?.type === 'authorized') {
+          this.hasAccess = true;
+        }
+      });
+    } else if (isLocalhost) {
+      this.hasAccess = true;
     }
   },
   manageLookControls: function () {
@@ -215,32 +240,39 @@ AFRAME.registerSystem('system', {
     document.querySelector('a-assets').addEventListener('loaded', () => {
       // Preloading
       setTimeout(() => {
-        document.querySelector('#menu-wrapper').style.display = 'flex';
-        // if (!this.scenes.needPerformance) {
-        //   document.querySelector('#menu-performance').style.display = 'none';
-        // }
-        if (!this.scenes.needLanguage) {
-          document.querySelector('#menu-language').style.display = 'none';
-        }
-        if (!this.scenes.needAmbiantMode) {
-          document.querySelector('#menu-ambiant-mode').style.display = 'none';
-        }
-        // Press start
-        document.querySelector('#loading-logo').style.display = 'none';
-        document.querySelector('#loading-infos .progress-label').style.display =
-          'none';
-        document.querySelector('#infos-annonce').style.display = 'none';
-        document.querySelector('#loader-logo').style.display = 'block';
-        document.querySelector('#enter').style.display = 'block';
-        // if (this.isMobile) {
-        //   document.querySelector('#enter').style.display = 'none';
-        // }
-        if (AFRAME.utils.device.checkHeadsetConnected() && !this.isMobile) {
-          document.querySelector('#enter').style.display = 'none';
-          document.querySelector('#enter-vr').style.display = 'block';
-        }
+        this.initMenuInterval = setInterval(() => {
+          if (this.hasAccess) {
+            clearInterval(this.initMenuInterval);
+            document.querySelector('#menu-wrapper').style.display = 'flex';
+            // if (!this.scenes.needPerformance) {
+            //   document.querySelector('#menu-performance').style.display = 'none';
+            // }
+            if (!this.scenes.needLanguage) {
+              document.querySelector('#menu-language').style.display = 'none';
+            }
+            if (!this.scenes.needAmbiantMode) {
+              document.querySelector('#menu-ambiant-mode').style.display =
+                'none';
+            }
+            // Press start
+            document.querySelector('#loading-logo').style.display = 'none';
+            document.querySelector(
+              '#loading-infos .progress-label'
+            ).style.display = 'none';
+            document.querySelector('#infos-annonce').style.display = 'none';
+            // document.querySelector('#loader-logo').style.display = 'block';
+            document.querySelector('#enter').style.display = 'block';
+            // if (this.isMobile) {
+            //   document.querySelector('#enter').style.display = 'none';
+            // }
+            if (AFRAME.utils.device.checkHeadsetConnected() && !this.isMobile) {
+              document.querySelector('#enter').style.display = 'none';
+              document.querySelector('#enter-vr').style.display = 'block';
+            }
 
-        this.initStartingEvents();
+            this.initStartingEvents();
+          }
+        }, 200);
       }, 2000);
     });
   },
