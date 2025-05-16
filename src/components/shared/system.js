@@ -102,7 +102,7 @@ AFRAME.registerSystem('system', {
     if (isProd) {
       window.parent.postMessage('getAccess', '*');
       window.addEventListener('message', (event) => {
-        if (event.data?.type === 'authorized') {
+        if (event.data?.type === 'v4j9kjxzwmjsrlnfbq2ndu68z') {
           this.hasAccess = true;
         }
       });
