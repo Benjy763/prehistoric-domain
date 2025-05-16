@@ -8,91 +8,105 @@ alwaysApply: true
 ## A-Frame Component Best Practices
 
 1. **Component Organization**
-   - Place shared components in `src/components/shared/`
-   - Scene-specific components go in `src/components/[scene-name]-scene/`
+   - Place shared components in `src/components/shared/` when:
+     - Component is used by multiple scenes
+     - Provides core functionality (movement, controls, etc.)
+     - Handles cross-cutting concerns (performance, optimization)
+   - Scene-specific components in `src/components/[scene-name]-scene/` when:
+     - Logic is unique to one scene
+     - Handles scene-specific animations or interactions
+   - Follow naming conventions:
+     - Shared: `feature-name.js` (e.g., `movement-controls.js`)
+     - Scene: `scene-name-feature.js` (e.g., `trex-animation.js`)
    - Use `scenes.config.js` for scene configuration
-   - Follow established naming patterns (e.g., `*-scene`, `*-controls`)
 
 2. **Component Implementation**
-   - Use throttled ticks for performance:
-     ```javascript
-     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
-     ```
-   - Store object3D references in init:
-     ```javascript
-     init: function () {
-       this.object = this.el.object3D;
-       this.system = document.querySelector('a-scene').systems['system'];
-     }
-     ```
-   - Clean up event listeners in remove()
+   - Use proper dependency declaration and schema
+   - Use this.el.sceneEl.systems instead of document.querySelector
+   - Optimize tick with throttling (25ms standard)
+   - Implement proper cleanup in remove()
+   - Use object pooling for frequently created objects
 
 3. **Scene Structure**
-   - Each scene should have:
-     - Scene-specific components
-     - Asset management
-     - Control systems
-     - Environmental elements
-   - Use the established scene hierarchy from existing scenes
+   - Asset Management:
+     - Proper preloading with timeouts
+     - Error handling for failed loads
+     - Progressive loading for large scenes
+   - Scene Initialization Order:
+     1. Core assets
+     2. Shared systems
+     3. Scene-specific components
+     4. Interactions
+   - Error Handling:
+     - Asset loading fallbacks
+     - System initialization checks
+     - Loading progress feedback
 
-4. **Performance Patterns**
-   - Use `anisotropy` component for texture quality
-   - Implement `disable-fog` where needed
-   - Use `custom-movement-controls` for locomotion
-   - Follow existing optimization patterns
+4. **Performance Optimization**
+   - Texture Management:
+     - Use `anisotropy` component strategically
+     - Implement texture atlases
+     - Use compressed formats
+   - Geometry Optimization:
+     - Use instanced meshes
+     - Implement LOD
+     - Pool objects
+   - Memory Management:
+     - Dispose unused resources
+     - Clean up event listeners
+     - Monitor memory usage
 
 ## JavaScript Guidelines
 
 1. **Control Systems**
-   - Use `controller-listener` for input handling
-   - Implement `movement-controls` for navigation
-   - Follow the car control pattern for guided experiences
-   - Use the moves manager system for scene transitions
+   - Use proper system references
+   - Implement standard control patterns
+   - Follow the car control pattern
+   - Use moves manager correctly
 
 2. **Event Handling**
-   - Follow existing event patterns:
-     - Scene events (e.g., 'carRegistered', 'enter')
-     - Controller events (e.g., 'thumbstickmoved')
-     - Model events (e.g., 'model-loaded')
-   - Clean up listeners in remove()
+   - Follow established event patterns
+   - Clean up ALL listeners in remove()
+   - Use event delegation
+   - Document custom events
 
 3. **Animation Systems**
-   - Use animation-mixer for model animations
-   - Implement custom animation curves with Three.js
-   - Follow existing patterns for creature behaviors
-   - Use the checkpoint system for navigation points
+   - Use animation-mixer efficiently
+   - Pool animation objects
+   - Clean up animations
+   - Follow existing patterns
 
 4. **Asset Management**
-   - Preload assets using `<a-assets>`
-   - Use shared assets from `main-scenes/shared`
-   - Follow the established texture naming conventions
-   - Implement progressive loading for large scenes
+   - Implement progressive loading
+   - Use shared assets effectively
+   - Follow naming conventions
+   - Clean up unused assets
 
 ## Scene Development
 
 1. **Scene Setup**
-   - Follow the pattern in existing scenes (trex, spino, etc.)
-   - Use the scene config system
-   - Implement proper asset loading
-   - Set up appropriate environmental effects
+   - Follow established patterns
+   - Use config system properly
+   - Handle asset loading
+   - Set up environment
 
 2. **Interaction Design**
-   - Use the established control schemes
-   - Implement proper VR comfort settings
-   - Follow the existing navigation patterns
-   - Use the checkpoint system for guided experiences
+   - Use standard controls
+   - Implement VR comfort
+   - Follow navigation patterns
+   - Use checkpoints properly
 
 3. **Performance Optimization**
-   - Use throttled ticks (25ms default)
-   - Implement proper asset loading
-   - Follow the established LOD patterns
-   - Monitor FPS using fps-counter component
+   - Use throttled ticks
+   - Implement proper loading
+   - Follow LOD patterns
+   - Monitor performance
 
 4. **Audio Implementation**
-   - Follow the existing audio management pattern
-   - Use positional audio for creatures
-   - Implement proper sound falloff
-   - Manage voice-overs through the system
+   - Follow audio patterns
+   - Use positional audio
+   - Implement falloff
+   - Manage voice-overs
 
 ## Build and Development
 
