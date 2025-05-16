@@ -1,0 +1,161 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+# Technical Guidelines for Prehistoric Domain
+
+## A-Frame Component Best Practices
+
+1. **Component Organization**
+   - Place shared components in `src/components/shared/`
+   - Scene-specific components go in `src/components/[scene-name]-scene/`
+   - Use `scenes.config.js` for scene configuration
+   - Follow established naming patterns (e.g., `*-scene`, `*-controls`)
+
+2. **Component Implementation**
+   - Use throttled ticks for performance:
+     ```javascript
+     this.tick = AFRAME.utils.throttleTick(this.tick, 25, this);
+     ```
+   - Store object3D references in init:
+     ```javascript
+     init: function () {
+       this.object = this.el.object3D;
+       this.system = document.querySelector('a-scene').systems['system'];
+     }
+     ```
+   - Clean up event listeners in remove()
+
+3. **Scene Structure**
+   - Each scene should have:
+     - Scene-specific components
+     - Asset management
+     - Control systems
+     - Environmental elements
+   - Use the established scene hierarchy from existing scenes
+
+4. **Performance Patterns**
+   - Use `anisotropy` component for texture quality
+   - Implement `disable-fog` where needed
+   - Use `custom-movement-controls` for locomotion
+   - Follow existing optimization patterns
+
+## JavaScript Guidelines
+
+1. **Control Systems**
+   - Use `controller-listener` for input handling
+   - Implement `movement-controls` for navigation
+   - Follow the car control pattern for guided experiences
+   - Use the moves manager system for scene transitions
+
+2. **Event Handling**
+   - Follow existing event patterns:
+     - Scene events (e.g., 'carRegistered', 'enter')
+     - Controller events (e.g., 'thumbstickmoved')
+     - Model events (e.g., 'model-loaded')
+   - Clean up listeners in remove()
+
+3. **Animation Systems**
+   - Use animation-mixer for model animations
+   - Implement custom animation curves with Three.js
+   - Follow existing patterns for creature behaviors
+   - Use the checkpoint system for navigation points
+
+4. **Asset Management**
+   - Preload assets using `<a-assets>`
+   - Use shared assets from `main-scenes/shared`
+   - Follow the established texture naming conventions
+   - Implement progressive loading for large scenes
+
+## Scene Development
+
+1. **Scene Setup**
+   - Follow the pattern in existing scenes (trex, spino, etc.)
+   - Use the scene config system
+   - Implement proper asset loading
+   - Set up appropriate environmental effects
+
+2. **Interaction Design**
+   - Use the established control schemes
+   - Implement proper VR comfort settings
+   - Follow the existing navigation patterns
+   - Use the checkpoint system for guided experiences
+
+3. **Performance Optimization**
+   - Use throttled ticks (25ms default)
+   - Implement proper asset loading
+   - Follow the established LOD patterns
+   - Monitor FPS using fps-counter component
+
+4. **Audio Implementation**
+   - Follow the existing audio management pattern
+   - Use positional audio for creatures
+   - Implement proper sound falloff
+   - Manage voice-overs through the system
+
+## Build and Development
+
+1. **Project Structure**
+   - Follow the established component organization
+   - Use the webpack configuration
+   - Maintain ESLint and Prettier rules
+   - Keep dependencies updated
+
+2. **Testing**
+   - Test on target VR devices
+   - Verify performance metrics
+   - Check scene transitions
+   - Validate control schemes
+
+3. **Documentation**
+   - Document component schemas
+   - Maintain scene configurations
+   - Update language configurations
+   - Keep debug constants current
+
+## WebXR Specific
+
+1. **Immersion Guidelines**
+   - Maintain 1:1 scale (1 unit = 1 meter)
+   - Implement comfort settings in camera-controls
+   - Create natural interactions using raycasters
+   - Support both controller and gaze-based input
+
+2. **Accessibility**
+   - Provide alternative navigation methods
+   - Include audio cues for important events
+   - Support seated and standing experiences
+   - Ensure UI elements have sufficient contrast
+
+3. **Build Process**
+   - Use `npm run build` for production
+   - Follow ESLint and Prettier configs
+   - Use HTTPS locally with certs
+   - Keep dependencies updated
+
+4. **Scene Optimization**
+   - Initial load under 10MB
+   - Use dynamic imports for scene chunks
+   - Implement asset streaming
+   - Monitor performance metrics
+
+## Scene-Specific Guidelines
+
+1. **Dinosaur Scenes**
+   - Implement accurate creature behaviors
+   - Use proper scale relationships
+   - Include ambient environmental effects
+   - Support educational information display
+
+2. **Environmental Scenes**
+   - Focus on atmosphere and immersion
+   - Include ambient wildlife
+   - Support multiple viewing positions
+   - Implement day/night cycles
+
+3. **Hub & Navigation**
+   - Clear wayfinding
+   - Smooth scene transitions
+   - Informative preview content
+   - Efficient loading states
