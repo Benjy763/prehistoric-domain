@@ -19,7 +19,7 @@ AFRAME.registerComponent('trex-animation', {
       new THREE.Vector3(-31.018, -0.7, 15.563),
       new THREE.Vector3(-34.615, -0.7, 3.228),
       new THREE.Vector3(-27.402, -0.3, -9.057),
-      new THREE.Vector3(-16.326, -0.3, -28.1),
+      new THREE.Vector3(-16.326, -0.3, -28.1)
     ]);
 
     // Start tour listener
@@ -54,7 +54,7 @@ AFRAME.registerComponent('trex-animation', {
             this.el.setAttribute('animation-mixer', {
               clip: 'T_Rex_Walk_InPlace',
               crossFadeDuration: 0.4,
-              timeScale: 0.7,
+              timeScale: 0.7
             });
           }, 500);
         }, 6000);
@@ -80,7 +80,7 @@ AFRAME.registerComponent('trex-animation', {
           this.el.setAttribute('animation-mixer', {
             clip: 'T_Rex_Idle_Roar2',
             crossFadeDuration: 1.5,
-            timeScale: 0.7,
+            timeScale: 0.7
           });
         }, 0);
         this.trexSpeed -= this.trexChangingSpeed;
@@ -91,9 +91,9 @@ AFRAME.registerComponent('trex-animation', {
       this.audioControl.fade({ audio: this.trexFootStepAudio });
       setTimeout(() => {
         this.el.setAttribute('animation-mixer', {
-          clip: 'T_Rex_Drink_2',
+          clip: 'T_Rex_Drink',
           crossFadeDuration: 3,
-          timeScale: 0.5,
+          timeScale: 0.5
         });
         setTimeout(() => {
           this.trexDrinkAudio.playSound();
@@ -108,7 +108,7 @@ AFRAME.registerComponent('trex-animation', {
       this.el.setAttribute('animation-mixer', {
         clip: 'T_Rex_Walk_Roar_InPlace',
         crossFadeDuration: 2,
-        timeScale: 0.7,
+        timeScale: 0.7
       });
       this.trexRoar2Audio.playSound();
       setTimeout(() => {
@@ -144,7 +144,7 @@ AFRAME.registerComponent('trex-animation', {
       this.el.setAttribute('animation-mixer', {
         clip: 'T_Rex_Walk_Roar_InPlace',
         crossFadeDuration: 0.5,
-        timeScale: 0.6,
+        timeScale: 0.6
       });
       this.animationChange = 'exit';
     }
@@ -165,10 +165,10 @@ AFRAME.registerComponent('trex-animation', {
         this.trexBis.setAttribute('rotation', '0 4.900 0.000');
         this.trexBis.setAttribute('scale', '0.024 0.024 0.024');
         this.trexBis.setAttribute('animation-mixer', {
-          clip: 'T_Rex_Drink_2',
+          clip: 'T_Rex_Drink',
           crossFadeDuration: 0.4,
           timeScale: 0.3,
-          startFrame: 0,
+          startFrame: 0
         });
         this.trexSpeed = 0.05;
         setTimeout(() => {
@@ -193,7 +193,7 @@ AFRAME.registerComponent('trex-animation', {
       this.trexBis.setAttribute('animation-mixer', {
         clip: 'T_Rex_Walk_Roar_InPlace',
         crossFadeDuration: 4,
-        timeScale: 1,
+        timeScale: 1
       });
       this.phase = 'walkFar';
     }, 10000);
@@ -242,5 +242,5 @@ AFRAME.registerComponent('trex-animation', {
         this.walkFar();
         break;
     }
-  },
+  }
 });

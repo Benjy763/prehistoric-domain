@@ -151,7 +151,7 @@ export const MainScenes = {
   },
   aviary: {
     // Starting scene
-    name: 'Pteranodon Aviary',
+    name: 'North America, 85 Million Years Ago',
     loadingScreen: 'aviary-illu.jpg',
     displayDistance: 400,
     needPerformance: false,
@@ -480,7 +480,7 @@ export const MainScenes = {
   },
   trex: {
     // Starting scene
-    name: 'Tyrannosaurus Rex Viewing Gallery',
+    name: 'North America, 66 Million Years Ago',
     loadingScreen: 'trex-illu.jpg',
     needPerformance: true,
     needLanguage: true,
