@@ -61,6 +61,9 @@ AFRAME.registerComponent('custom-hand-controls', {
     this.touchedButtons = {};
     this.loader = new THREE.GLTFLoader();
     this.loader.setCrossOrigin('anonymous');
+    this.loader.setDRACOLoader(
+      this.el.sceneEl.systems['gltf-model'].dracoLoader
+    );
 
     this.onGripDown = function () {
       self.handleButton('grip', 'down');
@@ -241,19 +244,19 @@ AFRAME.registerComponent('custom-hand-controls', {
         MODEL_URLS[
           handModelStyle + hand.charAt(0).toUpperCase() + hand.slice(1)
         ];
-      this.loader.load(handmodelUrl, function (gltf) {
-        var mesh = gltf.scene.children[0];
+
+      // Use A-Frame's loader instead
+      el.setAttribute('gltf-model', handmodelUrl);
+      el.addEventListener('model-loaded', function () {
+        var mesh = el.getObject3D('mesh');
         var handModelOrientationZ = hand === 'left' ? Math.PI : Math.PI;
-        // The WebXR standard defines the grip space such that a cylinder held in a closed hand points
-        // along the Z axis. The models currently have such a cylinder point along the X-Axis.
         var handModelOrientationX = el.sceneEl.hasWebXR
           ? hand === 'left'
             ? -Math.PI / 1.9
             : -Math.PI / 1.5
           : 0;
         mesh.mixer = new THREE.AnimationMixer(mesh);
-        self.clips = gltf.animations;
-        el.setObject3D('mesh', mesh);
+        self.clips = mesh.animations;
         mesh.traverse(function (object) {
           if (!object.isMesh) {
             return;

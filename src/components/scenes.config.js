@@ -629,6 +629,44 @@ export const MainScenes = {
       car: 'ending-car',
       carReference: null
     }
+  },
+  gallery: {
+    // Starting scene
+    name: 'Paleo Gallery',
+    loadingScreen: 'deino-illu.jpg',
+    needPerformance: false,
+    needLanguage: false,
+    mobileCompatible: true,
+    selection: 'gallery',
+    assetsId: 'gallery-assets',
+    carMarkerForDebug: 0.32,
+    fog: {
+      color: '#000',
+      density: [0.028, 0.028]
+    },
+    displayDistance: 400,
+    canWalk: true,
+    loading: {
+      scene: 'loading-scene',
+      camera: 'loading-scene-camera'
+    },
+    gallery: {
+      scene: 'gallery-scene',
+      camera: 'gallery-scene-camera',
+      car: 'gallery-car',
+      carReference: null,
+      rigPos: {
+        x: -35,
+        y: 1,
+        z: 3
+      }
+    },
+    ending: {
+      scene: 'ending-scene',
+      camera: 'ending-scene-camera',
+      car: 'ending-car',
+      carReference: null
+    }
   }
 };
 
