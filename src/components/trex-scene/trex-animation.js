@@ -22,6 +22,8 @@ AFRAME.registerComponent('trex-animation', {
       new THREE.Vector3(-16.326, -0.3, -28.1)
     ]);
 
+    this.trexRoar1Done = false;
+
     // Start tour listener
     this.el.addEventListener(
       'enterWalk',
@@ -73,9 +75,9 @@ AFRAME.registerComponent('trex-animation', {
     );
 
     if (this.movesManager.truncMarker(this.trexMarker) > 410) {
-      if (this.trexSpeed > 0) {
+      if (!this.trexRoar1Done) {
+        this.trexRoar1Done = true;
         this.trexRoarAudio.playSound();
-        // TODO Multiple calls here
         setTimeout(() => {
           this.el.setAttribute('animation-mixer', {
             clip: 'T_Rex_Idle_Roar2',
@@ -83,8 +85,8 @@ AFRAME.registerComponent('trex-animation', {
             timeScale: 0.7
           });
         }, 0);
-        this.trexSpeed -= this.trexChangingSpeed;
       }
+      this.trexSpeed -= this.trexChangingSpeed;
     }
 
     if (this.trexSpeed < this.trexMaxDeceleration) {

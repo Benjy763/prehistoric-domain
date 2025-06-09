@@ -117,7 +117,7 @@ export const MainScenes = {
     loadingScreen: 'brachio-illu.jpg',
     displayDistance: 80,
     needPerformance: false,
-    needLanguage: true,
+    needLanguage: false,
     mobileCompatible: false,
     selection: 'gate',
     assetsId: 'tour-assets',
@@ -155,7 +155,7 @@ export const MainScenes = {
     loadingScreen: 'aviary-illu.jpg',
     displayDistance: 400,
     needPerformance: false,
-    needLanguage: true,
+    needLanguage: false,
     mobileCompatible: true,
     selection: 'aviary',
     assetsId: 'aviary-assets',
@@ -188,17 +188,16 @@ export const MainScenes = {
     }
   },
   cretaceousLagoon: {
-    // Starting scene
-    name: 'Cretaceous Lagoon',
+    name: 'Ancient Oceans, 80 Million Years Ago',
     loadingScreen: 'lagoon-illu.jpg',
     needPerformance: false,
-    needLanguage: true,
+    needLanguage: false,
     mobileCompatible: true,
     selection: 'cretaceousLagoon',
     assetsId: 'cretaceous-lagoon-assets',
     carMarkerForDebug: 0.32,
     fog: {
-      color: '#04719f',
+      color: '#048ac3',
       density: [0.1, 0.1]
     },
     loading: {
@@ -225,16 +224,16 @@ export const MainScenes = {
   },
   lagoon: {
     // Starting scene
-    name: 'Megalodon Viewing Gallery',
+    name: 'Ancient Oceans, 20 Million Years Ago',
     loadingScreen: 'lagoon-illu.jpg',
     needPerformance: false,
-    needLanguage: true,
+    needLanguage: false,
     mobileCompatible: true,
     selection: 'lagoon',
     assetsId: 'lagoon-assets',
     carMarkerForDebug: 0.32,
     fog: {
-      color: '#04719f',
+      color: '#048ac3',
       density: [0.1, 0.1]
     },
     loading: {
@@ -292,10 +291,10 @@ export const MainScenes = {
   },
   sarco: {
     // Starting scene
-    name: 'Sarcosuchus Viewing Gallery',
+    name: 'North Africa, 110 Million Years Ago',
     loadingScreen: 'sarco-illu.jpg',
     needPerformance: true,
-    needLanguage: true,
+    needLanguage: false,
     mobileCompatible: true,
     selection: 'sarco',
     assetsId: 'swamp-assets',
@@ -329,10 +328,10 @@ export const MainScenes = {
   },
   spino: {
     // Starting scene
-    name: 'Spinosaurus Viewing Gallery',
+    name: 'North Africa, 110 Million Years Ago',
     loadingScreen: 'spino-illu.jpg',
     needPerformance: true,
-    needLanguage: true,
+    needLanguage: false,
     mobileCompatible: true,
     selection: 'spino',
     assetsId: 'swamp-assets',
@@ -366,11 +365,11 @@ export const MainScenes = {
   },
   quetza: {
     // Starting scene
-    name: 'Quetzalcoatlus Viewing Gallery',
+    name: 'North America, 68 Million Years Ago',
     loadingScreen: 'quetza-illu.jpg',
     displayDistance: 10000,
     needPerformance: true,
-    needLanguage: true,
+    needLanguage: false,
     mobileCompatible: true,
     selection: 'quetza',
     assetsId: 'swamp-assets',
@@ -404,10 +403,10 @@ export const MainScenes = {
   },
   dimetrodon: {
     // Starting scene
-    name: 'Dimetrodon Viewing Gallery',
+    name: 'North America, 290 Million Years Ago',
     loadingScreen: 'dimetrodon-illu.jpg',
     needPerformance: true,
-    needLanguage: true,
+    needLanguage: false,
     mobileCompatible: true,
     selection: 'dimetrodon',
     assetsId: 'dimetrodon-assets',
@@ -442,10 +441,10 @@ export const MainScenes = {
   },
   edmon: {
     // Starting scene
-    name: 'Edmontosaurus Viewing Gallery',
+    name: 'North America, 69 Million Years Ago',
     loadingScreen: 'edmon-illu.jpg',
     needPerformance: true,
-    needLanguage: true,
+    needLanguage: false,
     mobileCompatible: true,
     selection: 'edmon',
     assetsId: 'edmon-assets',
@@ -483,7 +482,7 @@ export const MainScenes = {
     name: 'North America, 66 Million Years Ago',
     loadingScreen: 'trex-illu.jpg',
     needPerformance: true,
-    needLanguage: true,
+    needLanguage: false,
     mobileCompatible: true,
     selection: 'trex',
     assetsId: 'trex-assets',
@@ -521,7 +520,7 @@ export const MainScenes = {
     name: 'Siberian Steppe, 15,000 Years Ago',
     loadingScreen: 'trex-illu.jpg',
     needPerformance: true,
-    needLanguage: true,
+    needLanguage: false,
     needAmbiantMode: true,
     mobileCompatible: true,
     selection: 'mammoth',
@@ -557,10 +556,10 @@ export const MainScenes = {
   },
   deinocheirus: {
     // Starting scene
-    name: 'Deinocheirus Viewing Gallery',
+    name: 'Asia, 70 Million Years Ago',
     loadingScreen: 'trex-illu.jpg',
     needPerformance: true,
-    needLanguage: true,
+    needLanguage: false,
     mobileCompatible: true,
     selection: 'deinocheirus',
     assetsId: 'deinocheirus-assets',
@@ -595,10 +594,10 @@ export const MainScenes = {
   },
   deino: {
     // Starting scene
-    name: 'Deinonychus Viewing Gallery',
+    name: 'North America, 110 Million Years Ago',
     loadingScreen: 'deino-illu.jpg',
     needPerformance: false,
-    needLanguage: true,
+    needLanguage: false,
     mobileCompatible: true,
     selection: 'deino',
     assetsId: 'deino-assets',

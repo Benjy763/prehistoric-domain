@@ -585,6 +585,10 @@ AFRAME.registerSystem('system', {
       this.applyStyle({ selectedKey: 'offEl', elements });
     };
 
+    if (!this.needLanguage) {
+      selectOff();
+    }
+
     if (this.language === 'fr') {
       selectFr();
     } else if (this.language === 'en') {

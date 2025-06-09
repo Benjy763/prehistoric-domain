@@ -10,9 +10,6 @@ AFRAME.registerComponent('lagoon-car-tour', {
     this.textCar = document.querySelector('#lagoon-camera-text');
     this.light = document.querySelector('#lagoon-directionaltarget');
 
-    // Sounds
-    this.ambiant1Sound;
-
     // Voice and screen phases
     this.voicePhase = 'stop';
 
@@ -36,10 +33,6 @@ AFRAME.registerComponent('lagoon-car-tour', {
         document.getElementById('jungle-asset').play();
 
         // Get sounds
-        this.ambiant1Sound =
-          document.getElementById('lagoon-station').components[
-            'sound__ambiant1'
-          ];
         this.hitSound =
           document.getElementById('lagoon-dome').components['sound__hit'];
 
@@ -73,9 +66,6 @@ AFRAME.registerComponent('lagoon-car-tour', {
   },
   // --- Phase functions ---
   start: function () {
-    setTimeout(() => {
-      this.ambiant1Sound.playSound();
-    }, 10000);
     setTimeout(() => {
       const event = new Event('enter');
       this.meg.dispatchEvent(event);
