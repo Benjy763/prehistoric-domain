@@ -89,12 +89,6 @@ AFRAME.registerSystem('system', {
     document.querySelector('#main-scene-wrapper').embedded = false;
     // Display vr mirror in fullscreen
     document.querySelector('#main-scene-content').classList.add('fullscreen');
-
-    // Debug events
-    if (DEBUG) {
-      // Unclock debug listener
-      this.startDebugListener();
-    }
   },
   checkAccess: function () {
     const isProd = window.location.hostname === 'tour.prehistoricdomain.com';
@@ -106,7 +100,7 @@ AFRAME.registerSystem('system', {
           this.hasAccess = true;
         }
       });
-    } else if (isLocalhost) {
+    } else if (isLocalhost || DEBUG) {
       this.hasAccess = true;
     }
   },

@@ -94,7 +94,7 @@ AFRAME.registerComponent('trex-animation', {
       setTimeout(() => {
         this.el.setAttribute('animation-mixer', {
           clip: 'T_Rex_Drink',
-          crossFadeDuration: 3,
+          crossFadeDuration: 4,
           timeScale: 0.5
         });
         setTimeout(() => {
@@ -155,7 +155,7 @@ AFRAME.registerComponent('trex-animation', {
       this.trexLeavesAudio.playSound();
       setTimeout(() => {
         this.audioControl.fade({ audio: this.trexFootStepAudio });
-      }, 500);
+      }, 1000);
       setTimeout(() => {
         this.trexHittingAudio.playSound();
       }, 5000);
@@ -175,7 +175,7 @@ AFRAME.registerComponent('trex-animation', {
         this.trexSpeed = 0.05;
         setTimeout(() => {
           this.trexEndSnoringAudio.playSound();
-        }, 3000);
+        }, 2800);
         this.phase = 'walkClose';
       }, 15000);
     }

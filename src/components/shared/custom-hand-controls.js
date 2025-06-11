@@ -252,8 +252,8 @@ AFRAME.registerComponent('custom-hand-controls', {
         var handModelOrientationZ = hand === 'left' ? Math.PI : Math.PI;
         var handModelOrientationX = el.sceneEl.hasWebXR
           ? hand === 'left'
-            ? -Math.PI / 1.9
-            : -Math.PI / 1.5
+            ? -4
+            : -4
           : 0;
         mesh.mixer = new THREE.AnimationMixer(mesh);
         self.clips = mesh.animations;
