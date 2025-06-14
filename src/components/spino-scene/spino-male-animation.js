@@ -20,11 +20,11 @@ AFRAME.registerComponent('spino-male-animation', {
       new THREE.Vector3(-37.867, -8.657, -30),
       new THREE.Vector3(-37.867, -8.657, 12),
       new THREE.Vector3(-37.867, -0.758, 20),
-      new THREE.Vector3(-37.867, -0.758, 55),
+      new THREE.Vector3(-37.867, -0.758, 55)
     ]);
     this.walkCurve2 = new THREE.CatmullRomCurve3([
       new THREE.Vector3(-22.824, -0.758, 55.687),
-      new THREE.Vector3(-22.824, -0.758, 18.887),
+      new THREE.Vector3(-22.824, -0.758, 18.887)
     ]);
 
     // Enablers
@@ -56,7 +56,7 @@ AFRAME.registerComponent('spino-male-animation', {
           clip: 'Spinosaurus_Idle',
           loop: true,
           crossFadeDuration: 0.4,
-          timeScale: 0.1,
+          timeScale: 0.1
         });
       },
       false
@@ -96,7 +96,7 @@ AFRAME.registerComponent('spino-male-animation', {
         clip: 'Spinosaurus_Walk_InPlace',
         loop: true,
         crossFadeDuration: 0.4,
-        timeScale: 0.7,
+        timeScale: 0.7
       });
       this.waterExitEnabed = true;
     }
@@ -122,14 +122,14 @@ AFRAME.registerComponent('spino-male-animation', {
         clip: 'Spinosaurus_Drink',
         loop: true,
         crossFadeDuration: 0.4,
-        timeScale: 1,
+        timeScale: 1
       });
       setTimeout(() => {
         this.el.setAttribute('animation-mixer', {
           clip: 'Spinosaurus_LieDown_Start',
           loop: true,
           crossFadeDuration: 1.5,
-          timeScale: 0.8,
+          timeScale: 0.8
         });
       }, 5000);
       setTimeout(() => {
@@ -137,7 +137,7 @@ AFRAME.registerComponent('spino-male-animation', {
           clip: 'Spinosaurus_LieDown_Idle',
           loop: true,
           crossFadeDuration: 0.4,
-          timeScale: 1,
+          timeScale: 1
         });
       }, 7000);
       setTimeout(() => {
@@ -162,7 +162,7 @@ AFRAME.registerComponent('spino-male-animation', {
         clip: 'Spinosaurus_LieDown_Start',
         loop: true,
         crossFadeDuration: 0.4,
-        timeScale: -0.8,
+        timeScale: -0.8
       });
     }, 5000);
     setTimeout(() => {
@@ -174,7 +174,7 @@ AFRAME.registerComponent('spino-male-animation', {
         clip: 'Spinosaurus_Roar1',
         loop: true,
         crossFadeDuration: 0.4,
-        timeScale: 0.7,
+        timeScale: 0.7
       });
     }, 7000);
     setTimeout(() => {
@@ -182,7 +182,7 @@ AFRAME.registerComponent('spino-male-animation', {
         clip: 'Spinosaurus_Idle',
         loop: true,
         crossFadeDuration: 0.4,
-        timeScale: 0.8,
+        timeScale: 0.8
       });
     }, 11000);
     setTimeout(() => {
@@ -191,7 +191,7 @@ AFRAME.registerComponent('spino-male-animation', {
         clip: 'Spinosaurus_Idle_Break1',
         loop: true,
         crossFadeDuration: 0.4,
-        timeScale: -0.4,
+        timeScale: -0.4
       });
     }, 13000);
     setTimeout(() => {
@@ -206,7 +206,7 @@ AFRAME.registerComponent('spino-male-animation', {
         clip: 'Spinosaurus_Fishing_Caught_Eat',
         loop: true,
         crossFadeDuration: 0.4,
-        timeScale: 0.4,
+        timeScale: 0.4
       });
     }, 5000);
     setTimeout(() => {
@@ -220,7 +220,7 @@ AFRAME.registerComponent('spino-male-animation', {
         clip: 'Spinosaurus_LieDown_Start',
         loop: true,
         crossFadeDuration: 0.4,
-        timeScale: 0.8,
+        timeScale: 0.8
       });
     }, 2000);
     setTimeout(() => {
@@ -228,7 +228,7 @@ AFRAME.registerComponent('spino-male-animation', {
         clip: 'Spinosaurus_LieDown_Idle',
         loop: true,
         crossFadeDuration: 0.4,
-        timeScale: 1,
+        timeScale: 1
       });
     }, 4000);
     this.phase = 'exit';
@@ -252,5 +252,5 @@ AFRAME.registerComponent('spino-male-animation', {
         this.fishHunt();
         break;
     }
-  },
+  }
 });

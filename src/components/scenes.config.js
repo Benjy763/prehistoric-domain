@@ -566,7 +566,7 @@ export const MainScenes = {
     carMarkerForDebug: 0.32,
     fog: {
       color: '#000',
-      density: [0.005, 0.005]
+      density: [0.003, 0.003]
     },
     displayDistance: 400,
     canWalk: true,

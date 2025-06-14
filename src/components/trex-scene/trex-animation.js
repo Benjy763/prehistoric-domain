@@ -14,12 +14,12 @@ AFRAME.registerComponent('trex-animation', {
     this.car = document.querySelector('#trex-car');
     this.phase = '';
     this.curve = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(3, -0.3, 35.434),
-      new THREE.Vector3(-24.995, -0.3, 24.185),
-      new THREE.Vector3(-31.018, -0.7, 15.563),
-      new THREE.Vector3(-34.615, -0.7, 3.228),
-      new THREE.Vector3(-27.402, -0.3, -9.057),
-      new THREE.Vector3(-16.326, -0.3, -28.1)
+      new THREE.Vector3(3, -0.25, 35.434),
+      new THREE.Vector3(-24.995, -0.25, 24.185),
+      new THREE.Vector3(-31.018, -0.65, 15.563),
+      new THREE.Vector3(-34.615, -0.65, 3.228),
+      new THREE.Vector3(-27.402, -0.25, -9.057),
+      new THREE.Vector3(-16.326, -0.25, -28.1)
     ]);
 
     this.trexRoar1Done = false;
