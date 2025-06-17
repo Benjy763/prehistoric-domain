@@ -2,7 +2,7 @@ AFRAME.registerComponent('force-transparent', {
   init: function () {
     this.el.addEventListener('model-loaded', () => {
       // Only apply in VR mode
-      if (!AFRAME.utils.device.isVR()) return;
+      if (!AFRAME.utils.device.checkHeadsetConnected()) return;
 
       const mesh = this.el.getObject3D('mesh');
       if (!mesh) return;
