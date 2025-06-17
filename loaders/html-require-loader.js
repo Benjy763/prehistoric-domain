@@ -31,6 +31,18 @@ module.exports = function (source) {
 
     // Read the file content.
     let requireSource = fs.readFileSync(requirePath, 'utf8');
+
+    // Apply asset path replacement logic
+    let prefix = process.env.ASSET_PREFIX || '';
+    // Normalize prefix to ensure it starts and ends with a slash
+    if (prefix && !prefix.startsWith('/')) {
+      prefix = '/' + prefix;
+    }
+    if (prefix && !prefix.endsWith('/')) {
+      prefix = prefix + '/';
+    }
+    requireSource = requireSource.replace(/\/assets\//g, `${prefix}assets/`);
+
     requires.push(requirePath);
 
     // Replace the <require> tag with the file's HTML content.

@@ -17,6 +17,10 @@ const mainscenes = [
   'home',
   'gallery'
 ];
+
+const assetPrefix = process.env.npm_config_assetprefix || '';
+console.log(`assetPrefix: ${assetPrefix}`);
+
 mainscenes.forEach((mainScene) =>
-  exec(`npm run build:scene --mainscene=${mainScene}`)
+  exec(`npm run build --mainscene=${mainScene} --assetprefix=${assetPrefix}`)
 );

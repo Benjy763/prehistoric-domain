@@ -3,13 +3,13 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "build": "cross-env MAIN_SCENE=$npm_config_mainscene NODE_ENV=production webpack --config webpack.prod.config.js",
-    "build:all": "node build-all.js",
+    "build": "cross-env MAIN_SCENE=$npm_config_mainscene ASSET_PREFIX=$npm_config_assetprefix NODE_ENV=production webpack --config webpack.prod.config.js",
+    "build:all": "cross-env node build-all.js ASSET_PREFIX=$npm_config_assetprefix",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "npm:audit": "npm audit",
     "npm:audit:fix": "npm audit fix --force",
-    "start": "cross-env MAIN_SCENE='aviary' webpack serve --port 8080",
+    "start": "cross-env MAIN_SCENE='aviary' ASSET_PREFIX='' webpack serve --port 8080",
     "prepare": "husky install"
   },
   "dependencies": {

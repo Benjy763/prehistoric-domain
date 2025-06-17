@@ -10,7 +10,7 @@ require('/src/components/shared/dynamic-src.js');
 require('aframe');
 
 //require vendors
-require('/vendors/aframe-troika-text/aframe-troika-text.min.js');
+require('/assets/vendors/aframe-troika-text/aframe-troika-text.min.js');
 // Require libs
 require('aframe-extras');
 

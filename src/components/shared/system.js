@@ -93,15 +93,15 @@ AFRAME.registerSystem('system', {
   checkAccess: function () {
     const isProd = window.location.hostname === 'tour.prehistoricdomain.com';
     const isLocalhost = window.location.hostname === 'localhost';
-    if (isProd) {
+    if (isLocalhost || DEBUG) {
+      this.hasAccess = true;
+    } else if (isProd) {
       window.parent.postMessage('getAccess', '*');
       window.addEventListener('message', (event) => {
         if (event.data?.type === 'v4j9kjxzwmjsrlnfbq2ndu68z') {
           this.hasAccess = true;
         }
       });
-    } else if (isLocalhost || DEBUG) {
-      this.hasAccess = true;
     }
   },
   manageLookControls: function () {
