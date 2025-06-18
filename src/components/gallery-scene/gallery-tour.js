@@ -36,7 +36,7 @@ AFRAME.registerComponent('gallery-car-tour', {
   start: function () {
     if (this.movesManager.distanceFromPoint('gallery-main-checkpoint') < 6) {
       this.textCar.setAttribute('visible', 'true');
-      this.movesManager.nextScene = 'home';
+      this.movesManager.nextScene = 'ending';
     }
     if (this.movesManager.distanceFromPoint('gallery-main-checkpoint') >= 6) {
       this.textCar.setAttribute('visible', 'false');
