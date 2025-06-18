@@ -17,8 +17,8 @@ AFRAME.registerComponent('spino-male-animation', {
     this.spinoMarker = 0; // Position on the curve
     this.spinoWalkSpeed = 0.02; // Speed on the curve
     this.walkCurve1 = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(-37.867, -8.657, -30),
-      new THREE.Vector3(-37.867, -8.657, 12),
+      new THREE.Vector3(-37.867, -6.657, -30),
+      new THREE.Vector3(-37.867, -6.657, 12),
       new THREE.Vector3(-37.867, -0.758, 20),
       new THREE.Vector3(-37.867, -0.758, 55)
     ]);
