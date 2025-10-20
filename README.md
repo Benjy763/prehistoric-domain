@@ -75,7 +75,7 @@ All files are exported in the **dist** folder
 To build the VR experience run:
 
 ```
-npm run build:scene:all
+npm run build --mainscene=aviary  --assetprefix=live
 ```
 
 All files are exported in the **dist** folder
@@ -85,7 +85,7 @@ All files are exported in the **dist** folder
 To build the VR experience run:
 
 ```
-npm run build:all
+npm run build:all --assetprefix=live
 ```
 
 All files are exported in the **dist** folder

@@ -1,12 +1,12 @@
 <a-entity id="cinema-car" cinema-car-tour position="3.0337 -0.25 2.01885" rotation="0 180 0" scale="1 1 1">
   <a-entity id="interior-light"
-    light="type: directional; intensity: 0.67; distance: 1; decay: 1; angle: 180; penumbra: 0"
+    light="type: directional; intensity: 2.1038; distance: 1; decay: 1; angle: 180; penumbra: 0"
     position="4.22538 30.09121 3.52884" visible="" rotation="0 0 0"></a-entity>
-  <a-entity id="rig" turn-control="controllerListenerId: #controller-data;" position="1.152 -0.6000000000000001 0.934"
-    rotation="0 90 0">
+  <a-entity id="rig" custom-movement-controls="blockMovement: true; speed: 0.3; camera: [camera-cinema]"
+    position="1.152 -0.6000000000000001 0.934" rotation="0 90 0">
     <a-entity id="hands">
-      <a-entity id="cinema-scene-camera" class="camera-entity" camera position="-1 3 0" user-height="0"
-        fps-look-controls="user-height: 0">
+      <a-entity id="cinema-scene-camera" class="camera-entity" camera-cinema position="-1 3 0" user-height="0"
+        look-controls="pointerLockEnabled: true">
         <a-troika-text id="cinema-camera-text" visible="false" troika-text="color: #d6d6d6" scale="0.15 0.15 0.15"
           position="0 -0.25795 -0.8507" value="press ENTER or TRIGGER to leave" font="/assets/font/Exo-Regular.ttf">
         </a-troika-text>
@@ -15,7 +15,7 @@
                                  rightControllerId: #rightHand;"></a-entity>
       <a-entity id="leftHand" sphere-collider="objects: a-box" poi-control super-hands
         custom-hand-controls="hand: left; handModelStyle: highPoly; color: #ffcccc"></a-entity>
-      <a-entity fps-counter="enabled: true; for90fps: true" id="rightHand" rotation="10 0 0"
+      <a-entity fps-counter="enabled: false; for90fps: true" id="rightHand" rotation="10 0 0"
         sphere-collider="objects: a-box" poi-control super-hands
         custom-hand-controls="hand: right; handModelStyle: highPoly; color: #ffcccc"></a-entity>
     </a-entity>

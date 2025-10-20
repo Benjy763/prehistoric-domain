@@ -26,59 +26,47 @@ AFRAME.registerComponent('poi-control', {
     const disposeList = document.querySelectorAll('.dispose');
     const disposeArray = [...disposeList];
     disposeArray.forEach((el) => this.disposeObject3D(el.getObject3D('mesh')));
-    AFRAME.scenes[0].systems.material.clearTextureCache();
-    AFRAME.scenes[0].systems.geometry.clearCache();
+
+    // Manually clear materials and geometry without `clearTextureCache`
+    // Since `clearTextureCache` doesn’t exist, we dispose of individual textures
+    AFRAME.scenes[0].systems.geometry.clearCache(); // This clears cached geometries
   },
+
   disposeObject3D: function (object) {
-    if (!object) {
-      return;
-    }
+    if (!object) return;
+
     object.traverse((obj) => {
       if (obj.material) {
-        obj.material.dispose();
-        if (obj.material.map) {
-          obj.material.map.dispose();
-        }
-        if (obj.material.lightMap) {
-          obj.material.lightMap.dispose();
-        }
-        if (obj.material.aoMap) {
-          obj.material.aoMap.dispose();
-        }
-        if (obj.material.emissiveMap) {
-          obj.material.emissiveMap.dispose();
-        }
-        if (obj.material.bumpMap) {
-          obj.material.bumpMap.dispose();
-        }
-        if (obj.material.normalMap) {
-          obj.material.normalMap.dispose();
-        }
-        if (obj.material.displacementMap) {
+        // Dispose of material textures individually
+        if (obj.material.map) obj.material.map.dispose();
+        if (obj.material.lightMap) obj.material.lightMap.dispose();
+        if (obj.material.aoMap) obj.material.aoMap.dispose();
+        if (obj.material.emissiveMap) obj.material.emissiveMap.dispose();
+        if (obj.material.bumpMap) obj.material.bumpMap.dispose();
+        if (obj.material.normalMap) obj.material.normalMap.dispose();
+        if (obj.material.displacementMap)
           obj.material.displacementMap.dispose();
-        }
-        if (obj.material.roughnessMap) {
-          obj.material.roughnessMap.dispose();
-        }
-        if (obj.material.metalnessMap) {
-          obj.material.metalnessMap.dispose();
-        }
-        if (obj.material.alphaMap) {
-          obj.material.alphaMap.dispose();
-        }
+        if (obj.material.roughnessMap) obj.material.roughnessMap.dispose();
+        if (obj.material.metalnessMap) obj.material.metalnessMap.dispose();
+        if (obj.material.alphaMap) obj.material.alphaMap.dispose();
+
+        // Dispose of the material itself
+        obj.material.dispose();
       }
       if (obj.geometry) {
+        // Dispose of the geometry
         obj.geometry.dispose();
       }
     });
   },
+
   manageChangingScene() {
     if (this.movesManager.nextScene) {
       if (this.system.actuelScene === 'home') {
         this.movesManager.savedPosition = {
           scene: this.system.actuelScene,
           x: this.movesManager.getRigPosition().x,
-          y: this.movesManager.getRigPosition().y,
+          z: this.movesManager.getRigPosition().z
         };
       }
       if (this.movesManager.nextScene === 'shopmd') {
@@ -95,5 +83,5 @@ AFRAME.registerComponent('poi-control', {
       this.system.changeScene(this.movesManager.nextScene);
       this.movesManager.nextScene = null;
     }
-  },
+  }
 });

@@ -44,7 +44,7 @@ AFRAME.registerComponent('sarco-car-tour', {
         this.underwaterAudio.play();
 
         // Get sounds
-        const nacelle = document.getElementById('sarco-wall');
+        const nacelle = document.getElementById('sarco-sound-wall');
         this.nacelleStart = nacelle.components['sound__nacellestart'];
         this.nacelleDown = nacelle.components['sound__nacelledown'];
         this.nacelleEnd = nacelle.components['sound__nacelleend'];
@@ -106,7 +106,7 @@ AFRAME.registerComponent('sarco-car-tour', {
       // Change background color
       setTimeout(() => {
         this.mainScene.setAttribute('background', {
-          color: '#535d4b',
+          color: '#535d4b'
         });
       }, 5000);
       this.isDiveEnvChanged = true;
@@ -118,7 +118,7 @@ AFRAME.registerComponent('sarco-car-tour', {
       this.mainScene.setAttribute('fog', {
         type: 'exponential',
         color: '#535d4b',
-        density: this.currentFog,
+        density: this.currentFog
       });
     }
     if (this.object.position.y < -11.017) {
@@ -138,11 +138,11 @@ AFRAME.registerComponent('sarco-car-tour', {
     }
   },
   checkpointListener: function () {
-    if (this.movesManager.distanceFromPoint('sarco-checkpoint') < 3) {
+    if (this.movesManager.distanceFromPoint('sarco-checkpoint') < 1.3) {
       this.textCar.setAttribute('visible', 'true');
       this.movesManager.nextScene = 'ending';
     }
-    if (this.movesManager.distanceFromPoint('sarco-checkpoint') >= 3) {
+    if (this.movesManager.distanceFromPoint('sarco-checkpoint') >= 1.3) {
       this.textCar.setAttribute('visible', 'false');
       this.movesManager.nextScene = null;
     }
@@ -175,5 +175,5 @@ AFRAME.registerComponent('sarco-car-tour', {
         this.phase = 'exit';
         break;
     }
-  },
+  }
 });

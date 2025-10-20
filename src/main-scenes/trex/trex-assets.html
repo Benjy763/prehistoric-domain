@@ -32,14 +32,13 @@
   <!-- Images -->
 
 
-  <img id="loading-asset" src="/assets/images/loader.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="loading-asset" src="/assets/images/loader.webp?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
   <img id="limits-asset" src="/assets/images/limits.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
-  <img id="credits-asset" src="/assets/images/credits.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
-  <img id="rendering-asset" src="/assets/images/rendering.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
-  <img id="ground-texture-grass-asset" src="/assets/images/floor-grass.jpg?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
-  <img id="dont-touch-asset" src="/assets/images/dont-touch.jpg" />
-  <img id="trex-pres-asset" src="/assets/images/trex-pres.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
-  <img id="trex-360-pane-asset" src="/assets/images/trex/360-pane.jpg">
+  <img id="credits-asset" src="/assets/images/credits.webp?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="trex-pres-asset" material="shader: flat;encoding: sRGBEncoding;"
+    src="/assets/images/trex-pres.png?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+  <img id="trex-360-asset" src="/assets/images/trex/360-skybox-min.jpg?lastmod=${process.env.UNIQUE_ASSETS_ID}" />
+
   </img>
 
   <!-- 3D -->
@@ -68,9 +67,12 @@
 
 
   <!-- Environment -->
-
+  <a-asset-item id="forest-ground-asset"
+    src="/assets/models/environment/forest/forest-ground/scene-2.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
+  </a-asset-item>
 
   <!-- Vegetation -->
+
   <a-asset-item id="swamp-dead-tree-asset"
     src="/assets/models/environment/swamp/swamp-dead-tree/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
@@ -82,14 +84,8 @@
   </a-asset-item>
   <!-- <a-asset-item id="forest-rock-4-asset" src="/assets/models/environment/forest/forest-rock-4/scene-2.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item> -->
-  <a-asset-item id="forest-fern-1-asset"
-    src="/assets/models/environment/forest/forest-fern-1/scene-nomorph.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
-  </a-asset-item>
-  <a-asset-item id="forest-ground-asset"
-    src="/assets/models/environment/forest/forest-ground/scene-2.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
-  </a-asset-item>
-  <a-asset-item id="forest-fern-4-asset"
-    src="/assets/models/environment/forest/forest-fern-4/scene-nomorph.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
+  <a-asset-item id="forest-fern-5-asset"
+    src="/assets/models/environment/forest/forest-fern-5/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
   <a-asset-item id="forest-pine-2-asset"
     src="/assets/models/environment/forest/forest-pine-2/scene-nomorph.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
@@ -99,9 +95,13 @@
     src="/assets/models/environment/forest/forest-pine-3/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
   </a-asset-item>
 
+  <a-asset-item id="hill-asset"
+    src="/assets/models/environment/forest/hill/scene.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}">
+  </a-asset-item>
+
   <!-- Dinosaurs -->
   <a-asset-item id="trex-asset"
-    src="/assets/models/dinosaurs/trex/T_Rex_gltf3.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"></a-asset-item>
+    src="/assets/models/dinosaurs/trex/trex-new.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"></a-asset-item>
   <a-asset-item id="trex-bis-asset"
-    src="/assets/models/dinosaurs/trex/T_Rex_gltf3_bis.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"></a-asset-item>
+    src="/assets/models/dinosaurs/trex/trex-new.glb?lastmod=${process.env.UNIQUE_ASSETS_ID}"></a-asset-item>
 </a-assets>

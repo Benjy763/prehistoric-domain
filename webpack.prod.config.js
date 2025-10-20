@@ -10,12 +10,18 @@ function generateUniqueID() {
 }
 const uniqueID = generateUniqueID();
 
+function camelCaseToDashCase(str) {
+  return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+}
+
+const mainSceneDashCase = camelCaseToDashCase(process.env.MAIN_SCENE);
+
 module.exports = {
   entry: {
     build: './src/index.js'
   },
   output: {
-    path: path.resolve(__dirname, 'dist', process.env.MAIN_SCENE), // Use path.resolve for better compatibility
+    path: path.resolve(__dirname, 'dist', mainSceneDashCase), // Use path.resolve for better compatibility
     filename: 'build.[contenthash].js'
   },
   mode: 'production',
@@ -59,7 +65,8 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env.MAIN_SCENE': JSON.stringify(process.env.MAIN_SCENE),
-      'process.env.UNIQUE_ASSETS_ID': JSON.stringify(uniqueID)
+      'process.env.UNIQUE_ASSETS_ID': JSON.stringify(uniqueID),
+      'process.env.ASSET_PREFIX': JSON.stringify(process.env.ASSET_PREFIX)
     })
   ],
   module: {

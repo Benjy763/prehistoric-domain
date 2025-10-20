@@ -27,7 +27,7 @@ AFRAME.registerComponent('spino-car-tour', {
     this.birdsSpeed = 0.003; // Speed on the curve
     this.birdsCurve = new THREE.CatmullRomCurve3([
       new THREE.Vector3(-37.29, 19.172, 23.128),
-      new THREE.Vector3(-67.395, 19.172, -5.341),
+      new THREE.Vector3(-67.395, 19.172, -5.341)
     ]);
 
     // Fog
@@ -55,7 +55,7 @@ AFRAME.registerComponent('spino-car-tour', {
         this.birdsAudio = document.getElementById(
           'spino-palm-tree-long'
         ).components['sound__birds'];
-        const nacelle = document.getElementById('spino-wall');
+        const nacelle = document.getElementById('spino-sound-wall');
         this.nacelleStart = nacelle.components['sound__nacellestart'];
         this.nacelleDown = nacelle.components['sound__nacelledown'];
         this.nacelleEnd = nacelle.components['sound__nacelleend'];
@@ -141,7 +141,7 @@ AFRAME.registerComponent('spino-car-tour', {
       // Change background color
       setTimeout(() => {
         this.mainScene.setAttribute('background', {
-          color: '#535d4b',
+          color: '#535d4b'
         });
       }, 5000);
       this.isDiveEnvChanged = true;
@@ -153,7 +153,7 @@ AFRAME.registerComponent('spino-car-tour', {
       this.mainScene.setAttribute('fog', {
         type: 'exponential',
         color: '#535d4b',
-        density: this.currentFog,
+        density: this.currentFog
       });
     }
     if (this.object.position.y < -11.017) {
@@ -194,7 +194,7 @@ AFRAME.registerComponent('spino-car-tour', {
       // Change background color
       setTimeout(() => {
         this.mainScene.setAttribute('background', {
-          color: '#5e5e5e',
+          color: '#5e5e5e'
         });
       }, 5000);
       this.isDiveEnvChanged = true;
@@ -206,7 +206,7 @@ AFRAME.registerComponent('spino-car-tour', {
       this.mainScene.setAttribute('fog', {
         type: 'exponential',
         color: '#5e5e5e',
-        density: this.currentFog,
+        density: this.currentFog
       });
     }
     if (this.object.position.y > 1.02687) {
@@ -239,11 +239,11 @@ AFRAME.registerComponent('spino-car-tour', {
     }
   },
   checkpointListener: function () {
-    if (this.movesManager.distanceFromPoint('spino-checkpoint') < 3) {
+    if (this.movesManager.distanceFromPoint('spino-checkpoint') < 1.3) {
       this.textCar.setAttribute('visible', 'true');
       this.movesManager.nextScene = 'ending';
     }
-    if (this.movesManager.distanceFromPoint('spino-checkpoint') >= 3) {
+    if (this.movesManager.distanceFromPoint('spino-checkpoint') >= 1.3) {
       this.textCar.setAttribute('visible', 'false');
       this.movesManager.nextScene = null;
     }
@@ -291,5 +291,5 @@ AFRAME.registerComponent('spino-car-tour', {
         this.phase = 'exit';
         break;
     }
-  },
+  }
 });

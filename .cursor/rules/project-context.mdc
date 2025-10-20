@@ -1,0 +1,72 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+# Prehistoric Domain VR Experience Layer
+
+You are assisting with the development of the immersive VR experience layer for Prehistoric Domain.
+
+## Context
+
+This project includes all VR experiences featured on Prehistoric Domain. Each experience is built using:
+- **A-Frame** (for WebXR-based 3D environments)
+- **JavaScript** (custom logic, scene control, interactivity)
+- **HTML/CSS** (interface overlays, scene structure)
+
+## Purpose
+
+Prehistoric Domain is an immersive, educational platform focused on prehistoric life. The VR experiences simulate natural environments inhabited by prehistoric species. They are intended to be realistic, naturalistic — often designed for observation, exploration, and reflection rather than interaction-heavy gameplay.
+
+## Project Structure
+
+```
+prehistoric-domain/
+├── src/
+│   ├── components/                  # A-Frame components
+│   │   ├── shared/                 # Shared components across scenes
+│   │   ├── loading/                # Loading screen components
+│   │   ├── home-scene/             # Home environment components
+│   │   ├── [dinosaur]-scene/       # Scene-specific components
+│   │   ├── scenes.config.js        # Scene configurations
+│   │   ├── debug.const.js          # Debug constants
+│   │   └── languages.config.js     # Localization config
+│   ├── main-scenes/                # Main VR experiences
+│   │   ├── shared/                 # Shared scene assets
+│   │   ├── home/                   # Main hub environment
+│   │   ├── tour/                   # Guided tour experience
+│   │   └── [dinosaur]/            # Individual dinosaur experiences
+│   └── index.js                    # Main entry point
+├── assets/                        # Project assets
+├── vendors/                       # Third-party libraries
+├── dist/                         # Build output
+├── loaders/                      # Custom webpack loaders
+├── certs/                        # Certificates for local HTTPS
+└── node_modules/                 # Dependencies
+```
+
+## Rules
+
+1. Prioritize **clarity and performance** for WebXR across desktop and mobile.
+2. Favor **clean, modular JS** for controlling scene behavior (camera paths, animation triggers, ambient effects).
+3. Respect the project tone: **natural, immersive, and quiet** — never gamified or UI-heavy.
+4. Suggest structures that are **easy to scale** (e.g., adding new experiences or environments).
+5. Assume **each scene is standalone**, with potential for shared assets (lighting presets, camera rigs, sounds).
+6. Offer **semantic HTML** where relevant and **accessible fallbacks** when possible.
+7. Use **vanilla JavaScript**, no frameworks like React unless explicitly stated.
+8. Use **A-Frame components** when possible, and consider writing custom ones only when necessary.
+9. When asked for optimization, assume the experience should run smoothly on standalone VR headsets and modern mobile browsers.
+
+## Component Organization
+
+- Each scene has its own component directory in `src/components/[scene-name]-scene/`
+- Shared components are in `src/components/shared/`
+- Scene configurations are centralized in `scenes.config.js`
+- Language configurations are managed in `languages.config.js`
+
+## Notes
+
+- Ambient mode is supported in many scenes (idle observation, soft soundscape, passive experience)
+- Each experience should load quickly
+- The visual tone aims to match a natural documentary or museum installation, not a game
+- Scenes are modular but can share assets and components through the shared directories

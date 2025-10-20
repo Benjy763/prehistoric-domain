@@ -14,13 +14,15 @@ AFRAME.registerComponent('trex-animation', {
     this.car = document.querySelector('#trex-car');
     this.phase = '';
     this.curve = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(3, -0.3, 35.434),
-      new THREE.Vector3(-24.995, -0.3, 24.185),
-      new THREE.Vector3(-31.018, -0.7, 15.563),
-      new THREE.Vector3(-34.615, -0.7, 3.228),
-      new THREE.Vector3(-27.402, -0.3, -9.057),
-      new THREE.Vector3(-16.326, -0.3, -28.1),
+      new THREE.Vector3(3, -0.25, 35.434),
+      new THREE.Vector3(-24.995, -0.25, 24.185),
+      new THREE.Vector3(-31.018, -0.65, 15.563),
+      new THREE.Vector3(-34.615, -0.65, 3.228),
+      new THREE.Vector3(-27.402, -0.25, -9.057),
+      new THREE.Vector3(-16.326, -0.25, -28.1)
     ]);
+
+    this.trexRoar1Done = false;
 
     // Start tour listener
     this.el.addEventListener(
@@ -54,7 +56,7 @@ AFRAME.registerComponent('trex-animation', {
             this.el.setAttribute('animation-mixer', {
               clip: 'T_Rex_Walk_InPlace',
               crossFadeDuration: 0.4,
-              timeScale: 0.7,
+              timeScale: 0.7
             });
           }, 500);
         }, 6000);
@@ -73,27 +75,27 @@ AFRAME.registerComponent('trex-animation', {
     );
 
     if (this.movesManager.truncMarker(this.trexMarker) > 410) {
-      if (this.trexSpeed > 0) {
+      if (!this.trexRoar1Done) {
+        this.trexRoar1Done = true;
         this.trexRoarAudio.playSound();
-        // TODO Multiple calls here
         setTimeout(() => {
           this.el.setAttribute('animation-mixer', {
             clip: 'T_Rex_Idle_Roar2',
             crossFadeDuration: 1.5,
-            timeScale: 0.7,
+            timeScale: 0.7
           });
         }, 0);
-        this.trexSpeed -= this.trexChangingSpeed;
       }
+      this.trexSpeed -= this.trexChangingSpeed;
     }
 
     if (this.trexSpeed < this.trexMaxDeceleration) {
       this.audioControl.fade({ audio: this.trexFootStepAudio });
       setTimeout(() => {
         this.el.setAttribute('animation-mixer', {
-          clip: 'T_Rex_Drink_2',
-          crossFadeDuration: 3,
-          timeScale: 0.5,
+          clip: 'T_Rex_Drink',
+          crossFadeDuration: 4,
+          timeScale: 0.5
         });
         setTimeout(() => {
           this.trexDrinkAudio.playSound();
@@ -108,7 +110,7 @@ AFRAME.registerComponent('trex-animation', {
       this.el.setAttribute('animation-mixer', {
         clip: 'T_Rex_Walk_Roar_InPlace',
         crossFadeDuration: 2,
-        timeScale: 0.7,
+        timeScale: 0.7
       });
       this.trexRoar2Audio.playSound();
       setTimeout(() => {
@@ -144,7 +146,7 @@ AFRAME.registerComponent('trex-animation', {
       this.el.setAttribute('animation-mixer', {
         clip: 'T_Rex_Walk_Roar_InPlace',
         crossFadeDuration: 0.5,
-        timeScale: 0.6,
+        timeScale: 0.6
       });
       this.animationChange = 'exit';
     }
@@ -153,7 +155,7 @@ AFRAME.registerComponent('trex-animation', {
       this.trexLeavesAudio.playSound();
       setTimeout(() => {
         this.audioControl.fade({ audio: this.trexFootStepAudio });
-      }, 500);
+      }, 1000);
       setTimeout(() => {
         this.trexHittingAudio.playSound();
       }, 5000);
@@ -165,15 +167,15 @@ AFRAME.registerComponent('trex-animation', {
         this.trexBis.setAttribute('rotation', '0 4.900 0.000');
         this.trexBis.setAttribute('scale', '0.024 0.024 0.024');
         this.trexBis.setAttribute('animation-mixer', {
-          clip: 'T_Rex_Drink_2',
+          clip: 'T_Rex_Drink',
           crossFadeDuration: 0.4,
           timeScale: 0.3,
-          startFrame: 0,
+          startFrame: 0
         });
         this.trexSpeed = 0.05;
         setTimeout(() => {
           this.trexEndSnoringAudio.playSound();
-        }, 3000);
+        }, 2800);
         this.phase = 'walkClose';
       }, 15000);
     }
@@ -193,7 +195,7 @@ AFRAME.registerComponent('trex-animation', {
       this.trexBis.setAttribute('animation-mixer', {
         clip: 'T_Rex_Walk_Roar_InPlace',
         crossFadeDuration: 4,
-        timeScale: 1,
+        timeScale: 1
       });
       this.phase = 'walkFar';
     }, 10000);
@@ -242,5 +244,5 @@ AFRAME.registerComponent('trex-animation', {
         this.walkFar();
         break;
     }
-  },
+  }
 });

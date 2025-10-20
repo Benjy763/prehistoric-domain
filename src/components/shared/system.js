@@ -4,7 +4,7 @@
   Also there are utility functions that help making scenes (ex move object on curves, logs...)
 */
 
-import { Debug } from '../debug.const';
+import { DEBUG } from '../debug.const';
 import { Languages } from '../languages.config';
 import { Scenes } from '../scenes.config';
 
@@ -34,6 +34,7 @@ AFRAME.registerSystem('system', {
     this.fov = 45;
     this.fovVR = 45;
     this.language = Languages.selection;
+    this.ambiantMode = false;
     this.languages = Languages;
     this.carReference;
     this.actuelScene = this.firstScene;
@@ -41,18 +42,33 @@ AFRAME.registerSystem('system', {
     this.vr = false;
     this.canRecenter = false;
     this.performance = false;
+    this.hasAccess = false;
 
     const userAgentDataPlatform = window.navigator.userAgentData
       ? SupportedPlatform.includes(window.navigator.userAgentData.platform)
       : false;
-    this.isMobile =
-      !SupportedPlatform.includes(window.navigator.platform) &&
-      !userAgentDataPlatform;
+    // this.isMobile =
+    //   !SupportedPlatform.includes(window.navigator.platform) &&
+    //   !userAgentDataPlatform;
+    this.isMobile = AFRAME.utils.device.isMobile();
+    this.isAppleMobile =
+      AFRAME.utils.device.isMobile() &&
+      /iPhone|iPad|iPod/.test(navigator.userAgent);
 
     // setTimeout(() => {
     //   this.initPerformances();
     // }, 500);
     // Ask parent for selected langage
+
+    // Check authorization
+    this.checkAccess();
+    setTimeout(() => {
+      if (this.hasAccess !== true) {
+        window.location.href = 'https://prehistoricdomain.com';
+      }
+    }, 5000);
+
+    // Check language
     window.parent.postMessage('getLang', '*');
     window.addEventListener('message', ({ data }) => {
       if (data && typeof data === 'string' && data.startsWith('lang')) {
@@ -60,6 +76,7 @@ AFRAME.registerSystem('system', {
       }
     });
     this.initLanguage();
+    this.initAmbiantMode();
     this.loadingAssets();
 
     // Set loading infos
@@ -72,16 +89,27 @@ AFRAME.registerSystem('system', {
     document.querySelector('#main-scene-wrapper').embedded = false;
     // Display vr mirror in fullscreen
     document.querySelector('#main-scene-content').classList.add('fullscreen');
-
-    // Debug events
-    if (Debug) {
-      // Unclock debug listener
-      this.startDebugListener();
-    }
-    this.manageGlobalEvents();
   },
-  manageGlobalEvents: function () {
-    // Manage clicks
+  checkAccess: function () {
+    const isProd = window.location.hostname === 'tour.prehistoricdomain.com';
+    const isLocalhost = window.location.hostname === 'localhost';
+    if (isLocalhost || DEBUG) {
+      this.hasAccess = true;
+    } else if (isProd) {
+      window.parent.postMessage('getAccess', '*');
+      window.addEventListener('message', (event) => {
+        if (event.data?.type === 'v4j9kjxzwmjsrlnfbq2ndu68z') {
+          this.hasAccess = true;
+        }
+      });
+    }
+  },
+  manageLookControls: function () {
+    if (this.isMobile) return;
+    // Manage 2D look controls
+    document
+      .querySelector('#click-wrapper')
+      .setAttribute('style', 'display: flex');
     document.querySelector('canvas').addEventListener(
       'click',
       () => {
@@ -144,7 +172,12 @@ AFRAME.registerSystem('system', {
     }
   },
   initStartingEvents: function () {
-    document.querySelector('#enter').onclick = () => {
+    let myEvent =
+      'ontouchstart' in document.documentElement ? 'touchend' : 'click';
+    document.querySelector('#enter').addEventListener(myEvent, () => {
+      if (this.isAppleMobile) {
+        document.getElementById('full-audio-asset').play();
+      }
       this.openFullscreen();
       this.vr = false;
       // Remove loading interface
@@ -153,7 +186,7 @@ AFRAME.registerSystem('system', {
       document.querySelector('#main-scene-wrapper').style.zIndex = '10';
 
       this.startTour();
-    };
+    });
 
     document.querySelector('#enter-vr').onclick = () => {
       // Already entered in vr
@@ -201,41 +234,62 @@ AFRAME.registerSystem('system', {
     document.querySelector('a-assets').addEventListener('loaded', () => {
       // Preloading
       setTimeout(() => {
-        document.querySelector('#menu-wrapper').style.display = 'flex';
-        // if (!this.scenes.needPerformance) {
-        //   document.querySelector('#menu-performance').style.display = 'none';
-        // }
-        if (!this.scenes.needLanguage) {
-          document.querySelector('#menu-language').style.display = 'none';
-        }
-        // Press start
-        document.querySelector('#loading-logo').style.display = 'none';
-        document.querySelector('#loading-infos .progress-label').style.display =
-          'none';
-        document.querySelector('#infos-annonce').style.display = 'none';
-        document.querySelector('#loader-logo').style.display = 'block';
-        document.querySelector('#enter').style.display = 'block';
-        if (this.isMobile) {
-          document.querySelector('#enter').style.display = 'none';
-        }
-        if (AFRAME.utils.device.checkHeadsetConnected()) {
-          document.querySelector('#enter-vr').style.display = 'block';
-        }
+        this.initMenuInterval = setInterval(() => {
+          if (this.hasAccess) {
+            clearInterval(this.initMenuInterval);
+            document.querySelector('#menu-wrapper').style.display = 'flex';
+            // if (!this.scenes.needPerformance) {
+            //   document.querySelector('#menu-performance').style.display = 'none';
+            // }
+            if (!this.scenes.needLanguage) {
+              document.querySelector('#menu-language').style.display = 'none';
+            }
+            if (!this.scenes.needAmbiantMode) {
+              document.querySelector('#menu-ambiant-mode').style.display =
+                'none';
+            }
+            // Press start
+            document.querySelector('#loading-logo').style.display = 'none';
+            document.querySelector(
+              '#loading-infos .progress-label'
+            ).style.display = 'none';
+            document.querySelector('#infos-annonce').style.display = 'none';
+            // document.querySelector('#loader-logo').style.display = 'block';
+            document.querySelector('#enter').style.display = 'block';
+            // if (this.isMobile) {
+            //   document.querySelector('#enter').style.display = 'none';
+            // }
+            if (AFRAME.utils.device.checkHeadsetConnected() && !this.isMobile) {
+              document.querySelector('#enter').style.display = 'none';
+              document.querySelector('#enter-vr').style.display = 'block';
+            }
 
-        this.initStartingEvents();
+            this.initStartingEvents();
+          }
+        }, 200);
       }, 2000);
     });
   },
-  changeAtmosphere: function (color, density) {
+  changeAtmosphere: function (fogParams) {
     // Set main scene atmosphere color
     const mainScene = document.querySelector('#main-scene');
     mainScene.setAttribute('background', {
-      color: color
+      color: fogParams.color
     });
     mainScene.setAttribute('fog', {
-      type: 'exponential',
-      color: color,
-      density: density
+      ...fogParams,
+      type: fogParams.type ?? 'exponential',
+      density: fogParams.density
+        ? this.vr
+          ? fogParams.density[0]
+          : fogParams.density[1]
+        : 0,
+      near: fogParams.near
+        ? this.vr
+          ? fogParams.near[0]
+          : fogParams.near[1]
+        : 0,
+      far: fogParams.far ? (this.vr ? fogParams.far[0] : fogParams.far[1]) : 0
     });
   },
   // Only for the first time
@@ -272,9 +326,6 @@ AFRAME.registerSystem('system', {
     const event = new Event('changeScene');
     window.dispatchEvent(event);
 
-    // Set main scene atmosphere color
-    this.changeAtmosphere('#2f5b45', '0.001');
-
     // Display scene
     this.displayScene(sceneId);
 
@@ -297,7 +348,6 @@ AFRAME.registerSystem('system', {
     document
       .querySelector('#' + this.scenes.ending.camera)
       .setAttribute('camera', 'active', true);
-    this.changeAtmosphere('#2f5b45', 0.1);
     if (!this.vr) {
       this.exitFullscreen();
     }
@@ -332,10 +382,8 @@ AFRAME.registerSystem('system', {
       // Can recenter
       this.canRecenter = true;
       // Set main scene atmosphere color
-      this.changeAtmosphere(
-        this.scenes.color,
-        this.vr ? this.scenes.density[0] : this.scenes.density[1]
-      );
+      this.changeAtmosphere(this.scenes.fog);
+
       // Set main scene ability to walk
       if (this.scenes.canWalk) {
         this.movesManager.enableWalk(this.scenes[this.actuelScene]);
@@ -343,6 +391,7 @@ AFRAME.registerSystem('system', {
       const event = new Event('start');
       cameraScene.dispatchEvent(event);
       this.setCameraPosition();
+      this.manageLookControls();
     }, 4000);
   },
   setCameraPosition: function () {
@@ -363,7 +412,7 @@ AFRAME.registerSystem('system', {
       this.movesManager.setRigPosition({
         x: this.movesManager.savedPosition.x,
         y: 0,
-        z: this.movesManager.savedPosition.y
+        z: this.movesManager.savedPosition.z
       });
       this.movesManager.savedPosition = null;
     } else {
@@ -492,10 +541,10 @@ AFRAME.registerSystem('system', {
     }
   },
   applyStyle: ({ selectedKey, elements }) => {
-    const selectedColor = '#b39760';
-    const selectedTextColor = '#2f5b45';
+    const selectedColor = '#f9f9f9';
+    const selectedTextColor = '#191f29';
     const defaultColor = 'transparent';
-    const defaultTextColor = '#d4c9ba';
+    const defaultTextColor = '#f9f9f9';
     const selectedOpacity = 1;
     const defaultOpacity = 1;
     Object.entries(elements).forEach(([key, element]) => {
@@ -530,10 +579,16 @@ AFRAME.registerSystem('system', {
       this.applyStyle({ selectedKey: 'offEl', elements });
     };
 
+    if (!this.needLanguage) {
+      selectOff();
+    }
+
     if (this.language === 'fr') {
       selectFr();
-    } else {
+    } else if (this.language === 'en') {
       selectEn();
+    } else {
+      selectOff();
     }
 
     enEl.onclick = () => {
@@ -543,6 +598,57 @@ AFRAME.registerSystem('system', {
       selectFr();
     };
     offEl.onclick = () => {
+      selectOff();
+    };
+  },
+  switchAmbiantElements: function (enabled) {
+    let ambiantOnElements =
+      document.getElementsByClassName('ambiant-mode-show');
+    for (let i = 0; i < ambiantOnElements.length; i++) {
+      ambiantOnElements[i].setAttribute('visible', enabled);
+    }
+
+    let ambiantOffElements =
+      document.getElementsByClassName('ambiant-mode-hide');
+    for (let i = 0; i < ambiantOffElements.length; i++) {
+      ambiantOffElements[i].setAttribute('visible', !enabled);
+    }
+  },
+  initAmbiantMode: function (mode = false) {
+    const elements = {
+      ambiantOnEl: document.querySelector('#ambiant-on'),
+      ambiantOffEl: document.querySelector('#ambiant-off')
+    };
+    const { ambiantOnEl, ambiantOffEl } = elements;
+    if (!ambiantOnEl || !ambiantOffEl) {
+      return;
+    }
+    this.ambiantMode = mode;
+    const selectOn = () => {
+      this.ambiantMode = true;
+      this.applyStyle({ selectedKey: 'ambiantOnEl', elements });
+      this.switchAmbiantElements(true);
+      document.querySelector('#menu-language').style.display = 'none';
+      this.initLanguage('off');
+    };
+    const selectOff = () => {
+      this.ambiantMode = false;
+      this.applyStyle({ selectedKey: 'ambiantOffEl', elements });
+      this.switchAmbiantElements(false);
+      document.querySelector('#menu-language').style.display = 'flex';
+      this.initLanguage('en');
+    };
+
+    if (this.ambiantMode) {
+      selectOn();
+    } else {
+      selectOff();
+    }
+
+    ambiantOnEl.onclick = () => {
+      selectOn();
+    };
+    ambiantOffEl.onclick = () => {
       selectOff();
     };
   },

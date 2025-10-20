@@ -10,16 +10,13 @@ AFRAME.registerComponent('lagoon-car-tour', {
     this.textCar = document.querySelector('#lagoon-camera-text');
     this.light = document.querySelector('#lagoon-directionaltarget');
 
-    // Sounds
-    this.ambiant1Sound;
-
     // Voice and screen phases
     this.voicePhase = 'stop';
 
     // Tour Path
     const curve = new THREE.CatmullRomCurve3([
       new THREE.Vector3(7.988, 0, 81.899),
-      new THREE.Vector3(9.7, 0, -174.7),
+      new THREE.Vector3(9.7, 0, -174.7)
     ]);
 
     // En scene activation
@@ -36,10 +33,6 @@ AFRAME.registerComponent('lagoon-car-tour', {
         document.getElementById('jungle-asset').play();
 
         // Get sounds
-        this.ambiant1Sound =
-          document.getElementById('lagoon-station').components[
-            'sound__ambiant1'
-          ];
         this.hitSound =
           document.getElementById('lagoon-dome').components['sound__hit'];
 
@@ -74,9 +67,6 @@ AFRAME.registerComponent('lagoon-car-tour', {
   // --- Phase functions ---
   start: function () {
     setTimeout(() => {
-      this.ambiant1Sound.playSound();
-    }, 10000);
-    setTimeout(() => {
       const event = new Event('enter');
       this.meg.dispatchEvent(event);
     }, 30000);
@@ -89,11 +79,11 @@ AFRAME.registerComponent('lagoon-car-tour', {
     this.phase = 'exit';
   },
   checkpointListener: function () {
-    if (this.movesManager.distanceFromPoint('lagoon-checkpoint') < 1) {
+    if (this.movesManager.distanceFromPoint('lagoon-checkpoint') < 1.3) {
       this.textCar.setAttribute('visible', 'true');
       this.movesManager.nextScene = 'ending';
     }
-    if (this.movesManager.distanceFromPoint('lagoon-checkpoint') >= 1) {
+    if (this.movesManager.distanceFromPoint('lagoon-checkpoint') >= 1.3) {
       this.textCar.setAttribute('visible', 'false');
       this.movesManager.nextScene = null;
     }
@@ -127,5 +117,5 @@ AFRAME.registerComponent('lagoon-car-tour', {
         this.phase = 'exit';
         break;
     }
-  },
+  }
 });

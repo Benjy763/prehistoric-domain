@@ -58,11 +58,11 @@ AFRAME.registerComponent('dimetrodon-car-tour', {
     this.phase = 'exit';
   },
   checkpointListener: function () {
-    if (this.movesManager.distanceFromPoint('dimetrodon-checkpoint') < 3) {
+    if (this.movesManager.distanceFromPoint('dimetrodon-checkpoint') < 1.3) {
       this.textCar.setAttribute('visible', 'true');
       this.movesManager.nextScene = 'ending';
     }
-    if (this.movesManager.distanceFromPoint('dimetrodon-checkpoint') >= 3) {
+    if (this.movesManager.distanceFromPoint('dimetrodon-checkpoint') >= 1.3) {
       this.textCar.setAttribute('visible', 'false');
       this.movesManager.nextScene = null;
     }
@@ -91,5 +91,5 @@ AFRAME.registerComponent('dimetrodon-car-tour', {
         this.phase = 'exit';
         break;
     }
-  },
+  }
 });

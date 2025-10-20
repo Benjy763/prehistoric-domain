@@ -4,7 +4,7 @@ var MODEL_URLS = {
   lowPolyLeft: '/assets/models/objects/controllers/hands/leftHand.glb',
   lowPolyRight: '/assets/models/objects/controllers/hands/rightHand.glb',
   highPolyLeft: '/assets/models/objects/controllers/hands/leftHand.glb',
-  highPolyRight: '/assets/models/objects/controllers/hands/rightHand.glb',
+  highPolyRight: '/assets/models/objects/controllers/hands/rightHand.glb'
 };
 
 // Poses.
@@ -19,7 +19,7 @@ var ANIMATIONS = {
   // hold: trigger active, grip inactive.
   hold: 'Hold',
   // thumbUp: grip active, trigger active, trackpad surface inactive.
-  thumbUp: 'Thumb Up',
+  thumbUp: 'Thumb Up'
 };
 
 // Map animation to public events for the API.
@@ -49,8 +49,8 @@ AFRAME.registerComponent('custom-hand-controls', {
     hand: { default: 'left' },
     handModelStyle: {
       default: 'lowPoly',
-      oneOf: ['lowPoly', 'highPoly', 'toon'],
-    },
+      oneOf: ['lowPoly', 'highPoly', 'toon']
+    }
   },
 
   init: function () {
@@ -61,6 +61,9 @@ AFRAME.registerComponent('custom-hand-controls', {
     this.touchedButtons = {};
     this.loader = new THREE.GLTFLoader();
     this.loader.setCrossOrigin('anonymous');
+    this.loader.setDRACOLoader(
+      this.el.sceneEl.systems['gltf-model'].dracoLoader
+    );
 
     this.onGripDown = function () {
       self.handleButton('grip', 'down');
@@ -232,7 +235,7 @@ AFRAME.registerComponent('custom-hand-controls', {
     // Get common configuration to abstract different vendor controls.
     controlConfiguration = {
       hand: hand,
-      model: false,
+      model: false
     };
 
     // Set model.
@@ -241,19 +244,19 @@ AFRAME.registerComponent('custom-hand-controls', {
         MODEL_URLS[
           handModelStyle + hand.charAt(0).toUpperCase() + hand.slice(1)
         ];
-      this.loader.load(handmodelUrl, function (gltf) {
-        var mesh = gltf.scene.children[0];
+
+      // Use A-Frame's loader instead
+      el.setAttribute('gltf-model', handmodelUrl);
+      el.addEventListener('model-loaded', function () {
+        var mesh = el.getObject3D('mesh');
         var handModelOrientationZ = hand === 'left' ? Math.PI : Math.PI;
-        // The WebXR standard defines the grip space such that a cylinder held in a closed hand points
-        // along the Z axis. The models currently have such a cylinder point along the X-Axis.
         var handModelOrientationX = el.sceneEl.hasWebXR
           ? hand === 'left'
-            ? -Math.PI / 1.9
-            : -Math.PI / 1.5
+            ? -4
+            : -4
           : 0;
         mesh.mixer = new THREE.AnimationMixer(mesh);
-        self.clips = gltf.animations;
-        el.setObject3D('mesh', mesh);
+        self.clips = mesh.animations;
         mesh.traverse(function (object) {
           if (!object.isMesh) {
             return;
@@ -316,7 +319,7 @@ AFRAME.registerComponent('custom-hand-controls', {
       return;
     }
     // Animate gesture.
-    this.animateGesture(this.gesture, lastGesture);
+    // this.animateGesture(this.gesture, lastGesture);
 
     // Emit events.
     this.emitGestureEvents(this.gesture, lastGesture);
@@ -465,7 +468,7 @@ AFRAME.registerComponent('custom-hand-controls', {
     toAction.play();
     fromAction = mesh.mixer.clipAction(clip);
     fromAction.crossFadeTo(toAction, 0.15, true);
-  },
+  }
 });
 
 /**

@@ -7,8 +7,8 @@ import { Scenes } from '../scenes.config';
 AFRAME.registerSystem('movesManager', {
   schema: {
     nextScene: {
-      default: null,
-    },
+      default: null
+    }
   },
   init: function () {
     this.scenes = Scenes;
@@ -32,7 +32,7 @@ AFRAME.registerSystem('movesManager', {
       this.setCameraPosition(
         {
           ...cameraPosition,
-          x: this.scenes.walkBounds.x[0],
+          x: this.scenes.walkBounds.x[0]
         },
         cameraPosition
       );
@@ -40,7 +40,7 @@ AFRAME.registerSystem('movesManager', {
       this.setCameraPosition(
         {
           ...cameraPosition,
-          x: this.scenes.walkBounds.x[1],
+          x: this.scenes.walkBounds.x[1]
         },
         cameraPosition
       );
@@ -48,7 +48,7 @@ AFRAME.registerSystem('movesManager', {
       this.setCameraPosition(
         {
           ...cameraPosition,
-          z: this.scenes.walkBounds.z[0],
+          z: this.scenes.walkBounds.z[0]
         },
         cameraPosition
       );
@@ -56,7 +56,7 @@ AFRAME.registerSystem('movesManager', {
       this.setCameraPosition(
         {
           ...cameraPosition,
-          z: this.scenes.walkBounds.z[1],
+          z: this.scenes.walkBounds.z[1]
         },
         cameraPosition
       );
@@ -73,7 +73,7 @@ AFRAME.registerSystem('movesManager', {
     const car = document.getElementById(actualScene.car);
     car.querySelector('#' + actualScene.camera).setAttribute('wasd-controls', {
       acceleration: 10,
-      enabled: true,
+      enabled: true
     });
   },
   disableWalk() {
@@ -87,7 +87,7 @@ AFRAME.registerSystem('movesManager', {
     const car = document.getElementById(actualScene.car);
     car.querySelector('#' + actualScene.camera).setAttribute('wasd-controls', {
       acceleration: 10,
-      enabled: false,
+      enabled: false
     });
   },
   getCameraRotation() {
@@ -144,6 +144,11 @@ AFRAME.registerSystem('movesManager', {
       .querySelector('#' + actualScene.car + ' #rig')
       .setAttribute('position', position);
   },
+  getRigRotation() {
+    const actualScene = this.getSystem().getActualSceneObject();
+    return document.querySelector('#' + actualScene.car + ' #rig').object3D
+      .rotation;
+  },
   setRigRotation(rotation) {
     const actualScene = this.getSystem().getActualSceneObject();
     document
@@ -187,7 +192,7 @@ AFRAME.registerSystem('movesManager', {
       turn180 = false,
       useDeltaTime = false,
       needUpdateTime = false,
-      needLookAt = true,
+      needLookAt = true
     } = options || {};
 
     if (marker === 0 || needUpdateTime) {
@@ -252,5 +257,5 @@ AFRAME.registerSystem('movesManager', {
   // Trunc marker to have better values (ex: 515 instead of 0.5155554)
   truncMarker: function (carMarker) {
     return Math.trunc(carMarker * 1000);
-  },
+  }
 });

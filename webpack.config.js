@@ -22,6 +22,9 @@ module.exports = {
     hot: true,
     liveReload: true,
     server: 'https',
+    client: {
+      overlay: false
+    },
     static: {
       directory: path.join(__dirname, '/')
     }
@@ -33,7 +36,8 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env.MAIN_SCENE': JSON.stringify(process.env.MAIN_SCENE),
-      'process.env.UNIQUE_ASSETS_ID': JSON.stringify(uniqueID)
+      'process.env.UNIQUE_ASSETS_ID': JSON.stringify(uniqueID),
+      'process.env.ASSET_PREFIX': JSON.stringify(process.env.ASSET_PREFIX)
     })
   ],
   module: {

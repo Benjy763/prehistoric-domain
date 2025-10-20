@@ -22,23 +22,23 @@ AFRAME.registerComponent('sarco-animation', {
     this.sarcoSwimSpeed = 0.0016; // Speed on the curve
     this.walkCurve1 = new THREE.CatmullRomCurve3([
       new THREE.Vector3(-18.969, -0.23326, 0.161),
-      new THREE.Vector3(-18.969, -0.23326, 32.365),
+      new THREE.Vector3(-18.969, -0.23326, 32.365)
     ]);
     this.swimCurve1 = new THREE.CatmullRomCurve3([
       new THREE.Vector3(-15.127, -11.934, -32),
-      new THREE.Vector3(-15.127, -11.934, 52),
+      new THREE.Vector3(-15.127, -11.934, 62)
     ]);
 
     // Bird Path
     this.birdMarker = 0; // Position on the curve
     this.birdSpeed = 0.05; // Speed on the curve
     this.birdCurve = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(-18.96, 0.307, 14.287),
-      new THREE.Vector3(-18.96, 0.307, 4),
+      new THREE.Vector3(-18.96, 0.4, 14.287),
+      new THREE.Vector3(-18.96, 0.4, 4.3)
     ]);
     this.birdCurve2 = new THREE.CatmullRomCurve3([
-      new THREE.Vector3(-18.96, 0.307, 6.057),
-      new THREE.Vector3(-33.901, 0.307, -8.755),
+      new THREE.Vector3(-18.96, 0.4, 6.297),
+      new THREE.Vector3(-33.901, 0.4, -8.755)
     ]);
 
     // Sound
@@ -76,7 +76,7 @@ AFRAME.registerComponent('sarco-animation', {
           clip: 'Sarcosuchus_Swim_InPlace',
           loop: true,
           crossFadeDuration: 0.4,
-          timeScale: 1,
+          timeScale: 1
         });
         this.object.position.z = -300;
         this.object.position.y = -11.934;
@@ -96,7 +96,7 @@ AFRAME.registerComponent('sarco-animation', {
         clip: 'Sarcosuchus_Sneak_Idle_OpenJaws',
         loop: true,
         crossFadeDuration: 1.5,
-        timeScale: 0.8,
+        timeScale: 0.8
       });
     }, 0);
     setTimeout(() => {
@@ -105,7 +105,7 @@ AFRAME.registerComponent('sarco-animation', {
         clip: 'Take 002',
         loop: true,
         crossFadeDuration: 0.4,
-        timeScale: 1,
+        timeScale: 1
       });
       this.phase = 'birdFly';
     }, 6000);
@@ -124,7 +124,7 @@ AFRAME.registerComponent('sarco-animation', {
         clip: 'Take 001',
         pingPong: true,
         crossFadeDuration: 0.4,
-        timeScale: 0.7,
+        timeScale: 0.7
       });
       setTimeout(() => {
         this.birdSpeed = 0.01;
@@ -134,7 +134,7 @@ AFRAME.registerComponent('sarco-animation', {
           clip: 'Take 002',
           loop: true,
           crossFadeDuration: 0,
-          timeScale: 1,
+          timeScale: 1
         });
         this.birdEndAudio.playSound();
         this.phase = 'birdLeave';
@@ -165,14 +165,14 @@ AFRAME.registerComponent('sarco-animation', {
       clip: 'Sarcosuchus_Sneak_StandUp',
       loop: true,
       crossFadeDuration: 0.4,
-      timeScale: 0.3,
+      timeScale: 0.3
     });
     setTimeout(() => {
       this.el.setAttribute('animation-mixer', {
         clip: 'Sarcosuchus_Idle',
         loop: true,
         crossFadeDuration: 0.4,
-        timeScale: 0.7,
+        timeScale: 0.7
       });
     }, 2500);
     setTimeout(() => {
@@ -185,14 +185,14 @@ AFRAME.registerComponent('sarco-animation', {
       clip: 'Sarcosuchus_Roar',
       loop: true,
       crossFadeDuration: 0.4,
-      timeScale: 1,
+      timeScale: 1
     });
     setTimeout(() => {
       this.el.setAttribute('animation-mixer', {
         clip: 'Sarcosuchus_Walk_InPlace',
         loop: true,
         crossFadeDuration: 0.4,
-        timeScale: 0.6,
+        timeScale: 0.6
       });
       setTimeout(() => {
         this.sarcoWalkAudio.playSound();
@@ -235,7 +235,7 @@ AFRAME.registerComponent('sarco-animation', {
       this.sarcoSwimStopAudioPlayed = true;
       this.sarcoSwimStopAudio.playSound();
     }
-    if (this.movesManager.truncMarker(this.sarcoMarker) > 280) {
+    if (this.movesManager.truncMarker(this.sarcoMarker) > 270) {
       this.sarcoSwimSpeed -= 0.00002;
     }
     if (this.sarcoSwimSpeed <= 0.0002) {
@@ -243,7 +243,7 @@ AFRAME.registerComponent('sarco-animation', {
         clip: 'Sarcosuchus_Swim_Idle',
         loop: true,
         crossFadeDuration: 1.5,
-        timeScale: 1,
+        timeScale: 1
       });
       this.phase = 'sarcoLook';
     }
@@ -260,7 +260,7 @@ AFRAME.registerComponent('sarco-animation', {
         clip: 'Sarcosuchus_SwimFast_InPlace',
         loop: true,
         crossFadeDuration: 0.4,
-        timeScale: 1,
+        timeScale: 1
       });
       this.phase = 'sarcoSwimFast';
     }, 8000);
@@ -324,5 +324,5 @@ AFRAME.registerComponent('sarco-animation', {
         this.sarcoLook();
         break;
     }
-  },
+  }
 });

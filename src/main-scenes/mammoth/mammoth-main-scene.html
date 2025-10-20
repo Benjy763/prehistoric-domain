@@ -1,0 +1,34 @@
+<require path="main-scenes/shared/shared-main-scene.html"></require>
+<div id="main-scene-wrapper">
+  <require path="main-scenes/shared/shared-context-scene.html"></require>
+  <div class="scene-border-inner">
+    <div id="main-scene-content" class="scene-content">
+      <a-scene preloader
+        renderer="colorManagement: true; toneMapping: ACESFilmic; foveationLevel: 1; antialias: true; sortTransparentObjects: true; precision: high, anisotropy: 16"
+        background="color: #197cae; transparent: false" embedded="true" xr-mode-ui="enterVRButton: #enter-vr"
+        id="main-scene" fog="type: linear; color: #e8e8e8;  density: 0.003; near: 1; far: 1000">
+        <!-- All assets -->
+        <require path="main-scenes/mammoth/mammoth-assets.html"></require>
+
+        <!-- Loading scene -->
+        <a-entity id="loading-scene">
+          <require path="components/loading/loading.html"></require>
+        </a-entity>
+        <a-entity id="ending-scene" visible="false">
+          <require path="components/ending/ending.html"></require>
+        </a-entity>
+
+        <a-entity id="mammoth-scene" visible="false">
+          <!-- Lightning -->
+          <require path="components/mammoth-scene/mammoth-lightning.html"></require>
+          <!-- Dinosaurs -->
+          <require path="components/mammoth-scene/mammoth-dinosaurs.html"></require>
+          <!-- Environment -->
+          <require path="components/mammoth-scene/mammoth-environment.html"></require>
+          <!-- Objects -->
+          <require path="components/mammoth-scene/mammoth-car.html"></require>
+        </a-entity>
+      </a-scene>
+    </div>
+  </div>
+</div>

@@ -4,15 +4,15 @@ function requireAll(req) {
   req.keys().forEach(req);
 }
 
+require('/src/components/shared/dynamic-src.js');
+
 // require aframe
 require('aframe');
 
 //require vendors
-require('/vendors/aframe-troika-text/aframe-troika-text.min.js');
-
+require('/assets/vendors/aframe-troika-text/aframe-troika-text.min.js');
 // Require libs
 require('aframe-extras');
-//require('aframe-fps-counter-component');
 
 // Require all components
 require('/assets/style/styles.css');

@@ -12,11 +12,13 @@ export const MainScenes = {
     assetsId: 'home-assets',
     displayDistance: 10000,
     carMarkerForDebug: 0.7,
-    color: '#d6d6d6',
-    density: [0.001, 0.001],
+    fog: {
+      color: '#d6d6d6',
+      density: [0.0004, 0.0004]
+    },
     loading: {
       scene: 'loading-scene',
-      camera: 'loading-scene-camera',
+      camera: 'loading-scene-camera'
     },
     home: {
       loaded: false,
@@ -25,10 +27,10 @@ export const MainScenes = {
       car: 'home-car',
       carReference: null,
       rigPos: {
-        x: 68,
+        x: 60,
         y: 1,
-        z: -3.2,
-      },
+        z: -3.2
+      }
     },
     cinema: {
       loaded: false,
@@ -38,10 +40,10 @@ export const MainScenes = {
       carReference: null,
       isVehicule: false,
       rigPos: {
-        x: -0.275,
-        y: 2.05,
-        z: -0.25,
-      },
+        x: 3.2,
+        y: 2.2,
+        z: -2.9
+      }
     },
     visitors: {
       scene: 'visitors-scene',
@@ -51,64 +53,26 @@ export const MainScenes = {
       rigPos: {
         x: -24.764,
         y: 1,
-        z: -1.267,
-      },
+        z: -1.267
+      }
     },
-    ending: {
-      scene: 'ending-scene',
-      camera: 'ending-scene-camera',
-      car: 'ending-car',
-      carReference: null,
-    },
-  },
-  homelight: {
-    // Starting scene
-    name: 'Main Area',
-    loadingScreen: 'home-illu.jpg',
-    needPerformance: false,
-    needLanguage: false,
-    mobileCompatible: false,
-    selection: 'home',
-    assetsId: 'home-assets',
-    displayDistance: 10000,
-    carMarkerForDebug: 0.7,
-    color: '#d6d6d6',
-    density: [0.001, 0.001],
-    loading: {
-      scene: 'loading-scene',
-      camera: 'loading-scene-camera',
-    },
-    home: {
-      loaded: false,
-      scene: 'home-scene',
-      camera: 'home-scene-camera',
-      car: 'home-car',
+    gallery: {
+      scene: 'gallery-scene',
+      camera: 'gallery-scene-camera',
+      car: 'gallery-car',
       carReference: null,
       rigPos: {
-        x: 68,
+        x: -36,
         y: 1,
-        z: -3.2,
-      },
-    },
-    cinema: {
-      loaded: false,
-      scene: 'cinema-scene',
-      camera: 'cinema-scene-camera',
-      car: 'cinema-car',
-      carReference: null,
-      isVehicule: false,
-      rigPos: {
-        x: -0.275,
-        y: 2.05,
-        z: -0.25,
-      },
+        z: 4
+      }
     },
     ending: {
       scene: 'ending-scene',
       camera: 'ending-scene-camera',
       car: 'ending-car',
-      carReference: null,
-    },
+      carReference: null
+    }
   },
   visitors: {
     // Starting scene
@@ -121,11 +85,13 @@ export const MainScenes = {
     assetsId: 'visitors-assets',
     displayDistance: 200,
     carMarkerForDebug: 0.7,
-    color: '#fff',
-    density: [0, 0],
+    fog: {
+      color: '#fff',
+      density: [0, 0]
+    },
     loading: {
       scene: 'loading-scene',
-      camera: 'loading-scene-camera',
+      camera: 'loading-scene-camera'
     },
     visitors: {
       scene: 'visitors-scene',
@@ -135,15 +101,15 @@ export const MainScenes = {
       rigPos: {
         x: -21.292,
         y: 1,
-        z: -3.743,
-      },
+        z: -3.743
+      }
     },
     ending: {
       scene: 'ending-scene',
       camera: 'ending-scene-camera',
       car: 'ending-car',
-      carReference: null,
-    },
+      carReference: null
+    }
   },
   tour: {
     // Starting scene
@@ -151,16 +117,18 @@ export const MainScenes = {
     loadingScreen: 'brachio-illu.jpg',
     displayDistance: 80,
     needPerformance: false,
-    needLanguage: true,
+    needLanguage: false,
     mobileCompatible: false,
     selection: 'gate',
     assetsId: 'tour-assets',
     carMarkerForDebug: 0.7,
-    color: '#000',
-    density: [0.025, 0.025],
+    fog: {
+      color: '#000',
+      density: [0.025, 0.025]
+    },
     loading: {
       scene: 'loading-scene',
-      camera: 'loading-scene-camera',
+      camera: 'loading-scene-camera'
     },
     gate: {
       scene: 'gate-scene',
@@ -171,33 +139,35 @@ export const MainScenes = {
       rigPos: {
         x: 0.38,
         y: 1.98,
-        z: -0.587,
-      },
+        z: -0.587
+      }
     },
     ending: {
       scene: 'ending-scene',
       camera: 'ending-scene-camera',
       car: 'ending-car',
-      carReference: null,
-    },
+      carReference: null
+    }
   },
   aviary: {
     // Starting scene
-    name: 'Pteranodon Aviary',
+    name: 'North America, 85 Million Years Ago',
     loadingScreen: 'aviary-illu.jpg',
     displayDistance: 400,
     needPerformance: false,
-    needLanguage: true,
+    needLanguage: false,
     mobileCompatible: true,
     selection: 'aviary',
     assetsId: 'aviary-assets',
     carMarkerForDebug: 0.32,
-    color: '#5e5e5e',
-    density: [0.006, 0.006],
+    fog: {
+      color: '#5e5e5e',
+      density: [0.006, 0.006]
+    },
     canWalk: true,
     loading: {
       scene: 'loading-scene',
-      camera: 'loading-scene-camera',
+      camera: 'loading-scene-camera'
     },
     aviary: {
       scene: 'aviary-scene',
@@ -207,31 +177,32 @@ export const MainScenes = {
       rigPos: {
         x: 1.152,
         y: 1,
-        z: 0.934,
-      },
+        z: 0.934
+      }
     },
     ending: {
       scene: 'ending-scene',
       camera: 'ending-scene-camera',
       car: 'ending-car',
-      carReference: null,
-    },
+      carReference: null
+    }
   },
   cretaceousLagoon: {
-    // Starting scene
-    name: 'Cretaceous Lagoon',
+    name: 'Ancient Oceans, 80 Million Years Ago',
     loadingScreen: 'lagoon-illu.jpg',
     needPerformance: false,
-    needLanguage: true,
+    needLanguage: false,
     mobileCompatible: true,
     selection: 'cretaceousLagoon',
     assetsId: 'cretaceous-lagoon-assets',
     carMarkerForDebug: 0.32,
-    color: '#04719f',
-    density: [0.1, 0.1],
+    fog: {
+      color: '#048ac3',
+      density: [0.1, 0.1]
+    },
     loading: {
       scene: 'loading-scene',
-      camera: 'loading-scene-camera',
+      camera: 'loading-scene-camera'
     },
     cretaceousLagoon: {
       scene: 'cretaceous-lagoon-scene',
@@ -241,31 +212,33 @@ export const MainScenes = {
       rigPos: {
         x: 1,
         y: 2.2,
-        z: 0,
-      },
+        z: 0
+      }
     },
     ending: {
       scene: 'ending-scene',
       camera: 'ending-scene-camera',
       car: 'ending-car',
-      carReference: null,
-    },
+      carReference: null
+    }
   },
   lagoon: {
     // Starting scene
-    name: 'Megalodon Viewing Gallery',
+    name: 'Ancient Oceans, 20 Million Years Ago',
     loadingScreen: 'lagoon-illu.jpg',
     needPerformance: false,
-    needLanguage: true,
+    needLanguage: false,
     mobileCompatible: true,
     selection: 'lagoon',
     assetsId: 'lagoon-assets',
     carMarkerForDebug: 0.32,
-    color: '#04719f',
-    density: [0.1, 0.1],
+    fog: {
+      color: '#048ac3',
+      density: [0.1, 0.1]
+    },
     loading: {
       scene: 'loading-scene',
-      camera: 'loading-scene-camera',
+      camera: 'loading-scene-camera'
     },
     lagoon: {
       scene: 'lagoon-scene',
@@ -275,15 +248,15 @@ export const MainScenes = {
       rigPos: {
         x: 1,
         y: 2.2,
-        z: 0,
-      },
+        z: 0
+      }
     },
     ending: {
       scene: 'ending-scene',
       camera: 'ending-scene-camera',
       car: 'ending-car',
-      carReference: null,
-    },
+      carReference: null
+    }
   },
   cinema: {
     // Starting scene
@@ -295,41 +268,45 @@ export const MainScenes = {
     selection: 'cinema',
     assetsId: 'cinema-assets',
     carMarkerForDebug: 0.32,
-    color: '#000',
-    density: [0.03, 0.03],
+    fog: {
+      color: '#000',
+      density: [0.03, 0.03]
+    },
     loading: {
       scene: 'loading-scene',
-      camera: 'loading-scene-camera',
+      camera: 'loading-scene-camera'
     },
     cinema: {
       scene: 'cinema-scene',
       camera: 'cinema-scene-camera',
       car: 'cinema-car',
-      carReference: null,
+      carReference: null
     },
     ending: {
       scene: 'ending-scene',
       camera: 'ending-scene-camera',
       car: 'ending-car',
-      carReference: null,
-    },
+      carReference: null
+    }
   },
   sarco: {
     // Starting scene
-    name: 'Sarcosuchus Viewing Gallery',
+    name: 'North Africa, 110 Million Years Ago',
     loadingScreen: 'sarco-illu.jpg',
     needPerformance: true,
-    needLanguage: true,
+    needLanguage: false,
     mobileCompatible: true,
     selection: 'sarco',
     assetsId: 'swamp-assets',
     carMarkerForDebug: 0.32,
-    color: '#5e5e5e',
-    density: [0.05, 0.05],
+    fog: {
+      color: '#5e5e5e',
+      density: [0.05, 0.05]
+    },
     canWalk: true,
     loading: {
       scene: 'loading-scene',
-      camera: 'loading-scene-camera',
+      camera: 'loading-scene-camera'
     },
     sarco: {
       scene: 'sarco-scene',
@@ -337,34 +314,36 @@ export const MainScenes = {
       car: 'sarco-car',
       carReference: null,
       rigPos: {
-        x: 1,
+        x: 1.5,
         y: 1,
-        z: 0,
-      },
+        z: 0.2
+      }
     },
     ending: {
       scene: 'ending-scene',
       camera: 'ending-scene-camera',
       car: 'ending-car',
-      carReference: null,
-    },
+      carReference: null
+    }
   },
   spino: {
     // Starting scene
-    name: 'Spinosaurus Viewing Gallery',
+    name: 'North Africa, 110 Million Years Ago',
     loadingScreen: 'spino-illu.jpg',
     needPerformance: true,
-    needLanguage: true,
+    needLanguage: false,
     mobileCompatible: true,
     selection: 'spino',
     assetsId: 'swamp-assets',
     carMarkerForDebug: 0.32,
-    color: '#5e5e5e',
-    density: [0.05, 0.05],
+    fog: {
+      color: '#5e5e5e',
+      density: [0.05, 0.05]
+    },
     canWalk: true,
     loading: {
       scene: 'loading-scene',
-      camera: 'loading-scene-camera',
+      camera: 'loading-scene-camera'
     },
     spino: {
       scene: 'spino-scene',
@@ -372,35 +351,37 @@ export const MainScenes = {
       car: 'spino-car',
       carReference: null,
       rigPos: {
-        x: 1,
+        x: 1.5,
         y: 1,
-        z: 0,
-      },
+        z: 0.2
+      }
     },
     ending: {
       scene: 'ending-scene',
       camera: 'ending-scene-camera',
       car: 'ending-car',
-      carReference: null,
-    },
+      carReference: null
+    }
   },
   quetza: {
     // Starting scene
-    name: 'Quetzalcoatlus Viewing Gallery',
+    name: 'North America, 68 Million Years Ago',
     loadingScreen: 'quetza-illu.jpg',
     displayDistance: 10000,
     needPerformance: true,
-    needLanguage: true,
+    needLanguage: false,
     mobileCompatible: true,
     selection: 'quetza',
     assetsId: 'swamp-assets',
     carMarkerForDebug: 0.32,
-    color: '#5e5e5e',
-    density: [0, 0],
+    fog: {
+      color: '#5e5e5e',
+      density: [0, 0]
+    },
     canWalk: true,
     loading: {
       scene: 'loading-scene',
-      camera: 'loading-scene-camera',
+      camera: 'loading-scene-camera'
     },
     quetza: {
       scene: 'quetza-scene',
@@ -408,35 +389,37 @@ export const MainScenes = {
       car: 'quetza-car',
       carReference: null,
       rigPos: {
-        x: 1,
+        x: 1.5,
         y: 1,
-        z: 0,
-      },
+        z: 0.2
+      }
     },
     ending: {
       scene: 'ending-scene',
       camera: 'ending-scene-camera',
       car: 'ending-car',
-      carReference: null,
-    },
+      carReference: null
+    }
   },
   dimetrodon: {
     // Starting scene
-    name: 'Dimetrodon Viewing Gallery',
+    name: 'North America, 290 Million Years Ago',
     loadingScreen: 'dimetrodon-illu.jpg',
     needPerformance: true,
-    needLanguage: true,
+    needLanguage: false,
     mobileCompatible: true,
     selection: 'dimetrodon',
     assetsId: 'dimetrodon-assets',
     displayDistance: 10000,
     carMarkerForDebug: 0.32,
-    color: '#ffddc2',
-    density: [0.015, 0.015],
+    fog: {
+      color: '#ffddc2',
+      density: [0.015, 0.015]
+    },
     canWalk: true,
     loading: {
       scene: 'loading-scene',
-      camera: 'loading-scene-camera',
+      camera: 'loading-scene-camera'
     },
     dimetrodon: {
       scene: 'dimetrodon-scene',
@@ -444,35 +427,37 @@ export const MainScenes = {
       car: 'dimetrodon-car',
       carReference: null,
       rigPos: {
-        x: 1,
+        x: 1.5,
         y: 1,
-        z: 0,
-      },
+        z: 0.2
+      }
     },
     ending: {
       scene: 'ending-scene',
       camera: 'ending-scene-camera',
       car: 'ending-car',
-      carReference: null,
-    },
+      carReference: null
+    }
   },
   edmon: {
     // Starting scene
-    name: 'Edmontosaurus Viewing Gallery',
+    name: 'North America, 69 Million Years Ago',
     loadingScreen: 'edmon-illu.jpg',
     needPerformance: true,
-    needLanguage: true,
+    needLanguage: false,
     mobileCompatible: true,
     selection: 'edmon',
     assetsId: 'edmon-assets',
     carMarkerForDebug: 0.32,
-    color: '#fff',
-    density: [0.015, 0.015],
+    fog: {
+      color: '#fff',
+      density: [0.015, 0.015]
+    },
     displayDistance: 400,
     canWalk: true,
     loading: {
       scene: 'loading-scene',
-      camera: 'loading-scene-camera',
+      camera: 'loading-scene-camera'
     },
     edmon: {
       scene: 'edmon-scene',
@@ -480,35 +465,37 @@ export const MainScenes = {
       car: 'edmon-car',
       carReference: null,
       rigPos: {
-        x: 1,
+        x: 1.5,
         y: 1,
-        z: 0,
-      },
+        z: 0.2
+      }
     },
     ending: {
       scene: 'ending-scene',
       camera: 'ending-scene-camera',
       car: 'ending-car',
-      carReference: null,
-    },
+      carReference: null
+    }
   },
   trex: {
     // Starting scene
-    name: 'Tyrannosaurus Rex Viewing Gallery',
+    name: 'North America, 66 Million Years Ago',
     loadingScreen: 'trex-illu.jpg',
     needPerformance: true,
-    needLanguage: true,
+    needLanguage: false,
     mobileCompatible: true,
     selection: 'trex',
     assetsId: 'trex-assets',
     carMarkerForDebug: 0.32,
-    color: '#000',
-    density: [0.005, 0.005],
+    fog: {
+      color: '#000',
+      density: [0.003, 0.003]
+    },
     displayDistance: 400,
     canWalk: true,
     loading: {
       scene: 'loading-scene',
-      camera: 'loading-scene-camera',
+      camera: 'loading-scene-camera'
     },
     trex: {
       scene: 'trex-scene',
@@ -516,35 +503,76 @@ export const MainScenes = {
       car: 'trex-car',
       carReference: null,
       rigPos: {
-        x: 0,
+        x: 1.5,
         y: 1,
-        z: 0,
-      },
+        z: 0.2
+      }
     },
     ending: {
       scene: 'ending-scene',
       camera: 'ending-scene-camera',
       car: 'ending-car',
-      carReference: null,
+      carReference: null
+    }
+  },
+  mammoth: {
+    // Starting scene
+    name: 'Siberian Steppe, 15,000 Years Ago',
+    loadingScreen: 'trex-illu.jpg',
+    needPerformance: true,
+    needLanguage: false,
+    needAmbiantMode: true,
+    mobileCompatible: true,
+    selection: 'mammoth',
+    assetsId: 'mammoth-assets',
+    carMarkerForDebug: 0.32,
+    fog: {
+      color: '#fff',
+      density: [0.006, 0.006]
     },
+    displayDistance: 10000,
+    canWalk: true,
+    loading: {
+      scene: 'loading-scene',
+      camera: 'loading-scene-camera'
+    },
+    mammoth: {
+      scene: 'mammoth-scene',
+      camera: 'mammoth-scene-camera',
+      car: 'mammoth-car',
+      carReference: null,
+      rigPos: {
+        x: 1.5,
+        y: 1,
+        z: 0.2
+      }
+    },
+    ending: {
+      scene: 'ending-scene',
+      camera: 'ending-scene-camera',
+      car: 'ending-car',
+      carReference: null
+    }
   },
   deinocheirus: {
     // Starting scene
-    name: 'Deinocheirus Viewing Gallery',
+    name: 'Asia, 70 Million Years Ago',
     loadingScreen: 'trex-illu.jpg',
     needPerformance: true,
-    needLanguage: true,
+    needLanguage: false,
     mobileCompatible: true,
     selection: 'deinocheirus',
     assetsId: 'deinocheirus-assets',
     carMarkerForDebug: 0.32,
-    color: '#000',
-    density: [0.005, 0.005],
+    fog: {
+      color: '#000',
+      density: [0.003, 0.003]
+    },
     displayDistance: 400,
     canWalk: true,
     loading: {
       scene: 'loading-scene',
-      camera: 'loading-scene-camera',
+      camera: 'loading-scene-camera'
     },
     deinocheirus: {
       scene: 'deinocheirus-scene',
@@ -552,35 +580,37 @@ export const MainScenes = {
       car: 'deinocheirus-car',
       carReference: null,
       rigPos: {
-        x: 0,
+        x: 1.5,
         y: 1,
-        z: 0,
-      },
+        z: 0.2
+      }
     },
     ending: {
       scene: 'ending-scene',
       camera: 'ending-scene-camera',
       car: 'ending-car',
-      carReference: null,
-    },
+      carReference: null
+    }
   },
   deino: {
     // Starting scene
-    name: 'Deinonychus Viewing Gallery',
+    name: 'North America, 110 Million Years Ago',
     loadingScreen: 'deino-illu.jpg',
     needPerformance: false,
-    needLanguage: true,
+    needLanguage: false,
     mobileCompatible: true,
     selection: 'deino',
     assetsId: 'deino-assets',
     carMarkerForDebug: 0.32,
-    color: '#000',
-    density: [0.025, 0.025],
+    fog: {
+      color: '#000',
+      density: [0.028, 0.028]
+    },
     displayDistance: 400,
     canWalk: true,
     loading: {
       scene: 'loading-scene',
-      camera: 'loading-scene-camera',
+      camera: 'loading-scene-camera'
     },
     deino: {
       scene: 'deino-scene',
@@ -588,18 +618,56 @@ export const MainScenes = {
       car: 'deino-car',
       carReference: null,
       rigPos: {
-        x: 1,
+        x: 1.5,
         y: 1,
-        z: 0,
-      },
+        z: 0.2
+      }
     },
     ending: {
       scene: 'ending-scene',
       camera: 'ending-scene-camera',
       car: 'ending-car',
-      carReference: null,
-    },
+      carReference: null
+    }
   },
+  gallery: {
+    // Starting scene
+    name: 'Paleo Gallery',
+    loadingScreen: 'deino-illu.jpg',
+    needPerformance: false,
+    needLanguage: false,
+    mobileCompatible: true,
+    selection: 'gallery',
+    assetsId: 'gallery-assets',
+    carMarkerForDebug: 0.32,
+    fog: {
+      color: '#000',
+      density: [0, 0]
+    },
+    displayDistance: 400,
+    canWalk: true,
+    loading: {
+      scene: 'loading-scene',
+      camera: 'loading-scene-camera'
+    },
+    gallery: {
+      scene: 'gallery-scene',
+      camera: 'gallery-scene-camera',
+      car: 'gallery-car',
+      carReference: null,
+      rigPos: {
+        x: -35,
+        y: 1,
+        z: 3
+      }
+    },
+    ending: {
+      scene: 'ending-scene',
+      camera: 'ending-scene-camera',
+      car: 'ending-car',
+      carReference: null
+    }
+  }
 };
 
 // Scenes from main one selected

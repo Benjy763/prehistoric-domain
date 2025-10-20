@@ -1,18 +1,17 @@
 <a-entity id="visitors-car" gltf-model="#visitors-scene-asset" visitors-car-tour position="-45.6063 1.27071 -2.53099"
-  rotation="0 180 0" scale="1 1.2 1">
-  <a-entity id="rig" turn-control="controllerListenerId: #controller-data;"
-    movement-controls="speed: 0.3; camera: [camera-visitors]" position="1.152 -0.6000000000000001 0.934"
-    rotation="0 90 0">
+  rotation="0 180 0" scale="1 1 1">
+  <a-entity id="rig" custom-movement-controls="speed: 0.3; camera: [camera-visitors]"
+    position="1.152 -0.6000000000000001 0.934" rotation="0 90 0">
     <a-entity id="hands">
       <a-entity id="visitors-scene-camera" class="camera-entity" camera camera-visitors position="0 0 0" user-height="0"
-        fps-look-controls="user-height: 0"
+        look-controls="pointerLockEnabled: true"
         simple-navmesh-constraint="navmesh:#visitors-navmesh-el;fall:0;height:1.25;exclude:#visitors-exclude-navmesh-el">
         <a-troika-text id="visitors-camera-text" visible="false" troika-text="color: #d6d6d6" scale="0.15 0.15 0.15"
           position="0 -0.25795 -0.8507" value="press ENTER or TRIGGER to leave" font="/assets/font/Exo-Regular.ttf">
         </a-troika-text>
         <a-box id="out-of-limit" position="0 0 0" visible="false" material="blending: none; shader: flat"
           geometry="depth: 1; height: 1; width: 1; primitive: sphere; segmentsHeight: 10; segmentsWidth: 10; radius: 0.1"
-          color="#2f5b45" side="back">
+          color="#191f29" side="back">
           <a-image id="limits-logo-1" visible="false" src="#limits-asset" scale="0.017 0.015 0.015"
             position="0 0.00011 -0.057" rotation="0 0 0">
           </a-image>
@@ -25,7 +24,7 @@
                                  rightControllerId: #rightHand;"></a-entity>
       <a-entity id="leftHand" sphere-collider="objects: a-box" poi-control super-hands
         custom-hand-controls="hand: left; handModelStyle: highPoly; color: #ffcccc"></a-entity>
-      <a-entity fps-counter="enabled: true; for90fps: true" id="rightHand" rotation="10 0 0"
+      <a-entity fps-counter="enabled: false; for90fps: true" id="rightHand" rotation="10 0 0"
         sphere-collider="objects: a-box" poi-control super-hands
         custom-hand-controls="hand: right; handModelStyle: highPoly; color: #ffcccc"></a-entity>
     </a-entity>
@@ -36,5 +35,5 @@
   <a-plane id="visitors-exclude-navmesh-el" geometry="primitive: circle; radius: 16" visible="false"
     position="-45.44178 0 -2.33939" rotation="-90 0 0" width="8" height="5.8" color="red">
   </a-plane>
-  <a-entity id="car-env"></a-entity>
+  <a-entity id="car-env" position="-5.72859 0.39706 -2.76052" rotation="0 90 0" scale="1 1 1"></a-entity>
 </a-entity>
