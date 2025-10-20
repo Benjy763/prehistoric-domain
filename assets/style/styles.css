@@ -149,9 +149,23 @@ body {
   align-items: center;
 }
 
+.main-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .bold-infos {
   font-weight: bold;
   color: var(--highlight-color);
+}
+
+.menu-tags {
+  font-size: 0.6rem;
+  color: var(--default-text-color);
+  padding-top: 0.5rem;
+  font-style: italic;
 }
 
 .buttons-item {
