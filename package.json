@@ -9,7 +9,7 @@
     "lint:fix": "eslint --fix .",
     "npm:audit": "npm audit",
     "npm:audit:fix": "npm audit fix --force",
-    "start": "cross-env MAIN_SCENE='spino' ASSET_PREFIX='' webpack serve --port 8080",
+    "start": "cross-env MAIN_SCENE='gallery' ASSET_PREFIX='' webpack serve --port 8080",
     "prepare": "husky install"
   },
   "dependencies": {

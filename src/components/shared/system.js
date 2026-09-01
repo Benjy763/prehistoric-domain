@@ -250,9 +250,6 @@ AFRAME.registerSystem('system', {
             }
             // Press start
             document.querySelector('#loading-logo').style.display = 'none';
-            document.querySelector(
-              '#loading-infos .progress-label'
-            ).style.display = 'none';
             document.querySelector('#infos-annonce').style.display = 'none';
             // document.querySelector('#loader-logo').style.display = 'block';
             document.querySelector('#enter').style.display = 'block';
@@ -635,7 +632,7 @@ AFRAME.registerSystem('system', {
       this.ambiantMode = false;
       this.applyStyle({ selectedKey: 'ambiantOffEl', elements });
       this.switchAmbiantElements(false);
-      document.querySelector('#menu-language').style.display = 'flex';
+      // document.querySelector('#menu-language').style.display = 'flex';
       this.initLanguage('en');
     };
 
