@@ -6,3 +6,4 @@ node_modules
 *.mp4
 **/*.DS_Store
 **/movie.mp4
+certs/
