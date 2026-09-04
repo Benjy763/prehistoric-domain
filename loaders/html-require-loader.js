@@ -32,16 +32,27 @@ module.exports = function (source) {
     // Read the file content.
     let requireSource = fs.readFileSync(requirePath, 'utf8');
 
-    // Apply asset path replacement logic
+    // Apply asset path replacement logic — only when a prefix is actually
+    // configured. Previously this ran unconditionally, so an empty
+    // ASSET_PREFIX still replaced "/assets/" with "assets/" (stripping the
+    // leading slash and turning an absolute, domain-root path into one
+    // resolved relative to the current page — broken once scenes live under
+    // their own subpath, e.g. /dimetrodon/assets/... instead of /assets/...).
     let prefix = process.env.ASSET_PREFIX || '';
-    // Normalize prefix to ensure it starts and ends with a slash
-    if (prefix && !prefix.startsWith('/')) {
-      prefix = '/' + prefix;
+    if (prefix) {
+      // A full URL (http://, https://, protocol-relative //) must be left
+      // as-is — forcing a leading "/" onto it produces a broken path like
+      // "/https://cdn.example.com/...", which the browser resolves against
+      // the current origin instead of treating as an absolute URL.
+      const isAbsoluteUrl = /^(https?:)?\/\//.test(prefix);
+      if (!isAbsoluteUrl && !prefix.startsWith('/')) {
+        prefix = '/' + prefix;
+      }
+      if (!prefix.endsWith('/')) {
+        prefix = prefix + '/';
+      }
+      requireSource = requireSource.replace(/\/assets\//g, `${prefix}assets/`);
     }
-    if (prefix && !prefix.endsWith('/')) {
-      prefix = prefix + '/';
-    }
-    requireSource = requireSource.replace(/\/assets\//g, `${prefix}assets/`);
 
     requires.push(requirePath);
 

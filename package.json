@@ -10,10 +10,12 @@
     "npm:audit": "npm audit",
     "npm:audit:fix": "npm audit fix --force",
     "start": "cross-env MAIN_SCENE='gallery' ASSET_PREFIX='' webpack serve --port 8080",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "deploy:pages": "node deploy-pages.js",
+    "sync:assets": "node sync-assets-r2.js"
   },
   "dependencies": {
-    "aframe": "^1.7.1",
+    "aframe": "1.7.1",
     "aframe-curve-component": "^0.1.3",
     "aframe-extras": "^7.5.4",
     "aframe-fps-counter-component": "^1.0.1",

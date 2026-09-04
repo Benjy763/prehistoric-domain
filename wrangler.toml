@@ -1,0 +1,7 @@
+name = "prehistoric-domain-vr"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-09-04"
+
+[[r2_buckets]]
+binding = "ASSETS_BUCKET"
+bucket_name = "prehistoric-domain-assets"

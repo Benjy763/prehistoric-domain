@@ -16,6 +16,13 @@ function camelCaseToDashCase(str) {
 
 const mainSceneDashCase = camelCaseToDashCase(process.env.MAIN_SCENE);
 
+// Normalized the same way other asset paths are meant to be prefixed
+// (ASSET_PREFIX + "/assets/..."), so this stays "/assets/..." (same-origin)
+// when unset, matching current behavior for local/default builds.
+const assetPrefix = process.env.ASSET_PREFIX
+  ? process.env.ASSET_PREFIX.replace(/\/$/, '')
+  : '';
+
 module.exports = {
   entry: {
     build: './src/index.js'
@@ -52,7 +59,7 @@ module.exports = {
           <style type="text/css">
             @font-face {
               font-family: 'Exo';
-              src: url('/assets/font/Exo-Regular.ttf') format('truetype');
+              src: url('${assetPrefix}/assets/font/Exo-Regular.ttf') format('truetype');
             }
           </style>
         </head>
